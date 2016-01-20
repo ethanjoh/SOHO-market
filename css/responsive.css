@@ -8,12 +8,12 @@
     }
     .home_menu ul li a {
         padding: 15px 15px 16px;
-    }    
+    }
     .home-1 .content_right {
         display: none;
     }
     .category-menu-list ul li .cat-left-drop-menu {
-        width: 700px; 
+        width: 700px;
     }
     .category-menu-list ul li .cat-left-drop-menu-left {
         width: 150px;
@@ -45,7 +45,7 @@
         margin-right: 5px;
     }
     .home-3 .ma-box-content-all {
-        
+
         padding: 0px;
     }
     .home-4 .footer-static-content .link-follow li.first a {
@@ -79,8 +79,8 @@
     .home-1 .call_us {
         display: none;
     }
-    .home-1 .top-wishlist, .home-1 .top-compare {
-        display: none;
+    .home-1 .top-login, .home-1 .top-register {
+        /*display: none;*/
     }
     .social-footer {
         margin-top: 35px;
@@ -106,8 +106,8 @@
     .menu.dropit {
         display: none;
     }
-    .home-3 .compare a, .top-wishlist {
-        display: none;
+    .home-3 .compare a, .top-login {
+        /*display: none;*/
     }
     .home-4 .ma-footer-static .pt-menu-links {
       padding: 30px 0 20px;
@@ -161,8 +161,8 @@
     .home-3 .header-wrapper.clearfix {
         overflow: hidden;
     }
-    .top-compare {
-        display: none;
+    .top-register {
+        /*display: none;*/
     }
     .header-wrapper.clearfix {
         overflow: hidden;
@@ -176,11 +176,11 @@
     .home-1 .call_us {
         display: none;
     }
-    .home-1 .english {
-        display: none;
+    .home-1 .outlink {
+        /*display: none;*/
     }
-    .home-1 .top-wishlist, .home-1 .top-compare {
-        display: none;
+    .home-1 .top-login, .home-1 .top-register {
+        /*display: none;*/
     }
     .home-1 .home_menu {
         margin-left: 0px;
@@ -224,7 +224,7 @@
     }
     .ma-footer-static .pt-menu-links {
         margin-bottom: 0px;
-    }   
+    }
     .footer-static-title {
         margin-bottom: 15px;
         margin-top: 40px;
@@ -257,11 +257,11 @@
         margin-bottom: 15px;
     }
     /* index 2 */
-    .english {
-        display: none;
+    .outlink {
+        /*display: none;*/
     }
-    .compare a, .top-wishlist {
-        display: none;
+    .compare a, .top-login {
+        /*display: none;*/
     }
     .home_menu {
         display: none;
@@ -346,7 +346,7 @@
     .form-search::after {
         bottom: 14px;
         left: 90px;
-    }    
+    }
     .home-1 #search_mini_form {
         width: 100%;
     }
@@ -406,8 +406,8 @@
     .pull-left {
         max-width: 100%;
     }
-    .top-compare {
-        display: none;
+    .top-register {
+        /*display: none;*/
     }
     .top-cart-wrapper {
         margin: 10px 0;

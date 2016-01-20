@@ -10,56 +10,58 @@
     ===================
     1. Theme Default CSS (body, link color, section etc)
 -----------------------------------------------------------------------------------*/
+
 /*----------------------------------------*/
+
 /*  1.  Theme default CSS
 /*----------------------------------------*/
 html, body {
     height: 100%;
 }
 .floatleft {
-    float:left
+    float: left
 }
 .floatright {
-    float:right
+    float: right
 }
 .alignleft {
-    float:left;
-    margin-right:15px;
+    float: left;
+    margin-right: 15px;
     margin-bottom: 15px;
 }
 .alignright {
-    float:right;
-    margin-left:15px;
+    float: right;
+    margin-left: 15px;
     margin-bottom: 15px
 }
 .aligncenter {
-    display:block;
-    margin:0 auto 15px
+    display: block;
+    margin: 0 auto 15px
 }
 a:focus {
-    outline:0px solid
+    outline: 0px solid
 }
 img {
-    max-width:100%;
-    height:auto
+    max-width: 100%;
+    height: auto
 }
 .fix {
-    overflow:hidden
+    overflow: hidden
 }
 p {
     margin: 0 0 10px;
 }
 h1, h2, h3, h4, h5, h6 {
     color: #2d2d2d;
-    font-family: Lato;
+    /*font-family: Lato;*/
     font-weight: 700;
 }
-a{
+a {
     color: #a6a6a6;
 }
 a {
     transition: all 0.3s ease 0s;
-    text-decoration:none;
+    text-decoration: none;
 }
 a:hover {
     color: #39b3e4;
@@ -68,21 +70,23 @@ a:hover {
 a:active, a:hover {
     outline: 0 none;
 }
-ul{
+ul {
     list-style: outside none none;
     margin: 0;
     padding: 0
 }
-.clear{
-    clear:both;
+.clear {
+    clear: both;
 }
 body {
-    font-family: 'Open Sans', sans-serif;
+    /*font-family: 'Open Sans', sans-serif;*/
+    font-family: 'Noto Sans KR', sans-serif;
     margin: 0px;
     padding: 0px;
 }
+
 /*.............header area..................*/
-.top-link{
+.top-link {
     background-color: #008DC7;
     border-bottom: 1px solid #55b9e2;
 }
@@ -91,42 +95,41 @@ body {
     float: left;
     text-align: left;
 }
-.call_us p{
-    
-    font-size:12px;
+.call_us p {
+    font-size: 12px;
     padding: 10px 0px 0px;
 }
 .call_us span {
     font-weight: 600;
 }
-.english{
+.outlink {
     float: right;
 }
-.english ul{
+.outlink ul {
     margin: 0;
     padding: 0;
 }
-.english ul li{
+.outlink ul li {
     float: left;
     position: relative;
 }
-.english ul li a{
+.outlink ul li a {
     color: #fff;
     font-size: 12px;
     display: inline-block;
     padding: 14px 0 14px 18px;
     display: block;
 }
-.english ul li ul li a:hover{
+.outlink ul li ul li a:hover {
     color: #fff;
     background-color: #3c3c3c;
     transition: all 0.5s ease 0s;
 }
-.english ul li a i{
+.outlink ul li a i {
     font-size: 14px;
     margin-left: 6px;
 }
-.english ul li ul{
+.outlink ul li ul {
     left: -8px;
     background: #fff none repeat scroll 0 0;
     list-style: outside none none;
@@ -140,41 +143,41 @@ body {
     z-index: 1;
     min-width: 140px;
 }
-.english ul li ul li{
+.outlink ul li ul li {
     float: none;
     margin-right: 0px;
 }
-.english ul li ul li a{
+.outlink ul li ul li a {
     color: #3c3c3c;
     padding: 7px 27px;
 }
-.english ul li:hover ul{
+.outlink ul li:hover ul {
     opacity: 1;
     visibility: visible !important;
     z-index: 9999999;
 }
-.header{
+.header {
     background-color: #2BA8DB;
     padding: 16px 0;
 }
-.logo{
+.logo {
     float: left;
 }
-.home_menu{
+.home_menu {
     float: left;
     margin-left: 40px;
     margin-top: 8px;
 }
-.home_menu ul li{
+.home_menu ul li {
     float: left;
     list-style: outside none none;
     position: relative;
 }
-.home_menu ul li a{
+.home_menu ul li a {
     border-bottom: 3px solid transparent;
     color: #fff;
     display: block;
-    font-family: Lato;
+    /*font-family: Lato;*/
     font-size: 14px;
     font-weight: 500;
     padding: 15px 20px 16px;
@@ -182,7 +185,7 @@ body {
     text-decoration: none;
     text-transform: capitalize;
 }
-.home_menu ul li.active1::after{
+.home_menu ul li.active1::after {
     color: #fff;
     content: "\f107";
     float: right;
@@ -192,13 +195,13 @@ body {
     position: absolute;
     top: 17px;
 }
-.home_menu ul li:hover a{
+.home_menu ul li:hover a {
     border-bottom: 3px solid #fff;
 }
 .home_menu ul li.active1:hover a {
     border-bottom: none;
 }
-.home_menu ul li ul{
+.home_menu ul li ul {
     background: #fff none repeat scroll 0 0;
     border: 1px solid #f7f4f3;
     left: -8px;
@@ -214,29 +217,29 @@ body {
     vertical-align: top;
     visibility: visible;
 }
-.home_menu ul li ul li{
+.home_menu ul li ul li {
     float: none;
     margin-right: 0;
 }
-.home_menu ul li ul li a{
+.home_menu ul li ul li a {
     color: #000;
     padding: 7px 27px;
     text-transform: capitalize;
     font-size: 13px;
 }
-.home_menu ul li ul li a:hover{
+.home_menu ul li ul li a:hover {
     background-color: #3c3c3c;
     color: #fff;
     transition: all 0.5s ease 0s;
 }
-.home_menu ul li:hover ul{
+.home_menu ul li:hover ul {
     z-index: 9999999;
     opacity: 1;
     overflow: visible;
     transform: perspective(600px) rotateX(0deg);
-    transition: transform 0.5s ease 0s, opacity 0.2s ease 0s, max-height 0s step-end 0s, max-width 0s step-end 0s, padding 0s step-end 0s; 
+    transition: transform 0.5s ease 0s, opacity 0.2s ease 0s, max-height 0s step-end 0s, max-width 0s step-end 0s, padding 0s step-end 0s;
 }
-.home_menu ul li ul:after{
+.home_menu ul li ul:after {
     content: "";
     position: absolute;
     top: -9px;
@@ -320,15 +323,15 @@ body {
     background: #515151 none repeat scroll 0 0;
     color: #fff;
 }
-.header-link:hover .dropit .dropit-trigger .submenu{
+.header-link:hover .dropit .dropit-trigger .submenu {
     display: block;
 }
-.top-compare {
+.top-register {
     float: right;
     margin-left: 20px;
     border-left: 1px solid #cccccc;
     margin-top: 20px;
-    padding:0px 15px;
+    padding: 0px 15px;
     position: relative;
 }
 .cat_up {
@@ -343,15 +346,15 @@ body {
     font-size: 12px;
     padding: 5px 15px;
 }
-.cat_up a:hover{
+.cat_up a:hover {
     background: #39B3E4 none repeat scroll 0 0;
     color: #fff;
 }
-.compare a,.top-wishlist{
+.compare a, .top-login {
     color: #fff;
     font-size: 14px;
 }
-.compare a small{
+.compare a small {
     color: #fff;
     cursor: pointer;
     display: inline-block;
@@ -359,17 +362,17 @@ body {
     text-align: center;
     margin-left: 3px;
 }
-.top-compare:hover .home ul,.top-wishlist:hover .home ul{
+.top-register:hover .home ul, .top-login:hover .home ul {
     opacity: 1;
     transform: scaleY(1);
     z-index: 55555;
 }
-.top-wishlist{
+.top-login {
     float: right;
     margin-top: 20px;
     position: relative;
 }
-.top-menu{
+.top-menu {
     background-color: #2D2D2D;
 }
 .left-product-cat {
@@ -443,12 +446,12 @@ body {
     position: relative;
     text-decoration: none;
     text-transform: none;
-    font-family: Lato;
+    /*font-family: Lato;*/
 }
 .category-menu-list ul li.rx-parent a.rx-show {
     font-style: italic;
 }
-.category-menu-list ul li a span.cat-thumb{
+.category-menu-list ul li a span.cat-thumb {
     margin-right: 10px;
 }
 .category-menu-list ul li a:hover {
@@ -461,7 +464,7 @@ body {
 }
 .category-menu-list ul li .cat-left-drop-menu-left ul li a:hover {
     color: #3799e4;
-    background-color:inherit;
+    background-color: inherit;
 }
 .category-menu-list ul li.rx-parent a:hover {
     color: #fff;
@@ -571,10 +574,10 @@ body {
     width: 100%;
     z-index: 1000;
 }
-.home-1 .s-same{
+.home-1 .s-same {
     margin-top: 9px;
 }
-.select-wrapper .select{
+.select-wrapper .select {
     background: url("img/icon/down-arrowblk.png") no-repeat scroll 91% 53%;
     float: left;
     position: relative;
@@ -603,7 +606,7 @@ body {
 form {
     display: inline;
 }
-button.button,button.button2 {
+button.button, button.button2 {
     background: transparent none repeat scroll 0 0;
     border: 0 none;
     cursor: pointer;
@@ -612,7 +615,7 @@ button.button,button.button2 {
     padding: 0;
     width: auto;
 }
-.button{
+.button {
     color: #ffffff;
     cursor: pointer;
     display: inline-block;
@@ -629,10 +632,10 @@ button.button,button.button2 {
     text-align: center;
     width: 34px;
 }
-.select{
+.select {
     -moz-appearance: none;
     display: inline-block;
-	-webkit-appearance: none;
+    -webkit-appearance: none;
 }
 .form-search button.button:hover .fa {
     background: #39b3e4 none repeat scroll 0 0;
@@ -652,7 +655,7 @@ button.button,button.button2 {
     left: -1px;
     top: -1px;
     cursor: pointer;
-	-webkit-appearance: none;
+    -webkit-appearance: none;
 }
 select.select option {
     background-color: #fff;
@@ -660,7 +663,7 @@ select.select option {
     color: #565656;
     font-size: 14px;
 }
-.form-search .select{
+.form-search .select {
     float: left !important;
 }
 .top-cart-wrapper {
@@ -691,7 +694,7 @@ select.select option {
     font-weight: 500;
     margin-top: 7px;
 }
-.block-cart{
+.block-cart {
     line-height: 1.25;
 }
 .top-cart-wrapper .my-cart {
@@ -700,7 +703,7 @@ select.select option {
     font-size: 13px;
     font-weight: 700;
     margin-bottom: 5px;
-    text-transform: uppercase; 
+    text-transform: uppercase;
 }
 .top-cart-title a {
     color: #fff;
@@ -710,14 +713,14 @@ select.select option {
 .top-cart-title a:hover {
     color: #39B3E4;
 }
-#right ul{
+#right ul {
     right: -80px;
 }
-.home ul{
+.home ul {
     background: #fff none repeat scroll 0 0;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
     color: #999;
-    font-size: 12px;
+    font-size: 14px;
     opacity: 0;
     padding: 15px;
     position: absolute;
@@ -726,18 +729,21 @@ select.select option {
     transform: scaleY(0);
     transform-origin: 0 0 0;
     transition: all 0.5s ease 0s;
-    width: 270px;
+    width: 230px;
     z-index: -99;
 }
-.top-cart-wrapper:hover .home ul{
+.home ul li input {
+    margin: 5px;
+}
+.top-cart-wrapper:hover .home ul {
     opacity: 1;
     transform: scaleY(1);
     z-index: 9999999;
 }
-.icon_right_site{
+.icon_right_site {
     position: relative;
 }
-.cat p{
+.cat p {
     float: left;
     font-size: 15px;
     letter-spacing: 1px;
@@ -745,7 +751,7 @@ select.select option {
     margin-bottom: 0;
     padding: 5px 0px;
 }
-.cat{
+.cat {
     margin-bottom: 10px;
 }
 .cat a {
@@ -757,7 +763,7 @@ select.select option {
 .cat a:hover {
     color: #00A9E0;
 }
-.cat_icon{
+.cat_icon {
     float: right;
 }
 .cat_icon a::before {
@@ -768,12 +774,12 @@ select.select option {
     color: #FFBD33;
     font-size: 12px;
 }
-.cat_two{
+.cat_two {
     float: left;
     display: inline-block;
     width: 133px;
 }
-.cat a i{
+.cat a i {
     background: #F4F4F4 none repeat scroll 0 0;
     border-radius: 100%;
     color: #F59997;
@@ -790,23 +796,23 @@ select.select option {
     margin-bottom: 5px;
     width: 60px;
 }
-.cat{
+.cat {
     float: left;
     width: 100%;
 }
-.cat_s p{
+.cat_s p {
     float: left;
     font-size: 10px;
     font-weight: normal;
     margin: 15px 0 0;
     text-transform: uppercase;
-    display:inline-table;
+    display: inline-table;
 }
-.cat_s p span{
+.cat_s p span {
     font-size: 15px;
     margin-left: 5px;
 }
-.cat_d{
+.cat_d {
     float: right;
     text-align: right;
     margin-top: 45px;
@@ -817,32 +823,33 @@ select.select option {
     color: #fff;
     font-size: 15px;
 }
-.cat_d a:hover{
+.cat_d a:hover {
     background-color: #00A9E0;
     transition: all 0.4s ease 0s;
 }
-.cat_d a i{
+.cat_d a i {
     margin-right: 10px;
 }
-.icon_right p{
+.icon_right p {
     color: aliceblue;
 }
+
 /*...................main_slider_area.....................*/
 .title-container.s-tb-c.title-compress {
     padding: 0 0 0 90px;
 }
-.title-container.s-tb-c.title-compress h1{
+.title-container.s-tb-c.title-compress h1 {
     color: #F4A137;
-    font-size:50px;
+    font-size: 50px;
     letter-spacing: -5px;
     line-height: 1;
     margin-bottom: 0;
     text-transform: uppercase;
-    font-weight: 500; 
+    font-weight: 500;
 }
-.title-container.s-tb-c.title-compress h2{
+.title-container.s-tb-c.title-compress h2 {
     color: #F4A137;
-    font-size:50px;
+    font-size: 50px;
     letter-spacing: 2px;
     line-height: 1;
     margin-bottom: 0;
@@ -850,9 +857,9 @@ select.select option {
     font-weight: 600;
     word-spacing: 20px;
     margin: 0;
-    margin-top: -13px; 
+    margin-top: -13px;
 }
-.title-container.s-tb-c.title-compress h3{
+.title-container.s-tb-c.title-compress h3 {
     background: #fff none repeat scroll 0 0;
     padding: 0 10px;
     display: inline-block;
@@ -862,7 +869,7 @@ select.select option {
     font-weight: 400;
     margin: 35px 0px 35px;
 }
-.s-title a{
+.s-title a {
     background: #39b3e4 none repeat scroll 0 0;
     color: #fff;
     font-size: 12px;
@@ -870,9 +877,9 @@ select.select option {
     padding: 15px 29px;
     text-transform: uppercase;
 }
-.title-container.s-tb-c h1.title4{
+.title-container.s-tb-c h1.title4 {
     color: #F4A137;
-    font-size:22px;
+    font-size: 22px;
     letter-spacing: 3px;
     line-height: 1;
     margin-bottom: 0;
@@ -896,6 +903,7 @@ select.select option {
 .nivo-caption {
     opacity: 1;
 }
+
 /*................... slider_area.....................*/
 .nav.nav-tabs.moz {
     margin-top: 40px;
@@ -922,7 +930,7 @@ select.select option {
     color: #2d2d2d;
     cursor: pointer;
     float: left;
-    font-family: Lato;
+    /*font-family: Lato;*/
     font-size: 18px;
     font-weight: 700;
     list-style: outside none none;
@@ -931,16 +939,16 @@ select.select option {
     padding-bottom: 15px;
     position: relative;
 }
-.features-tab .nav > li > a:focus,.features-tab .nav > li > a:hover {
+.features-tab .nav > li > a:focus, .features-tab .nav > li > a:hover {
     background-color: inherit;
     border-bottom-color: #2ba8db;
 }
-.features-tab .nav-tabs > li.active > a,.features-tab  .nav-tabs > li.active > a:focus,.features-tab  .nav-tabs > li.active > a:hover {
+.features-tab .nav-tabs > li.active > a, .features-tab  .nav-tabs > li.active > a:focus, .features-tab  .nav-tabs > li.active > a:hover {
     border: medium none;
     border-bottom: 2px solid #2ba8db;
 }
-.features-curosel .col-md-3{
-    width:100%
+.features-curosel .col-md-3 {
+    width: 100%
 }
 .single-product {
     padding-bottom: 3px;
@@ -950,13 +958,13 @@ select.select option {
     padding: 0;
     position: relative;
 }
-.single-product span.sale-text,.bit span.sale-text{
+.single-product span.sale-text, .bit span.sale-text {
     background: #f4a137 none repeat scroll 0 0;
     border-radius: 100%;
     box-shadow: 0 3px 0 0 #d58117;
     color: #fff;
     display: block;
-    font-family: Lato;
+    /*font-family: Lato;*/
     font-size: 16px;
     font-weight: 700;
     height: 56px;
@@ -973,17 +981,17 @@ select.select option {
 .bit {
     margin-top: 35px;
 }
-.bit span.sale-text{
+.bit span.sale-text {
     left: 25px;
     top: 52%;
 }
-.bit .product-img{
+.bit .product-img {
     position: relative;
 }
-.single-product .product-img,.bit .product-img{
+.single-product .product-img, .bit .product-img {
     position: relative;
 }
-.product-img a{
+.product-img a {
     display: block;
     margin-bottom: 10px;
 }
@@ -998,7 +1006,7 @@ select.select option {
     background: rgba(0, 0, 0, 0.3) none repeat scroll 0 0;
     opacity: 0;
 }
-.single-product:hover   .product-img a::before,.li-item:hover   .product-img a::before {
+.single-product:hover   .product-img a::before, .li-item:hover   .product-img a::before {
     left: 0;
     opacity: 1;
     width: 100%;
@@ -1008,7 +1016,7 @@ select.select option {
     border-radius: 2px;
     color: #fff;
     float: left;
-    font-family: Lato;
+    /*font-family: Lato;*/
     font-size: 14px;
     font-weight: 900;
     padding: 0 5px;
@@ -1030,34 +1038,34 @@ select.select option {
     color: red;
     margin: 0;
 }
-.product-content h2 a,.f-fix h2 a{
+.product-content h2 a, .f-fix h2 a {
     color: #5c5c5c;
     font-size: 15px;
     font-weight: 600;
     text-transform: none;
 }
-.product-content h2 a:hover,.f-fix h2 a:hover{
+.product-content h2 a:hover, .f-fix h2 a:hover {
     color: #00a9e0;
 }
-.pro-rating{
+.pro-rating {
     margin: 5px 0px 12px;
     display: block;
     overflow: hidden;
 }
-.pro-rating .pro_one,.pro-rating .pro_two{
+.pro-rating .pro_one, .pro-rating .pro_two {
     float: left;
 }
-.pro-rating .pro_one a{
+.pro-rating .pro_one a {
     color: #F4A137;
     font-size: 17px;
     float: left;
 }
-.pro-rating .pro_two a{
+.pro-rating .pro_two a {
     color: #aaaaaa;
     font-size: 17px;
     margin-left: 5px;
 }
-.product-icon a i{
+.product-icon a i {
     border: 1px solid #aaa;
     border-radius: 100%;
     box-shadow: 0 3px 0 0 transparent;
@@ -1070,7 +1078,7 @@ select.select option {
     width: 41px;
     margin: 0 2px;
 }
-.product-content .product-icon a i:hover,.f-fix .product-icon a i:hover,.add-to-box1 .product-icon a i:hover{
+.product-content .product-icon a i:hover, .f-fix .product-icon a i:hover, .add-to-box1 .product-icon a i:hover {
     background: #00a9e0 none repeat scroll 0 0;
     border-color: #00a9e0;
     box-shadow: 0 3px 0 0 #008dc7;
@@ -1080,7 +1088,7 @@ select.select option {
     background: inherit;
     border-radius: 0;
     color: #000;
-    font-family: Lato;
+    /*font-family: Lato;*/
     font-size: 18px;
     font-weight: 900;
     margin: 5px;
@@ -1096,11 +1104,12 @@ select.select option {
 .indicator-style.owl-theme .owl-controls .owl-buttons div:hover {
     color: #00a9e0;
 }
+
 /*................... banner_area.....................*/
-.banner_area{
+.banner_area {
     margin: 32px 0px 40px;
 }
-.banner img{
+.banner img {
     width: 100%;
 }
 .banner a {
@@ -1131,6 +1140,7 @@ select.select option {
     opacity: 1;
     width: 100%;
 }
+
 /*...................product_area.....................*/
 .ma-title h2 {
     border-bottom: 2px solid #2ba8db;
@@ -1157,9 +1167,9 @@ select.select option {
     text-align: center;
     width: 100%;
     margin-bottom: 25px;
-    margin-top:14px;
+    margin-top: 14px;
 }
-.product a::before,.laptop a::before {
+.product a::before, .laptop a::before {
     animation-duration: 0.5s;
     background: rgba(0, 0, 0, 0.3) none repeat scroll 0 0;
     content: "";
@@ -1173,23 +1183,24 @@ select.select option {
     transition: all 0.5s ease 0s;
     width: 0;
 }
-.product a:hover::before,.laptop a:hover::before {
+.product a:hover::before, .laptop a:hover::before {
     left: 0;
     opacity: 1;
     width: 100%;
 }
-.features .col-md-4{
-    width:100%
+.features .col-md-4 {
+    width: 100%
 }
- /*--------------- shop_area ----------------*/
-.catlist-content{
+
+/*--------------- shop_area ----------------*/
+.catlist-content {
     border: 1px solid #e1e1e1;
     margin-bottom: 30px;
     overflow: hidden;
     width: 100%;
 }
 .pull-left {
-    padding-right:10px;
+    padding-right: 10px;
     padding: 20px 0 20px 20px;
     float: left;
     display: inline-block;
@@ -1226,7 +1237,7 @@ select.select option {
 .subcat li a:hover::before, .subcat li a:hover {
     padding-left: 5px;
 }
-.media-body{
+.media-body {
     float: right;
     display: block;
     max-width: 49%;
@@ -1274,18 +1285,18 @@ select.select option {
     font-size: 12px;
     text-align: center;
 }
-.blog-content{
+.blog-content {
     text-align: center;
 }
-.blog-content h3{
+.blog-content h3 {
     margin-top: 0;
 }
-.time-blog .fa{
+.time-blog .fa {
     margin-right: 5px;
     color: #aaa;
     font-size: 14px;
 }
-.time-conment .fa{
+.time-conment .fa {
     margin-right: 5px;
     color: #aaa;
     font-size: 14px;
@@ -1297,8 +1308,8 @@ select.select option {
     margin-top: 0px;
     text-align: center;
 }
-.Latest_Post .col-md-4{
-    width:100%
+.Latest_Post .col-md-4 {
+    width: 100%
 }
 .Latest-img::after {
     background: rgba(0, 0, 0, 0.4) none repeat scroll 0 0;
@@ -1315,13 +1326,14 @@ select.select option {
     width: 0;
     z-index: 1;
 }
-.Latest-img:hover::after{
+.Latest-img:hover::after {
     height: 100%;
     width: 100%;
 }
 .title.ma-title.lab {
     margin-top: 35px;
 }
+
 /*............banner_footer_area......................*/
 .banner_footer_area {
     overflow: hidden;
@@ -1339,6 +1351,7 @@ select.select option {
 .laptop > a {
     display: inline-block;
 }
+
 /*............tweets_area......................*/
 .tweets_area {
     background-color: #f6f6f6;
@@ -1384,6 +1397,7 @@ strong {
 .footer-static-content .link-follow li.first a:hover {
     background: #E3E3E3 none repeat scroll 0 0;
 }
+
 /*............ma-footer-static......................*/
 .ma-footer-static {
     background: #333333 none repeat scroll 0 0;
@@ -1410,7 +1424,7 @@ strong {
     font-size: 12px;
     font-weight: 700;
 }
-.ma-footer-static .pt-menu-links li a:hover{
+.ma-footer-static .pt-menu-links li a:hover {
     color: #39B3E4;
 }
 .ma-footer-static .pt-menu-links li:last-child {
@@ -1430,7 +1444,7 @@ strong {
     position: absolute;
     top: 0;
 }
-.footer-static-top .f-col:first-child:before{
+.footer-static-top .f-col:first-child:before {
     border: 0;
 }
 .footer-static-title {
@@ -1460,6 +1474,7 @@ strong {
 .footer-contact p {
     padding-bottom: 5px;
 }
+
 /*............ footer-address......................*/
 .footer-address {
     background: #333333 none repeat scroll 0 0;
@@ -1489,10 +1504,11 @@ address {
     float: right;
     margin-top: 5px;
 }
+
 /*.............scrollUp................*/
 #toTop {
     text-align: center;
-    background-color: #7f7f7f ;
+    background-color: #7f7f7f;
     bottom: 35px;
     cursor: pointer;
     display: none;
@@ -1505,26 +1521,28 @@ address {
     color: #fff;
 }
 #toTop:hover {
-    background-color: #00A9E0 ;
+    background-color: #00A9E0;
 }
+
 /*..................start home-1...............*/
-.home-1 .top-link{
+.home-1 .top-link {
     background-color: #FFFFFF;
     padding: 12px 0;
     position: relative;
     z-index: 100;
 }
 .home-1 .features-curosel.indicator-style.owl-carousel.owl-theme {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 .home-1 .top-link {
     border-bottom: 1px solid #cccccc;
 }
-.home-1 .header{
+.home-1 .header {
     background-color: #FFFFFF;
 }
-.home-1 .top-logo{
+.home-1 .top-logo {
     float: left;
+    width: 210px;
 }
 .home-1 .home_menu {
     float: left;
@@ -1532,17 +1550,18 @@ address {
     margin-top: 0px;
     line-height: 23px;
 }
-.home-1 .home_menu ul li.active1::after{
+.home-1 .home_menu ul li.active1::after {
     color: #fff;
     content: "\f107";
     float: right;
-    font-family: FontAwesome;
+    /*font-family: FontAwesome;*/
+    font-family: 'Noto Sans KR', sans-serif;
     font-size: 15px;
     right: 0;
     position: absolute;
     top: 17px;
 }
-.home-1 .call_us{
+.home-1 .call_us {
     color: #535353;
     float: left;
     margin-left: 50px;
@@ -1552,38 +1571,38 @@ address {
 .home-1 .call_us span {
     font-weight: 600;
 }
-.home-1 .english{
+.home-1 .outlink {
     float: right;
     margin-top: 12px;
 }
-.english ul{
+.outlink ul {
     margin: 0;
     padding: 0;
 }
-.home-1 .home-1 .english ul li{
+.home-1 .home-1 .outlink ul li {
     float: left;
     position: relative;
 }
-.home-1 .english ul li a{
+.home-1 .outlink ul li a {
     color: #fff;
     font-size: 12px;
     display: inline-block;
     padding: 14px 0 14px 18px;
     display: block;
 }
-.home-1 .english ul li ul li a{
+.home-1 .outlink ul li ul li a {
     color: #3c3c3c;
     padding: 7px 27px;
 }
-.home-1 .english ul li a{
+.home-1 .outlink ul li a {
     color: #535353;
 }
-.home-1 .english ul li ul li a:hover{
+.home-1 .outlink ul li ul li a:hover {
     color: #fff;
     background-color: #3c3c3c;
     transition: all 0.5s ease 0s;
 }
-.home-1 .english ul li .parent-link .fa {
+.home-1 .outlink ul li .parent-link .fa {
     border: 1px solid #f0f0f0;
     border-radius: 100%;
     color: #535353;
@@ -1593,12 +1612,12 @@ address {
     text-align: center;
     width: 39px;
 }
-.home-1 .english ul li.dropit-trigger:hover .fa {
+.home-1 .outlink ul li.dropit-trigger:hover .fa {
     background: #39b3e4 none repeat scroll 0 0;
     border-color: #39b3e4;
     color: #fff;
-} 
-.home-1 .compare a, .top-wishlist {
+}
+.home-1 .compare a, .top-login {
     color: #444444;
 }
 .home-1 .compare a small {
@@ -1643,27 +1662,27 @@ address {
 .home-1 .top-cart-title a:hover {
     color: #39b3e4;
 }
-.home-1 .top-wishlist,.home-1 .top-compare {
+.home-1 .top-login, .home-1 .top-register {
     margin-top: 15px;
 }
-.home-1 .english ul li.dropit-trigger a.parent-link{
+.home-1 .outlink ul li.dropit-trigger a.parent-link {
     padding-top: 0;
 }
 .home-1 .home_menu ul li a {
     border-bottom: 0px;
 }
-.home-1 .home_menu ul li ul li a:hover{
+.home-1 .home_menu ul li ul li a:hover {
     background-color: #3c3c3c;
     color: #fff;
     transition: all 0.5s ease 0s;
 }
-.home-1 .home_menu ul li:hover a{
+.home-1 .home_menu ul li:hover a {
     color: #00A9E0;
 }
 .home-1 .home_menu ul li:hover ul li a {
     color: #000;
 }
-.home-1 .home_menu ul li:hover ul li a:hover{
+.home-1 .home_menu ul li:hover ul li a:hover {
     color: #fff;
 }
 .home-1 .product a {
@@ -1679,10 +1698,10 @@ address {
     width: 100%;
     margin-bottom: 30px;
 }
-.home-1 .lenovo a{
+.home-1 .lenovo a {
     display: block;
 }
-.home-1 .lenovo a::before,.home-3 .galaxy a::before,.home-4 .galaxy a::before {
+.home-1 .lenovo a::before, .home-3 .galaxy a::before, .home-4 .galaxy a::before {
     animation-duration: 0.5s;
     background: rgba(0, 0, 0, 0.3) none repeat scroll 0 0;
     content: "";
@@ -1696,12 +1715,12 @@ address {
     transition: all 0.5s ease 0s;
     width: 0;
 }
-.home-1 .lenovo a:hover::before,.home-3 .galaxy a:hover::before,.home-4 .galaxy a:hover::before {
+.home-1 .lenovo a:hover::before, .home-3 .galaxy a:hover::before, .home-4 .galaxy a:hover::before {
     left: 0;
     opacity: 1;
     width: 100%;
 }
-.home-1 .banner a{
+.home-1 .banner a {
     margin-bottom: 30px;
 }
 .home-1 .banner a {
@@ -1713,7 +1732,7 @@ address {
 .home-1 #search_mini_form {
     width: 90%;
 }
-.home-1 .cat_up a:hover{
+.home-1 .cat_up a:hover {
     background: #39B3E4 none repeat scroll 0 0;
     color: #fff;
 }
@@ -1722,9 +1741,9 @@ address {
     opacity: 1;
     width: 100%;
 }
-.latest_all{
+.latest_all {
     position: relative;
-} 
+}
 .latest_all:hover .Latest-img::after {
     height: 100%;
     width: 100%;
@@ -1744,23 +1763,24 @@ address {
     width: 0;
     z-index: 1;
 }
+
 /*..................start home-3....................................................*/
-.home-3 .top-link{
+.home-3 .top-link {
     background-color: #FFFFFF;
 }
 .home-3 .top-link {
     border-bottom: 1px solid #cccccc;
 }
-.home-3 .header{
+.home-3 .header {
     background-color: #FFFFFF;
 }
-.home-3 .call_us{
+.home-3 .call_us {
     color: #535353;
 }
-.home-3 .english ul li a {
+.home-3 .outlink ul li a {
     color: #535353;
 }
-.home-3 .compare a, .top-wishlist {
+.home-3 .compare a, .top-login {
     color: #444444;
 }
 .home-3 .compare a small {
@@ -1784,21 +1804,21 @@ address {
 .home-3 .home_menu ul li a {
     color: #000;
 }
-.home-3 .home_menu ul li ul li a:hover{
+.home-3 .home_menu ul li ul li a:hover {
     background-color: #3c3c3c;
     color: #fff;
     transition: all 0.5s ease 0s;
 }
-.home-3 .home_menu ul li:hover a{
+.home-3 .home_menu ul li:hover a {
     color: #00A9E0;
 }
 .home-3 .home_menu ul li:hover ul li a {
     color: #000;
 }
-.home-3 .home_menu ul li:hover ul li a:hover{
+.home-3 .home_menu ul li:hover ul li a:hover {
     color: #fff;
 }
-.home-3 .home_menu ul li.active1::after{
+.home-3 .home_menu ul li.active1::after {
     color: #000;
     content: "\f107";
     float: right;
@@ -1819,24 +1839,24 @@ address {
 .home-3 .ma-footer-static .pt-menu-links {
     padding: 30px 0 20px;
 }
-.home-3 .ma-title{
+.home-3 .ma-title {
     margin-top: 30px;
 }
-.home-3 .ma-box-content-all{
+.home-3 .ma-box-content-all {
     border: 1px solid #e8e8e8;
     padding: 15px;
 }
-.home-3 .ma-box-content{
+.home-3 .ma-box-content {
     margin-bottom: 10px;
 }
-.home-3 .product-img-right{
+.home-3 .product-img-right {
     margin-right: 15px;
     float: left;
     height: 95px;
     width: 95px;
 }
 .home-3 .slider-area {
-  margin-top: 30px;
+    margin-top: 30px;
 }
 .home-3 .product-content .price-box span.special-price {
     background: none;
@@ -1867,13 +1887,13 @@ address {
 .home-3 .twitter-article .twitter-text {
     text-align: justify;
 }
-.home-3 .product a img{
+.home-3 .product a img {
     width: 100%;
 }
-.home-3 .product{
+.home-3 .product {
     padding-right: 0;
 }
-.home-3 .product{
+.home-3 .product {
     margin-top: 30px;
 }
 .home-3 .banner a {
@@ -1893,8 +1913,9 @@ address {
     margin-bottom: 25px;
     margin-top: 10px;
 }
+
 /*..................start home-4............................................................................*/
-.home-4 .home_menu ul li.active1::after{
+.home-4 .home_menu ul li.active1::after {
     color: #000;
     content: "\f107";
     float: right;
@@ -1907,25 +1928,25 @@ address {
 .home-4 .nav-tabs {
     margin: 30px 0 40px;
 }
-.home-4 .top-link{
+.home-4 .top-link {
     background-color: #FFFFFF;
 }
 .home-4 .features-curosel.indicator-style.owl-carousel.owl-theme {
-  margin-bottom: 25px;
+    margin-bottom: 25px;
 }
 .home-4 .top-link {
     border-bottom: 1px solid #cccccc;
 }
-.home-4 .header{
+.home-4 .header {
     background-color: #FFFFFF;
 }
-.home-4 .call_us{
+.home-4 .call_us {
     color: #535353;
 }
-home-4 .english ul li a {
+home-4 .outlink ul li a {
     color: #535353;
 }
-.home-4 .compare a, .top-wishlist {
+.home-4 .compare a, .top-login {
     color: #444444;
 }
 .home-4 .compare a small {
@@ -1949,16 +1970,16 @@ home-4 .english ul li a {
 .home-4 .home_menu ul li a {
     color: #000;
 }
-.home-4 .home_menu ul li:hover a{
+.home-4 .home_menu ul li:hover a {
     color: #00A9E0;
 }
 .home-4 .home_menu ul li:hover ul li a {
     color: #000;
 }
-.home-4 .home_menu ul li:hover ul li a:hover{
+.home-4 .home_menu ul li:hover ul li a:hover {
     color: #fff;
 }
-.home-4 .home_menu ul li ul li a:hover{
+.home-4 .home_menu ul li ul li a:hover {
     background-color: #3c3c3c;
     color: #fff;
     transition: all 0.5s ease 0s;
@@ -1966,20 +1987,20 @@ home-4 .english ul li a {
 .home-4 .ma-footer-static .pt-menu-links {
     padding: 30px 0 20px;
 }
-.home-4 .english ul li a {
+.home-4 .outlink ul li a {
     color: #535353;
 }
-.home-4 .ma-title{
+.home-4 .ma-title {
     margin-top: 30px;
 }
-.home-4 .ma-box-content-all{
+.home-4 .ma-box-content-all {
     border: 1px solid #e8e8e8;
     padding: 15px;
 }
-.home-4 .ma-box-content{
+.home-4 .ma-box-content {
     margin-bottom: 10px;
 }
-.home-4 .product-img-right{
+.home-4 .product-img-right {
     margin-right: 15px;
     float: left;
     height: 95px;
@@ -2014,16 +2035,16 @@ home-4 .english ul li a {
     margin-top: 30px;
     width: 100%;
 }
-.home-4 .col-banner{
+.home-4 .col-banner {
     padding-right: 0;
 }
-.home-4 .col-s-nanner{
+.home-4 .col-s-nanner {
     padding-right: 0;
 }
 .pro {
     padding-right: 0;
 }
-.home-4 #product a{
+.home-4 #product a {
     margin-top: 30px;
     margin-bottom: 15px;
 }
@@ -2037,7 +2058,7 @@ home-4 .english ul li a {
     margin-top: 0px;
     margin-bottom: 0px;
 }
-.home-4 .product-four{
+.home-4 .product-four {
     margin-top: 15px;
 }
 .home-4 .banner_area {
@@ -2046,7 +2067,7 @@ home-4 .english ul li a {
 .home-4 .catlist-content {
     margin-bottom: 0px;
 }
-.home-4 .item_all{
+.home-4 .item_all {
     padding-bottom: 38px;
 }
 .home-4 .tweets_area {
@@ -2055,6 +2076,7 @@ home-4 .english ul li a {
 .home-4 .single-product {
     padding-bottom: 3px;
 }
+
 /*---------------------------start shop page.-----------------------------*/
 .breadcrumbs {
     font-size: 12px;
@@ -2094,11 +2116,13 @@ home-4 .english ul li a {
     color: #00a9e0;
     font-weight: normal;
 }
+
 /*-----end breadcrumbs....*/
 .category-image {
     margin: 0 0 20px;
     width: 100%;
 }
+
 /*-----start main_shop_all....*/
 .block .block-title {
     border-bottom: 1px solid #2ba8db;
@@ -2111,11 +2135,11 @@ home-4 .english ul li a {
 .block #title {
     margin-bottom: 30px;
 }
-.block .block-title h2{
+.block .block-title h2 {
     border-bottom: 2px solid #2ba8db;
     color: #222222;
     display: inline-block;
-    font-family: Lato;
+    /*font-family: Lato;*/
     font-size: 16px;
     font-weight: 600;
     padding-bottom: 10px;
@@ -2125,7 +2149,7 @@ home-4 .english ul li a {
     word-wrap: break-word;
     margin: 0;
 }
-.block-content .currently  {
+.block-content .currently {
     line-height: 1.5;
     padding: 6px 0px 6px 10px;
     overflow: hidden;
@@ -2139,7 +2163,7 @@ home-4 .english ul li a {
     color: #797979;
     font-size: 12px;
 }
-.currently .current_one span.value{
+.currently .current_one span.value {
     color: #00a9e0;
     display: inline-table;
     line-height: 25px;
@@ -2147,11 +2171,11 @@ home-4 .english ul li a {
     vertical-align: top;
     font-size: 12px;
 }
-.currently  .current_one{
+.currently  .current_one {
     float: left;
     display: inline-table;
 }
-.currently  .current{
+.currently  .current {
     float: right;
     display: block;
 }
@@ -2184,7 +2208,7 @@ home-4 .english ul li a {
     padding: 4px 5px 4px 9px;
     text-align: right;
 }
-.narrow-by-list .layered-attribute  .odd ul{
+.narrow-by-list .layered-attribute  .odd ul {
     display: block;
 }
 .block .odd ul li {
@@ -2253,14 +2277,14 @@ home-4 .english ul li a {
     background: transparent none repeat scroll 0 0;
     border: 0 none;
     color: #282828;
-    font-family: Lato;
+    /*font-family: Lato;*/
     font-size: 14px;
     font-weight: 600;
     min-width: 50px;
     padding: 4px 10px 20px 0;
     letter-spacing: 3px;
 }
-.layered{
+.layered {
     margin-bottom: 30px;
 }
 .layered .block-content .tags-list {
@@ -2295,47 +2319,47 @@ home-4 .english ul li a {
 .block .actions a {
     margin: 15px 0 0;
 }
-.tabs  {
+.tabs {
     position: relative;
     text-align: left;
     display: block;
 }
-.shop-all-tab{
+.shop-all-tab {
     border-bottom: 1px solid #cccccc;
 }
-.shop-all-tab{
+.shop-all-tab {
     overflow: hidden;
     display: block;
 }
-.features-tab .shop-all-tab  .two-part{
+.features-tab .shop-all-tab  .two-part {
     float: left;
     width: 50%;
 }
-.two-part{
+.two-part {
     float: right;
-    font-family: Lato;
+    /*font-family: Lato;*/
     margin: 0;
     padding: 0;
     text-align: center;
 }
-.features-tab .shop-all-tab .shop5{
+.features-tab .shop-all-tab .shop5 {
     float: right;
 }
-.features-tab .shop-all-tab .shop6{
+.features-tab .shop-all-tab .shop6 {
     float: right;
 }
-.shop6  .sort-by{
+.shop6  .sort-by {
     float: right;
     width: 47%;
 }
-.shop-all-tab{
+.shop-all-tab {
     padding-bottom: 15px;
 }
-.features-tab ul.tabs{
+.features-tab ul.tabs {
     display: inline-block;
     float: left;
 }
-.two-part .shop5 label,.shop6 label {
+.two-part .shop5 label, .shop6 label {
     color: #2b2b2b;
     font-size: 13px;
     font-weight: 600;
@@ -2343,7 +2367,7 @@ home-4 .english ul li a {
     vertical-align: middle;
     display: inline-block;
 }
-.two-part .shop5 select,.shop6 select {
+.two-part .shop5 select, .shop6 select {
     background: transparent none repeat scroll 0 0;
     border: 1px solid #ccc;
     color: #908f8f;
@@ -2354,7 +2378,7 @@ home-4 .english ul li a {
     vertical-align: middle;
 }
 .shop6 select {
-    width: 180px; 
+    width: 180px;
 }
 .shop-all-tab .sort-by  .shop6 a {
     color: #2b2b2b;
@@ -2365,7 +2389,7 @@ home-4 .english ul li a {
 .shop-all-tab .sort-by  .shop6 a:hover {
     color: #00a9e0;
 }
-.two-part .shop5,.shop6{
+.two-part .shop5, .shop6 {
     font-size: 12px;
     color: #707070;
 }
@@ -2378,51 +2402,51 @@ home-4 .english ul li a {
     margin-top: 10px;
     float: left;
 }
-.two-part .page ul li{
+.two-part .page ul li {
     color: #00a9e0;
     text-decoration: underline;
     display: inline;
     margin: 10px 2px 0px;
 }
-.two-part .page ul li a{
+.two-part .page ul li a {
     font-size: 12px;
     color: #9b9b9b;
     margin-left: 3px;
 }
-.two-part .page ul li a:hover{
+.two-part .page ul li a:hover {
     color: #3AA9E0;
 }
-.two-part .page ul li a.active{
+.two-part .page ul li a.active {
     color: #3AA9E0;
 }
-.features-tab .shop-all-tab{
+.features-tab .shop-all-tab {
     margin-bottom: 30px;
     margin-top: 30px;
 }
-.features-tab ul.tabs li{
+.features-tab ul.tabs li {
     float: left;
     margin-right: 20px;
 }
-.features-tab ul li a{
+.features-tab ul li a {
     font-size: 25px;
 }
-.features-tab ul li.active-icon a{
+.features-tab ul li.active-icon a {
     color: #EE4A42;
 }
-.tab-content .tab-pane .shop-tab .product-content{
+.tab-content .tab-pane .shop-tab .product-content {
     padding-bottom: 30px;
 }
-.f-fix{
+.f-fix {
     position: relative;
 }
-.li-item{
+.li-item {
     padding-bottom: 30px;
     display: inline-table
 }
-.f-fix h2{
+.f-fix h2 {
     margin: 0px;
 }
-.f-fix  .pro-rating{
+.f-fix  .pro-rating {
     margin-top: 0px;
     padding-bottom: 15px;
     border-bottom: 1px solid #cccccc;
@@ -2443,32 +2467,33 @@ home-4 .english ul li a {
     padding-bottom: 20px;
     text-align: justify;
 }
-.f-fix .p-box span.special-price{
-    font-family: Lato;
+.f-fix .p-box span.special-price {
+    /*font-family: Lato;*/
     font-size: 16px;
     font-weight: 900;
     color: #f65656;
     margin-bottom: 17px;
 }
-.f-fix .p-box span.old-price{
-    font-family: Lato;
+.f-fix .p-box span.old-price {
+    /*font-family: Lato;*/
     font-weight: 400;
     color: #b2b2b2;
     font-size: 14px;
     margin-bottom: 17px;
     text-decoration: line-through;
 }
-.f-fix .p-box{
+.f-fix .p-box {
     margin-bottom: 15px;
 }
-.features-tab .tabs > li.active > a,.features-tab  .tabs > li.active > a:focus,.features-tab  .tabs > li.active > a:hover {
+.features-tab .tabs > li.active > a, .features-tab  .tabs > li.active > a:focus, .features-tab  .tabs > li.active > a:hover {
     color: #EE4A42;
 }
+
 /*---------------------------start shop-details page.-----------------------------*/
-.simpleLens-lens-element{
-    width: 355px;    
+.simpleLens-lens-element {
+    width: 355px;
 }
-.cras .product-name h1{
+.cras .product-name h1 {
     margin-bottom: 0px;
     color: #5c5c5c;
     font-size: 34px;
@@ -2491,7 +2516,7 @@ home-4 .english ul li a {
     color: #00a9e0;
     margin-left: 5px;
 }
-.cras .short-description p{
+.cras .short-description p {
     clear: both;
     color: #8c8c8c;
     display: inline-block;
@@ -2499,7 +2524,7 @@ home-4 .english ul li a {
     margin: 10px 0;
     text-align: justify;
 }
-.cras .pre-box span.special-price{
+.cras .pre-box span.special-price {
     border-bottom: 1px solid #e5e5e5;
     border-top: 1px solid #e5e5e5;
     font-size: 24px;
@@ -2509,7 +2534,7 @@ home-4 .english ul li a {
     padding: 5px 0;
     display: block;
 }
-.pre-box span.special-price{
+.pre-box span.special-price {
     color: #f65656;
     font-size: 14px;
     font-weight: 700;
@@ -2546,7 +2571,7 @@ button.button2 {
     margin-bottom: 10px;
     margin-left: 10px;
 }
-button.button2  {
+button.button2 {
     background: #383838 none repeat scroll 0 0;
     color: #fff;
     display: block;
@@ -2563,20 +2588,20 @@ button.button2:hover {
     transition: all 0.4s ease 0s;
 }
 .add-to-box .add-to-cart {
-    display:inline-table;
+    display: inline-table;
     padding: 20px 0;
     margin-top: 25px;
 }
-.cras   .add-to-box1{
-    display:inline-table;
+.cras   .add-to-box1 {
+    display: inline-table;
     padding: 15px 0;
 }
-.pluginButtonLabel ul{
+.pluginButtonLabel ul {
     list-style: none;
     margin: 0;
     padding: 0;
 }
-.pluginButtonLabel ul li{
+.pluginButtonLabel ul li {
     float: left;
     position: relative;
 }
@@ -2586,7 +2611,7 @@ button.button2:hover {
     font-weight: bold;
     display: block;
 }
-.pluginButtonLabel ul li.blue,.pluginButtonLabel ul li.zero a,.pluginButtonLabel ul li.sky,.pluginButtonLabel ul li.puce a,.pluginButtonLabel ul li.orange{
+.pluginButtonLabel ul li.blue, .pluginButtonLabel ul li.zero a, .pluginButtonLabel ul li.sky, .pluginButtonLabel ul li.puce a, .pluginButtonLabel ul li.orange {
     border-radius: 3px;
     box-sizing: border-box;
     color: #fff;
@@ -2596,41 +2621,41 @@ button.button2:hover {
     padding: 1px 8px 1px 6px;
     margin-right: 5px;
 }
-.pluginButtonLabel ul li.blue{
-    background-color:#354c8c;
+.pluginButtonLabel ul li.blue {
+    background-color: #354c8c;
 }
-.pluginButtonLabel ul li.blue:hover{
-    background-color:#5878D0;
+.pluginButtonLabel ul li.blue:hover {
+    background-color: #5878D0;
 }
-.pluginButtonLabel ul li.zero a{
-    background-color:none;
+.pluginButtonLabel ul li.zero a {
+    background-color: none;
     color: #a6a6a6;
     border: 1px solid #a6a6a6;
 }
-.pluginButtonLabel ul li.sky{
-    background-color: #1b95e0; 
+.pluginButtonLabel ul li.sky {
+    background-color: #1b95e0;
 }
-.pluginButtonLabel ul li.sky:hover{
-    background-color: #0C7ABF; 
+.pluginButtonLabel ul li.sky:hover {
+    background-color: #0C7ABF;
 }
-.pluginButtonLabel ul li.puce a{
+.pluginButtonLabel ul li.puce a {
     font-weight: bold;
-    background-color:none;
+    background-color: none;
     color: #db4437;
     border: 1px solid #a6a6a6;
 }
-.pluginButtonLabel ul li.orange{
+.pluginButtonLabel ul li.orange {
     background-color: #E75A3A;
 }
-.pluginButtonLabel ul li a i.fa{
+.pluginButtonLabel ul li a i.fa {
     margin-right: 5px;
     font-size: 14px;
     margin-top: 1px;
 }
-.pluginButtonLabel ul li  a:hover{
+.pluginButtonLabel ul li  a:hover {
     transition: all 0.5s ease 0s;
 }
-.pluginButtonLabel ul li ul{
+.pluginButtonLabel ul li ul {
     list-style: outside none none;
     opacity: 0;
     padding-left: 0;
@@ -2641,27 +2666,27 @@ button.button2:hover {
     box-shadow: 2px 2px 2px 2px #F8F8F8;
     left: -2px;
 }
-.pluginButtonLabel ul li ul li{
+.pluginButtonLabel ul li ul li {
     float: none;
     margin-right: 0px;
     background-color: #fff;
 }
-.pluginButtonLabel ul li ul li a{
+.pluginButtonLabel ul li ul li a {
     display: block;
     padding: 4px 15px 4px 10px;
     color: #354c8c;
     font-size: 13px;
     font-weight: inherit;
 }
-.pluginButtonLabel ul li:hover ul{
+.pluginButtonLabel ul li:hover ul {
     opacity: 1;
     visibility: visible;
 }
-.pluginButtonLabel ul li ul li a:hover{
+.pluginButtonLabel ul li ul li a:hover {
     color: #fff;
     background-color: #2095F0;
 }
-.product-social{
+.product-social {
     margin-top: 30px;
 }
 .product-img-right {
@@ -2670,18 +2695,18 @@ button.button2:hover {
     margin-right: 27px;
     width: 95px;
 }
-.all{
+.all {
     border: 1px solid #e8e8e8;
 }
-.all p{
+.all p {
     font-size: 12px;
     text-align: center;
     margin-top: 15px;
 }
-.ma-box-content{
-    padding: 0px 0px 30px ;
+.ma-box-content {
+    padding: 0px 0px 30px;
 }
-.product-content .pro-rating .proin{
+.product-content .pro-rating .proin {
     display: block;
     padding-right: 30px;
 }
@@ -2690,7 +2715,7 @@ button.button2:hover {
     font-size: 14px;
     font-weight: 700;
 }
-.product-content .price-box span.old{
+.product-content .price-box span.old {
     text-decoration: line-through;
     font-size: 11px;
 }
@@ -2707,7 +2732,7 @@ button.button2:hover {
 .content_top.indicator-style.owl-theme .owl-controls .owl-buttons div:hover {
     color: #00a9e0;
 }
-.tab_area{
+.tab_area {
     margin-bottom: 40px;
 }
 .text ul.nav li a:hover, .text ul.nav li.active a {
@@ -2731,7 +2756,7 @@ button.button2:hover {
     border-width: 1px 1px 0;
     color: #888888;
     display: block;
-    font-family: Lato;
+    /*font-family: Lato;*/
     font-size: 12px;
     font-weight: 700;
     padding: 15px 20px;
@@ -2742,7 +2767,7 @@ button.button2:hover {
     border-bottom: 1px solid #eee;
     margin: 0px 0;
 }
-.text .tab-content{
+.text .tab-content {
     background: #ffffff none repeat scroll 0 0;
     border: 1px solid #ebebeb;
     font-size: 13px;
@@ -2753,38 +2778,38 @@ button.button2:hover {
     width: 100%;
     color: #8c8c8c;
 }
-.s_big .tab-content{
+.s_big .tab-content {
     border: 1px solid #ebebeb;
 }
-.s_big .thumnail-image ul li{
+.s_big .thumnail-image ul li {
     width: 90px;
     float: left;
     border: 1px solid #ebebeb;
 }
-.customer-reviews .customer-reviews-two p{
+.customer-reviews .customer-reviews-two p {
     float: left;
 }
 .customer-reviews {
     margin: 15px 0;
 }
-.customer-reviews p{
+.customer-reviews p {
     color: #8c8c8c;
     font-size: 13px;
     line-height: 25px;
     margin: 0;
 }
-.customer-reviews p span{
+.customer-reviews p span {
     font-weight: bold;
 }
 .customer-reviews-two {
     display: block;
     overflow: hidden;
 }
-.customer-reviews .pro-rating{
+.customer-reviews .pro-rating {
     margin-left: 55px;
     line-height: 10px;
 }
-.customer-reviews .pro-ra-two{
+.customer-reviews .pro-ra-two {
     margin-left: 50px;
 }
 .customer-reviews .date small {
@@ -2795,13 +2820,13 @@ button.button2:hover {
     font-size: 13px;
     font-weight: normal;
     color: #2d2d2d;
-    font-family: Lato;
+    /*font-family: Lato;*/
     margin-top: 0;
 }
 .form-add .add-text h4 {
     font-size: 12px;
     color: #2d2d2d;
-    font-family: Lato;
+    /*font-family: Lato;*/
     font-weight: 700;
     margin-top: 0;
 }
@@ -2810,7 +2835,7 @@ button.button2:hover {
     border-right: 1px solid #f2f2f2;
 }
 .data-table td {
-    padding: 6px 10px ;
+    padding: 6px 10px;
 }
 .data-table {
     background: #fff none repeat scroll 0 0;
@@ -2823,7 +2848,7 @@ button.button2:hover {
     background: #2ba8db none repeat scroll 0 0;
     border-right: 1px solid #f2f2f2;
     color: #fff;
-    font-family: Lato;
+    /*font-family: Lato;*/
     font-size: 12px;
     font-weight: 700;
     text-align: center;
@@ -2831,7 +2856,7 @@ button.button2:hover {
     vertical-align: middle;
     white-space: nowrap;
 }
- tr td.one{
+tr td.one {
     padding: 0px 120px 0px 15px;
 }
 .data-table .one.two {
@@ -2841,10 +2866,10 @@ button.button2:hover {
 .UpSell .col-md-3 {
     width: 100%;
 }
-.form-add .form-list{
+.form-add .form-list {
     margin: 15px 0px 0px;
 }
-.input-one label.required{
+.input-one label.required {
     color: #666;
     float: left;
     font-weight: normal;
@@ -2864,12 +2889,12 @@ button.button2:hover {
     top: 0;
     padding: 15px 0px 0px;
 }
-.form-add .input-one input.email,.form-add .input-one textarea.email,.shipping-zip-form select.email, .form-list input.email,.billing-info select.email,.input-one  select.email{
+.form-add .input-one input.email, .form-add .input-one textarea.email, .shipping-zip-form select.email, .form-list input.email, .billing-info select.email, .input-one  select.email {
     width: 100%;
     padding: 6px;
     border: 1px solid #e1e1e1;
 }
-.input-two input.tags{
+.input-two input.tags {
     float: left;
     padding: 10px 5px;
     width: 200px;
@@ -2878,20 +2903,20 @@ button.button2:hover {
 .form-add .input-one textarea.email {
     padding: 24px 4px;
 }
-.form-add .input-one textarea{
+.form-add .input-one textarea {
     margin-bottom: 25px;
 }
-.form-add .form-border{
+.form-add .form-border {
     border-bottom: 1px solid #e1e1e1;
 }
-input.email:focus,textarea:focus,input.tags:focus,select.s-email:focus {
+input.email:focus, textarea:focus, input.tags:focus, select.s-email:focus {
     background-color: #edf7f8;
 }
-.form-add .btn-in{
+.form-add .btn-in {
     float: right;
     margin-top: 10px;
 }
-button.btn-in span{
+button.btn-in span {
     padding: 8px 10px;
 }
 .tab-pane .box-collateral > h3 {
@@ -2917,6 +2942,7 @@ button.btn-in span{
 .tab-pane .input-two {
     overflow: hidden;
 }
+
 /*---------------------------start shop-details page.-----------------------------*/
 .cart-form {
     background: #fff none repeat scroll 0 0;
@@ -2924,7 +2950,7 @@ button.btn-in span{
     width: 100%;
     padding-bottom: 80px;
 }
-.cart-f{
+.cart-f {
     margin-top: 40px;
 }
 .s-cart-all .page-title  h1 {
@@ -2953,7 +2979,7 @@ button.btn-in span{
     color: #3F4859;
     font-size: 22px;
 }
-.cart-table .sop-cart > a,.cart-table .sop-cart {
+.cart-table .sop-cart > a, .cart-table .sop-cart {
     color: #454545;
     font-size: 15px;
     font-weight: 700;
@@ -2961,28 +2987,27 @@ button.btn-in span{
 .cart-table .sop > a {
     font-size: 16px;
 }
-
 .cart-form .a-all {
     margin: 20px 10px 0px;
 }
-.cart-form .a-all .a-right{
+.cart-form .a-all .a-right {
     float: right;
     margin-right: 5px;
 }
-.a-right .Estimate{
+.a-right .Estimate {
     margin-right: 35px;
 }
 .cart-form .a-all .button2.notice {
     padding: 13px 25px;
 }
-.cart-collaterals{
+.cart-collaterals {
     padding: 40px 0 0;
 }
-.cart-collaterals .ma-cart{
+.cart-collaterals .ma-cart {
     border-bottom: none;
     margin-bottom: 0px;
 }
-.cart-collaterals .ma-cart.ma-cart h2{
+.cart-collaterals .ma-cart.ma-cart h2 {
     border-bottom: 1px solid #2ba8db;
     color: #262626;
     font-size: 16px;
@@ -2992,7 +3017,7 @@ button.btn-in span{
     text-transform: capitalize;
     display: block;
 }
-.cart-collaterals .ma-cart h2::before{
+.cart-collaterals .ma-cart h2::before {
     border-top: 2px solid #2ba8db;
     bottom: 0;
     content: "";
@@ -3000,15 +3025,15 @@ button.btn-in span{
     position: absolute;
     width: 139px;
 }
-.shipping-form1 > p{
-    margin: 0px; 
+.shipping-form1 > p {
+    margin: 0px;
 }
-.shipping-form1 .form-list .required,.shipping-form1 > p,.shipping-zip-form .form-list .required,#collapseOne p {
+.shipping-form1 .form-list .required, .shipping-form1 > p, .shipping-zip-form .form-list .required, #collapseOne p {
     font-size: 12px;
     color: #5c5c5c;
     font-weight: 400;
 }
-.shipping-form1 .button2.get,.shipping-zip-form .button2.get{
+.shipping-form1 .button2.get, .shipping-zip-form .button2.get {
     float: right;
     margin-top: 10px;
 }
@@ -3018,67 +3043,68 @@ button.btn-in span{
 .input-one label.get {
     padding: 10px 0 0;
 }
-.shipping-form1 .input-one input.email{
+.shipping-form1 .input-one input.email {
     border: 1px solid #e1e1e1;
     padding: 6px;
     width: 100%;
     margin-bottom: 25px;
 }
-.shipping-zip-form .input-one input.in-get{
+.shipping-zip-form .input-one input.in-get {
     border: 1px solid #e1e1e1;
     padding: 6px;
     width: 254px;
     margin-bottom: 25px;
 }
-.cart-collaterals .totals{
+.cart-collaterals .totals {
     padding: 40px;
     display: block;
     background-color: #F3F3F3;
     text-align: right;
 }
-.cart-collaterals .totals .button2.get{
+.cart-collaterals .totals .button2.get {
     width: 100%;
     margin-left: 0px;
     padding: 13px 25px;
 }
-.totals .subtotal p{
+.totals .subtotal p {
     color: #393939;
-    font-family: Lato;
+    /*font-family: Lato;*/
     font-size: 14px;
     font-weight: 700;
     margin-bottom: 15px;
 }
-.totals .subtotal{
+.totals .subtotal {
     border-bottom: 1px solid #393939;
     margin-bottom: 20px;
 }
-.totals .subtotal p span{
+.totals .subtotal p span {
     padding-left: 20px;
     font-size: 15px;
 }
-.cart-collaterals .totals a{
+.cart-collaterals .totals a {
     color: #ababab;
     font-size: 13px;
 }
-.cart-collaterals .totals a:hover{
+.cart-collaterals .totals a:hover {
     color: #39b3e4;
 }
-.shipping-form1 .input-one select.s-email option,.shipping-form1 .input-one select.s-email,.country-select select.s-email option,.country-select select.s-email,.experi .date select.s-email,.input-one select.s-wid{
+.shipping-form1 .input-one select.s-email option, .shipping-form1 .input-one select.s-email, .country-select select.s-email option, .country-select select.s-email, .experi .date select.s-email, .input-one select.s-wid {
     font-size: 12px;
     color: #888888;
 }
-.experi .date select.email,.input-one select.s-wid{
+.experi .date select.email, .input-one select.s-wid {
     padding: 6px;
     border: 1px solid #e1e1e1;
     margin-left: 15px;
     width: 254px;
 }
-.use-billing-add select.s-wid{
+.use-billing-add select.s-wid {
     width: 250px;
 }
-.input-one select.s-wid{
+.input-one select.s-wid {
     margin-top: 12px;
 }
+
 /*---------------------------start check-out page.-----------------------------*/
 .faq-accordion .panel.panel-default.actives .panel-title a {
     color: #009587;
@@ -3092,7 +3118,7 @@ button.btn-in span{
     position: relative;
     text-decoration: none;
 }
-.faq-accordion .panel-title a span.number{
+.faq-accordion .panel-title a span.number {
     color: #fff;
     background-color: #39B3E4;
     border-radius: 100%;
@@ -3104,11 +3130,12 @@ button.btn-in span{
     line-height: 33px;
     position: relative;
 }
-.panel-title a:hover{
+.panel-title a:hover {
     text-decoration: none;
 }
+
 /* collapse end */
-.faq-accordion .Register h3::before,.Register4 h3::before {
+.faq-accordion .Register h3::before, .Register4 h3::before {
     border-top: 2px solid #2ba8db;
     bottom: 0;
     content: "";
@@ -3120,7 +3147,7 @@ button.btn-in span{
     margin-bottom: 30px;
     margin-top: 30px;
 }
-.faq-accordion .Register h3,.Register4 h3  {
+.faq-accordion .Register h3, .Register4 h3 {
     border-bottom: 1px solid #2ba8db;
     color: #262626;
     font-size: 16px;
@@ -3130,7 +3157,7 @@ button.btn-in span{
     text-transform: capitalize;
     margin-top: 0px;
 }
- .method-input-box label {
+.method-input-box label {
     color: #666666;
     font-size: 12px;
     font-weight: normal;
@@ -3138,13 +3165,13 @@ button.btn-in span{
 }
 .easy-text h4 {
     color: #444444;
-    font-family: Arial;
+    /*font-family: Arial;*/
     font-weight: normal;
     margin: 0 0 10px;
     font-size: 14px;
     padding: 5px 0;
 }
- .button2.get {
+.button2.get {
     float: right;
 }
 p.log {
@@ -3157,46 +3184,46 @@ p.log {
 .block-button-right a {
     color: #00a9e0;
     float: left;
-    font-family: Open Sans;
+    /*font-family: Open Sans;*/
     font-weight: 400;
     font-size: 12px;
 }
 .form-group {
     margin-top: 35px;
 }
-.block-button-right a.o-back-to{
+.block-button-right a.o-back-to {
     float: left;
     margin-top: 10px;
     color: #454545;
     text-transform: uppercase;
-    display: block; 
+    display: block;
 }
-.block-button-right a.o-back-to:hover{
+.block-button-right a.o-back-to:hover {
     color: #00A9E0;
 }
-.left-info .left-up span,.shiping-method p{
-    display:block;
+.left-info .left-up span, .shiping-method p {
+    display: block;
     line-height: 20px;
     color: #666;
     font-size: 13px;
 }
-.left-info a{
+.left-info a {
     color: #454545;
     text-transform: uppercase;
     display: block;
     margin: 10px 0px 12px;
 }
-.country-select select.email{
+.country-select select.email {
     border: 1px solid #e1e1e1;
     padding: 6px;
 }
-.use-billing-add label{
+.use-billing-add label {
     color: #666;
     font-weight: normal;
     font-size: 13px;
     margin-top: 12px;
 }
-.verificationcard{
+.verificationcard {
     margin-bottom: 30px;
 }
 .block-button-right {
@@ -3284,7 +3311,7 @@ p.log {
     display: block;
     color: #8c8c8c;
     padding: 8px 0;
-    font-family: Lato;
+    /*font-family: Lato;*/
     font-size: 14px;
     font-weight: 700;
     line-height: 29px;
@@ -3297,10 +3324,10 @@ p.log {
     margin: 32px 0px 33px;
     text-transform: uppercase;
 }
-.faq-accordion .panel-heading{
+.faq-accordion .panel-heading {
     background-color: #F6F6F6;
 }
-.faq-accordion .panel-heading :focus{
+.faq-accordion .panel-heading:focus {
     background-color: #39B3E4;
     color: #fff;
 }
@@ -3312,10 +3339,11 @@ p.log {
     padding-top: 14px;
 }
 .hitstore {
-  padding: 40px;
+    padding: 40px;
 }
+
 /*---------------------------about us page.-----------------------------*/
-.about-optima-text h1,.about-sec-head h2,h2.creative-member,.contact-content-area h2 {
+.about-optima-text h1, .about-sec-head h2, h2.creative-member, .contact-content-area h2 {
     font-size: 32px;
     line-height: 40px;
     margin-bottom: 20px;
@@ -3323,13 +3351,13 @@ p.log {
     font-weight: 300;
     margin-top: 0px;
 }
-.about-optima-text h1 strong, .client-say h2 strong, h2.creative-member strong,.contact-content-area h2 strong{
+.about-optima-text h1 strong, .client-say h2 strong, h2.creative-member strong, .contact-content-area h2 strong {
     border-bottom: 1px solid #2BA8DB;
     color: #2BA8DB;
     font-weight: 300;
     line-height: 40px;
 }
-.about-optima-text > p,.about-sec-head p,.client-text > p,.member-info p{
+.about-optima-text > p, .about-sec-head p, .client-text > p, .member-info p {
     font-weight: normal;
     color: #8c8c8c;
     font-size: 13px;
@@ -3381,7 +3409,7 @@ p.log {
     margin-bottom: 40px;
     text-align: center;
 }
-.what-client-say{
+.what-client-say {
     display: block;
     text-align: center;
 }
@@ -3389,20 +3417,20 @@ p.log {
     margin-top: 60px;
     margin-bottom: 40px;
 }
-.client-say p{
+.client-say p {
     font-weight: 100;
     word-spacing: 2px;
 }
 .client-text > p {
     margin-top: 25px;
 }
-.client-say h2{
-    margin-bottom: 20px; 
+.client-say h2 {
+    margin-bottom: 20px;
 }
 .client-text > h2 {
     font-weight: 300;
 }
- .client-say h2 strong {
+.client-say h2 strong {
     border-bottom: 1px solid #2BA8DB;
     color: #2BA8DB;
 }
@@ -3436,7 +3464,7 @@ p.log {
     height: 15px;
     margin: 25px 7px;
 }
-.what-client-say{
+.what-client-say {
     border-bottom: 1px dashed #ddd;
     padding-bottom: 35px;
 }
@@ -3444,7 +3472,7 @@ p.log {
     margin-bottom: 40px;
     text-align: center;
 }
-.creative-member-area{
+.creative-member-area {
     padding-top: 10px;
 }
 .single-creative-member {
@@ -3582,6 +3610,7 @@ p.log {
 .member-social a:hover {
     opacity: 0.8;
 }
+
 /*---------------------------about us page.-----------------------------*/
 .contact-content-area h2 {
     margin-bottom: 25px;
@@ -3598,7 +3627,7 @@ p.log {
     width: 100%;
 }
 .contact-baner {
-    background: rgba(0, 0, 0, 0) url("img/shop/contact-us-page-banner.jpg") repeat scroll 0 0 / cover ;
+    background: rgba(0, 0, 0, 0) url("img/shop/contact-us-page-banner.jpg") repeat scroll 0 0 / cover;
     height: 100%;
     position: relative;
     width: 100%;
@@ -3634,14 +3663,14 @@ p.log {
 .contact-text p {
     color: #fff;
     font-size: 16px;
-    font-weight:700;
+    font-weight: 700;
     letter-spacing: 2px;
     text-transform: uppercase;
 }
 .row.contact-map {
     margin-top: 15px;
 }
-#hastech{
+#hastech {
     height: 430px;
     margin-bottom: 10px;
 }
@@ -3654,7 +3683,7 @@ p.log {
 .contactDetails {
     overflow: hidden;
 }
-.contactHead > h3,.contactfrom h1,.contact-map h3 {
+.contactHead > h3, .contactfrom h1, .contact-map h3 {
     color: #505050;
     font-size: 22px;
     font-weight: 600;
@@ -3679,7 +3708,7 @@ span.iconContact {
     transition: all 0.3s ease 0s;
     width: 37px;
 }
-.contactDetails p:hover span.iconContact,.socila-icon a:hover{
+.contactDetails p:hover span.iconContact, .socila-icon a:hover {
     border: 1px solid #00A9E0;
     color: #00A9E0;
 }
@@ -3692,7 +3721,7 @@ input.form-control {
     border: 1px solid #d7d7d7;
     border-radius: 0;
     color: #a5a5a5;
-    font-family: Arial;
+    /*font-family: Arial;*/
     font-size: 14px;
     font-weight: normal;
     margin-bottom: 25px;
@@ -3706,7 +3735,7 @@ input.form-control {
 }
 textarea.form-control {
     border-radius: 0;
-    font-family: Arial;
+    /*font-family: Arial;*/
     height: auto;
     margin-bottom: 28px;
 }
@@ -3750,11 +3779,12 @@ textarea.form-control {
     transition: all 0.3s ease 0s;
     width: 40px;
 }
+
 /*---------------------------about us page.-----------------------------*/
 .post-format-area {
     margin-bottom: 30px;
 }
-.b-slide-all{
+.b-slide-all {
     display: block;
 }
 .b-slide-all.owl-theme .owl-controls .owl-buttons div {
@@ -3898,7 +3928,7 @@ textarea.form-control {
 }
 .sp-module-title {
     color: #262626;
-    font-family: "Bitter",serif;
+    /*font-family: "Bitter", serif;*/
     font-size: 23px;
     line-height: 1;
     margin: 18px 0 10px;
@@ -4020,6 +4050,7 @@ textarea.form-control {
     opacity: 0.24;
     transform: scale(1);
 }
+
 /*---------------------------blog page.-----------------------------*/
 .main-blog-area p {
     line-height: 23px;
@@ -4036,7 +4067,7 @@ textarea.form-control {
     border-bottom: 1px solid #464646;
     border-top: 4px solid #464646;
     display: inline-block;
-    font-family: "Bitter",serif;
+    font-family: "Bitter", serif;
     font-size: 21px;
     line-height: 48px;
     margin: 25px 0;
@@ -4086,25 +4117,25 @@ textarea.form-control {
 .blog-comment-area input[type="submit"]:hover {
     background: #252525 none repeat scroll 0 0;
 }
-.blog{
+.blog {
     margin-bottom: 0px;
 }
-.mobile-menu{
+.mobile-menu {
     display: none;
 }
 .home-1 .elit {
-  display: inline-block;
-  float: none;
+    display: inline-block;
+    float: none;
 }
 .form-control {
     box-shadow: none;
 }
 .form-control {
-  box-shadow: none;
+    box-shadow: none;
 }
 .form-control:focus {
-  box-shadow: none;
+    box-shadow: none;
 }
 input.email:focus, textarea:focus, input.tags:focus, select.s-email:focus {
-  background-color: #edf7f8;
+    background-color: #edf7f8;
 }
