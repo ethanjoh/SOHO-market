@@ -4,8 +4,13 @@
 		"selected_items":
 		[
 			[
+<<<<<<< HEAD
 				"he",
 				"height"
+=======
+				"mar",
+				"margin-top"
+>>>>>>> 4b2a05b9a99e8f95650559e1f67f9e647bc8750e
 			],
 			[
 				"line",
@@ -14,10 +19,6 @@
 			[
 				"tex",
 				"text-decoration"
-			],
-			[
-				"mar",
-				"margin-left"
 			],
 			[
 				"htm",
@@ -403,6 +404,7 @@
 			"file": "index.html",
 			"settings":
 			{
+<<<<<<< HEAD
 				"buffer_size": 173192,
 				"line_ending": "Unix"
 			}
@@ -420,6 +422,25 @@
 			"settings":
 			{
 				"buffer_size": 10322,
+=======
+				"buffer_size": 109032,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/Joh/OneDrive/홈페이지 템플릿/신수상사 템플릿/hitstore/index.html",
+			"settings":
+			{
+				"buffer_size": 198332,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "style.css",
+			"settings":
+			{
+				"buffer_size": 86415,
+>>>>>>> 4b2a05b9a99e8f95650559e1f67f9e647bc8750e
 				"line_ending": "Windows"
 			}
 		}
@@ -546,11 +567,17 @@
 	"expanded_folders":
 	[
 		"/C/wamp/www/shinsoo",
+<<<<<<< HEAD
 		"/C/wamp/www/shinsoo/css",
 		"/C/wamp/www/shinsoo/lib/css"
+=======
+		"/C/wamp/www/shinsoo/css"
+>>>>>>> 4b2a05b9a99e8f95650559e1f67f9e647bc8750e
 	],
 	"file_history":
 	[
+		"/C/wamp/www/shinsoo/css/responsive.css",
+		"/C/wamp/www/shinsoo/css/main.css",
 		"/C/wamp/www/shinsoo/.gitignore",
 		"/C/Users/Seonghyeon/OneDrive/git_project/seminar/js/custom.js",
 		"/C/Users/Seonghyeon/Downloads/ex02/ex02.html",
@@ -676,13 +703,15 @@
 		"/C/Users/Seonghyeon/OneDrive/git_project/akip/assets/css/color.css",
 		"/C/Users/Seonghyeon/OneDrive/git_project/akip/assets/css/responsive.css",
 		"/C/Users/Seonghyeon/OneDrive/git_project/akip/assets/js/custom.js",
-		"/C/Users/Joh/Documents/akip/map-old.php",
-		"/C/Users/Joh/Documents/akip/.gitignore",
-		"/C/Users/Joh/Documents/gwangjinbc/footer.php"
+		"/C/Users/Joh/Documents/akip/map-old.php"
 	],
 	"find":
 	{
+<<<<<<< HEAD
 		"height": 51.0
+=======
+		"height": 34.0
+>>>>>>> 4b2a05b9a99e8f95650559e1f67f9e647bc8750e
 	},
 	"find_in_files":
 	{
@@ -707,6 +736,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+<<<<<<< HEAD
 			"class=\"rx-default\"",
 			"type=\"button\" class=\"btn btn-default\"",
 			"font-family",
@@ -722,6 +752,13 @@
 			".english",
 			"</button>",
 			"button",
+=======
+			".adress",
+			"adress",
+			"shop_area",
+			".shop_area",
+			"shop_area",
+>>>>>>> 4b2a05b9a99e8f95650559e1f67f9e647bc8750e
 			"content_cards_title",
 			"[",
 			";\n",
@@ -834,7 +871,21 @@
 			"today",
 			"createdate",
 			"buyer_name",
+<<<<<<< HEAD
 			"createdate"
+=======
+			"createdate",
+			"status_now",
+			"주문취소",
+			"주문취",
+			"주문취소",
+			"pay_type",
+			"Track",
+			"track",
+			"final",
+			"sp_total",
+			"description"
+>>>>>>> 4b2a05b9a99e8f95650559e1f67f9e647bc8750e
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -855,7 +906,11 @@
 	"groups":
 	[
 		{
+<<<<<<< HEAD
 			"selected": 0,
+=======
+			"selected": 2,
+>>>>>>> 4b2a05b9a99e8f95650559e1f67f9e647bc8750e
 			"sheets":
 			[
 				{
@@ -864,15 +919,24 @@
 					"semi_transient": false,
 					"settings":
 					{
+<<<<<<< HEAD
 						"buffer_size": 173192,
+=======
+						"buffer_size": 109032,
+>>>>>>> 4b2a05b9a99e8f95650559e1f67f9e647bc8750e
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
+<<<<<<< HEAD
 								13198,
 								13198
+=======
+								59953,
+								59953
+>>>>>>> 4b2a05b9a99e8f95650559e1f67f9e647bc8750e
 							]
 						],
 						"settings":
@@ -880,6 +944,7 @@
 							"BracketHighlighterBusy": false,
 							"bh_regions":
 							[
+<<<<<<< HEAD
 								"bh_unmatched",
 								"bh_unmatched_center",
 								"bh_unmatched_open",
@@ -910,6 +975,8 @@
 								"bh_angle_open",
 								"bh_angle_close",
 								"bh_angle_content",
+=======
+>>>>>>> 4b2a05b9a99e8f95650559e1f67f9e647bc8750e
 								"bh_square",
 								"bh_square_center",
 								"bh_square_open",
@@ -920,11 +987,19 @@
 								"bh_double_quote_open",
 								"bh_double_quote_close",
 								"bh_double_quote_content",
+<<<<<<< HEAD
 								"bh_tag",
 								"bh_tag_center",
 								"bh_tag_open",
 								"bh_tag_close",
 								"bh_tag_content",
+=======
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+>>>>>>> 4b2a05b9a99e8f95650559e1f67f9e647bc8750e
 								"bh_c_define",
 								"bh_c_define_center",
 								"bh_c_define_open",
@@ -934,8 +1009,44 @@
 								"bh_curly_center",
 								"bh_curly_open",
 								"bh_curly_close",
+<<<<<<< HEAD
 								"bh_curly_content"
 							],
+=======
+								"bh_curly_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content"
+							],
+							"color_scheme": "Packages/User/Color Highlighter/themes/Eiffel.tmTheme",
+>>>>>>> 4b2a05b9a99e8f95650559e1f67f9e647bc8750e
 							"incomplete_sync": null,
 							"remote_loading": false,
 							"synced": false,
@@ -944,31 +1055,51 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
+<<<<<<< HEAD
 						"translation.y": 6479.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
+=======
+						"translation.y": 13770.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+>>>>>>> 4b2a05b9a99e8f95650559e1f67f9e647bc8750e
 					"type": "text"
 				},
 				{
 					"buffer": 1,
+<<<<<<< HEAD
 					"file": "style.css",
 					"semi_transient": false,
 					"settings":
 					{
 						"buffer_size": 86328,
+=======
+					"file": "/C/Users/Joh/OneDrive/홈페이지 템플릿/신수상사 템플릿/hitstore/index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 198332,
+>>>>>>> 4b2a05b9a99e8f95650559e1f67f9e647bc8750e
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
+<<<<<<< HEAD
 								1179,
 								1190
 							],
 							[
 								1532,
 								1543
+=======
+								48593,
+								48593
+>>>>>>> 4b2a05b9a99e8f95650559e1f67f9e647bc8750e
 							]
 						],
 						"settings":
@@ -976,6 +1107,7 @@
 							"BracketHighlighterBusy": false,
 							"bh_regions":
 							[
+<<<<<<< HEAD
 								"bh_unmatched",
 								"bh_unmatched_center",
 								"bh_unmatched_open",
@@ -1006,6 +1138,8 @@
 								"bh_angle_open",
 								"bh_angle_close",
 								"bh_angle_content",
+=======
+>>>>>>> 4b2a05b9a99e8f95650559e1f67f9e647bc8750e
 								"bh_square",
 								"bh_square_center",
 								"bh_square_open",
@@ -1016,11 +1150,19 @@
 								"bh_double_quote_open",
 								"bh_double_quote_close",
 								"bh_double_quote_content",
+<<<<<<< HEAD
 								"bh_tag",
 								"bh_tag_center",
 								"bh_tag_open",
 								"bh_tag_close",
 								"bh_tag_content",
+=======
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+>>>>>>> 4b2a05b9a99e8f95650559e1f67f9e647bc8750e
 								"bh_c_define",
 								"bh_c_define_center",
 								"bh_c_define_open",
@@ -1030,35 +1172,91 @@
 								"bh_curly_center",
 								"bh_curly_open",
 								"bh_curly_close",
+<<<<<<< HEAD
 								"bh_curly_content"
 							],
 							"incomplete_sync": null,
 							"remote_loading": false,
 							"synced": false,
 							"syntax": "Packages/CSS/CSS.tmLanguage",
+=======
+								"bh_curly_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content"
+							],
+							"color_scheme": "Packages/User/Color Highlighter/themes/Eiffel.tmTheme",
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+>>>>>>> 4b2a05b9a99e8f95650559e1f67f9e647bc8750e
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
+<<<<<<< HEAD
 						"translation.y": 1860.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
+=======
+						"translation.y": 10901.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+>>>>>>> 4b2a05b9a99e8f95650559e1f67f9e647bc8750e
 					"type": "text"
 				},
 				{
 					"buffer": 2,
+<<<<<<< HEAD
 					"file": "css/responsive.css",
 					"semi_transient": false,
 					"settings":
 					{
 						"buffer_size": 10322,
+=======
+					"file": "style.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 86415,
+>>>>>>> 4b2a05b9a99e8f95650559e1f67f9e647bc8750e
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
+<<<<<<< HEAD
 								1942,
 								1942
 							],
@@ -1073,6 +1271,10 @@
 							[
 								8727,
 								8727
+=======
+								32109,
+								32109
+>>>>>>> 4b2a05b9a99e8f95650559e1f67f9e647bc8750e
 							]
 						],
 						"settings":
@@ -1080,6 +1282,7 @@
 							"BracketHighlighterBusy": false,
 							"bh_regions":
 							[
+<<<<<<< HEAD
 								"bh_unmatched",
 								"bh_unmatched_center",
 								"bh_unmatched_open",
@@ -1110,6 +1313,8 @@
 								"bh_angle_open",
 								"bh_angle_close",
 								"bh_angle_content",
+=======
+>>>>>>> 4b2a05b9a99e8f95650559e1f67f9e647bc8750e
 								"bh_square",
 								"bh_square_center",
 								"bh_square_open",
@@ -1120,11 +1325,19 @@
 								"bh_double_quote_open",
 								"bh_double_quote_close",
 								"bh_double_quote_content",
+<<<<<<< HEAD
 								"bh_tag",
 								"bh_tag_center",
 								"bh_tag_open",
 								"bh_tag_close",
 								"bh_tag_content",
+=======
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+>>>>>>> 4b2a05b9a99e8f95650559e1f67f9e647bc8750e
 								"bh_c_define",
 								"bh_c_define_center",
 								"bh_c_define_open",
@@ -1134,8 +1347,44 @@
 								"bh_curly_center",
 								"bh_curly_open",
 								"bh_curly_close",
+<<<<<<< HEAD
 								"bh_curly_content"
 							],
+=======
+								"bh_curly_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content"
+							],
+							"color_scheme": "Packages/User/Color Highlighter/themes/Eiffel.tmTheme",
+>>>>>>> 4b2a05b9a99e8f95650559e1f67f9e647bc8750e
 							"incomplete_sync": null,
 							"remote_loading": false,
 							"synced": false,
@@ -1144,10 +1393,17 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
+<<<<<<< HEAD
 						"translation.y": 11967.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
+=======
+						"translation.y": 22776.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+>>>>>>> 4b2a05b9a99e8f95650559e1f67f9e647bc8750e
 					"type": "text"
 				}
 			]
@@ -1754,7 +2010,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 357.0,
+	"side_bar_width": 207.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

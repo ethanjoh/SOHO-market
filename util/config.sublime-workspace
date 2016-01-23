@@ -1,0 +1,456 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"in",
+				"inline-block"
+			],
+			[
+				"text",
+				"text-align"
+			],
+			[
+				"ma",
+				"margin-bottom"
+			],
+			[
+				"fon",
+				"font-size"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"wid",
+				"width"
+			],
+			[
+				"fo",
+				"font-size"
+			],
+			[
+				"mar",
+				"margin"
+			],
+			[
+				"print",
+				"print_r"
+			],
+			[
+				"hea",
+				"header"
+			],
+			[
+				"thumb",
+				"thumb_dir"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+			[
+				"pci",
+				"Package Control: Install Package"
+			],
+			[
+				"pc",
+				"Package Control: Install Package"
+			],
+			[
+				"gd",
+				"Goto Documentation"
+			],
+			[
+				"goto d",
+				"Goto Documentation"
+			],
+			[
+				"pa con in",
+				"Package Control: Install Package"
+			],
+			[
+				"pack con",
+				"Package Control: Install Package"
+			],
+			[
+				"",
+				"BracketHighlighter: Fold Bracket Content"
+			],
+			[
+				"pa con",
+				"Package Control: Upgrade Package"
+			],
+			[
+				"pa con li",
+				"Package Control: List Packages"
+			]
+		],
+		"width": 512.0
+	},
+	"console":
+	{
+		"height": 132.0,
+		"history":
+		[
+			"import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/조성현/Documents/DaumCloud/New PRIXE/session.php",
+		"/C/Users/조성현/Documents/DaumCloud/New PRIXE/util/config.php",
+		"/C/Users/조성현/Documents/DaumCloud/New PRIXE/shop/m_sub_list.php",
+		"/C/Users/조성현/Documents/DaumCloud/New PRIXE/admin/order/m_top_order_list.php",
+		"/C/Users/조성현/Documents/DaumCloud/New PRIXE/shop/purchase_ok.php",
+		"/C/Users/조성현/Documents/DaumCloud/New PRIXE/admin/order/top_order_list.php",
+		"/C/Users/조성현/Documents/DaumCloud/New PRIXE/shop/order_info.php",
+		"/C/Users/조성현/Documents/DaumCloud/New PRIXE/shop/purchase.php",
+		"/C/Users/조성현/Documents/DaumCloud/New PRIXE/shop/m_purchase.php",
+		"/C/Users/조성현/Documents/DaumCloud/New PRIXE/index.php",
+		"/C/Users/조성현/Documents/DaumCloud/New PRIXE/test.php",
+		"/C/Users/조성현/Documents/DaumCloud/New PRIXE/helloworld.html",
+		"/C/Users/조성현/Documents/DaumCloud/New PRIXE/Untitled-2.html",
+		"/C/Users/조성현/Documents/DaumCloud/New PRIXE/index(MacBook-Pro-2012년 9월 12일 23시 30분 35초).php",
+		"/C/Users/조성현/Documents/DaumCloud/New PRIXE/css/m_shop_layout.css",
+		"/C/Users/조성현/Documents/DaumCloud/New PRIXE/shop/m_detail.php",
+		"/C/Users/조성현/Documents/DaumCloud/New PRIXE/shop/m_index.php",
+		"/C/Users/조성현/Documents/DaumCloud/New PRIXE/util/util.php",
+		"/C/Users/조성현/Documents/DaumCloud/New PRIXE/include/m_bottom.php",
+		"/C/Users/조성현/Documents/DaumCloud/New PRIXE/shop/cart_update.php",
+		"/C/Users/조성현/Documents/DaumCloud/New PRIXE/shop/m_order_info.php",
+		"/C/Users/조성현/Documents/DaumCloud/New PRIXE/shop/m_basket.php",
+		"/C/Users/조성현/Downloads/Slides-SlidesJS-3/examples/standard/index.html",
+		"/C/Users/조성현/Documents/DaumCloud/New PRIXE/css/banner_slides.css",
+		"/C/Users/조성현/Downloads/Slides-SlidesJS-3/examples/standard/css/example.css",
+		"/C/Users/조성현/Documents/DaumCloud/New PRIXE/js/jquery.blueimp-gallery.min.js",
+		"/C/Users/조성현/Documents/DaumCloud/New PRIXE/css/blueimp-gallery.min.css",
+		"/C/Users/조성현/Documents/DaumCloud/New PRIXE/js/blueimp-gallery.min.js",
+		"/C/Users/조성현/AppData/Roaming/Sublime Text 3/Packages/User/SFTP.sublime-settings",
+		"/C/Users/조성현/Documents/DaumCloud/New PRIXE/admin/order/m_or_view.php",
+		"/C/Users/조성현/Documents/DaumCloud/New PRIXE/admin/m.php",
+		"/C/Users/조성현/Documents/DaumCloud/New PRIXE/admin/css/m_layout.css",
+		"/C/Users/조성현/Documents/DaumCloud/New PRIXE/css/shop_layout.css",
+		"/C/Users/조성현/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/C/Users/조성현/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
+		"/C/Users/조성현/Documents/DaumCloud/New PRIXE/shop/m_login.php",
+		"/C/Users/조성현/AppData/Roaming/Sublime Text 3/Packages/SideBarEnhancements/CHANGELOG",
+		"/C/Users/조성현/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/C/Users/조성현/Documents/DaumCloud/New PRIXE/admin/order/m_sale_list.php",
+		"/C/Users/조성현/AppData/Roaming/Sublime Text 3/Packages/BracketHighlighter/bh_core.sublime-settings",
+		"/C/Users/조성현/AppData/Roaming/Sublime Text 3/Packages/Package Control/Package Control.sublime-settings",
+		"/C/Users/조성현/AppData/Roaming/Sublime Text 3/Packages/SFTP/SFTP.sublime-settings",
+		"/C/Users/조성현/Documents/DaumCloud/New PRIXE/sftp-config.json",
+		"/C/Users/조성현/Documents/DaumCloud/New PRIXE/admin/stats/tax_list.php",
+		"/C/Users/조성현/Documents/DaumCloud/New PRIXE/admin/stats/reg_tax.php",
+		"/C/Users/조성현/AppData/Roaming/Sublime Text 3/Packages/User/PHP.sublime-settings",
+		"/C/Users/조성현/Downloads/Swiper-master/demos/main-demos/01-default.html",
+		"/C/Users/조성현/Downloads/Swiper-master/dist/idangerous.swiper.css",
+		"/C/Users/조성현/Documents/DaumCloud/New PRIXE/include/m_top_menu.php",
+		"/C/Users/조성현/Downloads/제품키.txt",
+		"/C/Users/조성현/Documents/DaumCloud/New PRIXE/admin/order/or_view.php",
+		"/C/Users/조성현/Downloads/[공지영]봉순이언니.txt",
+		"/C/Users/조성현/Downloads/책 ebook 전자책/[공지영]봉순이언니.txt",
+		"/C/Users/조성현/Downloads/pogo_index/gallery/read_album.php",
+		"/C/Users/조성현/Downloads/pogo_index/gallery/index.php",
+		"/C/Users/조성현/Downloads/pogo_index/style.css",
+		"/C/Users/조성현/Desktop/www/style.css",
+		"/C/Users/조성현/Desktop/www/header.php",
+		"/C/Users/조성현/Desktop/www/gallery/index.php",
+		"/C/Users/조성현/Desktop/www/index.php",
+		"/C/Users/조성현/Desktop/www/css/main.css",
+		"/C/Users/조성현/Desktop/iPhoneFan/index.php",
+		"/C/Users/조성현/Desktop/iPhoneFan/style.css",
+		"/C/Users/조성현/Desktop/iPhoneFan/m_index.php",
+		"/C/Users/조성현/Desktop/iPhoneFan/header.php",
+		"/C/Users/조성현/Desktop/iPhoneFan/footer.php",
+		"/C/Users/조성현/Downloads/index.php",
+		"/C/Users/조성현/Downloads/m_index.php",
+		"/C/Users/조성현/Downloads/readdir.php",
+		"/C/Users/조성현/Documents/DaumCloud/pogo/header.php",
+		"/C/Users/조성현/Downloads/phpmpreloaded/config/config.php",
+		"/C/Users/조성현/Downloads/phpmpreloaded/lib/header.php",
+		"/C/Users/조성현/Downloads/phpmpreloaded/lib/NewsReader.php",
+		"/C/Users/조성현/Downloads/phpmpreloaded/index.php",
+		"/C/Users/조성현/Downloads/phpmpreloaded/config/mpd_config.php",
+		"/C/Users/조성현/Downloads/index (1).php",
+		"/C/Users/조성현/Desktop/index.html",
+		"/C/Users/조성현/Desktop/index.html.php",
+		"/C/Users/조성현/Documents/DaumCloud/pogo/webdav-photos/readdir.php",
+		"/C/Users/조성현/Documents/DaumCloud/pogo/webdav-photos/index.php",
+		"/C/Users/조성현/Documents/DaumCloud/pogo/css/main.css"
+	],
+	"find":
+	{
+		"height": 36.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"delivery_type",
+			"trans_cost",
+			"delivery_type",
+			"delivery",
+			"telPad",
+			"/dd",
+			"dd class=\"fl",
+			"dd clas=\"fl\"",
+			"dd",
+			"div",
+			"dd",
+			"hphone",
+			"&",
+			"취소",
+			"미확인",
+			"status_now",
+			"미확인",
+			"찰불",
+			"미확인",
+			"inner",
+			"search",
+			"m_order_info",
+			"dl",
+			"url_string",
+			"class=\"odd\"",
+			"bgcolor=\"<?=$c_color?>\"",
+			"class=\"odd\"",
+			"class",
+			"m_top_order_list",
+			"org_volume",
+			"WP",
+			"Pages"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"project": "config.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"m_su",
+				"shop\\m_sub_list.php"
+			],
+			[
+				"m_top",
+				"admin\\order\\m_top_order_list.php"
+			],
+			[
+				"top_or",
+				"admin\\order\\top_order_list.php"
+			],
+			[
+				"orde",
+				"shop\\order_info.php"
+			],
+			[
+				"pu",
+				"shop\\purchase_ok.php"
+			],
+			[
+				"pur",
+				"shop\\purchase.php"
+			],
+			[
+				"ord",
+				"shop\\order_info.php"
+			],
+			[
+				"m_sh",
+				"css\\m_shop_layout.css"
+			],
+			[
+				"m_bo",
+				"include\\m_bottom.php"
+			],
+			[
+				"u",
+				"util\\util.php"
+			],
+			[
+				"uit",
+				"util\\util.php"
+			],
+			[
+				"m_ind",
+				"shop\\m_index.php"
+			],
+			[
+				"m_in",
+				"shop\\m_index.php"
+			],
+			[
+				"m_de",
+				"shop\\m_detail.php"
+			],
+			[
+				"cart",
+				"shop\\cart_update.php"
+			],
+			[
+				"m_pu",
+				"shop\\m_purchase.php"
+			],
+			[
+				"m_ba",
+				"shop\\m_basket.php"
+			],
+			[
+				"m_or",
+				"shop\\m_order_info.php"
+			],
+			[
+				"m_sho",
+				"css\\m_shop_layout.css"
+			],
+			[
+				"uti",
+				"New PRIXE\\util\\util.php"
+			],
+			[
+				"m_o",
+				"New PRIXE\\shop\\m_order_info.php"
+			],
+			[
+				"util",
+				"New PRIXE\\util\\util.php"
+			],
+			[
+				"m.",
+				"New PRIXE\\admin\\m.php"
+			],
+			[
+				"m_detai",
+				"New PRIXE\\shop\\m_detail.php"
+			],
+			[
+				"m_la",
+				"New PRIXE\\admin\\css\\m_layout.css"
+			],
+			[
+				"shop",
+				"New PRIXE\\css\\shop_layout.css"
+			],
+			[
+				"m_shop",
+				"New PRIXE\\css\\m_shop_layout.css"
+			],
+			[
+				"m_sa",
+				"admin\\order\\m_sale_list.php"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 110.0,
+		"selected_items":
+		[
+		],
+		"width": 378.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 247.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

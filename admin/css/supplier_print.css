@@ -1,0 +1,111 @@
+body {
+	margin: 0px;
+	/*padding: 0px;*/
+	font-family: "돋움", verdana, helvetica, sans-serif;
+	font-size: 1em;
+
+}
+
+#wrapper {
+	width: 100%;
+	margn: 0px auto;
+	padding: 0px;
+}
+
+table {
+	margin: 0px;
+	width: 100%;
+	padding: 0px;
+	border-spacing: 0px;
+	border-collapse: collapse;
+}
+
+tr {
+	/*border-top: 1px solid #c4c4c4;*/
+	border-bottom: 1px solid #C4C4C4;
+}
+
+td {
+	border-right: 1px solid #C4C4C4;
+
+	padding: 5px;
+}
+
+td:last-child {
+	border-right: 0px;
+}
+.flLeft {
+	float: left;
+	width: 48%;
+}
+
+.flRight {
+	float: right;
+	width: 48%;
+}
+
+#title {
+	font-size: 2em;
+	float: left;
+	padding: 5px;
+}
+
+#orderDate {
+	float: right;
+	font-weight: bold;
+	margin-top: 20px;
+	padding: 5px;
+}
+
+.bgGray {
+	background-color: #c4c4c4;
+}
+
+.bgLightGray {
+	background-color: #e5e0e0;
+}
+
+.total {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.none {
+	border: 0px;
+}
+
+.num {
+	text-align: right;
+}
+
+.txtCenter {
+	text-align: center;
+}
+
+.sum {
+	float: left;
+	font-size: 1.1em;
+}
+
+.sumNum {
+	float: right;
+	font-size: 1.1em;
+	font-weight: bold;
+}
+
+.topMargin30 {
+	margin-top: 30px; 
+}
+
+.fntSmall {
+	font-size: 0.8em;
+}
+
+.fntMid {
+	font-size: 0.9em;
+}
+
+#print {
+	display:none;
+	text-align: center;
+}
