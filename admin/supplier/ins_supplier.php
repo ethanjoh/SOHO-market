@@ -7,12 +7,12 @@ include "../../util/config.php";
 // 각종 유틸함수
 include "../../util/util.php";
 // MySQL 연결
-$connect=my_connect($host,$dbid,$dbpass,$dbname);
+$connect = my_connect($host, $dbid, $dbpass, $dbname);
 
 //메타정보
 $info_query = "SELECT * FROM admin_setup";
-$info_res = mysqli_query($connect, $info_query);
-$info = mysqli_fetch_array($info_res);
+$info_res   = mysqli_query($connect, $info_query);
+$info       = mysqli_fetch_array($info_res);
 
 ?>
 <!DOCTYPE html>
@@ -26,7 +26,7 @@ $info = mysqli_fetch_array($info_res);
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="shortcut icon" href="/favicon.ico">
 
-    <title><?=$info['company_name']?> :: 운영업체 관리자 홈</title>
+    <title><?=$info['company_name'];?> :: 운영업체 관리자 홈</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.css" rel="stylesheet">
@@ -50,11 +50,11 @@ $info = mysqli_fetch_array($info_res);
   <body>
     <section id="container" >
         <!--header start-->
-        <?php include "../include/admin_head.php"; ?>
+        <?php include "../include/admin_head.php";?>
         <!--header end-->
 
         <!--sidebar start-->
-        <?php include "../include/admin_sidebar.php"; ?>
+        <?php include "../include/admin_sidebar.php";?>
         <!--sidebar end-->
 
         <!--main content start-->
@@ -70,8 +70,8 @@ $info = mysqli_fetch_array($info_res);
                   </header>
                   <div class="panel-body">
 
-                  <form name="form1" class="form-inline" role="form" method="post" action="https://<?=$_SERVER['SERVER_NAME']?>:<?=$port?>/admin/supplier/ins_supplier_ok.php">
-                  <!-- <form name="form1" class="form-inline" role="form" method="post" action="http://<?=$_SERVER['SERVER_NAME']?>/admin/supplier/ins_supplier_ok.php"> -->
+                  <form name="form1" class="form-inline" role="form" method="post" action="https://<?=$_SERVER['SERVER_NAME'];?>:<?=$port;?>/admin/supplier/ins_supplier_ok.php">
+                  <!-- <form name="form1" class="form-inline" role="form" method="post" action="http://<?=$_SERVER['SERVER_NAME'];?>/admin/supplier/ins_supplier_ok.php"> -->
                   <div class="table-responsive">
                     <table class="table table-striped">
                       <tbody>
@@ -143,8 +143,8 @@ $info = mysqli_fetch_array($info_res);
                         <tr>
                           <th><img src="../images/icn_04.gif" width="24" height="14" alt="필수" /> 사업장 우편번호</th>
                           <td>
-                            <input type="text" class="form-control" name="o_zipcode1" id="o_zipcode1" size="3"  value="<?=$o_zipno[0]?>" readonly />
-                            <input type="text" class="form-control" name="o_zipcode2" id="o_zipcode2" size="3"  value="<?=$o_zipno[1]?>" readonly />
+                            <input type="text" class="form-control" name="o_zipcode1" id="o_zipcode1" size="3"  value="<?=$o_zipno[0];?>" readonly />
+                            <input type="text" class="form-control" name="o_zipcode2" id="o_zipcode2" size="3"  value="<?=$o_zipno[1];?>" readonly />
                             <input type="button" class="form-control" onclick="openDaumPostcode()" value="우편번호 찾기"><br />
                             <script src="http://dmaps.daum.net/map_js_init/postcode.js"></script>
                             <script>
@@ -220,8 +220,8 @@ $info = mysqli_fetch_array($info_res);
                         <tr>
                           <th> <img src="../images/icn_05.gif" width="24" height="14" alt="선택" /> 우편번호</th>
                           <td>
-                            <input type="text" class="form-control" name="d_zipcode1" id="d_zipcode1" size="3" value="<?=$d_zipno[0]?>" readonly /> -
-                            <input type="text" class="form-control" name="d_zipcode2" id="d_zipcode2" size="3"   value="<?=$d_zipno[1]?>" readonly />
+                            <input type="text" class="form-control" name="d_zipcode1" id="d_zipcode1" size="3" value="<?=$d_zipno[0];?>" readonly /> -
+                            <input type="text" class="form-control" name="d_zipcode2" id="d_zipcode2" size="3"   value="<?=$d_zipno[1];?>" readonly />
                             <input type="button" class="form-control" onclick="openDaumPostcode1()" value="우편번호 찾기"><br />
                             <script src="http://dmaps.daum.net/map_js_init/postcode.js"></script>
                             <script>
@@ -353,7 +353,7 @@ $info = mysqli_fetch_array($info_res);
   </section>
 
     <!-- js placed at the end of the document so the pages load faster -->
-    <script src="/js/jquery-2.1.1.min.js"></script>
+    <script src="/js/vendor/jquery-2.2.0.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/admin/js/jquery.dcjqaccordion.2.7.js" class="include" type="text/javascript" ></script>
     <script src="/admin/js/jquery.scrollTo.min.js"></script>

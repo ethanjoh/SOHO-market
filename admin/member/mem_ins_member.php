@@ -7,12 +7,12 @@ include "../../util/config.php";
 // 각종 유틸함수
 include "../../util/util.php";
 // MySQL 연결
-$connect=my_connect($host,$dbid,$dbpass,$dbname);
+$connect = my_connect($host, $dbid, $dbpass, $dbname);
 
 //메타정보
 $info_query = "SELECT * FROM admin_setup";
-$info_res = mysqli_query($connect, $info_query);
-$info = mysqli_fetch_array($info_res);
+$info_res   = mysqli_query($connect, $info_query);
+$info       = mysqli_fetch_array($info_res);
 
 ?>
 <!DOCTYPE html>
@@ -26,7 +26,7 @@ $info = mysqli_fetch_array($info_res);
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="shortcut icon" href="/favicon.ico">
 
-    <title><?=$info['company_name']?> :: 운영업체 관리자 홈</title>
+    <title><?=$info['company_name'];?> :: 운영업체 관리자 홈</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.css" rel="stylesheet">
@@ -54,11 +54,11 @@ $info = mysqli_fetch_array($info_res);
   <body>
     <section id="container" >
         <!--header start-->
-        <?php include "../include/admin_head.php"; ?>
+        <?php include "../include/admin_head.php";?>
         <!--header end-->
 
         <!--sidebar start-->
-        <?php include "../include/admin_sidebar.php"; ?>
+        <?php include "../include/admin_sidebar.php";?>
         <!--sidebar end-->
 
 
@@ -67,8 +67,8 @@ $info = mysqli_fetch_array($info_res);
           <section class="wrapper">
 
             <?php
-            $num = set_var($_GET['num']);
-            ?>
+$num = set_var($_GET['num']);
+?>
 
             <!-- search start-->
             <div class="row">
@@ -79,9 +79,9 @@ $info = mysqli_fetch_array($info_res);
                   </header>
                   <div class="panel-body">
 
-                  <!-- <form name='primary' method='post' action='https://www.<?=$_SERVER['SERVER_NAME']?>:<?=$port?>/admin/member/mem_ins_ok.php'> -->
-                  <form class="form-horizontal" role="form" name="primary" method="post" action="http://<?=$_SERVER['SERVER_NAME']?>/admin/member/mem_ins_ok.php">
-                    <input type="hidden" name="num" value="<?=$num?>">
+                  <!-- <form name='primary' method='post' action='https://www.<?=$_SERVER['SERVER_NAME'];?>:<?=$port;?>/admin/member/mem_ins_ok.php'> -->
+                  <form class="form-horizontal" role="form" name="primary" method="post" action="http://<?=$_SERVER['SERVER_NAME'];?>/admin/member/mem_ins_ok.php">
+                    <input type="hidden" name="num" value="<?=$num;?>">
                     <div class="form-group">
                         <label for="id" class="col-lg-2 col-sm-2 control-label">아이디 :</label>
                         <div class="col-sm-4">
@@ -120,7 +120,7 @@ $info = mysqli_fetch_array($info_res);
                           <label class="form-inline">
                             <input type="text" class="form-control" name="license_no1" size="3" maxlength="3"> -
                             <input type="text" class="form-control" name="license_no2" size="2" maxlength="2"> -
-                            <input type="text" class="form-control" name="license_no3" size="5" maxlength="5"> 
+                            <input type="text" class="form-control" name="license_no3" size="5" maxlength="5">
                           </label>
                         </div>
                     </div>
@@ -146,12 +146,12 @@ $info = mysqli_fetch_array($info_res);
     <!--main content end-->
 
      <!--footer start-->
-    <?php include "../include/admin_footer.php"; ?>
+    <?php include "../include/admin_footer.php";?>
       <!--footer end-->
   </section>
 
     <!-- js placed at the end of the document so the pages load faster -->
-    <script src="/js/jquery-2.1.1.min.js"></script>
+    <script src="/js/vendor/jquery-2.2.0.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/admin/js/jquery.dcjqaccordion.2.7.js" class="include" type="text/javascript" ></script>
     <script src="/admin/js/jquery.scrollTo.min.js"></script>

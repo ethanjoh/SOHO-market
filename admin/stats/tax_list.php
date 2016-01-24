@@ -7,15 +7,15 @@ include "../../util/config.php";
 // 각종 유틸함수
 include "../../util/util.php";
 // MySQL 연결
-$connect=my_connect($host,$dbid,$dbpass,$dbname);
+$connect = my_connect($host, $dbid, $dbpass, $dbname);
 
 //메타정보
 $info_query = "SELECT * FROM admin_setup";
-$info_res = mysqli_query($connect, $info_query);
-$info = mysqli_fetch_array($info_res);
+$info_res   = mysqli_query($connect, $info_query);
+$info       = mysqli_fetch_array($info_res);
 
-$sql_1 = "SELECT num FROM mall_order WHERE cancel='N' AND status='3' AND user_id <> 'guest' ";
-$res_1 = mysqli_query($connect, $sql_1);
+$sql_1       = "SELECT num FROM mall_order WHERE cancel='N' AND status='3' AND user_id <> 'guest' ";
+$res_1       = mysqli_query($connect, $sql_1);
 $unchk_total = mysqli_num_rows($res_1);
 
 ?>
@@ -30,7 +30,7 @@ $unchk_total = mysqli_num_rows($res_1);
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="shortcut icon" href="/favicon.ico">
 
-    <title><?=$info['company_name']?> :: 운영업체 관리자 홈</title>
+    <title><?=$info['company_name'];?> :: 운영업체 관리자 홈</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.css" rel="stylesheet">
@@ -53,11 +53,11 @@ $unchk_total = mysqli_num_rows($res_1);
   <body>
     <section id="container" >
         <!--header start-->
-        <?php include "../include/admin_head.php"; ?>
+        <?php include "../include/admin_head.php";?>
         <!--header end-->
 
         <!--sidebar start-->
-        <?php include "../include/admin_sidebar.php"; ?>
+        <?php include "../include/admin_sidebar.php";?>
         <!--sidebar end-->
 
     <!--main content start-->
@@ -83,8 +83,8 @@ $unchk_total = mysqli_num_rows($res_1);
         <!-- calendar start -->
         <form name="form" method="get" action="tax_list.php" class="form-inline form-group" role="form">
         <input type="hidden" name="mode" value="date" />
-        <input type="hidden" name="key" value="<?=$key?>" />
-        <input type="hidden" name="key_value" value="<?=$key_value?>" />
+        <input type="hidden" name="key" value="<?=$key;?>" />
+        <input type="hidden" name="key_value" value="<?=$key_value;?>" />
         <div class="panel panel-info">
           <div class="panel-heading">날짜 검색</div>
             <div class="panel-body text-center">
@@ -110,14 +110,14 @@ $unchk_total = mysqli_num_rows($res_1);
 
 
             <?php
-            $total = 0; //공급가합
-            $sales = array();
+$total = 0; //공급가합
+$sales = array();
 
-            if($mode == "date") {
-              $search_qry = " AND createdate BETWEEN '$date1' AND '$date2' ";
-              $date = "(".$date1." ~ ".$date2.")";
+if ($mode == "date") {
+    $search_qry = " AND createdate BETWEEN '$date1' AND '$date2' ";
+    $date       = "(" . $date1 . " ~ " . $date2 . ")";
 
-            ?>
+    ?>
 
 
             <!-- order list start -->
@@ -125,7 +125,7 @@ $unchk_total = mysqli_num_rows($res_1);
               <div class="col-sm-12">
                 <section class="panel">
                   <header class="panel-heading table-head">
-                      기간별 정산 리스트 ( <?=$date1?> ~ <?=$date2?> )
+                      기간별 정산 리스트 ( <?=$date1;?> ~ <?=$date2;?> )
                     </header>
                     <div class="panel-body">
                       <div class="table-responsive">
@@ -143,99 +143,98 @@ $unchk_total = mysqli_num_rows($res_1);
                         <tbody>
                         <?php
 
-                        //1. 기간별 주문을 구한다.
-                        $sql = "SELECT * FROM mall_order
+    //1. 기간별 주문을 구한다.
+    $sql = "SELECT * FROM mall_order
                                 WHERE cancel='N' AND status='8' $search_qry
                                 ORDER BY num DESC";
-                        $res = mysqli_query($connect, $sql);
+    $res = mysqli_query($connect, $sql);
 
-                        //2. 각 주문에서 제품코드를 구한다.
-                        for($i=0; $row = mysqli_fetch_array($res); $i++) {
-                          //판매금액 집계를 위한 배열
-                          $sales[] = array(num=>$row['num'], id=>$row['user_id'], sub_total=>$row['last_amount']);
-                          $total += $row['last_amount'];
-                        }//for end
+    //2. 각 주문에서 제품코드를 구한다.
+    for ($i = 0; $row = mysqli_fetch_array($res); $i++) {
+        //판매금액 집계를 위한 배열
+        $sales[] = array(num => $row['num'], id => $row['user_id'], sub_total => $row['last_amount']);
+        $total += $row['last_amount'];
+    } //for end
 
+    foreach ($sales as $key => $values) {
+        //$sum[$values['company_name']] += $values['sub_total'];
+        $sum[$values['id']] += $values['sub_total'];
+    }
 
-                        foreach($sales as $key => $values) {
-                          //$sum[$values['company_name']] += $values['sub_total'];
-                          $sum[$values['id']] += $values['sub_total'];
-                        }
+    reset($sum);
+    arsort($sum);
 
-                        reset($sum);
-                        arsort($sum);
-
-                        $i=0;
-                        foreach($sum as $id=>$sub_total) {
-                          ?>
+    $i = 0;
+    foreach ($sum as $id => $sub_total) {
+        ?>
                           <tr>
-                            <td><?=$i+1?></td>
+                            <td><?=$i + 1;?></td>
                             <td>
                               <?php
-                              $c_sql="SELECT * FROM member WHERE id='$id' ";
-                              $c_result = mysqli_query($connect, $c_sql);
-                              $c_row = mysqli_fetch_array($c_result);
+$c_sql    = "SELECT * FROM member WHERE id='$id' ";
+        $c_result = mysqli_query($connect, $c_sql);
+        $c_row    = mysqli_fetch_array($c_result);
 
-                              echo "<a href=\"mem_stat_list.php?mode=date&id=".$id."&amp;date1=".$date1."&amp;date2=".$date2."\" target=\"_blank\">".$c_row['company_name']." (".$id.")</a>";
-                               ?>
+        echo "<a href=\"mem_stat_list.php?mode=date&id=" . $id . "&amp;date1=" . $date1 . "&amp;date2=" . $date2 . "\" target=\"_blank\">" . $c_row['company_name'] . " (" . $id . ")</a>";
+        ?>
                             </td>
                             <td>의료기기</td>
-                            <td><?=$c_row['seller'] == '2' ? "위탁" : ""?></td>
-                            <td><?=number_format($sub_total)?> (<?=number_format($sub_total*0.1)?>)<br><strong><?=number_format($sub_total*1.1)?></strong></td>
+                            <td><?=$c_row['seller'] == '2' ? "위탁" : "";?></td>
+                            <td><?=number_format($sub_total);?> (<?=number_format($sub_total * 0.1);?>)<br><strong><?=number_format($sub_total * 1.1);?></strong></td>
                             <td>
 <!--
-                              <form name="reg<?=$i?>" class="form-inline" role="form" method="post" action="reg_tax.php?m=date">
+                              <form name="reg<?=$i;?>" class="form-inline" role="form" method="post" action="reg_tax.php?m=date">
                               <div class="form-group">
                                 <label for="reg_date"><i class="fa fa-calendar"></i>발행일 :</label>
-                                <input type="text" class="form-control reg_date" name="reg_date" id="reg_date<?=$i?>"  value="" >
+                                <input type="text" class="form-control reg_date" name="reg_date" id="reg_date<?=$i;?>"  value="" >
                               </div>
                                 <?php
-                                if($c_row['payment_day'] == "1") {
-                                  echo "<input type=\"radio\" name=\"paid\" value=\"Y\" checked />영수\n
+if ($c_row['payment_day'] == "1") {
+            echo "<input type=\"radio\" name=\"paid\" value=\"Y\" checked />영수\n
                                         <input type=\"radio\" name=\"paid\" value=\"N\" />청구\n";
-                                }else{
-                                  echo "<input type=\"radio\" name=\"paid\" value=\"Y\" />영수\n
+        } else {
+            echo "<input type=\"radio\" name=\"paid\" value=\"Y\" />영수\n
                                         <input type=\"radio\" name=\"paid\" value=\"N\" checked />청구\n";
-                                }
-                                ?>
-                                <input type="hidden" name="id" value="<?=$id?>" />
-                                <input type="hidden" name="sum" value="<?=$sub_total?>" />
+        }
+        ?>
+                                <input type="hidden" name="id" value="<?=$id;?>" />
+                                <input type="hidden" name="sum" value="<?=$sub_total;?>" />
                                 <input type="hidden" name="goods_name" value="의료기기" />
-                                <input type="hidden" name="date1" value="<?=$date1?>" />
-                                <input type="hidden" name="date2" value="<?=$date2?>" />
-                                <button class="btn btn-success" href="" onclick="javascript:document.reg<?=$i?>.submit()">발행</button>
+                                <input type="hidden" name="date1" value="<?=$date1;?>" />
+                                <input type="hidden" name="date2" value="<?=$date2;?>" />
+                                <button class="btn btn-success" href="" onclick="javascript:document.reg<?=$i;?>.submit()">발행</button>
                               </form>
                                -->
                                 <?php
-                                if($c_row['payment_day'] == "1") {
-                                  echo "<input type=\"radio\" name=\"paid[<?=$i?>]\" value=\"Y\" checked />영수\n
+if ($c_row['payment_day'] == "1") {
+            echo "<input type=\"radio\" name=\"paid[<?=$i?>]\" value=\"Y\" checked />영수\n
                                         <input type=\"radio\" name=\"paid[<?=$i?>]\" value=\"N\" />청구\n";
-                                }else{
-                                  echo "<input type=\"radio\" name=\"paid[<?=$i?>]\" value=\"Y\" />영수\n
+        } else {
+            echo "<input type=\"radio\" name=\"paid[<?=$i?>]\" value=\"Y\" />영수\n
                                         <input type=\"radio\" name=\"paid[<?=$i?>]\" value=\"N\" checked />청구\n";
-                                }
-                                ?>
-<!--                                <input type="radio" name="paid[<?=$i?>]" value="Y">영수
-                               <input type="radio" name="paid[<?=$i?>]" value="N" checked>청구 -->
+        }
+        ?>
+<!--                                <input type="radio" name="paid[<?=$i;?>]" value="Y">영수
+                               <input type="radio" name="paid[<?=$i;?>]" value="N" checked>청구 -->
                             </td>
                           </tr>
                           <?php
-                            /*
-                            if($i!=0) {
-                              $temp_createdate .= ",";
-                              $temp_total .= ",";
-                            }
-                              $temp_createdate .= $date;
-                              $temp_total .= $sub_total;
-                            */
-                            $i++;
-                          }
+/*
+        if($i!=0) {
+        $temp_createdate .= ",";
+        $temp_total .= ",";
+        }
+        $temp_createdate .= $date;
+        $temp_total .= $sub_total;
+         */
+        $i++;
+    }
 
-                          ?>
+    ?>
                           </tr>
                           <tr>
                             <td colspan="4"><strong>매출액 총합(VAT 포함):</strong></td>
-                            <td><?=number_format($total)?> (<?=number_format($total*0.1)?>)<br><strong><?=number_format($total*1.1)?></strong></td>
+                            <td><?=number_format($total);?> (<?=number_format($total * 0.1);?>)<br><strong><?=number_format($total * 1.1);?></strong></td>
                             <td>&nbsp;</td>
                           </tr>
                         </tbody>
@@ -253,13 +252,13 @@ $unchk_total = mysqli_num_rows($res_1);
                     <button class="btn btn-success" onclick="excel_f.submit();"><i class="fa fa-file-excel-o"></i> 홈택스 업로드용 엑셀로 저장하기</button>
                   </form> -->
 
-                  <a type="button" class="btn btn-success" href="hometax_excel.php?date1=<?=$date1?>&date2=<?=$date2?>"><i class="fa fa-file-excel-o"></i> 홈택스 업로드용 엑셀로 저장하기</a>
+                  <a type="button" class="btn btn-success" href="hometax_excel.php?date1=<?=$date1;?>&date2=<?=$date2;?>"><i class="fa fa-file-excel-o"></i> 홈택스 업로드용 엑셀로 저장하기</a>
                 </div>
               </div>
 
               <?php
-            }else {
-            ?>
+} else {
+    ?>
 
               <div class="row text-center">
                 <div class="col-sm-12">
@@ -269,19 +268,20 @@ $unchk_total = mysqli_num_rows($res_1);
               </div>
 
             <?php
-            } // end of else
-            ?>
+}
+; // end of else
+?>
           </section>
       </section>
       <!--main content end-->
 
       <!--footer start-->
-    <?php include "../include/admin_footer.php"; ?>
+    <?php include "../include/admin_footer.php";?>
       <!--footer end-->
   </section>
 
     <!-- js placed at the end of the document so the pages load faster -->
-    <script src="/js/jquery-2.1.1.min.js"></script>
+    <script src="/js/vendor/jquery-2.2.0.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script class="include" type="text/javascript" src="/admin/js/jquery.dcjqaccordion.2.7.js"></script>
     <script src="/admin/js/jquery.scrollTo.min.js"></script>

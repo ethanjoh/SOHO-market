@@ -7,12 +7,12 @@ include "../../util/config.php";
 // 각종 유틸함수
 include "../../util/util.php";
 // MySQL 연결
-$connect=my_connect($host,$dbid,$dbpass,$dbname);
+$connect = my_connect($host, $dbid, $dbpass, $dbname);
 
 //메타정보
 $info_query = "SELECT * FROM admin_setup";
-$info_res = mysqli_query($connect, $info_query);
-$info = mysqli_fetch_array($info_res);
+$info_res   = mysqli_query($connect, $info_query);
+$info       = mysqli_fetch_array($info_res);
 
 ?>
 <!DOCTYPE html>
@@ -26,7 +26,7 @@ $info = mysqli_fetch_array($info_res);
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="shortcut icon" href="/favicon.ico">
 
-    <title><?=$info['company_name']?> :: 운영업체 관리자 홈</title>
+    <title><?=$info['company_name'];?> :: 운영업체 관리자 홈</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.css" rel="stylesheet">
@@ -74,7 +74,7 @@ $info = mysqli_fetch_array($info_res);
         form.contents.focus();
         return;
       }
-    */  
+    */
       oEditors.getById["contents"].exec("UPDATE_IR_FIELD", []);
       form.submit();
     }
@@ -85,11 +85,11 @@ $info = mysqli_fetch_array($info_res);
   <body>
     <section id="container" >
         <!--header start-->
-        <?php include "../include/admin_head.php"; ?>
+        <?php include "../include/admin_head.php";?>
         <!--header end-->
 
         <!--sidebar start-->
-        <?php include "../include/admin_sidebar.php"; ?>
+        <?php include "../include/admin_sidebar.php";?>
         <!--sidebar end-->
 
 
@@ -116,20 +116,20 @@ $info = mysqli_fetch_array($info_res);
 
           <form class="form-horizontal" role="form" method="post" name="mail" action="mem_sendmail_ok.php"  enctype="multipart/form-data">
             <?php
-          	$tot_cnt = sizeof($num);
-          	
-           for($i=0;$i < sizeof($num);$i++){
-           ?>
-            <input type=hidden name='num[]' value='<?=$num[$i]?>'>
+$tot_cnt = sizeof($num);
+
+for ($i = 0; $i < sizeof($num); $i++) {
+    ?>
+            <input type=hidden name='num[]' value='<?=$num[$i];?>'>
             <?php
-            }
-           ?>
+}
+?>
             <!-- send mail start-->
             <div class="row">
               <div class="col-sm-12">
                 <section class="panel">
                   <header class="panel-heading table-head">
-                      메일 발송 (발송할 회원 수 : <?=$tot_cnt?>)
+                      메일 발송 (발송할 회원 수 : <?=$tot_cnt;?>)
                   </header>
                   <div class="panel-body">
                   <div class="table-responsive">
@@ -138,7 +138,7 @@ $info = mysqli_fetch_array($info_res);
                       <tbody>
                         <tr>
                           <th>보내는 사람</th>
-                          <td><input type='text' size='100' name="sender" value="<?=$info['company_name']?>">
+                          <td><input type='text' size='100' name="sender" value="<?=$info['company_name'];?>">
                           </td>
                         </tr>
                         <tr>
@@ -198,12 +198,12 @@ $info = mysqli_fetch_array($info_res);
     <!--main content end-->
 
      <!--footer start-->
-    <?php include "../include/admin_footer.php"; ?>
+    <?php include "../include/admin_footer.php";?>
       <!--footer end-->
   </section>
 
     <!-- js placed at the end of the document so the pages load faster -->
-    <script src="/js/jquery-2.1.1.min.js"></script>
+    <script src="/js/vendor/jquery-2.2.0.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/admin/js/jquery.dcjqaccordion.2.7.js" class="include" type="text/javascript" ></script>
     <script src="/admin/js/jquery.scrollTo.min.js"></script>
@@ -221,7 +221,7 @@ $info = mysqli_fetch_array($info_res);
 
     <script>
     var oEditors = [];
-    // 마지막 옵션은 체감 속도 증진을 위해서 페이지 로딩 완료시 까지 화면 표시를 하지 않는 옵션 입니다. 
+    // 마지막 옵션은 체감 속도 증진을 위해서 페이지 로딩 완료시 까지 화면 표시를 하지 않는 옵션 입니다.
     // 개발 작업시에는 이 값을 false로 설정 하세요.
     //nhn.husky.EZCreator.createInIFrame(oEditors, "contents", "SEditorSkin.html", "createSEditorInIFrame", null, false);
     nhn.husky.EZCreator.createInIFrame({
@@ -230,7 +230,7 @@ $info = mysqli_fetch_array($info_res);
       sSkinURI: "SEditorSkin.html",
       fCreator: "createSEditorInIFrame"
     });
-    </script>    
+    </script>
 
   </body>
 </html>

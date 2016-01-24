@@ -1,5 +1,5 @@
       <footer class="site-footer">
           <div class="text-center">
-              2015 &copy; S-Medics solution <a href="#" class="go-top"><i class="fa fa-angle-up"></i></a>
+              2016 &copy; Shinsoo <a href="#" class="go-top"><i class="fa fa-angle-up"></i></a>
           </div>
       </footer>

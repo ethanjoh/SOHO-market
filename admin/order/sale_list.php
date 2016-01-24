@@ -7,15 +7,15 @@ include "../../util/config.php";
 // 각종 유틸함수
 include "../../util/util.php";
 // MySQL 연결
-$connect=my_connect($host,$dbid,$dbpass,$dbname);
+$connect = my_connect($host, $dbid, $dbpass, $dbname);
 
 //메타정보
 $info_query = "SELECT * FROM admin_setup";
-$info_res = mysqli_query($connect, $info_query);
-$info = mysqli_fetch_array($info_res);
+$info_res   = mysqli_query($connect, $info_query);
+$info       = mysqli_fetch_array($info_res);
 
-$sql_1 = "SELECT num FROM mall_order WHERE cancel='N' AND status='3' AND user_id <> 'guest' ";
-$res_1 = mysqli_query($connect, $sql_1);
+$sql_1       = "SELECT num FROM mall_order WHERE cancel='N' AND status='3' AND user_id <> 'guest' ";
+$res_1       = mysqli_query($connect, $sql_1);
 $unchk_total = mysqli_num_rows($res_1);
 
 ?>
@@ -30,7 +30,7 @@ $unchk_total = mysqli_num_rows($res_1);
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="shortcut icon" href="/favicon.ico">
 
-    <title><?=$info['company_name']?> :: 운영업체 관리자 홈</title>
+    <title><?=$info['company_name'];?> :: 운영업체 관리자 홈</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.css" rel="stylesheet">
@@ -53,11 +53,11 @@ $unchk_total = mysqli_num_rows($res_1);
   <body>
     <section id="container" >
         <!--header start-->
-        <?php include "../include/admin_head.php"; ?>
+        <?php include "../include/admin_head.php";?>
         <!--header end-->
 
         <!--sidebar start-->
-        <?php include "../include/admin_sidebar.php"; ?>
+        <?php include "../include/admin_sidebar.php";?>
         <!--sidebar end-->
 
     <!--main content start-->
@@ -109,9 +109,9 @@ $unchk_total = mysqli_num_rows($res_1);
 
 <?php
 
-if($mode == "date") {
+if ($mode == "date") {
 
-?>
+    ?>
         <!-- search company start -->
         <form name="f1" method="get" action="sale_list.php" class="form-inline form-group" role="form">
         <input type="hidden" name="mode" value="com" />
@@ -121,16 +121,16 @@ if($mode == "date") {
 
               <div class="row text-center">
                 <div class="form-group">
-                    <select name="id" class="form-control" onchange="show_sales('<?=$date1?>','<?=$date2?>');">
+                    <select name="id" class="form-control" onchange="show_sales('<?=$date1;?>','<?=$date2;?>');">
                       <option>업체명 - 아이디</option>
                     <?php
-                      $mqry = "SELECT * FROM member ORDER BY company_name ";
-                      $mres = mysqli_query($connect, $mqry);
+$mqry = "SELECT * FROM member ORDER BY company_name ";
+    $mres = mysqli_query($connect, $mqry);
 
-                      for($i=0; $mrow = mysqli_fetch_array($mres); $i++) {
-                        echo "<option value=".$mrow['id'].">".$mrow['company_name']." - ".$mrow['id']."</option>\n";
-                      }
-                    ?>
+    for ($i = 0; $mrow = mysqli_fetch_array($mres); $i++) {
+        echo "<option value=" . $mrow['id'] . ">" . $mrow['company_name'] . " - " . $mrow['id'] . "</option>\n";
+    }
+    ?>
                     </select>
                 </div>
 
@@ -149,26 +149,26 @@ if($mode == "date") {
 
 
           <?php
-          $total = 0; //공급가합
-          $sales = array();
-          if($mode == "date") {
-            $search_qry = " AND date(createdate) BETWEEN '$date1' AND '$date2' ";
-            $date = "(".$date1." ~ ".$date2.")";
-          }else if ($mode == "com") {
-            $search_qry = " AND user_id = '$id' AND date(createdate) BETWEEN '$date1' AND '$date2' ";
-            $date = "(".$date1." ~ ".$date2.")";
-          }else {
-            $today = date("Y-m-d");
-            $search_qry = " AND date(createdate) = '$today' ";
-            $date = "(".$today." ~ ".$today.")";
-          }
-          ?>
+$total = 0; //공급가합
+$sales = array();
+if ($mode == "date") {
+    $search_qry = " AND date(createdate) BETWEEN '$date1' AND '$date2' ";
+    $date       = "(" . $date1 . " ~ " . $date2 . ")";
+} else if ($mode == "com") {
+    $search_qry = " AND user_id = '$id' AND date(createdate) BETWEEN '$date1' AND '$date2' ";
+    $date       = "(" . $date1 . " ~ " . $date2 . ")";
+} else {
+    $today      = date("Y-m-d");
+    $search_qry = " AND date(createdate) = '$today' ";
+    $date       = "(" . $today . " ~ " . $today . ")";
+}
+?>
 
           <div>
             <div id="graph1"></div>
           </div>
 
-          <table class="highchart" data-graph-container-before="1" data-graph-container="#graph1" data-graph-type="column" data-graph-margin-left="150" data-graph-margin-right="150" data-graph-subtitle-text="<?=$date?>" style="display:none;">
+          <table class="highchart" data-graph-container-before="1" data-graph-container="#graph1" data-graph-type="column" data-graph-margin-left="150" data-graph-margin-right="150" data-graph-subtitle-text="<?=$date;?>" style="display:none;">
             <caption>판매 TOP 10 리스트</caption>
             <thead>
               <tr>
@@ -180,103 +180,103 @@ if($mode == "date") {
             <tbody>
               <?php
 
-              //1. 전체 주문을 구한다.
-              $sql = "SELECT * FROM mall_order WHERE cancel='N' AND status='8' $search_qry  ORDER BY num DESC";
-              $res = mysqli_query($connect, $sql);
+//1. 전체 주문을 구한다.
+$sql = "SELECT * FROM mall_order WHERE cancel='N' AND status='8' $search_qry  ORDER BY num DESC";
+$res = mysqli_query($connect, $sql);
 
-                //2. 각 주문에서 제품코드를 구한다.
-                for($i=0; $row = mysqli_fetch_array($res); $i++) {
-                  $a_goods_fk = explode(",", $row['goods_fk']);
-                  $mod_volume = explode(",", $row['mod_count']); //변경된 수량
-                  $mod_price = explode(",", $row['mod_price']); //변경된 수량
-                  $option = explode(",", $row['goods_kind']); //옵션정보
+//2. 각 주문에서 제품코드를 구한다.
+for ($i = 0; $row = mysqli_fetch_array($res); $i++) {
+    $a_goods_fk = explode(",", $row['goods_fk']);
+    $mod_volume = explode(",", $row['mod_count']); //변경된 수량
+    $mod_price  = explode(",", $row['mod_price']); //변경된 수량
+    $option     = explode(",", $row['goods_kind']); //옵션정보
 
-                  //판매금액 집계를 위한 배열
-                  //날짜형식 변환 Y-m-d H:i:s -> Y-m-d
-                  $raw_date = date_create($row['createdate']);
-                  $convert_date = date_format($raw_date, "Y-m-d");
+    //판매금액 집계를 위한 배열
+    //날짜형식 변환 Y-m-d H:i:s -> Y-m-d
+    $raw_date     = date_create($row['createdate']);
+    $convert_date = date_format($raw_date, "Y-m-d");
 
-                  $sales[] = array(
-                      num=>$row['num'], 
-                      createdate=>$convert_date, 
-                      sub_total=>$row['last_amount']
-                    );
-                  $total += $row['last_amount'];
+    $sales[] = array(
+        num        => $row['num'],
+        createdate => $convert_date,
+        sub_total  => $row['last_amount'],
+    );
+    $total += $row['last_amount'];
 
+    //3. 해당 주문에서 해당 공급업체의 상품이 있는지 확인한다.
+    for ($j = 0; $j < sizeof($a_goods_fk); $j++) {
+        $p_sql    = "SELECT * FROM products WHERE num='$a_goods_fk[$j]' ";
+        $p_result = mysqli_query($connect, $p_sql);
 
-                  //3. 해당 주문에서 해당 공급업체의 상품이 있는지 확인한다.
-                  for($j=0; $j<sizeof($a_goods_fk); $j++){
-                    $p_sql="SELECT * FROM products WHERE num='$a_goods_fk[$j]' ";
-                    $p_result = mysqli_query($connect, $p_sql);
+        $p_row = mysqli_fetch_array($p_result);
+        $p_no  = mysqli_num_rows($p_result);
 
-                    $p_row = mysqli_fetch_array($p_result);
-                    $p_no = mysqli_num_rows($p_result);
+        //$offer_price = $p_row['retail_price'];
+        $offer_price = $mod_price[$j];
+        //$sub_total = $offer_price * $mod_volume[$j];
 
-                    //$offer_price = $p_row['retail_price'];
-                    $offer_price = $mod_price[$j];
-                    //$sub_total = $offer_price * $mod_volume[$j];
+        $goods[] = array(num => $p_row['num'], company => $p_row['company'], name => $p_row['name'], option => $option[$j], quantity => $mod_volume[$j], amount => $mod_price[$j] * $mod_volume[$j]);
+        //$total += $sub_total;
+    } //for end
+} //for end
 
-                    $goods[] = array(num=>$p_row['num'], company=>$p_row['company'], name=>$p_row['name'], option=>$option[$j], quantity=>$mod_volume[$j], amount=>$mod_price[$j]*$mod_volume[$j]);
-                      //$total += $sub_total;
-                  }//for end
-                }//for end
+// echo "<pre>";
+// print_r($goods);
+// echo "</pre>";
 
-                    // echo "<pre>";
-                    // print_r($goods);
-                    // echo "</pre>";
+function cmp($a, $b)
+{
+    if ($a["quantity"] == $b["quantity"]) {
+        return 0;
+    }
 
-              function cmp($a, $b)
-              {
-                if ($a["quantity"] == $b["quantity"]) {
-                  return 0;
-                }
+    return ($a["quantity"] > $b["quantity"]) ? -1 : 1;
 
-                return ($a["quantity"] > $b["quantity"]) ? -1 : 1;
+    //return strcmp($a["quantity"], $b["quantity"]);
+}
 
-              //return strcmp($a["quantity"], $b["quantity"]);
-              }
+if ($p_no) {
 
+    foreach ($goods as $key => $values) {
 
-              if($p_no) {
+        $new[$values['num']]['company'] = $values['company'];
+        $new[$values['num']]['name']    = $values['name'];
+        $new[$values['num']]['option']  = $values['option'];
+        $new[$values['num']]['quantity'] += $values['quantity'];
+        $new[$values['num']]['amount'] += $values['amount'];
 
-                foreach($goods as $key=>$values) {
+    }
 
-                    $new[$values['num']]['company']   = $values['company'];
-                    $new[$values['num']]['name']      = $values['name'];
-                    $new[$values['num']]['option']    = $values['option'];
-                    $new[$values['num']]['quantity'] += $values['quantity'];
-                    $new[$values['num']]['amount'] += $values['amount'];
+    unset($values);
 
-                }
+    usort($new, "cmp"); //수량에 따라 정열
 
-              unset($values);
-
-              usort($new, "cmp"); //수량에 따라 정열
-
-              $i=0;
-              foreach($new as $row) {
-              ?>
+    $i = 0;
+    foreach ($new as $row) {
+        ?>
               <tr>
-                <td>[<?=$row['company']?>] <?=$row['name']?></td>
-                <td><?=$row['quantity']?></td>
-                <td><?=$row['amount']/10000?></td>
+                <td>[<?=$row['company'];?>] <?=$row['name'];?></td>
+                <td><?=$row['quantity'];?></td>
+                <td><?=$row['amount'] / 10000;?></td>
               </tr>
               <?php
-                  if($i!=0) {
-                    $temp_qty .= ",";
-                    $temp_name .= ",";
-                  }
-                    $temp_qty .= $row['quantity'];
-                    $temp_name .= $row['name'];
+if ($i != 0) {
+            $temp_qty .= ",";
+            $temp_name .= ",";
+        }
+        $temp_qty .= $row['quantity'];
+        $temp_name .= $row['name'];
 
-                  if($i <= 10)
-                    $i++;
-                  else
-                    break;
-                }
+        if ($i <= 10) {
+            $i++;
+        } else {
+            break;
+        }
 
-                unset($row);
-              ?>
+    }
+
+    unset($row);
+    ?>
           </tbody>
         </table>
 
@@ -284,7 +284,7 @@ if($mode == "date") {
           <div id="graph2"></div>
         </div>
 
-        <table class="highchart" data-graph-container-before="1" data-graph-container="#graph2" data-graph-type="line" data-graph-margin-left="150" data-graph-margin-right="150" data-graph-subtitle-text="<?=$date?>" style="display:none;">
+        <table class="highchart" data-graph-container-before="1" data-graph-container="#graph2" data-graph-type="line" data-graph-margin-left="150" data-graph-margin-right="150" data-graph-subtitle-text="<?=$date;?>" style="display:none;">
           <caption>일별 판매금액 집계 </caption>
           <thead>
             <tr>
@@ -294,34 +294,34 @@ if($mode == "date") {
           </thead>
           <tbody>
             <?php
-              foreach($sales as $key => $values) {
-                $sum[$values['createdate']] += $values['sub_total'];
-              }
+foreach ($sales as $key => $values) {
+        $sum[$values['createdate']] += $values['sub_total'];
+    }
 
-              reset($sum);
-              ksort($sum);
+    reset($sum);
+    ksort($sum);
 
-            $day = array("일","월","화","수","목","금","토");
-              $i=0;
-              foreach($sum as $date=>$sub_total) {
-            ?>
+    $day = array("일", "월", "화", "수", "목", "금", "토");
+    $i   = 0;
+    foreach ($sum as $date => $sub_total) {
+        ?>
             <tr>
-              <td><?=$date?> (<?=$day[date("w",strtotime($date))]?>)</td>
-              <td><?=$sub_total/10000?></td>
+              <td><?=$date;?> (<?=$day[date("w", strtotime($date))];?>)</td>
+              <td><?=$sub_total / 10000;?></td>
             </tr>
             <?php
 
-                if($i!=0) {
-                  $temp_createdate .= ",";
-                  $temp_total .= ",";
-                }
-                  $temp_createdate .= $date;
-                  $temp_total .= $sub_total;
+        if ($i != 0) {
+            $temp_createdate .= ",";
+            $temp_total .= ",";
+        }
+        $temp_createdate .= $date;
+        $temp_total .= $sub_total;
 
-                $i++;
-              }
+        $i++;
+    }
 
-            ?>
+    ?>
           </tr>
         </tbody>
       </table>
@@ -329,32 +329,32 @@ if($mode == "date") {
       <table id="total">
           <tr>
             <td colspan="2"><strong>확정금액 총합:</strong></td>
-            <td><strong><?=number_format($total)?></strong></td>
+            <td><strong><?=number_format($total);?></strong></td>
           </tr>
       </table>
 
       <?php
-      } else {
-      ?>
+} else {
+    ?>
       <tr>
         <td colspan="4"><p>조회 결과가 없습니다.</p></td>
       </tr>
     </tbody>
   </table>
   <?php
-  }
-  ?>
+}
+?>
           </section>
       </section>
       <!--main content end-->
 
       <!--footer start-->
-    <?php include "../include/admin_footer.php"; ?>
+    <?php include "../include/admin_footer.php";?>
       <!--footer end-->
   </section>
 
     <!-- js placed at the end of the document so the pages load faster -->
-    <script src="/js/jquery-2.1.1.min.js"></script>
+    <script src="/js/vendor/jquery-2.2.0.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/admin/js/jquery-ui-1.9.2.custom.min.js"></script>
     <script class="include" type="text/javascript" src="/admin/js/jquery.dcjqaccordion.2.7.js"></script>

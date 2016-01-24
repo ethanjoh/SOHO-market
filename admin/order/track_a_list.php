@@ -7,15 +7,15 @@ include "../../util/config.php";
 // 각종 유틸함수
 include "../../util/util.php";
 // MySQL 연결
-$connect=my_connect($host,$dbid,$dbpass,$dbname);
+$connect = my_connect($host, $dbid, $dbpass, $dbname);
 
 //메타정보
 $info_query = "SELECT * FROM admin_setup";
-$info_res = mysqli_query($connect, $info_query);
-$info = mysqli_fetch_array($info_res);
+$info_res   = mysqli_query($connect, $info_query);
+$info       = mysqli_fetch_array($info_res);
 
-$sql_1 = "SELECT num FROM mall_order WHERE cancel='N' AND status='3' AND user_id <> 'guest' ";
-$res_1 = mysqli_query($connect, $sql_1);
+$sql_1       = "SELECT num FROM mall_order WHERE cancel='N' AND status='3' AND user_id <> 'guest' ";
+$res_1       = mysqli_query($connect, $sql_1);
 $unchk_total = mysqli_num_rows($res_1);
 
 ?>
@@ -27,9 +27,9 @@ $unchk_total = mysqli_num_rows($res_1);
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="keyword" content="">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">   
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="shortcut icon" href="/favicon.ico">
-    <title><?=$info['company_name']?> :: 운영업체 관리자 홈</title>
+    <title><?=$info['company_name'];?> :: 운영업체 관리자 홈</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.css" rel="stylesheet">
@@ -52,11 +52,11 @@ $unchk_total = mysqli_num_rows($res_1);
   <body>
     <section id="container" >
         <!--header start-->
-        <?php include "../include/admin_head.php"; ?>
+        <?php include "../include/admin_head.php";?>
         <!--header end-->
 
         <!--sidebar start-->
-        <?php include "../include/admin_sidebar.php"; ?>
+        <?php include "../include/admin_sidebar.php";?>
         <!--sidebar end-->
 
     <!--main content start-->
@@ -66,57 +66,59 @@ $unchk_total = mysqli_num_rows($res_1);
       <form action="track_a_list.php" class="form-inline" role="form" name="f" method="post" >
 
       <?php
-       $today = date("Y-m-d");
+$today = date("Y-m-d");
 
-    	switch ($mode) {
-    	case 'search' :
-    		$sql_2="SELECT orderid FROM mall_order
+switch ($mode) {
+    case 'search':
+        $sql_2 = "SELECT orderid FROM mall_order
     			   WHERE delivery_type = 'L'
     			   AND cancel = 'N'
     			   AND status = '7'
     			   AND $key LIKE '%$key_value%' ";
-    		break;
-    	case 'date' :
-    		$sql_2 = "SELECT orderid FROM mall_order
+        break;
+    case 'date':
+        $sql_2 = "SELECT orderid FROM mall_order
     		          WHERE cancel = 'N'
     				  AND delivery_type = 'L'
     				  AND status = '7'
     				  AND createdate BETWEEN '$date1' AND '$date2' ";
-    		break;
-    	default :
-    	   $sql_2 = "SELECT orderid FROM mall_order
+        break;
+    default:
+        $sql_2 = "SELECT orderid FROM mall_order
     	   				  WHERE delivery_type = 'L'
     					  AND cancel = 'N'
     					  AND status = '7' ";
-    	}
+}
 
-    	$res_2 = mysqli_query($connect, $sql_2);
-    	$total = mysqli_num_rows($res_2);
+$res_2 = mysqli_query($connect, $sql_2);
+$total = mysqli_num_rows($res_2);
 
-       $scale=50;
-       if ($page == ''){
-          $page=1;
-       }
+$scale = 50;
+if ($page == '') {
+    $page = 1;
+}
 
-       $cpage = intval($page);
-       $totalpage = intval($total/$scale);
+$cpage     = intval($page);
+$totalpage = intval($total / $scale);
 
-        if ($totalpage*$scale != $total)
-      		$totalpage = $totalpage + 1;
+if ($totalpage * $scale != $total) {
+    $totalpage = $totalpage + 1;
+}
 
-        if ($cpage ==1) {
-    	  $cline = 0 ;
-        } else {
-     	  $cline = ($cpage*$scale) - $scale ;
-        }
+if ($cpage == 1) {
+    $cline = 0;
+} else {
+    $cline = ($cpage * $scale) - $scale;
+}
 
-         $limit=$cline+$scale;
+$limit = $cline + $scale;
 
-         if ($limit >= $total)
-           	$limit=$total;
+if ($limit >= $total) {
+    $limit = $total;
+}
 
-         $scale1 = $limit - $cline;
-    ?>
+$scale1 = $limit - $cline;
+?>
         <!-- calendar start -->
         <form name="form" method="get" action="track_a_list.php" class="form-inline form-group" role="form">
         <input type="hidden" name="mode" value="date" />
@@ -147,7 +149,7 @@ $unchk_total = mysqli_num_rows($res_1);
         <div class="col-sm-12">
           <section class="panel">
             <header class="panel-heading table-head">
-                운송장번호 입력 (총 <?=number_format($total)?> 건)
+                운송장번호 입력 (총 <?=number_format($total);?> 건)
             </header>
               <div class="panel-body">
                 <div class="table-responsive">
@@ -162,64 +164,65 @@ $unchk_total = mysqli_num_rows($res_1);
                   </thead>
                   <tbody>
                   <?php
-              switch ($mode) {
-              	case 'search' :
-                 		$sql_4 = "SELECT * FROM mall_order
+switch ($mode) {
+    case 'search':
+        $sql_4 = "SELECT * FROM mall_order
                            WHERE $key LIKE '%$key_value%'
               			 ORDER BY num DESC LIMIT $cline,$scale1 ";
-              		break;
-              	case 'date' :
-              		$sql_4 = "SELECT * FROM mall_order
+        break;
+    case 'date':
+        $sql_4 = "SELECT * FROM mall_order
               		          WHERE cancel = 'N'
               				  AND createdate BETWEEN '$date1' AND '$date2'
               				  ORDER BY num DESC LIMIT $cline,$scale1 ";
-              		break;
-              	default :
-                 		$sql_4 = "SELECT * FROM mall_order
+        break;
+    default:
+        $sql_4 = "SELECT * FROM mall_order
                  		     		WHERE status = '7'
               					AND cancel = 'N'
               					AND delivery_type = 'L'
                            		ORDER BY num DESC LIMIT $cline,$scale1 ";
-              }
+}
 
-              $res_4 = mysqli_query($connect, $sql_4);
-              $t_no = mysqli_num_rows($res_4);
+$res_4 = mysqli_query($connect, $sql_4);
+$t_no  = mysqli_num_rows($res_4);
 
-              if($t_no > 0) {
+if ($t_no > 0) {
 
-              	for($i=0; $row = mysqli_fetch_array($res_4); $i++){
+    for ($i = 0; $row = mysqli_fetch_array($res_4); $i++) {
 
-              	?>
+        ?>
                     <tr>
                       <td>
-                        <a href="or_view.php?mode=<?=$mode?>&amp;oid=<?=$row['num']?>&amp;key=<?=$key?>&amp;key_value=<?=$key_value?>&amp;page=<?=$page?>">
-                        <?=$row['orderid']?></a>
+                        <a href="or_view.php?mode=<?=$mode;?>&amp;oid=<?=$row['num'];?>&amp;key=<?=$key;?>&amp;key_value=<?=$key_value;?>&amp;page=<?=$page;?>">
+                        <?=$row['orderid'];?></a>
                       </td>
-                      <td><?=$row['createdate']?></td>
-                      <td><?=$row['recipient_name'] ? $row['recipient_name'] : $row['buyer_name']?></td>
+                      <td><?=$row['createdate'];?></td>
+                      <td><?=$row['recipient_name'] ? $row['recipient_name'] : $row['buyer_name'];?></td>
                       <td>
                         <form name="form1" class="form-inline" role="form" method="get" action="or_changed.php">
                           <input type="hidden" name="mode" value="a" />
-                          <input type="hidden" name="oid" value="<?=$row['num']?>" />
-                          <input type="hidden" name="last_amount" value="<?=$row['last_amount']?>" />
-                          <input type="hidden" name="senddate" value="<?=$today?>" />
-                          <input type="text" class="form-control" name="track_no" value="<?=$row['track_no']?>" size="80" />
+                          <input type="hidden" name="oid" value="<?=$row['num'];?>" />
+                          <input type="hidden" name="last_amount" value="<?=$row['last_amount'];?>" />
+                          <input type="hidden" name="senddate" value="<?=$today;?>" />
+                          <input type="text" class="form-control" name="track_no" value="<?=$row['track_no'];?>" size="80" />
                           &nbsp;
                           <button class="btn btn-success" type="submit" onclick="form1.submit()"><i class="fa fa-paper-plane"></i> 발 송</button>
                         </form>
                       </td>
                     </tr>
                     <?php
-                  } // for loop end
+} // for loop end
 
-                }else {
+} else {
 
-                ?>
+    ?>
                     <tr>
                       <td colspan="4"><p class="text-center">송장입력이 완료되었거나 해당 주문내역이 없습니다.</p></td>
                     </tr>
                     <?php
-                } ?>
+}
+?>
                   </tbody>
                 </table>
                 </form>
@@ -239,9 +242,9 @@ $unchk_total = mysqli_num_rows($res_1);
                         <tr>
                           <td>
                             <?php
-                                $url = "$PHP_SELF?mode=".$mode."&key=".$key."&key_value=".$key_value;
-                                page_nav($totalpage,$cpage,$url);
-                             ?>
+$url = "$PHP_SELF?mode=" . $mode . "&key=" . $key . "&key_value=" . $key_value;
+page_nav($totalpage, $cpage, $url);
+?>
                           </td>
                         </tr>
                       </tbody>
@@ -274,12 +277,12 @@ $unchk_total = mysqli_num_rows($res_1);
       <!--main content end-->
 
       <!--footer start-->
-    <?php include "../include/admin_footer.php"; ?>
+    <?php include "../include/admin_footer.php";?>
       <!--footer end-->
   </section>
 
     <!-- js placed at the end of the document so the pages load faster -->
-    <script src="/js/jquery-2.1.1.min.js"></script>
+    <script src="/js/vendor/jquery-2.2.0.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script class="include" type="text/javascript" src="/admin/js/jquery.dcjqaccordion.2.7.js"></script>
     <script src="/admin/js/jquery.scrollTo.min.js"></script>

@@ -7,12 +7,12 @@ include "../../util/config.php";
 // 각종 유틸함수
 include "../../util/util.php";
 // MySQL 연결
-$connect=my_connect($host,$dbid,$dbpass,$dbname);
+$connect = my_connect($host, $dbid, $dbpass, $dbname);
 
 //메타정보
 $info_query = "SELECT * FROM admin_setup";
-$info_res = mysqli_query($connect, $info_query);
-$info = mysqli_fetch_array($info_res);
+$info_res   = mysqli_query($connect, $info_query);
+$info       = mysqli_fetch_array($info_res);
 
 ?>
 <!DOCTYPE html>
@@ -26,7 +26,7 @@ $info = mysqli_fetch_array($info_res);
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="shortcut icon" href="/favicon.ico">
 
-    <title><?=$info['company_name']?> :: 운영업체 관리자 홈</title>
+    <title><?=$info['company_name'];?> :: 운영업체 관리자 홈</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.css" rel="stylesheet">
@@ -55,11 +55,11 @@ $info = mysqli_fetch_array($info_res);
   <body>
     <section id="container" >
         <!--header start-->
-        <?php include "../include/admin_head.php"; ?>
+        <?php include "../include/admin_head.php";?>
         <!--header end-->
 
         <!--sidebar start-->
-        <?php include "../include/admin_sidebar.php"; ?>
+        <?php include "../include/admin_sidebar.php";?>
         <!--sidebar end-->
 
 
@@ -85,22 +85,22 @@ $info = mysqli_fetch_array($info_res);
             <!-- info end -->
 
             <?php
-              $sql = "SELECT * FROM products WHERE id='$id' AND del_chk<>'C' AND del_chk<>'Y' ORDER BY num DESC";
-              $result = mysqli_query($connect, $sql);
-              $total = mysqli_num_rows($result);
+$sql    = "SELECT * FROM products WHERE id='$id' AND del_chk<>'C' AND del_chk<>'Y' ORDER BY num DESC";
+$result = mysqli_query($connect, $sql);
+$total  = mysqli_num_rows($result);
 
-              //공급업체 정보, 수수료 가져오기
-              $sql1 = "SELECT * FROM supplier WHERE id='$id' ";
-              $result1 = mysqli_query($connect, $sql1);
-              $rows2 = mysqli_fetch_array($result1);
-            ?>
+//공급업체 정보, 수수료 가져오기
+$sql1    = "SELECT * FROM supplier WHERE id='$id' ";
+$result1 = mysqli_query($connect, $sql1);
+$rows2   = mysqli_fetch_array($result1);
+?>
 
             <!-- offer list start -->
             <div class="row">
               <div class="col-sm-12">
                 <section class="panel">
                   <header class="panel-heading table-head">
-                      [ <?=$rows2['company_name']?> ] 발주서 작성
+                      [ <?=$rows2['company_name'];?> ] 발주서 작성
                       <p>(입고가란에는 변경할 경우에만 입력하세요.)</p>
                   </header>
                   <div class="panel-body">
@@ -119,46 +119,47 @@ $info = mysqli_fetch_array($info_res);
                     </thead>
                     <tbody>
                       <?php
-                      if($total == 0) {
-                        echo "<tr>\n";
-                        echo "  <td colspan=\"8\"><p>등록된 상품 내역이 없습니다.</p></td>\n";
-                        echo "</tr>\n";
-                      }else {
-                        for($i=0; $pro_row=mysqli_fetch_array($result); $i++) {
-                      ?>
+if ($total == 0) {
+    echo "<tr>\n";
+    echo "  <td colspan=\"8\"><p>등록된 상품 내역이 없습니다.</p></td>\n";
+    echo "</tr>\n";
+} else {
+    for ($i = 0; $pro_row = mysqli_fetch_array($result); $i++) {
+        ?>
                       <!-- <form action="update_cart.php" name="form" method="post" target="nw" onSubmit="window.open('', 'nw', 'width=500,height=500')"> -->
-                      <form action="" name="form_<?=$pro_row['num']?>" method="post" >
+                      <form action="" name="form_<?=$pro_row['num'];?>" method="post" >
 
-                        <input type="hidden" name="id" id="userid_<?=$pro_row['num']?>" value="<?=$id?>" />
-                        <input type="hidden" name="pnum" id="pnum_<?=$pro_row['num']?>" value="<?=$pro_row['num']?>" />
+                        <input type="hidden" name="id" id="userid_<?=$pro_row['num'];?>" value="<?=$id;?>" />
+                        <input type="hidden" name="pnum" id="pnum_<?=$pro_row['num'];?>" value="<?=$pro_row['num'];?>" />
                         <tr>
-                          <td><img src="<?=$pro_row['s_image_name']?>" alt="image" width="50" height="50" /></td>
-                          <td class="left"><?=show_icon($pro_row)?> <a href="#" onclick="javascript:open_win('edit_pro.php?id=<?=$id?>&amp;p_num=<?=$pro_row['num']?>&amp;lcode=<?=$pro_row['category_l']?>&amp;mcode=<?=$pro_row['category_m']?>&amp;scode=<?=$pro_row['category_s']?>&amp;from=pre_offer','nwin','scrollbars=yes,resizable=yes, width=900,height=650');"><?=stripslashes($pro_row['name'])?></a></td>
+                          <td><img src="<?=$pro_row['s_image_name'];?>" alt="image" width="50" height="50" /></td>
+                          <td class="left"><?=show_icon($pro_row);?> <a href="#" onclick="javascript:open_win('edit_pro.php?id=<?=$id;?>&amp;p_num=<?=$pro_row['num'];?>&amp;lcode=<?=$pro_row['category_l'];?>&amp;mcode=<?=$pro_row['category_m'];?>&amp;scode=<?=$pro_row['category_s'];?>&amp;from=pre_offer','nwin','scrollbars=yes,resizable=yes, width=900,height=650');"><?=stripslashes($pro_row['name']);?></a></td>
                           <td><?php
-                              if($pro_row['opt']) {
-                                show_option($pro_row);
-                              }else{
-                                $selected_opt = "|".$pro_row['barcode'];
-                                echo "<input type=\"hidden\" name=\"selected_opt\" value=\"$selected_opt\" id=\"selected_opt_".$pro_row['num']."\">\n";
-                              }
+if ($pro_row['opt']) {
+            show_option($pro_row);
+        } else {
+            $selected_opt = "|" . $pro_row['barcode'];
+            echo "<input type=\"hidden\" name=\"selected_opt\" value=\"$selected_opt\" id=\"selected_opt_" . $pro_row['num'] . "\">\n";
+        }
 
-                              ?>
-                          <td><?=number_format($pro_row['retail_price'])?></td>
-                          <td><?=number_format((1-($rows2['margin']/100)) * $pro_row['retail_price']);?><?=$rows2['tax']=="I" ? "(VAT 포함)" : "(VAT 별도)";?></td>
-                          <td><input type="text" class="form-control" name="offer_price" id="offer_price_<?=$pro_row['num']?>" value="<?=(1-($rows2['margin']/100)) * $pro_row['retail_price'];?>"  size="8"/><?=$rows2['tax']=="I" ? "(VAT 포함)" : "(VAT 별도)";?></td>
-                          <td><input type="text" class="form-control" name="count" id="count_<?=$pro_row['num']?>" size="5" value="" /></td>
+        ?>
+                          <td><?=number_format($pro_row['retail_price']);?></td>
+                          <td><?=number_format((1 - ($rows2['margin'] / 100)) * $pro_row['retail_price']);?><?=$rows2['tax'] == "I" ? "(VAT 포함)" : "(VAT 별도)";?></td>
+                          <td><input type="text" class="form-control" name="offer_price" id="offer_price_<?=$pro_row['num'];?>" value="<?=(1 - ($rows2['margin'] / 100)) * $pro_row['retail_price'];?>"  size="8"/><?=$rows2['tax'] == "I" ? "(VAT 포함)" : "(VAT 별도)";?></td>
+                          <td><input type="text" class="form-control" name="count" id="count_<?=$pro_row['num'];?>" size="5" value="" /></td>
                           <td>
                             <!-- <input type="submit" name="submit" value="저장" /> -->
-                            <a type="button" class="btn btn-info addCart_submit" name="submit" id="<?=$pro_row['num']?>" onclick="form_<?=$pro_row['num']?>.submit();" /><i class="fa fa-floppy-o"></i></a>
-                            <div id="loadplace<?=$pro_row['num']?>"></div>
+                            <a type="button" class="btn btn-info addCart_submit" name="submit" id="<?=$pro_row['num'];?>" onclick="form_<?=$pro_row['num'];?>.submit();" /><i class="fa fa-floppy-o"></i></a>
+                            <div id="loadplace<?=$pro_row['num'];?>"></div>
 
                           </td>
                         </tr>
                       </form>
                         <?php
-                          } // for end
-                        } // else end
-                        ?>
+} // for end
+}
+; // else end
+?>
                       </tbody>
                     </table>
                     </div>
@@ -172,21 +173,21 @@ $info = mysqli_fetch_array($info_res);
             <div class="row text-center">
               <div class="col-sm-12">
               <?php
-              //장바구니에 담긴 수량 확인
-              $query = "SELECT sum(volume) AS cnt FROM products p, offer_cart c WHERE c.user_id='$id' AND p.num=c.product_fk ORDER BY c.cart_id DESC ";
-              $result = mysqli_query($connect, $query);
-              $row = mysqli_fetch_array($result);
+//장바구니에 담긴 수량 확인
+$query  = "SELECT sum(volume) AS cnt FROM products p, offer_cart c WHERE c.user_id='$id' AND p.num=c.product_fk ORDER BY c.cart_id DESC ";
+$result = mysqli_query($connect, $query);
+$row    = mysqli_fetch_array($result);
 
-              if($row['cnt'] > 0) {
-              ?>
-                <a type="button" class="btn btn-info" href="" onclick="open_win('view_cart.php?id=<?=$id?>','win','width=900,height=600,scrollbars=yes,status=no');">발주 보관함 보기 <span class="badge" id="cartInfo"><?=$row['cnt']?></span></a>
+if ($row['cnt'] > 0) {
+    ?>
+                <a type="button" class="btn btn-info" href="" onclick="open_win('view_cart.php?id=<?=$id;?>','win','width=900,height=600,scrollbars=yes,status=no');">발주 보관함 보기 <span class="badge" id="cartInfo"><?=$row['cnt'];?></span></a>
               <?php
-              }else{
-              ?>
-                <a type="button" class="btn btn-info" href="" onclick="open_win('view_cart.php?id=<?=$id?>','win','width=900,height=600,scrollbars=yes,status=no');">발주 보관함 보기 <span class="badge" id="cartInfo">0</span></a>
+} else {
+    ?>
+                <a type="button" class="btn btn-info" href="" onclick="open_win('view_cart.php?id=<?=$id;?>','win','width=900,height=600,scrollbars=yes,status=no');">발주 보관함 보기 <span class="badge" id="cartInfo">0</span></a>
               <?php
-              }
-              ?>
+}
+?>
                 <a type="button" class="btn btn-default" href="offer_list.php">취소</a>
 
               </div>
@@ -198,12 +199,12 @@ $info = mysqli_fetch_array($info_res);
     <!--main content end-->
 
     <!--footer start-->
-    <?php include "../include/admin_footer.php"; ?>
+    <?php include "../include/admin_footer.php";?>
       <!--footer end-->
   </section>
 
     <!-- js placed at the end of the document so the pages load faster -->
-    <script src="/js/jquery-2.1.1.min.js"></script>
+    <script src="/js/vendor/jquery-2.2.0.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script class="include" type="text/javascript" src="/admin/js/jquery.dcjqaccordion.2.7.js"></script>
     <script src="/admin/js/jquery.scrollTo.min.js"></script>

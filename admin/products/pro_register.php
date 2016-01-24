@@ -1,42 +1,5 @@
-<?php
-//관리자 인증 파일
-include "../../util/admin_auth.php";
-// 데이타베이스 연결정보 및 기타설정
-include "../../util/config.php";
-// 각종 유틸함수
-include "../../util/util.php";
-// MySQL 연결
-$connect = my_connect($host, $dbid, $dbpass, $dbname);
-//메타정보
-$info_query = "SELECT * FROM admin_setup";
-$info_res   = mysqli_query($connect, $info_query);
-$info       = mysqli_fetch_array($info_res);
-?>
-<!DOCTYPE html>
-<html lang="ko">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta name="keyword" content="">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <link rel="shortcut icon" href="/favicon.ico">
-    <title><?=$info['company_name'];?> :: 운영업체 관리자 홈</title>
-    <!-- Bootstrap core CSS -->
-    <link href="/css/bootstrap.css" rel="stylesheet">
-    <link href="/admin/css/bootstrap-reset.css" rel="stylesheet">
-    <!--external css-->
-    <link href="/css/font-awesome.min.css" rel="stylesheet" />
-    <!-- Custom styles for this template -->
-    <link href="/admin/css/style.css" rel="stylesheet">
-    <link href="/admin/css/style-responsive.css" rel="stylesheet" />
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
-    <!--[if lt IE 9]>
-    <script src="js/html5shiv.js"></script>
-    <script src="js/respond.min.js"></script>
-    <![endif]-->
-  </head>
+<?php include_once '../include/header.php';?>
+
   <body>
     <section id="container" >
       <!--header start-->
@@ -536,7 +499,7 @@ if ($update_row['restock_date'] == "1111-00-00") {
 <!--main content end-->
 </section>
 <!-- js placed at the end of the document so the pages load faster -->
-<script src="/js/jquery-2.1.1.min.js"></script>
+<script src="/js/vendor/jquery-2.2.0.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/admin/js/jquery.dcjqaccordion.2.7.js" class="include" type="text/javascript" ></script>
 <script src="/admin/js/jquery.scrollTo.min.js"></script>

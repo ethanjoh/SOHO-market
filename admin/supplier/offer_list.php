@@ -7,12 +7,12 @@ include "../../util/config.php";
 // 각종 유틸함수
 include "../../util/util.php";
 // MySQL 연결
-$connect=my_connect($host,$dbid,$dbpass,$dbname);
+$connect = my_connect($host, $dbid, $dbpass, $dbname);
 
 //메타정보
 $info_query = "SELECT * FROM admin_setup";
-$info_res = mysqli_query($connect, $info_query);
-$info = mysqli_fetch_array($info_res);
+$info_res   = mysqli_query($connect, $info_query);
+$info       = mysqli_fetch_array($info_res);
 
 ?>
 <!DOCTYPE html>
@@ -26,7 +26,7 @@ $info = mysqli_fetch_array($info_res);
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="shortcut icon" href="/favicon.ico">
 
-    <title><?=$info['company_name']?> :: 운영업체 관리자 홈</title>
+    <title><?=$info['company_name'];?> :: 운영업체 관리자 홈</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.css" rel="stylesheet">
@@ -50,11 +50,11 @@ $info = mysqli_fetch_array($info_res);
   <body>
     <section id="container" >
         <!--header start-->
-        <?php include "../include/admin_head.php"; ?>
+        <?php include "../include/admin_head.php";?>
         <!--header end-->
 
         <!--sidebar start-->
-        <?php include "../include/admin_sidebar.php"; ?>
+        <?php include "../include/admin_sidebar.php";?>
         <!--sidebar end-->
 
 
@@ -90,69 +90,72 @@ $info = mysqli_fetch_array($info_res);
 
                 <form action="offer_list.php" class="form-inline" role="form" name="f" method="post" >
                 <?php
-          		  switch ($mode) {
-          			  case 'search' :
-          				  $nres = mysqli_query($connect, "SELECT id FROM supplier WHERE $key LIKE '%$key_value%' ");
-          				  $nrow = mysqli_fetch_array($nres);
+switch ($mode) {
+    case 'search':
+        $nres = mysqli_query($connect, "SELECT id FROM supplier WHERE $key LIKE '%$key_value%' ");
+        $nrow = mysqli_fetch_array($nres);
 
-          				  $sql = "SELECT * FROM offer WHERE id='$nrow[id]' ";
-          				  break;
-          			  case 'date' :
-          			      //$nres = mysqli_query($connect, "SELECT id FROM supplier WHERE id=$id ");
-          				  //$nrow = mysqli_fetch_array($nres);
-          				  $sql = "SELECT * FROM offer WHERE id='$key_value' AND createdate BETWEEN '$date1' AND '$date2' ";
-          				  break;
-          			  default :
-          				  $sql = "SELECT * FROM offer WHERE 1 ORDER BY num DESC";
-          		  }
-          		?>
+        $sql = "SELECT * FROM offer WHERE id='$nrow[id]' ";
+        break;
+    case 'date':
+        //$nres = mysqli_query($connect, "SELECT id FROM supplier WHERE id=$id ");
+        //$nrow = mysqli_fetch_array($nres);
+        $sql = "SELECT * FROM offer WHERE id='$key_value' AND createdate BETWEEN '$date1' AND '$date2' ";
+        break;
+    default:
+        $sql = "SELECT * FROM offer WHERE 1 ORDER BY num DESC";
+}
+?>
 
                   <label for="id" class="col-sm-2 control-label">업체 선택 :</label>
                   <div class="col-sm-4 col-lg-8">
                     <select name="id" class="form-control" onchange="change();">
                       <option>업체명 - 아이디</option>
                     <?php
-                      $mqry = "SELECT * FROM supplier ORDER BY company_name ";
-                      $mres = mysqli_query($connect, $mqry);
+$mqry = "SELECT * FROM supplier ORDER BY company_name ";
+$mres = mysqli_query($connect, $mqry);
 
-                      for($i=0; $mrow = mysqli_fetch_array($mres); $i++) {
-                        echo "<option value=".$mrow['id'].">".$mrow['company_name']." - ".$mrow['id']."</option>\n";
-                      }
-                    ?>
+for ($i = 0; $mrow = mysqli_fetch_array($mres); $i++) {
+    echo "<option value=" . $mrow['id'] . ">" . $mrow['company_name'] . " - " . $mrow['id'] . "</option>\n";
+}
+?>
                     </select>
                   </div>
                 </form>
 
 
             <?php
-                $result = mysqli_query($connect, $sql);
-                $total = mysqli_num_rows($result);
+$result = mysqli_query($connect, $sql);
+$total  = mysqli_num_rows($result);
 
-                $scale=30;
+$scale = 30;
 
-                if ($page == '')
-                  $page=1;
+if ($page == '') {
+    $page = 1;
+}
 
-                $cpage = intval($page);
-                $totalpage = intval($total/$scale);
+$cpage     = intval($page);
+$totalpage = intval($total / $scale);
 
-                if ($totalpage*$scale != $total)
-                  $totalpage = $totalpage + 1;
+if ($totalpage * $scale != $total) {
+    $totalpage = $totalpage + 1;
+}
 
-                if ($cpage ==1)
-                  $cline = 0 ;
-                else
-                  $cline = ($cpage*$scale) - $scale ;
+if ($cpage == 1) {
+    $cline = 0;
+} else {
+    $cline = ($cpage * $scale) - $scale;
+}
 
+$limit = $cline + $scale;
 
-                $limit=$cline+$scale;
+if ($limit >= $total) {
+    $limit = $total;
+}
 
-                if ($limit >= $total)
-                  $limit=$total;
+$scale1 = $limit - $cline;
 
-                $scale1 = $limit - $cline;
-
-          	?>
+?>
 
 
               </div> <!-- panel-body end -->
@@ -162,12 +165,12 @@ $info = mysqli_fetch_array($info_res);
         <!-- list end -->
 
         <?php
-          if($mode == "search") {
-        ?>
+if ($mode == "search") {
+    ?>
         <!-- calendar start -->
         <form method="get" action="offer_list.php" class="form-inline form-group" role="form">
         <input type="hidden" name="mode" value="date" />
-        <input type="hidden" name="id" value="<?=$key_value?>" />
+        <input type="hidden" name="id" value="<?=$key_value;?>" />
         <!-- <div class="col-sm-12"> -->
           <div class="panel panel-info">
             <div class="panel-heading">날짜 검색</div>
@@ -192,8 +195,9 @@ $info = mysqli_fetch_array($info_res);
         <!-- calendar end -->
 
         <?php
-         } // end of if($mode == "search")
-        ?>
+}
+; // end of if($mode == "search")
+?>
 
 
         <!-- offer list start -->
@@ -219,85 +223,86 @@ $info = mysqli_fetch_array($info_res);
                 </thead>
                 <tbody>
                   <?php
-            		   $nres1 = mysqli_query($connect, "SELECT id FROM supplier WHERE $key LIKE '%$key_value%' ");
+$nres1 = mysqli_query($connect, "SELECT id FROM supplier WHERE $key LIKE '%$key_value%' ");
 
-                   if($nres1 && $mode == "search") {
-            		   		$nrow1 = mysqli_fetch_array($nres1);
-            				  $sql2 = "SELECT * FROM offer WHERE id='$nrow1[id]' ORDER BY num DESC LIMIT $cline,$scale1";
-            		   }else if($mode == "date"){
-            			  	$sql2 = "SELECT * FROM offer WHERE id='$id' AND createdate BETWEEN '$date1' AND '$date2' ORDER BY num DESC ";
-            		   }else{
-            		   		$sql2 = "SELECT * FROM offer WHERE 1 ORDER BY num DESC LIMIT $cline,$scale1";
-            		   }
+if ($nres1 && $mode == "search") {
+    $nrow1 = mysqli_fetch_array($nres1);
+    $sql2  = "SELECT * FROM offer WHERE id='$nrow1[id]' ORDER BY num DESC LIMIT $cline,$scale1";
+} else if ($mode == "date") {
+    $sql2 = "SELECT * FROM offer WHERE id='$id' AND createdate BETWEEN '$date1' AND '$date2' ORDER BY num DESC ";
+} else {
+    $sql2 = "SELECT * FROM offer WHERE 1 ORDER BY num DESC LIMIT $cline,$scale1";
+}
 
-              		$result2 = mysqli_query($connect, $sql2);
-              		$total2 = mysqli_num_rows($result2);
+$result2 = mysqli_query($connect, $sql2);
+$total2  = mysqli_num_rows($result2);
 
-              		if($total2 == 0) {
-              			echo "<tr>\n<td colspan=\"7\"><p>발주 내역이 없습니다.</p></td>\n</tr>\n";
-              		}else {
+if ($total2 == 0) {
+    echo "<tr>\n<td colspan=\"7\"><p>발주 내역이 없습니다.</p></td>\n</tr>\n";
+} else {
 
-              			for($i=0; $row=mysqli_fetch_array($result2); $i++) {
+    for ($i = 0; $row = mysqli_fetch_array($result2); $i++) {
 
-              				$sql3 = "SELECT * FROM supplier WHERE id='$row[id]' ";
-              				$result3 = mysqli_query($connect, $sql3);
+        $sql3    = "SELECT * FROM supplier WHERE id='$row[id]' ";
+        $result3 = mysqli_query($connect, $sql3);
 
-                      if($result3) {
-              				  $row3 = mysqli_fetch_array($result3);
-              				}
-        		      ?>
+        if ($result3) {
+            $row3 = mysqli_fetch_array($result3);
+        }
+        ?>
                   <tr>
                     <td>
-                      <a href="view_offer.php?oid=<?=$row['num']?>"><?=$row['createdate']?></a>
+                      <a href="view_offer.php?oid=<?=$row['num'];?>"><?=$row['createdate'];?></a>
                     </td>
                     <td>
-                      <?= "<a href=\"offer_list.php?mode=search&amp;key=id&amp;key_value=".$row['id']."\">".$row3['company_name']."</a>";?> (<?=$row['id']?>)</td>
+                      <?="<a href=\"offer_list.php?mode=search&amp;key=id&amp;key_value=" . $row['id'] . "\">" . $row3['company_name'] . "</a>";?> (<?=$row['id'];?>)</td>
                     <td>
                       <?php
-                				$name = explode(',', $row['goods_name']);
-               			    echo $name[0];
-            				?>
+$name = explode(',', $row['goods_name']);
+        echo $name[0];
+        ?>
                       (외)
                     </td>
-                    <td><?=number_format($row['amount'])?></td>
-                    <td><?=number_format($row['last_amount'])?></td>
+                    <td><?=number_format($row['amount']);?></td>
+                    <td><?=number_format($row['last_amount']);?></td>
                     <td>
                     <?php
-                    switch ($row['status']) {
-              				case "1" :
-              					echo "미입고";
-              					break;
-              				case "2" :
-              					echo "발주확인";
-              					break;
-              				case "3" :
-              					echo "출고완료";
-              					break;
-              				case "4" :
-              					echo "입고완료";
-              					break;
-              			}
-              			?>
+switch ($row['status']) {
+            case "1":
+                echo "미입고";
+                break;
+            case "2":
+                echo "발주확인";
+                break;
+            case "3":
+                echo "출고완료";
+                break;
+            case "4":
+                echo "입고완료";
+                break;
+        }
+        ?>
                     </td>
                     <td>
-                      <a type="button" class="btn btn-danger" href="update_cart.php?mode=del&amp;from=list&amp;oid=<?=$row['num']?>" onclick="return confirm('발주를 삭제하시겠습니까?');"><i class="fa fa-trash-o"></i></a>
+                      <a type="button" class="btn btn-danger" href="update_cart.php?mode=del&amp;from=list&amp;oid=<?=$row['num'];?>" onclick="return confirm('발주를 삭제하시겠습니까?');"><i class="fa fa-trash-o"></i></a>
                     </td>
                   </tr>
             <?php
-                  $o_total += $row['amount'];
-                  $in_total += $row['last_amount'];
-        		 	} // for end
-        		} // else end
-        		?>
+$o_total += $row['amount'];
+        $in_total += $row['last_amount'];
+    } // for end
+}
+; // else end
+?>
                   <tr>
                     <td colspan="3">
                       <strong>총합(NET):</strong>
                     </td>
                     <td>
-                      <strong><?=number_format($o_total)?></strong>
+                      <strong><?=number_format($o_total);?></strong>
                     </td>
                     <td>
-                      <strong><?=number_format($in_total)?></strong>
+                      <strong><?=number_format($in_total);?></strong>
                     </td>
                     <td></td>
                     <td></td>
@@ -320,9 +325,9 @@ $info = mysqli_fetch_array($info_res);
                     <tr>
                       <td>
                         <?php
-                            $url = $PHP_SELF."?mode=".$mode."&amp;key=".$key."&amp;key_value=".$key_value;
-                            page_nav($totalpage,$cpage,$url);
-                         ?>
+$url = $PHP_SELF . "?mode=" . $mode . "&amp;key=" . $key . "&amp;key_value=" . $key_value;
+page_nav($totalpage, $cpage, $url);
+?>
                       </td>
                     </tr>
                   </tbody>
@@ -355,12 +360,12 @@ $info = mysqli_fetch_array($info_res);
     <!--main content end-->
 
     <!--footer start-->
-    <?php include "../include/admin_footer.php"; ?>
+    <?php include "../include/admin_footer.php";?>
       <!--footer end-->
   </section>
 
     <!-- js placed at the end of the document so the pages load faster -->
-    <script src="/js/jquery-2.1.1.min.js"></script>
+    <script src="/js/vendor/jquery-2.2.0.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script class="include" type="text/javascript" src="/admin/js/jquery.dcjqaccordion.2.7.js"></script>
     <script src="/admin/js/jquery.scrollTo.min.js"></script>

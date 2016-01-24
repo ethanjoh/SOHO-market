@@ -36,7 +36,7 @@ $info       = mysqli_fetch_array($info_res);
             <form role="form" class="form-signin" action="//<?=$_SERVER['SERVER_NAME'];?>:<?=$port;?>/admin/check_login.php" method="post" name="login" onsubmit="return chkLogin(this);">
                 <!-- <form role="form" class="form-signin" action="http://<?=$_SERVER['SERVER_NAME'];?>/admin/check_login.php" method="post" name="login" onsubmit="return chkLogin(this);"> -->
                 <div class="form-signin-heading">
-                    <img src="../img/logo/shinsoo-logo.svg" class="admin-logo">
+                    <img src="/images/shinsoo-logo.svg" class="admin-logo">
                 </div>
                 <h3 class="text-center">ADMIN LOGIN</h3>
                 <div class="login-wrap">
@@ -50,8 +50,8 @@ $info       = mysqli_fetch_array($info_res);
             </form>
         </div>
         <!-- js placed at the end of the document so the pages load faster -->
-        <script src="../js/vendor/jquery-1.11.3.min.js"></script>
-        <script src="../js/bootstrap.min.js"></script>
-        <script src="js/admin.js"></script>
+        <script src="/js/vendor/jquery-2.2.0.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="/admin/js/admin.js"></script>
     </body>
 </html>

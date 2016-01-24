@@ -1,45 +1,12 @@
-<?php
-include "../util/admin_auth.php";
-include "../util/config.php";
-include "../util/util.php";
-$connect    = my_connect($host, $dbid, $dbpass, $dbname);
-$info_query = "SELECT * FROM admin_setup";
-$info_res   = mysqli_query($connect, $info_query);
-$info       = mysqli_fetch_array($info_res);
-?>
-<!DOCTYPE html>
-<html lang="ko">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta name="keyword" content="">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <link rel="shortcut icon" href="img/favicon.png">
-    <title><?=$info['company_name'];?> :: 운영업체 관리자 홈</title>
-    <!-- Bootstrap core CSS -->
-    <link href="/css/bootstrap.css" rel="stylesheet">
-    <link href="/admin/css/bootstrap-reset.css" rel="stylesheet">
-    <!--external css-->
-    <link href="/css/font-awesome.min.css" rel="stylesheet" />
-    <link href="assets/morris.js-0.4.3/morris.css" rel="stylesheet" />
-    <!-- Custom styles for this template -->
-    <link href="/admin/css/style.css" rel="stylesheet">
-    <link href="/admin/css/style-responsive.css" rel="stylesheet" />
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
-    <!--[if lt IE 9]>
-    <script src="js/html5shiv.js"></script>
-    <script src="js/respond.min.js"></script>
-    <![endif]-->
-  </head>
+<?php include_once '../include/header.php';?>
+
   <body onLoad=init();>
     <section id="container" >
       <!--header start-->
-      <?php include "include/admin_head.php";?>
+      <?php include "../include/admin_head.php";?>
       <!--header end-->
       <!--sidebar start-->
-      <?php include "include/admin_sidebar.php";?>
+      <?php include "../include/admin_sidebar.php";?>
       <!--sidebar end-->
       <?php
 $today      = date("Y-m-d");
@@ -77,9 +44,9 @@ $nonapproved_total = mysqli_num_rows($res_5);
 $sql_9 = "SELECT * FROM products WHERE approved='Y' ";
 $res_9 = mysqli_query($connect, $sql_9);
 if ($res_9) {
-	$sp_total = mysqli_num_rows($res_9);
+    $sp_total = mysqli_num_rows($res_9);
 } else {
-	$sp_total = 0;
+    $sp_total = 0;
 }
 
 //발송지연건
@@ -92,6 +59,8 @@ $res_10 = mysqli_query($connect, $sql_10);
 // $row_10 = mysqli_fetch_array($res_10);
 // if($row_10['depth'] == 0)
 $noreply_total = mysqli_num_rows($res_10);
+
+mysqli_query($connect, 'set names utf8');
 ?>
       <!--main content start-->
       <section id="main-content">
@@ -105,7 +74,7 @@ $noreply_total = mysqli_num_rows($res_10);
                 </div>
                 <div class="value">
                   <h1>
-                  <a href="order/top_order_list.php?mode=unchk"><?=$unchk_total;?></a>
+                  <a href="../order/top_order_list.php?mode=unchk"><?=$unchk_total;?></a>
                   </h1>
                   <p>신규 주문</p>
                 </div>
@@ -118,7 +87,7 @@ $noreply_total = mysqli_num_rows($res_10);
                 </div>
                 <div class="value">
                   <h1>
-                  <a href="member/top_member_list.php?mode=nonapproved"><?=$nonapproved_total;?></a>
+                  <a href="../member/top_member_list.php?mode=nonapproved"><?=$nonapproved_total;?></a>
                   </h1>
                   <p>신규 회원</p>
                 </div>
@@ -131,7 +100,7 @@ $noreply_total = mysqli_num_rows($res_10);
                 </div>
                 <div class="value">
                   <h1>
-                  <a href="products/top_pro_list.php"><?=$sp_total;?></a>
+                  <a href="../products/top_pro_list.php"><?=$sp_total;?></a>
                   </h1>
                   <p>상품등록</p>
                 </div>
@@ -185,29 +154,29 @@ $query  = "SELECT * FROM code WHERE 1 ORDER BY num";
 $result = mysqli_query($connect, $query);
 $total  = mysqli_num_rows($result);
 if ($total == 0) {
-	?>
+    ?>
             <div class="col-sm-12">
               <p>생성된 게시판이 없습니다.</p>
               <p>관리자 페이지 > 환경설정 > 게시판관리에서 게시판을 생성해 주세요.</p>
             </div>
             <?php
 } else {
-	if ($i % 2 == 1) {
-		?>
+    if ($total % 2 == 1) {
+        ?>
             <div class="row">
               <div class="col-sm-6">
                 <?php
 } else {
-		?>
+        ?>
                 <div class="col-sm-6">
                   <?php
 }
-	for ($i = 0; $rows = mysqli_fetch_array($result); $i++) {
-		$board   = 'bbs_' . $rows['code'];
-		$query2  = "SELECT * FROM $board WHERE 1 ORDER BY mod_date DESC LIMIT 5";
-		$result2 = mysqli_query($connect, $query2);
-		$total2  = mysqli_num_rows($result2);
-		?>
+    for ($i = 0; $rows = mysqli_fetch_array($result); $i++) {
+        $board   = 'bbs_' . $rows['code'];
+        $query2  = "SELECT * FROM $board WHERE 1 ORDER BY mod_date DESC LIMIT 5";
+        $result2 = mysqli_query($connect, $query2);
+        $total2  = mysqli_num_rows($result2);
+        ?>
                   <section class="panel">
                     <div class="weather-bg">
                       <header class="panel-heading">
@@ -227,16 +196,16 @@ if ($total == 0) {
                         <tbody>
                           <?php
 if ($total2 == 0) {
-			echo "<tr>
+            echo "<tr>
                             <td colspan=\"4\"><p>등록된 글이 없습니다</p></td>
                           </tr>";
-		} else {
-			for ($j = 0; $rows2 = mysqli_fetch_array($result2); $j++) {
-				//날짜 형식을 바꾼다.
-				$post_date = substr($rows2['date'], 0, 10);
-				//답변있는 경우
-				if ($rows2['depth'] > 0) {
-					?>
+        } else {
+            for ($j = 0; $rows2 = mysqli_fetch_array($result2); $j++) {
+                //날짜 형식을 바꾼다.
+                $post_date = substr($rows2['date'], 0, 10);
+                //답변있는 경우
+                if ($rows2['depth'] > 0) {
+                    ?>
                           <tr>
                             <td><?=$j + 1;?></td>
                             <td><a href="../bbs/read.php?code=<?=$rows['code'];?>&main_no=<?=$rows2['main_no'];?>" target="_blank"><?=stripslashes($rows2['title']);?></a>&nbsp;<span class="badge"><?=$rows2['depth'];?></span></td>
@@ -245,7 +214,7 @@ if ($total2 == 0) {
                           </tr>
                           <?php
 } else {
-					?>
+                    ?>
                           <tr>
                             <td><?=$j + 1;?></td>
                             <td><a href="../bbs/read.php?code=<?=$rows['code'];?>&main_no=<?=$rows2['main_no'];?>" target="_blank"><?=stripslashes($rows2['title']);?></a></td>
@@ -254,25 +223,25 @@ if ($total2 == 0) {
                           </tr>
                           <?php
 } // end of inner if
-			} // end of inner for loop
-		}
-		; // end of outer if
-		?>
+            } // end of inner for loop
+        }
+        ; // end of outer if
+        ?>
                         </tbody>
                       </table>
                     </div>
                   </section>
                   <?php
 if ($i % 2 == 1) {
-			echo "  </div> <!-- end of col-sm-6 -->\n";
-			echo "</div>\n";
-			echo "<div class=\"row\">\n";
-			echo "  <div class=\"col-sm-6\">\n";
-		} else {
-			echo "  </div> <!-- end of col-sm-6 -->\n";
-			echo "<div class=\"col-sm-6\">\n";
-		}
-	} // end of outer for loop
+            echo "  </div> <!-- end of col-sm-6 -->\n";
+            echo "</div>\n";
+            echo "<div class=\"row\">\n";
+            echo "  <div class=\"col-sm-6\">\n";
+        } else {
+            echo "  </div> <!-- end of col-sm-6 -->\n";
+            echo "<div class=\"col-sm-6\">\n";
+        }
+    } // end of outer for loop
 }
 ; //end of if($total == 0)
 ?>
@@ -281,13 +250,13 @@ if ($i % 2 == 1) {
                   </section>
                   <!--main content end-->
                   <!--footer start-->
-                  <?php include "include/admin_footer.php";?>
+                  <?php include "../include/admin_footer.php";?>
                   <!--footer end-->
                 </section>
                 <!-- js placed at the end of the document so the pages load faster -->
-                <script src="../js/jquery-2.1.1.min.js"></script>
-                <script src="../js/bootstrap.min.js"></script>
-                <script class="include" type="text/javascript" src="/admin/js/jquery.dcjqaccordion.2.7.js"></script>
+                <script src="/js/vendor/jquery-2.2.0.min.js"></script>
+                <script src="/js/bootstrap.min.js"></script>
+                <script src="/admin/js/jquery.dcjqaccordion.2.7.js"></script>
                 <script src="/admin/js/jquery.scrollTo.min.js"></script>
                 <script src="/admin/js/jquery.nicescroll.js" type="text/javascript"></script>
                 <script src="/admin/assets/morris.js-0.4.3/morris.min.js" type="text/javascript"></script>
@@ -296,7 +265,7 @@ if ($i % 2 == 1) {
                 <!--common script for all pages-->
                 <script src="/admin/js/common-scripts.js"></script>
                 <!-- custom scripts -->
-                <script src="../js/global.js" ></script>
+                <script src="/js/global.js" ></script>
                 <script src="/admin/js/admin.js" ></script>
                 <script src="/admin/js/showMainChart.js"></script>
               </body>

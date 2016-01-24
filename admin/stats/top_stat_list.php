@@ -7,15 +7,15 @@ include "../../util/config.php";
 // 각종 유틸함수
 include "../../util/util.php";
 // MySQL 연결
-$connect=my_connect($host,$dbid,$dbpass,$dbname);
+$connect = my_connect($host, $dbid, $dbpass, $dbname);
 
 //메타정보
 $info_query = "SELECT * FROM admin_setup";
-$info_res = mysqli_query($connect, $info_query);
-$info = mysqli_fetch_array($info_res);
+$info_res   = mysqli_query($connect, $info_query);
+$info       = mysqli_fetch_array($info_res);
 
-$sql_1 = "SELECT num FROM mall_order WHERE cancel='N' AND status='3' AND user_id <> 'guest' ";
-$res_1 = mysqli_query($connect, $sql_1);
+$sql_1       = "SELECT num FROM mall_order WHERE cancel='N' AND status='3' AND user_id <> 'guest' ";
+$res_1       = mysqli_query($connect, $sql_1);
 $unchk_total = mysqli_num_rows($res_1);
 
 ?>
@@ -30,7 +30,7 @@ $unchk_total = mysqli_num_rows($res_1);
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="shortcut icon" href="/favicon.ico">
 
-    <title><?=$info['company_name']?> :: 운영업체 관리자 홈</title>
+    <title><?=$info['company_name'];?> :: 운영업체 관리자 홈</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.css" rel="stylesheet">
@@ -53,11 +53,11 @@ $unchk_total = mysqli_num_rows($res_1);
   <body>
     <section id="container" >
         <!--header start-->
-        <?php include "../include/admin_head.php"; ?>
+        <?php include "../include/admin_head.php";?>
         <!--header end-->
 
         <!--sidebar start-->
-        <?php include "../include/admin_sidebar.php"; ?>
+        <?php include "../include/admin_sidebar.php";?>
         <!--sidebar end-->
 
     <!--main content start-->
@@ -65,23 +65,23 @@ $unchk_total = mysqli_num_rows($res_1);
       <section class="wrapper">
       <?php
 
-      if($mode == 'search'){
-        if($id){
-          $search_keyword .= " AND id = '$id' ";
-        }
+if ($mode == 'search') {
+    if ($id) {
+        $search_keyword .= " AND id = '$id' ";
+    }
 
-        if($company_name){
-          $search_keyword .= " AND company_name LIKE '%$company_name%' ";
-        }
+    if ($company_name) {
+        $search_keyword .= " AND company_name LIKE '%$company_name%' ";
+    }
 
-      }
+}
 
-      //회원 테이블의 리스트를 불러옵니다.
-      $query = "SELECT * FROM member WHERE 1 $search_keyword ";
-      $result = mysqli_query($connect, $query);
-      $total = mysqli_num_rows($result);
+//회원 테이블의 리스트를 불러옵니다.
+$query  = "SELECT * FROM member WHERE 1 $search_keyword ";
+$result = mysqli_query($connect, $query);
+$total  = mysqli_num_rows($result);
 
-    ?>
+?>
 
 
         <!-- search start-->
@@ -98,13 +98,13 @@ $unchk_total = mysqli_num_rows($res_1);
                   <div class="form-group">
                       <label for="id" class="col-lg-2 col-sm-2 control-label">아이디:</label>
                       <div class="col-sm-3">
-                          <input type="text" class="form-control" name="id" value="<?=$id?>">
+                          <input type="text" class="form-control" name="id" value="<?=$id;?>">
                       </div>
                   </div>
                   <div class="form-group">
                       <label for="company_name" class="col-lg-2 col-sm-2 control-label">업체명:</label>
                       <div class="col-sm-3">
-                          <input type="text" class="form-control" name="company_name" value="<?=$company_name?>">
+                          <input type="text" class="form-control" name="company_name" value="<?=$company_name;?>">
                       </div>
                   </div>
                   <div class="form-group row">
@@ -125,7 +125,7 @@ $unchk_total = mysqli_num_rows($res_1);
           <div class="col-sm-12">
             <section class="panel">
               <header class="panel-heading table-head">
-                  업체 목록 ( <?=number_format($total)?> 개 )<p>(정산할 업체를 선택하세요.)
+                  업체 목록 ( <?=number_format($total);?> 개 )<p>(정산할 업체를 선택하세요.)
                 </header>
                 <div class="panel-body">
                   <div class="table-responsive">
@@ -142,52 +142,54 @@ $unchk_total = mysqli_num_rows($res_1);
                     </thead>
                     <tbody>
                     <?php
-                      $scale=30;
-                      if ($page == ''){
-                        $page=1;
-                      }
+$scale = 30;
+if ($page == '') {
+    $page = 1;
+}
 
-                      $cpage = intval($page);
-                      $totalpage = intval($total/$scale);
-                      if ($totalpage*$scale != $total)
-                         $totalpage = $totalpage + 1;
+$cpage     = intval($page);
+$totalpage = intval($total / $scale);
+if ($totalpage * $scale != $total) {
+    $totalpage = $totalpage + 1;
+}
 
-                      if ($cpage ==1) {
-                        $cline = 0 ;
-                      } else {
-                        $cline = ($cpage*$scale) - $scale ;
-                  	}
+if ($cpage == 1) {
+    $cline = 0;
+} else {
+    $cline = ($cpage * $scale) - $scale;
+}
 
-                  	$limit=$cline+$scale;
+$limit = $cline + $scale;
 
-                  	 if ($limit >= $total)
-                         $limit=$total;
+if ($limit >= $total) {
+    $limit = $total;
+}
 
-                      $scale1 = $limit - $cline;
+$scale1 = $limit - $cline;
 
-                  	$sql_2 = "SELECT * FROM member
+$sql_2 = "SELECT * FROM member
                   					WHERE 1 $search_keyword
                   					ORDER BY seq_num DESC LIMIT $cline,$scale1 ";
 
-                      $result_2 = mysqli_query($connect, $sql_2);
+$result_2 = mysqli_query($connect, $sql_2);
 
-                   	for($i=1; $list = mysqli_fetch_array($result_2); $i++){
+for ($i = 1; $list = mysqli_fetch_array($result_2); $i++) {
 
-                  	   $bunho = $total - ( $i + $cline) + 1;
+    $bunho = $total - ($i + $cline) + 1;
 
-                   ?>
+    ?>
                       <tr>
-                        <td><?=$bunho?></td>
-                          <td><a href="mem_stat_list.php?id=<?=$list['id']?>"><?=$list['id']?></a></td>
-                          <td><?=$list['company_name']?></td>
-                          <td><?=$list['license_no']?></td>
-                          <td><?=$list['o_phone']?></td>
-                          <td><?=$list['md_name']?></td>
+                        <td><?=$bunho;?></td>
+                          <td><a href="mem_stat_list.php?id=<?=$list['id'];?>"><?=$list['id'];?></a></td>
+                          <td><?=$list['company_name'];?></td>
+                          <td><?=$list['license_no'];?></td>
+                          <td><?=$list['o_phone'];?></td>
+                          <td><?=$list['md_name'];?></td>
                       </tr>
                       <?php
-                  }
-                  mysqli_free_result($result_2);
-                ?>
+}
+mysqli_free_result($result_2);
+?>
                     </tbody>
                   </table>
                 </div>
@@ -206,9 +208,9 @@ $unchk_total = mysqli_num_rows($res_1);
                     <tr>
                       <td>
                         <?php
-                            $url = "top_stat_list.php?id=".$id."&mode=".$mode."&license_no=".$license_no."&company_name=".$company_name;
-                            page_nav($totalpage,$cpage,$url);
-                         ?>
+$url = "top_stat_list.php?id=" . $id . "&mode=" . $mode . "&license_no=" . $license_no . "&company_name=" . $company_name;
+page_nav($totalpage, $cpage, $url);
+?>
                       </td>
                     </tr>
                   </tbody>
@@ -223,12 +225,12 @@ $unchk_total = mysqli_num_rows($res_1);
       <!--main content end-->
 
       <!--footer start-->
-    <?php include "../include/admin_footer.php"; ?>
+    <?php include "../include/admin_footer.php";?>
       <!--footer end-->
   </section>
 
     <!-- js placed at the end of the document so the pages load faster -->
-    <script src="/js/jquery-2.1.1.min.js"></script>
+    <script src="/js/vendor/jquery-2.2.0.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script class="include" type="text/javascript" src="/admin/js/jquery.dcjqaccordion.2.7.js"></script>
     <script src="/admin/js/jquery.scrollTo.min.js"></script>

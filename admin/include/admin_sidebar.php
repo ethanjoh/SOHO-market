@@ -3,7 +3,7 @@
 	              <!-- sidebar menu start-->
 	              <ul class="sidebar-menu" id="nav-accordion">
 	                  <li>
-	                      <a class="active" href="/admin/main.php">
+	                      <a class="active" href="/admin/main/main.php">
 	                          <i class="fa fa-dashboard"></i>
 	                          <span>대시보드</span>
 	                      </a>

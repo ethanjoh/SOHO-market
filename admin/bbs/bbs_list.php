@@ -7,15 +7,15 @@ include "../../util/config.php";
 // 각종 유틸함수
 include "../../util/util.php";
 // MySQL 연결
-$connect=my_connect($host,$dbid,$dbpass,$dbname);
+$connect = my_connect($host, $dbid, $dbpass, $dbname);
 
 //메타정보
 $info_query = "SELECT * FROM admin_setup";
-$info_res = mysqli_query($connect, $info_query);
-$info = mysqli_fetch_array($info_res);
+$info_res   = mysqli_query($connect, $info_query);
+$info       = mysqli_fetch_array($info_res);
 
-$sql_1 = "SELECT num FROM mall_order WHERE cancel='N' AND status='3' AND user_id <> 'guest' ";
-$res_1 = mysqli_query($connect, $sql_1);
+$sql_1       = "SELECT num FROM mall_order WHERE cancel='N' AND status='3' AND user_id <> 'guest' ";
+$res_1       = mysqli_query($connect, $sql_1);
 $unchk_total = mysqli_num_rows($res_1);
 
 ?>
@@ -30,7 +30,7 @@ $unchk_total = mysqli_num_rows($res_1);
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="shortcut icon" href="/favicon.ico">
 
-    <title><?=$info['company_name']?> :: 운영업체 관리자 홈</title>
+    <title><?=$info['company_name'];?> :: 운영업체 관리자 홈</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.css" rel="stylesheet">
@@ -59,21 +59,21 @@ $unchk_total = mysqli_num_rows($res_1);
   <body>
     <section id="container" >
         <!--header start-->
-        <?php include "../include/admin_head.php"; ?>
+        <?php include "../include/admin_head.php";?>
         <!--header end-->
 
         <!--sidebar start-->
-        <?php include "../include/admin_sidebar.php"; ?>
+        <?php include "../include/admin_sidebar.php";?>
         <!--sidebar end-->
 
     <!--main content start-->
     <section id="main-content">
       <section class="wrapper">
       <?php
-    		$query = "SELECT * FROM code WHERE 1 ORDER BY num DESC";
-    		$result = mysqli_query($connect, $query);
-    		$total = mysqli_num_rows($result);
-       ?>
+$query  = "SELECT * FROM code WHERE 1 ORDER BY num DESC";
+$result = mysqli_query($connect, $query);
+$total  = mysqli_num_rows($result);
+?>
 
         <!-- info start -->
         <div class="row">
@@ -119,91 +119,93 @@ $unchk_total = mysqli_num_rows($res_1);
                     </thead>
                     <tbody>
                       <?php
-            			    $scale=10;
+$scale = 10;
 
-            				if ($page == ''){
-                  				$page=1;
-                			}
+if ($page == '') {
+    $page = 1;
+}
 
-                			$cpage = intval($page);
-                			$totalpage = intval($total/$scale);
+$cpage     = intval($page);
+$totalpage = intval($total / $scale);
 
-            				if ($totalpage*$scale != $total)
-                   				$totalpage = $totalpage + 1;
+if ($totalpage * $scale != $total) {
+    $totalpage = $totalpage + 1;
+}
 
-                			if ($cpage ==1) {
-                  				$cline = 0 ;
-                			} else {
-                  				$cline = ($cpage*$scale) - $scale ;
-            				}
+if ($cpage == 1) {
+    $cline = 0;
+} else {
+    $cline = ($cpage * $scale) - $scale;
+}
 
-            				$limit=$cline+$scale;
+$limit = $cline + $scale;
 
-            	 			if ($limit >= $total)
-                   				$limit=$total;
+if ($limit >= $total) {
+    $limit = $total;
+}
 
-                			$scale1 = $limit - $cline;
+$scale1 = $limit - $cline;
 
-            			if($total == 0) {
-                			echo"<tr>\n
+if ($total == 0) {
+    echo "<tr>\n
                 			           <td colspan=\"4\">등록된 게시판이 없습니다.</td>\n
                 			         </tr>\n";
-                		} else {
-                 			for($i=0; $rows = mysqli_fetch_array($result); $i++) {
-            					  $board = 'bbs_'.$rows['code'];
-                				$query2 = "SELECT * FROM $board WHERE 1 ";
-                				$result2 = mysqli_query($connect, $query2);
-                				$total2 = mysqli_num_rows($result2);
+} else {
+    for ($i = 0; $rows = mysqli_fetch_array($result); $i++) {
+        $board   = 'bbs_' . $rows['code'];
+        $query2  = "SELECT * FROM $board WHERE 1 ";
+        $result2 = mysqli_query($connect, $query2);
+        $total2  = mysqli_num_rows($result2);
 
-            					  $bunho = $total - ( $i + $cline);
+        $bunho = $total - ($i + $cline);
 
-                    ?>
+        ?>
                     <tr>
-                      <td><?=$bunho?></td>
-                      <td><a href="../../bbs/list.php?code=<?=$rows['code']?>" target="_blank"><?=$rows['code']?></a></td>
+                      <td><?=$bunho;?></td>
+                      <td><a href="../../bbs/list.php?code=<?=$rows['code'];?>" target="_blank"><?=$rows['code'];?></a></td>
                       <td>
-                        <form class="form-inline" role="form" name="bbs_name<?=$i?>" action="update_bbs.php" method="post">
+                        <form class="form-inline" role="form" name="bbs_name<?=$i;?>" action="update_bbs.php" method="post">
                         <input type="hidden" name="mode" value="modify" />
-                        <input type="hidden" name="num" value="<?=$rows['num']?>" />                      
-                        <input type="text" class="form-control" name="title" value="<?=$rows['bbs_name']?>" />
+                        <input type="hidden" name="num" value="<?=$rows['num'];?>" />
+                        <input type="text" class="form-control" name="title" value="<?=$rows['bbs_name'];?>" />
                         &nbsp;
-                        <button class="btn btn-warning" onclick="document.bbs_name<?=$i?>.submit();" />변경</button>
-                        </form>                        
+                        <button class="btn btn-warning" onclick="document.bbs_name<?=$i;?>.submit();" />변경</button>
+                        </form>
                       </td>
-                      <td><?=$total2?></td>
+                      <td><?=$total2;?></td>
                       <td>
-                        <form class="form-inline" role="form" name="pass<?=$i?>" action="update_bbs.php" method="post">
+                        <form class="form-inline" role="form" name="pass<?=$i;?>" action="update_bbs.php" method="post">
                         <input type="hidden" name="mode" value="pw" />
-                        <input type="hidden" name="num" value="<?=$rows['num']?>" />                        
+                        <input type="hidden" name="num" value="<?=$rows['num'];?>" />
                         <input type="password" class="form-control" name="passwd" value="">
                         &nbsp;
-                        <button class="btn btn-warning" onclick="document.pass<?=$i?>.submit();" />변경</button>
-                        </form>                          
+                        <button class="btn btn-warning" onclick="document.pass<?=$i;?>.submit();" />변경</button>
+                        </form>
                       </td>
                       <td>
                       <?php
-            				switch ($rows['readonly']) {
-            					case "Y" :
-            						echo "관리자";
-            						break;
-            					case "N" :
-            						echo "관리자/회원";
-            						break;
-            				}
-            			?>
+switch ($rows['readonly']) {
+            case "Y":
+                echo "관리자";
+                break;
+            case "N":
+                echo "관리자/회원";
+                break;
+        }
+        ?>
                       <form class="form-inline" role="form" name="del" action="update_bbs.php" method="post" onsubmit="javascript:return confirm('정말 삭제하시겠습니까?');">
                         <input type="hidden" name="mode" value="del" />
-                        <input type="hidden" name="num" value="<?=$rows['num']?>" />
-                        <input type="hidden" name="code" value="<?=$rows['code']?>" />
+                        <input type="hidden" name="num" value="<?=$rows['num'];?>" />
+                        <input type="hidden" name="code" value="<?=$rows['code'];?>" />
                       <td>
                         <button class="btn btn-danger" onclick="return confirm('정말 삭제하시겠습니까?');" /><i class="fa fa-trash-o"></i></button>
                       </td>
                       </form>
                     </tr>
                     <?php
-                        }
-                     }
-                        ?>
+}
+}
+?>
                     </tbody>
                   </table>
                 </div>
@@ -252,19 +254,19 @@ $unchk_total = mysqli_num_rows($res_1);
             </section>
           </div>
         </div>
-        <!-- bbs list end -->                  
+        <!-- bbs list end -->
 
          </section>
       </section>
       <!--main content end-->
 
       <!--footer start-->
-    <?php include "../include/admin_footer.php"; ?>
+    <?php include "../include/admin_footer.php";?>
       <!--footer end-->
   </section>
 
     <!-- js placed at the end of the document so the pages load faster -->
-    <script src="/js/jquery-2.1.1.min.js"></script>
+    <script src="/js/vendor/jquery-2.2.0.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script class="include" type="text/javascript" src="/admin/js/jquery.dcjqaccordion.2.7.js"></script>
     <script src="/admin/js/jquery.scrollTo.min.js"></script>

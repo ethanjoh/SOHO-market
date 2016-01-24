@@ -7,12 +7,12 @@ include "../../util/config.php";
 // 각종 유틸함수
 include "../../util/util.php";
 // MySQL 연결
-$connect=my_connect($host,$dbid,$dbpass,$dbname);
+$connect = my_connect($host, $dbid, $dbpass, $dbname);
 
 //메타정보
 $info_query = "SELECT * FROM admin_setup";
-$info_res = mysqli_query($connect, $info_query);
-$info = mysqli_fetch_array($info_res);
+$info_res   = mysqli_query($connect, $info_query);
+$info       = mysqli_fetch_array($info_res);
 
 ?>
 <!DOCTYPE html>
@@ -26,7 +26,7 @@ $info = mysqli_fetch_array($info_res);
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="shortcut icon" href="/favicon.ico">
 
-    <title><?=$info['company_name']?> :: 운영업체 관리자 홈</title>
+    <title><?=$info['company_name'];?> :: 운영업체 관리자 홈</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.css" rel="stylesheet">
@@ -48,11 +48,11 @@ $info = mysqli_fetch_array($info_res);
   <body>
     <section id="container" >
         <!--header start-->
-        <?php include "../include/admin_head.php"; ?>
+        <?php include "../include/admin_head.php";?>
         <!--header end-->
 
         <!--sidebar start-->
-        <?php include "../include/admin_sidebar.php"; ?>
+        <?php include "../include/admin_sidebar.php";?>
         <!--sidebar end-->
 
 
@@ -61,11 +61,11 @@ $info = mysqli_fetch_array($info_res);
           <section class="wrapper">
 
             <?php
-            // 상위카테고리 코드값으로 부터 현 카테고리 값을 구함
-            $query = "SELECT * FROM products_category1 ORDER BY name";
-            $result = mysqli_query($connect, $query);
-            $total_count = mysqli_num_rows($result);
-            ?>
+// 상위카테고리 코드값으로 부터 현 카테고리 값을 구함
+$query       = "SELECT * FROM products_category1 ORDER BY name";
+$result      = mysqli_query($connect, $query);
+$total_count = mysqli_num_rows($result);
+?>
 
             <!-- info start-->
             <div class="row">
@@ -91,7 +91,7 @@ $info = mysqli_fetch_array($info_res);
               <div class="col-sm-12">
                 <section class="panel">
                   <header class="panel-heading table-head">
-                      카테고리 목록 (총 <?=$total_count?> 개)
+                      카테고리 목록 (총 <?=$total_count;?> 개)
                   </header>
                   <div class="panel-body">
 
@@ -110,53 +110,53 @@ $info = mysqli_fetch_array($info_res);
                         </thead>
                         <tbody>
                           <?php
-                          for($i=0; $row = mysqli_fetch_array($result); $i++){
+for ($i = 0; $row = mysqli_fetch_array($result); $i++) {
 
-                          	$query = "SELECT * FROM products_category2 WHERE up_category='$row[code]'";
-                          	$result2 = mysqli_query($connect, $query);
-                          	$sub_count = mysqli_num_rows($result2);
-                          	mysqli_free_result($result2);
+    $query     = "SELECT * FROM products_category2 WHERE up_category='$row[code]'";
+    $result2   = mysqli_query($connect, $query);
+    $sub_count = mysqli_num_rows($result2);
+    mysqli_free_result($result2);
 
-                          	$query1 = "SELECT * FROM products WHERE category_l='$row[code]'";
-                          	$result3= mysqli_query($connect, $query1);
-                          	$products_count = mysqli_num_rows($result3);
-                          	mysqli_free_result($result3);
+    $query1         = "SELECT * FROM products WHERE category_l='$row[code]'";
+    $result3        = mysqli_query($connect, $query1);
+    $products_count = mysqli_num_rows($result3);
+    mysqli_free_result($result3);
 
-                          ?>
+    ?>
                           <tr>
-                            <td><?=$i+1?></td>
+                            <td><?=$i + 1;?></td>
                             <td>
-                              <?=$row['name']?>
-                              <a href="http://<?=$_SERVER['SERVER_NAME']?>/shop/catalog-list.php?lcode=<?=$row['code']?>" target="_blank"><i class="fa fa-external-link"></i></a>
+                              <?=$row['name'];?>
+                              <a href="http://<?=$_SERVER['SERVER_NAME'];?>/shop/catalog-list.php?lcode=<?=$row['code'];?>" target="_blank"><i class="fa fa-external-link"></i></a>
                             </td>
-                            <!-- <td><?=$sub_count?></td> -->
-                            <td><?=$products_count?> 개</td>
+                            <!-- <td><?=$sub_count;?></td> -->
+                            <td><?=$products_count;?> 개</td>
                             <td>
                               <?php
-                          		if($row['hide'] == "Y") {
-                          			echo "<a type=\"button\" class=\"btn btn-round btn-success\" href='ca_hide.php?code=".$row['code']."&amp;chk=Y'><i class=\"fa fa-times\"></i> ON</a>";
-                          	  }else{
-                          			echo "<a type=\"button\" class=\"btn btn-round btn-default\" href='ca_hide.php?code=".$row['code']."&amp;chk=N'><i class=\"fa fa-check\"></i> OFF</a>";
-                          		}
-                          		  ?>
+if ($row['hide'] == "Y") {
+        echo "<a type=\"button\" class=\"btn btn-round btn-success\" href='ca_hide.php?code=" . $row['code'] . "&amp;chk=Y'><i class=\"fa fa-times\"></i> ON</a>";
+    } else {
+        echo "<a type=\"button\" class=\"btn btn-round btn-default\" href='ca_hide.php?code=" . $row['code'] . "&amp;chk=N'><i class=\"fa fa-check\"></i> OFF</a>";
+    }
+    ?>
                             </td>
                             <td>
-                              <a type="button" class="btn btn-default" href="ca_register.php?mode=update&amp;num=<?=$row['num']?>" ><i class="fa fa-pencil-square-o"></i></a> <a type="button" class="btn btn-danger" href="ca_delete.php?num=<?=$row['num']?>" onclick="return confirm('정말 삭제하시겠습니까?')"><i class="fa fa-trash-o"></i></a>
+                              <a type="button" class="btn btn-default" href="ca_register.php?mode=update&amp;num=<?=$row['num'];?>" ><i class="fa fa-pencil-square-o"></i></a> <a type="button" class="btn btn-danger" href="ca_delete.php?num=<?=$row['num'];?>" onclick="return confirm('정말 삭제하시겠습니까?')"><i class="fa fa-trash-o"></i></a>
                             </td>
                           </tr>
                               <?php
-                          } // end of for loop
+} // end of for loop
 
-                          mysqli_free_result($result);
+mysqli_free_result($result);
 
-                    if($total_count == 0){
-                    ?>
+if ($total_count == 0) {
+    ?>
                           <tr>
                             <td colspan="5" class="text-center"><p>등록된 카테고리가 없습니다.</p></td>
                           </tr>
                   <?php
-                  	}
-                  ?>
+}
+?>
                         </tbody>
                       </table>
                       </div>
@@ -180,12 +180,12 @@ $info = mysqli_fetch_array($info_res);
       <!--main content end-->
 
       <!--footer start-->
-    <?php include "../include/admin_footer.php"; ?>
+    <?php include "../include/admin_footer.php";?>
       <!--footer end-->
   </section>
 
     <!-- js placed at the end of the document so the pages load faster -->
-    <script src="/js/jquery-2.1.1.min.js"></script>
+    <script src="/js/vendor/jquery-2.2.0.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script class="include" type="text/javascript" src="/admin/js/jquery.dcjqaccordion.2.7.js"></script>
     <script src="/admin/js/jquery.scrollTo.min.js"></script>

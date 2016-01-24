@@ -1,58 +1,13 @@
-<?php
-
-//관리자 인증 파일
-include "../../util/admin_auth.php";
-// 데이타베이스 연결정보 및 기타설정
-include "../../util/config.php";
-// 각종 유틸함수
-include "../../util/util.php";
-// MySQL 연결
-$connect=my_connect($host,$dbid,$dbpass,$dbname);
-
-//메타정보
-$info_query = "SELECT * FROM admin_setup";
-$info_res = mysqli_query($connect, $info_query);
-$info = mysqli_fetch_array($info_res);
-
-?>
-<!DOCTYPE html>
-<html lang="ko">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta name="keyword" content="">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <link rel="shortcut icon" href="/favicon.ico">
-
-    <title><?=$info['company_name']?> :: 운영업체 관리자 홈</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="/css/bootstrap.css" rel="stylesheet">
-    <link href="/admin/css/bootstrap-reset.css" rel="stylesheet">
-    <!--external css-->
-    <link href="/css/font-awesome.min.css" rel="stylesheet" />
-
-    <!-- Custom styles for this template -->
-    <link href="/admin/css/style.css" rel="stylesheet">
-    <link href="/admin/css/style-responsive.css" rel="stylesheet" />
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
-    <!--[if lt IE 9]>
-      <script src="js/html5shiv.js"></script>
-      <script src="js/respond.min.js"></script>
-    <![endif]-->
-  </head>
+<?php include_once '../include/header.php';?>
 
   <body>
     <section id="container" >
         <!--header start-->
-        <?php include "../include/admin_head.php"; ?>
+        <?php include "../include/admin_head.php";?>
         <!--header end-->
 
         <!--sidebar start-->
-        <?php include "../include/admin_sidebar.php"; ?>
+        <?php include "../include/admin_sidebar.php";?>
         <!--sidebar end-->
 
     <!--main content start-->
@@ -96,57 +51,62 @@ $info = mysqli_fetch_array($info_res);
                               <select class="form-control" name="lcode" onchange="show_msub();">
                                 <option>--- 카테고리 ---</option>
                                 <?php
-                          			$query = "SELECT * FROM products_category1 ORDER BY num ";
-                          			$result2 = mysqli_query($connect, $query);
-                          			// 현재위치 표시
-                          			for($i=1; $row2 = mysqli_fetch_array($result2); $i++){
-                          				if($lcode == $row2['code'])
-                          					$sel = "selected=\"selected\"";
-                          				else
-                          					$sel = "";
+$query   = "SELECT * FROM products_category1 ORDER BY num ";
+$result2 = mysqli_query($connect, $query);
+// 현재위치 표시
+for ($i = 1; $row2 = mysqli_fetch_array($result2); $i++) {
+    if ($lcode == $row2['code']) {
+        $sel = "selected=\"selected\"";
+    } else {
+        $sel = "";
+    }
 
-                          				echo "<option value=\"$row2[code]\" $sel>$row2[name]</option>\n";
-                          			}
-                          			mysqli_free_result($result2);
-                          			?>
+    echo "<option value=\"$row2[code]\" $sel>$row2[name]</option>\n";
+}
+mysqli_free_result($result2);
+?>
                               </select>
                           </td>
                           <td>
-                            <select class="form-control" name="mcode" onchange="show_ssub('<?=$lcode?>');">
+                            <select class="form-control" name="mcode" onchange="show_ssub('<?=$lcode;?>');">
                               <option>--- 중분류 ---</option>
                               <?php
-                      				if($lcode) {
-                      					$query = "SELECT * FROM products_category2 WHERE up_category='$lcode' ORDER BY code";
-                          				$result = mysqli_query($connect, $query);
+if ($lcode) {
+    $query  = "SELECT * FROM products_category2 WHERE up_category='$lcode' ORDER BY code";
+    $result = mysqli_query($connect, $query);
 
-                      					for($i=0; $row = mysqli_fetch_array($result); $i++){
-                      							if($mcode == $row['code'])
-                      								$sel2 = "selected=\"selected\"";
-                      							else
-                      								$sel2 = "";
-                      						echo "<option value=\"$row[code]\" $sel2>$row[name]</option>\n";
-                      				   }
-                      				}
-                      			?>
+    for ($i = 0; $row = mysqli_fetch_array($result); $i++) {
+        if ($mcode == $row['code']) {
+            $sel2 = "selected=\"selected\"";
+        } else {
+            $sel2 = "";
+        }
+
+        echo "<option value=\"$row[code]\" $sel2>$row[name]</option>\n";
+    }
+}
+?>
                             </select>
                           </td>
                           <td>
-                            <select class="form-control" name="scode" onchange="show_last('<?=$lcode?>', '<?=$mcode?>');">
+                            <select class="form-control" name="scode" onchange="show_last('<?=$lcode;?>', '<?=$mcode;?>');">
                               <option>--- 소분류 ---</option>
                               <?php
-                      				if($mcode) {
-                      					$query3 = "SELECT * FROM products_category3 WHERE up_category='$mcode' ORDER BY code";
-                          				$result3 = mysqli_query($connect, $query3);
+if ($mcode) {
+    $query3  = "SELECT * FROM products_category3 WHERE up_category='$mcode' ORDER BY code";
+    $result3 = mysqli_query($connect, $query3);
 
-                      					for($i=0; $srow = mysqli_fetch_array($result3); $i++){
-                      							if($scode == $srow['code'])
-                      								$sel3 = "selected=\"selected\"";
-                      							else
-                      								$sel3 = "";
-                      						echo "<option value=\"$srow[code]\" $sel3>$srow[name]</option>\n";
-                      				   }
-                      				}
-                      			?>
+    for ($i = 0; $srow = mysqli_fetch_array($result3); $i++) {
+        if ($scode == $srow['code']) {
+            $sel3 = "selected=\"selected\"";
+        } else {
+            $sel3 = "";
+        }
+
+        echo "<option value=\"$srow[code]\" $sel3>$srow[name]</option>\n";
+    }
+}
+?>
                             </select>
                           </td>
                         </tr>
@@ -162,44 +122,45 @@ $info = mysqli_fetch_array($info_res);
           <!-- category list start -->
 
             <?php
-      			if($lcode != "" && $pmode != "end")
-        				$qry_char = "del_chk <> 'Y' AND category_l ='$lcode' ";
-      			else if($lcode == "" && $pmode == "end")
-      				$qry_char = "del_chk = 'Y' ";
-      			else
-      				$qry_char = "del_chk <> 'Y' ";
+if ($lcode != "" && $pmode != "end") {
+    $qry_char = "del_chk <> 'Y' AND category_l ='$lcode' ";
+} else if ($lcode == "" && $pmode == "end") {
+    $qry_char = "del_chk = 'Y' ";
+} else {
+    $qry_char = "del_chk <> 'Y' ";
+}
 
-      			if($mcode)
-        				$qry_char .= " AND category_m ='$mcode' ";
+if ($mcode) {
+    $qry_char .= " AND category_m ='$mcode' ";
+}
 
+if ($scode) {
+    $qry_char .= " AND category_s ='$scode' ";
+}
 
-      			if($scode)
-        				$qry_char .= " AND category_s ='$scode' ";
+if ($mode == "search") {
+    $qry_char .= " AND $key LIKE '%$keyword%' ";
+}
 
+if ($pmode == "out") {
+    $qry_char .= "AND del_chk = 'O' ";
+} else if ($pmode == "cut") {
+    $qry_char .= "AND del_chk = 'C' ";
+} else if ($pmode == "end" && $lcode != "") {
+    $qry_char = "del_chk = 'Y' AND category_l ='$lcode' ";
+} else if ($pmode == "end" && $lcode = "") {
+    $qry_char = "del_chk = 'Y' ";
+}
 
-      			if($mode =="search")
-       				$qry_char .= " AND $key LIKE '%$keyword%' ";
+// 상품의 정보를 모두 가져옴
+$query  = "SELECT * FROM products WHERE $qry_char ";
+$result = mysqli_query($connect, $query);
 
-
-      			if($pmode == "out")
-      				$qry_char .= "AND del_chk = 'O' ";
-      			else if($pmode == "cut")
-      				$qry_char .= "AND del_chk = 'C' ";
-      			else if($pmode == "end" && $lcode !="")
-      				$qry_char = "del_chk = 'Y' AND category_l ='$lcode' ";
-      			else if($pmode == "end" && $lcode ="")
-      				$qry_char = "del_chk = 'Y' ";
-
-
-      			// 상품의 정보를 모두 가져옴
-      			$query  = "SELECT * FROM products WHERE $qry_char ";
-      			$result = mysqli_query($connect, $query);
-
-      			if($result) {
-      				$total  = mysqli_num_rows($result);
-      				mysqli_free_result($result);
-      			}
-      	 ?>
+if ($result) {
+    $total = mysqli_num_rows($result);
+    mysqli_free_result($result);
+}
+?>
 
             <!-- buttons start -->
             <div class="row">
@@ -209,10 +170,10 @@ $info = mysqli_fetch_array($info_res);
                   <tbody>
                     <tr>
                       <td>
-                        <a class="btn btn-default" href="top_pro_list.php?pmode=out&lcode=<?=$lcode?>&mcode=<?=$mcode?>&scode=<?=$scode?>&page=<?=$page?>">[품절상품]만 보기</a>
-                        <a class="btn btn-default" href="top_pro_list.php?pmode=cut&lcode=<?=$lcode?>&mcode=<?=$mcode?>&scode=<?=$scode?>&page=<?=$page?>">[단종상품]만 보기</a>
-                        <a class="btn btn-default" href="top_pro_list.php?pmode=end&lcode=<?=$lcode?>&mcode=<?=$mcode?>&scode=<?=$scode?>&page=<?=$page?>">[판매종료 상품]만 보기</a>
-                        <a class="btn btn-primary" href="top_pro_list.php?lcode=<?=$lcode?>&mcode=<?=$mcode?>&scode=<?=$scode?>&page=<?=$page?>">전체보기(판매종료 제외)</a>
+                        <a class="btn btn-default" href="top_pro_list.php?pmode=out&lcode=<?=$lcode;?>&mcode=<?=$mcode;?>&scode=<?=$scode;?>&page=<?=$page;?>">[품절상품]만 보기</a>
+                        <a class="btn btn-default" href="top_pro_list.php?pmode=cut&lcode=<?=$lcode;?>&mcode=<?=$mcode;?>&scode=<?=$scode;?>&page=<?=$page;?>">[단종상품]만 보기</a>
+                        <a class="btn btn-default" href="top_pro_list.php?pmode=end&lcode=<?=$lcode;?>&mcode=<?=$mcode;?>&scode=<?=$scode;?>&page=<?=$page;?>">[판매종료 상품]만 보기</a>
+                        <a class="btn btn-primary" href="top_pro_list.php?lcode=<?=$lcode;?>&mcode=<?=$mcode;?>&scode=<?=$scode;?>&page=<?=$page;?>">전체보기(판매종료 제외)</a>
                       </td>
                     </tr>
                   </tbody>
@@ -228,11 +189,13 @@ $info = mysqli_fetch_array($info_res);
           <div class="col-sm-12">
             <section class="panel">
               <header class="panel-heading table-head">
-                  상품 리스트 (총 등록상품 수: <?=$total?> 개)
+                  상품 리스트 (총 등록상품 수: <?=$total;?> 개)
                   <?php
-                  if($lcode)
-                    echo "<a href=\"pro_list.php?lcode=$lcode\"><i class=\"fa fa-file-excel-o\"></i> 엑셀로 상품목록 다운로드</a>";
-                  ?>
+if ($lcode) {
+    echo "<a href=\"pro_list.php?lcode=$lcode\"><i class=\"fa fa-file-excel-o\"></i> 엑셀로 상품목록 다운로드</a>";
+}
+
+?>
               </header>
               <div class="panel-body">
               <div class="table-responsive">
@@ -251,104 +214,109 @@ $info = mysqli_fetch_array($info_res);
                   </thead>
                   <tbody>
                     <?php
-             				$scale=50;
+$scale = 50;
 
-             				if ($page == ""){
-                 				$page=1;
-              			}
+if ($page == "") {
+    $page = 1;
+}
 
-              			$cpage = intval($page);
-              			$totalpage = intval($total/$scale);
+$cpage     = intval($page);
+$totalpage = intval($total / $scale);
 
-          				if ($totalpage*$scale != $total)
-                				$totalpage = $totalpage + 1;
+if ($totalpage * $scale != $total) {
+    $totalpage = $totalpage + 1;
+}
 
-              			if ($cpage ==1) {
-          	   				$cline = 0 ;
-              			} else {
-          	   				$cline = ($cpage*$scale) - $scale ;
-              			}
+if ($cpage == 1) {
+    $cline = 0;
+} else {
+    $cline = ($cpage * $scale) - $scale;
+}
 
-          				$limit=$cline+$scale;
+$limit = $cline + $scale;
 
-          				if ($limit >= $total)
-                 				$limit=$total;
+if ($limit >= $total) {
+    $limit = $total;
+}
 
-              			$scale1 = $limit - $cline;
+$scale1 = $limit - $cline;
 
-            				$query1 = "SELECT * FROM products WHERE $qry_char ORDER BY num DESC LIMIT $cline,$scale1";
-          				//echo $query1;
-            				$result1 = mysqli_query($connect, $query1);
+$query1 = "SELECT * FROM products WHERE $qry_char ORDER BY num DESC LIMIT $cline,$scale1";
+//echo $query1;
+$result1 = mysqli_query($connect, $query1);
 
-          				if($result1) { //에러처리
+if ($result1) {
+    //에러처리
 
-            				for($i=0; $prow = mysqli_fetch_array($result1); $i++){
-          					$list_num = $total - ($cline + $i);
+    for ($i = 0; $prow = mysqli_fetch_array($result1); $i++) {
+        $list_num = $total - ($cline + $i);
 
-                  			if($i%2 == 1)
-                          		echo "<tr class=\"odd\">\n";
-          					else
-          						echo "<tr>\n";
-          			?>
-                    <td><?=$list_num?></td>
-                    <td><img src="<?=$prow['s_image_name']?>" width="50" height="50" alt="small image" /></td>
-                    <td class="left"><?=show_icon($prow)?>
-                      <a href="pro_register.php?mode=update&amp;pmode=<?=$pmode?>&amp;p_num=<?=$prow['num']?>&amp;lcode=<?=$prow['category_l']?>&amp;mcode=<?=$prow['category_m']?>&amp;scode=<?=$prow['category_s']?>&amp;page=<?=$page?>">
-                      <?=stripslashes($prow['name'])?></a>
-                      </a>&nbsp;<a href="http://<?=$_SERVER['HTTP_HOST']?>/shop/catalog-list.php?lcode=<?=$prow['category_l']?>&amp;mcode=<?=$prow['category_m']?>&amp;scode=<?=$prow['category_s']?>" target="_blank"><img src="../images/browser_explorer.png" alt="상품보기" /> </a>
+        if ($i % 2 == 1) {
+            echo "<tr class=\"odd\">\n";
+        } else {
+            echo "<tr>\n";
+        }
+
+        ?>
+                    <td><?=$list_num;?></td>
+                    <td><img src="<?=$prow['s_image_name'];?>" width="50" height="50" alt="small image" /></td>
+                    <td class="left"><?=show_icon($prow);?>
+                      <a href="pro_register.php?mode=update&amp;pmode=<?=$pmode;?>&amp;p_num=<?=$prow['num'];?>&amp;lcode=<?=$prow['category_l'];?>&amp;mcode=<?=$prow['category_m'];?>&amp;scode=<?=$prow['category_s'];?>&amp;page=<?=$page;?>">
+                      <?=stripslashes($prow['name']);?></a>
+                      </a>&nbsp;<a href="http://<?=$_SERVER['HTTP_HOST'];?>/shop/catalog-list.php?lcode=<?=$prow['category_l'];?>&amp;mcode=<?=$prow['category_m'];?>&amp;scode=<?=$prow['category_s'];?>" target="_blank"><img src="../images/browser_explorer.png" alt="상품보기" /> </a>
                     </td>
                     <td>
                     <?php
-          		  		if($prow['opt'])
-                      		show_option($prow);
-          			   ?>
+if ($prow['opt']) {
+            show_option($prow);
+        }
+
+        ?>
                     </td>
-                    <td><?=number_format(trim($prow['retail_price']))?> 원</td>
-                    <td><?php if($prow['main_new']=='Y'){
-          			    echo "<a type=\"button\" class=\"btn btn-round btn-success\" href=\"pro_opt.php?p_num=".$prow['num']."&mode=del&lcode=".$prow['category_l']."&mcode=".$prow['category_m']."&scode=".$prow['category_s']."&ck=main_new&page=".$page."\"><i class=\"fa fa-times\"></i> ON</a>";
-          			   }
-                         else{
-          			    echo "<a type=\"button\" class=\"btn btn-round btn-default\" href=\"pro_opt.php?p_num=".$prow['num']."&mode=insert&lcode=".$prow['category_l']."&mcode=".$prow['category_m']."&scode=".$prow['category_s']."&ck=main_new&page=".$page."\"><i class=\"fa fa-check\"></i> OFF</a>";
-          			   }
-          		  ?>  </td>
-                    <td><?php if($prow['main_special']=='Y'){
-          			    echo "<a <a type=\"button\" class=\"btn btn-round btn-success\" href=\"pro_opt.php?p_num=".$prow['num']."&mode=del&lcode=".$prow['category_l']."&mcode=".$prow['category_m']."&scode=".$prow['category_s']."&ck=main_special&page=".$page."\"><i class=\"fa fa-times\"></i> ON</a>";
-          			   }
-                         else{
-          			    echo "<a type=\"button\" class=\"btn btn-round btn-default\" href=\"pro_opt.php?p_num=".$prow['num']."&mode=insert&lcode=".$prow['category_l']."&mcode=".$prow['category_m']."&scode=".$prow['category_s']."&ck=main_special&page=".$page."\"><i class=\"fa fa-check\"></i> OFF</a>";
-          			   }
-          		  ?>  </td>
-                    <td><?php if($prow['main_best']=='Y'){
-          			    echo "<a <a type=\"button\" class=\"btn btn-round btn-success\" href=\"pro_opt.php?p_num=".$prow['num']."&mode=del&lcode=".$prow['category_l']."&mcode=".$prow['category_m']."&scode=".$prow['category_s']."&ck=main_best&page=".$page."\"><i class=\"fa fa-times\"></i> ON</a>";
-          			   }
-                         else{
-          			    echo "<a type=\"button\" class=\"btn btn-round btn-default\" href=\"pro_opt.php?p_num=".$prow['num']."&mode=insert&lcode=".$prow['category_l']."&mcode=".$prow['category_m']."&scode=".$prow['category_s']."&ck=main_best&page=".$page."\"><i class=\"fa fa-check\"></i> OFF</a>";
-          			   }
-          		  ?>  </td>
+                    <td><?=number_format(trim($prow['retail_price']));?> 원</td>
+                    <td><?php if ($prow['main_new'] == 'Y') {
+            echo "<a type=\"button\" class=\"btn btn-round btn-success\" href=\"pro_opt.php?p_num=" . $prow['num'] . "&mode=del&lcode=" . $prow['category_l'] . "&mcode=" . $prow['category_m'] . "&scode=" . $prow['category_s'] . "&ck=main_new&page=" . $page . "\"><i class=\"fa fa-times\"></i> ON</a>";
+        } else {
+            echo "<a type=\"button\" class=\"btn btn-round btn-default\" href=\"pro_opt.php?p_num=" . $prow['num'] . "&mode=insert&lcode=" . $prow['category_l'] . "&mcode=" . $prow['category_m'] . "&scode=" . $prow['category_s'] . "&ck=main_new&page=" . $page . "\"><i class=\"fa fa-check\"></i> OFF</a>";
+        }
+        ?>  </td>
+                    <td><?php if ($prow['main_special'] == 'Y') {
+            echo "<a <a type=\"button\" class=\"btn btn-round btn-success\" href=\"pro_opt.php?p_num=" . $prow['num'] . "&mode=del&lcode=" . $prow['category_l'] . "&mcode=" . $prow['category_m'] . "&scode=" . $prow['category_s'] . "&ck=main_special&page=" . $page . "\"><i class=\"fa fa-times\"></i> ON</a>";
+        } else {
+            echo "<a type=\"button\" class=\"btn btn-round btn-default\" href=\"pro_opt.php?p_num=" . $prow['num'] . "&mode=insert&lcode=" . $prow['category_l'] . "&mcode=" . $prow['category_m'] . "&scode=" . $prow['category_s'] . "&ck=main_special&page=" . $page . "\"><i class=\"fa fa-check\"></i> OFF</a>";
+        }
+        ?>  </td>
+                    <td><?php if ($prow['main_best'] == 'Y') {
+            echo "<a <a type=\"button\" class=\"btn btn-round btn-success\" href=\"pro_opt.php?p_num=" . $prow['num'] . "&mode=del&lcode=" . $prow['category_l'] . "&mcode=" . $prow['category_m'] . "&scode=" . $prow['category_s'] . "&ck=main_best&page=" . $page . "\"><i class=\"fa fa-times\"></i> ON</a>";
+        } else {
+            echo "<a type=\"button\" class=\"btn btn-round btn-default\" href=\"pro_opt.php?p_num=" . $prow['num'] . "&mode=insert&lcode=" . $prow['category_l'] . "&mcode=" . $prow['category_m'] . "&scode=" . $prow['category_s'] . "&ck=main_best&page=" . $page . "\"><i class=\"fa fa-check\"></i> OFF</a>";
+        }
+        ?>  </td>
                     <form name="register" action="pro_register_ok.php" method="post" onsubmit="javascript:return confirm('상품을 복사하시겠습니까?');">
                       <input type="hidden" name="mode" value="copy" />
-                      <input type="hidden" name="p_num" value="<?=$prow['num']?>" />
-                      <input type="hidden" name="page" value="<?=$page?>" />
+                      <input type="hidden" name="p_num" value="<?=$prow['num'];?>" />
+                      <input type="hidden" name="page" value="<?=$page;?>" />
                       <td>
                         <button class="btn btn-warning" onclick="register.submit();" /><i class="fa fa-files-o"></i></button>
                       </td>
                     </form>
                   </tr>
                   <?php
-              } // end of for loop
+} // end of for loop
 
-          } //if($result1)
+}
+; //if($result1)
 
-          ?>
+?>
           <?php
-          if($total == 0){
-          ?>
+if ($total == 0) {
+    ?>
                   <tr>
                     <td colspan="9"><p>등록된 상품이 없습니다.</p></td>
                   </tr>
                   <?php
-          	}
-          ?>
+}
+?>
                 </tbody>
               </table>
               </div>
@@ -363,15 +331,15 @@ $info = mysqli_fetch_array($info_res);
         <!-- page navigation start -->
         <div class="pull-left">
           <?php
-              $url = $PHP_SELF."?mode=".$mode."&pmode=".$pmode."&lcode=".$lcode."&mcode=".$mcode."&scode=".$scode."&key=".$key."&keyword=".$keyword;
-              page_nav($totalpage,$cpage,$url);
-           ?>
+$url = $PHP_SELF . "?mode=" . $mode . "&pmode=" . $pmode . "&lcode=" . $lcode . "&mcode=" . $mcode . "&scode=" . $scode . "&key=" . $key . "&keyword=" . $keyword;
+page_nav($totalpage, $cpage, $url);
+?>
         </div>
         <!-- page navigation end -->
 
         <!-- function buttons start -->
         <div class="pull-right margin-20">
-          <a type="button" class="btn btn-success" href="pro_register.php?lcode=<?=$lcode?>&amp;mcode=<?=$mcode?>&amp;scode=<?=$scode?>&amp;page=<?=$page?>">상품등록</a>
+          <a type="button" class="btn btn-success" href="pro_register.php?lcode=<?=$lcode;?>&amp;mcode=<?=$mcode;?>&amp;scode=<?=$scode;?>&amp;page=<?=$page;?>">상품등록</a>
         </div>
         <!-- function buttons end -->
 
@@ -387,9 +355,9 @@ $info = mysqli_fetch_array($info_res);
                 <option value="name">상품명</option>
               </select>
               <input type="hidden" name="mode" value="search" />
-              <input type="hidden" name="lcode" value="<?=$lcode?>" />
-              <input type="hidden" name="mcode" value="<?=$mcode?>" />
-              <input type="hidden" name="scode" value="<?=$scode?>" />
+              <input type="hidden" name="lcode" value="<?=$lcode;?>" />
+              <input type="hidden" name="mcode" value="<?=$mcode;?>" />
+              <input type="hidden" name="scode" value="<?=$scode;?>" />
               <div class="ui-widget form-group">
                 <input type="text" class="form-control" name="keyword" size="16" />
                 <button class="btn btn-primary" onclick="search.submit()"><i class="fa fa-search"></i>검 색</button>
@@ -405,12 +373,12 @@ $info = mysqli_fetch_array($info_res);
 
 
      <!--footer start-->
-    <?php include "../include/admin_footer.php"; ?>
+    <?php include "../include/admin_footer.php";?>
       <!--footer end-->
   </section>
 
     <!-- js placed at the end of the document so the pages load faster -->
-    <script src="/js/jquery-2.1.1.min.js"></script>
+    <script src="/js/vendor/jquery-2.2.0.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script class="include" type="text/javascript" src="/admin/js/jquery.dcjqaccordion.2.7.js"></script>
     <script src="/admin/js/jquery.scrollTo.min.js"></script>

@@ -7,15 +7,15 @@ include "../../util/config.php";
 // 각종 유틸함수
 include "../../util/util.php";
 // MySQL 연결
-$connect=my_connect($host,$dbid,$dbpass,$dbname);
+$connect = my_connect($host, $dbid, $dbpass, $dbname);
 
 //메타정보
 $info_query = "SELECT * FROM admin_setup";
-$info_res = mysqli_query($connect, $info_query);
-$info = mysqli_fetch_array($info_res);
+$info_res   = mysqli_query($connect, $info_query);
+$info       = mysqli_fetch_array($info_res);
 
-$sql_1 = "SELECT num FROM mall_order WHERE cancel='N' AND status='3' AND user_id <> 'guest' ";
-$res_1 = mysqli_query($connect, $sql_1);
+$sql_1       = "SELECT num FROM mall_order WHERE cancel='N' AND status='3' AND user_id <> 'guest' ";
+$res_1       = mysqli_query($connect, $sql_1);
 $unchk_total = mysqli_num_rows($res_1);
 
 ?>
@@ -30,7 +30,7 @@ $unchk_total = mysqli_num_rows($res_1);
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="shortcut icon" href="/favicon.ico">
 
-    <title><?=$info['company_name']?> :: 운영업체 관리자 홈</title>
+    <title><?=$info['company_name'];?> :: 운영업체 관리자 홈</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.css" rel="stylesheet">
@@ -53,23 +53,23 @@ $unchk_total = mysqli_num_rows($res_1);
   <body>
     <section id="container" >
         <!--header start-->
-        <?php include "../include/admin_head.php"; ?>
+        <?php include "../include/admin_head.php";?>
         <!--header end-->
 
         <!--sidebar start-->
-        <?php include "../include/admin_sidebar.php"; ?>
+        <?php include "../include/admin_sidebar.php";?>
         <!--sidebar end-->
 
     <!--main content start-->
     <section id="main-content">
       <section class="wrapper">
       <?php
-        $qry = "SELECT * FROM popup LIMIT 1";
+$qry = "SELECT * FROM popup LIMIT 1";
 
-        $result = mysqli_query($connect, $qry);
-        $row = mysqli_fetch_array($result);
-        mysqli_free_result($result);
-      ?>
+$result = mysqli_query($connect, $qry);
+$row    = mysqli_fetch_array($result);
+mysqli_free_result($result);
+?>
 
         <!-- info start-->
         <div class="row">
@@ -101,14 +101,14 @@ $unchk_total = mysqli_num_rows($res_1);
                     <tbody>
                       <tr>
                         <td>
-                          <input type="checkbox" name="chk" value="<?=$row['chk']=='Y' ? "Y" : "N" ?>" <?=$row['chk']=='Y' ? "checked" : "" ?>  />
+                          <input type="checkbox" name="chk" value="<?=$row['chk'] == 'Y' ? "Y" : "N";?>" <?=$row['chk'] == 'Y' ? "checked" : "";?>  />
                           팝업 공지사항 보이기
                         </td>
                       </tr>
                       <tr>
                         <td>
                           <textarea name="contents" id="contents" style="width:100%; height:300px">
-                          <?=stripslashes($row['contents'])?>
+                          <?=stripslashes($row['contents']);?>
                           </textarea>
                         </td>
                       </tr>
@@ -133,12 +133,12 @@ $unchk_total = mysqli_num_rows($res_1);
       <!--main content end-->
 
       <!--footer start-->
-    <?php include "../include/admin_footer.php"; ?>
+    <?php include "../include/admin_footer.php";?>
       <!--footer end-->
   </section>
 
     <!-- js placed at the end of the document so the pages load faster -->
-    <script src="/js/jquery-2.1.1.min.js"></script>
+    <script src="/js/vendor/jquery-2.2.0.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script class="include" type="text/javascript" src="/admin/js/jquery.dcjqaccordion.2.7.js"></script>
     <script src="/admin/js/jquery.scrollTo.min.js"></script>
