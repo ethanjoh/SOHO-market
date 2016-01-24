@@ -22,7 +22,15 @@
 	                          <li><a  href="/admin/order/track_fromexcel.php">운송장 업로드</a></li>
 	                      </ul>
 	                  </li>
-
+	                  <li class="sub-menu">
+	                      <a href="javascript:;" >
+	                          <i class="fa fa-sitemap"></i>
+	                          <span>브랜드 관리</span>
+	                      </a>
+	                      <ul class="sub">
+	                          <li><a  href="/admin/category/top_ca_list.php">브랜드 등록/수정</a></li>
+	                      </ul>
+	                  </li>
 	                  <li class="sub-menu">
 	                      <a href="javascript:;" >
 	                          <i class="fa fa-cube"></i>
@@ -31,16 +39,6 @@
 	                      <ul class="sub">
 	                          <li><a  href="/admin/products/top_pro_list.php">상품 목록</a></li>
 	                          <li><a  href="/admin/products/pro_register.php">상품 등록</a></li>
-	                      </ul>
-	                  </li>
-
-	                  <li class="sub-menu">
-	                      <a href="javascript:;" >
-	                          <i class="fa fa-sitemap"></i>
-	                          <span>카테고리 관리</span>
-	                      </a>
-	                      <ul class="sub">
-	                          <li><a  href="/admin/category/top_ca_list.php">카테고리 등록/수정</a></li>
 	                      </ul>
 	                  </li>
 	                  <li class="sub-menu">
@@ -54,7 +52,7 @@
 	                          <li><a  href="/admin/member/mem_ins_member.php">회원 등록</a></li>
 	                      </ul>
 	                  </li>
-	                  <li class="sub-menu">
+<!-- 	                  <li class="sub-menu">
 	                      <a href="javascript:;" >
 	                          <i class="fa fa-connectdevelop"></i>
 	                          <span>공급업체 관리</span>
@@ -72,7 +70,7 @@
 	                      <ul class="sub">
 	                          <li><a  href="/admin/supplier/offer_list.php">발주서 작성 및 내역보기</a></li>
 	                      </ul>
-	                  </li>
+	                  </li>-->
 	                  <li class="sub-menu">
 	                      <a href="javascript:;" >
 	                          <i class="fa fa-pie-chart"></i>

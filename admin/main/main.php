@@ -96,7 +96,7 @@ mysqli_query($connect, 'set names utf8');
             <div class="col-lg-4 col-sm-6">
               <section class="panel">
                 <div class="symbol red">
-                  <i class="fa fa-tags"></i>
+                  <i class="fa fa-cube"></i>
                 </div>
                 <div class="value">
                   <h1>
@@ -126,7 +126,7 @@ mysqli_query($connect, 'set names utf8');
               <!-- today's sales start-->
               <section class="panel">
                 <header class="panel-heading">
-                  <?=$this_month;?> :: Sales of Items (Quantity)
+                  <?=$this_month;?> :: 월 상품판매량 (단위: 개)
                 </header>
                 <div class="panel-body">
                   <div id="hero-bar" class="graph"></div>
@@ -138,7 +138,7 @@ mysqli_query($connect, 'set names utf8');
               <!-- monthly sales start-->
               <section class="panel">
                 <header class="panel-heading">
-                  Monthly Sales (Amount)
+                  월 판매액 (단위: 원)
                 </header>
                 <div class="panel-body">
                   <div id="hero-graph" class="graph"></div>
@@ -163,7 +163,6 @@ if ($total == 0) {
 } else {
     if ($total % 2 == 1) {
         ?>
-            <div class="row">
               <div class="col-sm-6">
                 <?php
 } else {
@@ -189,7 +188,6 @@ if ($total == 0) {
                           <tr>
                             <th>#</th>
                             <th>제 목</th>
-                            <th>작성자</th>
                             <th>날 짜</th>
                           </tr>
                         </thead>
@@ -207,9 +205,9 @@ if ($total2 == 0) {
                 if ($rows2['depth'] > 0) {
                     ?>
                           <tr>
-                            <td><?=$j + 1;?></td>
+                            <td><?=$rows2['no'];?></td>
                             <td><a href="../bbs/read.php?code=<?=$rows['code'];?>&main_no=<?=$rows2['main_no'];?>" target="_blank"><?=stripslashes($rows2['title']);?></a>&nbsp;<span class="badge"><?=$rows2['depth'];?></span></td>
-                            <td><?=$rows['readonly'] == 'N' ? " - ($rows2[name])" : "";?></td>
+                            <!-- <td><?=$rows['readonly'] == 'N' ? " - ($rows2[name])" : "";?></td> -->
                             <td><?=$post_date;?></td>
                           </tr>
                           <?php
@@ -218,7 +216,7 @@ if ($total2 == 0) {
                           <tr>
                             <td><?=$j + 1;?></td>
                             <td><a href="../bbs/read.php?code=<?=$rows['code'];?>&main_no=<?=$rows2['main_no'];?>" target="_blank"><?=stripslashes($rows2['title']);?></a></td>
-                            <td><?=$rows['readonly'] == 'N' ? " - ($rows2[name])" : "";?></td>
+                            <!-- <td><?=$rows['readonly'] == 'N' ? " - ($rows2[name])" : "";?></td> -->
                             <td><?=$post_date;?></td>
                           </tr>
                           <?php
@@ -232,41 +230,44 @@ if ($total2 == 0) {
                     </div>
                   </section>
                   <?php
-if ($i % 2 == 1) {
-            echo "  </div> <!-- end of col-sm-6 -->\n";
-            echo "</div>\n";
-            echo "<div class=\"row\">\n";
-            echo "  <div class=\"col-sm-6\">\n";
+if ($total2 % 2 == 1) {
+            echo '  </div> <!-- end of col-sm-6 -->
+                 </div>
+                 <div class="row">
+                 <div class="col-sm-6">';
         } else {
-            echo "  </div> <!-- end of col-sm-6 -->\n";
-            echo "<div class=\"col-sm-6\">\n";
+            echo '  </div> <!-- end of col-sm-6 -->
+                <div class="col-sm-6">';
         }
     } // end of outer for loop
 }
 ; //end of if($total == 0)
 ?>
-                      <!-- end of bbs -->
-                    </section>
-                  </section>
-                  <!--main content end-->
-                  <!--footer start-->
-                  <?php include "../include/admin_footer.php";?>
-                  <!--footer end-->
+
+                    </div>
+                  </div><!-- end of bbs -->
                 </section>
-                <!-- js placed at the end of the document so the pages load faster -->
-                <script src="/js/vendor/jquery-2.2.0.min.js"></script>
-                <script src="/js/bootstrap.min.js"></script>
-                <script src="/admin/js/jquery.dcjqaccordion.2.7.js"></script>
-                <script src="/admin/js/jquery.scrollTo.min.js"></script>
-                <script src="/admin/js/jquery.nicescroll.js" type="text/javascript"></script>
-                <script src="/admin/assets/morris.js-0.4.3/morris.min.js" type="text/javascript"></script>
-                <script src="/admin/assets/morris.js-0.4.3/raphael-min.js" type="text/javascript"></script>
-                <script src="/admin/js/respond.min.js" ></script>
-                <!--common script for all pages-->
-                <script src="/admin/js/common-scripts.js"></script>
-                <!-- custom scripts -->
-                <script src="/js/global.js" ></script>
-                <script src="/admin/js/admin.js" ></script>
-                <script src="/admin/js/showMainChart.js"></script>
-              </body>
-            </html>
+              </section><!--main content end-->
+
+
+          <!--footer start-->
+          <?php include "../include/admin_footer.php";?>
+          <!--footer end-->
+        </section>
+    <!-- js placed at the end of the document so the pages load faster -->
+    <script src="/js/vendor/jquery-2.2.0.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/admin/js/jquery.dcjqaccordion.2.7.js"></script>
+    <script src="/admin/js/jquery.scrollTo.min.js"></script>
+    <script src="/admin/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <script src="/admin/assets/morris.js-0.4.3/morris.min.js" type="text/javascript"></script>
+    <script src="/admin/assets/morris.js-0.4.3/raphael-min.js" type="text/javascript"></script>
+    <script src="/admin/js/respond.min.js" ></script>
+    <!--common script for all pages-->
+    <script src="/admin/js/common-scripts.js"></script>
+    <!-- custom scripts -->
+    <script src="/js/global.js" ></script>
+    <script src="/admin/js/admin.js" ></script>
+    <script src="/admin/js/showMainChart.js"></script>
+  </body>
+</html>
