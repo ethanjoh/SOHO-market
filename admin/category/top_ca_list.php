@@ -46,7 +46,7 @@ $total_count = mysqli_num_rows($result);
               <div class="col-sm-12">
                 <section class="panel">
                   <header class="panel-heading table-head">
-                      카테고리 목록 (총 <?=$total_count;?> 개)
+                      카테고리 목록 (총 <?php echo $total_count; ?> 개)
                   </header>
                   <div class="panel-body">
 
@@ -57,7 +57,7 @@ $total_count = mysqli_num_rows($result);
                           <tr>
                             <th>코드</th>
                             <th>카테고리명</th>
-                            <!-- <th>하위 중분류 수</th> -->
+                            <th>하위 중분류 수</th>
                             <th>등록 상품수</th>
                             <th>숨기기</th>
                             <th>관리</th>
@@ -79,13 +79,12 @@ for ($i = 0; $row = mysqli_fetch_array($result); $i++) {
 
     ?>
                           <tr>
-                            <td><?=$i + 1;?></td>
-                            <td>
-                              <?=$row['name'];?>
-                              <a href="http://<?=$_SERVER['SERVER_NAME'];?>/shop/catalog-list.php?lcode=<?=$row['code'];?>" target="_blank"><i class="fa fa-external-link"></i></a>
+                            <td><?php echo $i + 1; ?></td>
+                            <td><a href="ca_msub_list.php?lcode=<?php echo $row['code']; ?>"><?php echo $row['name']; ?></a>
+                              <a href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/shop/catalog-list.php?lcode=<?php echo $row['code']; ?>" target="_blank"><i class="fa fa-external-link"></i></a>
                             </td>
-                            <!-- <td><?=$sub_count;?></td> -->
-                            <td><?=$products_count;?> 개</td>
+                            <td><?php echo $sub_count; ?></td>
+                            <td><?php echo $products_count; ?> 개</td>
                             <td>
                               <?php
 if ($row['hide'] == "Y") {
@@ -96,7 +95,7 @@ if ($row['hide'] == "Y") {
     ?>
                             </td>
                             <td>
-                              <a type="button" class="btn btn-default" href="ca_register.php?mode=update&amp;num=<?=$row['num'];?>" ><i class="fa fa-pencil-square-o"></i></a> <a type="button" class="btn btn-danger" href="ca_delete.php?num=<?=$row['num'];?>" onclick="return confirm('정말 삭제하시겠습니까?')"><i class="fa fa-trash-o"></i></a>
+                              <a type="button" class="btn btn-default" href="ca_register.php?mode=update&amp;num=<?php echo $row['num']; ?>" ><i class="fa fa-pencil-square-o"></i></a> <a type="button" class="btn btn-danger" href="ca_delete.php?num=<?php echo $row['num']; ?>" onclick="return confirm('정말 삭제하시겠습니까?')"><i class="fa fa-trash-o"></i></a>
                             </td>
                           </tr>
                               <?php
@@ -125,7 +124,7 @@ if ($total_count == 0) {
             <!-- buttons start -->
             <div class="row text-center">
               <div class="col-sm-12">
-                <a typle="button" class="btn btn-success" href="ca_register.php">카테고리 등록하기</a>
+                <a type="button" class="btn btn-success" href="ca_register.php">카테고리 등록하기</a>
               </div>
             </div>
             <!-- buttons end -->

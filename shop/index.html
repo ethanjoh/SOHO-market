@@ -1,5 +1,22 @@
+<?php
+include "../util/config.php";
+include "../util/util.php";
+
+session_start();
+
+
+if (!$_COOKIE['p_sid']) {
+    $SID = md5(uniqid(rand()));
+    SetCookie("p_sid", $SID, 0, "/");
+}
+$connect = my_connect($host, $dbid, $dbpass, $dbname);
+$info_query = "SELECT * FROM admin_setup";
+$info_res   = mysqli_query($connect, $info_query);
+$info       = mysqli_fetch_array($info_res);
+?>
+
 <!doctype html>
-<html class="no-js" lang="">
+<html class="no-js" lang="ko">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -8,7 +25,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 		<!-- favicon
 		============================================ -->
-        <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+        <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
 		<!-- Google Fonts
 		============================================ -->
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
@@ -67,14 +84,14 @@
                     <div class="row">
                         <div class="col-md-6 col-sm-6">
                             <div class="top-logo">
-                                <a href="index.html"><img src="img/logo/shinsoo-logo.svg" alt="신수상사 로고"></a>
+                                <a href="index.html"><img src="images/shinsoo-logo.svg" alt="신수상사 로고"></a>
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-6">
                             <div class="outlink">
                                 <ul>
-                                    <li><a href="http://www.no1grip.co.kr/" target="_blank"><img src="img/logo/no1grip-home.jpg" alt="no1grip"></a></li>
-                                    <li><a href="http://www.superstroke.co.kr/" target="_blank"><img src="img/logo/ss-home.jpg" alt="superstroke"></a></li>
+                                    <li><a href="http://www.no1grip.co.kr/" target="_blank"><img src="images/logo/no1grip-home.jpg" alt="no1grip"></a></li>
+                                    <li><a href="http://www.superstroke.co.kr/" target="_blank"><img src="images/logo/ss-home.jpg" alt="superstroke"></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -120,7 +137,7 @@
                                                     <li>
                                                         <div class="cat">
                                                             <a href="#">
-                                                                <img src="img/product/4.jpg" alt="">
+                                                                <img src="images/product/4.jpg" alt="">
                                                             </a>
                                                             <div class="cat_two">
                                                                 <p>
@@ -138,7 +155,7 @@
                                                     <li>
                                                         <div class="cat">
                                                             <a href="#">
-                                                                <img src="img/product/5_1_1.jpg" alt="">
+                                                                <img src="images/product/5_1_1.jpg" alt="">
                                                             </a>
                                                             <div class="cat_two">
                                                                 <p>
@@ -218,7 +235,7 @@
                                             <li>
                                                 <a href="shop.html">
                                                     <span class="cat-thumb">
-                                                        <img alt="" src="img/icon/1.png">
+                                                        <img alt="" src="images/icon/1.png">
                                                     </span>
                                                     TIGER CHOI
                                                 </a>
@@ -226,7 +243,7 @@
                                             <li>
                                                 <a href="shop.html">
                                                     <span class="cat-thumb">
-                                                        <img alt="" src="img/icon/2.png">
+                                                        <img alt="" src="images/icon/2.png">
                                                     </span>
                                                     NO1GRIP
                                                 </a>
@@ -234,7 +251,7 @@
                                             <li>
                                                 <a href="shop.html">
                                                     <span class="cat-thumb">
-                                                        <img alt="" src="img/icon/3.png">
+                                                        <img alt="" src="images/icon/3.png">
                                                     </span>
                                                     SUPER STROKE
                                                 </a>
@@ -242,7 +259,7 @@
                                             <li>
                                                 <a href="shop.html">
                                                     <span class="cat-thumb">
-                                                        <img alt="" src="img/icon/4.png">
+                                                        <img alt="" src="images/icon/4.png">
                                                     </span>
                                                     WINN
                                                 </a>
@@ -250,7 +267,7 @@
                                             <li>
                                                 <a href="shop.html">
                                                     <span class="cat-thumb ">
-                                                        <img alt="" src="img/icon/5.png">
+                                                        <img alt="" src="images/icon/5.png">
                                                     </span>
                                                     TIGER SHARK
                                                 </a>
@@ -258,7 +275,7 @@
                                             <li>
                                                 <a href="shop.html">
                                                     <span class="cat-thumb">
-                                                        <img alt="" src="img/icon/6.png">
+                                                        <img alt="" src="images/icon/6.png">
                                                     </span>
                                                     GRIP TECH
                                                 </a>
@@ -365,8 +382,8 @@
 		<section class="slider-area">
 			<div class="bend niceties preview-2">
 				<div id="ensign-nivoslider" class="slides">
-					<img src="img/slider/slider11.jpg" alt="" title="#slider-direction-1"  />
-					<img src="img/slider/slider12.jpg" alt="" title="#slider-direction-2"  />
+					<img src="images/slider/slider11.jpg" alt="" title="#slider-direction-1"  />
+					<img src="images/slider/slider12.jpg" alt="" title="#slider-direction-2"  />
 				</div>
 				<!-- direction 1 -->
 				<div id="slider-direction-1" class="t-cn slider-direction">
@@ -404,13 +421,13 @@
             <div class="container">
                 <div class="row">
                     <div class="product col-md-4 col-sm-4 col-xs-12">
-                        <a href="#"><img src="img/product/banner23.jpg" alt=""></a>
+                        <a href="#"><img src="images/product/banner23.jpg" alt=""></a>
                     </div>
                     <div class="product col-md-4 col-sm-4 col-xs-12">
-                        <a href="#"><img src="img/product/banner24.jpg" alt=""></a>
+                        <a href="#"><img src="images/product/banner24.jpg" alt=""></a>
                     </div>
                     <div class="product col-md-4 col-sm-4 col-xs-12">
-                        <a href="#"><img src="img/product/banner25.jpg" alt=""></a>
+                        <a href="#"><img src="images/product/banner25.jpg" alt=""></a>
                     </div>
                    <div class="col-md-12">
                         <div class="ma-title">
@@ -426,7 +443,7 @@
                                         <span class="sale-text">Sale</span>
                                         <div class="product-img">
                                             <a href="#">
-                                                <img class="primary-image" src="img/product/8.jpg" alt="" />
+                                                <img class="primary-image" src="images/product/8.jpg" alt="" />
                                             </a>
                                         </div>
                                         <div class="product-content">
@@ -461,7 +478,7 @@
                                         <span class="sale-text">Sale</span>
                                         <div class="product-img">
                                             <a href="#">
-                                                <img class="primary-image" src="img/product/4.jpg" alt="" />
+                                                <img class="primary-image" src="images/product/4.jpg" alt="" />
                                             </a>
                                         </div>
                                         <div class="product-content">
@@ -496,7 +513,7 @@
                                         <span class="sale-text">Sale</span>
                                         <div class="product-img">
                                             <a href="#">
-                                                <img class="primary-image" src="img/product/5_1_1.jpg" alt="" />
+                                                <img class="primary-image" src="images/product/5_1_1.jpg" alt="" />
                                             </a>
                                         </div>
                                         <div class="product-content">
@@ -531,7 +548,7 @@
                                         <span class="sale-text">Sale</span>
                                         <div class="product-img">
                                             <a href="#">
-                                                <img class="primary-image" src="img/product/3_2.jpg" alt="" />
+                                                <img class="primary-image" src="images/product/3_2.jpg" alt="" />
                                             </a>
                                         </div>
                                         <div class="product-content">
@@ -565,7 +582,7 @@
                                         <span class="sale-text">Sale</span>
                                         <div class="product-img">
                                             <a href="#">
-                                                <img class="primary-image" src="img/product/5_1_1.jpg" alt="" />
+                                                <img class="primary-image" src="images/product/5_1_1.jpg" alt="" />
                                             </a>
                                         </div>
                                         <div class="product-content">
@@ -599,7 +616,7 @@
                                         <span class="sale-text">Sale</span>
                                         <div class="product-img">
                                             <a href="#">
-                                                <img class="primary-image" src="img/product/7_2.jpg" alt="" />
+                                                <img class="primary-image" src="images/product/7_2.jpg" alt="" />
                                             </a>
                                         </div>
                                         <div class="product-content">
@@ -631,7 +648,7 @@
                                         <span class="sale-text">Sale</span>
                                         <div class="product-img">
                                             <a href="#">
-                                                <img class="primary-image" src="img/product/6_4.jpg" alt="" />
+                                                <img class="primary-image" src="images/product/6_4.jpg" alt="" />
                                             </a>
                                         </div>
                                         <div class="product-content">
@@ -663,7 +680,7 @@
                                         <span class="sale-text">Sale</span>
                                         <div class="product-img">
                                             <a href="#">
-                                                <img class="primary-image" src="img/product/13.jpg" alt="" />
+                                                <img class="primary-image" src="images/product/13.jpg" alt="" />
                                             </a>
                                         </div>
                                         <div class="product-content">
@@ -695,7 +712,7 @@
                                         <span class="sale-text">Sale</span>
                                         <div class="product-img">
                                             <a href="#">
-                                                <img class="primary-image" src="img/product/1_1.jpg" alt="" />
+                                                <img class="primary-image" src="images/product/1_1.jpg" alt="" />
                                             </a>
                                         </div>
                                         <div class="product-content">
@@ -727,7 +744,7 @@
                                         <span class="sale-text">Sale</span>
                                         <div class="product-img">
                                             <a href="#">
-                                                <img class="primary-image" src="img/product/12_2.jpg" alt="" />
+                                                <img class="primary-image" src="images/product/12_2.jpg" alt="" />
                                             </a>
                                         </div>
                                         <div class="product-content">
@@ -759,7 +776,7 @@
                                         <span class="sale-text">Sale</span>
                                         <div class="product-img">
                                             <a href="#">
-                                                <img class="primary-image" src="img/product/15_1.jpg" alt="" />
+                                                <img class="primary-image" src="images/product/15_1.jpg" alt="" />
                                             </a>
                                         </div>
                                         <div class="product-content">
@@ -792,7 +809,7 @@
                                         <span class="sale-text">Sale</span>
                                         <div class="product-img">
                                             <a href="#">
-                                                <img class="primary-image" src="img/product/17.jpg" alt="" />
+                                                <img class="primary-image" src="images/product/17.jpg" alt="" />
                                             </a>
                                         </div>
                                         <div class="product-content">
@@ -824,7 +841,7 @@
                                         <span class="sale-text">Sale</span>
                                         <div class="product-img">
                                             <a href="#">
-                                                <img class="primary-image" src="img/product/18.jpg" alt="" />
+                                                <img class="primary-image" src="images/product/18.jpg" alt="" />
                                             </a>
                                         </div>
                                         <div class="product-content">
@@ -856,7 +873,7 @@
                                         <span class="sale-text">Sale</span>
                                         <div class="product-img">
                                             <a href="#">
-                                                <img class="primary-image" src="img/product/16_3.jpg" alt="" />
+                                                <img class="primary-image" src="images/product/16_3.jpg" alt="" />
                                             </a>
                                         </div>
                                         <div class="product-content">
@@ -888,7 +905,7 @@
                                         <span class="sale-text">Sale</span>
                                         <div class="product-img">
                                             <a href="#">
-                                                <img class="primary-image" src="img/product/20.jpg" alt="" />
+                                                <img class="primary-image" src="images/product/20.jpg" alt="" />
                                             </a>
                                         </div>
                                         <div class="product-content">
@@ -923,14 +940,14 @@
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="lenovo">
                             <a href="#">
-                                <img alt="" src="img/banner/banner15.jpg">
+                                <img alt="" src="images/banner/banner15.jpg">
                             </a>
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="lenovo">
                             <a href="#">
-                                <img alt="" src="img/banner/banner14.jpg">
+                                <img alt="" src="images/banner/banner14.jpg">
                             </a>
                         </div>
                     </div>
@@ -958,7 +975,7 @@
                                         <span class="sale-text">Sale</span>
                                         <div class="product-img">
                                             <a href="#">
-                                                <img class="primary-image" src="img/product/8.jpg" alt="" />
+                                                <img class="primary-image" src="images/product/8.jpg" alt="" />
                                             </a>
                                         </div>
                                         <div class="product-content">
@@ -993,7 +1010,7 @@
                                         <span class="sale-text">Sale</span>
                                         <div class="product-img">
                                             <a href="#">
-                                                <img class="primary-image" src="img/product/4.jpg" alt="" />
+                                                <img class="primary-image" src="images/product/4.jpg" alt="" />
                                             </a>
                                         </div>
                                         <div class="product-content">
@@ -1028,7 +1045,7 @@
                                         <span class="sale-text">Sale</span>
                                         <div class="product-img">
                                             <a href="#">
-                                                <img class="primary-image" src="img/product/5_1_1.jpg" alt="" />
+                                                <img class="primary-image" src="images/product/5_1_1.jpg" alt="" />
                                             </a>
                                         </div>
                                         <div class="product-content">
@@ -1063,7 +1080,7 @@
                                         <span class="sale-text">Sale</span>
                                         <div class="product-img">
                                             <a href="#">
-                                                <img class="primary-image" src="img/product/3_2.jpg" alt="" />
+                                                <img class="primary-image" src="images/product/3_2.jpg" alt="" />
                                             </a>
                                         </div>
                                         <div class="product-content">
@@ -1097,7 +1114,7 @@
                                         <span class="sale-text">Sale</span>
                                         <div class="product-img">
                                             <a href="#">
-                                                <img class="primary-image" src="img/product/5_1_1.jpg" alt="" />
+                                                <img class="primary-image" src="images/product/5_1_1.jpg" alt="" />
                                             </a>
                                         </div>
                                         <div class="product-content">
@@ -1131,7 +1148,7 @@
                                         <span class="sale-text">Sale</span>
                                         <div class="product-img">
                                             <a href="#">
-                                                <img class="primary-image" src="img/product/7_2.jpg" alt="" />
+                                                <img class="primary-image" src="images/product/7_2.jpg" alt="" />
                                             </a>
                                         </div>
                                         <div class="product-content">
@@ -1163,7 +1180,7 @@
                                         <span class="sale-text">Sale</span>
                                         <div class="product-img">
                                             <a href="#">
-                                                <img class="primary-image" src="img/product/6_4.jpg" alt="" />
+                                                <img class="primary-image" src="images/product/6_4.jpg" alt="" />
                                             </a>
                                         </div>
                                         <div class="product-content">
@@ -1195,7 +1212,7 @@
                                         <span class="sale-text">Sale</span>
                                         <div class="product-img">
                                             <a href="#">
-                                                <img class="primary-image" src="img/product/13.jpg" alt="" />
+                                                <img class="primary-image" src="images/product/13.jpg" alt="" />
                                             </a>
                                         </div>
                                         <div class="product-content">
@@ -1227,7 +1244,7 @@
                                         <span class="sale-text">Sale</span>
                                         <div class="product-img">
                                             <a href="#">
-                                                <img class="primary-image" src="img/product/1_1.jpg" alt="" />
+                                                <img class="primary-image" src="images/product/1_1.jpg" alt="" />
                                             </a>
                                         </div>
                                         <div class="product-content">
@@ -1259,7 +1276,7 @@
                                         <span class="sale-text">Sale</span>
                                         <div class="product-img">
                                             <a href="#">
-                                                <img class="primary-image" src="img/product/12_2.jpg" alt="" />
+                                                <img class="primary-image" src="images/product/12_2.jpg" alt="" />
                                             </a>
                                         </div>
                                         <div class="product-content">
@@ -1291,7 +1308,7 @@
                                         <span class="sale-text">Sale</span>
                                         <div class="product-img">
                                             <a href="#">
-                                                <img class="primary-image" src="img/product/15_1.jpg" alt="" />
+                                                <img class="primary-image" src="images/product/15_1.jpg" alt="" />
                                             </a>
                                         </div>
                                         <div class="product-content">
@@ -1324,7 +1341,7 @@
                                         <span class="sale-text">Sale</span>
                                         <div class="product-img">
                                             <a href="#">
-                                                <img class="primary-image" src="img/product/17.jpg" alt="" />
+                                                <img class="primary-image" src="images/product/17.jpg" alt="" />
                                             </a>
                                         </div>
                                         <div class="product-content">
@@ -1356,7 +1373,7 @@
                                         <span class="sale-text">Sale</span>
                                         <div class="product-img">
                                             <a href="#">
-                                                <img class="primary-image" src="img/product/18.jpg" alt="" />
+                                                <img class="primary-image" src="images/product/18.jpg" alt="" />
                                             </a>
                                         </div>
                                         <div class="product-content">
@@ -1388,7 +1405,7 @@
                                         <span class="sale-text">Sale</span>
                                         <div class="product-img">
                                             <a href="#">
-                                                <img class="primary-image" src="img/product/16_3.jpg" alt="" />
+                                                <img class="primary-image" src="images/product/16_3.jpg" alt="" />
                                             </a>
                                         </div>
                                         <div class="product-content">
@@ -1420,7 +1437,7 @@
                                         <span class="sale-text">Sale</span>
                                         <div class="product-img">
                                             <a href="#">
-                                                <img class="primary-image" src="img/product/20.jpg" alt="" />
+                                                <img class="primary-image" src="images/product/20.jpg" alt="" />
                                             </a>
                                         </div>
                                         <div class="product-content">
@@ -1452,7 +1469,7 @@
                             </div>
                         </div>
                         <div class="banner">
-                            <a href="#"><img src="img/banner16.jpg" alt=""></a>
+                            <a href="#"><img src="images/banner16.jpg" alt=""></a>
                         </div>
                     </div>
                 </div>
@@ -1477,25 +1494,25 @@
                 <div class="row">
                     <div class="item_all indicator-style">
                         <div class="col-md-12">
-                            <img class="primary-img" src="img/brand/tigerchoi.jpg" alt="" />
+                            <img class="primary-img" src="images/brand/tigerchoi.jpg" alt="" />
                         </div>
                         <div class="col-md-12">
-                            <img class="primary-img" src="img/brand/no1grip.jpg" alt="" />
+                            <img class="primary-img" src="images/brand/no1grip.jpg" alt="" />
                         </div>
                         <div class="col-md-12">
-                            <img class="primary-img" src="img/brand/superstroke.jpg" alt="" />
+                            <img class="primary-img" src="images/brand/superstroke.jpg" alt="" />
                         </div>
                         <div class="col-md-12">
-                            <img class="primary-img" src="img/brand/winn.jpg" alt="" />
+                            <img class="primary-img" src="images/brand/winn.jpg" alt="" />
                         </div>
                         <div class="col-md-12">
-                            <img class="primary-img" src="img/brand/tigershark.jpg" alt="" />
+                            <img class="primary-img" src="images/brand/tigershark.jpg" alt="" />
                         </div>
                         <div class="col-md-12">
-                            <img class="primary-img" src="img/brand/griptech.jpg" alt="" />
+                            <img class="primary-img" src="images/brand/griptech.jpg" alt="" />
                         </div>
                         <div class="col-md-12">
-                            <img class="primary-img" src="img/brand/golfpride.jpg" alt="" />
+                            <img class="primary-img" src="images/brand/golfpride.jpg" alt="" />
                         </div>
                     </div>
                 </div>
@@ -1630,7 +1647,7 @@
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <div class="footer-payment">
                                 <a href="#">
-                                    <img alt="" src="img/footer/payment.png">
+                                    <img alt="" src="images/footer/payment.png">
                                 </a>
                             </div>
                         </div>
@@ -1649,7 +1666,7 @@
 		============================================ -->
 		<!-- jquery
 		============================================ -->
-        <script src="js/vendor/jquery-1.11.3.min.js"></script>
+        <script src="js/vendor/jquery-2.2.0.min.js"></script>
 		<!-- bootstrap JS
 		============================================ -->
         <script src="js/bootstrap.min.js"></script>

@@ -156,9 +156,10 @@ $total  = mysqli_num_rows($result);
 if ($total == 0) {
     ?>
             <div class="col-sm-12">
-              <p>생성된 게시판이 없습니다.</p>
-              <p>관리자 페이지 > 환경설정 > 게시판관리에서 게시판을 생성해 주세요.</p>
-            </div>
+              <div class="alert alert-danger" role="alert">
+                <p>생성된 게시판이 없습니다.</p>
+                <p>관리자 페이지 > 환경설정 > <a href="/admin/bbs/bbs_list.php">게시판 설정</a>에서 게시판을 생성해 주세요.</p>
+              </div>
             <?php
 } else {
     if ($total % 2 == 1) {
