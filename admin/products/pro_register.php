@@ -19,15 +19,21 @@
                   사용방법
                 </header>
                 <ul class="info-body">
-                  <li><i class="fa fa-info-circle"></i> 날짜와 관계없이 포장완료된 주문만 표시됩니다.</li>
-                  <li><i class="fa fa-info-circle"></i> 포장이 완료되어야 나타납니다.</li>
+                  <li><i class="fa fa-info-circle"></i> 노출이 되지 않도록 아예 감추려면 판매중지에 체크하세요.</li>
                 </ul>
               </section>
             </div>
           </div>
           <!-- info end -->
           <?php
-if ($mode == "update") {
+$mode      = $_GET['mode'];
+$prod_code = $_GET['prod_code'];
+$p_num     = $_GET[p_num];
+$lcode     = $_GET['lcode'];
+$mcode     = $_GET['mcode'];
+$page      = $_GET['page'];
+
+if ("update" == $mode) {
     if ($prod_code) {
         $update_qry = "SELECT * FROM products WHERE prod_code='$prod_code' ";
     } else {
@@ -77,12 +83,12 @@ if ($mode == "update") {
 ?> /> <span class="label label-danger">단 종</span>
                             </td>
                           </tr>
-                          <!-- hidden
+
                           <tr>
-                            <th><img src="../images/icn_05.gif" width="24" height="14" alt="선택" /> 메인화면 표시</th>
+                            <th><img src="../images/icn_05.gif" width="24" height="14" alt="선택" /> 메인페이지 노출</th>
                             <td>
                               <input type="checkbox" name="main_new" <?=($update_row['main_new'] == 'Y') ? "checked" : "";?> /> 신상품
-                              <input type="checkbox" name="main_special" <?=($update_row['main_special'] == 'Y') ? "checked" : "";?> /> 기획상품
+                              <!-- <input type="checkbox" name="main_special" <?=($update_row['main_special'] == 'Y') ? "checked" : "";?> /> 기획상품 -->
                               <input type="checkbox" name="main_best" <?=($update_row['main_best'] == 'Y') ? "checked" : "";?> /> 인기상품
                             </td>
                           </tr>
@@ -93,27 +99,28 @@ if ($mode == "update") {
     echo "checked";
 }
 ?> />
-                              <img src="../images/New_icons_44.gif" alt="신상품" width="28" height="11" />
+                              <span class="label label-success">NEW</span>
                               <input type="checkbox" name="option2_chk" <?php if ($update_row['option2_chk'] == 'Y') {
     echo "checked";
 }
 ?> onclick="javascript:alert('아래 항목에서 해당 내용을 설정 또는 해제하세요.');" />
-                              <img src="../images/event_icon.gif" alt="기획상품" width="43" height="16" />
+                              <span class="label label-info">기획</span>
                               <input type="checkbox" name="option3_chk" <?php if ($update_row['option3_chk'] == 'Y') {
     echo "checked";
 }
 ?> />
-                              <img src="../images/best_icon.gif" alt="인기상품" width="43" height="16" />
+                              <span class="label label-danger">인기</span>
                               <input type="checkbox" name="option4_chk" <?php if ($update_row['option4_chk'] == 'Y') {
     echo "checked";
 }
 ?> onclick="javascript:alert('아래 항목에서 해당 내용을 설정 또는 해제하세요.');" />
-                              <img src="../images/sale_icon.gif" alt="할인상품" width="43" height="16" />
+                              <span class="label label-warning">SALE</span>
+<!--
                               <input type="checkbox" name="option5_chk" <?php if ($update_row['option5_chk'] == 'Y') {
     echo "checked";
 }
 ?> />
-                              <img src="../images/delivery_icon.gif" alt="당사직송" width="43" height="16" />
+                               <img src="../images/delivery_icon.gif" alt="당사직송" width="43" height="16" /> -->
                             </td>
                           </tr>
                           <tr>
@@ -147,7 +154,7 @@ if ($mode == "update") {
                               (종료일) <input type="text" class="w8em format-y-m-d divider-dash highlight-days-67 range-low-2008-01-01 no-transparency" name="date2" id="ed" value="<?=$update_row['date2'];?>" size="10" />
                             </td>
                           </tr>
-                          -->
+
                           <tr >
                             <th colspan="2"><i class="fa fa-cube"></i> 상품 정보</th>
                           </tr>
@@ -177,8 +184,8 @@ for ($i = 0; $ca1_row = mysqli_fetch_array($ca1_result); $i++) {
 mysqli_free_result($ca1_result);
 ?>
                               </select>
-                              <!-- hidden
-                              <select class="form-group" name="mcode" onChange="change_code()">
+
+                              <select class="form-control" name="mcode" onChange="change_code()">
                                 <option value="">선택하세요</option>
                                 <?php
 $ca2_qry    = "SELECT * FROM products_category2 WHERE up_category='$lcode' ORDER BY code";
@@ -201,6 +208,7 @@ for ($i = 0; $ca2_row = mysqli_fetch_array($ca2_result); $i++) {
 mysqli_free_result($ca2_result);
 ?>
                               </select>
+                              <!-- hidden
                               <select class="form-group" name="scode" onChange="change_code()">
                                 <option value="">선택하세요</option>
                                 <?php
@@ -241,7 +249,7 @@ mysqli_free_result($ca3_result);
                             </td>
                           </tr>
                           <tr>
-                            <th><img src="../images/icn_04.gif" width="24" height="14" alt="필수" /> 제조사</th>
+                            <th><img src="../images/icn_04.gif" width="24" height="14" alt="필수" /> 브랜드</th>
                             <td>
                               <input type="text" class="form-control" name="company" value="<?=$update_row['company'];?>" /> <!-- / <input type="text" class="form-control" name="importer" value="<?=$update_row['importer'];?>" /> -->
                               <p class="help-block"><i class="fa fa-exclamation-triangle"></i> 해당사항 없을 시 공란</p>
@@ -308,9 +316,11 @@ if ($update_row['opt']) {
         ?>
                         <td>
                           <?php
-$optname  = explode(",", $update_row['opt']);
+
+        $optname  = explode(",", $update_row['opt']);
         $optstock = explode(",", $update_row['opt_stock']);
-        $barcode  = explode(",", $update_row['barcode']);
+        // $barcode  = explode(",", $update_row['barcode']);
+
         for ($i = 0; $i < count($optname); $i++) {
             echo "<input name=\"optname[]\" type=\"text\" class=\"form-control\" value=\"$optname[$i]\" size=\"20\" >&nbsp;";
             //echo "<input name=\"optstock[]\" type=\"text\" value=$optstock[$i] size=\"2\" ><br/>";
@@ -352,13 +362,15 @@ $optname  = explode(",", $update_row['opt']);
 }
 }
 ?>
-                      <!--                         <tr>
+                      <!--
+                      <tr>
                         <th><img src="../images/icn_04.gif" width="24" height="14" alt="필수" /> 크기/무게</th>
                         <td>
                           <input type="text" name="size" class="form-control" value="<?=$update_row['size'];?>" />
                           <p class="help-block"><i class="fa fa-exclamation-triangle"></i> (예: 10 x 20 cm)</p>
                         </td>
                       </tr>
+
                       <tr>
                         <th><img src="../images/icn_04.gif" width="24" height="14" alt="필수" /> 재질</th>
                         <td><input type="text" name="material" class="form-control" value="<?=$update_row['material'];?>" size="50" /></td>

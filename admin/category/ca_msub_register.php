@@ -32,6 +32,7 @@
             <!-- info end -->
 
       <?php
+$lcode = $_GET['lcode'];
 
 $sql     = "SELECT * FROM products_category1 WHERE code='$lcode' ";
 $result1 = mysqli_query($connect, $sql);

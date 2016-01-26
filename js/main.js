@@ -1,19 +1,19 @@
 (function ($) {
  "use strict";
- 
+
 /*----------------------------
  jQuery MeanMenu
 ------------------------------ */
-	jQuery('nav#dropdown').meanmenu();	 
+	jQuery('nav#dropdown').meanmenu();
 /*----------------------------
  wow js active
 ------------------------------ */
 	new WOW().init();
 /*----------------------------
  owl active
------------------------------- */  
-    $(".features-curosel").owlCarousel({
-        autoPlay: false, 
+------------------------------ */
+    $(".features-carousel").owlCarousel({
+        autoPlay: false,
         slideSpeed:2000,
         items : 4,
         pagination:false,
@@ -24,7 +24,7 @@
         itemsMobile : [767,1]
     });
     $(".features").owlCarousel({
-        autoPlay: false, 
+        autoPlay: false,
         slideSpeed:2000,
         items : 3,
         pagination:false,
@@ -35,7 +35,7 @@
         itemsMobile : [767,1]
     });
     $(".Latest_Post").owlCarousel({
-        autoPlay: false, 
+        autoPlay: false,
         slideSpeed:2000,
         items : 3,
         pagination:false,
@@ -47,9 +47,9 @@
     });
 /*----------------------------
 owl active index-3  start
------------------------------- */  
+------------------------------ */
     $(".futurum").owlCarousel({
-        autoPlay: false, 
+        autoPlay: false,
         slideSpeed:2000,
         items : 1,
         pagination:false,
@@ -60,9 +60,9 @@ owl active index-3  start
         itemsMobile : [767,1]
     });
     $(".item_all_another").owlCarousel({
-        autoPlay: false, 
+        autoPlay: false,
         slideSpeed:2000,
-        items : 3,   
+        items : 3,
         pagination:false,
         navigation:true,
         navigationText:["<i class='fa fa-chevron-left'></i>","<i class='fa fa-chevron-right'></i>"],
@@ -72,11 +72,11 @@ owl active index-3  start
     });
     /*----------------------------
 owl active index-3 start
------------------------------- */ 
+------------------------------ */
     $(".item_all").owlCarousel({
-        autoPlay: false, 
+        autoPlay: false,
         slideSpeed:2000,
-        items : 6,   
+        items : 6,
         pagination:false,
         navigation:true,
         navigationText:["<i class='fa fa-chevron-left'></i>","<i class='fa fa-chevron-right'></i>"],
@@ -86,9 +86,9 @@ owl active index-3 start
     });
 /*----------------------------
 owl active shop-details  start
------------------------------- */  
+------------------------------ */
     $(".more-views").owlCarousel({
-        autoPlay: false, 
+        autoPlay: false,
         slideSpeed:2000,
         items : 3,
         pagination:false,
@@ -99,7 +99,7 @@ owl active shop-details  start
         itemsMobile : [767,1]
     });
     $(".content_all").owlCarousel({
-        autoPlay: false, 
+        autoPlay: false,
         slideSpeed:2000,
         items : 1,
         pagination:false,
@@ -110,7 +110,7 @@ owl active shop-details  start
         itemsMobile : [767,1]
     });
     $(".UpSell").owlCarousel({
-        autoPlay: false, 
+        autoPlay: false,
         slideSpeed:2000,
         items : 5,
         pagination:false,
@@ -121,7 +121,7 @@ owl active shop-details  start
         itemsMobile : [767,1]
     });
    $(".what-client-say").owlCarousel({
-        autoPlay: false, 
+        autoPlay: false,
         slideSpeed:2000,
         items : 1,
         pagination:true,
@@ -134,9 +134,9 @@ owl active shop-details  start
     });
 /*----------------------------
 owl active shop-details  start
------------------------------- */  
+------------------------------ */
     $(".more-views").owlCarousel({
-        autoPlay: false, 
+        autoPlay: false,
         slideSpeed:2000,
         items : 3,
         pagination:false,
@@ -147,7 +147,7 @@ owl active shop-details  start
         itemsMobile : [767,1]
     });
     $(".content_all").owlCarousel({
-        autoPlay: false, 
+        autoPlay: false,
         slideSpeed:2000,
         items : 1,
         pagination:false,
@@ -158,7 +158,7 @@ owl active shop-details  start
         itemsMobile : [767,1]
     });
     $(".UpSell").owlCarousel({
-        autoPlay: false, 
+        autoPlay: false,
         slideSpeed:2000,
         items : 5,
         pagination:false,
@@ -169,7 +169,7 @@ owl active shop-details  start
         itemsMobile : [767,1]
     });
    $(".what-client-say").owlCarousel({
-        autoPlay: false, 
+        autoPlay: false,
         slideSpeed:2000,
         items : 1,
         pagination:true,
@@ -182,9 +182,9 @@ owl active shop-details  start
     });
 /*----------------------------
 blog-slider active
------------------------------- */ 
+------------------------------ */
     $(".b-slide-all").owlCarousel({
-        autoPlay: false, 
+        autoPlay: false,
         slideSpeed:2000,
         items : 1,
         pagination:false,
@@ -196,7 +196,7 @@ blog-slider active
     });
 /*----------------------------
  price-slider active
------------------------------- */  
+------------------------------ */
     $( "#slider-range" ).slider({
         range: true,
         min: 80,
@@ -207,19 +207,19 @@ blog-slider active
         }
     });
     $( "#amount" ).val(  $( "#slider-range" ).slider( "values", 0 ) +
-    " - " + $( "#slider-range" ).slider( "values", 1 ) );    
+    " - " + $( "#slider-range" ).slider( "values", 1 ) );
 /*--------------------------
  scrollUp
----------------------------- */	
+---------------------------- */
 	$.scrollUp({
         scrollText: '<i class="fa fa-angle-up"></i>',
         easingType: 'linear',
         scrollSpeed: 900,
         animation: 'fade'
-    }); 
+    });
 /*--------------------------
  scrollUp
----------------------------- */	
+---------------------------- */
     $(window).on('scroll',function () {
         if($(window).scrollTop()>200) {
             $("#toTop").fadeIn();
@@ -247,5 +247,5 @@ Image Zoom
 	$('.simpleLens-big-image').simpleLens({
 		loading_image: 'demo/images/loading.gif'
 	});
-    
-})(jQuery); 
+
+})(jQuery);

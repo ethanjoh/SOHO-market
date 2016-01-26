@@ -947,7 +947,7 @@ select.select option {
     border: medium none;
     border-bottom: 2px solid #2ba8db;
 }
-.features-curosel .col-md-3 {
+.features-carousel .col-md-3 {
     width: 100%
 }
 .single-product {
@@ -1535,7 +1535,7 @@ address {
     position: relative;
     z-index: 100;
 }
-.home-1 .features-curosel.indicator-style.owl-carousel.owl-theme {
+.home-1 .features-carousel.indicator-style.owl-carousel.owl-theme {
     margin-bottom: 20px;
 }
 .home-1 .top-link {
@@ -1936,7 +1936,7 @@ address {
 .home-4 .top-link {
     background-color: #FFFFFF;
 }
-.home-4 .features-curosel.indicator-style.owl-carousel.owl-theme {
+.home-4 .features-carousel.indicator-style.owl-carousel.owl-theme {
     margin-bottom: 25px;
 }
 .home-4 .top-link {

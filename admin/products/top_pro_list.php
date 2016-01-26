@@ -51,24 +51,27 @@
                               <select class="form-control" name="lcode" onchange="show_msub();">
                                 <option>--- 카테고리 ---</option>
                                 <?php
+$lcode = $_GET['lcode'];
+$mcode = $_GET['mcode'];
+
 $query   = "SELECT * FROM products_category1 ORDER BY num ";
 $result2 = mysqli_query($connect, $query);
 // 현재위치 표시
 for ($i = 1; $row2 = mysqli_fetch_array($result2); $i++) {
     if ($lcode == $row2['code']) {
-        $sel = "selected=\"selected\"";
+        $sel = 'selected="selected"';
     } else {
         $sel = "";
     }
 
-    echo "<option value=\"$row2[code]\" $sel>$row2[name]</option>\n";
+    echo '<option value="' . $row2['code'] . '"' . $sel . '>' . $row2['name'] . '</option>';
 }
 mysqli_free_result($result2);
 ?>
                               </select>
                           </td>
                           <td>
-                            <select class="form-control" name="mcode" onchange="show_ssub('<?=$lcode;?>');">
+                            <select class="form-control" name="mcode" onchange="show_ssub('<?php echo $lcode; ?>');">
                               <option>--- 중분류 ---</option>
                               <?php
 if ($lcode) {
@@ -82,14 +85,15 @@ if ($lcode) {
             $sel2 = "";
         }
 
-        echo "<option value=\"$row[code]\" $sel2>$row[name]</option>\n";
+        echo '<option value="' . $row['code'] . '"' . $sel2 . '>' . $row['name'] . '</option>';
     }
 }
 ?>
                             </select>
                           </td>
+<!--
                           <td>
-                            <select class="form-control" name="scode" onchange="show_last('<?=$lcode;?>', '<?=$mcode;?>');">
+                            <select class="form-control" name="scode" onchange="show_last('<?php echo $lcode; ?>', '<?php echo $mcode; ?>');">
                               <option>--- 소분류 ---</option>
                               <?php
 if ($mcode) {
@@ -103,12 +107,13 @@ if ($mcode) {
             $sel3 = "";
         }
 
-        echo "<option value=\"$srow[code]\" $sel3>$srow[name]</option>\n";
+        echo '<option value="' . $srow['code'] . '"' . $sel3 . '>' . $srow['name'] . '</option>';
     }
 }
 ?>
                             </select>
                           </td>
+-->
                         </tr>
 
                     </tbody>
@@ -170,10 +175,10 @@ if ($result) {
                   <tbody>
                     <tr>
                       <td>
-                        <a class="btn btn-default" href="top_pro_list.php?pmode=out&lcode=<?=$lcode;?>&mcode=<?=$mcode;?>&scode=<?=$scode;?>&page=<?=$page;?>">[품절상품]만 보기</a>
-                        <a class="btn btn-default" href="top_pro_list.php?pmode=cut&lcode=<?=$lcode;?>&mcode=<?=$mcode;?>&scode=<?=$scode;?>&page=<?=$page;?>">[단종상품]만 보기</a>
-                        <a class="btn btn-default" href="top_pro_list.php?pmode=end&lcode=<?=$lcode;?>&mcode=<?=$mcode;?>&scode=<?=$scode;?>&page=<?=$page;?>">[판매종료 상품]만 보기</a>
-                        <a class="btn btn-primary" href="top_pro_list.php?lcode=<?=$lcode;?>&mcode=<?=$mcode;?>&scode=<?=$scode;?>&page=<?=$page;?>">전체보기(판매종료 제외)</a>
+                        <a class="btn btn-default" href="top_pro_list.php?pmode=out&lcode=<?php echo $lcode; ?>&mcode=<?php echo $mcode; ?>&scode=<?php echo $scode; ?>&page=<?php echo $page; ?>">[품절상품]만 보기</a>
+                        <a class="btn btn-default" href="top_pro_list.php?pmode=cut&lcode=<?php echo $lcode; ?>&mcode=<?php echo $mcode; ?>&scode=<?php echo $scode; ?>&page=<?php echo $page; ?>">[단종상품]만 보기</a>
+                        <a class="btn btn-default" href="top_pro_list.php?pmode=end&lcode=<?php echo $lcode; ?>&mcode=<?php echo $mcode; ?>&scode=<?php echo $scode; ?>&page=<?php echo $page; ?>">[판매종료 상품]만 보기</a>
+                        <a class="btn btn-primary" href="top_pro_list.php?lcode=<?php echo $lcode; ?>&mcode=<?php echo $mcode; ?>&scode=<?php echo $scode; ?>&page=<?php echo $page; ?>">전체보기(판매종료 제외)</a>
                       </td>
                     </tr>
                   </tbody>
@@ -189,7 +194,7 @@ if ($result) {
           <div class="col-sm-12">
             <section class="panel">
               <header class="panel-heading table-head">
-                  상품 리스트 (총 등록상품 수: <?=$total;?> 개)
+                  상품 리스트 (총 등록상품 수: <?php echo $total; ?> 개)
                   <?php
 if ($lcode) {
     echo "<a href=\"pro_list.php?lcode=$lcode\"><i class=\"fa fa-file-excel-o\"></i> 엑셀로 상품목록 다운로드</a>";
@@ -251,19 +256,14 @@ if ($result1) {
     for ($i = 0; $prow = mysqli_fetch_array($result1); $i++) {
         $list_num = $total - ($cline + $i);
 
-        if ($i % 2 == 1) {
-            echo "<tr class=\"odd\">\n";
-        } else {
-            echo "<tr>\n";
-        }
-
         ?>
-                    <td><?=$list_num;?></td>
-                    <td><img src="<?=$prow['s_image_name'];?>" width="50" height="50" alt="small image" /></td>
-                    <td class="left"><?=show_icon($prow);?>
-                      <a href="pro_register.php?mode=update&amp;pmode=<?=$pmode;?>&amp;p_num=<?=$prow['num'];?>&amp;lcode=<?=$prow['category_l'];?>&amp;mcode=<?=$prow['category_m'];?>&amp;scode=<?=$prow['category_s'];?>&amp;page=<?=$page;?>">
-                      <?=stripslashes($prow['name']);?></a>
-                      </a>&nbsp;<a href="http://<?=$_SERVER['HTTP_HOST'];?>/shop/catalog-list.php?lcode=<?=$prow['category_l'];?>&amp;mcode=<?=$prow['category_m'];?>&amp;scode=<?=$prow['category_s'];?>" target="_blank"><img src="../images/browser_explorer.png" alt="상품보기" /> </a>
+                  <tr>
+                    <td><?php echo $list_num; ?></td>
+                    <td><img src="<?php echo $prow['s_image_name']; ?>" width="50" height="50" alt="thumbnail image" /></td>
+                    <td class="left"><?php echo show_icon($prow); ?>
+                      <a href="pro_register.php?mode=update&amp;pmode=<?php echo $pmode; ?>&amp;p_num=<?php echo $prow['num']; ?>&amp;lcode=<?php echo $prow['category_l']; ?>&amp;mcode=<?php echo $prow['category_m']; ?>&amp;scode=<?php echo $prow['category_s']; ?>&amp;page=<?php echo $page; ?>">
+                      <?php echo stripslashes($prow['name']); ?></a>
+                      </a>&nbsp;<a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/shop/catalog-list.php?lcode=<?php echo $prow['category_l']; ?>&amp;mcode=<?php echo $prow['category_m']; ?>&amp;scode=<?php echo $prow['category_s']; ?>" target="_blank"><img src="../images/browser_explorer.png" alt="상품보기" /> </a>
                     </td>
                     <td>
                     <?php
@@ -273,7 +273,7 @@ if ($prow['opt']) {
 
         ?>
                     </td>
-                    <td><?=number_format(trim($prow['retail_price']));?> 원</td>
+                    <td><?php echo number_format(trim($prow['retail_price'])); ?> 원</td>
                     <td><?php if ($prow['main_new'] == 'Y') {
             echo "<a type=\"button\" class=\"btn btn-round btn-success\" href=\"pro_opt.php?p_num=" . $prow['num'] . "&mode=del&lcode=" . $prow['category_l'] . "&mcode=" . $prow['category_m'] . "&scode=" . $prow['category_s'] . "&ck=main_new&page=" . $page . "\"><i class=\"fa fa-times\"></i> ON</a>";
         } else {
@@ -294,8 +294,8 @@ if ($prow['opt']) {
         ?>  </td>
                     <form name="register" action="pro_register_ok.php" method="post" onsubmit="javascript:return confirm('상품을 복사하시겠습니까?');">
                       <input type="hidden" name="mode" value="copy" />
-                      <input type="hidden" name="p_num" value="<?=$prow['num'];?>" />
-                      <input type="hidden" name="page" value="<?=$page;?>" />
+                      <input type="hidden" name="p_num" value="<?php echo $prow['num']; ?>" />
+                      <input type="hidden" name="page" value="<?php echo $page; ?>" />
                       <td>
                         <button class="btn btn-warning" onclick="register.submit();" /><i class="fa fa-files-o"></i></button>
                       </td>
@@ -339,7 +339,7 @@ page_nav($totalpage, $cpage, $url);
 
         <!-- function buttons start -->
         <div class="pull-right margin-20">
-          <a type="button" class="btn btn-success" href="pro_register.php?lcode=<?=$lcode;?>&amp;mcode=<?=$mcode;?>&amp;scode=<?=$scode;?>&amp;page=<?=$page;?>">상품등록</a>
+          <a type="button" class="btn btn-success" href="pro_register.php?lcode=<?php echo $lcode; ?>&amp;mcode=<?php echo $mcode; ?>&amp;scode=<?php echo $scode; ?>&amp;page=<?php echo $page; ?>">상품등록</a>
         </div>
         <!-- function buttons end -->
 
@@ -355,9 +355,9 @@ page_nav($totalpage, $cpage, $url);
                 <option value="name">상품명</option>
               </select>
               <input type="hidden" name="mode" value="search" />
-              <input type="hidden" name="lcode" value="<?=$lcode;?>" />
-              <input type="hidden" name="mcode" value="<?=$mcode;?>" />
-              <input type="hidden" name="scode" value="<?=$scode;?>" />
+              <input type="hidden" name="lcode" value="<?php echo $lcode; ?>" />
+              <input type="hidden" name="mcode" value="<?php echo $mcode; ?>" />
+              <input type="hidden" name="scode" value="<?php echo $scode; ?>" />
               <div class="ui-widget form-group">
                 <input type="text" class="form-control" name="keyword" size="16" />
                 <button class="btn btn-primary" onclick="search.submit()"><i class="fa fa-search"></i>검 색</button>
@@ -380,9 +380,9 @@ page_nav($totalpage, $cpage, $url);
     <!-- js placed at the end of the document so the pages load faster -->
     <script src="/js/vendor/jquery-2.2.0.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
-    <script class="include" type="text/javascript" src="/admin/js/jquery.dcjqaccordion.2.7.js"></script>
+    <script src="/admin/js/jquery.dcjqaccordion.2.7.js"></script>
     <script src="/admin/js/jquery.scrollTo.min.js"></script>
-    <script src="/admin/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <script src="/admin/js/jquery.nicescroll.js"></script>
     <script src="/admin/js/respond.min.js" ></script>
 
     <!--common script for all pages-->

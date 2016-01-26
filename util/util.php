@@ -1,4 +1,5 @@
 <?php
+include 'config.php';
 
 //메인에 팝업공지 띄우기
 function show_popup()
@@ -393,147 +394,53 @@ function send_sms($to, $msg_type, $name, $sdate, $connect)
 }
 
 //메인 상품 보이기
-//functioi main_show_products(쿼리결과, 멤버쿼리배열, 세션 아이디)
-function main_show_products($result, $mrow, $id)
+function main_show_products($main_flag, $no_item)
 {
-    if ($result) {
+    global $host, $dbid, $dbpass, $dbname;
+    $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
 
-        for ($i = 0; $rows = mysqli_fetch_array($result); $i++) {
-            echo "<div class=\"portfolio\">\n
-					<ul>
-						<li><a href=\"detail.php?pnum=$rows[num]&lcode=$rows[category_l]&mcode=$rows[category_m]&scode=$rows[category_s]\"><img src=\"$rows[s_image_name]\" width=\"100\" height=\"100\" alt=\"small image\" onerror=\"this.src='../img/noimage.gif'\"></a></li>\n
-						<li class=\"p_name\">" . stripslashes($rows['name']) . "</li>\n";
-
-            $offer_price = check_price($rows, $mrow);
-
-            //할인가가 있을 경우
-            if ($rows['sale_price']) {
-                echo "<li>소비자가: <s>" . number_format($rows['retail_price']) . "</s> 원 </li>\n
-							<li>할인가: " . number_format($rows['sale_price']) . " 원 </li>\n";
-
-                //할인가가 없는 경우
-            } else {
-                echo "<li>소비자가: " . number_format($rows['retail_price']) . " 원 </li>\n";
-            }
-
-            echo "</ul>\n
-					</div>\n";
-
-        }
-        mysqli_free_result($result);
-
-        for ($j = $i; $j < 5; $j++) {
-            echo "<div class=\"portfolio\"></div>\n";
-        }
-
-    } else //if($result)
-    {
-        echo "등록된 상품이 없습니다.\n
-		         <p>관리자 페이지 > 상품관리에서 상품을 등록해 주세요.</p>\n";
+    if ('best' == $main_flag) {
+        $flag = "main_best='Y'";
+    } elseif ('new' == $main_flag) {
+        $flag = "main_new='Y'";
     }
 
-}
-
-//메인 상품 보이기
-//functioi main_show_products(쿼리결과, 멤버쿼리배열, 세션 아이디)
-function show_products($result, $mrow, $id)
-{
-    echo "<div class=\"row\">\n";
+    $query  = "SELECT * FROM products WHERE del_chk='N' AND $flag AND approved = 'Y' ORDER BY rand() DESC LIMIT 0,$no_item ";
+    $result = mysqli_query($connect, $query);
 
     if ($result) {
 
         for ($i = 0; $rows = mysqli_fetch_array($result); $i++) {
+            echo <<<HEREDOC
+                                <!-- single-product start -->
+                                <div class=" col-md-3">
+                                    <div class="single-product">
+                                        <div class="product-img">
+                                            <a href="detail.php?pnum={$rows['num']}&lcode={$rows['category_l']}&mcode={$rows['category_m']}&scode={$rows['category_s']}">
+                                                <img class="primary-image" src="{$rows['b_image1_name']}" alt="" />
+                                            </a>
+                                        </div>
+                                        <div class="product-content">
+                                            <div class="price-box">
+                                                <span class="special-price"><i class="fa fa-krw"></i> {$rows['retail_price']}</span>
+                                            </div>
+                                            <h2 class="product-name"><a href="#">{$rows['name']}</a></h2>
+                                            <div class="product-icon">
+                                                <a href="#"><i class="fa fa-shopping-cart"> </i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- single-product end -->
 
-            echo "	<div class=\"col-sm-4 col-md-3 marginBottom\">\n";
-            echo "		<div class=\"thumbnail center\">\n";
-            echo " 			<img src=\"" . $rows['s_image_name'] . "\" class=\"img-thumbnail\" style=\"width: 100px; height:100px;\" alt=\"small image\" onerror=\"this.src='../img/noimage.gif'\">\n";
-            echo "			<h6>" . stripslashes($rows['name']) . "</h6>\n";
-            echo "			<div class=\"caption\">\n";
-
-            $offer_price = check_price($rows, $mrow);
-
-            //할인가가 있을 경우
-            if ($rows['sale_price']) {
-                echo "<p>소비자가: <s>" . number_format($rows['retail_price']) . "</s> 원\n";
-                echo "할인가: " . number_format($rows['sale_price']) . " 원 </p>\n";
-
-                //할인가가 없는 경우
-            } else {
-                echo "<p>소비자가: " . number_format($rows['retail_price']) . " 원 </p>\n";
-            }
-            echo "<p><a href=\"detail.php?pnum=" . $rows['num'] . "&lcode=" . $rows['category_l'] . "&mcode=" . $rows['category_m'] . "&scode=" . $rows['category_s'] . "\" class=\"btn btn-default\" role=\"button\">상세보기</a></p>\n";
-            echo "			</div>\n";
-            echo "		</div>\n";
-            echo "	</div>\n";
+HEREDOC;
 
         }
+        //end for
         mysqli_free_result($result);
-
-        for ($j = $i; $j < 6; $j++) {
-            echo "<div class=\"row\"></div>\n";
-        }
 
     } else {
-        echo "등록된 상품이 없습니다.\n";
-        echo "<p>관리자 페이지 > 상품관리에서 상품을 등록해 주세요.</p>\n";
-    }
-
-    echo "</div>\n";
-
-}
-
-//메인 상품 보이기
-//function main_show_products(쿼리결과, 멤버쿼리배열, 세션 아이디)
-function main_show_products2($result, $mrow, $id)
-{
-    for ($i = 0; $rows = mysqli_fetch_array($result); $i++) {
-        echo "<div class=\"portfolio\">\n
-    	  	<ul>
-      			<li><a href=\"detail.php?pnum=$rows[num]&lcode=$rows[category_l]&mcode=$rows[category_m]&scode=$rows[category_s]\"><img src=\"$rows[s_image_name]\" width=\"100\" height=\"100\" alt=\"small image\" onerror=\"this.src='../img/noimage.gif'\"></a></li>\n
-      			<li>" . stripslashes($rows['name']) . "</li>\n";
-
-        $offer_price = check_price($rows, $mrow);
-
-        //할인가가 있을 경우
-        if ($rows['sale_price']) {
-            echo "<li>소비자가: <s>" . number_format($rows['retail_price']) . "</s> 원 </li>\n
-      			 	<li>할인가: " . number_format($rows['sale_price']) . " 원 </li>\n
-      			 	<li>공급가: ";
-            if (isset($id) && ($mrow['approved'] == 'Y')) {
-                echo number_format($offer_price) . " 원";
-            } else {
-                echo "(로그인/승인 필요)</li>\n";
-            }
-
-            //공급가만 정해진 경우
-        } else if (!$rows['sale_price'] && $rows['fixed_price']) {
-            echo "<li>소비자가: " . number_format($rows['retail_price']) . " 원 </li>\n
-      			 	<li>공급가: ";
-            if (isset($id) && ($mrow['approved'] == 'Y')) {
-                echo number_format($rows['fixed_price']) . " 원";
-            } else {
-                echo "(로그인/승인 필요)</li>\n";
-            }
-
-            //할인가가 없는 경우
-        } else {
-            echo "<li>소비자가: " . number_format($rows['retail_price']) . " 원 </li>\n
-      			    <li>공급가: ";
-            if (isset($id) && ($mrow['approved'] == 'Y')) {
-                echo number_format($offer_price) . " 원";
-            } else {
-                echo "(로그인/승인 필요)</li>\n";
-            }
-
-        }
-
-        echo "</ul>\n
-  			</div>\n";
-    }
-    mysqli_free_result($result);
-
-    for ($j = $i; $j < 5; $j++) {
-        echo "<div class=\"portfolio\"></div>\n";
+        echo "<p>등록된 상품이 없습니다.</p><p>관리자 페이지 > 상품관리에서 상품을 등록해 주세요.</p>\n";
     }
 
 }
