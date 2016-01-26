@@ -17,7 +17,7 @@
 
             <?php
 // 상위카테고리 코드값으로 부터 현 카테고리 값을 구함
-$query       = "SELECT * FROM products_category1 ORDER BY name";
+$query       = "SELECT * FROM products_category1 ORDER BY code";
 $result      = mysqli_query($connect, $query);
 $total_count = mysqli_num_rows($result);
 ?>
@@ -95,7 +95,8 @@ if ($row['hide'] == "Y") {
     ?>
                             </td>
                             <td>
-                              <a type="button" class="btn btn-default" href="ca_register.php?mode=update&amp;num=<?php echo $row['num']; ?>" ><i class="fa fa-pencil-square-o"></i></a> <a type="button" class="btn btn-danger" href="ca_delete.php?num=<?php echo $row['num']; ?>" onclick="return confirm('정말 삭제하시겠습니까?')"><i class="fa fa-trash-o"></i></a>
+                              <a type="button" class="btn btn-default" href="ca_register.php?mode=update&amp;num=<?php echo $row['num']; ?>" ><i class="fa fa-pencil-square-o"></i></a>
+                              <a type="button" class="btn btn-danger" href="ca_delete.php?num=<?php echo $row['num']; ?>" onclick="return confirm('정말 삭제하시겠습니까?')"><i class="fa fa-trash-o"></i></a>
                             </td>
                           </tr>
                               <?php

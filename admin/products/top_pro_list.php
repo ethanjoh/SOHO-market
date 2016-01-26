@@ -53,6 +53,7 @@
                                 <?php
 $lcode = $_GET['lcode'];
 $mcode = $_GET['mcode'];
+$page  = $_GET['page'];
 
 $query   = "SELECT * FROM products_category1 ORDER BY num ";
 $result2 = mysqli_query($connect, $query);
@@ -210,7 +211,7 @@ if ($lcode) {
                       <th>번호</th>
                       <th colspan="2">제품명</th>
                       <th>옵션</th>
-                      <th>판매가</th>
+                      <th>공급가</th>
                       <th>신상품</th>
                       <th>기획상품</th>
                       <th>인기상품</th>
@@ -219,7 +220,7 @@ if ($lcode) {
                   </thead>
                   <tbody>
                     <?php
-$scale = 50;
+$scale = 20;
 
 if ($page == "") {
     $page = 1;

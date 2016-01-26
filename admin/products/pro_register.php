@@ -342,10 +342,10 @@ if ($update_row['opt']) {
                 $c = "";
             }
 
-            echo "<input name=\"opt_stock[$i]\" type=\"radio\" value=\"1\" $a />재고 있음&nbsp;";
-            echo "<input name=\"opt_stock[$i]\" type=\"radio\" value=\"0\" $b />품절&nbsp;";
-            echo "<input name=\"opt_stock[$i]\" type=\"radio\" value=\"-1\" $c />단종";
-            echo "<input name=\"barcode[]\" type=\"text\" value=\"$barcode[$i]\" /> (바코드)<br />";
+            echo '<input name="' . $opt_stock[$i] . '" type="radio" value="1" ' . $a . ' />재고 있음&nbsp;';
+            echo '<input name="' . $opt_stock[$i] . '" type="radio" value="0" ' . $b . ' />품절&nbsp;';
+            echo '<input name="' . $opt_stock[$i] . '" type="radio" value="-1" ' . $c . ' />단종';
+            // echo "<input name=\"barcode[]\" type=\"text\" value=\"$barcode[$i]\" /> (바코드)<br />";
         }
         ?>
                         </td>

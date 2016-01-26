@@ -25,6 +25,7 @@
                   <ul class="info-body">
                     <li><i class="fa fa-info-circle"></i> 해당 카테고리의 공급업체를 먼저 등록하신 후 카테고리를 등록해야 합니다.</li>
                     <li><i class="fa fa-info-circle"></i> 카테고리 입력 후 공급업체를 조회하여 선택하십시오.</li>
+                    <li><i class="fa fa-info-circle"></i> 공급업체가 없는 경우 빈칸으로 두시기 바랍니다.</li>
                   </ul>
                 </section>
               </div>
@@ -33,7 +34,10 @@
 
 
             <?php
-if ($mode == "update") {
+$mode = $_GET['mode'];
+$num  = $_GET['num'];
+
+if ("update" == $mode) {
     $query  = "SELECT * FROM products_category1 WHERE num='$num'";
     $result = mysqli_query($connect, $query);
     $row    = mysqli_fetch_array($result);

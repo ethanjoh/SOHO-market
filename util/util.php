@@ -393,7 +393,12 @@ function send_sms($to, $msg_type, $name, $sdate, $connect)
 
 }
 
-//메인 상품 보이기
+/**
+ * [main_show_products description]
+ * @param  [type] $main_flag [best, new 구분]
+ * @param  [type] $no_item   [표시할 개수]
+ * @return [type]            [description]
+ */
 function main_show_products($main_flag, $no_item)
 {
     global $host, $dbid, $dbpass, $dbname;
@@ -411,6 +416,10 @@ function main_show_products($main_flag, $no_item)
     if ($result) {
 
         for ($i = 0; $rows = mysqli_fetch_array($result); $i++) {
+
+            $dealer_price = number_format($rows['retail_price']);
+            $item_name    = stripslashes($rows['name']);
+
             echo <<<HEREDOC
                                 <!-- single-product start -->
                                 <div class=" col-md-3">
@@ -422,9 +431,9 @@ function main_show_products($main_flag, $no_item)
                                         </div>
                                         <div class="product-content">
                                             <div class="price-box">
-                                                <span class="special-price"><i class="fa fa-krw"></i> {$rows['retail_price']}</span>
+                                                <span class="special-price"><i class="fa fa-krw"></i> {$dealer_price}</span>
                                             </div>
-                                            <h2 class="product-name"><a href="#">{$rows['name']}</a></h2>
+                                            <h2 class="product-name"><a href="detail.php?pnum={$rows['num']}&lcode={$rows['category_l']}&mcode={$rows['category_m']}&scode={$rows['category_s']}">{$item_name}</a></h2>
                                             <div class="product-icon">
                                                 <a href="#"><i class="fa fa-shopping-cart"> </i></a>
                                             </div>

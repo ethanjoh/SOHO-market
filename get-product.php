@@ -3,6 +3,7 @@
 // get-product.php?f=[파일명]
 // csv 파일은 upload 폴더에 위치
 // 상품 이미지는 img 폴더에 위치
+
 include "util/util.php";
 
 if ($_GET) {
@@ -23,7 +24,7 @@ $db   = "ssss01047271791";
 //connect local db
 $connect = mysqli_connect($host, $dbid, $dbpw);
 mysqli_select_db($connect, $db);
-mysqli_query($connect, "TRUNCATE TABLE products");
+// mysqli_query($connect, "TRUNCATE TABLE products");
 
 $tempCSV = file_get_contents($uploaddir);
 $tempCSV = mb_convert_encoding($tempCSV, 'UTF-8', 'EUC-KR');
@@ -44,39 +45,42 @@ while ($data = fgetcsv($fp)) {
     print_r($data);
     echo "</pre>";
 
+// data[1]: 상품코드, data[2]: 상품명, data[3]: 공급가, data[4]:이미지, data[5]:분류,
+    // data[6]: 모델번호, data[7]: 브랜드, data[8]: 규격
+
     //상품코드
     $prod_code = $data['1'];
     $lcode     = "1";
 
-    //상품명
-    $name = addslashes($data['5']);
+    // 모델번호 =>상품명
+    $name = addslashes($data['6']);
 
-    // 규격
-    $short_desc = $data['2'];
+    // 상품명=>간략설명
+    $short_desc = $data['3'];
 
     // 브랜드
-    $company = $data['6'];
+    $company = $data['7'];
 
     // 아이디
     $id = "admin";
 
-    //수입공급자
+    // 수입공급자
     $importer = "신수상사";
 
-    //소비자가격
+    // 공급가
     // $retail_price = $data['3'];
 
     //DB에 저장할 이미지 저장 경로
     $savedir = "../../upload/p_image/";
 
     // 분류에 따라 저장
-    if ($data['4'] == '아이언/우드그립') {
+    if ($data['5'] == '아이언/우드그립' || $data['5'] == '클럽그립') {
         $mcode     = "1";
         $bimg1_chk = "Y";
-        $file3     = $savedir . $data['5'] . "/b/" . $data['3'];
+        $file3     = $savedir . $data['6'] . "/b/" . $data['4'];
 
         // 생성할 디렉토리명은 모델번호로 지정
-        $dir = "upload/p_image/" . $data['5'] . "/b/";
+        $dir = "upload/p_image/" . $data['6'] . "/b/";
         if (is_dir($dir)) {
             echo "<p>directory " . $dir . " is already exists.</p>\n";
         } else {
@@ -87,10 +91,10 @@ while ($data = fgetcsv($fp)) {
             }
         }
 
-        copy("img/iron/" . $data['3'], $dir . $data['3']);
+        copy("img/iron/" . $data['4'], $dir . $data['4']);
 
         //썸네일 자동생성
-        $dir2 = "upload/p_image/" . $data['5'] . "/s/";
+        $dir2 = "upload/p_image/" . $data['6'] . "/s/";
         if (is_dir($dir2)) {
             echo "<p>directory " . $dir2 . " is already exists.</p>\n";
         } else {
@@ -101,13 +105,13 @@ while ($data = fgetcsv($fp)) {
             }
         }
         $simg_chk = "Y";
-        $file1    = $savedir . $data['5'] . "/s/" . $data['3'];
-        make_thumbnail($dir . $data['3'], 100, 100, $dir2 . $data['3']);
+        $file1    = $savedir . $data['6'] . "/s/" . $data['4'];
+        make_thumbnail($dir . $data['4'], 100, 100, $dir2 . $data['4']);
 
-    } elseif ($data['4'] == '퍼터그립') {
+    } elseif ($data['5'] == '퍼터그립') {
         $mcode     = "2";
         $bimg1_chk = "Y";
-        $file3     = $savedir . "/b/" . $data['3'];
+        $file3     = $savedir . "/b/" . $data['4'];
 
         // 생성할 디렉토리명은 모델번호로 지정
         $dir = "upload/p_image/" . $data['5'] . "/b/";
@@ -121,7 +125,7 @@ while ($data = fgetcsv($fp)) {
             }
         }
 
-        copy("img/putter/" . $data['3'], $dir . $data['3']);
+        copy("img/putter/" . $data['4'], $dir . $data['4']);
 
         //썸네일 자동생성
         $dir2 = "upload/p_image/" . $data['5'] . "/s/";
@@ -135,8 +139,8 @@ while ($data = fgetcsv($fp)) {
             }
         }
         $simg_chk = "Y";
-        $file1    = $savedir . $data['5'] . "/s/" . $data['3'];
-        make_thumbnail($dir . $data['3'], 100, 100, $dir2 . $data['3']);
+        $file1    = $savedir . $data['5'] . "/s/" . $data['4'];
+        make_thumbnail($dir . $data['4'], 100, 100, $dir2 . $data['4']);
     } else {
         $bimg1_chk = "N";
         $file3     = "";
@@ -162,8 +166,9 @@ while ($data = fgetcsv($fp)) {
     $option4_chk = "N";
     $option5_chk = "N";
 
-    $opt       = "";
-    $opt_stock = ""; //must be initialized
+    // 규격=>옵션
+    $opt       = $data['7'];
+    $opt_stock = '1';
 
     $event = "0";
 
