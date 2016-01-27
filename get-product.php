@@ -56,7 +56,7 @@ while ($data = fgetcsv($fp)) {
     $name = addslashes($data['6']);
 
     // 상품명=>간략설명
-    $short_desc = $data['3'];
+    $short_desc = $data['2'];
 
     // 브랜드
     $company = $data['7'];
@@ -68,7 +68,7 @@ while ($data = fgetcsv($fp)) {
     $importer = "신수상사";
 
     // 공급가
-    // $retail_price = $data['3'];
+    $retail_price = $data['3'];
 
     //DB에 저장할 이미지 저장 경로
     $savedir = "../../upload/p_image/";
@@ -167,7 +167,7 @@ while ($data = fgetcsv($fp)) {
     $option5_chk = "N";
 
     // 규격=>옵션
-    $opt       = $data['7'];
+    $opt       = $data['8'];
     $opt_stock = '1';
 
     $event = "0";
@@ -178,20 +178,20 @@ while ($data = fgetcsv($fp)) {
     $moq = "1";
 
     $sql = "INSERT INTO products(prod_code, category_l, category_m,
-   														name, short_desc, company, id,
-	              										moq, opt, opt_stock,stock,
-														s_image,   s_image_name,
-														b_image1, b_image1_name,
-														b_image2, b_image2_name,
-														b_image3, b_image3_name,
-														b_image4, b_image4_name,
-														b_image5, b_image5_name,
-														d_image,  d_image_name,
-				  										created, main_new, main_special, main_best,
-														option1_chk, option2_chk, option3_chk, option4_chk, option5_chk,
-														del_chk, approved)
+								name, short_desc, company, importer, id, retail_price,
+								moq, opt, opt_stock,stock,
+    							s_image,   s_image_name,
+    							b_image1, b_image1_name,
+    							b_image2, b_image2_name,
+    							b_image3, b_image3_name,
+    							b_image4, b_image4_name,
+    							b_image5, b_image5_name,
+    							d_image,  d_image_name,
+    								created, main_new, main_special, main_best,
+    							option1_chk, option2_chk, option3_chk, option4_chk, option5_chk,
+    							del_chk, approved)
 			    		VALUES('$prod_code', '$lcode', '$mcode',
-					  		 		'$name', '$short_desc', '$company', '$id',
+					  		 		'$name', '$short_desc', '$company', '$importer', '$id', '$retail_price',
 				      		 		'$moq',  '$opt', '$opt_stock', '$stock',
 					  		 		'$simg_chk',   '$file1',
 					   		 		'$bimg1_chk', '$file3',
@@ -209,6 +209,8 @@ while ($data = fgetcsv($fp)) {
 
     if ($result) {
         echo "Line " . $line . " : <" . $company . "> " . $prod_code . " -> inserted done! \n";
+    } else {
+        echo "DB 오류발생";
     }
 
     $line++;

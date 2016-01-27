@@ -1,94 +1,397 @@
-<header class="header sides">
-    <div class="container htop">
-        <div class="col-md-6 col-sm-5">
-            <!-- <div class="col-md-6 contact-info"></div> -->
-            <div class="logo pull-left">
-                <a href="/main/index.php"><img class="align-bottom main-logo-top" src="../images/s-medics-logo.png"></a>
-            </div>
-            <div class="slogan hidden-xs">TOTAL SOLUTION FOR SURGERY</div>
-        </div>
-        <div class="col-md-6 col-sm-7 text-right login-top">
-            <?php
-if (!$_SESSION['p_id'] || !$_SESSION['p_name']) {; // not logged in status
-    ?>
-            <a href="" data-popup="login" class="a-login btn btn-primary btn-extra pull-right">Login</a>
-            <?php
-} else {; // logged in status
-    ?>
-            <div class="hcart text-right">
-                <a href="/member/logout.php" class="a-login btn btn-warning btn-extra pull-right">Logout</a>
-            </div>
-            <?php
+<?php
+include_once "../util/config.php";
+include_once "../util/util.php";
+
+session_start();
+
+if (!$_COOKIE['p_sid']) {
+    $SID = md5(uniqid(rand()));
+    SetCookie("p_sid", $SID, 0, "/");
 }
-; //end if
-?>
-        </div>
-    </div>
-    <div class="hbottom right-pos">
-        <div class="container">
-            <div class="col-md-4 col-sm-3 logo not-sticky">
-                <a href="/main/index.php"><img class="align-bottom main-logo-top-small" src="../images/s-medics-logo.png"></a>
-            </div>
-            <!-- <div class="col-md-1 col-sm-2 iconmenu pull-right"></div> -->
-            <div class="col-md-4"></div> <!-- dummy -->
-            <div class="col-md-8 col-sm-9 mainmenu">
-                <button type="button" class="navbar-toggle pull-right" data-toggle="collapse" data-target="#navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbar-collapse">
-                    <nav>
-                        <ul class="nav navbar-nav nav-menu text-center">
-                            <?php
-if (!$_SESSION['p_id'] || !$_SESSION['p_name']) {; // not logged in status
-    ?>
-                            <li class="dropdown">
-                                <a data-toggle="dropdown" class="dropdown-toggle" href="#">About Us</a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="/about/greeting.php">Greeting</a></li>
-                                    <li><a href="/about/history.php">History</a></li>
-                                    <li><a href="/about/location.php">Location</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a data-toggle="dropdown" class="dropdown-toggle" href="">Products</a>
-                                <ul class="dropdown-menu">
-                                    <?php show_category($connect);?>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" href="/about/contact-us.php">Contact Us</a>
-                            </li>
-                            <li class="dropdown">
-                                <a data-toggle="dropdown-toggle" href="/bbs/list.php?code=notice">Notice <?=check_new_last_post($connect, 'notice', 3);?></a>
-                            </li>
-                            <?php
-} else {
-    ?>
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" href="/shop/cart.php">Cart</a>
-                            </li>
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" href="/shop/catalog-list.php">Order</a>
-                            </li>
-                            <li class="dropdown">
-                                <a data-toggle="dropdown-toggle" href="/shop/order-list.php">My Order</a>
-                            </li>
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" href="/member/register_form.php?mode=edit">Setting</a>
-                            </li>
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" href="/bbs/list.php?code=notice">Notice <?=check_new_last_post($connect, 'notice', 3);?></a>
-                            </li>
-                            <?php
+
+$connect = my_connect($host, $dbid, $dbpass, $dbname);
+
+if (isset($_SESSION['p_id'])) {
+    $mqry = "SELECT * FROM member WHERE id = '$_SESSION[p_id]' ";
+    $mres = mysqli_query($connect, $mqry);
+    $mrow = mysqli_fetch_array($mres);
 }
+
+$info_query = "SELECT * FROM admin_setup";
+$info_res   = mysqli_query($connect, $info_query);
+$info       = mysqli_fetch_array($info_res);
+
+//로그인 이전의 URL로 돌아가기
+$uri = $_SERVER["REQUEST_URI"];
+$uri = urlencode($uri);
+
+//메인설정 정보
+$main_query = "SELECT * FROM main_setup";
+$main_res   = mysqli_query($connect, $main_query);
+$main       = mysqli_fetch_array($main_res);
 ?>
-                        </ul>
-                    </nav>
+
+<!doctype html>
+<html class="no-js" lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title><?php echo $info['company_name']; ?></title>
+        <meta name="keyword" content="<?php echo $info['keywords']; ?>">
+        <meta name="description" content="<?php echo $info['description']; ?>">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- favicon
+		============================================ -->
+        <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico">
+		<!-- Google Fonts
+		============================================ -->
+<!--         <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700,900' rel='stylesheet' type='text/css'> -->
+        <link href='http://fonts.googleapis.com/earlyaccess/notosanskr.css' rel='stylesheet' type='text/css'>
+		<!-- Bootstrap CSS
+		============================================ -->
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+		<!-- Bootstrap CSS
+		============================================ -->
+        <link rel="stylesheet" href="/css/font-awesome.min.css">
+		<!-- owl.carousel CSS
+		============================================ -->
+        <link rel="stylesheet" href="/css/owl.carousel.css">
+        <link rel="stylesheet" href="/css/owl.theme.css">
+        <link rel="stylesheet" href="/css/owl.transitions.css">
+        <!-- nivo slider CSS
+		============================================ -->
+        <link rel="stylesheet" href="/lib/css/nivo-slider.css" type="text/css" />
+        <link rel="stylesheet" href="/lib/css/preview.css" type="text/css" media="screen" />
+		<!-- animate CSS
+		============================================ -->
+        <link rel="stylesheet" href="/css/animate.css">
+		<!-- meanmenu CSS
+		============================================ -->
+        <link rel="stylesheet" href="/css/meanmenu.min.css">
+        <!-- Image Zoom CSS
+		============================================ -->
+        <link rel="stylesheet" href="/css/img-zoom/jquery.simpleLens.css">
+		<!-- normalize CSS
+		============================================ -->
+        <link rel="stylesheet" href="/css/normalize.css">
+		<!-- main CSS
+		============================================ -->
+        <link rel="stylesheet" href="/css/main.css">
+		<!-- style CSS
+		============================================ -->
+        <link rel="stylesheet" href="/css/style.css">
+		<!-- responsive CSS
+		============================================ -->
+        <link rel="stylesheet" href="/css/responsive.css">
+		<!-- modernizr JS
+		============================================ -->
+        <script src="/js/vendor/modernizr-2.8.3.min.js"></script>
+    </head>
+    <body class="home-1">
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <!-- Add your site or application content here -->
+        <!-- start header_area
+		============================================ -->
+        <header class="header_area">
+            <div class="top-link">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            <div class="top-logo">
+                                <a href="index.html"><img src="/images/shinsoo-logo.svg" alt="신수상사 로고"></a>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <div class="outlink">
+                                <ul>
+                                    <li><a href="http://www.no1grip.co.kr/" target="_blank"><img src="/images/logo/no1grip-home.jpg" alt="no1grip"></a></li>
+                                    <li><a href="http://www.superstroke.co.kr/" target="_blank"><img src="/images/logo/ss-home.jpg" alt="superstroke"></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-</header>
+            <div class="header">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 col-sm-8 col-xs-12">
+                            <form action="#" id="search_mini_form">
+                                <div class="form-search s-same" >
+                                    <div class="select-wrapper">
+                                        <select class="select">
+                                            <option value="">All Categories</option>
+                                            <option value="">Smartphones & Accessories</option>
+                                            <option value="">Computers & Networking</option>
+                                            <option value="">Laptops & Tablets</option>
+                                            <option value="">Camerea & Camcorders</option>
+                                            <option value="">Watches</option>
+                                            <option value="">Lights & Lighting</option>
+                                            <option value="">Air conditioner</option>
+                                        </select>
+                                    </div>
+                                    <input class="input-text" type="text" placeholder="검색하기">
+                                    <button class="button" title="Search" type="submit">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class="header-wrapper">
+                                <div class="top-cart-wrapper">
+                                    <div class="top-cart-contain">
+                                        <div class="block-cart">
+                                            <div class="top-cart-title">
+                                                <div class="my-cart">카트</div>
+                                                <a href="#"><p>(2) item:<span>$100.00</span></p></a>
+                                            </div>
+                                            <div class="home">
+                                                <ul>
+                                                    <li>
+                                                        <div class="cat">
+                                                            <a href="#">
+                                                                <img src="/images/product/4.jpg" alt="">
+                                                            </a>
+                                                            <div class="cat_two">
+                                                                <p>
+                                                                    <a href="#">Quisque in arcu</a>
+                                                                </p>
+                                                                <p>1 x $50.00</p>
+                                                            </div>
+                                                            <div class="cat_icon">
+                                                                <a href="#">
+                                                                    <i class="fa fa-times"></i>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="cat">
+                                                            <a href="#">
+                                                                <img src="/images/product/5_1_1.jpg" alt="">
+                                                            </a>
+                                                            <div class="cat_two">
+                                                                <p>
+                                                                    <a href="">Donec non est</a>
+                                                                </p>
+                                                                <p>1 x $50.00</p>
+                                                            </div>
+                                                            <div class="cat_icon">
+                                                                <a href="#">
+                                                                    <i class="fa fa-times"></i>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="cat_bottom">
+                                                            <div class="cat_s">
+                                                                <p>Subtotal:<span>$100.00</span></p>
+                                                            </div>
+                                                            <div class="cat_d">
+                                                                <a href="#"><strong>Checkout</strong></a>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+								<div class="top-register ">
+                                    <div class=" block-compare">
+                                        <div class="compare">
+                                            <a href="#"><i class="fa fa-refresh"> </i>
+                                                회원가입
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="top-login ">
+                                    <div class=" block-compare">
+                                        <div class="compare">
+                                            <a href="#"><i class="fa fa-key"> </i>
+                                                로그인
+                                            </a>
+                                        </div>
+                                        <div class="home" id="right">
+                                            <ul>
+                                                <li>
+                                                    <input type="text" placeholder="아이디">
+                                                </li>
+                                                <li>
+                                                    <input type="password" placeholder="비밀번호">
+                                                </li>
+                                                <li>
+                                                    <input type="submit" value="로그인">
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="top-menu">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-4 col-sm-5">
+                            <div class="left-category-menu  hidden-xs">
+                                <div class="left-product-cat">
+                                    <div class="category-heading">
+                                        <h2>브랜드</h2>
+                                    </div>
+                                    <div class="category-menu-list">
+                                        <ul>
+                                            <li>
+                                                <a href="shop.html">
+                                                    <span class="cat-thumb">
+                                                        <img alt="" src="/images/icon/1.png">
+                                                    </span>
+                                                    TIGER CHOI
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html">
+                                                    <span class="cat-thumb">
+                                                        <img alt="" src="/images/icon/2.png">
+                                                    </span>
+                                                    NO1GRIP
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html">
+                                                    <span class="cat-thumb">
+                                                        <img alt="" src="/images/icon/3.png">
+                                                    </span>
+                                                    SUPER STROKE
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html">
+                                                    <span class="cat-thumb">
+                                                        <img alt="" src="/images/icon/4.png">
+                                                    </span>
+                                                    WINN
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html">
+                                                    <span class="cat-thumb ">
+                                                        <img alt="" src="/images/icon/5.png">
+                                                    </span>
+                                                    TIGER SHARK
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html">
+                                                    <span class="cat-thumb">
+                                                        <img alt="" src="/images/icon/6.png">
+                                                    </span>
+                                                    GRIP TECH
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html">
+                                                    <span class="cat-thumb"></span>
+                                                    GOLF PRIDE
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html">
+                                                    <span class="cat-thumb fa fa-plus"></span>
+                                                    트레이닝 그립
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html">
+                                                    <span class="cat-thumb fa fa-plus"></span>
+                                                    주니어 그립
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html">
+                                                    <span class="cat-thumb fa fa-plus"></span>
+                                                    기타 브랜드
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-9 col-md-8 col-sm-7">
+                            <div class="home_menu">
+                                <nav>
+                                    <ul>
+                                        <li><a href="about-us.html">회사 소개</a></li>
+                                        <li><a href="blog.html">뉴스&이벤트</a></li>
+                                        <li class="active1"><a href="#">대리점 안내</a>
+                                            <ul>
+                                                <li><a href="about-us.html">about us</a></li>
+                                                <li><a href="blog.html">blog</a></li>
+                                                <li><a href="blog-details.html">blog details</a></li>
+                                                <li><a href="checkout.html">checkout</a></li>
+                                                <li><a href="contact-us.html">Contacts</a></li>
+                                                <li><a href="shop.html">shop</a></li>
+                                                <li><a href="single-product.html">single-product</a></li>
+                                                <li><a href="shopping-cart.html">shopping-cart</a></li>
+                                                <li><a href="wishlist.html">wishlist</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="contact-us.html">제휴문의</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- mobile-menu-area start -->
+            <div class="mobile-menu-area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="mobile-menu">
+                                <nav id="dropdown">
+                                    <ul>
+                                        <li class="active1"><a href="index.html">Home</a>
+                                            <ul>
+                                                <li><a href="index-2.html">Home 2</a></li>
+                                                <li><a href="index-3.html">Home 3</a></li>
+                                                <li><a href="index-4.html">Home 4</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="about-us.html">about us</a></li>
+                                        <li><a href="blog.html">Blog</a></li>
+                                        <li class="active1"><a href="#">Pages</a>
+                                            <ul>
+                                                <li><a href="about-us.html">about us</a></li>
+                                                <li><a href="blog.html">blog</a></li>
+                                                <li><a href="blog-details.html">blog details</a></li>
+                                                <li><a href="checkout.html">checkout</a></li>
+                                                <li><a href="contact-us.html">Contacts</a></li>
+                                                <li><a href="shop.html">shop</a></li>
+                                                <li><a href="single-product.html">single-product</a></li>
+                                                <li><a href="shopping-cart.html">shopping-cart</a></li>
+                                                <li><a href="wishlist.html">wishlist</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="contact-us.html">Contacts</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- mobile-menu-area end -->
+        </header>
+        <!-- end header_area
+		============================================ -->

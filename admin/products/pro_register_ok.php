@@ -28,9 +28,9 @@ $retail_price = set_var($_POST['retail_price']);
 // $fixed_price = set_var($_POST['fixed_price']);
 // $pflag = set_var($_POST['pflag']);
 // $mileage = set_var($_POST['mileage']);
-$moq         = set_var($_POST['moq']);
-$optname_ins = set_var($_POST['optname_ins']);
-//$opt_stock_ins = set_var($_POST['opt_stock_ins']);
+$moq           = set_var($_POST['moq']);
+$optname_ins   = set_var($_POST['optname_ins']);
+$opt_stock_ins = set_var($_POST['opt_stock_ins']);
 // $barcode_ins = set_var($_POST['barcode_ins']);
 $optname  = set_var($_POST['optname']);
 $optstock = set_var($_POST['opt_stock']);
@@ -47,10 +47,10 @@ $optstock = set_var($_POST['opt_stock']);
 // $restock_date = set_var($_POST['restock_date']);
 // $no_restock = set_var($_POST['no_restock']);
 
-// $option1_chk = set_var($_POST['option1_chk']);
-// $option2_chk = set_var($_POST['option2_chk']);
-// $option3_chk = set_var($_POST['option3_chk']);
-// $option4_chk = set_var($_POST['option4_chk']);
+$option1_chk = set_var($_POST['option1_chk']);
+$option2_chk = set_var($_POST['option2_chk']);
+$option3_chk = set_var($_POST['option3_chk']);
+$option4_chk = set_var($_POST['option4_chk']);
 // $option5_chk = set_var($_POST['option5_chk']);
 
 $main_new     = set_var($_POST['main_new']);
@@ -67,31 +67,31 @@ if ($ca1_result) {
 }
 
 //아이콘 표시 옵션
-// if(empty($option1_chk)){
-//     $option1_chk = "N";
-// } else {
-//     $option1_chk = "Y";
-// }
+if (empty($option1_chk)) {
+    $option1_chk = "N";
+} else {
+    $option1_chk = "Y";
+}
 
-// if(empty($option2_chk)){
-//     $option2_chk = "N";
-// } else {
-//     $option2_chk = "Y";
-// }
+if (empty($option2_chk)) {
+    $option2_chk = "N";
+} else {
+    $option2_chk = "Y";
+}
 
-// if(empty($option3_chk)){
-//     $option3_chk = "N";
-// } else {
-//     $option3_chk = "Y";
-// }
+if (empty($option3_chk)) {
+    $option3_chk = "N";
+} else {
+    $option3_chk = "Y";
+}
 
-// if(empty($option4_chk)){
-//     $option4_chk = "N";
-// } else {
-//     $option4_chk = "Y";
-// }
+if (empty($option4_chk)) {
+    $option4_chk = "N";
+} else {
+    $option4_chk = "Y";
+}
 
-// if(empty($option5_chk)){
+// if (empty($option5_chk)) {
 //     $option5_chk = "N";
 // } else {
 //     $option5_chk = "Y";
@@ -315,7 +315,7 @@ if ($mode == "insert") {
     }
 
     if ($stock == "") {
-        $stock = "100";
+        $stock = "999";
     }
 
     $dbinsert1 = "INSERT INTO products(prod_code, category_l,
@@ -329,7 +329,9 @@ if ($mode == "insert") {
 										b_image4, b_image4_name,
 										b_image5, b_image5_name,
 										d_image,  d_image_name,
-										created, main_new, main_special, main_best, del_chk)
+										created, main_new, main_special, main_best,
+                                        option1_chk, option2_chk, option3_chk, option4_chk,
+                                        del_chk)
 			    		VALUES('$trade_code', '$lcode',
 					  		 		'$name', '$short_desc', '$company', '$id', '$retail_price',
 				      		 		'$moq',  '$opt', '$opt_stock',
@@ -341,14 +343,16 @@ if ($mode == "insert") {
 							 		'$bimg4_chk', '$file6',
 							 		'$bimg5_chk', '$file7',
 							 		'$dimg_chk',  '$file8',
-							 		now(), '$main_new', '$main_special', '$main_best', '$del_chk')";
+							 		now(), '$main_new', '$main_special', '$main_best',
+                                    '$option1_chk', '$option2_chk', '$option3_chk', '$option4_chk',
+                                    '$del_chk')";
     $result1 = mysqli_query($connect, $dbinsert1);
 
     if ($result1) {
 
         // 업체별 구매가능 DB에 신상품 추가
-        $dbup    = "UPDATE buy_product SET pro_id=CONCAT_WS(',', '$trade_code', pro_id), available=CONCAT_WS(',','N', available), price=CONCAT_WS(',','0', price)";
-        $result2 = mysqli_query($connect, $dbup);
+        // $dbup    = "UPDATE buy_product SET pro_id=CONCAT_WS(',', '$trade_code', pro_id), available=CONCAT_WS(',','N', available), price=CONCAT_WS(',','0', price)";
+        // $result2 = mysqli_query($connect, $dbup);
 
         $url = "top_pro_list.php?lcode=" . $lcode . "&mcode=" . $mcode . "&scode=" . $scode . "&page=" . $page . "";
         show_msg('상품을 등록했습니다.', $url);
@@ -442,16 +446,16 @@ if ($mode == "insert") {
     //     $stock = "0";
     // }
 
-    $dbinsert1 = "UPDATE products SET category_l='$lcode',
-										 name='$name',
-										 short_desc='$short_desc',
-										 company='$company',
-										 id='$id',
-										 retail_price='$retail_price',
-										 moq='$moq',
-										 opt='$opt',
-										 opt_stock = '$opt_stock',
-										 contents='$contents'
+    $dbinsert1 = "UPDATE products SET category_l      = '$lcode',
+										 name         = '$name',
+										 short_desc   = '$short_desc',
+										 company      = '$company',
+										 id           = '$id',
+										 retail_price = '$retail_price',
+										 moq          = '$moq',
+										 opt          = '$opt',
+										 opt_stock    = '$opt_stock',
+										 contents     = '$contents'
 										 $temp1_char
 										 $temp3_char
 										 $temp4_char
@@ -459,11 +463,15 @@ if ($mode == "insert") {
 										 $temp6_char
 										 $temp7_char
 										 $temp8_char ,
-										 modified=now(),
-										 main_new = '$main_new',
+										 modified     = now(),
+										 main_new     = '$main_new',
 										 main_special = '$main_special',
-										 main_best = '$main_best',
-										 del_chk='$del_chk'
+										 main_best    = '$main_best',
+                                         option1_chk  = '$option1_chk',
+                                         option2_chk  = '$option2_chk',
+                                         option3_chk  = '$option3_chk',
+                                         option4_chk  = '$option4_chk',
+										 del_chk      = '$del_chk'
 					  WHERE $chg ";
     $result1 = mysqli_query($connect, $dbinsert1);
 

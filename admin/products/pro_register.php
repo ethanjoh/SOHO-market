@@ -88,7 +88,7 @@ if ("update" == $mode) {
                             <th><img src="../images/icn_05.gif" width="24" height="14" alt="선택" /> 메인페이지 노출</th>
                             <td>
                               <input type="checkbox" name="main_new" <?=($update_row['main_new'] == 'Y') ? "checked" : "";?> /> 신상품
-                              <!-- <input type="checkbox" name="main_special" <?=($update_row['main_special'] == 'Y') ? "checked" : "";?> /> 기획상품 -->
+                              <input type="checkbox" name="main_special" <?=($update_row['main_special'] == 'Y') ? "checked" : "";?> /> 기획상품
                               <input type="checkbox" name="main_best" <?=($update_row['main_best'] == 'Y') ? "checked" : "";?> /> 인기상품
                             </td>
                           </tr>
@@ -322,8 +322,8 @@ if ($update_row['opt']) {
         // $barcode  = explode(",", $update_row['barcode']);
 
         for ($i = 0; $i < count($optname); $i++) {
-            echo "<input name=\"optname[]\" type=\"text\" class=\"form-control\" value=\"$optname[$i]\" size=\"20\" >&nbsp;";
-            //echo "<input name=\"optstock[]\" type=\"text\" value=$optstock[$i] size=\"2\" ><br/>";
+            echo '<input name="optname[]" type="text" class="form-control" value="' . $optname[$i] . '" size="20" >&nbsp;';
+            // echo '<input name="optstock[]" type="text" value="' . $optstock[$i] . '" size="2" ><br/>';
             if ($optstock[$i] == 1) {
                 $a = "checked";
             } else {
@@ -342,9 +342,9 @@ if ($update_row['opt']) {
                 $c = "";
             }
 
-            echo '<input name="' . $opt_stock[$i] . '" type="radio" value="1" ' . $a . ' />재고 있음&nbsp;';
-            echo '<input name="' . $opt_stock[$i] . '" type="radio" value="0" ' . $b . ' />품절&nbsp;';
-            echo '<input name="' . $opt_stock[$i] . '" type="radio" value="-1" ' . $c . ' />단종';
+            echo '<input name="opt_stock[' . $i . ']" type="radio" value="1" ' . $a . ' />재고 있음&nbsp;';
+            echo '<input name="opt_stock[' . $i . ']" type="radio" value="0" ' . $b . ' />품절&nbsp;';
+            echo '<input name="opt_stock[' . $i . ']" type="radio" value="-1" ' . $c . ' />단종';
             // echo "<input name=\"barcode[]\" type=\"text\" value=\"$barcode[$i]\" /> (바코드)<br />";
         }
         ?>

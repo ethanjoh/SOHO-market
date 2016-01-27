@@ -81,7 +81,7 @@ if ($lcode) {
 
     for ($i = 0; $row = mysqli_fetch_array($result); $i++) {
         if ($mcode == $row['code']) {
-            $sel2 = "selected=\"selected\"";
+            $sel2 = 'selected="selected"';
         } else {
             $sel2 = "";
         }
@@ -103,7 +103,7 @@ if ($mcode) {
 
     for ($i = 0; $srow = mysqli_fetch_array($result3); $i++) {
         if ($scode == $srow['code']) {
-            $sel3 = "selected=\"selected\"";
+            $sel3 = 'selected="selected"';
         } else {
             $sel3 = "";
         }
@@ -198,7 +198,7 @@ if ($result) {
                   상품 리스트 (총 등록상품 수: <?php echo $total; ?> 개)
                   <?php
 if ($lcode) {
-    echo "<a href=\"pro_list.php?lcode=$lcode\"><i class=\"fa fa-file-excel-o\"></i> 엑셀로 상품목록 다운로드</a>";
+    echo '<a href="pro_list.php?lcode=' . $lcode . '"><i class="fa fa-file-excel-o"></i> 엑셀로 상품목록 다운로드</a>';
 }
 
 ?>
@@ -208,14 +208,14 @@ if ($lcode) {
                 <table class="table table-striped">
                   <thead>
                     <tr>
-                      <th>번호</th>
-                      <th colspan="2">제품명</th>
-                      <th>옵션</th>
-                      <th>공급가</th>
-                      <th>신상품</th>
-                      <th>기획상품</th>
+                      <th class="text-center">번호</th>
+                      <th class="text-center" colspan="2">제품명</th>
+                      <th class="text-center">옵션</th>
+                      <th class="text-center">공급가</th>
+                      <th class="text-center" colspan="3">메인화면 표시</th>
+<!--                       <th>기획상품</th>
                       <th>인기상품</th>
-                      <th>복사</th>
+ -->                      <th class="text-center">복사</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -259,7 +259,7 @@ if ($result1) {
 
         ?>
                   <tr>
-                    <td><?php echo $list_num; ?></td>
+                    <td class="text-right"><?php echo $list_num; ?></td>
                     <td><img src="<?php echo $prow['s_image_name']; ?>" width="50" height="50" alt="thumbnail image" /></td>
                     <td class="left"><?php echo show_icon($prow); ?>
                       <a href="pro_register.php?mode=update&amp;pmode=<?php echo $pmode; ?>&amp;p_num=<?php echo $prow['num']; ?>&amp;lcode=<?php echo $prow['category_l']; ?>&amp;mcode=<?php echo $prow['category_m']; ?>&amp;scode=<?php echo $prow['category_s']; ?>&amp;page=<?php echo $page; ?>">
@@ -274,33 +274,39 @@ if ($prow['opt']) {
 
         ?>
                     </td>
-                    <td><?php echo number_format(trim($prow['retail_price'])); ?> 원</td>
-                    <td><?php if ($prow['main_new'] == 'Y') {
-            echo "<a type=\"button\" class=\"btn btn-round btn-success\" href=\"pro_opt.php?p_num=" . $prow['num'] . "&mode=del&lcode=" . $prow['category_l'] . "&mcode=" . $prow['category_m'] . "&scode=" . $prow['category_s'] . "&ck=main_new&page=" . $page . "\"><i class=\"fa fa-times\"></i> ON</a>";
+                    <td class="text-right" ><?php echo number_format(trim($prow['retail_price'])); ?> 원</td>
+                    <td class="text-center"><?php if ('Y' == $prow['main_new']) {
+            // echo '<a type="button" class="btn btn-round btn-success" href="pro_opt.php?p_num=' . $prow['num'] . '&mode=del&lcode=' . $prow['category_l'] . '&mcode=' . $prow['category_m'] . '&scode=' . $prow['category_s'] . '&ck=main_new&page=' . $page . '"><i class="fa fa-times"></i> ON</a><p class="help-text">신상품</p>';
+            echo '<a type="button" class="btn btn-round btn-success" href="pro_opt.php?p_num=' . $prow['num'] . '&mode=del&ck=main_new&page=' . $page . '"><i class="fa fa-times"></i> ON</a><p class="help-text">신상품</p>';
         } else {
-            echo "<a type=\"button\" class=\"btn btn-round btn-default\" href=\"pro_opt.php?p_num=" . $prow['num'] . "&mode=insert&lcode=" . $prow['category_l'] . "&mcode=" . $prow['category_m'] . "&scode=" . $prow['category_s'] . "&ck=main_new&page=" . $page . "\"><i class=\"fa fa-check\"></i> OFF</a>";
+            // echo '<a type="button" class="btn btn-round btn-default" href="pro_opt.php?p_num=' . $prow['num'] . '&mode=insert&lcode=' . $prow['category_l'] . '&mcode=' . $prow['category_m'] . '&scode=' . $prow['category_s'] . '&ck=main_new&page=' . $page . '"><i class="fa fa-check"></i> OFF</a><p class="help-text">신상품</p>';
+            echo '<a type="button" class="btn btn-round btn-default" href="pro_opt.php?p_num=' . $prow['num'] . '&mode=insert&ck=main_new&page=' . $page . '"><i class="fa fa-check"></i> OFF</a><p class="help-text">신상품</p>';
+
         }
-        ?>  </td>
-                    <td><?php if ($prow['main_special'] == 'Y') {
-            echo "<a <a type=\"button\" class=\"btn btn-round btn-success\" href=\"pro_opt.php?p_num=" . $prow['num'] . "&mode=del&lcode=" . $prow['category_l'] . "&mcode=" . $prow['category_m'] . "&scode=" . $prow['category_s'] . "&ck=main_special&page=" . $page . "\"><i class=\"fa fa-times\"></i> ON</a>";
+        ?>
+                    </td>
+                    <td class="text-center"><?php if ('Y' == $prow['main_special']) {
+            echo '<a type="button" class="btn btn-round btn-success" href="pro_opt.php?p_num=' . $prow['num'] . '&mode=del&lcode=' . $prow['category_l'] . '&mcode=' . $prow['category_m'] . '&scode=' . $prow['category_s'] . '&ck=main_special&page=' . $page . '"><i class="fa fa-times"></i> ON</a><p class="help-text">기획상품</p>';
         } else {
-            echo "<a type=\"button\" class=\"btn btn-round btn-default\" href=\"pro_opt.php?p_num=" . $prow['num'] . "&mode=insert&lcode=" . $prow['category_l'] . "&mcode=" . $prow['category_m'] . "&scode=" . $prow['category_s'] . "&ck=main_special&page=" . $page . "\"><i class=\"fa fa-check\"></i> OFF</a>";
+            echo '<a type="button" class="btn btn-round btn-default" href="pro_opt.php?p_num=' . $prow['num'] . '&mode=insert&lcode=' . $prow['category_l'] . '&mcode=' . $prow['category_m'] . '&scode=' . $prow['category_s'] . '&ck=main_special&page=' . $page . '"><i class="fa fa-check"></i> OFF</a><p class="help-text">기획상품</p>';
         }
-        ?>  </td>
-                    <td><?php if ($prow['main_best'] == 'Y') {
-            echo "<a <a type=\"button\" class=\"btn btn-round btn-success\" href=\"pro_opt.php?p_num=" . $prow['num'] . "&mode=del&lcode=" . $prow['category_l'] . "&mcode=" . $prow['category_m'] . "&scode=" . $prow['category_s'] . "&ck=main_best&page=" . $page . "\"><i class=\"fa fa-times\"></i> ON</a>";
+        ?>
+                    </td>
+                    <td class="text-center"><?php if ('Y' == $prow['main_best']) {
+            echo '<a type="button" class="btn btn-round btn-success" href="pro_opt.php?p_num=' . $prow['num'] . '&mode=del&lcode=' . $prow['category_l'] . '&mcode=' . $prow['category_m'] . '&scode=' . $prow['category_s'] . '&ck=main_best&page=' . $page . '"><i class="fa fa-times"></i> ON</a><p class="help-text">인기상품</p>';
         } else {
-            echo "<a type=\"button\" class=\"btn btn-round btn-default\" href=\"pro_opt.php?p_num=" . $prow['num'] . "&mode=insert&lcode=" . $prow['category_l'] . "&mcode=" . $prow['category_m'] . "&scode=" . $prow['category_s'] . "&ck=main_best&page=" . $page . "\"><i class=\"fa fa-check\"></i> OFF</a>";
+            echo '<a type="button" class="btn btn-round btn-default" href="pro_opt.php?p_num=' . $prow['num'] . '&mode=insert&lcode=' . $prow['category_l'] . '&mcode=' . $prow['category_m'] . '&scode=' . $prow['category_s'] . '&ck=main_best&page=' . $page . '"><i class="fa fa-check"></i> OFF</a><p class="help-text">인기상품</p>';
         }
-        ?>  </td>
-                    <form name="register" action="pro_register_ok.php" method="post" onsubmit="javascript:return confirm('상품을 복사하시겠습니까?');">
+        ?>
+                    </td>
+                      <form name="register" action="pro_register_ok.php" method="post" onsubmit="javascript:return confirm('상품을 복사하시겠습니까?');">
                       <input type="hidden" name="mode" value="copy" />
                       <input type="hidden" name="p_num" value="<?php echo $prow['num']; ?>" />
                       <input type="hidden" name="page" value="<?php echo $page; ?>" />
-                      <td>
-                        <button class="btn btn-warning" onclick="register.submit();" /><i class="fa fa-files-o"></i></button>
-                      </td>
-                    </form>
+                    <td class="text-center">
+                      <button class="btn btn-warning" onclick="register.submit();" /><i class="fa fa-files-o"></i></button>
+                    </td>
+                      </form>
                   </tr>
                   <?php
 } // end of for loop

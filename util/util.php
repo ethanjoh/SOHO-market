@@ -157,42 +157,42 @@ function show_icon(&$rows)
 {
     //품절 처리 시
     if ($rows['del_chk'] == "O") {
-        return $str = "<span class=\"label label-warning\">일시품절</span>";
+        return $str = '<span class="label label-warning">일시품절</span>';
     } else if ($rows['del_chk'] == "Y") //감춤상품
     {
-        return $str = "<span class=\"label label-default\">판매중지</span>";
+        return $str = '<span class="label label-default">판매중지</span>';
     } else if ($rows['del_chk'] == "C") //단종상품
     {
-        return $str = "<span class=\"label label-danger\">단종</span>";
+        return $str = '<span class="label label-danger">단종</span>';
     }
 
     if ($rows['option5_chk'] == "Y") {
         if ($rows['option1_chk'] == "Y") //신상품 Y
         {
-            return $str = "<span class=\"label label-primary\">NEW</span>&nbsp;<span class=\"label label-info\">당사직송</span>";
+            return $str = '<span class="label label-success">NEW</span>&nbsp;<span class="label label-info">당사직송</span>';
         } else if ($rows['option2_chk'] == "Y") //이벤트 Y
         {
-            return $str = "<span class=\"label label-primary\">EVENT</span>&nbsp;<span class=\"label label-info\">당사직송</span>";
+            return $str = '<span class="label label-info">EVENT</span>&nbsp;<span class="label label-info">당사직송</span>';
         } else if ($rows['option3_chk'] == "Y") //인기상품 Y
         {
-            return $str = "<span class=\"label label-success\">BEST</span>&nbsp;<span class=\"label label-info\">당사직송</span>";
+            return $str = '<span class="label label-danger">BEST</span>&nbsp;<span class="label label-info">당사직송</span>';
         } else if ($rows['option4_chk'] == "Y") {
-            return $str = "<span class=\"label label-primary\">SALE</span>&nbsp;<span class=\"label label-info\">당사직송</span>";
+            return $str = '<span class="label label-warning">SALE</span>&nbsp;<span class="label label-info">당사직송</span>';
         } else {
-            return $str = "<span class=\"label label-info\">당사직송</span>";
+            return $str = '<span class="label label-info">당사직송</span>';
         }
 
     } else if ($rows['option1_chk'] == "Y") //신상품 Y
     {
-        return $str = "<span class=\"label label-primary\">NEW</span>";
+        return $str = '<span class="label label-success">NEW</span>';
     } else if ($rows['option2_chk'] == "Y") //이벤트 Y
     {
-        return $str = "<span class=\"label label-primary\">EVENT</span>";
+        return $str = '<span class="label label-info">EVENT</span>';
     } else if ($rows['option3_chk'] == "Y") //인기상품 Y
     {
-        return $str = "<span class=\"label label-success\">BEST</span>";
+        return $str = '<span class="label label-danger">BEST</span>';
     } else if ($rows['option4_chk'] == "Y") {
-        return $str = "<span class=\"label label-primary\">SALE</span>";
+        return $str = '<span class="label label-warning">SALE</span>';
     }
 
 }
