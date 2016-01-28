@@ -101,7 +101,7 @@ $main       = mysqli_fetch_array($main_res);
                     <div class="row">
                         <div class="col-md-6 col-sm-6">
                             <div class="top-logo">
-                                <a href="index.html"><img src="/images/shinsoo-logo.svg" alt="신수상사 로고"></a>
+                                <a href="index.php"><img src="/images/shinsoo-logo.svg" alt="신수상사 로고"></a>
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-6">
@@ -193,7 +193,7 @@ $main       = mysqli_fetch_array($main_res);
                                                                 <p>Subtotal:<span>$100.00</span></p>
                                                             </div>
                                                             <div class="cat_d">
-                                                                <a href="#"><strong>Checkout</strong></a>
+                                                                <a href="cart.php"><strong>주문하기</strong></a>
                                                             </div>
                                                         </div>
                                                     </li>
@@ -248,80 +248,7 @@ $main       = mysqli_fetch_array($main_res);
                                         <h2>브랜드</h2>
                                     </div>
                                     <div class="category-menu-list">
-                                        <ul>
-                                            <li>
-                                                <a href="shop.html">
-                                                    <span class="cat-thumb">
-                                                        <img alt="" src="/images/icon/1.png">
-                                                    </span>
-                                                    TIGER CHOI
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html">
-                                                    <span class="cat-thumb">
-                                                        <img alt="" src="/images/icon/2.png">
-                                                    </span>
-                                                    NO1GRIP
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html">
-                                                    <span class="cat-thumb">
-                                                        <img alt="" src="/images/icon/3.png">
-                                                    </span>
-                                                    SUPER STROKE
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html">
-                                                    <span class="cat-thumb">
-                                                        <img alt="" src="/images/icon/4.png">
-                                                    </span>
-                                                    WINN
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html">
-                                                    <span class="cat-thumb ">
-                                                        <img alt="" src="/images/icon/5.png">
-                                                    </span>
-                                                    TIGER SHARK
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html">
-                                                    <span class="cat-thumb">
-                                                        <img alt="" src="/images/icon/6.png">
-                                                    </span>
-                                                    GRIP TECH
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html">
-                                                    <span class="cat-thumb"></span>
-                                                    GOLF PRIDE
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html">
-                                                    <span class="cat-thumb fa fa-plus"></span>
-                                                    트레이닝 그립
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html">
-                                                    <span class="cat-thumb fa fa-plus"></span>
-                                                    주니어 그립
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html">
-                                                    <span class="cat-thumb fa fa-plus"></span>
-                                                    기타 브랜드
-                                                </a>
-                                            </li>
-                                        </ul>
+<?php show_brands();?>
                                     </div>
                                 </div>
                             </div>
@@ -331,20 +258,8 @@ $main       = mysqli_fetch_array($main_res);
                                 <nav>
                                     <ul>
                                         <li><a href="about-us.html">회사 소개</a></li>
-                                        <li><a href="blog.html">뉴스&이벤트</a></li>
-                                        <li class="active1"><a href="#">대리점 안내</a>
-                                            <ul>
-                                                <li><a href="about-us.html">about us</a></li>
-                                                <li><a href="blog.html">blog</a></li>
-                                                <li><a href="blog-details.html">blog details</a></li>
-                                                <li><a href="checkout.html">checkout</a></li>
-                                                <li><a href="contact-us.html">Contacts</a></li>
-                                                <li><a href="shop.html">shop</a></li>
-                                                <li><a href="single-product.html">single-product</a></li>
-                                                <li><a href="shopping-cart.html">shopping-cart</a></li>
-                                                <li><a href="wishlist.html">wishlist</a></li>
-                                            </ul>
-                                        </li>
+                                        <li><a href="blog.html">뉴스&amp;이벤트</a></li>
+                                        <li><a href="#">대리점 안내</a></li>
                                         <li><a href="contact-us.html">제휴문의</a></li>
                                     </ul>
                                 </nav>

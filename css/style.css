@@ -578,7 +578,7 @@ body {
     margin-top: 9px;
 }
 .select-wrapper .select {
-    background: url("img/icon/down-arrowblk.png") no-repeat scroll 91% 53%;
+    background: url("../images/icon/down-arrowblk.png") no-repeat scroll 91% 53%;
     float: left;
     position: relative;
     z-index: 9999999;
@@ -1065,6 +1065,11 @@ select.select option {
     font-size: 17px;
     margin-left: 5px;
 }
+
+.product-icon, .product-name {
+    text-align: center;
+}
+
 .product-icon a i {
     border: 1px solid #aaa;
     border-radius: 100%;
@@ -2472,6 +2477,14 @@ home-4 .outlink ul li a {
     padding-bottom: 20px;
     text-align: justify;
 }
+.f-fix  .spec {
+    clear: both;
+    color: #8c8c8c;
+    font-size: 13px;
+    line-height: 20px;
+    padding-bottom: 20px;
+    float: right;
+}
 .f-fix .p-box span.special-price {
     /*font-family: Lato;*/
     font-size: 16px;
@@ -3632,7 +3645,7 @@ p.log {
     width: 100%;
 }
 .contact-baner {
-    background: rgba(0, 0, 0, 0) url("img/shop/contact-us-page-banner.jpg") repeat scroll 0 0 / cover;
+    background: rgba(0, 0, 0, 0) url("../images/shop/contact-us-page-banner.jpg") repeat scroll 0 0 / cover;
     height: 100%;
     position: relative;
     width: 100%;

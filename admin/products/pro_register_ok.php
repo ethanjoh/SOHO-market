@@ -23,7 +23,10 @@ $short_desc = set_var($_POST['short_desc']);
 $company    = set_var($_POST['company']);
 // $importer = set_var($_POST['importer']);
 // $origin = set_var($_POST['origin']);
+
 $retail_price = set_var($_POST['retail_price']);
+$retail_price = trim($retail_price);
+
 // $sale_price = set_var($_POST['sale_price']);
 // $fixed_price = set_var($_POST['fixed_price']);
 // $pflag = set_var($_POST['pflag']);
@@ -224,7 +227,7 @@ if ($mode == "insert") {
     $wdate      = date('md');
     $trade_code = "p" . $wdate . "-" . $p_code;
 
-    $savedir = "../../upload/p_image";
+    $savedir = "../../upload/p_image/" . $name;
 
     /*
     if($_FILES['s_image']['name']){
@@ -372,46 +375,46 @@ if ($mode == "insert") {
     $row    = mysqli_fetch_array($result);
     mysqli_free_result($result);
 
-    $savedir = "../../upload/p_image";
+    $savedir = "../../upload/p_image/" . $name;
 
     if ($_FILES['b_image1']['name']) {
-        $temp3 = $savedir . "/b/" . substr(md5(uniqid($g4[server_time])), 0, 8) . "_" . $_FILES['b_image1']['name'];
+        $temp3 = $savedir . "/b/" . $_FILES['b_image1']['name'];
         move_uploaded_file($_FILES['b_image1']['tmp_name'], $temp3);
         $temp3_char = ", b_image1='Y' , b_image1_name='$temp3' ";
 
         //썸네일 자동생성
-        $temp1 = $savedir . "/s/" . substr(md5(uniqid($g4[server_time])), 0, 8) . "_" . $_FILES['b_image1']['name'];
+        $temp1 = $savedir . "/s/" . $_FILES['b_image1']['name'];
         make_thumbnail($temp3, 100, 100, $temp1);
         move_uploaded_file($_FILES['b_image1']['tmp_name'], $temp1);
         $temp1_char = ", s_image='Y' , s_image_name='$temp1' ";
     }
 
     if ($_FILES['b_image2']['name']) {
-        $temp4 = $savedir . "/b/" . substr(md5(uniqid($g4[server_time])), 0, 8) . "_" . $_FILES['b_image2']['name'];
+        $temp4 = $savedir . "/b/" . $_FILES['b_image2']['name'];
         move_uploaded_file($_FILES['b_image2']['tmp_name'], $temp4);
         $temp4_char = ", b_image2='Y' , b_image2_name='$temp4' ";
     }
 
     if ($_FILES['b_image3']['name']) {
-        $temp5 = $savedir . "/b/" . substr(md5(uniqid($g4[server_time])), 0, 8) . "_" . $_FILES['b_image3']['name'];
+        $temp5 = $savedir . "/b/" . $_FILES['b_image3']['name'];
         move_uploaded_file($_FILES['b_image3']['tmp_name'], $temp5);
         $temp5_char = ", b_image3='Y' , b_image3_name='$temp5' ";
     }
 
     if ($_FILES['b_image4']['name']) {
-        $temp6 = $savedir . "/b/" . substr(md5(uniqid($g4[server_time])), 0, 8) . "_" . $_FILES['b_image4']['name'];
+        $temp6 = $savedir . "/b/" . $_FILES['b_image4']['name'];
         move_uploaded_file($_FILES['b_image4']['tmp_name'], $temp6);
         $temp6_char = ", b_image4='Y' , b_image4_name='$temp6' ";
     }
 
     if ($_FILES['b_image5']['name']) {
-        $temp7 = $savedir . "/b/" . substr(md5(uniqid($g4[server_time])), 0, 8) . "_" . $_FILES['b_image5']['name'];
+        $temp7 = $savedir . "/b/" . $_FILES['b_image5']['name'];
         move_uploaded_file($_FILES['b_image5']['tmp_name'], $temp7);
         $temp7_char = ", b_image5='Y' , b_image5_name='$temp7' ";
     }
 
     if ($_FILES['d_image']['name']) {
-        $temp8 = $savedir . "/d/" . substr(md5(uniqid($g4[server_time])), 0, 8) . "_" . $_FILES['d_image']['name'];
+        $temp8 = $savedir . "/d/" . $_FILES['d_image']['name'];
         move_uploaded_file($_FILES['d_image']['tmp_name'], $temp8);
         $temp8_char = ", d_image='Y' , d_image_name='$temp8' ";
     }

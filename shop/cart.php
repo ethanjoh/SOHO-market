@@ -1,478 +1,451 @@
-<<<<<<< HEAD
-<?php
-include "../util/config.php";
-include "../util/util.php";
+<?php include_once '../include/header.php';?>
 
-$connect = my_connect($host,$dbid,$dbpass,$dbname);
-
-if(!$_COOKIE[p_sid]){
-    $SID = md5(uniqid(rand()));
-    SetCookie("p_sid",$SID,0,"/");
-}
-
-//공급가계산과 승인확인을 위한 쿼리
-if(isset($_SESSION['p_id'])) {
-   $mqry = "SELECT * FROM member WHERE id = '$_SESSION[p_id]' ";
-   $mres = mysqli_query($connect, $mqry);
-   $mrow =mysqli_fetch_array($mres);
-}
-
-$info_query = "SELECT * FROM admin_setup";
-$info_res = mysqli_query($connect, $info_query);
-$info = mysqli_fetch_array($info_res);
-
-?>
-
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-    <meta name="keywords" content="<?=$info['keywords']?>" />
-    <meta name="description" content="<?=$info['description']?>" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title><?=$info['site_name']?></title>
-    <link href="favicon.ico" rel="shortcut icon" type="image/x-icon">
-    <link href="../css/bootstrap.css" rel="stylesheet">
-    <link href="../css/style.css" rel="stylesheet">
-</head>
-<body>
-
-<!-- Preloader -->
-<div id="preloader">
-    <div id="status">&nbsp;</div>
-</div>
-
-<!-- WRAPPER -->
-<div class="wrapper">
-
-    <!-- HEADER -->
-    <?php include "../include/header.php"; ?>
-    <!-- /.header -->
-
-    <!-- HOME -->
-    <div class="overlay home medium-size">
-        <div class="bg bg-cart" data-stellar-background-ratio="0.5"></div>
-        <div class="container vmiddle">
-            <div class="row text-center">
-                <div class="icon-big color icon-caddie-shopping-streamline"></div>
-                <h1>Shopping Cart</h1>
-            </div>
-        </div>
-    </div>
-    <!-- /.home -->
-
-    <!-- CONTENT -->
-    <div class="content">
-
-        <!-- CONTAINER: cart -->
-        <div class="container cart">
-
-            <!-- TABLE -->
-            <div class="table-responsive">
-                <table class="cart-table border-bottom">
-                    <thead>
-                    <tr>
-                        <th>&nbsp;</th>
-                        <th>제 품 명</th>
-                        <th>공 급 가</th>
-                        <th>세    액</th>
-                        <th>수    량</th>
-                        <th>소    계</th>
-                        <th>&nbsp;</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-
-                    <?php
-                        //JOIN문을 사용해 장바구니와 제품정보에서 데이터를 가져옴
-                        // 카테고리와 등록 순서로 정렬
-                        $query = "SELECT * FROM products p, products_cart c WHERE c.user_id='$_SESSION[p_id]' AND p.num=c.product_fk ORDER BY p.category_l ASC, num DESC ";
-                        $result = mysqli_query($connect, $query);
-                        $total_count = mysqli_num_rows($result);
-
-                        $tot_money =0;
-                        $tot_mny1 = 0;
-
-                        if(!$total_count){
-                    ?>
-
-                        <tr>
-                            <td class="text-center" colspan="7"><div class="alert alert-danger"><h3>카트가 비었습니다.</h3></div></td>
-                        </tr>
-
-                    <?php
-                        }else{
-
-                            for($i=1; $rows = mysqli_fetch_array($result); $i++){
-                                $s_tot = (int)$rows['volume'] * (int)$rows['amount'];
-                                $tot_money = $tot_money + $s_tot;
-
-                                //상품품절 확인
-                                if($rows['del_chk'] != "N" )
-                                    $pflag = "Y";
-
-                                //상품옵션 품절표시
-                                //상품 옵션이 있는지 확인 후 진행
-                                if($rows['opt'] != "") {
-                                    //장바구니의 옵션과 제품정보를 비교하여 품절옵션이 있는지 확인
-                                    $t_opt = explode(",", $rows['opt']); //장바구니 제품의 옵션명을 배열로 만들어준다
-                                    $t_opt_stock = explode(",", $rows['opt_stock']); //제품의 옵션재고를 배열로 만들어준다
-
-                                    //옵션의 문자열 비교
-                                    for($j=0;$j<count($t_opt);$j++) {
-                                        $str = strcmp($t_opt[$j], $rows['p_opt']);
-
-                                        if(!$str) { //문자열이 같다면 문자열 대체
-                                            if($t_opt_stock[$j] == "0") {
-                                                $rows['p_opt'] .= " <font color=\"blue\">(품절)</font>";
-                                                $oflag = "Y";
-                                            }elseif($t_opt_stock[$j] == "-1") {
-                                                $rows['p_opt'] .= " <font color=\"red\">(단종)</font>";
-                                                $oflag = "Y";
-                                            }else
-                                                $rows['p_opt'] = $t_opt[$j];
-                                        }
-                                    }//end of for loop
-                                }//end of if clause
-
-                    ?>
-                        <form name="basket<?=$i?>" method="post" action="cart-update.php">
-                        <input type="hidden" name="from" value="basket" />
-                        <input type="hidden" name="pflag" value="<?=$pflag?>" />
-                        <input type="hidden" name="oflag" value="<?=$oflag?>" />
-
-                        <tr>
-                            <td class="text-center">
-                                <a href="detail.php?pnum=<?=$rows['num']?>&lcode=<?=$rows['category_l']?>&mcode=<?=$rows['category_m']?>&scode=<?=$rows['category_s']?>"><img src="<?=$rows['s_image_name']?>"></a>
-                            </td>
-                            <td class="td-descr">
-                                <a href="detail.php?pnum=<?=$rows['num']?>&lcode=<?=$rows['category_l']?>&mcode=<?=$rows['category_m']?>&scode=<?=$rows['category_s']?>"><?=stripslashes($rows['name'])?></a>
-                                <p><?=$rows['p_opt']?></p>
-                            </td>
-                            <td>
-                                <div class="cost"><i class="fa fa-krw"></i> <?=number_format($rows['amount'])?></div>
-                            </td>
-                            <td>
-                                <div class="cost"><i class="fa fa-krw"></i> <?=number_format($rows['amount']*.1)?></div>
-                            </td>
-                            <td>
-                                <div class="counting inline-block">
-                                    <a href="" class="a-less disabled">-</a>
-                                    <input type="text" name="products_count" value="<?=$rows['volume']?>">
-                                    <a href="" class="a-more">+</a>
-                                    <input type="hidden" name="md" value="edit" />
-                                    <input type="hidden" name="cart_id" value="<?=$rows['cart_id']?>"/>
-                                    <input type="submit" value="변경" />
+        <!-- start shopping-cart-area
+		============================================ -->
+        <div class="shopping-cart-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-xs-12">
+                        <div class="s-cart-all">
+                            <div class="page-title">
+                                <h1>카트</h1>
+                            </div>
+                            <div class="cart-form table-responsive">
+                                <table id="shopping-cart-table" class="data-table cart-table">
+                                    <tr>
+                                        <th>제거</th>
+                                        <th>이미지</th>
+                                        <th>제품명</th>
+                                        <th>공급가</th>
+                                        <th>수량</th>
+                                        <th>소계</th>
+                                    </tr>
+                                    <tr>
+                                        <td class="sop-icon">
+                                            <a href="#"><i class="fa fa-times"></i></a>
+                                        </td>
+                                        <td class="sop-cart">
+                                            <a href="#"><img class="primary-image" alt="" src="img/product/01_1.jpg"></a>
+                                        </td>
+                                        <td class="sop-cart"><a href="#">Cras neque metus</a></td>
+                                        <td class="sop-cart"><i class="fa fa-krw"></i> 150</td>
+                                        <td><input class="input-text qty" type="text" name="qty" maxlength="12" value="1" title="Qty"></td>
+                                        <td class="sop-cart"><i class="fa fa-krw"></i> 150</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="sop-icon">
+                                            <a href="#"><i class="fa fa-times"></i></a>
+                                        </td>
+                                        <td class="sop-cart">
+                                            <a href="#"><img class="primary-image" alt="" src="img/product/01_1.jpg"></a>
+                                        </td>
+                                        <td class="sop-cart"><a href="#">Accumsan elit </a></td>
+                                        <td class="sop-cart"><i class="fa fa-krw"></i> 100</td>
+                                        <td><input class="input-text qty" type="text" name="qty" maxlength="12" value="1" title="Qty"></td>
+                                        <td class="sop-cart"><i class="fa fa-krw"></i> 100</td>
+                                    </tr>
+                                </table>
+                                <div class="a-all ">
+                                    <div class="a-left">
+                                        <button class="button2  notice" title="" type="button">
+                                            <span>쇼핑 계속하기</span>
+                                        </button>
+                                    </div>
+                                    <div class="a-right">
+                                        <button class="button2 notice Estimate" title="" type="button">
+                                            <span>카트 비우기</span>
+                                        </button>
+                                        <button class="button2 notice " title="" type="button">
+                                            <span>카트 업데이트</span>
+                                        </button>
+                                    </div>
                                 </div>
-                            </td>
-                            <td>
-                                <div class="cost"><i class="fa fa-krw"></i> <?=number_format($s_tot*1.1)?></div>
-                            </td>
-                            <td class="text-center">
-                                <a href="cart-update.php?md=del&amp;cart_id=<?=$rows['cart_id']?>&amp;from=basket" ><i class="custom-icon custom-icon-close-s"></i></a>
-                            </td>
-                        </tr>
-                        </form>
-                    <?php
-                            } // end for loop
-                        } // end if(!$total_count)
-                    ?>
-
-
-                    </tbody>
-                </table>
-            </div>
-            <!-- /table -->
-
-            <!-- row -->
-            <div class="row border-bottom">
-                <div class="col-md-4 col-sm-5 col-md-offset-8 col-sm-offset-7">
-                    <h3 class="normal">카트 합</h3>
-                    <table class="product-table">
-                        <tr>
-                            <th>배송비</th>
-                            <td>무 료</td>
-                        </tr>
-                        <tr>
-                            <th>주문 총계</th>
-                            <td><i class="fa fa-krw"></i> <?=number_format($tot_money*1.1)?> (inc. VAT)</td>
-                        </tr>
-                    </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <!-- /.row -->
-
-            <?php
-            if($total_count == 0){
-                $go_purchase = "javascript:alert('카트에 상품이 없습니다.')";
-            }else{
-                $go_purchase = "checkout.php?from=basket&amp;delivery=L";
-            }
-            ?>
-
-            <!-- row -->
-            <div class="row">
-                <div class="col-md-12 col-sm-12 text-center">
-                    <a href="<?=$go_purchase?>" class="btn btn-success">주문서 작성하기</a>
-                </div>
-            </div>
-        </div>
-        <!-- /.container -->
-    </div>
-    <!-- /.content -->
-</div>
-<!-- /.wrapper -->
-
-<!-- FOOTER -->
-<?php include"../include/footer.php"; ?>
-
-<script src="../js/jquery-2.1.1.min.js"></script>
-<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDv0RLj_LBhRntn4AOCr4zHSYv0-F8gVeA&sensor=false"></script>
-<script src="../js/bootstrap.min.js"></script>
-<script src="../js/jquery.plugins.js"></script>
-<script src="../js/custom.js"></script>
-<script src="../js/global.js"></script>
-<script src="../js/member.js"></script>
-
-</body>
-=======
-<?php
-include "../util/config.php";
-include "../util/util.php";
-
-$connect = my_connect($host,$dbid,$dbpass,$dbname);
-
-if(!$_COOKIE[p_sid]){
-    $SID = md5(uniqid(rand()));
-    SetCookie("p_sid",$SID,0,"/");
-}
-
-//공급가계산과 승인확인을 위한 쿼리
-if(isset($_SESSION['p_id'])) {
-   $mqry = "SELECT * FROM member WHERE id = '$_SESSION[p_id]' ";
-   $mres = mysqli_query($connect, $mqry);
-   $mrow =mysqli_fetch_array($mres);
-}
-
-$info_query = "SELECT * FROM admin_setup";
-$info_res = mysqli_query($connect, $info_query);
-$info = mysqli_fetch_array($info_res);
-
-?>
-
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-    <meta name="keywords" content="<?=$info['keywords']?>" />
-    <meta name="description" content="<?=$info['description']?>" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title><?=$info['site_name']?></title>
-    <link href="favicon.ico" rel="shortcut icon" type="image/x-icon">
-    <link href="../css/bootstrap.css" rel="stylesheet">
-    <link href="../css/style.css" rel="stylesheet">
-</head>
-<body>
-
-<!-- Preloader -->
-<div id="preloader">
-    <div id="status">&nbsp;</div>
-</div>
-
-<!-- WRAPPER -->
-<div class="wrapper">
-
-    <!-- HEADER -->
-    <?php include "../include/header.php"; ?>
-    <!-- /.header -->
-
-    <!-- HOME -->
-    <div class="overlay home medium-size">
-        <div class="bg bg-cart" data-stellar-background-ratio="0.5"></div>
-        <div class="container vmiddle">
-            <div class="row text-center">
-                <div class="icon-big color icon-caddie-shopping-streamline"></div>
-                <h1>Shopping Cart</h1>
-            </div>
-        </div>
-    </div>
-    <!-- /.home -->
-
-    <!-- CONTENT -->
-    <div class="content">
-
-        <!-- CONTAINER: cart -->
-        <div class="container cart">
-
-            <!-- TABLE -->
-            <div class="table-responsive">
-                <table class="cart-table border-bottom">
-                    <thead>
-                    <tr>
-                        <th>&nbsp;</th>
-                        <th>제 품 명</th>
-                        <th>공 급 가</th>
-                        <th>세    액</th>
-                        <th>수    량</th>
-                        <th>소    계</th>
-                        <th>&nbsp;</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-
-                    <?php
-                        //JOIN문을 사용해 장바구니와 제품정보에서 데이터를 가져옴
-                        // 카테고리와 등록 순서로 정렬
-                        $query = "SELECT * FROM products p, products_cart c WHERE c.user_id='$_SESSION[p_id]' AND p.num=c.product_fk ORDER BY p.category_l ASC, num DESC ";
-                        $result = mysqli_query($connect, $query);
-                        $total_count = mysqli_num_rows($result);
-
-                        $tot_money =0;
-                        $tot_mny1 = 0;
-
-                        if(!$total_count){
-                    ?>
-
-                        <tr>
-                            <td class="text-center" colspan="7"><div class="alert alert-danger"><h3>카트가 비었습니다.</h3></div></td>
-                        </tr>
-
-                    <?php
-                        }else{
-
-                            for($i=1; $rows = mysqli_fetch_array($result); $i++){
-                                $s_tot = (int)$rows['volume'] * (int)$rows['amount'];
-                                $tot_money = $tot_money + $s_tot;
-
-                                //상품품절 확인
-                                if($rows['del_chk'] != "N" )
-                                    $pflag = "Y";
-
-                                //상품옵션 품절표시
-                                //상품 옵션이 있는지 확인 후 진행
-                                if($rows['opt'] != "") {
-                                    //장바구니의 옵션과 제품정보를 비교하여 품절옵션이 있는지 확인
-                                    $t_opt = explode(",", $rows['opt']); //장바구니 제품의 옵션명을 배열로 만들어준다
-                                    $t_opt_stock = explode(",", $rows['opt_stock']); //제품의 옵션재고를 배열로 만들어준다
-
-                                    //옵션의 문자열 비교
-                                    for($j=0;$j<count($t_opt);$j++) {
-                                        $str = strcmp($t_opt[$j], $rows['p_opt']);
-
-                                        if(!$str) { //문자열이 같다면 문자열 대체
-                                            if($t_opt_stock[$j] == "0") {
-                                                $rows['p_opt'] .= " <font color=\"blue\">(품절)</font>";
-                                                $oflag = "Y";
-                                            }elseif($t_opt_stock[$j] == "-1") {
-                                                $rows['p_opt'] .= " <font color=\"red\">(단종)</font>";
-                                                $oflag = "Y";
-                                            }else
-                                                $rows['p_opt'] = $t_opt[$j];
-                                        }
-                                    }//end of for loop
-                                }//end of if clause
-
-                    ?>
-                        <form name="basket<?=$i?>" method="post" action="cart-update.php">
-                        <input type="hidden" name="from" value="basket" />
-                        <input type="hidden" name="pflag" value="<?=$pflag?>" />
-                        <input type="hidden" name="oflag" value="<?=$oflag?>" />
-
-                        <tr>
-                            <td class="text-center">
-                                <a href="detail.php?pnum=<?=$rows['num']?>&lcode=<?=$rows['category_l']?>&mcode=<?=$rows['category_m']?>&scode=<?=$rows['category_s']?>"><img src="<?=$rows['s_image_name']?>"></a>
-                            </td>
-                            <td class="td-descr">
-                                <a href="detail.php?pnum=<?=$rows['num']?>&lcode=<?=$rows['category_l']?>&mcode=<?=$rows['category_m']?>&scode=<?=$rows['category_s']?>"><?=stripslashes($rows['name'])?></a>
-                                <p><?=$rows['p_opt']?></p>
-                            </td>
-                            <td>
-                                <div class="cost"><i class="fa fa-krw"></i> <?=number_format($rows['amount'])?></div>
-                            </td>
-                            <td>
-                                <div class="cost"><i class="fa fa-krw"></i> <?=number_format($rows['amount']*.1)?></div>
-                            </td>
-                            <td>
-                                <div class="counting inline-block">
-                                    <a href="" class="a-less disabled">-</a>
-                                    <input type="text" name="products_count" value="<?=$rows['volume']?>">
-                                    <a href="" class="a-more">+</a>
-                                    <input type="hidden" name="md" value="edit" />
-                                    <input type="hidden" name="cart_id" value="<?=$rows['cart_id']?>"/>
-                                    <input type="submit" value="변경" />
+                <div class="cart-collaterals row">
+                    <div class="col-md-4 col-sm-6">
+                        <div class="ma-title ma-cart">
+                            <h2>Estimate Shipping and Tax </h2>
+                        </div>
+                        <div class="shipping-zip-form">
+                            <div class="shipping-form1">
+                                <p>Enter your destination to get a shipping estimate.</p>
+                                <div class="input-one form-list">
+                                    <label class="required get">
+                                        country
+                                        <em>*</em>
+                                    </label>
+                                    <select class="email s-email">
+                                        <option value="">United States</option>
+                                        <option value="AF">Afghanistan</option>
+                                        <option value="AX">Åland Islands</option>
+                                        <option value="AL">Albania</option>
+                                        <option value="DZ">Algeria</option>
+                                        <option value="AS">American Samoa</option>
+                                        <option value="AD">Andorra</option>
+                                        <option value="AO">Angola</option>
+                                        <option value="AI">Anguilla</option>
+                                        <option value="AQ">Antarctica</option>
+                                        <option value="AG">Antigua and Barbuda</option>
+                                        <option value="AR">Argentina</option>
+                                        <option value="AM">Armenia</option>
+                                        <option value="AW">Aruba</option>
+                                        <option value="AU">Australia</option>
+                                        <option value="AT">Austria</option>
+                                        <option value="AZ">Azerbaijan</option>
+                                        <option value="BS">Bahamas</option>
+                                        <option value="BH">Bahrain</option>
+                                        <option value="BD">Bangladesh</option>
+                                        <option value="BB">Barbados</option>
+                                        <option value="BY">Belarus</option>
+                                        <option value="BE">Belgium</option>
+                                        <option value="BZ">Belize</option>
+                                        <option value="BJ">Benin</option>
+                                        <option value="BM">Bermuda</option>
+                                        <option value="BT">Bhutan</option>
+                                        <option value="BO">Bolivia</option>
+                                        <option value="BA">Bosnia and Herzegovina</option>
+                                        <option value="BW">Botswana</option>
+                                        <option value="BV">Bouvet Island</option>
+                                        <option value="BR">Brazil</option>
+                                        <option value="IO">British Indian Ocean Territory</option>
+                                        <option value="VG">British Virgin Islands</option>
+                                        <option value="BN">Brunei</option>
+                                        <option value="BG">Bulgaria</option>
+                                        <option value="BF">Burkina Faso</option>
+                                        <option value="BI">Burundi</option>
+                                        <option value="KH">Cambodia</option>
+                                        <option value="CM">Cameroon</option>
+                                        <option value="CA">Canada</option>
+                                        <option value="CV">Cape Verde</option>
+                                        <option value="KY">Cayman Islands</option>
+                                        <option value="CF">Central African Republic</option>
+                                        <option value="TD">Chad</option>
+                                        <option value="CL">Chile</option>
+                                        <option value="CN">China</option>
+                                        <option value="CX">Christmas Island</option>
+                                        <option value="CC">Cocos (Keeling) Islands</option>
+                                        <option value="CO">Colombia</option>
+                                        <option value="KM">Comoros</option>
+                                        <option value="CG">Congo - Brazzaville</option>
+                                        <option value="CD">Congo - Kinshasa</option>
+                                        <option value="CK">Cook Islands</option>
+                                        <option value="CR">Costa Rica</option>
+                                        <option value="CI">Côte d’Ivoire</option>
+                                        <option value="HR">Croatia</option>
+                                        <option value="CU">Cuba</option>
+                                        <option value="CY">Cyprus</option>
+                                        <option value="CZ">Czech Republic</option>
+                                        <option value="DK">Denmark</option>
+                                        <option value="DJ">Djibouti</option>
+                                        <option value="DM">Dominica</option>
+                                        <option value="DO">Dominican Republic</option>
+                                        <option value="EC">Ecuador</option>
+                                        <option value="EG">Egypt</option>
+                                        <option value="SV">El Salvador</option>
+                                        <option value="GQ">Equatorial Guinea</option>
+                                        <option value="ER">Eritrea</option>
+                                        <option value="EE">Estonia</option>
+                                        <option value="ET">Ethiopia</option>
+                                        <option value="FK">Falkland Islands</option>
+                                        <option value="FO">Faroe Islands</option>
+                                        <option value="FJ">Fiji</option>
+                                        <option value="FI">Finland</option>
+                                        <option value="FR">France</option>
+                                        <option value="GF">French Guiana</option>
+                                        <option value="PF">French Polynesia</option>
+                                        <option value="TF">French Southern Territories</option>
+                                        <option value="GA">Gabon</option>
+                                        <option value="GM">Gambia</option>
+                                        <option value="GE">Georgia</option>
+                                        <option value="DE">Germany</option>
+                                        <option value="GH">Ghana</option>
+                                        <option value="GI">Gibraltar</option>
+                                        <option value="GR">Greece</option>
+                                        <option value="GL">Greenland</option>
+                                        <option value="GD">Grenada</option>
+                                        <option value="GP">Guadeloupe</option>
+                                        <option value="GU">Guam</option>
+                                        <option value="GT">Guatemala</option>
+                                        <option value="GG">Guernsey</option>
+                                        <option value="GN">Guinea</option>
+                                        <option value="GW">Guinea-Bissau</option>
+                                        <option value="GY">Guyana</option>
+                                        <option value="HT">Haiti</option>
+                                        <option value="HM">Heard & McDonald Islands</option>
+                                        <option value="HN">Honduras</option>
+                                        <option value="HK">Hong Kong SAR China</option>
+                                        <option value="HU">Hungary</option>
+                                        <option value="IS">Iceland</option>
+                                        <option value="IN">India</option>
+                                        <option value="ID">Indonesia</option>
+                                        <option value="IR">Iran</option>
+                                        <option value="IQ">Iraq</option>
+                                        <option value="IE">Ireland</option>
+                                        <option value="IM">Isle of Man</option>
+                                        <option value="IL">Israel</option>
+                                        <option value="IT">Italy</option>
+                                        <option value="JM">Jamaica</option>
+                                        <option value="JP">Japan</option>
+                                        <option value="JE">Jersey</option>
+                                        <option value="JO">Jordan</option>
+                                        <option value="KZ">Kazakhstan</option>
+                                        <option value="KE">Kenya</option>
+                                        <option value="KI">Kiribati</option>
+                                        <option value="KW">Kuwait</option>
+                                        <option value="KG">Kyrgyzstan</option>
+                                        <option value="LA">Laos</option>
+                                        <option value="LV">Latvia</option>
+                                        <option value="LB">Lebanon</option>
+                                        <option value="LS">Lesotho</option>
+                                        <option value="LR">Liberia</option>
+                                        <option value="LY">Libya</option>
+                                        <option value="LI">Liechtenstein</option>
+                                        <option value="LT">Lithuania</option>
+                                        <option value="LU">Luxembourg</option>
+                                        <option value="MO">Macau SAR China</option>
+                                        <option value="MK">Macedonia</option>
+                                        <option value="MG">Madagascar</option>
+                                        <option value="MW">Malawi</option>
+                                        <option value="MY">Malaysia</option>
+                                        <option value="MV">Maldives</option>
+                                        <option value="ML">Mali</option>
+                                        <option value="MT">Malta</option>
+                                        <option value="MH">Marshall Islands</option>
+                                        <option value="MQ">Martinique</option>
+                                        <option value="MR">Mauritania</option>
+                                        <option value="MU">Mauritius</option>
+                                        <option value="YT">Mayotte</option>
+                                        <option value="MX">Mexico</option>
+                                        <option value="FM">Micronesia</option>
+                                        <option value="MD">Moldova</option>
+                                        <option value="MC">Monaco</option>
+                                        <option value="MN">Mongolia</option>
+                                        <option value="ME">Montenegro</option>
+                                        <option value="MS">Montserrat</option>
+                                        <option value="MA">Morocco</option>
+                                        <option value="MZ">Mozambique</option>
+                                        <option value="MM">Myanmar (Burma)</option>
+                                        <option value="NA">Namibia</option>
+                                        <option value="NR">Nauru</option>
+                                        <option value="NP">Nepal</option>
+                                        <option value="NL">Netherlands</option>
+                                        <option value="AN">Netherlands Antilles</option>
+                                        <option value="NC">New Caledonia</option>
+                                        <option value="NZ">New Zealand</option>
+                                        <option value="NI">Nicaragua</option>
+                                        <option value="NE">Niger</option>
+                                        <option value="NG">Nigeria</option>
+                                        <option value="NU">Niue</option>
+                                        <option value="NF">Norfolk Island</option>
+                                        <option value="MP">Northern Mariana Islands</option>
+                                        <option value="KP">North Korea</option>
+                                        <option value="NO">Norway</option>
+                                        <option value="OM">Oman</option>
+                                        <option value="PK">Pakistan</option>
+                                        <option value="PW">Palau</option>
+                                        <option value="PS">Palestinian Territories</option>
+                                        <option value="PA">Panama</option>
+                                        <option value="PG">Papua New Guinea</option>
+                                        <option value="PY">Paraguay</option>
+                                        <option value="PE">Peru</option>
+                                        <option value="PH">Philippines</option>
+                                        <option value="PN">Pitcairn Islands</option>
+                                        <option value="PL">Poland</option>
+                                        <option value="PT">Portugal</option>
+                                        <option value="PR">Puerto Rico</option>
+                                        <option value="QA">Qatar</option>
+                                        <option value="RE">Réunion</option>
+                                        <option value="RO">Romania</option>
+                                        <option value="RU">Russia</option>
+                                        <option value="RW">Rwanda</option>
+                                        <option value="BL">Saint Barthélemy</option>
+                                        <option value="SH">Saint Helena</option>
+                                        <option value="KN">Saint Kitts and Nevis</option>
+                                        <option value="LC">Saint Lucia</option>
+                                        <option value="MF">Saint Martin</option>
+                                        <option value="PM">Saint Pierre and Miquelon</option>
+                                        <option value="WS">Samoa</option>
+                                        <option value="SM">San Marino</option>
+                                        <option value="ST">São Tomé and Príncipe</option>
+                                        <option value="SA">Saudi Arabia</option>
+                                        <option value="SN">Senegal</option>
+                                        <option value="RS">Serbia</option>
+                                        <option value="SC">Seychelles</option>
+                                        <option value="SL">Sierra Leone</option>
+                                        <option value="SG">Singapore</option>
+                                        <option value="SK">Slovakia</option>
+                                        <option value="SI">Slovenia</option>
+                                        <option value="SB">Solomon Islands</option>
+                                        <option value="SO">Somalia</option>
+                                        <option value="ZA">South Africa</option>
+                                        <option value="GS">South Georgia & South Sandwich Islands</option>
+                                        <option value="KR">South Korea</option>
+                                        <option value="ES">Spain</option>
+                                        <option value="LK">Sri Lanka</option>
+                                        <option value="VC">St. Vincent & Grenadines</option>
+                                        <option value="SD">Sudan</option>
+                                        <option value="SR">Suriname</option>
+                                        <option value="SJ">Svalbard and Jan Mayen</option>
+                                        <option value="SZ">Swaziland</option>
+                                        <option value="SE">Sweden</option>
+                                        <option value="CH">Switzerland</option>
+                                        <option value="SY">Syria</option>
+                                        <option value="TW">Taiwan</option>
+                                        <option value="TJ">Tajikistan</option>
+                                        <option value="TZ">Tanzania</option>
+                                        <option value="TH">Thailand</option>
+                                        <option value="TL">Timor-Leste</option>
+                                        <option value="TG">Togo</option>
+                                        <option value="TK">Tokelau</option>
+                                        <option value="TO">Tonga</option>
+                                        <option value="TT">Trinidad and Tobago</option>
+                                        <option value="TN">Tunisia</option>
+                                        <option value="TR">Turkey</option>
+                                        <option value="TM">Turkmenistan</option>
+                                        <option value="TC">Turks and Caicos Islands</option>
+                                        <option value="TV">Tuvalu</option>
+                                        <option value="UG">Uganda</option>
+                                        <option value="UA">Ukraine</option>
+                                        <option value="AE">United Arab Emirates</option>
+                                        <option value="GB">United Kingdom</option>
+                                        <option selected="selected" value="US">United States</option>
+                                        <option value="UY">Uruguay</option>
+                                        <option value="UM">U.S. Outlying Islands</option>
+                                        <option value="VI">U.S. Virgin Islands</option>
+                                        <option value="UZ">Uzbekistan</option>
+                                        <option value="VU">Vanuatu</option>
+                                        <option value="VA">Vatican City</option>
+                                        <option value="VE">Venezuela</option>
+                                        <option value="VN">Vietnam</option>
+                                        <option value="WF">Wallis and Futuna</option>
+                                        <option value="EH">Western Sahara</option>
+                                        <option value="YE">Yemen</option>
+                                        <option value="ZM">Zambia</option>
+                                        <option value="ZW">Zimbabwe</option>
+                                    </select>
                                 </div>
-                            </td>
-                            <td>
-                                <div class="cost"><i class="fa fa-krw"></i> <?=number_format($s_tot*1.1)?></div>
-                            </td>
-                            <td class="text-center">
-                                <a href="cart-update.php?md=del&amp;cart_id=<?=$rows['cart_id']?>&amp;from=basket" ><i class="custom-icon custom-icon-close-s"></i></a>
-                            </td>
-                        </tr>
-                        </form>
-                    <?php
-                            } // end for loop
-                        } // end if(!$total_count)
-                    ?>
-
-
-                    </tbody>
-                </table>
-            </div>
-            <!-- /table -->
-
-            <!-- row -->
-            <div class="row border-bottom">
-                <div class="col-md-4 col-sm-5 col-md-offset-8 col-sm-offset-7">
-                    <h3 class="normal">카트 합</h3>
-                    <table class="product-table">
-                        <tr>
-                            <th>배송비</th>
-                            <td>무 료</td>
-                        </tr>
-                        <tr>
-                            <th>주문 총계</th>
-                            <td><i class="fa fa-krw"></i> <?=number_format($tot_money*1.1)?> (inc. VAT)</td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-            <!-- /.row -->
-
-            <?php
-            if($total_count == 0){
-                $go_purchase = "javascript:alert('카트에 상품이 없습니다.')";
-            }else{
-                $go_purchase = "checkout.php?from=basket&amp;delivery=L";
-            }
-            ?>
-
-            <!-- row -->
-            <div class="row">
-                <div class="col-md-12 col-sm-12 text-center">
-                    <a href="<?=$go_purchase?>" class="btn btn-success">주문서 작성하기</a>
+                                <div class="input-one form-list">
+                                    <label class="required get">
+                                        State/Province
+                                    </label>
+                                    <select class="email s-email">
+                                        <option value="">Please select region, state or province</option>
+                                        <option value="1">Alabama</option>
+                                        <option value="2">Alaska</option>
+                                        <option value="3">American Samoa</option>
+                                        <option value="4">Arizona</option>
+                                        <option value="5">Arkansas</option>
+                                        <option value="6">Armed Forces Africa</option>
+                                        <option value="7">Armed Forces Americas</option>
+                                        <option value="8">Armed Forces Canada</option>
+                                        <option value="9">Armed Forces Europe</option>
+                                        <option value="10">Armed Forces Middle East</option>
+                                        <option value="11">Armed Forces Pacific</option>
+                                        <option value="12">California</option>
+                                        <option value="13">Colorado</option>
+                                        <option value="14">Connecticut</option>
+                                        <option value="15">Delaware</option>
+                                        <option value="16">District of Columbia</option>
+                                        <option value="17">Federated States Of Micronesia</option>
+                                        <option value="18">Florida</option>
+                                        <option value="19">Georgia</option>
+                                        <option value="20">Guam</option>
+                                        <option value="21">Hawaii</option>
+                                        <option value="22">Idaho</option>
+                                        <option value="23">Illinois</option>
+                                        <option value="24">Indiana</option>
+                                        <option value="25">Iowa</option>
+                                        <option value="26">Kansas</option>
+                                        <option value="27">Kentucky</option>
+                                        <option value="28">Louisiana</option>
+                                        <option value="29">Maine</option>
+                                        <option value="30">Marshall Islands</option>
+                                        <option value="31">Maryland</option>
+                                        <option value="32">Massachusetts</option>
+                                        <option value="33">Michigan</option>
+                                        <option value="34">Minnesota</option>
+                                        <option value="35">Mississippi</option>
+                                        <option value="36">Missouri</option>
+                                        <option value="37">Montana</option>
+                                        <option value="38">Nebraska</option>
+                                        <option value="39">Nevada</option>
+                                        <option value="40">New Hampshire</option>
+                                        <option value="41">New Jersey</option>
+                                        <option value="42">New Mexico</option>
+                                        <option value="43">New York</option>
+                                        <option value="44">North Carolina</option>
+                                        <option value="45">North Dakota</option>
+                                        <option value="46">Northern Mariana Islands</option>
+                                        <option value="47">Ohio</option>
+                                        <option value="48">Oklahoma</option>
+                                        <option value="49">Oregon</option>
+                                        <option value="50">Palau</option>
+                                        <option value="51">Pennsylvania</option>
+                                        <option value="52">Puerto Rico</option>
+                                        <option value="53">Rhode Island</option>
+                                        <option value="54">South Carolina</option>
+                                        <option value="55">South Dakota</option>
+                                        <option value="56">Tennessee</option>
+                                        <option value="57">Texas</option>
+                                        <option value="58">Utah</option>
+                                        <option value="59">Vermont</option>
+                                        <option value="60">Virgin Islands</option>
+                                        <option value="61">Virginia</option>
+                                        <option value="62">Washington</option>
+                                        <option value="63">West Virginia</option>
+                                        <option value="64">Wisconsin</option>
+                                        <option value="65">Wyoming</option>
+                                    </select>
+                                </div>
+                                <div class="input-one form-list">
+                                    <label class="required get">
+                                        Zip/Postal Code
+                                    </label>
+                                    <input class="email" type="text" required="">
+                                </div>
+                                <button class="button2 get" title="" type="button">
+                                    <span>Get a Quote</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="ma-title ma-cart coupon">
+                            <h2>Discount Codes</h2>
+                        </div>
+                        <div class="shipping-zip-form">
+                            <div class="input-one form-list">
+                                <label class="required get">
+                                    Enter your coupon code if you have one.
+                                </label>
+                                <input class="email in-get" type="text" required="">
+                            </div>
+                            <button class="button2 get" title="" type="button">
+                                <span>Apply Coupon</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <div class="totals">
+                            <div class="subtotal">
+                                <p>Subtotal <span>$155.00</span></p>
+                                <p>Grand Total <span>$155.00</span></p>
+                            </div>
+                            <button class="button2 get" title="" type="button">
+                                <span>Proceed to Checkout</span>
+                            </button>
+                            <a href="#">Checkout with Multiple Addresses</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <!-- /.container -->
-    </div>
-    <!-- /.content -->
-</div>
-<!-- /.wrapper -->
+        <!-- end shopping-cart-area
+		============================================ -->
 
-<!-- FOOTER -->
-<?php include"../include/footer.php"; ?>
+<?php include_once '../include/brands.php';?>
 
-<script src="../js/jquery-2.1.1.min.js"></script>
-<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDv0RLj_LBhRntn4AOCr4zHSYv0-F8gVeA&sensor=false"></script>
-<script src="../js/bootstrap.min.js"></script>
-<script src="../js/jquery.plugins.js"></script>
-<script src="../js/custom.js"></script>
-<script src="../js/global.js"></script>
-<script src="../js/member.js"></script>
-
-</body>
->>>>>>> 6ec2d8fb9810111cc3e9867ff370e9b6e5f67549
-</html>
+<?php include_once '../include/footer.php';?>

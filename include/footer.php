@@ -1,63 +1,178 @@
-<footer class="footer ">
-    <!-- CONTAINER -->
-    <div class="container ftop text-center">
-        <a href="index.php"><img src="../images/s-medics-logo.png" class="main-logo-bottom"></a><br>
-        <div class="row foorow-3 foorow">
-            <div class="col-md-12 col-sm-12 footer-addr text-center">
-                <span>#208, Mukdong Xii, 6-9, Suksun Ongjuro, Jungrang-gu, Seoul, Korea / <i class="fa fa-envelope-o"></i> <a href="mailto:<?=$info['email'];?>">E-mail</a></span><br>
-                T: +82-2-3437-8891 / F: +82-2-3437-8890
+        <!-- start ma-footer-stati
+		============================================ -->
+        <div class="ma-footer-static">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="container-inner">
+                            <div class="footer-static-top">
+                                <div class="row">
+                                    <div class="f-col f-col1 col-md-3 col-sm-4 col-xs-12">
+                                        <div class="static_all">
+                                            <div class="footer-static-title">
+                                                <h3>My Account</h3>
+                                            </div>
+                                            <div class="footer-static-content">
+                                                <ul>
+                                                    <li>
+                                                        <a href="#">My Account</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">Login</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">My Cart</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">Wishlist</a>
+                                                    </li>
+                                                    <li class="last">
+                                                        <a href="#">Checkout</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="f-col f-col2 col-md-3 hidden-sm col-xs-12">
+                                        <div class="static_all">
+                                            <div class="footer-static-title">
+                                                <h3>공지사항</h3>
+                                            </div>
+                                            <div class="footer-static-content">
+                                                <ul>
+                                                    <li>
+                                                        <a href="#">Sitemap</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">Privacy Policy</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">Advanced Search</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">Privacy Policy</a>
+                                                    </li>
+                                                    <li class="last">
+                                                        <a href="#">Contact Us</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="f-col f-col3 col-md-3 col-sm-4  col-xs-12">
+                                        <div class="static_all">
+                                            <div class="footer-static-title">
+                                                <h3>고객센터</h3>
+                                            </div>
+                                            <div class="footer-static-content">
+                                                <ul>
+                                                    <li>
+                                                        <a href="#">Product Recall</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">Gift Vouchers</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">Returns and Exchanges</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">Shipping Options</a>
+                                                    </li>
+                                                    <li class="last">
+                                                        <a href="#">Gift Vouchers</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="f-col f-col4 col-md-3 col-sm-4  col-xs-12">
+                                        <div class="footer-static-title">
+                                            <h3>회사 정보</h3>
+                                        </div>
+                                        <div class="footer-static-content">
+                                            <div class="footer-contact">
+                                                <p class="company">신수상사</p>
+                                                <p class="address">서울특별시 강동구 성내로 17길 66</p>
+                                                <p class="phone">TEL: 02-479-2142</p>
+                                                <p class="fax">FAX: 02-479-2141</p>
+                                                <p class="email">Email: griptech@hanmail.net</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    <!-- /.container -->
-</footer>
-<!-- /.footer -->
-<!-- Popup: Login -->
-<?php
-//로그인 이전의 URL로 돌아가기
-$uri = $_SERVER["REQUEST_URI"];
-$uri = urlencode($uri);
-?>
-<div class="block-popup popup plogin" id="login">
-    <a href="" class="pclose small"><i class="custom-icon custom-icon-close-s"></i></a>
-    <h3 class="text-center">Login to account</h3>
-    <form method="post" name="login" class="loginform" action="https://<?=$_SERVER['SERVER_NAME'];?>:<?=$port;?>/member/login_ok.php" onsubmit="return(login_check());">
-        <input type="hidden" name="uri" value="<?=$uri;?>">
-        <div class="formwrap">
-            <div class="form-group">
-                <input type="text" class="form-control" name="id" placeholder="ID">
+        <!-- end ma-footer-stati
+		============================================ -->
+        <!-- end footer-address
+		============================================ -->
+        <footer class="footer-address">
+            <div class="container">
+                <div class="container-inner">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <address>
+                                Copyright ©
+                                <a href="#">신수상사</a>
+                                All Rights Reserved
+                            </address>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="footer-payment">
+                                <a href="#">
+                                    <img alt="" src="/images/footer/payment.png">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="form-group has-feedback">
-                <input type="password" class="form-control login-password" name="pwd" placeholder="Password" id="login-password">
-            </div>
+        </footer>
+        <!-- end footer-address
+		============================================ -->
+        <!-- start scrollUp
+		============================================ -->
+        <div id="toTop">
+            <i class="fa fa-chevron-up"></i>
         </div>
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" name="msave_all" value="">
-                Remember me
-            </label>
-        </div>
-        <div class="form-group text-center">
-            <button type="submit" class="btn btn-success block">Login</button>
-            <a href="">Forgot password?</a>
-        </div>
-    </form>
-    <div class="footlogin highlight text-center">
-        <p><a href="/member/register.php" class="btn btn-default btn-xs">Join</a></p>
-    </div>
-</div>
-<!-- /.popup -->
-<!-- ScrollTop Button -->
-<a href="#" class="scrolltop">
-    <i class="custom-icon custom-icon-scrolltop"></i>
-</a>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-72068650-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
+        <!-- end scrollUp
+		============================================ -->
+		<!-- jquery
+		============================================ -->
+        <script src="/js/vendor/jquery-2.2.0.min.js"></script>
+		<!-- bootstrap JS
+		============================================ -->
+        <script src="/js/bootstrap.min.js"></script>
+		<!-- wow JS
+		============================================ -->
+        <script src="/js/wow.min.js"></script>
+		<!-- price-slider JS
+		============================================ -->
+        <script src="/js/jquery-price-slider.js"></script>
+        <!-- Img Zoom js -->
+		<script src="/js/img-zoom/jquery.simpleLens.min.js"></script>
+		<!-- meanmenu JS
+		============================================ -->
+        <script src="/js/jquery.meanmenu.js"></script>
+		<!-- owl.carousel JS
+		============================================ -->
+        <script src="/js/owl.carousel.min.js"></script>
+		<!-- scrollUp JS
+		============================================ -->
+        <script src="/js/jquery.scrollUp.min.js"></script>
+		<!-- Nivo slider js
+		============================================ -->
+		<script src="/lib/js/jquery.nivo.slider.js" type="text/javascript"></script>
+		<script src="/lib/home.js" type="text/javascript"></script>
+		<!-- plugins JS
+		============================================ -->
+        <script src="/js/plugins.js"></script>
+		<!-- main JS
+		============================================ -->
+        <script src="/js/main.js"></script>
+    </body>
+</html>

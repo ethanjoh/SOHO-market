@@ -399,7 +399,7 @@ function send_sms($to, $msg_type, $name, $sdate, $connect)
  * @param  [type] $no_item   [표시할 개수]
  * @return [type]            [description]
  */
-function main_show_products($main_flag, $no_item)
+function show_main_products($main_flag, $no_item)
 {
     global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
@@ -422,7 +422,7 @@ function main_show_products($main_flag, $no_item)
 
             echo <<<HEREDOC
                                 <!-- single-product start -->
-                                <div class=" col-md-3">
+                                <div class="col-md-3">
                                     <div class="single-product">
                                         <div class="product-img">
                                             <a href="detail.php?pnum={$rows['num']}&lcode={$rows['category_l']}&mcode={$rows['category_m']}&scode={$rows['category_s']}">
@@ -436,6 +436,7 @@ function main_show_products($main_flag, $no_item)
                                             <h2 class="product-name"><a href="detail.php?pnum={$rows['num']}&lcode={$rows['category_l']}&mcode={$rows['category_m']}&scode={$rows['category_s']}">{$item_name}</a></h2>
                                             <div class="product-icon">
                                                 <a href="#"><i class="fa fa-shopping-cart"> </i></a>
+                                                <a href="#"><i class="fa fa-check"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -450,6 +451,239 @@ HEREDOC;
 
     } else {
         echo "<p>등록된 상품이 없습니다.</p><p>관리자 페이지 > 상품관리에서 상품을 등록해 주세요.</p>\n";
+    }
+
+}
+
+/**
+ * [show_catalog_products description]
+ * @param  [type] $lcode [description]
+ * @param  [type] $mcode [description]
+ * @param  [type] $tabid [description]
+ * @return [type]        [description]
+ */
+function show_catalog_products($lcode, $mcode, $tabid)
+{
+    global $host, $dbid, $dbpass, $dbname;
+    $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
+
+    if ($mcode) {
+        $code_qry = " AND category_l = '$lcode' AND category_m = '$mcode'";
+    } else {
+        $code_qry = " AND category_l = '$lcode'";
+    }
+
+    $query  = "SELECT * FROM products WHERE del_chk='N'" . $code_qry . " AND approved = 'Y' ORDER BY num DESC LIMIT 0, 12 ";
+    $result = mysqli_query($connect, $query);
+
+    if ($result) {
+
+        for ($i = 0; $rows = mysqli_fetch_array($result); $i++) {
+
+            $dealer_price = number_format($rows['retail_price']);
+            $item_name    = stripslashes($rows['name']);
+
+            if ($prow['opt']) {
+                $option = show_option($prow);
+            }
+
+            if ('home' == $tabid) {
+                echo <<<HEREDOC
+
+                                                        <!-- single-product start -->
+                                                        <div class="col-md-3 col-sm-6">
+                                                            <div class="single-product">
+                                                                <div class="product-img">
+                                                                    <a href="detail.php?pnum={$rows['num']}&lcode={$rows['category_l']}&mcode={$rows['category_m']}&scode={$rows['category_s']}">
+                                                                        <img class="primary-image" src="{$rows['b_image1_name']}" alt="" />
+                                                                    </a>
+                                                                </div>
+                                                                <div class="product-content">
+                                                                    <div class="price-box">
+                                                                        <span class="special-price"><i class="fa fa-krw"></i> {$dealer_price}</span>
+                                                                    </div>
+                                                                    <h2 class="product-name"><a href="detail.php?pnum={$rows['num']}&lcode={$rows['category_l']}&mcode={$rows['category_m']}&scode={$rows['category_s']}">{$item_name}</a></h2>
+                                                                    <div class="product-icon">
+                                                                        <a href="#"><i class="fa fa-shopping-cart"> </i></a>
+                                                                        <a href="#"><i class="fa fa-check"></i></a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- single-product end -->
+HEREDOC;
+            } elseif ('profile' == $tabid) {
+                echo <<<HEREDOC
+                                                    <!-- single-product start -->
+                                                    <div class="li-item">
+                                                        <div class="col-md-4 col-sm-4">
+                                                            <div class="single-product">
+                                                                <div class="product-img">
+                                                                    <a href="detail.php?pnum={$rows['num']}&lcode={$rows['category_l']}&mcode={$rows['category_m']}&scode={$rows['category_s']}">
+                                                                        <img class="primary-image" src="{$rows['b_image1_name']}" alt="">
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-8 col-sm-8">
+                                                            <div class="f-fix">
+                                                                <h2 class="product-name">
+                                                                    <a href="detail.php?pnum={$rows['num']}&lcode={$rows['category_l']}&mcode={$rows['category_m']}&scode={$rows['category_s']}">{$item_name}</a>
+                                                                </h2>
+                                                                <p class="desc">[모델:] {$rows['short_desc']} <span class="spec">[스펙:] {$rows['opt']}</span></p>
+                                                                <div class="p-box">
+                                                                    <span class="special-price"><i class="fa fa-krw"></i> {$dealer_price}</span>
+                                                                </div>
+                                                                <div class="product-icon">
+                                                                    <a href="#"><i class="fa fa-shopping-cart"></i></a>
+                                                                    <a href="#"><i class="fa fa-check"></i></a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                    <!-- single-product end -->
+
+HEREDOC;
+            }
+
+        }
+        //end for
+        mysqli_free_result($result);
+
+    } else {
+        echo "<p>등록된 상품이 없습니다.</p><p>관리자 페이지 > 상품관리에서 상품을 등록해 주세요.</p>\n";
+    }
+
+}
+
+function show_brand_name($lcode)
+{
+    global $host, $dbid, $dbpass, $dbname;
+    $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
+
+    $query  = "SELECT * FROM products_category1 WHERE code = '$lcode' ";
+    $result = mysqli_query($connect, $query);
+
+    if ($result) {
+
+        $rows = mysqli_fetch_array($result);
+        echo '<a href="category-list.php?lcode=' . $lcode . '">' . stripslashes($rows['name']) . '</a>';
+
+        mysqli_free_result($result);
+
+    }
+
+}
+
+/**
+ * [show_brands 대카테고리를 보여줌]
+ * @return [type] [description]
+ */
+function show_brands()
+{
+
+    global $host, $dbid, $dbpass, $dbname;
+    $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
+
+    // 쇼핑몰 대분류
+    $l_qry = "SELECT * FROM products_category1 WHERE hide='N' ORDER BY num ";
+    $l_res = mysqli_query($connect, $l_qry);
+    $total = mysqli_num_rows($l_res);
+
+    echo '<ul>';
+
+    if ($total > 0) {
+
+        // 대분류 표시
+        for ($i = 0; $l_rows = mysqli_fetch_array($l_res); $i++) {
+            // 신제품 표시
+            // $newq   = "SELECT * FROM products WHERE category_l = '$l_rows[code]' ORDER BY num DESC LIMIT 1";
+            // $newr   = mysqli_query($connect, $newq);
+            // $newrow = mysqli_fetch_array($newr);
+
+            // if ($newrow['main_new'] == 'Y' && $newrow['del_chk'] != "Y") {
+            //     $cat_name = $l_rows['name'] . ' <span class="label label-success">NEW</span>';
+            // } else {
+            //     $cat_name = $l_rows['name'];
+            // }
+
+            $cat_name = $l_rows['name'];
+
+            echo <<<HEREDOC
+                                            <li>
+                                                <a href="catalog-list.php?lcode={$l_rows['code']}">
+                                                    <span class="cat-thumb">
+                                                        <i class="fa fa-hashtag"></i>
+                                                    </span>
+                                                    {$cat_name}
+                                                </a>
+                                            </li>
+
+HEREDOC;
+
+        }
+    } else {
+        echo '<li>브랜드를 등록해주세요</li>';
+    }
+
+    echo '</ul>';
+
+}
+
+function show_sub_category($lcode)
+{
+
+    global $host, $dbid, $dbpass, $dbname;
+    $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
+
+    $m_qry      = "SELECT * FROM products_category2 WHERE up_category = '$lcode' ORDER BY name";
+    $m_res      = mysqli_query($connect, $m_qry);
+    $msub_total = mysqli_num_rows($m_res);
+
+    echo '<ul>';
+
+    if ($msub_total > 0) {
+
+        // 중분류 표시
+        for ($i = 0; $m_rows = mysqli_fetch_array($m_res); $i++) {
+
+            $cat_name = $m_rows['name'];
+
+            echo <<<HEREDOC
+                                            <li>
+                                                <a href="catalog-list.php?lcode={$lcode}&mcode={$m_rows['code']}">
+                                                    {$cat_name}
+                                                </a>
+                                            </li>
+
+HEREDOC;
+
+        }
+    } else {
+        echo '<li>서브 카테고리를 등록해주세요</li>';
+    }
+
+    echo '</ul>';
+
+}
+
+function show_sub_category_name($lcode, $mcode)
+{
+    global $host, $dbid, $dbpass, $dbname;
+    $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
+
+    $m_qry      = "SELECT * FROM products_category2 WHERE up_category = '$lcode' AND code = '$mcode'";
+    $m_res      = mysqli_query($connect, $m_qry);
+    $msub_total = mysqli_num_rows($m_res);
+
+    if ($msub_total) {
+
+        $rows = mysqli_fetch_array($m_res);
+        echo '<a href="category-list.php?lcode=' . $lcode . '&amp;mcode=' . $mcode . '">' . stripslashes($rows['name']) . '</a>';
+
+        mysqli_free_result($m_res);
+
     }
 
 }

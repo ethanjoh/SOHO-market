@@ -49,17 +49,17 @@ while ($data = fgetcsv($fp)) {
     // data[6]: 모델번호, data[7]: 브랜드, data[8]: 규격
 
     //상품코드
-    $prod_code = $data['1'];
+    $prod_code = trim($data['1']);
     $lcode     = "1";
 
     // 모델번호 =>상품명
-    $name = addslashes($data['6']);
+    $name = addslashes(trim($data['6']));
 
     // 상품명=>간략설명
-    $short_desc = $data['2'];
+    $short_desc = trim($data['2']);
 
     // 브랜드
-    $company = $data['7'];
+    $company = trim($data['7']);
 
     // 아이디
     $id = "admin";
@@ -68,13 +68,13 @@ while ($data = fgetcsv($fp)) {
     $importer = "신수상사";
 
     // 공급가
-    $retail_price = $data['3'];
+    $retail_price = trim($data['3']);
 
     //DB에 저장할 이미지 저장 경로
     $savedir = "../../upload/p_image/";
 
     // 분류에 따라 저장
-    if ($data['5'] == '아이언/우드그립' || $data['5'] == '클럽그립') {
+    if (trim($data['5']) == '아이언/우드그립' || trim($data['5']) == '클럽그립') {
         $mcode     = "1";
         $bimg1_chk = "Y";
         $file3     = $savedir . $data['6'] . "/b/" . $data['4'];
@@ -108,7 +108,7 @@ while ($data = fgetcsv($fp)) {
         $file1    = $savedir . $data['6'] . "/s/" . $data['4'];
         make_thumbnail($dir . $data['4'], 100, 100, $dir2 . $data['4']);
 
-    } elseif ($data['5'] == '퍼터그립') {
+    } elseif (trim($data['5']) == '퍼터그립') {
         $mcode     = "2";
         $bimg1_chk = "Y";
         $file3     = $savedir . "/b/" . $data['4'];
@@ -167,7 +167,7 @@ while ($data = fgetcsv($fp)) {
     $option5_chk = "N";
 
     // 규격=>옵션
-    $opt       = $data['8'];
+    $opt       = trim($data['8']);
     $opt_stock = '1';
 
     $event = "0";

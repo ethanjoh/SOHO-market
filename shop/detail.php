@@ -1,573 +1,506 @@
-<<<<<<< HEAD
+<?php include_once '../include/header.php';?>
+
 <?php
-include "../util/config.php";
-include "../util/util.php";
-
-$connect = my_connect($host,$dbid,$dbpass,$dbname);
-
-if(!$_COOKIE[p_sid]){
-    $SID = md5(uniqid(rand()));
-    SetCookie("p_sid",$SID,0,"/");
+if ($_GET) {
+    $lcode = $_GET['lcode'];
+    $mcode = $_GET['mcode'];
+    $pnum  = $_GET['pnum'];
 }
 
-$info_query = "SELECT * FROM admin_setup";
-$info_res = mysqli_query($connect, $info_query);
-$info = mysqli_fetch_array($info_res);
+$query  = "SELECT * FROM products WHERE num='$pnum'";
+$result = mysqli_query($connect, $query);
+$rows   = mysqli_fetch_array($result);
+mysqli_free_result($result);
+
+$lcode = $rows['category_l'];
+
+$l_qry = "SELECT * FROM products_category1 WHERE code='$lcode'";
+$l_res = mysqli_query($connect, $l_qry);
+$l_row = mysqli_fetch_array($l_res);
 
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-    <meta name="keywords" content="<?=$info['keywords']?>" />
-    <meta name="description" content="<?=$info['description']?>" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title><?=$info['site_name']?></title>
-    <link href="favicon.ico" rel="shortcut icon" type="image/x-icon">
-    <link href="../css/bootstrap.css" rel="stylesheet">
-    <link href="../css/style.css" rel="stylesheet">
-    <script src="../js/global.js"></script>
-    <script src="../js/member.js"></script>
-
-</head>
-<body>
-
-<!-- Preloader -->
-<div id="preloader">
-    <div id="status">&nbsp;</div>
-</div>
-
-<!-- WRAPPER -->
-<div class="wrapper">
-
-    <!-- HEADER -->
-    <?php include "../include/header.php"; ?>
-    <!-- /.header -->
-
-    <?php
-        $query = "SELECT * FROM products WHERE num='$pnum'";
-        $result = mysqli_query($connect, $query);
-        $rows = mysqli_fetch_array($result);
-        mysqli_free_result($result);
-
-        $lcode = $rows['category_l'];
-
-        $l_qry = "SELECT * FROM products_category1 WHERE code='$lcode'";
-        $l_res = mysqli_query($connect, $l_qry);
-        $l_row = mysqli_fetch_array($l_res);
-
-    ?>
-
-    <!-- HOME -->
-    <div class="overlay home small-size">
-        <div class="bg bg-shop" data-stellar-background-ratio="0.5"></div>
-        <div class="container vmiddle">
-            <div class="row text-center">
-                <div class="icon-big color icon-bag-shopping-streamline"></div>
-                <h1><?=$l_row['name']?></h1>
-            </div>
-        </div>
-    </div>
-    <!-- /.home -->
-
-    <!-- CONTENT -->
-    <div class="content">
-
-        <!-- CONTAINER: product -->
-        <div class="container product padding-top">
-
-            <!-- Product Gallery -->
-            <div class="col-sm-6 product-gallery magnific-wrap">
-                <div class="img-medium text-center">
-                    <!-- <div class="sticker sticker-sale">sale</div> -->
-                    <!-- Preview Slider -->
-                    <div class="medium-slider">
-                        <img src="<?=$rows['b_image1_name']?>" />
-                    </div>
-                </div>
-
-                <!-- Thumbs Slider -->
-                <!-- hidden -->
-                <!--
-                 <div class="thumbs-wrap">
-                    <a href="" class="th-prev th-arrow pull-left">
-                        <i class="custom-icon custom-icon-arrow-prev"></i>
-                    </a>
-                    <a href="" class="th-next th-arrow pull-right">
-                        <i class="custom-icon custom-icon-arrow-next"></i>
-                    </a>
-                    <div class="thwrap">
-                        <div class="thumbs-slider">
-                            <a href="<?=$rows['b_image1_name']?>"><img src="<?=$rows['s_image_name']?>" /></a>
-                        </div>
-                    </div>
-                </div>
-                -->
-            </div>
-            <!-- /product gallery -->
-
-            <form name="form_<?=$rows['num']?>" method="post" action="">
-            <?php
-                if(isset($_SESSION['p_id'])) {
-                    echo "<input type=\"hidden\" name=\"from\" id=\"from\" value=\"detail\">\n";
-                    $offer_price = $rows['retail_price'];
-                }
-            ?>
-            <input type="hidden" name="pnum" id="pnum_<?=$rows['num']?>" value="<?=$pnum?>">
-
-            <div class="col-sm-6">
-                <div class="row">
-                    <h2><?=$rows['name']?></h2>
-
-                    <?php
-                    if($_SESSION['p_id'] || $_SESSION['p_name']){
-                    ?>                    
-
-                    <div class="cost">
-                        <span class="new"><i class="fa fa-krw"></i> <?=number_format($rows['retail_price'])?> (VAT 별도)</span>
-                    </div>
-                    
-                    <?php
-                    }
-                    ?>
-
-                </div>
-                <div class="row">
-                    <p>
-                    <?php
-                      if($rows['opt'])
-                          show_option($rows);
-                    ?>
-                    </p>
-                </div>
-
-                <?php
-                if($_SESSION['p_id'] || $_SESSION['p_name']){
-                ?>                  
-
-                <div class="row product-count">
-                    <div class="counting inline-block">
-                        <a href="" class="a-less disabled">-</a>
-                        <input type="text" name="products_count" id="products_count_<?=$rows['num']?>" value="<?=$rows['moq']?>">
-                        <a href="" class="a-more">+</a>
-                    </div>
-                    <a type="button" href="#" id="<?=$rows['num']?>" class="btn btn-primary addCart_submit" >장바구니 담기</a>
-                    <div id="loadplace<?=$rows['num']?>"></div>
-                    <input type="hidden" name="amount" id="amount_<?=$rows['num']?>" value="<?=$offer_price?>">
-                </div>
-
-                <?php
-                }
-                ?>                
-
-                </form>
-
-                <table class="product-table">
-                    <tr>
-                        <th>보험코드</th>
-                        <td><span class="grey">000 568</span></td>
-                    </tr>
-                    <tr>
-                      <th>제조/수입사</th>
-                      <td><?=$rows['company']?> / <?=$rows['importer']?></h2></td>
-                    </tr>
-                    <tr>
-                      <th>상품등록일 </th>
-                      <td><?php
-                        //      $r_date = explode("-", $rows['created']);
-                                // echo $r_date[0]."년 ".$r_date[1]."월 <br/>";
-                                echo $rows['created'];
-
-                                ?></td>
-                    </tr>
-                    <tr>
-                      <th>원산지</th>
-                      <td><?=$rows['origin']?></td>
-                    </tr>
-                    <tr>
-                      <th>크기 / 무게</th>
-                      <td><?=$rows['size']?></td>
-                    </tr>
-                    <tr>
-                      <th>재질</th>
-                      <td><?=$rows['material']?></td>
-                    </tr>
-                    <tr>
-                      <th>인증여부</th>
-                      <td><?=$rows['auth']== NULL? "해당사항 없음" : $rows['auth']?></td>
-                    </tr>
-                    <tr>
-                      <th>A/S</th>
-                      <td><?=$rows['service']?></td>
-                    </tr>
-                    <tr>
-                      <th>품질보증</th>
-                      <td><?=$rows['warranty']?></td>
-                    </tr>
-                    <tr>
-                      <th>취급시 유의사항</th>
-                      <td><?=nl2br($rows['caution'])?></td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <!-- /.container -->
-
-        <!-- TABS -->
-        <div class="tabs">
-            <ul class="container nav nav-tabs text-center">
-                <li class="active"><a href="#description" data-toggle="tab"><span>상세설명</span></a></li>
-                <li><a href="#customtab" data-toggle="tab"><span>배송 및 반품</span></a></li>
-            </ul>
-            <div class="highlight">
-                <div class="container tab-content">
-                    <div class="tab-pane fade in active" id="description">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <h2><?=$rows['name']?></h2>
-                                <p class="grey">Product Information</p>
-                            </div>
-                            <div class="col-sm-4">
-                                <h3>Information</h3>
-                                <p>Mellentesque habitant morbi tristique senectus et netus et malesuada famesac turpis egestas. Ut non enim eleifend felis pretium feugiat. Dummy text of the printing and typesetting industry.</p>
-                            </div>
-                            <div class="col-sm-4">
-                                <h3>Features</h3>
-                                <ul>
-                                    <li>Approx weight 3.0kg</li>
-                                    <li>Two external zipped compartments</li>
-                                    <li>Antiqued brass fittings</li>
-                                    <li>Detachable shoulder strap</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="customtab">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <h2>Delivery & Returns</h2>
-                                <!-- <p class="grey">Product Information</p> -->
-                            </div>
-                            <div class="col-sm-4">
-                                <h3>Delivery</h3>
-                                <p>Habitant morbi tristique senectus et netus malesuada famesac turpis egestas. Ut non enim eleifend pretium feugiat. Dummy text of the printing and typesetting industry.</p>
-                            </div>
-                            <div class="col-sm-4">
-                                <h3>Returns</h3>
-                                <p>Dummy text of the printing and typesetting industry. Mellentesque habitant morbi tristique senectus et netus et malesuada famesac turpis egestas.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- /.tabs -->
-
-    </div>
-    <!-- /.content -->
-</div>
-<!-- /.wrapper -->
-
-<!-- FOOTER -->
-<?php include"../include/footer.php"; ?>
-
-<script src="../js/jquery-2.1.1.min.js"></script>
-<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDv0RLj_LBhRntn4AOCr4zHSYv0-F8gVeA&sensor=false"></script>
-<script src="../js/bootstrap.min.js"></script>
-<script src="../js/jquery.plugins.js"></script>
-<script src="../js/custom.js"></script>
-<script src="../js/addcart.js"></script>
-<script src="../js/member.js"></script>
-
-</body>
-</html>
-
-=======
+        <!-- start main_slider_area
+		============================================ -->
+        <section class="shop-details-area">
+            <div class="breadcrumbs">
+                <div class="container">
+                    <div class="container-inner">
+                        <ul>
+                            <li class="home">
+                                <a href="#">Home</a>
+                                <span>
+                                    <i class="fa fa-angle-right"></i>
+                                </span>
+                            </li>
+                            <li class="home-two">
 <?php
-include "../util/config.php";
-include "../util/util.php";
-
-$connect = my_connect($host,$dbid,$dbpass,$dbname);
-
-if(!$_COOKIE[p_sid]){
-    $SID = md5(uniqid(rand()));
-    SetCookie("p_sid",$SID,0,"/");
-}
-
-$info_query = "SELECT * FROM admin_setup";
-$info_res = mysqli_query($connect, $info_query);
-$info = mysqli_fetch_array($info_res);
-
+show_brand_name($lcode);
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-    <meta name="keywords" content="<?=$info['keywords']?>" />
-    <meta name="description" content="<?=$info['description']?>" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title><?=$info['site_name']?></title>
-    <link href="favicon.ico" rel="shortcut icon" type="image/x-icon">
-    <link href="../css/bootstrap.css" rel="stylesheet">
-    <link href="../css/style.css" rel="stylesheet">
-    <script src="../js/global.js"></script>
-    <script src="../js/member.js"></script>
-
-</head>
-<body>
-
-<!-- Preloader -->
-<div id="preloader">
-    <div id="status">&nbsp;</div>
-</div>
-
-<!-- WRAPPER -->
-<div class="wrapper">
-
-    <!-- HEADER -->
-    <?php include "../include/header.php"; ?>
-    <!-- /.header -->
-
-    <?php
-        $query = "SELECT * FROM products WHERE num='$pnum'";
-        $result = mysqli_query($connect, $query);
-        $rows = mysqli_fetch_array($result);
-        mysqli_free_result($result);
-
-        $lcode = $rows['category_l'];
-
-        $l_qry = "SELECT * FROM products_category1 WHERE code='$lcode'";
-        $l_res = mysqli_query($connect, $l_qry);
-        $l_row = mysqli_fetch_array($l_res);
-
-    ?>
-
-    <!-- HOME -->
-    <div class="overlay home small-size">
-        <div class="bg bg-shop" data-stellar-background-ratio="0.5"></div>
-        <div class="container vmiddle">
-            <div class="row text-center">
-                <div class="icon-big color icon-bag-shopping-streamline"></div>
-                <h1><?=$l_row['name']?></h1>
-            </div>
-        </div>
-    </div>
-    <!-- /.home -->
-
-    <!-- CONTENT -->
-    <div class="content">
-
-        <!-- CONTAINER: product -->
-        <div class="container product padding-top">
-
-            <!-- Product Gallery -->
-            <div class="col-sm-6 product-gallery magnific-wrap">
-                <div class="img-medium text-center">
-                    <!-- <div class="sticker sticker-sale">sale</div> -->
-                    <!-- Preview Slider -->
-                    <div class="medium-slider">
-                        <img src="<?=$rows['b_image1_name']?>" />
+                                <span>
+                                    <i class="fa fa-angle-right"></i>
+                                </span>
+                            </li>
+                            <li class="category3">
+                                <strong>
+<?php
+show_sub_category_name($lcode, $mcode);
+?>
+                                </strong>
+                            </li>
+                        </ul>
                     </div>
                 </div>
+            </div>
+            <div class="shop-details">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-6 hidden-xs">
+                            <div class="s_big">
+                                <div>
+                                  <!-- Tab panes -->
+                                    <div class="tab-content">
+                                        <div id="image1" class="tab-pane fade in active">
+                                            <div class="simpleLens-big-image-container">
+                                                <a class="simpleLens-lens-image" data-lens-image="<?php echo $rows['b_image1_name']; ?>">
+                                                    <img alt="" src="<?php echo $rows['b_image1_name']; ?>" class="simpleLens-big-image">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div id="image2" class="tab-pane fade">
+                                            <div class="simpleLens-big-image-container">
+                                                <a class="simpleLens-lens-image" data-lens-image="<?php echo $rows['b_image2_name']; ?>">
+                                                    <img alt="" src="<?php echo $rows['b_image2_name']; ?>" class="simpleLens-big-image">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div id="image3" class="tab-pane fade">
+                                            <div class="simpleLens-big-image-container">
+                                                <a class="simpleLens-lens-image" data-lens-image="<?php echo $rows['b_image3_name']; ?>">
+                                                    <img alt="" src="<?php echo $rows['b_image3_name']; ?>" class="simpleLens-big-image">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div id="image4" class="tab-pane fade">
+                                            <div class="simpleLens-big-image-container">
+                                                <a class="simpleLens-lens-image" data-lens-image="<?php echo $rows['b_image4_name']; ?>" >
+                                                    <img alt="" src="<?php echo $rows['b_image4_name']; ?>" class="simpleLens-big-image">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="thumnail-image fix">
+                                        <ul class="tab-menu">
+                                            <li class="active"><a data-toggle="tab" href="#image1"><img alt="" src="<?php echo $rows['s_image_name']; ?>"></a></li>
+                                            <li><a data-toggle="tab" href="#image2"><img alt="" src="../images/product/5_1_1.jpg" ></a></li>
+                                            <li><a data-toggle="tab" href="#image3"><img alt="" src="../images/product/3_2.jpg"></a></li>
+                                            <li><a data-toggle="tab" href="#image4"><img alt="" src="../images/product/17.jpg"></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5 col-sm-6 col-xs-12">
+                            <div class="cras">
+                                <div class="product-name">
+                                    <h1><?php echo $rows['name']; ?></h1>
+                                </div>
+                                <div class="pro-rating">
+                                    모델명: <?php echo $rows['short_desc']; ?>
+                                </div>
+                                <p class="availability in-stock">
+                                    재고:
+                                    <span>In stock</span>
+                                </p>
+                                <div class="short-description">
+                                    <p> <?php echo $rows['opt']; ?> </p>
+                                </div>
+                                <div class="pre-box">
+                                    <span class="special-price"><i class="fa fa-krw"></i> 4,400</span>
+                                </div>
+                                <div class="add-to-box1">
+                                    <div class="add-to-box add-to-box2">
+                                        <div class="add-to-cart">
+                                            <div class="input-content">
+                                                <label for="qty">수량:</label>
+                                                <input id="qty" class="input-text qty" type="text" title="Qty" value="1" maxlength="12" name="qty">
+                                            </div>
+                                            <button class="button2 btn-cart" onclick="productAddToCartForm.submit(this)" title="" type="button">
+                                                <span>카트담기</span>
+                                            </button>
+                                            <button class="button2 btn-cart" onclick="productAddToCartForm.submit(this)" title="" type="button">
+                                                <span>주문하기</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-12 col-xs-12">
+                            <div class="ma-title">
+                                <h2> 연관 상품 </h2>
+                            </div>
+                            <div class="all">
+                                <div class=" content_top content_all indicator-style">
+                                    <div class="ma-box-content-all">
+                                        <div class="ma-box-content">
+                                            <div class="product-img-right">
+                                                <a href="#">
+                                                    <img class="primary-image" alt="" src="../images/product/8.jpg">
+                                                </a>
+                                            </div>
+                                            <div class="product-content">
+                                                <h2 class="product-name">
+                                                    <a href="#">Accumsan elit </a>
+                                                </h2>
+                                                <div class="pro-rating">
+                                                    모델명:
+                                                </div>
+                                                <div class="price-box">
+                                                    <span class="special">$333.00</span>
 
-                <!-- Thumbs Slider -->
-                <!-- hidden -->
-                <!--
-                 <div class="thumbs-wrap">
-                    <a href="" class="th-prev th-arrow pull-left">
-                        <i class="custom-icon custom-icon-arrow-prev"></i>
-                    </a>
-                    <a href="" class="th-next th-arrow pull-right">
-                        <i class="custom-icon custom-icon-arrow-next"></i>
-                    </a>
-                    <div class="thwrap">
-                        <div class="thumbs-slider">
-                            <a href="<?=$rows['b_image1_name']?>"><img src="<?=$rows['s_image_name']?>" /></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="ma-box-content">
+                                            <div class="product-img-right">
+                                                <a href="#">
+                                                    <img class="primary-image" alt="" src="../images/product/4.jpg">
+                                                </a>
+                                            </div>
+                                            <div class="product-content">
+                                                <h2 class="product-name">
+                                                    <a href="#">Nunc facilisis</a>
+                                                </h2>
+                                                <div class="pro-rating">
+                                                    모델명:
+                                                </div>
+                                                <div class="price-box">
+                                                    <span class="special">$222.00</span>
+                                                    <span class="old">$333.00</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="ma-box-content">
+                                            <div class="product-img-right">
+                                                <a href="#">
+                                                    <img class="primary-image" alt="" src="../images/product/5_1_1.jpg">
+                                                </a>
+                                            </div>
+                                            <div class="product-content">
+                                                <h2 class="product-name">
+                                                    <a href="#">consequences</a>
+                                                </h2>
+                                                <div class="pro-rating">
+                                                    모델명:
+                                                </div>
+                                                <div class="price-box">
+                                                    <span class="special">$211.00</span>
+                                                    <span class="old">$333.00</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="ma-box-content">
+                                            <div class="product-img-right">
+                                                <a href="#">
+                                                    <img class="primary-image" alt="" src="../images/product/4.jpg">
+                                                </a>
+                                            </div>
+                                            <div class="product-content">
+                                                <h2 class="product-name">
+                                                    <a href="#">Nunc facilisis</a>
+                                                </h2>
+                                                <div class="pro-rating">
+                                                    모델명:
+                                                </div>
+                                                <div class="price-box">
+                                                    <span class="special">$222.00</span>
+                                                    <span class="old">$333.00</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="ma-box-content-all">
+                                        <div class="ma-box-content">
+                                            <div class="product-img-right">
+                                                <a href="#">
+                                                    <img class="primary-image" alt="" src="../images/product/15_1.jpg">
+                                                </a>
+                                            </div>
+                                            <div class="product-content">
+                                                <h2 class="product-name">
+                                                    <a href="#">Primis in faucibus</a>
+                                                </h2>
+                                                <div class="pro-rating">
+                                                    모델명:
+                                                </div>
+                                                <div class="price-box">
+                                                    <span class="special">$99.00</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="ma-box-content">
+                                            <div class="product-img-right">
+                                                <a href="#">
+                                                    <img class="primary-image" alt="" src="../images/product/4.jpg">
+                                                </a>
+                                            </div>
+                                            <div class="product-content">
+                                                <h2 class="product-name">
+                                                    <a href="#">Nunc facilisis</a>
+                                                </h2>
+                                                <div class="pro-rating">
+                                                    모델명:
+                                                </div>
+                                                <div class="price-box">
+                                                    <span class="special">$222.00</span>
+                                                    <span class="old">$333.00</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="ma-box-content">
+                                            <div class="product-img-right">
+                                                <a href="#">
+                                                    <img class="primary-image" alt="" src="../images/product/8.jpg">
+                                                </a>
+                                            </div>
+                                            <div class="product-content">
+                                                <h2 class="product-name">
+                                                    <a href="#">Nunc facilisis</a>
+                                                </h2>
+                                                <div class="pro-rating">
+                                                    모델명:
+                                                </div>
+                                                <div class="price-box">
+                                                    <span class="special">$222.00</span>
+                                                    <span class="old">$333.00</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="ma-box-content">
+                                            <div class="product-img-right">
+                                                <a href="#">
+                                                    <img class="primary-image" alt="" src="../images/product/17.jpg">
+                                                </a>
+                                            </div>
+                                            <div class="product-content">
+                                                <h2 class="product-name">
+                                                    <a href="#">Nunc facilisis</a>
+                                                </h2>
+                                                <div class="pro-rating">
+                                                    모델명:
+                                                </div>
+                                                <div class="price-box">
+                                                    <span class="special">$222.00</span>
+                                                    <span class="old">$333.00</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                -->
             </div>
-            <!-- /product gallery -->
-
-            <form name="form_<?=$rows['num']?>" method="post" action="">
-            <?php
-                if(isset($_SESSION['p_id'])) {
-                    echo "<input type=\"hidden\" name=\"from\" id=\"from\" value=\"detail\">\n";
-                    $offer_price = $rows['retail_price'];
-                }
-            ?>
-            <input type="hidden" name="pnum" id="pnum_<?=$rows['num']?>" value="<?=$pnum?>">
-
-            <div class="col-sm-6">
+        </section>
+        <!-- end main_slider_area
+		============================================ -->
+        <section class="tab_area">
+            <div class="container">
                 <div class="row">
-                    <h2><?=$rows['name']?></h2>
+                    <div class="col-md-12 col-xs-12">
+                        <div class="text">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active">
+                                    <a href="#desc" aria-controls="desc" role="tab" data-toggle="tab">상세 설명</a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#delivery" aria-controls="delivery" role="tab" data-toggle="tab">배송 안내</a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#return" aria-controls="return" role="tab" data-toggle="tab">환불/반품 안내</a>
+                                </li>
+                            </ul>
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active" id="desc">Nunc facilisis sagittis ullamcorper. Proin lectus ipsum, gravida et mattis vulputate, tristique ut lectus. Sed et lorem nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean eleifend laoreet congue. Vivamus adipiscing nisl ut dolor dignissim semper. Nulla luctus malesuada tincidunt. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer enim purus, posuere at ultricies eu, placerat a felis. Suspendisse aliquet urna pretium eros convallis interdum. Quisque in arcu id dui vulputate mollis eget non arcu. Aenean et nulla purus. Mauris vel tellus non nunc mattis lobortis. Nunc facilisis sagittis ullamcorper. Proin lectus ipsum, gravida et mattis vulputate, tristique ut lectus. Sed et lorem nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean eleifend laoreet congue. Vivamus adipiscing nisl ut dolor dignissim semper. Nulla luctus malesuada tincidunt. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer enim purus, posuere at ultricies eu, placerat a felis. Suspendisse aliquet urna pretium eros convallis interdum. Quisque in arcu id dui vulputate mollis eget non arcu. Aenean et nulla purus. Mauris vel tellus non nunc mattis lobortis. </div>
+                                <div role="tabpanel" class="tab-pane" id="delivery">
+                                    <div class="row">
+                                        <div class="col-md-6 col-xs-12">
+                                            <div class="customer-reviews">
+                                                <div class="customer-reviews-one">
+                                                    <p><a href="#">Plazathemes</a> <span>Review by</span> Plazathemes</p>
+                                                </div>
+                                                <div class="customer-reviews-two">
+                                                    <p>Quality</p>
+                                                    <div class="pro-rating">
+                                                        <div class="pro_one">
+                                                            <a href="#">
+                                                                <i class="fa fa-star"></i>
+                                                            </a>
+                                                            <a href="#">
+                                                                <i class="fa fa-star"></i>
+                                                            </a>
+                                                            <a href="#">
+                                                                <i class="fa fa-star"></i>
+                                                            </a>
+                                                            <a href="#">
+                                                                <i class="fa fa-star"></i>
+                                                            </a>
+                                                            <a href="#">
+                                                                <i class="fa fa-star"></i>
+                                                            </a>
+                                                        </div>
 
-                    <?php
-                    if($_SESSION['p_id'] || $_SESSION['p_name']){
-                    ?>                    
+                                                    </div>
+                                                </div>
+                                                <div class="customer-reviews-two">
+                                                    <p>Price</p>
+                                                    <div class="pro-rating pro-ra-two">
+                                                        <div class="pro_one">
+                                                            <a href="#">
+                                                                <i class="fa fa-star"></i>
+                                                            </a>
+                                                            <a href="#">
+                                                                <i class="fa fa-star"></i>
+                                                            </a>
+                                                            <a href="#">
+                                                                <i class="fa fa-star"></i>
+                                                            </a>
+                                                            <a href="#">
+                                                                <i class="fa fa-star"></i>
+                                                            </a>
+                                                        </div>
+                                                        <div class="pro_two">
+                                                            <a href="#">
+                                                                <i class="fa fa-star-o"></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="customer-reviews-two">
+                                                    <p>Value</p>
+                                                    <div class="pro-rating pro-ra-two">
+                                                        <div class="pro_one">
+                                                            <a href="#">
+                                                                <i class="fa fa-star"></i>
+                                                            </a>
+                                                            <a href="#">
+                                                                <i class="fa fa-star"></i>
+                                                            </a>
+                                                            <a href="#">
+                                                                <i class="fa fa-star"></i>
+                                                            </a>
+                                                            <a href="#">
 
-                    <div class="cost">
-                        <span class="new"><i class="fa fa-krw"></i> <?=number_format($rows['retail_price'])?> (VAT 별도)</span>
-                    </div>
-                    
-                    <?php
-                    }
-                    ?>
-
-                </div>
-                <div class="row">
-                    <p>
-                    <?php
-                      if($rows['opt'])
-                          show_option($rows);
-                    ?>
-                    </p>
-                </div>
-
-                <?php
-                if($_SESSION['p_id'] || $_SESSION['p_name']){
-                ?>                  
-
-                <div class="row product-count">
-                    <div class="counting inline-block">
-                        <a href="" class="a-less disabled">-</a>
-                        <input type="text" name="products_count" id="products_count_<?=$rows['num']?>" value="<?=$rows['moq']?>">
-                        <a href="" class="a-more">+</a>
-                    </div>
-                    <a type="button" href="#" id="<?=$rows['num']?>" class="btn btn-primary addCart_submit" >장바구니 담기</a>
-                    <div id="loadplace<?=$rows['num']?>"></div>
-                    <input type="hidden" name="amount" id="amount_<?=$rows['num']?>" value="<?=$offer_price?>">
-                </div>
-
-                <?php
-                }
-                ?>                
-
-                </form>
-
-                <table class="product-table">
-                    <tr>
-                        <th>보험코드</th>
-                        <td><span class="grey">000 568</span></td>
-                    </tr>
-                    <tr>
-                      <th>제조/수입사</th>
-                      <td><?=$rows['company']?> / <?=$rows['importer']?></h2></td>
-                    </tr>
-                    <tr>
-                      <th>상품등록일 </th>
-                      <td><?php
-                        //      $r_date = explode("-", $rows['created']);
-                                // echo $r_date[0]."년 ".$r_date[1]."월 <br/>";
-                                echo $rows['created'];
-
-                                ?></td>
-                    </tr>
-                    <tr>
-                      <th>원산지</th>
-                      <td><?=$rows['origin']?></td>
-                    </tr>
-                    <tr>
-                      <th>크기 / 무게</th>
-                      <td><?=$rows['size']?></td>
-                    </tr>
-                    <tr>
-                      <th>재질</th>
-                      <td><?=$rows['material']?></td>
-                    </tr>
-                    <tr>
-                      <th>인증여부</th>
-                      <td><?=$rows['auth']== NULL? "해당사항 없음" : $rows['auth']?></td>
-                    </tr>
-                    <tr>
-                      <th>A/S</th>
-                      <td><?=$rows['service']?></td>
-                    </tr>
-                    <tr>
-                      <th>품질보증</th>
-                      <td><?=$rows['warranty']?></td>
-                    </tr>
-                    <tr>
-                      <th>취급시 유의사항</th>
-                      <td><?=nl2br($rows['caution'])?></td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <!-- /.container -->
-
-        <!-- TABS -->
-        <div class="tabs">
-            <ul class="container nav nav-tabs text-center">
-                <li class="active"><a href="#description" data-toggle="tab"><span>상세설명</span></a></li>
-                <li><a href="#customtab" data-toggle="tab"><span>배송 및 반품</span></a></li>
-            </ul>
-            <div class="highlight">
-                <div class="container tab-content">
-                    <div class="tab-pane fade in active" id="description">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <h2><?=$rows['name']?></h2>
-                                <p class="grey">Product Information</p>
-                            </div>
-                            <div class="col-sm-4">
-                                <h3>Information</h3>
-                                <p>Mellentesque habitant morbi tristique senectus et netus et malesuada famesac turpis egestas. Ut non enim eleifend felis pretium feugiat. Dummy text of the printing and typesetting industry.</p>
-                            </div>
-                            <div class="col-sm-4">
-                                <h3>Features</h3>
-                                <ul>
-                                    <li>Approx weight 3.0kg</li>
-                                    <li>Two external zipped compartments</li>
-                                    <li>Antiqued brass fittings</li>
-                                    <li>Detachable shoulder strap</li>
-                                </ul>
+                                                            </a>
+                                                        </div>
+                                                        <div class="pro_two">
+                                                            <a href="#">
+                                                                <i class="fa fa-star-o"></i>
+                                                                <i class="fa fa-star-o"></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="date">
+                                                    <p>Plazathemes <small>(Posted on 9/11/2014)</small></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-xs-12">
+                                            <div class="form-add table-responsive">
+                                                <form action="#">
+                                                    <div class="form-border">
+                                                        <div class="add-text">
+                                                            <h3>
+                                                                You're reviewing:
+                                                                <span>Cras neque metus</span>
+                                                            </h3>
+                                                            <h4>
+                                                                How do you rate this product?*
+                                                            </h4>
+                                                        </div>
+                                                        <table class="data-table">
+                                                            <tr>
+                                                                <th></th>
+                                                                <th>1 star</th>
+                                                                <th>2 stars</th>
+                                                                <th>3 stars</th>
+                                                                <th>4 stars</th>
+                                                                <th>5 stars</th>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="one two">Quality</td>
+                                                                <td><input type="radio" name="ratings" required></td>
+                                                                <td><input type="radio" name="ratings" required></td>
+                                                                <td><input type="radio" name="ratings" required></td>
+                                                                <td><input type="radio" name="ratings" required></td>
+                                                                <td><input type="radio" name="ratings" required></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="one">Price</td>
+                                                                <td><input type="radio" name="ratings" required></td>
+                                                                <td><input type="radio" name="ratings" required></td>
+                                                                <td><input type="radio" name="ratings" required></td>
+                                                                <td><input type="radio" name="ratings" required></td>
+                                                                <td><input type="radio" name="ratings" required></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="one">Value</td>
+                                                                <td><input type="radio" name="ratings" required></td>
+                                                                <td><input type="radio" name="ratings" required></td>
+                                                                <td><input type="radio" name="ratings" required></td>
+                                                                <td><input type="radio" name="ratings" required></td>
+                                                                <td><input type="radio" name="ratings" required></td>
+                                                            </tr>
+                                                        </table>
+                                                        <div class="input-one form-list">
+                                                            <label class="required">Nickname<em>*</em></label>
+                                                            <input type="text" class="email" required>
+                                                        </div>
+                                                        <div class="input-one">
+                                                            <label class="required">Summary of Your Review<em>*</em></label>
+                                                            <input type="text" class="email" required>
+                                                        </div>
+                                                        <div class="input-one">
+                                                            <label class="required">Review<em>*</em></label>
+                                                            <textarea class="email"></textarea>
+                                                        </div>
+                                                        <button class="button2 btn-cart btn-in" type="button" title="">
+                                                            <span>Submit Review</span>
+                                                        </button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="return">
+                                    <div class="box-collateral">
+                                        <h3>Other people marked this product with these tags:</h3>
+                                        <p><a href="#">Clothing</a>(3)</p>
+                                    </div>
+                                    <div class="input-two">
+                                        <label class="required">Add Your Tags:</label>
+                                        <input type="text" class="email tags" required>
+                                        <button class="button2 btn-cart btn-a" type="button" title="">
+                                            <span>Add Tags</span>
+                                        </button>
+                                    </div>
+                                    <p class="note">Use spaces to separate tags. Use single quotes (') for phrases.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="customtab">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <h2>Delivery & Returns</h2>
-                                <!-- <p class="grey">Product Information</p> -->
-                            </div>
-                            <div class="col-sm-4">
-                                <h3>Delivery</h3>
-                                <p>Habitant morbi tristique senectus et netus malesuada famesac turpis egestas. Ut non enim eleifend pretium feugiat. Dummy text of the printing and typesetting industry.</p>
-                            </div>
-                            <div class="col-sm-4">
-                                <h3>Returns</h3>
-                                <p>Dummy text of the printing and typesetting industry. Mellentesque habitant morbi tristique senectus et netus et malesuada famesac turpis egestas.</p>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
-        </div>
-        <!-- /.tabs -->
+        </section>
 
-    </div>
-    <!-- /.content -->
-</div>
-<!-- /.wrapper -->
 
-<!-- FOOTER -->
-<?php include"../include/footer.php"; ?>
+<?php include_once '../include/brands.php';?>
 
-<script src="../js/jquery-2.1.1.min.js"></script>
-<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDv0RLj_LBhRntn4AOCr4zHSYv0-F8gVeA&sensor=false"></script>
-<script src="../js/bootstrap.min.js"></script>
-<script src="../js/jquery.plugins.js"></script>
-<script src="../js/custom.js"></script>
-<script src="../js/addcart.js"></script>
-<script src="../js/member.js"></script>
-
-</body>
-</html>
-
->>>>>>> 6ec2d8fb9810111cc3e9867ff370e9b6e5f67549
+<?php include_once '../include/footer.php';?>
