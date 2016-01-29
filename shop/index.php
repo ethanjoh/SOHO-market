@@ -4,36 +4,51 @@
 		<section class="slider-area">
 			<div class="bend niceties preview-2">
 				<div id="ensign-nivoslider" class="slides">
-					<img src="/images/slider/slider11.jpg" alt="" title="#slider-direction-1"  />
-					<img src="/images/slider/slider12.jpg" alt="" title="#slider-direction-2"  />
+					<img src="/images/slider/main-01.jpg" alt="" title="#slider-direction-1"  />
+					<img src="/images/slider/main-02.jpg" alt="" title="#slider-direction-2"  />
+                    <img src="/images/slider/main-03.jpg" alt="" title="#slider-direction-3"  />
+                    <img src="/images/slider/main-04.jpg" alt="" title="#slider-direction-4"  />
 				</div>
-				<!-- direction 1 -->
-				<div id="slider-direction-1" class="t-cn slider-direction">
 
-					<div class="slider-content t-lfl s-tb slider-1">
-						<div class="title-container s-tb-c title-compress">
-							<h1 class="title1">samsunggalaxy</h1>
-							<h2 class="title2">s4 zoom</h2>
-							<h3 class="title3" >talk & shoot camera</h3>
-							<div class="s-title">
-                                <a href="#">view collection</a>
+<!--                 <div id="slider-direction-1" class="slider-direction">
+                    <div class="slider-content t-lfr s-tb slider-2">
+                        <div class="title-container s-tb-c">
+                            <div class="s-title">
+                                <a href="#">자세히 보기</a>
                             </div>
-						</div>
-					</div>
-				</div>
-				<!-- direction 2 -->
-				<div id="slider-direction-2" class="slider-direction">
+                        </div>
+                    </div>
+                </div>
 
-					<div class="slider-content t-lfr s-tb slider-2">
-						<div class="title-container s-tb-c">
-							<h1 class="title4">now available no selected</h1>
-							<h3 class="title3">smart tvs & tablets</h3>
-							<div class="s-title">
-                                <a href="#">view collection</a>
+                <div id="slider-direction-2" class="slider-direction">
+                    <div class="slider-content t-lfr s-tb slider-2">
+                        <div class="title-container s-tb-c">
+                            <div class="s-title">
+                                <a href="#">자세히 보기</a>
                             </div>
-						</div>
-					</div>
-				</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="slider-direction-3" class="slider-direction">
+                    <div class="slider-content t-lfr s-tb slider-2">
+                        <div class="title-container s-tb-c">
+                            <div class="s-title">
+                                <a href="#">자세히 보기</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="slider-direction-4" class="slider-direction">
+                    <div class="slider-content t-lfr s-tb slider-2">
+                        <div class="title-container s-tb-c">
+                            <div class="s-title">
+                                <a href="#">자세히 보기</a>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
 			</div>
 		</section>
 		<!--main slider end-->

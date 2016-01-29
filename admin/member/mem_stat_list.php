@@ -33,7 +33,7 @@ $unchk_total = mysqli_num_rows($res_1);
     <title><?=$info['company_name']?> :: 운영업체 관리자 홈</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/admin/css/bootstrap-reset.css" rel="stylesheet">
     <!--external css-->
     <link href="/css/font-awesome.min.css" rel="stylesheet" />

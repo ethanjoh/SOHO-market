@@ -123,14 +123,8 @@ $main       = mysqli_fetch_array($main_res);
                                 <div class="form-search s-same" >
                                     <div class="select-wrapper">
                                         <select class="select">
-                                            <option value="">All Categories</option>
-                                            <option value="">Smartphones & Accessories</option>
-                                            <option value="">Computers & Networking</option>
-                                            <option value="">Laptops & Tablets</option>
-                                            <option value="">Camerea & Camcorders</option>
-                                            <option value="">Watches</option>
-                                            <option value="">Lights & Lighting</option>
-                                            <option value="">Air conditioner</option>
+                                            <option value="">상품명</option>
+                                            <option value="">모델명</option>
                                         </select>
                                     </div>
                                     <input class="input-text" type="text" placeholder="검색하기">
@@ -205,7 +199,7 @@ $main       = mysqli_fetch_array($main_res);
 								<div class="top-register ">
                                     <div class=" block-compare">
                                         <div class="compare">
-                                            <a href="#"><i class="fa fa-refresh"> </i>
+                                            <a href="#"><i class="fa fa-user"></i>
                                                 회원가입
                                             </a>
                                         </div>
@@ -221,13 +215,15 @@ $main       = mysqli_fetch_array($main_res);
                                         <div class="home" id="right">
                                             <ul>
                                                 <li>
-                                                    <input type="text" placeholder="아이디">
+                                                    <input class="form-control" type="text" placeholder="아이디">
                                                 </li>
                                                 <li>
-                                                    <input type="password" placeholder="비밀번호">
+                                                    <input  class="form-control" type="password" placeholder="비밀번호">
                                                 </li>
                                                 <li>
-                                                    <input type="submit" value="로그인">
+                                                    <div class="login_d">
+                                                    <a href="login.php"><strong>로그인</strong></a>
+                                                    </div>
                                                 </li>
                                             </ul>
                                         </div>
