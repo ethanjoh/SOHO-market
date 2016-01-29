@@ -206,25 +206,39 @@ $main       = mysqli_fetch_array($main_res);
                                 <div class="top-login ">
                                     <div class=" block-compare">
                                         <div class="compare">
-                                            <a href="#"><i class="fa fa-key"> </i>
-                                                로그인
-                                            </a>
+<?php
+if (!$_SESSION['p_id'] || !$_SESSION['p_name']) {
+    echo <<<HEREDOC
+
+                                            <a href="#"><i class="fa fa-key"></i> 로그인 </a>
                                         </div>
                                         <div class="home" id="right">
+                                            <form method="post" name="login" class="loginform" action="//{$_SERVER['SERVER_NAME']}:{$port}/member/login_ok.php" onsubmit="return(login_check());">
+                                            <input type="hidden" name="uri" value="{$uri}">
                                             <ul>
                                                 <li>
-                                                    <input class="form-control" type="text" placeholder="아이디">
+                                                    <input class="form-control" type="text" name="id" placeholder="아이디">
                                                 </li>
                                                 <li>
-                                                    <input  class="form-control" type="password" placeholder="비밀번호">
+                                                    <input  class="form-control" type="password" name="pwd" placeholder="비밀번호">
                                                 </li>
                                                 <li>
                                                     <div class="login_d">
-                                                    <a href="login.php"><strong>로그인</strong></a>
+                                                        <button class="button2" type="submit"><strong>로그인</strong></button>
                                                     </div>
                                                 </li>
                                             </ul>
+                                            </form>
                                         </div>
+HEREDOC;
+} else {
+    echo <<<HEREDOC
+                                            <a href="/member/logout.php"><i class="fa fa-unlock"></i> 로그아웃 </a>
+                                        </div>
+HEREDOC;
+}
+?>
+
                                     </div>
                                 </div>
                             </div>

@@ -22,7 +22,7 @@ if ($rows['passwd'] != sha1($pwd)) {
     msg('비밀번호가 틀립니다.\n (Wrong password.)');
 } else {
     // ini_set("session.cookie_domain", $_SERVER['SERVER_NAME']); //서브도메인간 세션 공유
-    //    session_start();
+    session_start();
 
     $_SESSION["p_id"]    = $id;
     $_SESSION["p_pw"]    = $pwd;
@@ -52,15 +52,17 @@ if ($rows['passwd'] != sha1($pwd)) {
 
 }
 
-if ($uri) {
+if ($_POST['uri']) {
+    $uri   = $_POST['uri'];
     $uri   = urldecode($uri);
     $uri_d = explode('/', $uri);
 
     if ($uri_d[1] == "bbs") {
-        echo ("<meta http-equiv='Refresh' content='0; URL=http://$_SERVER[SERVER_NAME]" . $uri . "'>");
+        // echo "<meta http-equiv='Refresh' content='0; URL=http://" . $_SERVER[SERVER_NAME] . $uri . "'>";
+        header('Location: http://' . $_SERVER['SERVER_NAME'] . $uri . '');
     } else {
-        echo ("<meta http-equiv='Refresh' content='0; URL=http://$_SERVER[SERVER_NAME]/shop/catalog-list.php'>");
+        // echo "<meta http-equiv='Refresh' content='0; URL=http://" . $_SERVER[SERVER_NAME] . "'>";
+        header('Location: http://' . $_SERVER['SERVER_NAME'] . '');
     }
 
 }
-; // }else{; //         // echo("<meta http-equiv='Refresh' content='0; URL=http://$_SERVER[SERVER_NAME]'>");; //    echo("<meta http-equiv='Refresh' content='0; URL=http://$_SERVER[SERVER_NAME]/shop/catalog-list.php'>");; // }; // echo("<meta http-equiv='Refresh' content='0; URL=http://$_SERVER[SERVER_NAME]/shop/catalog-list.php'>");
