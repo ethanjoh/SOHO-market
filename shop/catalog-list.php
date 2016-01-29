@@ -114,3 +114,6 @@ show_catalog_products($lcode, $mcode, 'profile');
 <?php include_once '../include/brands.php';?>
 
 <?php include_once '../include/footer.php';?>
+
+    </body>
+</html>

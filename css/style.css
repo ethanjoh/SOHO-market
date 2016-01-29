@@ -869,7 +869,7 @@ select.select option {
 }
 
 .home ul li input {
-    margin: 5px;
+    margin: 5px 5px 5px 0;
 }
 
 .top-cart-wrapper:hover .home ul {
@@ -4164,6 +4164,12 @@ h2.creative-member strong,
     text-align: center;
 }
 
+.register-intro {
+    text-align: center;
+    margin: 0 auto;
+    width: 50%;
+}
+
 .what-client-say {
     display: block;
     text-align: center;
@@ -5031,4 +5037,15 @@ textarea:focus,
 input.tags:focus,
 select.s-email:focus {
     background-color: #edf7f8;
+}
+
+/*
+custom style
+ */
+.margin-top-10 {
+    margin-top: 10px;
+}
+
+.register-font {
+    padding: 5px 5px 10px 20px;
 }

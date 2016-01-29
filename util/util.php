@@ -612,7 +612,7 @@ function show_brands()
 
             echo <<<HEREDOC
                                             <li>
-                                                <a href="catalog-list.php?lcode={$l_rows['code']}">
+                                                <a href="/shop/catalog-list.php?lcode={$l_rows['code']}">
                                                     <span class="cat-thumb">
                                                         <i class="fa fa-hashtag"></i>
                                                     </span>

@@ -504,3 +504,6 @@ show_sub_category_name($lcode, $mcode);
 <?php include_once '../include/brands.php';?>
 
 <?php include_once '../include/footer.php';?>
+
+    </body>
+</html>

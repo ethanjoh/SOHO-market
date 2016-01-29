@@ -134,3 +134,6 @@ show_main_products('new', 10);
 <?php include_once '../include/brands.php';?>
 
 <?php include_once '../include/footer.php';?>
+
+    </body>
+</html>

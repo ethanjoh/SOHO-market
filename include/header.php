@@ -45,13 +45,11 @@ $main       = mysqli_fetch_array($main_res);
         <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico">
 		<!-- Google Fonts
 		============================================ -->
-<!--         <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
-        <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700,900' rel='stylesheet' type='text/css'> -->
         <link href='http://fonts.googleapis.com/earlyaccess/notosanskr.css' rel='stylesheet' type='text/css'>
 		<!-- Bootstrap CSS
 		============================================ -->
         <link rel="stylesheet" href="/css/bootstrap.min.css">
-		<!-- Bootstrap CSS
+		<!-- Font awesome CSS
 		============================================ -->
         <link rel="stylesheet" href="/css/font-awesome.min.css">
 		<!-- owl.carousel CSS
@@ -101,7 +99,7 @@ $main       = mysqli_fetch_array($main_res);
                     <div class="row">
                         <div class="col-md-6 col-sm-6">
                             <div class="top-logo">
-                                <a href="index.php"><img src="/images/shinsoo-logo.svg" alt="신수상사 로고"></a>
+                                <a href="/index.php"><img src="/images/shinsoo-logo.svg" alt="신수상사 로고"></a>
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-6">
@@ -199,7 +197,7 @@ $main       = mysqli_fetch_array($main_res);
 								<div class="top-register ">
                                     <div class=" block-compare">
                                         <div class="compare">
-                                            <a href="#"><i class="fa fa-user"></i>
+                                            <a href="/member/register.php"><i class="fa fa-user"></i>
                                                 회원가입
                                             </a>
                                         </div>
