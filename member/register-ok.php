@@ -1,9 +1,8 @@
 <?php
 
 include "../util/config.php";
-// 각종 유틸함수
 include "../util/util.php";
-// MySQL 연결
+
 $connect = my_connect($host, $dbid, $dbpass, $dbname);
 
 $sid   = set_var($_POST['session_id']);
@@ -16,6 +15,7 @@ $passwd       = set_var($_POST['passwd']);
 $md_email     = set_var($_POST['md_email']);
 $optin        = set_var($_POST['optin']);
 $md_name      = set_var($_POST['md_name']);
+$job_title    = set_var($_POST['job_title']);
 $md_hphone    = set_var($_POST['md_hphone']);
 $sms          = set_var($_POST['sms']);
 $company_name = set_var($_POST['company_name']);
@@ -57,84 +57,84 @@ if ("edit" == $mode) {
 
     } else {
         //비밀번호 수정만
-        if ($changePW == "Y") {
-            $passwd  = sha1($new_passwd2);
-            $query3  = "UPDATE member SET passwd = '$passwd' WHERE id='$sid' ";
-            $result3 = mysqli_query($connect, $query3);
+        // if ($changePW == "Y") {
+        //     $passwd  = sha1($new_passwd2);
+        //     $query3  = "UPDATE member SET passwd = '$passwd' WHERE id='$sid' ";
+        //     $result3 = mysqli_query($connect, $query3);
 
-            // 게시판의 글들에 대한 비밀번호도 모두 수정한다.
-            $query2  = "UPDATE board SET passwd='$passwd' WHERE id='$sid' ";
-            $result2 = mysqli_query($connect, $query2);
+        //     // 게시판의 글들에 대한 비밀번호도 모두 수정한다.
+        //     $query2  = "UPDATE board SET passwd='$passwd' WHERE id='$sid' ";
+        //     $result2 = mysqli_query($connect, $query2);
 
-            // 저장과정에서 오류가 발생하면
-            if (!$result2) {
-                err_msg('게시판 비밀번호 수정 중 DB 오류가 발생했습니다.');
-            } else if (!$result3) {
-                err_msg('비밀번호 변경 중 DB 오류가 발생했습니다.');
-            }
+        //     // 저장과정에서 오류가 발생하면
+        //     if (!$result2) {
+        //         err_msg('게시판 비밀번호 수정 중 DB 오류가 발생했습니다.');
+        //     } else if (!$result3) {
+        //         err_msg('비밀번호 변경 중 DB 오류가 발생했습니다.');
+        //     }
 
-            // 세션을 다시 부여합니다.
-            session_register("p_name");
-            session_register("p_email");
+        //     // 세션을 다시 부여합니다.
+        //     session_register("p_name");
+        //     session_register("p_email");
 
-            $p_name  = $company_name;
-            $p_email = $md_email;
+        //     $p_name  = $company_name;
+        //     $p_email = $md_email;
 
-            $sender       = "=?EUC-KR?B?" . base64_encode(iconv("UTF-8", "EUC-KR", "신수상사")) . "?=\r\n";
-            $sender_email = "griptech@hanmail.net";
+        //     $sender       = "=?EUC-KR?B?" . base64_encode(iconv("UTF-8", "EUC-KR", "신수상사")) . "?=\r\n";
+        //     $sender_email = "griptech@hanmail.net";
 
-            $subject   = $company_name . "님, 신수상사 사이트 비밀번호 변경안내";
-            $subject_c = "=?EUC-KR?B?" . base64_encode(iconv("UTF-8", "EUC-KR", $subject)) . "?=\r\n";
-            $subject_c = addslashes($subject_c);
+        //     $subject   = $company_name . "님, 신수상사 사이트 비밀번호 변경안내";
+        //     $subject_c = "=?EUC-KR?B?" . base64_encode(iconv("UTF-8", "EUC-KR", $subject)) . "?=\r\n";
+        //     $subject_c = addslashes($subject_c);
 
-            $contents = "<p>골프그립 전문기업 신수상사를 이용해 주셔서 고맙습니다.<br />";
-            $contents .= "당사 사이트에서 비밀번호 변경이 되어 안내드립니다.</p>";
-            $contents .= "<p>비밀번호 변경을 하지 않았다면 보안을 위해 당사로 연락부탁드립니다.<br/>";
-            $contents .= "이용해 주셔서 고맙습니다.</p>";
-            $contents = addslashes($contents);
+        //     $contents = "<p>골프그립 전문기업 신수상사를 이용해 주셔서 고맙습니다.<br />";
+        //     $contents .= "당사 사이트에서 비밀번호 변경이 되어 안내드립니다.</p>";
+        //     $contents .= "<p>비밀번호 변경을 하지 않았다면 보안을 위해 당사로 연락부탁드립니다.<br/>";
+        //     $contents .= "이용해 주셔서 고맙습니다.</p>";
+        //     $contents = addslashes($contents);
 
-            $headers = "Return-Path: $sender_email\r\n";
-            $headers .= "From: $sender <$sender_email>\r\n";
+        //     $headers = "Return-Path: $sender_email\r\n";
+        //     $headers .= "From: $sender <$sender_email>\r\n";
 
-            $boundary = "----" . uniqid("part");
+        //     $boundary = "----" . uniqid("part");
 
-            $headers .= "Content-Type: text/html; charset=utf-8\r\n";
-            $message = stripslashes($contents);
+        //     $headers .= "Content-Type: text/html; charset=utf-8\r\n";
+        //     $message = stripslashes($contents);
 
-            $to = $md_email;
+        //     $to = $md_email;
 
-            mail($to, $subject_c, $message, $headers);
+        //     mail($to, $subject_c, $message, $headers);
 
-            $msg = "비밀번호를 정상적으로 수정했습니다. 다시 로그인해주세요.";
-            $url = "http://" . $_SERVER['SERVER_NAME'] . "/index.php";
+        //     $msg = "비밀번호를 정상적으로 수정했습니다. 다시 로그인해주세요.";
+        //     $url = "http://" . $_SERVER['SERVER_NAME'] . "/index.php";
 
-            show_msg($msg, $url);
+        //     show_msg($msg, $url);
 
+        // } else {
+
+        $o_zipcode = $o_zipcode1 . "-" . $o_zipcode2;
+        $d_zipcode = $d_zipcode1 . "-" . $d_zipcode2;
+
+        $md_email = addslashes($md_email);
+        $o_addr1  = addslashes($o_addr1);
+        $o_addr2  = addslashes($o_addr2);
+        $d_addr1  = addslashes($d_addr1);
+        $d_addr2  = addslashes($d_addr2);
+
+        if (!empty($sms)) {
+            $sms = "Y";
         } else {
+            $sms = "N";
+        }
 
-            $o_zipcode = $o_zipcode1 . "-" . $o_zipcode2;
-            $d_zipcode = $d_zipcode1 . "-" . $d_zipcode2;
+        if (!empty($optin)) {
+            $optin = "Y";
+        } else {
+            $optin = "N";
+        }
 
-            $md_email = addslashes($md_email);
-            $o_addr1  = addslashes($o_addr1);
-            $o_addr2  = addslashes($o_addr2);
-            $d_addr1  = addslashes($d_addr1);
-            $d_addr2  = addslashes($d_addr2);
-
-            if (!empty($sms)) {
-                $sms = "Y";
-            } else {
-                $sms = "N";
-            }
-
-            if (!empty($optin)) {
-                $optin = "Y";
-            } else {
-                $optin = "N";
-            }
-
-            ########## 회원정보 테이블에 입력값을 수정한다. ##########
-            $query = "UPDATE member SET md_email 		= '$md_email',
+        ########## 회원정보 테이블에 입력값을 수정한다. ##########
+        $query = "UPDATE member SET md_email 		= '$md_email',
 										optin 			= '$optin',
 										md_name 		= '$md_name',
 										job_title 		= '$job_title',
@@ -156,16 +156,16 @@ if ("edit" == $mode) {
 										d_phone 		= '$d_phone',
 										d_fax 			= '$d_fax'
 					  WHERE id='$sid' ";
-            $result = mysqli_query($connect, $query);
+        $result = mysqli_query($connect, $query);
 
-        } // changePw end
+        // } // changePw end
 
         if (!$result) {
             err_msg('DB 오류가 발생했습니다.');
         } else {
 
             $msg = "정보를 정상적으로 수정했습니다.";
-            $url = "http://" . $_SERVER['SERVER_NAME'] . "/main/index.php";
+            $url = "http://" . $_SERVER['SERVER_NAME'];
 
             show_msg($msg, $url);
 

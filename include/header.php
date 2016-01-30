@@ -195,7 +195,7 @@ HEREDOC;
                                             <ul>
                                                 <li><a href=""><i class="fa fa-list-alt"></i> 주문내역</a></li>
                                                 <li><a href=""><i class="fa fa-bar-chart"></i> 통계보기</a></li>
-                                                <li><a href=""><i class="fa fa-wrench"></i> 정보수정</a></li>
+                                                <li><a href="/member/register-form.php?mode=edit"><i class="fa fa-wrench"></i> 정보수정</a></li>
                                             </ul>
                                         </div>
                                     </div>

@@ -746,6 +746,20 @@ function registerConfirm() {
   });
 }
 
+function changePwConfirm() {
+
+  $( "#pw_form" ).validate({
+    rules: {
+      new_passwd2     : { equalTo: "#new_passwd" }
+    },
+
+    submitHandler: function(form) {
+      form.submit();
+    }
+
+  });
+}
+
 function onopen(wrkr_no) {
   var url = "http://www.ftc.go.kr/info/bizinfo/communicationViewPopup.jsp?wrkr_no="+wrkr_no;
   window.open(url, "communicationViewPopup", "width=750, height=700;");

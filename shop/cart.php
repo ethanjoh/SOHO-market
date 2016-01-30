@@ -2,9 +2,8 @@
 
 <?php
 // 미로그인
-if (!isset($_SESSION['p_id']) || !(isset($_SESSION['p_name']))) {
-    header('Location: /member/login.php');
-    exit;
+if (!(isset($_SESSION['p_id'])) || !(isset($_SESSION['p_name']))) {
+    header('Location: http://' . $_SERVER['SERVER_NAME'] . '/member/login.php');
 }
 ?>
         <!-- start shopping-cart-area
@@ -33,7 +32,7 @@ if (!isset($_SESSION['p_id']) || !(isset($_SESSION['p_name']))) {
                                             <a href="#"><i class="fa fa-times"></i></a>
                                         </td>
                                         <td class="sop-cart">
-                                            <a href="#"><img class="primary-image" alt="" src="img/product/01_1.jpg"></a>
+                                            <a href="#"><img class="primary-image" alt="" src="../images/product/01_1.jpg"></a>
                                         </td>
                                         <td class="sop-cart"><a href="#">Cras neque metus</a></td>
                                         <td class="sop-cart"><i class="fa fa-krw"></i> 150</td>
@@ -45,7 +44,7 @@ if (!isset($_SESSION['p_id']) || !(isset($_SESSION['p_name']))) {
                                             <a href="#"><i class="fa fa-times"></i></a>
                                         </td>
                                         <td class="sop-cart">
-                                            <a href="#"><img class="primary-image" alt="" src="img/product/01_1.jpg"></a>
+                                            <a href="#"><img class="primary-image" alt="" src="../images/product/01_1.jpg"></a>
                                         </td>
                                         <td class="sop-cart"><a href="#">Accumsan elit </a></td>
                                         <td class="sop-cart"><i class="fa fa-krw"></i> 100</td>
@@ -78,12 +77,12 @@ if (!isset($_SESSION['p_id']) || !(isset($_SESSION['p_name']))) {
                 </div>
                 <div class="cart-collaterals row">
                     <div class="col-md-8 col-sm-12">
-                        <i class="fa fa-check-circle"></i> 택배비 안내: 3만원 이상 무료배송입니다.
+                        <i class="fa fa-check-circle"></i> 택배비 안내: 5만원 이상 무료배송입니다.
                     </div>
                     <div class="col-md-4 col-sm-12">
                         <div class="totals">
                             <div class="subtotal">
-                                <p><i class="fa fa-plus-circle"></i> 택배비: <span><i class="fa fa-krw"></i> 2,500 (착불)</span></p>
+                                <p><i class="fa fa-plus-circle"></i> 택배비: <span>5만원 미만 착불</span></p>
                                 <p class="grand-total">총  합: <span><i class="fa fa-krw"></i> 5,000</span></p>
                             </div>
                             <button class="button2 get" type="submit">
