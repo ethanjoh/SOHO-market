@@ -134,67 +134,23 @@ $main       = mysqli_fetch_array($main_res);
                         </div>
                         <div class="col-md-4 col-sm-4 col-xs-12">
                             <div class="header-wrapper">
+
+<?php
+// 미로그인
+if (!isset($_SESSION['p_id']) || !(isset($_SESSION['p_name']))) {
+    echo <<<HEREDOC
                                 <div class="top-cart-wrapper">
                                     <div class="top-cart-contain">
                                         <div class="block-cart">
                                             <div class="top-cart-title">
                                                 <div class="my-cart">카트</div>
-                                                <a href="#"><p>(2) item:<span>$100.00</span></p></a>
-                                            </div>
-                                            <div class="home">
-                                                <ul>
-                                                    <li>
-                                                        <div class="cat">
-                                                            <a href="#">
-                                                                <img src="/images/product/4.jpg" alt="">
-                                                            </a>
-                                                            <div class="cat_two">
-                                                                <p>
-                                                                    <a href="#">Quisque in arcu</a>
-                                                                </p>
-                                                                <p>1 x $50.00</p>
-                                                            </div>
-                                                            <div class="cat_icon">
-                                                                <a href="#">
-                                                                    <i class="fa fa-times"></i>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="cat">
-                                                            <a href="#">
-                                                                <img src="/images/product/5_1_1.jpg" alt="">
-                                                            </a>
-                                                            <div class="cat_two">
-                                                                <p>
-                                                                    <a href="">Donec non est</a>
-                                                                </p>
-                                                                <p>1 x $50.00</p>
-                                                            </div>
-                                                            <div class="cat_icon">
-                                                                <a href="#">
-                                                                    <i class="fa fa-times"></i>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="cat_bottom">
-                                                            <div class="cat_s">
-                                                                <p>Subtotal:<span>$100.00</span></p>
-                                                            </div>
-                                                            <div class="cat_d">
-                                                                <a href="cart.php"><strong>주문하기</strong></a>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                </ul>
+                                                <a href="/shop/cart.php"><p>빈 카트</span></p></a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-								<div class="top-register ">
+
+                                <div class="top-register">
                                     <div class=" block-compare">
                                         <div class="compare">
                                             <a href="/member/register.php"><i class="fa fa-user"></i>
@@ -203,49 +159,71 @@ $main       = mysqli_fetch_array($main_res);
                                         </div>
                                     </div>
                                 </div>
-                                <div class="top-login ">
+
+                                <div class="top-login">
                                     <div class=" block-compare">
                                         <div class="compare">
-<?php
-if (!$_SESSION['p_id'] || !$_SESSION['p_name']) {
-    echo <<<HEREDOC
-
-                                            <a href="#"><i class="fa fa-key"></i> 로그인 </a>
+                                            <a href="/member/login.php"><i class="fa fa-key"></i> 로그인 </a>
                                         </div>
                                         <div class="home" id="right">
-                                            <form method="post" name="login" class="loginform" action="//{$_SERVER['SERVER_NAME']}:{$port}/member/login_ok.php" onsubmit="return(login_check());">
-                                            <input type="hidden" name="uri" value="{$uri}">
-                                            <ul>
-                                                <li>
-                                                    <input class="form-control" type="text" name="id" placeholder="아이디">
-                                                </li>
-                                                <li>
-                                                    <input  class="form-control" type="password" name="pwd" placeholder="비밀번호">
-                                                </li>
-                                                <li>
-                                                    <div class="login_d">
-                                                        <button class="button2" type="submit"><strong>로그인</strong></button>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                            </form>
+
                                         </div>
+                                    </div>
+                                </div>
 HEREDOC;
+
+// 로그인
 } else {
     echo <<<HEREDOC
+                                <div class="top-cart-wrapper">
+                                    <div class="top-cart-contain">
+                                        <div class="block-cart">
+                                            <div class="top-cart-title">
+                                                <div class="my-cart">카트</div>
+                                                <a href="/shop/cart.php"><p>(2) item:<span>$100.00</span></p></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="top-register">
+                                    <div class=" block-compare">
+                                        <div class="compare">
+                                            <a href="#"><i class="fa fa-cog"></i> 마이페이지 </a>
+                                        </div>
+                                        <div class="home" id="right">
+                                            <ul>
+                                                <li><a href=""><i class="fa fa-list-alt"></i> 주문내역</a></li>
+                                                <li><a href=""><i class="fa fa-bar-chart"></i> 통계보기</a></li>
+                                                <li><a href=""><i class="fa fa-wrench"></i> 정보수정</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="top-login">
+                                    <div class=" block-compare">
+                                        <div>
                                             <a href="/member/logout.php"><i class="fa fa-unlock"></i> 로그아웃 </a>
                                         </div>
+                                    </div>
+                                </div>
+
 HEREDOC;
 }
 ?>
 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+
+
+
+                            </div> <!-- /.header-wrapper -->
+                        </div> <!-- /.col-md-4 col-sm-4 col-xs-12 -->
+
+                    </div> <!-- /.row -->
+                </div> <!-- /.container -->
+            </div> <!-- /.header -->
+
             <div class="top-menu">
                 <div class="container">
                     <div class="row">

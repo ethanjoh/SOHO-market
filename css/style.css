@@ -848,7 +848,7 @@ select.select option {
 }
 
 #right ul {
-    right: -80px;
+    right: -40px;
 }
 
 .home ul {
@@ -864,12 +864,12 @@ select.select option {
     transform: scaleY(0);
     transform-origin: 0 0 0;
     transition: all 0.5s ease 0s;
-    width: 230px;
+    width: 120px;
     z-index: -99;
 }
 
-.home ul li input {
-    margin: 5px 5px 5px 0;
+.home ul li {
+    margin: 5px 5px 15px 10px;
 }
 
 .top-cart-wrapper:hover .home ul {
@@ -986,7 +986,7 @@ select.select option {
 }
 
 .login_d {
-    /*float: right;*/
+    float: right;
     text-align: center;
     margin-top: 25px;
 }
@@ -4164,19 +4164,13 @@ h2.creative-member strong,
     text-align: center;
 }
 
-.register-intro {
-    text-align: center;
-    margin: 0 auto;
-    width: 50%;
-}
-
 .what-client-say {
     display: block;
     text-align: center;
 }
 
 .client-say {
-    margin-top: 60px;
+    /*margin-top: 30px;*/
     margin-bottom: 40px;
 }
 
@@ -5046,6 +5040,49 @@ custom style
     margin-top: 10px;
 }
 
+.register-intro {
+    text-align: center;
+    margin: 0 auto;
+    width: 80%;
+}
+
+.login-form {
+    text-align: center;
+    margin: 0 auto;
+    width: 30%;
+}
+
 .register-font {
     padding: 5px 5px 10px 20px;
+}
+
+.form-bottom-line {
+    border-bottom: 1px dashed #ddd;
+    padding-bottom: 20px;
+    margin-bottom: 10px;
+}
+
+.login-form-head {
+    margin-bottom: 40px;
+    text-align: center;
+    /*width: 80%;*/
+    margin: 0 auto;
+}
+
+.login-form-element a {
+    border: 1px solid #2BA8DB;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 28px;
+    overflow: hidden;
+    padding: 0 20px;
+    text-transform: uppercase;
+    transition: all 0.3s ease 0s;
+}
+
+.login-form-element a:hover {
+    background: #2BA8DB none repeat scroll 0 0;
+    color: #fff;
+    transition: all 0.6s ease 0s;
 }

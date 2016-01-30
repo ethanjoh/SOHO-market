@@ -751,5 +751,8 @@ function onopen(wrkr_no) {
   window.open(url, "communicationViewPopup", "width=750, height=700;");
 }
 
+function goto(url) {
+  location.href = url;
+}
 //-->
 

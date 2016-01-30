@@ -591,7 +591,7 @@ function show_brands()
     $l_res = mysqli_query($connect, $l_qry);
     $total = mysqli_num_rows($l_res);
 
-    echo '<ul>';
+    echo "                               <ul>\n";
 
     if ($total > 0) {
 
@@ -627,7 +627,7 @@ HEREDOC;
         echo '<li>브랜드를 등록해주세요</li>';
     }
 
-    echo '</ul>';
+    echo "                               </ul>\n";
 
 }
 

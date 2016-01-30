@@ -1,5 +1,12 @@
 <?php include_once '../include/header.php';?>
 
+<?php
+// 미로그인
+if (!isset($_SESSION['p_id']) || !(isset($_SESSION['p_name']))) {
+    header('Location: /member/login.php');
+    exit;
+}
+?>
         <!-- start shopping-cart-area
 		============================================ -->
         <form method="post" action="checkout.php">
