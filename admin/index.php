@@ -1,10 +1,15 @@
 <?php
 include "../util/config.php";
 include "../util/util.php";
+
 $connect    = my_connect($host, $dbid, $dbpass, $dbname);
 $info_query = "SELECT * FROM admin_setup";
 $info_res   = mysqli_query($connect, $info_query);
 $info       = mysqli_fetch_array($info_res);
+
+$root_cookie = (isset($_COOKIE['save_id']) ? $_COOKIE['ROOT_ID'] : '');
+$save_cookie = (isset($_COOKIE['save_id']) ? 'checked' : '');
+
 ?>
 <!DOCTYPE html>
 <html lang="ko">
@@ -40,10 +45,10 @@ $info       = mysqli_fetch_array($info_res);
                 </div>
                 <h3 class="text-center">ADMIN LOGIN</h3>
                 <div class="login-wrap">
-                    <input name="admin_id" id="admin_id" type="text" class="form-control" value="<?=$_COOKIE['save_id'] == "Y" ? $_COOKIE['ROOT_ID'] : "";?>" placeholder="Admin ID" autofocus>
-                    <input name="admin_pass" id="admin_pass" type="password" class="form-control" placeholder="Password">
+                    <input name="admin_id" id="admin_id" type="text" class="form-control" value="<?php echo $root_cookie; ?>" placeholder="관리자 ID" autofocus>
+                    <input name="admin_pass" id="admin_pass" type="password" class="form-control" placeholder="비밀번호">
                     <label class="checkbox">
-                        <input type="checkbox" name="save_id" id="save_id" <?=$_COOKIE['save_id'] == "Y" ? "checked" : "";?> > 아이디 저장
+                        <input type="checkbox" name="save_id" id="save_id" <?php echo $save_cookie; ?> > 아이디 저장
                     </label>
                     <button class="btn btn-lg btn-login btn-block" type="submit">로그인</button>
                 </div>

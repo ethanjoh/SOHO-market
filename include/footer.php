@@ -174,3 +174,5 @@
 		<!-- main JS
 		============================================ -->
         <script src="/js/main.js"></script>
+        <script src="/js/member.js"></script>
+        <script src="/js/global.js"></script>

@@ -1,9 +1,8 @@
 <?php
-// 데이타베이스 연결정보 및 기타설정
-include "../util/config.php";
-// 각종 유틸함수
-include "../util/util.php";
-// MySQL 연결
+
+include_once "../util/config.php";
+include_once "../util/util.php";
+
 $connect = my_connect($host, $dbid, $dbpass, $dbname);
 
 $id        = set_var($_POST['id']);
@@ -19,13 +18,13 @@ $result = mysqli_query($connect, $query);
 $rows   = mysqli_fetch_array($result);
 
 if ($rows['passwd'] != sha1($pwd)) {
-    msg('비밀번호가 틀립니다.\n (Wrong password.)');
+    msg('비밀번호가 틀립니다.');
 } else {
     // ini_set("session.cookie_domain", $_SERVER['SERVER_NAME']); //서브도메인간 세션 공유
     session_start();
 
-    $_SESSION["p_id"]    = $id;
-    $_SESSION["p_pw"]    = $pwd;
+    $_SESSION["p_id"] = $id;
+    // $_SESSION["p_pw"]    = $pwd;
     $_SESSION["p_name"]  = $rows['company_name'];
     $_SESSION["p_email"] = $rows['md_email'];
 

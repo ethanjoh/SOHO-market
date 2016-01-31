@@ -64,20 +64,6 @@ function onlyNumber1(form_name){
 
 }
 
-function login_check(){
-  var form = document.login;
-   if(!form.id.value) {
-    alert("아이디를 입력하세요");
-    form.id.focus();
-    return false;
-   }
-
-   if(!form.pwd.value) {
-    alert("패스워드를 입력하세요");
-    form.pwd.focus();
-    return false;
-   }
-}
 
 // popup 창에서 사용
 function setCookie( name, value, expiredays ) {

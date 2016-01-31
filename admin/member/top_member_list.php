@@ -16,8 +16,13 @@
           <section class="wrapper">
 
           <?php
+$mode           = set_var($_GET['mode']);
+$search_keyword = '';
+$id             = '';
+$company_name   = '';
+$phone          = '';
 
-if ($mode == "search") {
+if ("search" == $mode) {
 
     if ($id) {
         $search_keyword .= " AND id LIKE '%$id%' ";
@@ -60,19 +65,19 @@ $total  = mysqli_num_rows($result);
                         <div class="form-group">
                             <label for="id" class="col-lg-2 col-sm-2 control-label">아이디:</label>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" name="id" value="<?=$id;?>">
+                                <input type="text" class="form-control" name="id" value="<?php echo $id; ?>">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="company_name" class="col-lg-2 col-sm-2 control-label">업체명:</label>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" name="company_name" value="<?=$company_name;?>">
+                                <input type="text" class="form-control" name="company_name" value="<?php echo $company_name; ?>">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="phone" class="col-lg-2 col-sm-2 control-label">연락처:</label>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" name="phone" value="<?=$phone;?>" >
+                                <input type="text" class="form-control" name="phone" value="<?php echo $phone; ?>" >
                                 <p class="help-block">(예 : 02-123-4567 또는 010-1234-5678)</p>
                             </div>
                         </div>
@@ -115,7 +120,7 @@ $total  = mysqli_num_rows($result);
               <div class="col-sm-12">
                 <section class="panel">
                   <header class="panel-heading table-head">
-                      가입업체 리스트 ( <?=number_format($total);?> 개 ) <a href="member2excel.php"><i class="fa fa-file-excel-o"></i> 엑셀로 저장하기</a>
+                      가입업체 리스트 ( <?php echo number_format($total); ?> 개 ) <a href="member2excel.php"><i class="fa fa-file-excel-o"></i> 엑셀로 저장하기</a>
                   </header>
                   <div class="panel-body">
                   <div class="table-responsive">
@@ -125,7 +130,7 @@ $total  = mysqli_num_rows($result);
                         <th>번 호</th>
                         <th>아이디</th>
                         <th>업체명</th>
-                        <th>구매가능 상품</th>
+                        <!-- <th>구매가능 상품</th> -->
                         <th>할인율</th>
                         <th>사무실</th>
                         <th>담당자</th>
@@ -137,18 +142,21 @@ $total  = mysqli_num_rows($result);
                     </thead>
                     <tbody>
                   <?php
-$scale = 30;
-if ($page == '') {
+$scale = 20;
+$page  = (isset($_GET['page']) ? $_GET['page'] : '');
+
+if ('' == $page) {
     $page = 1;
 }
 
 $cpage     = intval($page);
 $totalpage = intval($total / $scale);
+
 if ($totalpage * $scale != $total) {
     $totalpage = $totalpage + 1;
 }
 
-if ($cpage == 1) {
+if (1 == $cpage) {
     $cline = 0;
 } else {
     $cline = ($cpage * $scale) - $scale;
@@ -173,23 +181,25 @@ if ($total_2) {
         $license_no = explode("-", $list['license_no']);
         ?>
                       <tr>
-                        <td><?=$bunho;?></td>
+                        <td><?php echo $bunho; ?></td>
                         <td>
-                          <a href="javascript:open_win('mem_view_member.php?num=<?=$list['seq_num'];?>&amp;page=<?=$page;?>','nwin','scrollbars=yes,resizable=yes, width=800,height=650');"><?=$list['id'];?></a>
+                          <a href="javascript:open_win('mem_view_member.php?num=<?php echo $list['seq_num']; ?>&amp;page=<?php echo $page; ?>','nwin','scrollbars=yes,resizable=yes, width=800,height=650');"><?php echo $list['id']; ?></a>
                         </td>
                         <td>
                             <?php
 if ($license_no[0] == "000") {
-            echo "<img src=\"../images/user-medium-silhouette.png\">";
+            echo '<img src="../images/user-medium-silhouette.png">';
         }
         ?>
-                            <?=stripslashes($list['company_name']);?>
-                            <?=$list['homepage'] ? "&nbsp;&nbsp;<a href=\"http://$list[homepage]\" target=\"_blank\"><img src=\"../images/browser_explorer.png\" alt=\"홈페이지 가기\" /></a>" : "";?>
+                            <?php echo stripslashes($list['company_name']); ?>
+                            <?php echo $list['homepage'] ? "&nbsp;&nbsp;<a href=\"http://$list[homepage]\" target=\"_blank\"><img src=\"../images/browser_explorer.png\" alt=\"홈페이지 가기\" /></a>" : ""; ?>
                         </td>
+                        <!--
                         <td>
-                          <a href="product_list.php?id=<?=$list['id'];?>">보기</a>
+                          <a href="product_list.php?id=<?php echo $list['id']; ?>">보기</a>
                         </td>
-                        <td><?=$list['dc_rate'];?> % DC
+                        -->
+                        <td><?php echo $list['dc_rate']; ?> % DC
                           <?php
 switch ($list['tax']) {
             case "E":echo " (VAT 별도)";
@@ -199,9 +209,9 @@ switch ($list['tax']) {
         }
         ?>
                         </td>
-                        <td><?=$list['o_phone'];?></td>
-                        <td><?=$list['md_name'];?> ( <?=$list['job_title'];?> )</td>
-                        <td><?=$list['md_hphone'];?></td>
+                        <td><?php echo $list['o_phone']; ?></td>
+                        <td><?php echo $list['md_name']; ?> ( <?php echo $list['job_title']; ?> )</td>
+                        <td><?php echo $list['md_hphone']; ?></td>
                         <td>
                           <?php
 echo $reg_date = substr($list['reg_date'], 0, 10); ?>
@@ -209,15 +219,15 @@ echo $reg_date = substr($list['reg_date'], 0, 10); ?>
                         <td>
                           <?php
 if ($list['approved'] == "Y") {
-            echo "<i class=\"fa fa-check\"></i> OK";
+            echo '<i class="fa fa-check"></i> OK';
         } else {
-            echo "<i class=\"fa fa-pause\"></i> PAUSE";
+            echo '<i class="fa fa-pause"></i> PAUSE';
         }
 
         ?>
                         </td>
                         <td>
-                          <a type="button" class="btn btn-danger" href="mem_delete_member.php?m_num=<?=$list['seq_num'];?>&amp;page=<?=$page;?>" onclick="return confirm('이 회원의 모든 정보가 즉시 삭제되며 복구할 수 없습니다. \n삭제하시겠습니까?')"><i class="fa fa-trash-o"></i></a>
+                          <a type="button" class="btn btn-danger" href="mem_delete_member.php?m_num=<?php echo $list['seq_num']; ?>&amp;page=<?php echo $page; ?>" onclick="return confirm('이 회원의 모든 정보가 즉시 삭제되며 복구할 수 없습니다. \n삭제하시겠습니까?')"><i class="fa fa-trash-o"></i></a>
                         </td>
                       </tr>
                       <?php
@@ -251,7 +261,13 @@ if ($list['approved'] == "Y") {
                         <tr>
                           <td>
                             <?php
-$url = $PHP_SELF . "?id=" . $id . "&mode=" . $mode . "&license_no=" . $license_no . "&md_email=" . $md_email . "&o_phone=" . $o_phone . "&company_name=" . $company_name . "&md_hphone=" . $md_hphone;
+$md_email   = '';
+$o_phone    = '';
+$md_hphone  = '';
+$license_no = $license_no[0] . $license_no[1] . $license_no[2];
+
+// $url = $_SERVER['PHP_SELF'] . '?id=' . $id . '&amp;mode=' . $mode . '&amp;license_no=' . $license_no . '&amp;md_email=' . $md_email . '&amp;o_phone=' . $o_phone . '&amp;company_name=' . $company_name . '&amp;md_hphone=' . $md_hphone;
+$url = $_SERVER['PHP_SELF'] . '?mode=' . $mode;
 page_nav($totalpage, $cpage, $url);
 ?>
                           </td>

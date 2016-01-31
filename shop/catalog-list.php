@@ -16,9 +16,13 @@
                             <li class="category3">
                                 <strong>
                                 <?php
-if ($_GET) {
+if (isset($_GET)) {
     $lcode = $_GET['lcode'];
-    $mcode = $_GET['mcode'];
+    if (isset($mcode)) {
+        $mcode = $_GET['mcode'];
+    } else {
+        $mcode = '';
+    }
 }
 
 show_brand_name($lcode);

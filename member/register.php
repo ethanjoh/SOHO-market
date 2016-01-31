@@ -36,7 +36,7 @@
  기존 대리점 점주분들께서도 온라인 주문을 위해서는 가입하시고 관리자의 승인을 받아야 합니다.</p>
                                 </div>
                                 <div class="form-bottom-line about-optima-text">
-                                    <button class="button2 elit" type="button" onclick="goto('/member/register_form.php');"><strong>가입하기</strong></button>
+                                    <button class="button2 elit" type="button" onclick="goto('/member/register-form.php');"><strong>가입하기</strong></button>
                                 </div>
                                  <div class="login-form-element">
                                     <a class="btn btn-default" type="button" href="#">이용약관</a>

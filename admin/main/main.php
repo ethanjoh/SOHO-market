@@ -1,6 +1,6 @@
 <?php include_once '../include/header.php';?>
 
-  <body onLoad=init();>
+  <body onLoad="init()">
     <section id="container" >
       <!--header start-->
       <?php include "../include/admin_head.php";?>
@@ -12,34 +12,42 @@
 $today      = date("Y-m-d");
 $month      = date("Y-m");
 $this_month = date("F, Y", strtotime($month));
+
 //총주문
 // $sql = "SELECT * FROM mall_order WHERE cancel='N' AND createdate='$today' AND user_id <> 'guest' ";
 // $res = mysqli_query($connect, $sql);
 // $total = mysqli_num_rows($res);
+
 //미확인건
 $sql_1       = "SELECT * FROM mall_order WHERE cancel='N' AND status='3' AND user_id <> 'guest' ";
 $res_1       = mysqli_query($connect, $sql_1);
 $unchk_total = mysqli_num_rows($res_1);
+
 //발송완료건
 // $sql_2 = "SELECT * FROM mall_order WHERE cancel='N' AND status='8' AND createdate='$today' AND user_id <> 'guest' ";
 // $res_2 = mysqli_query($connect, $sql_2);
 // $end_total = mysqli_num_rows($res_2);
+
 //주문취소건
 // $sql_3 = "SELECT * FROM mall_order WHERE cancel='Y' AND createdate='$today' AND user_id <> 'guest' ";
 // $res_3 = mysqli_query($connect, $sql_3);
 // $cancel_total = mysqli_num_rows($res_3);
+
 //금일 가입업체
-$sql_4        = "SELECT * FROM member WHERE reg_date='$today' ";
-$res_4        = mysqli_query($connect, $sql_4);
-$member_total = mysqli_num_rows($res_4);
+// $sql_4        = "SELECT * FROM member WHERE reg_date='$today' ";
+// $res_4        = mysqli_query($connect, $sql_4);
+// $member_total = mysqli_num_rows($res_4);
+
 //미승인 업체
 $sql_5             = "SELECT * FROM member WHERE approved='N' ";
 $res_5             = mysqli_query($connect, $sql_5);
 $nonapproved_total = mysqli_num_rows($res_5);
+
 //쪽지
 // $sql_8 = "SELECT * FROM message_info WHERE receive_chk='N' AND receiveid_fk = 'admin'  ";
 // $res_8 = mysqli_query($connect, $sql_8);
 // $msg_total = mysqli_num_rows($res_8);
+
 //승인 상품
 $sql_9 = "SELECT * FROM products WHERE approved='Y' ";
 $res_9 = mysqli_query($connect, $sql_9);
@@ -53,12 +61,13 @@ if ($res_9) {
 // $sql_12 = "SELECT * FROM mall_order WHERE cancel='N' AND status='0' AND user_id <> 'guest' ";
 // $res_12 = mysqli_query($connect, $sql_12);
 // $delay_total = mysqli_num_rows($res_12);
+
 //미답변 문의
-$sql_10 = "SELECT * FROM bbs_qa WHERE depth = '0'";
-$res_10 = mysqli_query($connect, $sql_10);
+// $sql_10 = "SELECT * FROM bbs_qa WHERE depth = '0'";
+// $res_10 = mysqli_query($connect, $sql_10);
 // $row_10 = mysqli_fetch_array($res_10);
 // if($row_10['depth'] == 0)
-$noreply_total = mysqli_num_rows($res_10);
+// $noreply_total = mysqli_num_rows($res_10);
 
 mysqli_query($connect, 'set names utf8');
 ?>
@@ -74,7 +83,7 @@ mysqli_query($connect, 'set names utf8');
                 </div>
                 <div class="value">
                   <h1>
-                  <a href="../order/top_order_list.php?mode=unchk"><?=$unchk_total;?></a>
+                  <a href="../order/top_order_list.php?mode=unchk"><?php echo $unchk_total; ?></a>
                   </h1>
                   <p>신규 주문</p>
                 </div>
@@ -87,7 +96,7 @@ mysqli_query($connect, 'set names utf8');
                 </div>
                 <div class="value">
                   <h1>
-                  <a href="../member/top_member_list.php?mode=nonapproved"><?=$nonapproved_total;?></a>
+                  <a href="../member/top_member_list.php?mode=nonapproved"><?php echo $nonapproved_total; ?></a>
                   </h1>
                   <p>신규 회원</p>
                 </div>
@@ -100,25 +109,12 @@ mysqli_query($connect, 'set names utf8');
                 </div>
                 <div class="value">
                   <h1>
-                  <a href="../products/top_pro_list.php"><?=$sp_total;?></a>
+                  <a href="../products/top_pro_list.php"><?php echo $sp_total; ?></a>
                   </h1>
                   <p>상품등록</p>
                 </div>
               </section>
             </div>
-            <!--                   <div class="col-lg-3 col-sm-6">
-              <section class="panel">
-                <div class="symbol blue">
-                  <i class="fa fa-pencil"></i>
-                </div>
-                <div class="value">
-                  <h1>
-                  <a href="../../bbs/list.php?code=qa" target="_blank"><?=$noreply_total;?></a>
-                  </h1>
-                  <p>미답변 문의</p>
-                </div>
-              </section>
-            </div> -->
           </div>
           <!--state overview end-->
           <div class="row">
@@ -126,7 +122,7 @@ mysqli_query($connect, 'set names utf8');
               <!-- today's sales start-->
               <section class="panel">
                 <header class="panel-heading">
-                  <?=$this_month;?> :: 월 상품판매량 (단위: 개)
+                  <?php echo $this_month; ?> :: 월 상품판매량 (단위: 개)
                 </header>
                 <div class="panel-body">
                   <div id="hero-bar" class="graph"></div>
@@ -180,7 +176,7 @@ if ($total == 0) {
                   <section class="panel">
                     <div class="weather-bg">
                       <header class="panel-heading">
-                        <a href="/bbs/list.php?code=<?=$rows['code'];?>" target="_blank"><span class="bbs-title"><?=$rows['bbs_name'];?></span></a>
+                        <a href="/bbs/list.php?code=<?php echo $rows['code']; ?>" target="_blank"><span class="bbs-title"><?php echo $rows['bbs_name']; ?></span></a>
                       </header>
                     </div>
                     <div class="table-responsive">
@@ -206,19 +202,19 @@ if ($total2 == 0) {
                 if ($rows2['depth'] > 0) {
                     ?>
                           <tr>
-                            <td><?=$rows2['no'];?></td>
-                            <td><a href="../bbs/read.php?code=<?=$rows['code'];?>&main_no=<?=$rows2['main_no'];?>" target="_blank"><?=stripslashes($rows2['title']);?></a>&nbsp;<span class="badge"><?=$rows2['depth'];?></span></td>
-                            <!-- <td><?=$rows['readonly'] == 'N' ? " - ($rows2[name])" : "";?></td> -->
-                            <td><?=$post_date;?></td>
+                            <td><?php echo $rows2['no']; ?></td>
+                            <td><a href="../bbs/read.php?code=<?php echo $rows['code']; ?>&main_no=<?php echo $rows2['main_no']; ?>" target="_blank"><?php echo stripslashes($rows2['title']); ?></a>&nbsp;<span class="badge"><?php echo $rows2['depth']; ?></span></td>
+                            <!-- <td><?php echo $rows['readonly'] == 'N' ? " - ($rows2[name])" : ""; ?></td> -->
+                            <td><?php echo $post_date; ?></td>
                           </tr>
                           <?php
 } else {
                     ?>
                           <tr>
-                            <td><?=$j + 1;?></td>
-                            <td><a href="../bbs/read.php?code=<?=$rows['code'];?>&main_no=<?=$rows2['main_no'];?>" target="_blank"><?=stripslashes($rows2['title']);?></a></td>
-                            <!-- <td><?=$rows['readonly'] == 'N' ? " - ($rows2[name])" : "";?></td> -->
-                            <td><?=$post_date;?></td>
+                            <td><?php echo $j + 1; ?></td>
+                            <td><a href="../bbs/read.php?code=<?php echo $rows['code']; ?>&main_no=<?php echo $rows2['main_no']; ?>" target="_blank"><?php echo stripslashes($rows2['title']); ?></a></td>
+                            <!-- <td><?php echo $rows['readonly'] == 'N' ? " - ($rows2[name])" : ""; ?></td> -->
+                            <td><?php echo $post_date; ?></td>
                           </tr>
                           <?php
 } // end of inner if

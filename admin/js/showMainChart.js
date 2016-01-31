@@ -1,5 +1,5 @@
 $.ajax({
-        url: "/admin/mainChartProcess.php",
+        url: "/admin/main/mainChartProcess.php",
         cache: false,
         type: "POST",
         data: {anyVar: 'specialValue4PHPScriptAndDataBaseFilter'},

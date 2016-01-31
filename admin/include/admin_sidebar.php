@@ -52,7 +52,8 @@
 	                          <li><a  href="/admin/member/mem_ins_member.php">회원 등록</a></li>
 	                      </ul>
 	                  </li>
-<!-- 	                  <li class="sub-menu">
+<!--
+ 	                  <li class="sub-menu">
 	                      <a href="javascript:;" >
 	                          <i class="fa fa-connectdevelop"></i>
 	                          <span>공급업체 관리</span>

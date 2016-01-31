@@ -1,11 +1,16 @@
 <?php include_once '../include/header.php';?>
 
 <?php
-if ($_GET) {
-    $lcode = $_GET['lcode'];
-    $mcode = $_GET['mcode'];
-    $pnum  = $_GET['pnum'];
-}
+
+$lcode = (isset($_GET['lcode']) ? $_GET['lcode'] : '');
+$mcode = (isset($_GET['mcode']) ? $_GET['mcode'] : '');
+$pnum  = (isset($_GET['pnum']) ? $_GET['pnum'] : '');
+
+// if ($_GET) {
+//     $lcode = $_GET['lcode'];
+//     $mcode = $_GET['mcode'];
+//     $pnum  = $_GET['pnum'];
+// }
 
 $query  = "SELECT * FROM products WHERE num='$pnum'";
 $result = mysqli_query($connect, $query);

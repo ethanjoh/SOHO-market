@@ -6,7 +6,7 @@ $res_1       = mysqli_query($connect, $sql_1);
 $unchk_total = mysqli_num_rows($res_1);
 ?>
 
-	<body onLoad=init();>
+	<body onLoad="init()">
 	  <section id="container" >
 	      <!--header start-->
 	      <?php include "../include/admin_head.php";?>
@@ -61,9 +61,9 @@ $delay_res   = mysqli_query($connect, $delay_sql);
 $delay_total = mysqli_num_rows($delay_res);
 
 //쪽지
-$memo_sql  = "SELECT * FROM message_info WHERE receive_chk='N' AND receiveid_fk = 'admin'  ";
-$memo_res  = mysqli_query($connect, $memo_sql);
-$msg_total = mysqli_num_rows($memo_res);
+// $memo_sql  = "SELECT * FROM message_info WHERE receive_chk='N' AND receiveid_fk = 'admin'  ";
+// $memo_res  = mysqli_query($connect, $memo_sql);
+// $msg_total = mysqli_num_rows($memo_res);
 
 switch ($mode) {
     // case 'search' : $sql_2="SELECT orderid FROM mall_order

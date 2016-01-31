@@ -30,8 +30,9 @@
                             <div class="login-form-head">
                                 <h2>로그인</h2>
                                 <form method="post" name="login" action="//<?php echo $_SERVER['SERVER_NAME']; ?>:<?php echo $port; ?>/member/login-ok.php" onsubmit="return(login_check());">
+                                <input type="hidden" name="uri" value="<?php echo $uri; ?>">
+
                                 <div class="login-form">
-                                    <input type="hidden" name="uri" value="<?php echo $uri; ?>">
                                     <ul>
                                         <li>
                                             <input class="form-control" type="text" name="id" placeholder="아이디">

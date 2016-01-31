@@ -2,16 +2,21 @@
 include_once "../util/config.php";
 include_once "../util/util.php";
 
+$connect = my_connect($host, $dbid, $dbpass, $dbname);
+
 session_start();
 
-if (!$_COOKIE['p_sid']) {
+$p_sid = set_var($_COOKIE['p_sid']);
+
+if (!$p_sid) {
     $SID = md5(uniqid(rand()));
     SetCookie("p_sid", $SID, 0, "/");
 }
 
-$connect = my_connect($host, $dbid, $dbpass, $dbname);
+$p_id   = set_var($_SESSION['p_id']);
+$p_name = set_var($_SESSION['p_name']);
 
-if (isset($_SESSION['p_id'])) {
+if (isset($p_id)) {
     $mqry = "SELECT * FROM member WHERE id = '$_SESSION[p_id]' ";
     $mres = mysqli_query($connect, $mqry);
     $mrow = mysqli_fetch_array($mres);
@@ -137,7 +142,7 @@ $main       = mysqli_fetch_array($main_res);
 
 <?php
 // 미로그인
-if (!isset($_SESSION['p_id']) || !(isset($_SESSION['p_name']))) {
+if (!isset($p_id) || !(isset($p_name))) {
     echo <<<HEREDOC
                                 <div class="top-cart-wrapper">
                                     <div class="top-cart-contain">

@@ -1,9 +1,9 @@
 <?php include_once '../include/header.php';?>
 
 <?php
-$mode  = $_GET['mode'];
-$sid   = $_SESSION['p_id'];
-$sname = $_SESSION['p_name'];
+$sid   = set_var($_SESSION['p_id']);
+$sname = set_var($_SESSION['p_name']);
+$mode  = set_var($_GET['mode']);
 ?>
 				<section class="main_shop_area">
 						<div class="breadcrumbs">
@@ -20,6 +20,7 @@ $sname = $_SESSION['p_name'];
 																		</li>
 																		<li class="category3">
 																		<?php
+
 if ("edit" == $mode) {
     echo '<strong>회원 정보수정</strong>';
 } else {
@@ -44,7 +45,9 @@ if ("edit" == $mode) {
         // getLoginWindow(0, $port);
     } else {
         // 회원테이블에서 정보추출
-        $qry  = "SELECT * FROM member WHERE id='$_SESSION[p_id]' ";
+        // $qry  = "SELECT * FROM member WHERE id='$_SESSION[p_id]' ";
+        $qry = "SELECT * FROM member WHERE id='$sid' ";
+
         $res  = mysqli_query($connect, $qry);
         $rows = mysqli_fetch_array($res);
 
@@ -328,7 +331,11 @@ if ("edit" == $mode) {
 															과세 여부
 														</div>
 																<?php
-switch ($rows['tax_type']) {
+
+    $chk1 = '';
+    $chk2 = '';
+
+    switch ($rows['tax_type']) {
         case "I":$chk1 = "checked=\"checked\"";
             break;
         case "G":$chk2 = "checked=\"checked\"";

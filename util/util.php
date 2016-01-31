@@ -483,9 +483,9 @@ function show_catalog_products($lcode, $mcode, $tabid)
             $dealer_price = number_format($rows['retail_price']);
             $item_name    = stripslashes($rows['name']);
 
-            if ($prow['opt']) {
-                $option = show_option($prow);
-            }
+            // if ($rows['opt']) {
+            //     $option = show_option($rows);
+            // }
 
             if ('home' == $tabid) {
                 echo <<<HEREDOC
@@ -568,7 +568,7 @@ function show_brand_name($lcode)
     if ($result) {
 
         $rows = mysqli_fetch_array($result);
-        echo '<a href="category-list.php?lcode=' . $lcode . '">' . stripslashes($rows['name']) . '</a>';
+        echo '<a href="catalog-list.php?lcode=' . $lcode . '">' . stripslashes($rows['name']) . '</a>';
 
         mysqli_free_result($result);
 
@@ -1043,6 +1043,7 @@ function avoid_crack($str)
 
 function page_avg($totalpage, $cpage, $url)
 {
+    $pagenumber = 1;
 
     if (!$pagenumber) {
         $pagenumber = 10;
@@ -1092,12 +1093,13 @@ function page_avg($totalpage, $cpage, $url)
 
 function page_nav($totalpage, $cpage, $url)
 {
+    $pagenumber = null;
 
     if (!$pagenumber) {
         $pagenumber = 10;
     }
 
-    echo "<ul class=\"pagination\">\n";
+    echo '<ul class="pagination">';
 
     $startpage = intval(($cpage - 1) / $pagenumber) * $pagenumber + 1;
     $endpage   = intVal(((($startpage - 1) + $pagenumber) / $pagenumber) * $pagenumber);
@@ -1109,13 +1111,9 @@ function page_nav($totalpage, $cpage, $url)
     if ($cpage > $pagenumber) {
 
         $curpage = intval($startpage - 1);
-        echo "			<li><a href=\"" . $url . "&page=" . $curpage . "\"> < </a></li>\n";
-        //       $url_page = "<a href='$url"."&page=$curpage'>";
-        //     echo ("$url_page");
-        // echo("<</a> .. ");
+        echo '			<li><a href="' . $url . '&page=' . $curpage . '"> < </a></li>';
     } else {
-        // echo("<</a>  ");
-        echo "				<li><a href=\"#\"><i class=\"fa fa-chevron-left\"></i></a></li>\n";
+        echo '				<li><a href="#"><i class="fa fa-chevron-left"></i></a></li>';
     }
 
     $curpage = $startpage;
@@ -1123,14 +1121,9 @@ function page_nav($totalpage, $cpage, $url)
     while ($curpage <= $endpage) {
 
         if ($curpage == $cpage) {
-            echo "			<li class=\"active\"><a href=\"#\">" . $cpage . "<span class=\"sr-only\">(current)</span></a></li>\n";
-            // echo "<b>$cpage</b>";
+            echo '			<li class="active"><a href="#">' . $cpage . '<span class="sr-only">(current)</span></a></li>';
         } else {
-            echo "			<li><a href=\"" . $url . "&page=" . $curpage . "\">" . $curpage . "</a></li>\n";
-
-            //  $url_page = "<a href='$url"."&page=$curpage'>";
-            //  echo ("$url_page");
-            // echo("[$curpage]</a>");
+            echo '			<li><a href="' . $url . '&page=' . $curpage . '">' . $curpage . '</a></li>';
         }
         $curpage++;
 
@@ -1138,16 +1131,12 @@ function page_nav($totalpage, $cpage, $url)
 
     if ($totalpage > $endpage) {
         $curpage = intval($endpage + 1);
-        echo "			<li><a href=\"" . $url . "&page=" . $curpage . "\"> .. > </a></li>\n";
-        //         $url_page = " .. <a href='$url"."&page=$curpage'>";
-        //          echo ("$url_page");
-        // echo("></a>");
+        echo '			<li><a href="' . $url . '&page=' . $curpage . '"> ... > </a></li>';
     } else {
-        echo "				<li><a href=\"#\"><i class=\"fa fa-chevron-right\"></i></a></li>\n";
-        // echo("  >");
+        echo '		    <li><a href="#"><i class="fa fa-chevron-right"></i></a></li>';
     }
 
-    echo "		</ul>\n";
+    echo '		</ul>';
 }
 
 // ��ۺ� ���
