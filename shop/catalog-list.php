@@ -16,14 +16,8 @@
                             <li class="category3">
                                 <strong>
                                 <?php
-if (isset($_GET)) {
-    $lcode = $_GET['lcode'];
-    if (isset($mcode)) {
-        $mcode = $_GET['mcode'];
-    } else {
-        $mcode = '';
-    }
-}
+$lcode = set_var($_GET['lcode']);
+$mcode = set_var($_GET['mcode']);
 
 show_brand_name($lcode);
 ?>
@@ -44,9 +38,7 @@ show_brand_name($lcode);
                                         <h2>서브 카테고리</h2>
                                     </div>
                                     <div class="odd">
-<?php
-show_sub_category($lcode);
-?>
+<?php show_sub_category($lcode);?>
                                     </div>
                                 </div>
                             </div>

@@ -393,8 +393,92 @@ function send_sms($to, $msg_type, $name, $sdate, $connect)
 
 }
 
+function show_login_menu()
+{
+    $p_id   = set_var($_SESSION['p_id']);
+    $p_name = set_var($_SESSION['p_name']);
+
+// 미로그인
+    if (!$p_id || !$p_name) {
+        echo <<<HEREDOC
+                                <div class="top-cart-wrapper">
+                                    <div class="top-cart-contain">
+                                        <div class="block-cart">
+                                            <div class="top-cart-title">
+                                                <div class="my-cart">카트</div>
+                                                <a href="/shop/cart.php"><p>빈 카트</span></p></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="top-register">
+                                    <div class=" block-compare">
+                                        <div class="compare">
+                                            <a href="/member/register.php"><i class="fa fa-user"></i>
+                                                회원가입
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="top-login">
+                                    <div class=" block-compare">
+                                        <div class="compare">
+                                            <a href="/member/login.php"><i class="fa fa-key"></i> 로그인 </a>
+                                        </div>
+                                        <div class="home" id="right">
+
+                                        </div>
+                                    </div>
+                                </div>
+HEREDOC;
+
+// 로그인
+    } else {
+        echo <<<HEREDOC
+                                <div class="top-cart-wrapper">
+                                    <div class="top-cart-contain">
+                                        <div class="block-cart">
+                                            <div class="top-cart-title">
+                                                <a href="/shop/cart.php">
+                                                <div class="my-cart">카트</div>
+                                                <p><span id="cartInfo"></span> </p></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="top-register">
+                                    <div class=" block-compare">
+                                        <div class="compare">
+                                            <a href="#"><i class="fa fa-cog"></i> 마이페이지 </a>
+                                        </div>
+                                        <div class="home" id="right">
+                                            <ul>
+                                                <li><a href=""><i class="fa fa-list-alt"></i> 주문내역</a></li>
+                                                <li><a href=""><i class="fa fa-bar-chart"></i> 통계보기</a></li>
+                                                <li><a href="/member/register-form.php?mode=edit"><i class="fa fa-wrench"></i> 정보수정</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="top-login">
+                                    <div class=" block-compare">
+                                        <div>
+                                            <a href="/member/logout.php"><i class="fa fa-unlock"></i> 로그아웃 </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+HEREDOC;
+    }
+
+}
+
 /**
- * [main_show_products description]
+ * [main_show_products 메인페이지에 표시]
  * @param  [type] $main_flag [best, new 구분]
  * @param  [type] $no_item   [표시할 개수]
  * @return [type]            [description]
@@ -417,26 +501,54 @@ function show_main_products($main_flag, $no_item)
 
         for ($i = 0; $rows = mysqli_fetch_array($result); $i++) {
 
-            $dealer_price = number_format($rows['retail_price']);
+            // $dealer_price = number_format($rows['retail_price']);
             $item_name    = stripslashes($rows['name']);
+            $pnum         = $rows['num'];
+            $category_l   = $rows['category_l'];
+            $category_m   = $rows['category_m'];
+            $category_s   = $rows['category_s'];
+            $option       = $rows['opt'];
+            $moq          = $rows['moq'];
+            $p_id         = set_var($_SESSION['p_id']);
+            $offer_price  = calc_offer_price($rows['retail_price'], $p_id);
+            $dealer_price = number_format($offer_price);
 
             echo <<<HEREDOC
                                 <!-- single-product start -->
                                 <div class="col-md-3">
                                     <div class="single-product">
                                         <div class="product-img">
-                                            <a href="detail.php?pnum={$rows['num']}&lcode={$rows['category_l']}&mcode={$rows['category_m']}&scode={$rows['category_s']}">
+                                            <a href="detail.php?pnum={$pnum}&lcode={$category_l}&mcode={$category_m}&scode={$category_s}">
                                                 <img class="primary-image" src="{$rows['b_image1_name']}" alt="" />
                                             </a>
                                         </div>
                                         <div class="product-content">
                                             <div class="price-box">
-                                                <span class="special-price"><i class="fa fa-krw"></i> {$dealer_price}</span>
+HEREDOC;
+
+            // show_me_price($p_id, $pnum);
+            // $option = show_option($pnum);
+
+            echo <<<HEREDOC
                                             </div>
-                                            <h2 class="product-name"><a href="detail.php?pnum={$rows['num']}&lcode={$rows['category_l']}&mcode={$rows['category_m']}&scode={$rows['category_s']}">{$item_name}</a></h2>
+                                            <h2 class="product-name"><a href="detail.php?pnum={$pnum}&lcode={$category_l}&mcode={$category_m}&scode={$category_s}">{$item_name}</a> <span class="product-option">[{$option}]</span></h2>
                                             <div class="product-icon">
-                                                <a href="#"><i class="fa fa-shopping-cart"> </i></a>
-                                                <a href="#"><i class="fa fa-check"></i></a>
+HEREDOC;
+
+            // if ($p_id) {
+            //     echo '                          <input type="text" name="products_count" id="products_count_' . $pnum . '" value="' . $moq . '" size="2">
+            //                                     <a href="#" id="' . $pnum . '" class="addCart_submit"><i class="fa fa-shopping-cart"></i></a>
+            //                                     <a href="/shop/cart.php"><i class="fa fa-check"></i></a>
+            //                                     <div id="loadplace' . $pnum . '"></div>
+            //                                     <input type="hidden" name="amount" id="amount_' . $pnum . '" value="' . $offer_price . '">
+            //                                     <input type="hidden" name="from" id="from" value="list">';
+
+            // } else {
+            //     echo '                          <a href="/member/login.php"><i class="fa fa-shopping-cart"></i></a>
+            //                                     <a href="/member/login.php"><i class="fa fa-check"></i></a>';
+            // }
+
+            echo <<<HEREDOC
                                             </div>
                                         </div>
                                     </div>
@@ -456,7 +568,7 @@ HEREDOC;
 }
 
 /**
- * [show_catalog_products description]
+ * [show_catalog_products 카달로그 리스트에서 표시]
  * @param  [type] $lcode [description]
  * @param  [type] $mcode [description]
  * @param  [type] $tabid [description]
@@ -480,46 +592,71 @@ function show_catalog_products($lcode, $mcode, $tabid)
 
         for ($i = 0; $rows = mysqli_fetch_array($result); $i++) {
 
-            $dealer_price = number_format($rows['retail_price']);
-            $item_name    = stripslashes($rows['name']);
+            // $dealer_price = number_format($rows['retail_price']);
+            $item_name  = stripslashes($rows['name']);
+            $pnum       = $rows['num'];
+            $category_l = $rows['category_l'];
+            $category_m = $rows['category_m'];
+            $category_s = $rows['category_s'];
+            $moq        = $rows['moq'];
+            $short_desc = $rows['short_desc'];
+            // $option       = $rows['opt'];
+            $p_id         = set_var($_SESSION['p_id']);
+            $offer_price  = calc_offer_price($rows['retail_price'], $p_id);
+            $dealer_price = number_format($offer_price);
+            $price        = show_me_price($p_id, $pnum);
 
-            // if ($rows['opt']) {
-            //     $option = show_option($rows);
-            // }
+            // $option = show_option($pnum);
 
             if ('home' == $tabid) {
                 echo <<<HEREDOC
+                                <!-- single-product start -->
+                                <div class="col-md-3">
+                                    <div class="single-product">
+                                        <div class="product-img">
+                                            <a href="detail.php?pnum={$pnum}&lcode={$category_l}&mcode={$category_m}&scode={$category_s}">
+                                                <img class="primary-image" src="{$rows['b_image1_name']}" alt="" />
+                                            </a>
+                                        </div>
+                                        <div class="product-content">
+                                            <div class="price-box">
+                                                {$price}
+                                            </div>
+                                            <h2 class="product-name"><a href="detail.php?pnum={$pnum}&lcode={$category_l}&mcode={$category_m}&scode={$category_s}">{$item_name}</a></h2>
+                                            <div class="product-icon">
+HEREDOC;
 
-                                                        <!-- single-product start -->
-                                                        <div class="col-md-3 col-sm-6">
-                                                            <div class="single-product">
-                                                                <div class="product-img">
-                                                                    <a href="detail.php?pnum={$rows['num']}&lcode={$rows['category_l']}&mcode={$rows['category_m']}&scode={$rows['category_s']}">
-                                                                        <img class="primary-image" src="{$rows['b_image1_name']}" alt="" />
-                                                                    </a>
-                                                                </div>
-                                                                <div class="product-content">
-                                                                    <div class="price-box">
-                                                                        <span class="special-price"><i class="fa fa-krw"></i> {$dealer_price}</span>
-                                                                    </div>
-                                                                    <h2 class="product-name"><a href="detail.php?pnum={$rows['num']}&lcode={$rows['category_l']}&mcode={$rows['category_m']}&scode={$rows['category_s']}">{$item_name}</a></h2>
-                                                                    <div class="product-icon">
-                                                                        <a href="#"><i class="fa fa-shopping-cart"> </i></a>
-                                                                        <a href="#"><i class="fa fa-check"></i></a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- single-product end -->
+                if ($p_id) {
+                    echo show_option($pnum) . '
+                                                <input type="text" name="products_count" id="products_count_' . $pnum . '" value="' . $moq . '" size="2">
+                                                <a href="#" id="' . $pnum . '" class="addCart_submit"><i class="fa fa-shopping-cart"></i></a>
+                                                <a href="/shop/cart.php"><i class="fa fa-check"></i></a>
+                                                <div id="loadplace' . $pnum . '"></div>
+                                                <input type="hidden" name="amount" id="amount_' . $pnum . '" value="' . $offer_price . '">';
+
+                } else {
+                    echo '                      <a href="/member/login.php"><i class="fa fa-shopping-cart"></i></a>
+                                                <a href="/member/login.php"><i class="fa fa-check"></i></a>';
+                }
+
+                echo <<<HEREDOC
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- single-product end -->
+
 HEREDOC;
             } elseif ('profile' == $tabid) {
+                $option = show_option($pnum);
+
                 echo <<<HEREDOC
                                                     <!-- single-product start -->
                                                     <div class="li-item">
                                                         <div class="col-md-4 col-sm-4">
                                                             <div class="single-product">
                                                                 <div class="product-img">
-                                                                    <a href="detail.php?pnum={$rows['num']}&lcode={$rows['category_l']}&mcode={$rows['category_m']}&scode={$rows['category_s']}">
+                                                                    <a href="detail.php?pnum={$pnum}&lcode={$category_l}&mcode={$category_m}&scode={$category_s}">
                                                                         <img class="primary-image" src="{$rows['b_image1_name']}" alt="">
                                                                     </a>
                                                                 </div>
@@ -528,15 +665,29 @@ HEREDOC;
                                                         <div class="col-md-8 col-sm-8">
                                                             <div class="f-fix">
                                                                 <h2 class="product-name">
-                                                                    <a href="detail.php?pnum={$rows['num']}&lcode={$rows['category_l']}&mcode={$rows['category_m']}&scode={$rows['category_s']}">{$item_name}</a>
+                                                                    <a href="detail.php?pnum={$pnum}&lcode={$category_l}&mcode={$category_m}&scode={$category_s}">{$item_name}</a>
                                                                 </h2>
-                                                                <p class="desc">[모델:] {$rows['short_desc']} <span class="spec">[스펙:] {$rows['opt']}</span></p>
+                                                                <p class="desc">[모델:] {$short_desc}</p>
+                                                                <span class="spec">[스펙:] {$option}</span>
                                                                 <div class="p-box">
-                                                                    <span class="special-price"><i class="fa fa-krw"></i> {$dealer_price}</span>
+                                                                    {$price}
                                                                 </div>
                                                                 <div class="product-icon">
-                                                                    <a href="#"><i class="fa fa-shopping-cart"></i></a>
-                                                                    <a href="#"><i class="fa fa-check"></i></a>
+HEREDOC;
+
+                if ($p_id) {
+                    echo '                      <input type="text" name="products_count" id="products_count_' . $pnum . '" value="' . $moq . '" size="2">
+                                                <a href="#" id="' . $pnum . '" class="addCart_submit"><i class="fa fa-shopping-cart"></i></a>
+                                                <a href="/shop/cart.php"><i class="fa fa-check"></i></a>
+                                                <div id="loadplace' . $pnum . '"></div>
+                                                <input type="hidden" name="amount" id="amount_' . $pnum . '" value="' . $offer_price . '">';
+
+                } else {
+                    echo '                      <a href="/member/login.php"><i class="fa fa-shopping-cart"></i></a>
+                                                <a href="/member/login.php"><i class="fa fa-check"></i></a>';
+                }
+
+                echo <<<HEREDOC
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -557,6 +708,40 @@ HEREDOC;
 
 }
 
+/**
+ * [show_me_price 공급가 보여주기]
+ * @param  [type] $session_id [세션 아이디]
+ * @param  [type] $pnum       [제품번호]
+ * @return [type]             [description]
+ */
+function show_me_price($session_id, $pnum)
+{
+
+    global $host, $dbid, $dbpass, $dbname;
+    $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
+
+    $query  = "SELECT * FROM products WHERE num='$pnum'";
+    $result = mysqli_query($connect, $query);
+    $rows   = mysqli_fetch_array($result);
+
+    $p_id         = set_var($session_id);
+    $offer_price  = calc_offer_price($rows['retail_price'], $p_id);
+    $dealer_price = number_format($offer_price);
+
+    if ($p_id) {
+        $ret = '                                <span class="special-price"><i class="fa fa-krw"></i> ' . $dealer_price . '</span>';
+    } else {
+        $ret = '                                <span class="special-price"><i class="fa fa-krw"></i> 회원가</span>';
+    }
+
+    return $ret;
+}
+
+/**
+ * [show_brand_name 브랜드 목록 보이기]
+ * @param  [type] $lcode [대 카테고리번호]
+ * @return [type]        [description]
+ */
 function show_brand_name($lcode)
 {
     global $host, $dbid, $dbpass, $dbname;
@@ -631,6 +816,11 @@ HEREDOC;
 
 }
 
+/**
+ * [show_sub_category 카달로그 리스트에서 좌측에 서브 카테고리 보여주기]
+ * @param  [type] $lcode [description]
+ * @return [type]        [description]
+ */
 function show_sub_category($lcode)
 {
 
@@ -668,6 +858,12 @@ HEREDOC;
 
 }
 
+/**
+ * [show_sub_category_name 상단 breadcomb에서 이름 보여주기]
+ * @param  [type] $lcode [description]
+ * @param  [type] $mcode [description]
+ * @return [type]        [description]
+ */
 function show_sub_category_name($lcode, $mcode)
 {
     global $host, $dbid, $dbpass, $dbname;
@@ -686,6 +882,113 @@ function show_sub_category_name($lcode, $mcode)
 
     }
 
+}
+
+/**
+ * [show_image 제품사진 보여주기]
+ * @param  [type] $size [description]
+ * @param  [type] $no   [description]
+ * @param  [type] $pnum [description]
+ * @return [type]       [description]
+ */
+function show_image($size, $no, $pnum)
+{
+
+    global $host, $dbid, $dbpass, $dbname;
+    $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
+
+    $query  = "SELECT * FROM products WHERE num='$pnum'";
+    $result = mysqli_query($connect, $query);
+    $rows   = mysqli_fetch_array($result);
+    mysqli_free_result($result);
+
+    if ('b' == $size) {
+        switch ($no) {
+            case '2':
+                if ('Y' == $rows['b_image2']) {
+                    echo $rows['b_image2_name'];
+                }
+                break;
+            case '3':
+                if ('Y' == $rows['b_image3']) {
+                    echo $rows['b_image3_name'];
+                }
+                break;
+            case '4':
+                if ('Y' == $rows['b_image4']) {
+                    echo $rows['b_image4_name'];
+                }
+                break;
+            case '5':
+                if ('Y' == $rows['b_image5']) {
+                    echo $rows['b_image5_name'];
+                }
+                break;
+            default:
+                if ('Y' == $rows['b_image1']) {
+                    echo $rows['b_image1_name'];
+                }
+                break;
+        }
+
+    } elseif ('s' == $size) {
+        switch ($no) {
+            case '2':
+                if ('Y' == $rows['s_image2']) {
+                    echo $rows['s_image2_name'];
+                }
+                break;
+            case '3':
+                if ('Y' == $rows['s_image3']) {
+                    echo $rows['s_image3_name'];
+                }
+                break;
+            case '4':
+                if ('Y' == $rows['s_image4']) {
+                    echo $rows['s_image4_name'];
+                }
+                break;
+            case '5':
+                if ('Y' == $rows['s_image5']) {
+                    echo $rows['s_image5_name'];
+                }
+                break;
+            default:
+                if ('Y' == $rows['s_image1']) {
+                    echo $rows['s_image1_name'];
+                }
+                break;
+        }
+    }
+
+}
+
+/**
+ * [show_policy 배송정책 외 ]
+ * @param  [type] $policy [배송 또는 반품정책 구분]
+ * @return [type]         [description]
+ */
+function show_policy($policy)
+{
+    global $host, $dbid, $dbpass, $dbname;
+    $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
+
+    $query  = "SELECT * FROM misc_setup";
+    $result = mysqli_query($connect, $query);
+    $rows   = mysqli_fetch_array($result);
+    mysqli_free_result($result);
+
+    if ('d' == $policy) {
+        $d_policy = nl2br($rows['d_policy']);
+        echo <<<HEREDOC
+            <p><i class="fa fa-check-circle"></i> 택배사: {$rows['logistics']} </p>
+            <p> {$d_policy} </p>
+HEREDOC;
+    } elseif ('r' == $policy) {
+        $r_policy = nl2br($rows['r_policy']);
+
+        echo '<p> ' . $r_policy . ' </p>';
+    }
 }
 
 //메인 배너 보이기
@@ -771,12 +1074,22 @@ function show_banner2($connect)
 
 //옵션 보이기
 //function show_option(쿼리 결과값)
-function show_option(&$rows)
+function show_option($pnum)
 {
+    global $host, $dbid, $dbpass, $dbname;
+    $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
+
+    $query  = "SELECT * FROM products WHERE num='$pnum'";
+    $result = mysqli_query($connect, $query);
+    $rows   = mysqli_fetch_array($result);
+    mysqli_free_result($result);
+
     $opt       = explode(',', $rows['opt']);
     $opt_stock = explode(',', $rows['opt_stock']);
 
     for ($i = 0; $i < sizeof($opt); $i++) {
+        $dis[$i] = '';
+
         if ($opt_stock[$i] == 0) {
             if ($rows['restock_date'] == "1111-00-00") {
                 $opt[$i] .= "(품절 - 재입고 미정)";
@@ -794,7 +1107,9 @@ function show_option(&$rows)
         }
     }
 
-    echo '<select class="form-control" name="selected_opt_' . $rows['num'] . '" id="selected_opt_' . $rows['num'] . '" data-width="100%">';
+    $ret = '<select class="form-control" name="selected_opt_' . $rows['num'] . '" id="selected_opt_' . $rows['num'] . '" data-width="100%">';
+
+    $selected_opt = '';
 
     for ($i = 0; $i < sizeof($opt); $i++) {
         if (trim($opt[$i]) == $selected_opt) {
@@ -803,9 +1118,11 @@ function show_option(&$rows)
             $selected = "";
         }
 
-        echo '<option value="' . trim($opt[$i]) . '' . $selected . '' . $dis[$i] . '">' . $opt[$i] . '</option>';
+        $ret .= '<option value="' . trim($opt[$i]) . '' . $selected . '' . $dis[$i] . '">' . $opt[$i] . '</option>';
     } // for end
-    echo '</select>';
+    $ret .= '</select>';
+
+    return $ret;
 }
 
 //옵션 보이기
@@ -864,6 +1181,18 @@ function show_restock(&$rows)
 function calc_price(&$retail_price, &$dc_rate)
 {
     return $retail_price * (1 - ($dc_rate / 100));
+}
+
+function calc_offer_price($retail_price, $id)
+{
+    global $host, $dbid, $dbpass, $dbname;
+    $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
+
+    $query  = "SELECT * FROM member WHERE id='$id'";
+    $result = mysqli_query($connect, $query);
+    $row    = mysqli_fetch_array($result);
+
+    return $retail_price * (1 - ($row['dc_rate'] / 100));
 }
 
 /*할인에 따른 공급가 계산

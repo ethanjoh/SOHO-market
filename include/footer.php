@@ -7,33 +7,8 @@
                         <div class="container-inner">
                             <div class="footer-static-top">
                                 <div class="row">
-                                    <div class="f-col f-col1 col-md-3 col-sm-4 col-xs-12">
-                                        <div class="static_all">
-                                            <div class="footer-static-title">
-                                                <h3>My Account</h3>
-                                            </div>
-                                            <div class="footer-static-content">
-                                                <ul>
-                                                    <li>
-                                                        <a href="#">My Account</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Login</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">My Cart</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Wishlist</a>
-                                                    </li>
-                                                    <li class="last">
-                                                        <a href="#">Checkout</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="f-col f-col2 col-md-3 hidden-sm col-xs-12">
+
+                                    <div class="f-col f-col2 col-md-6 hidden-sm col-xs-12">
                                         <div class="static_all">
                                             <div class="footer-static-title">
                                                 <h3>공지사항</h3>
@@ -41,19 +16,19 @@
                                             <div class="footer-static-content">
                                                 <ul>
                                                     <li>
-                                                        <a href="#">Sitemap</a>
+                                                        <a href="#">안녕하세요 신수상사입니다.</a>
                                                     </li>
                                                     <li>
-                                                        <a href="#">Privacy Policy</a>
+                                                        <a href="#">안녕하세요 신수상사입니다.</a>
                                                     </li>
                                                     <li>
-                                                        <a href="#">Advanced Search</a>
+                                                        <a href="#">안녕하세요 신수상사입니다.</a>
                                                     </li>
                                                     <li>
-                                                        <a href="#">Privacy Policy</a>
+                                                        <a href="#">안녕하세요 신수상사입니다.</a>
                                                     </li>
                                                     <li class="last">
-                                                        <a href="#">Contact Us</a>
+                                                        <a href="#">안녕하세요 신수상사입니다.</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -67,19 +42,16 @@
                                             <div class="footer-static-content">
                                                 <ul>
                                                     <li>
-                                                        <a href="#">Product Recall</a>
+                                                        <a href="#">공지사항</a>
                                                     </li>
                                                     <li>
-                                                        <a href="#">Gift Vouchers</a>
+                                                        <a href="#">1:1 문의</a>
                                                     </li>
                                                     <li>
-                                                        <a href="#">Returns and Exchanges</a>
+                                                        <a href="#">배송/반품 안내</a>
                                                     </li>
                                                     <li>
-                                                        <a href="#">Shipping Options</a>
-                                                    </li>
-                                                    <li class="last">
-                                                        <a href="#">Gift Vouchers</a>
+                                                        <a href="#">정보보호정책</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -176,3 +148,5 @@
         <script src="/js/main.js"></script>
         <script src="/js/member.js"></script>
         <script src="/js/global.js"></script>
+        <script src="/js/addcart.js"></script>
+        <script src="/js/shopping.js"></script>

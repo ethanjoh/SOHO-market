@@ -239,13 +239,13 @@ blog-slider active
     /*category accordion*/
     $('.rx-parent').on('click', function(){
         $('.rx-child').slideToggle();
-        $(this).toggleClass('rx-change');s
+        $(this).toggleClass('rx-change');
     });
 /*---------------------
 Image Zoom
 --------------------- */
 	$('.simpleLens-big-image').simpleLens({
-		loading_image: 'demo/images/loading.gif'
+		loading_image: '/images/loading.gif'
 	});
 
 })(jQuery);

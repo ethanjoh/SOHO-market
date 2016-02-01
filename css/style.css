@@ -708,7 +708,8 @@ body {
     border: medium none;
     color: #898888;
     float: left;
-    font-size: 11px;
+    font-size: 14px;
+    height: 32px;
     line-height: 32px;
     padding: 0 143px 0;
     width: 100%;
@@ -1300,7 +1301,7 @@ select.select option {
     text-align: center;
     transition: all 300ms ease 0s;
     width: 41px;
-    margin: 0 2px;
+    margin: 5px 2px;
 }
 
 .product-content .product-icon a i:hover,
@@ -2947,7 +2948,7 @@ home-4 .outlink ul li a {
 }
 
 .li-item {
-    padding-bottom: 30px;
+    padding-bottom: 10px;
     display: inline-table
 }
 
@@ -5085,4 +5086,13 @@ custom style
     background: #2BA8DB none repeat scroll 0 0;
     color: #fff;
     transition: all 0.6s ease 0s;
+}
+
+.product-content span.product-option {
+    background: #B2B2B2 none repeat scroll 0 0;
+    border-radius: 2px;
+    padding: 0 5px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 400;
 }
