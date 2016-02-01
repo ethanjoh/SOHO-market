@@ -17,7 +17,7 @@ $p_id   = set_var($_SESSION['p_id']);
 $p_name = set_var($_SESSION['p_name']);
 
 if (isset($p_id)) {
-    $mqry = "SELECT * FROM member WHERE id = '$_SESSION[p_id]' ";
+    $mqry = "SELECT * FROM member WHERE id = '$p_id' ";
     $mres = mysqli_query($connect, $mqry);
     $mrow = mysqli_fetch_array($mres);
 }

@@ -2977,7 +2977,7 @@ home-4 .outlink ul li a {
     color: #8c8c8c;
     font-size: 13px;
     line-height: 20px;
-    padding-bottom: 20px;
+    /*padding-bottom: 20px;*/
     text-align: justify;
 }
 
@@ -2986,8 +2986,8 @@ home-4 .outlink ul li a {
     color: #8c8c8c;
     font-size: 13px;
     line-height: 20px;
-    padding-bottom: 20px;
-    float: right;
+    padding: 10px;
+    /*float: right;*/
 }
 
 .f-fix .p-box span.special-price {

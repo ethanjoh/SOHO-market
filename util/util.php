@@ -606,11 +606,13 @@ function show_catalog_products($lcode, $mcode, $tabid)
             $dealer_price = number_format($offer_price);
             $price        = show_me_price($p_id, $pnum);
 
-            // $option = show_option($pnum);
+            $option = show_option($pnum);
 
             if ('home' == $tabid) {
                 echo <<<HEREDOC
                                 <!-- single-product start -->
+                                <form name="form_{$pnum}" method="post" action="">
+                                <input type="hidden" name="pnum" id="pnum_{$pnum}" value="{$pnum}">
                                 <div class="col-md-3">
                                     <div class="single-product">
                                         <div class="product-img">
@@ -623,16 +625,18 @@ function show_catalog_products($lcode, $mcode, $tabid)
                                                 {$price}
                                             </div>
                                             <h2 class="product-name"><a href="detail.php?pnum={$pnum}&lcode={$category_l}&mcode={$category_m}&scode={$category_s}">{$item_name}</a></h2>
+                                            <span class="desc">{$option}</span>
                                             <div class="product-icon">
 HEREDOC;
 
                 if ($p_id) {
-                    echo show_option($pnum) . '
+                    echo '
                                                 <input type="text" name="products_count" id="products_count_' . $pnum . '" value="' . $moq . '" size="2">
                                                 <a href="#" id="' . $pnum . '" class="addCart_submit"><i class="fa fa-shopping-cart"></i></a>
                                                 <a href="/shop/cart.php"><i class="fa fa-check"></i></a>
                                                 <div id="loadplace' . $pnum . '"></div>
-                                                <input type="hidden" name="amount" id="amount_' . $pnum . '" value="' . $offer_price . '">';
+                                                <input type="hidden" name="amount" id="amount_' . $pnum . '" value="' . $offer_price . '">
+                                                <input type="hidden" name="from" id="from" value="list">';
 
                 } else {
                     echo '                      <a href="/member/login.php"><i class="fa fa-shopping-cart"></i></a>
@@ -644,6 +648,7 @@ HEREDOC;
                                         </div>
                                     </div>
                                 </div>
+                                </form>
                                 <!-- single-product end -->
 
 HEREDOC;
@@ -652,6 +657,8 @@ HEREDOC;
 
                 echo <<<HEREDOC
                                                     <!-- single-product start -->
+                                                    <form name="form_{$pnum}" method="post" action="">
+                                                    <input type="hidden" name="pnum" id="pnum_{$pnum}" value="{$pnum}">
                                                     <div class="li-item">
                                                         <div class="col-md-4 col-sm-4">
                                                             <div class="single-product">
@@ -667,20 +674,20 @@ HEREDOC;
                                                                 <h2 class="product-name">
                                                                     <a href="detail.php?pnum={$pnum}&lcode={$category_l}&mcode={$category_m}&scode={$category_s}">{$item_name}</a>
                                                                 </h2>
-                                                                <p class="desc">[모델:] {$short_desc}</p>
-                                                                <span class="spec">[스펙:] {$option}</span>
+                                                                <p class="desc">[모델:] {$short_desc}<br>
+                                                                <span class="spec">{$option}</span></p>
                                                                 <div class="p-box">
                                                                     {$price}
                                                                 </div>
                                                                 <div class="product-icon">
 HEREDOC;
-
                 if ($p_id) {
                     echo '                      <input type="text" name="products_count" id="products_count_' . $pnum . '" value="' . $moq . '" size="2">
                                                 <a href="#" id="' . $pnum . '" class="addCart_submit"><i class="fa fa-shopping-cart"></i></a>
                                                 <a href="/shop/cart.php"><i class="fa fa-check"></i></a>
                                                 <div id="loadplace' . $pnum . '"></div>
-                                                <input type="hidden" name="amount" id="amount_' . $pnum . '" value="' . $offer_price . '">';
+                                                <input type="hidden" name="amount" id="amount_' . $pnum . '" value="' . $offer_price . '">
+                                                <input type="hidden" name="from" id="from" value="list">';
 
                 } else {
                     echo '                      <a href="/member/login.php"><i class="fa fa-shopping-cart"></i></a>
@@ -692,6 +699,7 @@ HEREDOC;
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    </form>
                                                     <hr>
                                                     <!-- single-product end -->
 

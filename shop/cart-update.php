@@ -4,18 +4,28 @@ include_once "../util/util.php";
 
 $connect = my_connect($host, $dbid, $dbpass, $dbname);
 
-$page  = set_var($_POST['page']);
-$lcode = set_var($_POST['lcode']);
+session_start();
+
+$page           = set_var($_POST['page']);
+$lcode          = set_var($_POST['lcode']);
+$from           = set_var($_POST['from']);
+$products_count = set_var($_POST['products_count']);
+$pnum           = set_var($_POST['pnum']);
+$selected_opt   = set_var($_POST['selected_opt']);
+$amount         = set_var($_POST['amount']);
+$chk            = set_var($_POST['chk']);
+
+$p_id = set_var($_SESSION['p_id']);
 
 if (!$_COOKIE['p_sid']) {
     $SID = md5(uniqid(rand()));
     SetCookie("p_sid", $SID, 0, "/");
 }
 
-if (!$_SESSION['p_id']) {
-    $id_fk = "guest";
+if ('guest' != $p_id) {
+    $id_fk = $p_id;
 } else {
-    $id_fk = $_SESSION['p_id'];
+    $id_fk = "guest";
 }
 
 if ("basket" == $from) {
