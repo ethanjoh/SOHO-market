@@ -10,193 +10,176 @@
                         <div class="faq-accordion">
                             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                                 <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="headingOne">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                                <span class="number">1</span>
+                                                기본 배송지
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne" aria-expanded="false" style="height: 0px;">
+                                        <div class="easy">
+                                            <div class="left-info ship-info">
+                                                <div class="left-up">
+                                                    <?php show_buyer_info();?>
+                                                </div>
+                                                <!-- <a href="#">회원정보 수정하기</a> -->
+
+                                                <div class="block-button-right back">
+                                                    <button class="button2 get" type="button" title="" onclick="window.open('/member/register-form.php?mode=edit')">
+                                                        <span>배송지 정보 수정하기</span>
+                                                    </button>
+                                                </div>
+                                                    <p class="text-right help-block"><i class="fa fa-check-circle-o"></i> 수정 후에는 반드시 새로고침하세요</p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="panel panel-default">
                                     <div class="panel-heading" role="tab" id="headingTwo">
                                         <h4 class="panel-title">
                                             <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                                <span class="number">1</span>
-                                                주문자 정보
+                                                <span class="number">2</span>
+                                                배송지 변경
                                             </a>
                                         </h4>
                                     </div>
                                     <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo" aria-expanded="false" style="height: 0px;">
-                                        <div class="row">
+                                        <!-- <div class="row"> -->
+
                                             <div class="easy">
                                                 <div class="billing-info">
-                                                    <div class="input-one form-list col-sm-4">
-                                                        <label class="required">
-                                                            First Name
-                                                            <em>*</em>
-                                                        </label>
-                                                        <input class="email" type="text" required="">
-                                                    </div>
-                                                    <div class="input-one form-list col-sm-4">
-                                                        <label class="required">Middle Name/Initial</label>
-                                                        <input class="email" type="text" required="">
-                                                    </div>
-                                                    <div class="input-one form-list col-sm-4">
-                                                        <label class="required">
-                                                            Last Name
-                                                            <em>*</em>
-                                                        </label>
-                                                        <input class="email" type="text" required="">
-                                                    </div>
-                                                    <div class="input-one form-list col-sm-6">
-                                                        <label class="required">Company</label>
-                                                        <input class="email" type="text" required="">
-                                                    </div>
-                                                    <div class="input-one form-list col-sm-6">
-                                                        <label class="required">
-                                                            Email Address
-                                                            <em>*</em>
-                                                        </label>
-                                                        <input class="email" type="text" required="">
-                                                    </div>
-                                                    <div class="input-one form-list col-sm-12">
-                                                        <label class="required">
-                                                            Address
-                                                            <em>*</em>
-                                                        </label>
-                                                        <input class="email" type="text" required="">
-                                                    </div>
-                                                    <div class="input-one form-list col-sm-6">
-                                                        <label class="required">
-                                                            City
-                                                            <em>*</em>
-                                                        </label>
-                                                        <input class="email" type="text" required="">
-                                                    </div>
-                                                    <div class="input-one form-list col-sm-6">
-                                                        <label class="required">
-                                                            State/Province
-                                                            <em>*</em>
-                                                        </label>
-                                                        <input class="email" type="text" required="">
-                                                    </div>
-                                                    <div class="input-one form-list col-sm-6">
-                                                        <label class="required">
-                                                            Zip/Postal Code
-                                                            <em>*</em>
-                                                        </label>
-                                                        <input class="email" type="text" required="">
-                                                    </div>
-                                                    <div class="input-one form-listcol col-sm-6">
-                                                        <div class="country-select">
+                                                    <div class="row">
+                                                        <div class="input-one form-list col-sm-4">
                                                             <label class="required">
-                                                                Country
+                                                                <i class="fa fa-exclamation-circle"></i> 다른 주소로 배송 시 체크해 주세요
+                                                            <input type="checkbox" name="optionsCheckbox2" id="optionsChackbox2" value="option1">
+
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="input-one form-list col-sm-4">
+                                                            <label class="required">
+                                                                수령인 또는 회사명
                                                                 <em>*</em>
                                                             </label>
-                                                            <select class="email s-email">
-                                                                <option value="1">United State</option>
-                                                                <option value="2">Azerbaijan</option>
-                                                                <option value="3">Bahamas</option>
-                                                                <option value="4">Bahrain</option>
-                                                                <option value="5">Bangladesh</option>
-                                                                <option value="6">Barbados</option>
-                                                                <option value="7">Belarus</option>
-                                                                <option value="8">Belgium</option>
-                                                                <option value="9">Belize</option>
-                                                                <option value="10">Benin</option>
-                                                                <option value="11">Bermuda</option>
-                                                                <option value="12">Bhutan</option>
-                                                                <option value="13">Bolivia</option>
-                                                                <option value="14">Bosnia and Herzegovina</option>
-                                                                <option value="15">Botswana</option>
-                                                                <option value="16">Bouvet Island</option>
-                                                                <option value="17">Brazil</option>
-                                                                <option value="18">British Indian Ocean Territory</option>
-                                                                <option value="19">British Virgin Islands</option>
-                                                                <option value="20">Brunei</option>
-                                                                <option value="21">United State</option>
-                                                            </select>
+                                                            <input class="email" type="text" name="recipient_name" value="" required="">
                                                         </div>
                                                     </div>
-                                                    <div class="input-one form-list col-sm-6">
-                                                        <label class="required">
-                                                            Telephone
-                                                            <em>*</em>
-                                                        </label>
-                                                        <input class="email" type="text" required="">
-                                                    </div>
-                                                    <div class="input-one form-list col-sm-6">
-                                                        <label class="required">
-                                                            Fax
-                                                            <em>*</em>
-                                                        </label>
-                                                        <input class="email" type="text" required="">
-                                                    </div>
-                                                    <div class="form-group col-sm-12">
-                                                        <div class="method-input-box">
-                                                            <p>
-                                                                <input type="radio" checked="" value="address" name="address">
-                                                                <label>Ship to this address</label>
-                                                            </p>
-                                                            <p>
-                                                                <input type="radio" value="dadress" name="address">
-                                                                <label>Ship to different address</label>
-                                                            </p>
+                                                    <div class="row">
+                                                        <div class="input-one form-list col-sm-3">
+                                                            <label class="required">
+                                                                우편번호
+                                                                <em>*</em>
+                                                            </label>
+                                                            <input class="form-control" type="text" name="recipient_zipcode01" id="recipient_zipcode01" value="" readonly="readonly" />
+                                                        </div>
+                                                        <div class="input-one form-list col-sm-3">
+                                                            <label class="required">
+                                                                &nbsp;
+                                                            </label>
+                                                            <button class="button2" type="button" onclick="openDaumPostcode2()">우편번호 검색</button>
                                                         </div>
                                                     </div>
+                                                        <!-- postcode searching function -->
+                                                        <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+                                                        <script>
+                                                                function openDaumPostcode2() {
+                                                                        new daum.Postcode({
+                                                                                oncomplete: function(data) {
+                                                                                        // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                                                                                        // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                                                                                        // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                                                                                        var fullAddr = ''; // 최종 주소 변수
+                                                                                        var extraAddr = ''; // 조합형 주소 변수
+
+                                                                                        // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                                                                                        if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                                                                                                fullAddr = data.roadAddress;
+
+                                                                                        } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                                                                                                fullAddr = data.jibunAddress;
+                                                                                        }
+
+                                                                                        // 사용자가 선택한 주소가 도로명 타입일때 조합한다.
+                                                                                        if(data.userSelectedType === 'R'){
+                                                                                                //법정동명이 있을 경우 추가한다.
+                                                                                                if(data.bname !== ''){
+                                                                                                        extraAddr += data.bname;
+                                                                                                }
+                                                                                                // 건물명이 있을 경우 추가한다.
+                                                                                                if(data.buildingName !== ''){
+                                                                                                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                                                                                                }
+                                                                                                // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+                                                                                                fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+                                                                                        }
+
+
+                                                                                        // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+                                                                                        // 우편번호와 주소 정보를 해당 필드에 넣고, 커서를 상세주소 필드로 이동한다.
+                                                                                        document.getElementById('recipient_zipcode01').value = data.zonecode; //5자리 새우편번호 사용
+
+                                                                                        //전체 주소에서 연결 번지 및 ()로 묶여 있는 부가정보를 제거하고자 할 경우,
+                                                                                        //아래와 같은 정규식을 사용해도 된다. 정규식은 개발자의 목적에 맞게 수정해서 사용 가능하다.
+                                                                                        document.getElementById('recipient_address01').value = fullAddr;
+                                                                                        document.getElementById('recipient_address02').focus();
+                                                                                }
+                                                                        }).open();
+                                                                }
+                                                        </script>
+                                                    <div class="row">
+                                                        <div class="input-one form-list col-sm-6">
+                                                            <label class="required">
+                                                                주소
+                                                                <em>*</em>
+                                                            </label>
+                                                            <input class="email" type="text" required="" name="recipient_address01" id="recipient_address01" value="" type="text" readonly="readonly">
+                                                        </div>
+                                                        <div class="input-one form-list col-sm-6">
+                                                            <label class="required">
+                                                                상세주소
+                                                                <em>*</em>
+                                                            </label>
+                                                            <input class="email" type="text" required="" name="recipient_address02" id="recipient_address02" value="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+
+                                                        <div class="input-one form-list col-sm-6">
+                                                            <label class="required">
+                                                                휴대전화
+                                                                <em>*</em>
+                                                            </label>
+                                                            <input class="email" name="recipient_hphone" id="recipient_hphone" type="text" placeholder="(- 삽입)" value="" required="">
+                                                        </div>
+                                                        <div class="input-one form-list col-sm-6">
+                                                            <label class="required">
+                                                                일반전화
+                                                            </label>
+                                                            <input class="email" name="recipient_phone" id="recipient_phone" type="text" placeholder="(- 삽입)" value="" required="">
+                                                        </div>
+                                                    </div>
+
+
                                                     <div class="block-button-right">
                                                         <a class="o-back-to" href="#">
                                                             <i class="fa fa-arrow-up"></i>
                                                             Back
                                                         </a>
-                                                        <button class="button2 get" type="button" title="">
-                                                            <span>Get a Quote</span>
-                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        <!-- </div> -->
+
                                     </div>
                                 </div>
-                                <div class="panel panel-default">
-                                    <div class="panel-heading" role="tab" id="headingThree">
-                                        <h4 class="panel-title">
-                                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseTwo">
-                                                <span class="number">3</span>
-                                                배송 정보
-                                            </a>
-                                        </h4>
-                                    </div>
-                                    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree" aria-expanded="false" style="height: 0px;">
-                                        <div class="easy">
-                                            <div class="left-info ship-info">
-                                                <div class="left-up">
-                                                    <span>BootExpert</span>
-                                                    <span>Bonosrie</span>
-                                                    <span>D- Block</span>
-                                                    <span>Dkaka, 1201</span>
-                                                    <span>Bangladesh</span>
-                                                    <span>T: +8800 879 9876 </span>
-                                                </div>
-                                                <a href="#">Edit Address</a>
-                                                <div class="use-billing-add">
-                                                    <div class="country-select">
-                                                        <select class="email s-email s-wid">
-                                                            <option>Select Your Address</option>
-                                                            <option>Add New Address</option>
-                                                            <option>Boot Experts, Bonosrie D- Block, Dkaka, 1201, Bangladesh</option>
-                                                        </select>
-                                                    </div>
-                                                    <p>
-                                                        <input type="checkbox" name="billadddress">
-                                                        <label>Use Billing Address</label>
-                                                    </p>
-                                                </div>
-                                                <div class="block-button-right back">
-                                                    <a class="o-back-to" href="#">
-                                                    <i class="fa fa-arrow-up"></i>
-                                                    Back
-                                                    </a>
-                                                    <button class="button2 get" type="button" title="">
-                                                        <span>Continue</span>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+
                                 <div class="panel panel-default">
                                     <div class="panel-heading" role="tab" id="headingFour">
                                         <h4 class="panel-title">
@@ -344,125 +327,12 @@
                                         <div class="easy">
                                             <div class="order-review">
                                                 <div class="table-responsive">
-                                                    <table class="table">
-                                                        <thead>
-                                                            <tr>
-                                                                <th class="width-1">Product Name</th>
-                                                                <th class="width-2">Price</th>
-                                                                <th class="width-3">Qty</th>
-                                                                <th class="width-4">Subtotal</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td>
-                                                                    <div class="o-pro-dec">
-                                                                        <p>Fusce aliquam</p>
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <div class="o-pro-price">
-                                                                        <p>$236.00</p>
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <div class="o-pro-qty">
-                                                                        <p>2</p>
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <div class="o-pro-subtotal">
-                                                                        <p>$236.00</p>
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>
-                                                                    <div class="o-pro-dec">
-                                                                        <p>Primis in faucibus</p>
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <div class="o-pro-price">
-                                                                        <p>$265.00</p>
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <div class="o-pro-qty">
-                                                                        <p>3</p>
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <div class="o-pro-subtotal">
-                                                                        <p>$265.00</p>
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>
-                                                                    <div class="o-pro-dec">
-                                                                        <p>Etiam gravida</p>
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <div class="o-pro-price">
-                                                                        <p>$363.00</p>
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <div class="o-pro-qty">
-                                                                        <p>2</p>
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <div class="o-pro-subtotal">
-                                                                        <p>$363.00</p>
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>
-                                                                    <div class="o-pro-dec">
-                                                                        <p>Quisque in arcu</p>
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <div class="o-pro-price">
-                                                                        <p>$328.00</p>
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <div class="o-pro-qty">
-                                                                        <p>2</p>
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <div class="o-pro-subtotal">
-                                                                        <p>$328.00</p>
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                        <tfoot>
-                                                            <tr>
-                                                                <td colspan="3">Subtotal </td>
-                                                                <td colspan="1">$4,001.00</td>
-                                                            </tr>
-                                                            <tr class="tr-f">
-                                                                <td colspan="3">Shipping & Handling (Flat Rate - Fixed</td>
-                                                                <td colspan="1">$45.00</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td colspan="3">Grand Total</td>
-                                                                <td colspan="1">$4,722.00</td>
-                                                            </tr>
-                                                        </tfoot>
-                                                    </table>
+                                                    <?php echo show_checkout_item(); ?>
                                                 </div>
                                                 <div class="block-right">
                                                     <span>
-                                                        Forgot an Item?
-                                                        <a class="o-back-to" href="#"> Edit Your Cart</a>
+                                                        상품을 수정하시려면?
+                                                        <a class="o-back-to" href="cart.php"> 카트 편집</a>
 
                                                     </span>
                                                     <button class="button2 get" type="button" title="">
@@ -480,7 +350,8 @@
                         <div class="Register4">
                             <h3>결제방법 안내</h3>
                             <div class="Checkout-sidebar">
-                                <i class="fa fa-check-square"></i> 결제방법 안내해드립니다.
+                                <p><i class="fa fa-circle"></i> 기본 배송지 변경은 회원 정보에서 수정하세요.</p>
+                                <p><i class="fa fa-circle"></i> 배송지 변경을 원하시면 2번에서 입력하세요.</p>
                             </div>
                         </div>
                     </div>

@@ -999,6 +999,375 @@ HEREDOC;
     }
 }
 
+/**
+ * [show_cart_item 카트 내 아이템 출력]
+ * @return [type] [description]
+ */
+function show_cart_item()
+{
+    global $host, $dbid, $dbpass, $dbname;
+    $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
+
+    $p_id = set_var($_SESSION['p_id']);
+    // $show_total = '';
+
+    echo <<<HEREDOC
+                                <table id="shopping-cart-table" class="data-table cart-table">
+                                    <tr>
+                                        <th>삭제</th>
+                                        <th>이미지</th>
+                                        <th>제품명</th>
+                                        <th>공급가</th>
+                                        <th>수량</th>
+                                        <th>소계</th>
+                                    </tr>
+
+HEREDOC;
+
+    //JOIN문을 사용해 장바구니와 제품정보에서 데이터를 가져옴
+    // 카테고리와 등록 순서로 정렬
+    $query       = "SELECT * FROM products p, products_cart c WHERE c.user_id='$p_id' AND p.num=c.product_fk ORDER BY p.category_l ASC, num DESC ";
+    $result      = mysqli_query($connect, $query);
+    $total_count = mysqli_num_rows($result);
+
+    if (!$total_count) {
+        $show_total = 0;
+
+        echo <<<HEREDOC
+                                    <tr>
+                                        <td class="text-center" colspan="6"><div class="alert alert-danger"><h4>카트가 비었습니다.</h4></div></td>
+                                    </tr>
+                                    <tr class="totals">
+                                        <td colspan="5" class="total-text">합계</td>
+                                        <td class="total-amount cost"><i class="fa fa-krw"></i> {$show_total}</td>
+                                    </tr>
+                                </table>
+HEREDOC;
+        return $show_total;
+
+    } else {
+
+        $tot_money = 0;
+        $tot_mny1  = 0;
+
+        for ($i = 1; $rows = mysqli_fetch_array($result); $i++) {
+            $s_tot       = (int) $rows['volume'] * (int) $rows['amount']; // 소계
+            $tot_money   = $tot_money + $s_tot;
+            $show_stotal = number_format($s_tot);
+            $show_total  = number_format($tot_money);
+
+            $pnum          = $rows['num'];
+            $category_l    = $rows['category_l'];
+            $category_m    = $rows['category_m'];
+            $category_s    = $rows['category_s'];
+            $s_image1_name = $rows['s_image1_name'];
+            $item_name     = stripslashes($rows['name']);
+
+            $offer_price  = calc_offer_price($rows['retail_price'], $p_id); // 업체별 공급가 확인
+            $dealer_price = number_format($offer_price); // 천단위 구분
+            $price        = show_me_price($p_id, $pnum);
+            $qty          = $rows['volume'];
+            $cart_id      = $rows['cart_id'];
+
+            $pflag = '';
+            $oflag = '';
+
+            // $option = show_option($pnum);
+
+            //상품품절 확인
+            if ($rows['del_chk'] != "N") {
+                $pflag = "Y";
+            }
+
+            //상품옵션 품절표시
+            //상품 옵션이 있는지 확인 후 진행
+            if ($rows['opt'] != "") {
+                //장바구니의 옵션과 제품정보를 비교하여 품절옵션이 있는지 확인
+                $t_opt       = explode(",", $rows['opt']); //장바구니 제품의 옵션명을 배열로 만들어준다
+                $t_opt_stock = explode(",", $rows['opt_stock']); //제품의 옵션재고를 배열로 만들어준다
+
+                //옵션의 문자열 비교
+                for ($j = 0; $j < count($t_opt); $j++) {
+                    $str = strcmp($t_opt[$j], $rows['p_opt']);
+
+                    if (!$str) {
+                        //문자열이 같다면 문자열 대체
+                        if ($t_opt_stock[$j] == "0") {
+                            $rows['p_opt'] .= ' <span class="soldout">(품절)</span>';
+                            $oflag = "Y";
+                        } elseif ($t_opt_stock[$j] == "-1") {
+                            $rows['p_opt'] .= ' <span class="cutout">(단종)</span>';
+                            $oflag = "Y";
+                        } else {
+                            $rows['p_opt'] = $t_opt[$j];
+                        }
+                    }
+                } // ./for ($j = 0; $j < count($t_opt); $j++)
+
+            } // ./ if($rows['opt'] != "")
+
+            $p_opt = $rows['p_opt'];
+
+            echo <<<HEREDOC
+                                    <tr>
+                                        <td class="sop-icon">
+                                            <a href="cart-update.php?mode=del&amp;cart_no={$cart_id}&amp;where=cart" onclick="return confirm('해당 상품을 삭제하시겠습니까?')"><i class="fa fa-times"></i></a>
+                                        </td>
+                                        <td class="sop-cart">
+                                            <a href="detail.php?pnum={$pnum}&amp;lcode={$category_l}&smp;mcode={$category_m}&amp;scode={$category_s}"><img class="primary-image" alt="" src="{$s_image1_name}"></a>
+                                        </td>
+                                        <td class="sop-cart"><a href="detail.php?pnum={$pnum}&amp;lcode={$category_l}&amp;mcode={$category_m}&amp;scode={$category_s}">{$item_name}</a><br>[{$p_opt}]</td>
+                                        <td class="sop-cart cost"><i class="fa fa-krw"></i> {$dealer_price}</td>
+                                        <td>
+                                            <form name="basket{$i}" method="post" action="cart-update.php">
+                                            <input type="hidden" name="md" value="edit" />
+                                            <input type="hidden" name="from" value="cart" />
+                                            <input type="hidden" name="pflag" value="{$pflag}" />
+                                            <input type="hidden" name="oflag" value="{$oflag}" />
+                                            <input type="hidden" name="cart_id" value="{$cart_id}"/>
+                                            <input class="input-text qty" type="text" name="products_count" maxlength="12" value="{$qty}" title="Qty">
+                                            <button type="submit" class="btn btn-default btn-warning" />변경</button>
+                                            </form>
+                                        </td>
+                                        <td class="sop-cart cost"><i class="fa fa-krw"></i> {$show_stotal}</td>
+                                    </tr>
+
+HEREDOC;
+
+        } // ./ for ($i = 1; $rows = mysqli_fetch_array($result); $i++)
+
+        echo <<<HEREDOC
+                                    <tr class="totals">
+                                        <td colspan="5" class="total-text">합계</td>
+                                        <td class="total-amount cost"><i class="fa fa-krw"></i> {$show_total}</td>
+                                    </tr>
+                                </table>
+HEREDOC;
+
+        return $show_total;
+
+    } // ./else
+
+}
+
+/**
+ * [go_purchase 주문하기 버튼처리]
+ * @param  [type] $total [총합]
+ * @return [type]        [링크]
+ */
+function go_purchase($total)
+{
+    if (0 == $total) {
+        return $ret = "alert('카트에 상품이 없습니다.')";
+    } else {
+        return $ret = "location.href='checkout.php?where=cart&amp;delivery=L'";
+    }
+}
+
+/**
+ * [show_delivery_fee 택배비 보여주기]
+ * @param  [type] $total [총합]
+ * @return [type]        [문구]
+ */
+function show_delivery_fee($total)
+{
+    if ((50000 > $total) && (0 < $total)) {
+        return $ret = "5만원 미만 착불";
+    } elseif (0 == $total) {
+        return $ret = "-";
+    } else {
+        return $ret = "무료배송";
+    }
+}
+
+/**
+ * [show_checkout_item 결제페이지에서 주문상품 보여주기]
+ * @return [type] [description]
+ */
+function show_checkout_item()
+{
+    global $host, $dbid, $dbpass, $dbname;
+    $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
+
+    $p_id = set_var($_SESSION['p_id']);
+    // $show_total = '';
+
+    echo <<<HEREDOC
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th class="width-1">제품명</th>
+                                                                <th class="width-2">공급가</th>
+                                                                <th class="width-3">수량</th>
+                                                                <th class="width-4">소계</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+
+HEREDOC;
+
+    //JOIN문을 사용해 장바구니와 제품정보에서 데이터를 가져옴
+    // 카테고리와 등록 순서로 정렬
+    $query       = "SELECT * FROM products p, products_cart c WHERE c.user_id='$p_id' AND p.num=c.product_fk ORDER BY p.category_l ASC, num DESC ";
+    $result      = mysqli_query($connect, $query);
+    $total_count = mysqli_num_rows($result);
+
+    if (!$total_count) {
+        $show_total = 0;
+
+        echo <<<HEREDOC
+                                    <tr>
+                                        <td class="text-center" colspan="4"><div class="alert alert-danger"><h4>카트가 비었습니다.</h4></div></td>
+                                    </tr>
+                                    <tr class="totals">
+                                        <td colspan="5" class="total-text">합계</td>
+                                        <td class="total-amount cost"><i class="fa fa-krw"></i> {$show_total}</td>
+                                    </tr>
+                                </table>
+HEREDOC;
+
+    } else {
+
+        $tot_money = 0;
+        $tot_mny1  = 0;
+
+        for ($i = 1; $rows = mysqli_fetch_array($result); $i++) {
+            $s_tot       = (int) $rows['volume'] * (int) $rows['amount']; // 소계
+            $tot_money   = $tot_money + $s_tot;
+            $show_stotal = number_format($s_tot);
+            $show_total  = number_format($tot_money);
+
+            $pnum          = $rows['num'];
+            $category_l    = $rows['category_l'];
+            $category_m    = $rows['category_m'];
+            $category_s    = $rows['category_s'];
+            $s_image1_name = $rows['s_image1_name'];
+            $item_name     = stripslashes($rows['name']);
+
+            $offer_price  = calc_offer_price($rows['retail_price'], $p_id); // 업체별 공급가 확인
+            $dealer_price = number_format($offer_price); // 천단위 구분
+            $price        = show_me_price($p_id, $pnum);
+            $qty          = $rows['volume'];
+            $cart_id      = $rows['cart_id'];
+
+            $pflag = '';
+            $oflag = '';
+
+            // $option = show_option($pnum);
+
+            //상품품절 확인
+            if ($rows['del_chk'] != "N") {
+                $pflag = "Y";
+            }
+
+            //상품옵션 품절표시
+            //상품 옵션이 있는지 확인 후 진행
+            if ($rows['opt'] != "") {
+                //장바구니의 옵션과 제품정보를 비교하여 품절옵션이 있는지 확인
+                $t_opt       = explode(",", $rows['opt']); //장바구니 제품의 옵션명을 배열로 만들어준다
+                $t_opt_stock = explode(",", $rows['opt_stock']); //제품의 옵션재고를 배열로 만들어준다
+
+                //옵션의 문자열 비교
+                for ($j = 0; $j < count($t_opt); $j++) {
+                    $str = strcmp($t_opt[$j], $rows['p_opt']);
+
+                    if (!$str) {
+                        //문자열이 같다면 문자열 대체
+                        if ($t_opt_stock[$j] == "0") {
+                            $rows['p_opt'] .= ' <span class="soldout">(품절)</span>';
+                            $oflag = "Y";
+                        } elseif ($t_opt_stock[$j] == "-1") {
+                            $rows['p_opt'] .= ' <span class="cutout">(단종)</span>';
+                            $oflag = "Y";
+                        } else {
+                            $rows['p_opt'] = $t_opt[$j];
+                        }
+                    }
+                } // ./for ($j = 0; $j < count($t_opt); $j++)
+
+            } // ./ if($rows['opt'] != "")
+
+            $p_opt = $rows['p_opt'];
+
+            echo <<<HEREDOC
+
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="o-pro-dec">
+                                                                        <p>{$item_name} [{$p_opt}]</p>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="o-pro-price">
+                                                                        <p>{$dealer_price}</p>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="o-pro-qty">
+                                                                        <p>{$qty}</p>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="o-pro-subtotal">
+                                                                        <p>{$show_stotal}</p>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+HEREDOC;
+
+        } // ./ for ($i = 1; $rows = mysqli_fetch_array($result); $i++)
+
+        echo <<<HEREDOC
+                                                        </tbody>
+                                                        <tfoot>
+                                                            <tr class="tr-f">
+                                                                <td colspan="3">배송비</td>
+                                                                <td colspan="1"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="3">총합</td>
+                                                                <td colspan="1">{$show_total}</td>
+                                                            </tr>
+                                                        </tfoot>
+                                                    </table>
+HEREDOC;
+
+    } // ./else
+
+}
+
+function show_buyer_info()
+{
+    global $host, $dbid, $dbpass, $dbname;
+    $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
+
+    $p_id = set_var($_SESSION['p_id']);
+
+    if ($p_id) {
+        $m_qry = "SELECT * FROM member WHERE id='$p_id' ";
+        $m_res = mysqli_query($connect, $m_qry);
+        $row   = mysqli_fetch_array($m_res);
+
+        $company_name = $row['company_name'];
+        $d_zipcode    = $row['d_zipcode'];
+        $d_phone      = $row['d_phone'];
+        $md_name      = $row['md_name'];
+        $md_hphone    = $row['md_hphone'];
+        $d_addr1      = $row['d_addr1'];
+        $d_addr2      = $row['d_addr2'];
+        $zipcode      = explode('-', $d_zipcode);
+
+        echo <<<HEREDOC
+                                                    <span>{$md_name}</span>
+                                                    <span>{$company_name}</span>
+                                                    <span>{$zipcode[0]}</span>
+                                                    <span>{$d_addr1} {$d_addr2}</span>
+                                                    <span><i class="fa fa-mobile"></i> {$md_hphone} / <i class="fa fa-phone"></i> {$d_phone}</span>
+HEREDOC;
+    }
+
+}
+
 //메인 배너 보이기
 //function show_banner(db 연결)
 function show_banner($connect)
@@ -1080,8 +1449,11 @@ function show_banner2($connect)
     </div>\n";
 }
 
-//옵션 보이기
-//function show_option(쿼리 결과값)
+/**
+ * [show_option 옵션 보여주기]
+ * @param  [type] $pnum [상품코드]
+ * @return [type]       [description]
+ */
 function show_option($pnum)
 {
     global $host, $dbid, $dbpass, $dbname;
@@ -1240,8 +1612,10 @@ function check_price(&$rows, &$mrow)
     }
 }
 
-//GET, POST, FILES 처리.
-//function set_var(Array)
+/**
+ * [set_var GET, POST, SESSION 등 어레이값이 있는지 확인]
+ * @param [type] &$ary [description]
+ */
 function set_var(&$ary)
 {
     if (isset($ary) == true) {

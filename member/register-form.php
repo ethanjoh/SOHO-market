@@ -385,7 +385,7 @@ if ("edit" == $mode) {
 														</div>
 													</div>
 
-												 <div class="row">
+												 	<div class="row">
 														<div class="col-xs-12 col-md-3 register-font">
 															배송지 주소
 														</div>

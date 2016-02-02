@@ -8,12 +8,21 @@ session_start();
 
 $page           = set_var($_POST['page']);
 $lcode          = set_var($_POST['lcode']);
-$from           = set_var($_POST['from']);
 $products_count = set_var($_POST['products_count']);
 $pnum           = set_var($_POST['pnum']);
 $selected_opt   = set_var($_POST['selected_opt']);
 $amount         = set_var($_POST['amount']);
 $chk            = set_var($_POST['chk']);
+
+//POST 방식 변수
+$md      = set_var($_POST['md']);
+$from    = set_var($_POST['from']);
+$cart_id = set_var($_POST['cart_id']);
+
+//GET 방식 변수
+$mode    = set_var($_GET['mode']);
+$where   = set_var($_GET['where']);
+$cart_no = set_var($_GET['cart_no']);
 
 $p_id = set_var($_SESSION['p_id']);
 
@@ -22,15 +31,18 @@ if (!$_COOKIE['p_sid']) {
     SetCookie("p_sid", $SID, 0, "/");
 }
 
-if ('guest' != $p_id) {
-    $id_fk = $p_id;
-} else {
+if (!$p_id) {
     $id_fk = "guest";
+} else {
+    $id_fk = $p_id;
 }
 
-if ("basket" == $from) {
-    if ($md == "del") {
-        $query = "DELETE FROM products_cart WHERE cart_id='$cart_id' ";
+/**
+ * 카트에서 주문하기
+ */
+if ("cart" == $from || "cart" == $where) {
+    if ($mode == "del") {
+        $query = "DELETE FROM products_cart WHERE cart_id='$cart_no' ";
         mysqli_query($connect, $query);
     } else if ($md == "edit") {
         $query = "UPDATE products_cart SET volume='$products_count' WHERE cart_id='$cart_id' ";
@@ -38,7 +50,12 @@ if ("basket" == $from) {
     }
 
     // echo "<meta http-equiv='Refresh' content='0; URL=cart.php'>";
-    redirect('cart.php');
+    // redirect('cart.php');
+    header("Location: cart.php");
+
+/**
+ * 상품 상세에서 주문하기
+ */
 } else if ("detail" == $from) {
 
     //장바구니에 있는 상품확인
@@ -77,6 +94,10 @@ if ("basket" == $from) {
         echo json_encode(array("msg" => $msg, "qty" => $t_rows5['cnt_2']));
 
     }
+
+/**
+ * 상품 목록에서 주문하기
+ */
 } else if ("list" == $from) {
     if (!$products_count) {
         $products_count = 1;

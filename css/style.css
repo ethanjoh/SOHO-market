@@ -3105,8 +3105,9 @@ home-4 .outlink ul li a {
 }
 
 input.qty {
-    text-align: center;
-    width: 2.5em !important;
+    margin-right: 10px;
+    text-align: right;
+    width: 4em !important;
 }
 
 button.button2 {
@@ -3617,7 +3618,7 @@ button.btn-in span {
 .cart-table .sop-cart {
     color: #454545;
     font-size: 15px;
-    font-weight: 700;
+    font-weight: 300;
 }
 
 .cart-table .sop > a {
@@ -3712,18 +3713,10 @@ button.btn-in span {
 }
 
 .cart-collaterals .totals {
-    padding: 40px;
+    padding: 40px 40px 80px;
     display: block;
     background-color: #F3F3F3;
     text-align: right;
-}
-
-.total-text,
-.total-amount {
-    padding: 40px;    /*display: block;*/
-    background-color: #F3F3F3;
-    text-align: right;
-    font-size: 16px;
 }
 
 .cart-collaterals .totals .button2.get {
@@ -3956,15 +3949,15 @@ p.log {
 }
 
 .order-review table thead tr th.width-2 {
-    width: 11%;
+    width: 15%;
 }
 
 .order-review table thead tr th.width-3 {
-    width: 5%;
+    width: 10%;
 }
 
 .order-review table thead tr th.width-4 {
-    width: 12%;
+    width: 15%;
 }
 
 .order-review table tbody tr td {
@@ -5034,65 +5027,4 @@ select.s-email:focus {
     background-color: #edf7f8;
 }
 
-/*
-custom style
- */
-.margin-top-10 {
-    margin-top: 10px;
-}
 
-.register-intro {
-    text-align: center;
-    margin: 0 auto;
-    width: 80%;
-}
-
-.login-form {
-    text-align: center;
-    margin: 0 auto;
-    width: 30%;
-}
-
-.register-font {
-    padding: 5px 5px 10px 20px;
-}
-
-.form-bottom-line {
-    border-bottom: 1px dashed #ddd;
-    padding-bottom: 20px;
-    margin-bottom: 10px;
-}
-
-.login-form-head {
-    margin-bottom: 40px;
-    text-align: center;
-    /*width: 80%;*/
-    margin: 0 auto;
-}
-
-.login-form-element a {
-    border: 1px solid #2BA8DB;
-    display: inline-block;
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 28px;
-    overflow: hidden;
-    padding: 0 20px;
-    text-transform: uppercase;
-    transition: all 0.3s ease 0s;
-}
-
-.login-form-element a:hover {
-    background: #2BA8DB none repeat scroll 0 0;
-    color: #fff;
-    transition: all 0.6s ease 0s;
-}
-
-.product-content span.product-option {
-    background: #B2B2B2 none repeat scroll 0 0;
-    border-radius: 2px;
-    padding: 0 5px;
-    color: #fff;
-    font-size: 12px;
-    font-weight: 400;
-}

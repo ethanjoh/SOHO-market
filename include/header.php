@@ -84,6 +84,7 @@ $main       = mysqli_fetch_array($main_res);
 		<!-- style CSS
 		============================================ -->
         <link rel="stylesheet" href="/css/style.css">
+        <link rel="stylesheet" href="/css/myshop.css">
 		<!-- responsive CSS
 		============================================ -->
         <link rel="stylesheet" href="/css/responsive.css">
