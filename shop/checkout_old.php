@@ -205,10 +205,10 @@ if ($_SESSION['p_id']) {
 
                        <?php
 if ($from == "detail") {
-    $query    = " SELECT * FROM products p, products_cart c WHERE user_id='$_SESSION[p_id]' AND p.num=c.product_fk ORDER BY p.category_l ASC, num DESC LIMIT 0,1";
+    $query    = " SELECT * FROM products p, products_cart c WHERE user_id='$_SESSION[p_id]' AND p.num=c.product_code ORDER BY p.category_l ASC, num DESC LIMIT 0,1";
     $cur_page = "checkout.php?from=detail"; //배송비 결정을 위함
 } else if ($from == "basket") {
-    $query    = "SELECT * FROM products p, products_cart c WHERE user_id='$_SESSION[p_id]' AND p.num=c.product_fk ORDER BY p.category_l ASC, num DESC";
+    $query    = "SELECT * FROM products p, products_cart c WHERE user_id='$_SESSION[p_id]' AND p.num=c.product_code ORDER BY p.category_l ASC, num DESC";
     $cur_page = "checkout.php?from=basket";
 }
 

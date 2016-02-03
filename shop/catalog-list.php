@@ -95,7 +95,6 @@ show_catalog_products($lcode, $mcode, 'profile');
                                                     </ul>
                                                 </div>
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>

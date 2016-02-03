@@ -1,9 +1,9 @@
 <?php include_once '../include/header.php';?>
 
 <?php
-$sid   = set_var($_SESSION['p_id']);
-$sname = set_var($_SESSION['p_name']);
-$mode  = set_var($_GET['mode']);
+$p_id   = set_var($_SESSION['p_id']);
+$p_name = set_var($_SESSION['p_name']);
+$mode   = set_var($_GET['mode']);
 ?>
 				<section class="main_shop_area">
 						<div class="breadcrumbs">
@@ -40,13 +40,13 @@ if ("edit" == $mode) {
 if ("edit" == $mode) {
 
     // 이름과 아이디에 해당되는 세션이 존재하는지 확인
-    if (!isset($sid) || !isset($sname)) {
+    if (!isset($p_id) || !isset($p_name)) {
         err_msg('로그인 정보가 없습니다. 다시 로그인해 주세요.');
         // getLoginWindow(0, $port);
     } else {
         // 회원테이블에서 정보추출
         // $qry  = "SELECT * FROM member WHERE id='$_SESSION[p_id]' ";
-        $qry = "SELECT * FROM member WHERE id='$sid' ";
+        $qry = "SELECT * FROM member WHERE id='$p_id' ";
 
         $res  = mysqli_query($connect, $qry);
         $rows = mysqli_fetch_array($res);
@@ -79,8 +79,8 @@ if ("edit" == $mode) {
 										<div class="panel-heading"><h4>비밀번호 변경</h4></div>
 											<div class="panel-body">
 												<form name="pw_form" id="pw_form" role="form" class="form-group" method="post" action="//<?php echo $_SERVER['SERVER_NAME']; ?>:<?php echo $port; ?>/member/change-passwd-ok.php">
-												<input type="hidden" name="session_id" value="<?php echo $sid; ?>">
-												<input type="hidden" name="session_name" value="<?php echo $sname; ?>">
+												<input type="hidden" name="session_id" value="<?php echo $p_id; ?>">
+												<input type="hidden" name="session_name" value="<?php echo $p_name; ?>">
 
 												<div class="row">
 													<div class="col-xs-12 col-md-3 register-font">
@@ -114,8 +114,8 @@ if ("edit" == $mode) {
 
 									<form name="form1" id="form1" role="form" class="form-group" method="post" action="//<?php echo $_SERVER['SERVER_NAME']; ?>:<?php echo $port; ?>/member/register-ok.php">
 									<input type="hidden" name="mode" value="edit">
-									<input type="hidden" name="session_id" value="<?php echo $sid; ?>">
-									<input type="hidden" name="session_name" value="<?php echo $sname; ?>">
+									<input type="hidden" name="session_id" value="<?php echo $p_id; ?>">
+									<input type="hidden" name="session_name" value="<?php echo $p_name; ?>">
 
 									<div class="panel panel-info margin-top-10">
 										<div class="panel-heading"><h4>기본정보</h4></div>

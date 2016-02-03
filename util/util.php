@@ -456,7 +456,7 @@ HEREDOC;
                                         </div>
                                         <div class="home" id="right">
                                             <ul>
-                                                <li><a href=""><i class="fa fa-list-alt"></i> 주문내역</a></li>
+                                                <li><a href="/shop/order-list.php"><i class="fa fa-list-alt"></i> 주문내역</a></li>
                                                 <li><a href=""><i class="fa fa-bar-chart"></i> 통계보기</a></li>
                                                 <li><a href="/member/register-form.php?mode=edit"><i class="fa fa-wrench"></i> 정보수정</a></li>
                                             </ul>
@@ -633,14 +633,12 @@ HEREDOC;
                     echo '
                                                 <input type="text" name="products_count" id="products_count_' . $pnum . '" value="' . $moq . '" size="2">
                                                 <a href="#" id="' . $pnum . '" class="addCart_submit"><i class="fa fa-shopping-cart"></i></a>
-                                                <a href="/shop/cart.php"><i class="fa fa-check"></i></a>
                                                 <div id="loadplace' . $pnum . '"></div>
                                                 <input type="hidden" name="amount" id="amount_' . $pnum . '" value="' . $offer_price . '">
                                                 <input type="hidden" name="from" id="from" value="list">';
 
                 } else {
-                    echo '                      <a href="/member/login.php"><i class="fa fa-shopping-cart"></i></a>
-                                                <a href="/member/login.php"><i class="fa fa-check"></i></a>';
+                    echo '                      <a href="/member/login.php"><i class="fa fa-shopping-cart"></i></a>';
                 }
 
                 echo <<<HEREDOC
@@ -684,14 +682,12 @@ HEREDOC;
                 if ($p_id) {
                     echo '                      <input type="text" name="products_count" id="products_count_' . $pnum . '" value="' . $moq . '" size="2">
                                                 <a href="#" id="' . $pnum . '" class="addCart_submit"><i class="fa fa-shopping-cart"></i></a>
-                                                <a href="/shop/cart.php"><i class="fa fa-check"></i></a>
                                                 <div id="loadplace' . $pnum . '"></div>
                                                 <input type="hidden" name="amount" id="amount_' . $pnum . '" value="' . $offer_price . '">
                                                 <input type="hidden" name="from" id="from" value="list">';
 
                 } else {
-                    echo '                      <a href="/member/login.php"><i class="fa fa-shopping-cart"></i></a>
-                                                <a href="/member/login.php"><i class="fa fa-check"></i></a>';
+                    echo '                      <a href="/member/login.php"><i class="fa fa-shopping-cart"></i></a>';
                 }
 
                 echo <<<HEREDOC
@@ -717,7 +713,7 @@ HEREDOC;
 }
 
 /**
- * [show_me_price 공급가 보여주기]
+ * [show_me_price 웹페이지에 공급가 보여주기]
  * @param  [type] $session_id [세션 아이디]
  * @param  [type] $pnum       [제품번호]
  * @return [type]             [description]
@@ -1026,7 +1022,7 @@ HEREDOC;
 
     //JOIN문을 사용해 장바구니와 제품정보에서 데이터를 가져옴
     // 카테고리와 등록 순서로 정렬
-    $query       = "SELECT * FROM products p, products_cart c WHERE c.user_id='$p_id' AND p.num=c.product_fk ORDER BY p.category_l ASC, num DESC ";
+    $query       = "SELECT * FROM products p, products_cart c WHERE c.user_id='$p_id' AND p.num=c.product_code ORDER BY p.category_l ASC, num DESC ";
     $result      = mysqli_query($connect, $query);
     $total_count = mysqli_num_rows($result);
 
@@ -1171,13 +1167,44 @@ function go_purchase($total)
  */
 function show_delivery_fee($total)
 {
-    if ((50000 > $total) && (0 < $total)) {
+    global $host, $dbid, $dbpass, $dbname;
+    $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
+
+    $query  = "SELECT * FROM misc_setup ";
+    $result = mysqli_query($connect, $query);
+    $row    = mysqli_fetch_array($result);
+
+    if ($row['min_sum'] > $total) {
         return $ret = "5만원 미만 착불";
     } elseif (0 == $total) {
         return $ret = "-";
-    } else {
+    } elseif ($total >= $row['min_sum']) {
         return $ret = "무료배송";
     }
+}
+
+/**
+ * [calc_delivery_fee 택배비 계산]
+ * @param  [type] $total [총합]
+ * @return [type]        [택배요금 반환]
+ */
+function calc_delivery_fee($total)
+{
+
+    global $host, $dbid, $dbpass, $dbname;
+    $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
+
+    $query  = "SELECT * FROM misc_setup ";
+    $result = mysqli_query($connect, $query);
+    $row    = mysqli_fetch_array($result);
+
+    if ((int) $total < $row['min_sum']) {
+        $cost = $row['d_charge'];
+    } else {
+        $cost = 0;
+    }
+
+    return $cost;
 }
 
 /**
@@ -1208,7 +1235,7 @@ HEREDOC;
 
     //JOIN문을 사용해 장바구니와 제품정보에서 데이터를 가져옴
     // 카테고리와 등록 순서로 정렬
-    $query       = "SELECT * FROM products p, products_cart c WHERE c.user_id='$p_id' AND p.num=c.product_fk ORDER BY p.category_l ASC, num DESC ";
+    $query       = "SELECT * FROM products p, products_cart c WHERE c.user_id='$p_id' AND p.num=c.product_code ORDER BY p.category_l ASC, num DESC ";
     $result      = mysqli_query($connect, $query);
     $total_count = mysqli_num_rows($result);
 
@@ -1336,6 +1363,10 @@ HEREDOC;
 
 }
 
+/**
+ * [show_buyer_info 결제페이지에서 주문자 정보보여주기]
+ * @return [type] [description]
+ */
 function show_buyer_info()
 {
     global $host, $dbid, $dbpass, $dbname;
@@ -1558,11 +1589,17 @@ function show_restock(&$rows)
 
 //공급가 계산
 //function calc_price(Array retail price, Array dc rate)
-function calc_price(&$retail_price, &$dc_rate)
-{
-    return $retail_price * (1 - ($dc_rate / 100));
-}
+// function calc_price(&$retail_price, &$dc_rate)
+// {
+//     return $retail_price * (1 - ($dc_rate / 100));
+// }
 
+/**
+ * [calc_offer_price 공급가 계산]
+ * @param  [type] $retail_price [description]
+ * @param  [type] $id           [description]
+ * @return [type]               [description]
+ */
 function calc_offer_price($retail_price, $id)
 {
     global $host, $dbid, $dbpass, $dbname;

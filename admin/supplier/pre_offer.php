@@ -174,7 +174,7 @@ if ($pro_row['opt']) {
               <div class="col-sm-12">
               <?php
 //장바구니에 담긴 수량 확인
-$query  = "SELECT sum(volume) AS cnt FROM products p, offer_cart c WHERE c.user_id='$id' AND p.num=c.product_fk ORDER BY c.cart_id DESC ";
+$query  = "SELECT sum(volume) AS cnt FROM products p, offer_cart c WHERE c.user_id='$id' AND p.num=c.product_code ORDER BY c.cart_id DESC ";
 $result = mysqli_query($connect, $query);
 $row    = mysqli_fetch_array($result);
 

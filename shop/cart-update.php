@@ -59,7 +59,7 @@ if ("cart" == $from || "cart" == $where) {
 } else if ("detail" == $from) {
 
     //장바구니에 있는 상품확인
-    $qry = "SELECT * FROM products_cart WHERE user_id='$id_fk' AND product_fk='$pnum' AND p_opt='$selected_opt'  ";
+    $qry = "SELECT * FROM products_cart WHERE user_id='$id_fk' AND product_code='$pnum' AND p_opt='$selected_opt'  ";
     $res = mysqli_query($connect, $qry);
     $row = mysqli_fetch_array($res);
 
@@ -104,7 +104,7 @@ if ("cart" == $from || "cart" == $where) {
     }
 
     //장바구니에 있는 상품확인
-    $qry = "SELECT * FROM products_cart WHERE user_id='$id_fk' AND product_fk='$pnum' AND p_opt='$selected_opt'  ";
+    $qry = "SELECT * FROM products_cart WHERE user_id='$id_fk' AND product_code='$pnum' AND p_opt='$selected_opt'  ";
     $res = mysqli_query($connect, $qry);
     $row = mysqli_fetch_array($res);
 
@@ -141,7 +141,7 @@ if ("cart" == $from || "cart" == $where) {
     }
 
     //장바구니에 있는 상품확인
-    $qry = "SELECT * FROM products_cart WHERE user_id='$id_fk' AND product_fk='$pnum' AND p_opt='$selected_opt'  ";
+    $qry = "SELECT * FROM products_cart WHERE user_id='$id_fk' AND product_code='$pnum' AND p_opt='$selected_opt'  ";
     $res = mysqli_query($connect, $qry);
     $row = mysqli_fetch_array($res);
 
@@ -165,7 +165,7 @@ if ("cart" == $from || "cart" == $where) {
 } else if ("dir" == $from) {
     // 비회원 바로구매
     //장바구니에 있는 상품확인
-    $qry = "SELECT * FROM products_cart WHERE user_id='$id_fk' AND product_fk='$pnum' AND p_opt='$selected_opt'  ";
+    $qry = "SELECT * FROM products_cart WHERE user_id='$id_fk' AND product_code='$pnum' AND p_opt='$selected_opt'  ";
     $res = mysqli_query($connect, $qry);
     $row = mysqli_fetch_array($res);
 
@@ -183,7 +183,7 @@ if ("cart" == $from || "cart" == $where) {
 } else if ("5" == $chk) {
     // 검색결과
     //장바구니에 있는 상품확인
-    $qry = "SELECT * FROM products_cart WHERE user_id='$id_fk' AND product_fk='$pnum' AND p_opt='$selected_opt'  ";
+    $qry = "SELECT * FROM products_cart WHERE user_id='$id_fk' AND product_code='$pnum' AND p_opt='$selected_opt'  ";
     $res = mysqli_query($connect, $qry);
     $row = mysqli_fetch_array($res);
 

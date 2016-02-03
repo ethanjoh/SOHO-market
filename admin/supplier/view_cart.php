@@ -77,7 +77,7 @@ $id = set_var($_GET['id']);
                   <?php
 $query = "SELECT * FROM products p, offer_cart c
                 	          			WHERE c.user_id='$id'
-                			  			AND p.num=c.product_fk
+                			  			AND p.num=c.product_code
                 			   			ORDER BY c.cart_id DESC ";
 
 $result      = mysqli_query($connect, $query);

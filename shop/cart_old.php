@@ -62,7 +62,7 @@
                     <?php
 //JOIN문을 사용해 장바구니와 제품정보에서 데이터를 가져옴
 // 카테고리와 등록 순서로 정렬
-$query       = "SELECT * FROM products p, products_cart c WHERE c.user_id='$_SESSION[p_id]' AND p.num=c.product_fk ORDER BY p.category_l ASC, num DESC ";
+$query       = "SELECT * FROM products p, products_cart c WHERE c.user_id='$_SESSION[p_id]' AND p.num=c.product_code ORDER BY p.category_l ASC, num DESC ";
 $result      = mysqli_query($connect, $query);
 $total_count = mysqli_num_rows($result);
 
