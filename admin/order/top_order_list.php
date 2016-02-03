@@ -4,6 +4,18 @@
 $sql_1       = "SELECT num FROM mall_order WHERE cancel='N' AND status='3' AND user_id <> 'guest' ";
 $res_1       = mysqli_query($connect, $sql_1);
 $unchk_total = mysqli_num_rows($res_1);
+
+$mode      = set_var($_GET['mode']);
+$pmode     = set_var($_GET['pmode']);
+$key       = set_var($_GET['key']);
+$key_value = set_var($_GET['key_value']);
+$keyword   = set_var($_GET['keyword']);
+$date1     = set_var($_GET['date1']);
+$date2     = set_var($_GET['date2']);
+$lcode     = set_var($_GET['lcode']);
+$mcode     = set_var($_GET['mcode']);
+$scode     = set_var($_GET['scode']);
+
 ?>
 
 	<body onLoad="init()">
@@ -111,6 +123,8 @@ $res_2 = mysqli_query($connect, $sql_2);
 $total = mysqli_num_rows($res_2);
 
 $scale = 30;
+$page  = '';
+
 if ($page == '') {
     $page = 1;
 }
@@ -277,7 +291,8 @@ $res_4 = mysqli_query($connect, $sql_4);
 
 if ($res_4) {
 
-    $total = 0; //금일주문총액
+    $total   = 0; //금일주문총액
+    $o_total = 0;
 
     for ($i = 0; $row = mysqli_fetch_array($res_4); $i++) {
 
@@ -418,7 +433,7 @@ if ($row['delivery_type'] == 'L' || $row['delivery_type'] == 'L1') {
 								-->
 
 					            <td><?=$status_now;?></td>
-					            <td><a type="button" class="btn btn-default" href="or_delete.php?oid=<?=$row['num'];?>&amp;page=<?=$page;?>&amp;pay_type=<?=$row['pay_type'];?>" onclick="return confirm('정말 주문을 취소하시겠습니까?')"><i class="fa fa-times"></i></a></td>
+					            <td><a type="button" class="btn btn-default" href="or_delete.php?oid=<?=$row['num'];?>&amp;page=<?=$page;?>&amp;pay_type=<?=$row['payment_type'];?>" onclick="return confirm('정말 주문을 취소하시겠습니까?')"><i class="fa fa-times"></i></a></td>
 					          </tr>
 					          <?php
 $o_total += $row['amount'];
@@ -464,7 +479,7 @@ $o_total += $row['amount'];
 				            <tr>
 				              <td>
 				                <?php
-$url = $PHP_SELF . "?mode=" . $mode . "&pmode=" . $pmode . "&lcode=" . $lcode . "&mcode=" . $mcode . "&scode=" . $scode . "&key=" . $key . "&keyword=" . $keyword;
+$url = $_SERVER['PHP_SELF'] . "?mode=" . $mode . "&pmode=" . $pmode . "&lcode=" . $lcode . "&mcode=" . $mcode . "&scode=" . $scode . "&key=" . $key . "&keyword=" . $keyword;
 page_nav($totalpage, $cpage, $url);
 ?>
 				              </td>

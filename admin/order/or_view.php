@@ -1,64 +1,26 @@
+<?php include_once '../include/header.php';?>
+
 <?php
-
-//관리자 인증 파일
-include "../../util/admin_auth.php";
-// 데이타베이스 연결정보 및 기타설정
-include "../../util/config.php";
-// 각종 유틸함수
-include "../../util/util.php";
-// MySQL 연결
-$connect = my_connect($host, $dbid, $dbpass, $dbname);
-
-//메타정보
-$info_query = "SELECT * FROM admin_setup";
-$info_res   = mysqli_query($connect, $info_query);
-$info       = mysqli_fetch_array($info_res);
 
 $sql_1       = "SELECT num FROM mall_order WHERE cancel='N' AND status='3' AND user_id <> 'guest' ";
 $res_1       = mysqli_query($connect, $sql_1);
 $unchk_total = mysqli_num_rows($res_1);
 
+$mode      = set_var($_GET['mode']);
+$oid       = set_var($_GET['oid']);
+$key       = set_var($_GET['key']);
+$key_value = set_var($_GET['key_value']);
+$page      = '';
 ?>
-<!DOCTYPE html>
-<html lang="ko">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta name="keyword" content="">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <link rel="shortcut icon" href="/favicon.ico">
-
-    <title><?=$info['company_name'];?> :: 운영업체 관리자 홈</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="/css/bootstrap.css" rel="stylesheet">
-    <link href="/admin/css/bootstrap-reset.css" rel="stylesheet">
-    <!--external css-->
-    <link href="/css/font-awesome.min.css" rel="stylesheet" />
-
-    <!-- Custom styles for this template -->
-    <link href="/admin/css/style.css" rel="stylesheet">
-    <link href="/admin/css/style-responsive.css" rel="stylesheet" />
-    <link href="/admin/css/jquery-ui.min.css" rel="stylesheet">
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
-    <!--[if lt IE 9]>
-      <script src="js/html5shiv.js"></script>
-      <script src="js/respond.min.js"></script>
-    <![endif]-->
-  </head>
-
 	<!-- <body onLoad=init();> -->
 	<body>
 	  <section id="container" >
 	      <!--header start-->
-	      <?php include "../include/admin_head.php";?>
+	      <?php include_once "../include/admin_head.php";?>
 	      <!--header end-->
 
 	      <!--sidebar start-->
-	      <?php include "../include/admin_sidebar.php";?>
+	      <?php include_once "../include/admin_sidebar.php";?>
 	      <!--sidebar end-->
 
 		<!--main content start-->
@@ -100,6 +62,11 @@ $mod_price  = explode(",", $row['mod_price']);
 $org_volume = explode(",", $row['goods_count']); //주문수량
 $mod_volume = explode(",", $row['mod_count']); //변경된 수량
 $option     = explode(",", $row['goods_kind']); //옵션정보
+
+$tot_amount = 0;
+$org_amount = 0;
+$t_count    = 0;
+$mt_count   = 0;
 ?>
 
 				<!-- order list start -->
@@ -107,13 +74,13 @@ $option     = explode(",", $row['goods_kind']); //옵션정보
 		            <div class="col-sm-12">
 						<section class="panel">
 							<header class="panel-heading table-head">
-							    주문 상세내역 ( <?=$oid;?> )
+							    주문 상세내역 ( <?php echo $oid; ?> )
 						  	</header>
 						  	<div class="panel-body">
 
 							<form class="form-inline" role="form" name="or_update_order" method="post" action="or_update_order.php">
-							<input type="hidden" name="oid" value="<?=$oid;?>" />
-							<input type="hidden" name="page" value="<?=$page;?>" />
+							<input type="hidden" name="oid" value="<?php echo $oid; ?>" />
+							<input type="hidden" name="page" value="<?php echo $page; ?>" />
 							<div class="table-responsive">
 							<table class="table table-striped">
 								<thead>
@@ -140,7 +107,7 @@ for ($i = 0; $i < sizeof($a_goods_fk); $i++) {
 
     //$goods_name= cut_string_utf8($pro_row['name'],30, "...");
     $goods_name = $pro_row['name'];
-    $img_char   = $pro_row['s_image_name'];
+    $img_char   = $pro_row['s_image1_name'];
 
     //상품옵션 품절표시
     //상품 옵션이 있는지 확인 후 진행
@@ -172,10 +139,10 @@ for ($i = 0; $i < sizeof($a_goods_fk); $i++) {
 
 									<tr>
 										<td>
-									  		<a href="http://<?=$_SERVER['SERVER_NAME'];?>/shop/detail.php?pnum=<?=$pro_row['num'];?>&amp;lcode=<?=$pro_row['category_l'];?>&amp;mcode=<?=$pro_row['category_m'];?>&amp;scode=<?=$pro_row['category_s'];?>" target="_blank"><img src="<?=$img_char;?>" width="50" height="50"></a>
+									  		<a href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/shop/detail.php?pnum=<?php echo $pro_row['num']; ?>&amp;lcode=<?php echo $pro_row['category_l']; ?>&amp;mcode=<?php echo $pro_row['category_m']; ?>&amp;scode=<?php echo $pro_row['category_s']; ?>" target="_blank"><img src="<?php echo $img_char; ?>" width="50" height="50"></a>
 									  	</td>
-									  	<td><div class="brand">[<?=$pro_row['company'];?>]</div>
-										  <?=show_icon($pro_row);?> &nbsp;<a href="" onclick="javascript:open_win('edit_pro.php?oid=<?=$oid;?>&amp;p_num=<?=$pro_row['num'];?>&amp;lcode=<?=$pro_row['category_l'];?>&amp;mcode=<?=$pro_row['category_m'];?>&amp;scode=<?=$pro_row['category_s'];?>','nwin','scrollbars=yes,resizable=yes, width=800,height=650');"><?=stripslashes($goods_name);?></a>
+									  	<td><div class="brand">[<?php echo $pro_row['company']; ?>]</div>
+										  <?php echo show_icon($pro_row); ?> &nbsp;<a href="" onclick="javascript:open_win('edit_pro.php?oid=<?php echo $oid; ?>&amp;p_num=<?php echo $pro_row['num']; ?>&amp;lcode=<?php echo $pro_row['category_l']; ?>&amp;mcode=<?php echo $pro_row['category_m']; ?>&amp;scode=<?php echo $pro_row['category_s']; ?>','nwin','scrollbars=yes,resizable=yes, width=800,height=650');"><?php echo stripslashes($goods_name); ?></a>
 										<?php
 if ($option[$i]) {
         echo "<p>" . $option[$i] . "</p>\n";
@@ -192,7 +159,7 @@ if ($org_volume[$i] > 1) {
     }
     ?>
 										<td>
-											<input type="text" class="form-control" name="mod_volume[]" size="5" value="<?=$mod_volume[$i];?>" />&nbsp;<input class="form-control" type="submit" value="변경" />
+											<input type="text" class="form-control" name="mod_volume[]" size="5" value="<?php echo $mod_volume[$i]; ?>" />&nbsp;<input class="form-control" type="submit" value="변경" />
 										</td>
 
 <!-- 										<?php
@@ -209,10 +176,10 @@ if ($pro_row['sale_price']) {
     }
     ?> -->
 										<td>
-											<?=number_format($org_price[$i]);?> 원<br>(<?=number_format((1 - ($org_price[$i] / $pro_row['retail_price'])) * 100);?> % ↓)
+											<?php echo number_format($org_price[$i]); ?> 원<br>(<?php echo number_format((1 - ($org_price[$i] / $pro_row['retail_price'])) * 100); ?> % ↓)
 										</td>
 										<td>
-											<input type="text" class="form-control" name="mod_price[]" size="5" value="<?=$mod_price[$i];?>"/>&nbsp;<input class="form-control" type="submit" value="변경" />
+											<input type="text" class="form-control" name="mod_price[]" size="5" value="<?php echo $mod_price[$i]; ?>"/>&nbsp;<input class="form-control" type="submit" value="변경" />
 										</td>
 
 										<?php
@@ -220,8 +187,8 @@ $sub_amount = (int) $mod_volume[$i] * (int) $mod_price[$i];
     //$sub_amount = number_format($sub_amount);
     ?>
 
-										<td><?=number_format($sub_amount);?> 원</td>
-										<td><?=number_format($sub_amount * 0.1);?> 원</td>
+										<td><?php echo number_format($sub_amount); ?> 원</td>
+										<td><?php echo number_format($sub_amount * 0.1); ?> 원</td>
 									</tr>
 
 									<?php
@@ -254,13 +221,13 @@ $misc    = mysqli_fetch_array($result4);
 							</form>
 									<tr>
 									  	<td colspan="2">▶ SUB TOTAL</td>
-									  	<td><?=$t_count;?> 개</td>
-										<td><?=$mt_count;?> 개</td>
+									  	<td><?php echo $t_count; ?> 개</td>
+										<td><?php echo $mt_count; ?> 개</td>
 										<!-- <td></td> -->
 										<td></td>
 										<td></td>
-									 	<td><?=number_format($last_cost);?> 원</td>
-									 	<td><?=number_format($last_cost * 0.1);?> 원</td>
+									 	<td><?php echo number_format($last_cost); ?> 원</td>
+									 	<td><?php echo number_format($last_cost * 0.1); ?> 원</td>
 									</tr>
 
 										<?php
@@ -274,12 +241,12 @@ $final = $last_cost;
 
 									<tr>
 										<td colspan="7">▶ TOTAL (inc.VAT)</td>
-										<td colspan="2"><?=number_format($final * 1.1);?> 원</td>
+										<td colspan="2"><?php echo number_format($final * 1.1); ?> 원</td>
 									</tr>
 
  									<tr>
  						    			<td colspan="2" >▶ 배송 시 요청사항 </td>
- 							   			<td colspan="6" ><font color="#AE3E0D"><?=nl2br($row['memo']);?></font></td>
+ 							   			<td colspan="6" ><font color="#AE3E0D"><?php echo nl2br($row['memo_to_delivery']); ?></font></td>
  									</tr>
 	 						 	</tbody>
 	 						</table>
@@ -300,9 +267,9 @@ $final = $last_cost;
 							<tbody>
 								<tr>
 									<td colspan="9" class="text-center">
-										<a class="btn btn-primary" href="top_order_list.php?mode=<?=$mode;?>&amp;oid=<?=$oid;?>&amp;key_value=<?=$key_value;?>&amp;page=<?=$page;?>">주문 목록</a>
-										<a class="btn btn-default" href="" onclick="javascript:open_win('print_quot.php?oid=<?=$oid;?>','nwin','scrollbars=yes,resizable=yes,width=685');"><i class="fa fa-print"></i> 명세서 출력</a>
-										<a class="btn btn-default" href="quottoexcel.php?oid=<?=$oid;?>"><i class="fa fa-file-excel-o"></i> 엑셀로 명세서 다운로드</a>
+										<a class="btn btn-primary" href="top_order_list.php?mode=<?php echo $mode; ?>&amp;oid=<?php echo $oid; ?>&amp;key_value=<?php echo $key_value; ?>&amp;page=<?php echo $page; ?>">주문 목록</a>
+										<a class="btn btn-default" href="" onclick="javascript:open_win('print_quot.php?oid=<?php echo $oid; ?>','nwin','scrollbars=yes,resizable=yes,width=685');"><i class="fa fa-print"></i> 명세서 출력</a>
+										<a class="btn btn-default" href="quottoexcel.php?oid=<?php echo $oid; ?>"><i class="fa fa-file-excel-o"></i> 엑셀로 명세서 다운로드</a>
 									</td>
 								</tr>
 							</tbody>
@@ -324,7 +291,7 @@ $a_status['7'] = "<i class=\"fa fa-cube\"></i> 포장완료";
 $a_status['8'] = "<i class=\"fa fa-truck\"></i> 발송완료(" . $row['senddate'] . ")";
 
 //도서신간지역 구분
-$bg = check_zipno($zipno, $row);
+// $bg = check_zipno($row['recipient_zipcode'], $row);
 
 ?>
 
@@ -333,33 +300,33 @@ $bg = check_zipno($zipno, $row);
 		            <div class="col-sm-12">
 						<section class="panel">
 							<header class="panel-heading table-head">
-							    주문번호 <?=$row['orderid'];?> (주문일시 : <?=$row['createdate'];?>)
+							    주문번호 <?php echo $row['orderid']; ?> (주문일시 : <?php echo $row['createdate']; ?>)
 						  	</header>
 						  	<div class="panel-body">
 						  		<div class="table-responsive">
 								<table class="table">
 								<tbody>
-								  <tr <?=$bg[0];?>>
-								    <th>구매자(<?=$row['user_id'];?>)
-								    	<!-- <p><img src="../images/12.gif" /><a href="../member/new_msg.php?mode=reply&amp;id=<?=$row['user_id'];?>" target="_blank">[쪽지 보내기]</a></p> -->
+								  <tr>
+								    <th>구매자(<?php echo $row['user_id']; ?>)
+								    	<!-- <p><img src="../images/12.gif" /><a href="../member/new_msg.php?mode=reply&amp;id=<?php echo $row['user_id']; ?>" target="_blank">[쪽지 보내기]</a></p> -->
 								    </th>
 								    <td
 								    	<ul>
-								        	<li><?=$row['buyer_name'];?></li>
-								        	<li><?=$row['buyer_zipno'];?></li>
-								        	<li><?=$row['buyer_address'];?></li>
-								        	<li><?=$row['buyer_phone'];?></li>
-								        	<li><?=$row['buyer_hphone'];?></li>
+								        	<li><?php echo $row['buyer_name']; ?></li>
+								        	<li><?php echo $row['buyer_zipcode']; ?></li>
+								        	<li><?php echo $row['buyer_address']; ?></li>
+								        	<li><?php echo $row['buyer_phone']; ?></li>
+								        	<li><?php echo $row['buyer_hphone']; ?></li>
 								     	</ul>
 								     </td>
 								    <th>수령자</th>
-								    <td <?=$bg[1];?>>
+								    <td>
 								    	<ul>
-								        	<li><?=$row['recipient_name'];?></li>
-								        	<li><?=$row['recipient_zipno'];?></li>
-								        	<li><?=$row['recipient_address'];?></li>
-								        	<li><?=$row['recipient_hphone'];?></li>
-								        	<li><?=$row['recipient_phone'];?></li>
+								        	<li><?php echo $row['recipient_name']; ?></li>
+								        	<li><?php echo $row['recipient_zipcode']; ?></li>
+								        	<li><?php echo $row['recipient_address']; ?></li>
+								        	<li><?php echo $row['recipient_hphone']; ?></li>
+								        	<li><?php echo $row['recipient_phone']; ?></li>
 								      	</ul>
 								     </td>
 								  </tr>
@@ -405,13 +372,13 @@ switch ($mrows['payment_day']) {
 								  <tr>
 								    <th>관리자 메모<br /><p>(★ 자동 저장됨) </p></th>
 								    <td  colspan="3">
-										<textarea name="add_memo" class="form-control" style="width:50%;height:50px;"><?=$row['supplement'];?></textarea>
+										<textarea name="add_memo" class="form-control" style="width:50%;height:50px;"><?php echo $row['supplement']; ?></textarea>
 								    </td>
 								  </tr>
 								  <tr>
 								    <th>주문금액</th>
 								    <td>
-								    	<?=number_format($row['amount'] * 1.1);?> 원 (VAT 포함) = <?=number_format($row['amount']);?> + <?=number_format($row['amount'] * 0.1);?>(VAT) <br />
+								    	<?php echo number_format($row['amount'] * 1.1); ?> 원 (VAT 포함) = <?php echo number_format($row['amount']); ?> + <?php echo number_format($row['amount'] * 0.1); ?>(VAT) <br />
 								    </td>
 								    <th>확정금액</th>
 								    <td  colspan="3"><?php
@@ -428,58 +395,56 @@ if ($row['status'] == '7' || $row['status'] == '8') {
 								    <th rowspan="2">배송상태</th>
 <!-- 								  </tr>
 								  <tr> -->
-								    <td  colspan="3"><!--<?=$a_status[$row['status']];?>--> <div class="loading"><?=$a_status[$row['status']];?></div> (상태변경은 아래에서 하세요.)</td>
+								    <td  colspan="3"><!--<?php echo $a_status[$row['status']]; ?>--> <div class="loading"><?php echo $a_status[$row['status']]; ?></div> (상태변경은 아래에서 하세요.)</td>
 								  </tr>
 								  <tr>
 								    <td colspan="3">
 
 								      	<form class="form-inline" role="form" name="form0" method="post" action="or_changed.php" style="display: inline-block;">
 								        <input type="hidden" name="mode" id="mode0" value="1" />
-								        <input type="hidden" name="oid" id="oid0" value="<?=$oid;?>" />
-								        <input type="hidden" name="key" value="<?=$key;?>" />
-								        <input type="hidden" name="key_value" value="<?=$key_value;?>" />
-								        <input type="hidden" name="page" value="<?=$page;?>" />
-								        <input type="hidden" name="status" value="<?=$row['status'];?>" />
-								        <input type="hidden" name="last_amount" value="<?=$final;?>" />
-								        <input type="hidden" name="sms" value="<?=$mrows['sms'];?>" />
-								        <input type="hidden" name="buyer_hphone" value="<?=$row['buyer_hphone'];?>" />
-								        <input type="hidden" name="buyer_name" value="<?=$row['buyer_name'];?>" />
-								        <input type="hidden" name="delivery_type" value="<?=$row['delivery_type'];?>" />
+								        <input type="hidden" name="oid" id="oid0" value="<?php echo $oid; ?>" />
+								        <input type="hidden" name="key" value="<?php echo $key; ?>" />
+								        <input type="hidden" name="key_value" value="<?php echo $key_value; ?>" />
+								        <input type="hidden" name="page" value="<?php echo $page; ?>" />
+								        <input type="hidden" name="status" value="<?php echo $row['status']; ?>" />
+								        <input type="hidden" name="last_amount" value="<?php echo $final; ?>" />
+								        <input type="hidden" name="sms" value="<?php echo $mrows['sms']; ?>" />
+								        <input type="hidden" name="buyer_hphone" value="<?php echo $row['buyer_hphone']; ?>" />
+								        <input type="hidden" name="buyer_name" value="<?php echo $row['buyer_name']; ?>" />
+								        <input type="hidden" name="delivery_type" value="<?php echo $row['delivery_type']; ?>" />
 								        <!-- <a href="javascript:document.form0.submit()" onclick="return confirm('주문확인 하셨습니까?')">주문확인</a> -->
 								    	<button id="check" class="form-control" type="submit" onclick="return confirm('주문확인 하셨습니까?')"><i class="fa fa-check-circle"></i> 주문확인</button>
 								    <!-- <div id="result"></div> -->
 								    	</form>
 
-								     >>>
 								      <form class="form-inline" role="form" name="form1" method="post" action="or_changed.php" style="display: inline-block;">
 								        <input type="hidden" name="mode" id="mode1" value="2" />
-								        <input type="hidden" name="oid" id="oid1" value="<?=$oid;?>" />
-								        <input type="hidden" name="key" value="<?=$key;?>" />
-								        <input type="hidden" name="key_value" value="<?=$key_value;?>" />
-								        <input type="hidden" name="page" value="<?=$page;?>" />
-								        <input type="hidden" name="status" value="<?=$row['status'];?>" />
-								        <input type="hidden" name="last_amount" id="last_amount1" value="<?=$final;?>" />
-								        <input type="hidden" name="sms" value="<?=$mrows['sms'];?>" />
-								        <input type="hidden" name="buyer_hphone" value="<?=$row['buyer_hphone'];?>" />
-								        <input type="hidden" name="buyer_name" value="<?=$row['buyer_name'];?>" />
-								        <input type="hidden" name="delivery_type" value="<?=$row['delivery_type'];?>" />
+								        <input type="hidden" name="oid" id="oid1" value="<?php echo $oid; ?>" />
+								        <input type="hidden" name="key" value="<?php echo $key; ?>" />
+								        <input type="hidden" name="key_value" value="<?php echo $key_value; ?>" />
+								        <input type="hidden" name="page" value="<?php echo $page; ?>" />
+								        <input type="hidden" name="status" value="<?php echo $row['status']; ?>" />
+								        <input type="hidden" name="last_amount" id="last_amount1" value="<?php echo $final; ?>" />
+								        <input type="hidden" name="sms" value="<?php echo $mrows['sms']; ?>" />
+								        <input type="hidden" name="buyer_hphone" value="<?php echo $row['buyer_hphone']; ?>" />
+								        <input type="hidden" name="buyer_name" value="<?php echo $row['buyer_name']; ?>" />
+								        <input type="hidden" name="delivery_type" value="<?php echo $row['delivery_type']; ?>" />
 								        <!-- <a href="javascript:document.form.submit()" onclick="return confirm('포장이 완료되었습니까?\n확정된 금액으로 입력됩니다.')" >포장완료</a> -->
 								        <button id="pack" class="form-control" type="submit" onclick="return confirm('포장이 완료되었습니까?\n확정된 금액으로 입력됩니다.')"><i class="fa fa-cube"></i> 포장완료</button>
 								      </form>
 
-								      <<<
 									<form class="form-inline" role="form" name="form2" method="post" action="or_changed.php" style="display: inline-block;">
 								        <input type="hidden" name="mode" id="mode2" value="0" />
-								        <input type="hidden" name="oid" id="oid2" value="<?=$oid;?>" />
-								        <input type="hidden" name="key" value="<?=$key;?>" />
-								        <input type="hidden" name="key_value" value="<?=$key_value;?>" />
-								        <input type="hidden" name="page" value="<?=$page;?>" />
-								        <input type="hidden" name="status" value="<?=$row['status'];?>" />
-								        <input type="hidden" name="last_amount" id="last_amount2" value="<?=$final;?>" />
-								        <input type="hidden" name="sms" value="<?=$mrows['sms'];?>" />
-								        <input type="hidden" name="buyer_hphone" value="<?=$row['buyer_hphone'];?>" />
-								        <input type="hidden" name="buyer_name" value="<?=$row['buyer_name'];?>" />
-								        <input type="hidden" name="delivery_type" value="<?=$row['delivery_type'];?>" />
+								        <input type="hidden" name="oid" id="oid2" value="<?php echo $oid; ?>" />
+								        <input type="hidden" name="key" value="<?php echo $key; ?>" />
+								        <input type="hidden" name="key_value" value="<?php echo $key_value; ?>" />
+								        <input type="hidden" name="page" value="<?php echo $page; ?>" />
+								        <input type="hidden" name="status" value="<?php echo $row['status']; ?>" />
+								        <input type="hidden" name="last_amount" id="last_amount2" value="<?php echo $final; ?>" />
+								        <input type="hidden" name="sms" value="<?php echo $mrows['sms']; ?>" />
+								        <input type="hidden" name="buyer_hphone" value="<?php echo $row['buyer_hphone']; ?>" />
+								        <input type="hidden" name="buyer_name" value="<?php echo $row['buyer_name']; ?>" />
+								        <input type="hidden" name="delivery_type" value="<?php echo $row['delivery_type']; ?>" />
 								      <!-- <a href="javascript:document.form1.submit()" onclick="return confirm('발송이 지연됩니까?')">발송지연</a> -->
 								      	<button id="delay" class="btn btn-warning"  onclick="return confirm('발송이 지연됩니까?')"><i class="fa fa-exclamation-triangle"></i> 발송지연</button>
 									</form>
@@ -487,17 +452,17 @@ if ($row['status'] == '7' || $row['status'] == '8') {
 
 								      <form class="form-inline" role="form" name="form3" method="post" action="or_changed.php"  style="display: inline-block;">
 								        <input type="hidden" name="mode" id="mode3" value="3" />
-								        <input type="hidden" name="oid" id="oid3" value="<?=$oid;?>" />
-								        <input type="hidden" name="key" id="key3" value="<?=$key;?>" />
-								        <input type="hidden" name="key_value" id="key_value3" value="<?=$key_value;?>" />
-								        <input type="hidden" name="page" id="page3" value="<?=$page;?>" />
-								        <input type="hidden" name="status" value="<?=$row['status'];?>" />
-								        <input type="hidden" name="last_amount" id="last_amount3" value="<?=$final;?>" />
-								        <input type="hidden" name="senddate" value="<?=$row['status'] == '8' ? $row['senddate'] : $today;?>" />
+								        <input type="hidden" name="oid" id="oid3" value="<?php echo $oid; ?>" />
+								        <input type="hidden" name="key" id="key3" value="<?php echo $key; ?>" />
+								        <input type="hidden" name="key_value" id="key_value3" value="<?php echo $key_value; ?>" />
+								        <input type="hidden" name="page" id="page3" value="<?php echo $page; ?>" />
+								        <input type="hidden" name="status" value="<?php echo $row['status']; ?>" />
+								        <input type="hidden" name="last_amount" id="last_amount3" value="<?php echo $final; ?>" />
+								        <input type="hidden" name="senddate" value="<?php echo $row['status'] == '8' ? $row['senddate'] : $today; ?>" />
 								         운송장 번호
-								        <input type="text" class="form-control" name="track_no" id="track_no" value="<?=$row['track_no'];?>" size="80" />
+								        <input type="text" class="form-control" name="track_no" id="track_no" value="<?php echo $row['track_no']; ?>" size="80" />
 								        &nbsp;<!-- <a href="javascript:document.form2.submit()" onclick="return confirm('운송장번호를 입력하셨습니까?')">발송완료</a> -->
-								        <button id="send" class="btn btn-success" type="submit" onclick="return confirm('운송장번호를 입력하셨습니까?')"><i class="fa fa-truck"></i> 발송완료</button>&nbsp;<i class="fa fa-calendar"></i>&nbsp;<input type="text" class="form-control" name="senddate" id="senddate" value="<?=$row['status'] == '8' ? $row['senddate'] : $today;?>" size="10" />
+								        <button id="send" class="btn btn-success" type="submit" onclick="return confirm('운송장번호를 입력하셨습니까?')"><i class="fa fa-truck"></i> 발송완료</button>&nbsp;<i class="fa fa-calendar"></i>&nbsp;<input type="text" class="form-control" name="senddate" id="senddate" value="<?php echo $row['status'] == '8' ? $row['senddate'] : $today; ?>" size="10" />
 								        <p class="help-block"><i class="fa fa-exclamation-triangle"></i> 여러 개 운송장 입력 시 구분은 ',(콤마)' 하세요 </p>
 								      </form>
 <?php
@@ -541,7 +506,7 @@ if ($row['status'] == "8" || $row['status'] == "-1" && $row['delivery_type'] == 
 							<tbody>
 								<tr>
 								<td colspan="9" class="text-center">
-									<a class="btn btn-primary" href="top_order_list.php?mode=<?=$mode;?>&amp;oid=<?=$oid;?>&amp;key_value=<?=$key_value;?>&amp;page=<?=$page;?>">주문 목록</a>
+									<a class="btn btn-primary" href="top_order_list.php?mode=<?php echo $mode; ?>&amp;oid=<?php echo $oid; ?>&amp;key_value=<?php echo $key_value; ?>&amp;page=<?php echo $page; ?>">주문 목록</a>
 								</td>
 								</tr>
 							</tbody>
@@ -581,10 +546,10 @@ if ($row['status'] == "8" || $row['status'] == "-1" && $row['delivery_type'] == 
 		 $("textarea").keyup(function() {
 		 	 $.post("add_memo.php", {
 		 	 	add_memo:$("textarea").val(),
-		 	 	oid:"<?=$oid;?>",
-		 	 	key:"<?=$key;?>",
-		 	 	key_value:"<?=$key_value;?>",
-		 	 	page:"<?=$page;?>"
+		 	 	oid:"<?php echo $oid; ?>",
+		 	 	key:"<?php echo $key; ?>",
+		 	 	key_value:"<?php echo $key_value; ?>",
+		 	 	page:"<?php echo $page; ?>"
 		 	 });
 		 });
 	</script>

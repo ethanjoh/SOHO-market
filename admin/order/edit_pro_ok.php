@@ -1,55 +1,50 @@
 <?php
-//관리자 인증 파일
-include "../../util/admin_auth.php";
-// 데이타베이스 연결정보 및 기타설정
-include "../../util/config.php";
-// 각종 유틸함수
-include "../../util/util.php";
-// MySQL 연결
-$connect=my_connect($host,$dbid,$dbpass,$dbname);
+include_once "../include/admin_auth.php";
+include_once "../../util/config.php";
+include_once "../../util/util.php";
 
+$connect = my_connect($host, $dbid, $dbpass, $dbname);
 
-$oid = set_var($_POST['oid']);
-$lcode = set_var($_POST['lcode']);
-$mcode = set_var($_POST['mcode']);
-$scode = set_var($_POST['scode']);
-$p_num = set_var($_POST['p_num']);
+$oid     = set_var($_POST['oid']);
+$lcode   = set_var($_POST['lcode']);
+$mcode   = set_var($_POST['mcode']);
+$scode   = set_var($_POST['scode']);
+$p_num   = set_var($_POST['p_num']);
 $del_chk = set_var($_POST['del_chk']);
 //$opt = set_var($_POST['opt']);
 //$opt_stock = set_var($_POST['opt_stock']);
-$optname = set_var($_POST['optname']);
-$optstock = set_var($_POST['optstock']);
-$barcode = set_var($_POST['barcode']);
-$stock = set_var($_POST['stock']);
-$tag = set_var($_POST['tag']);
+$optname      = set_var($_POST['optname']);
+$optstock     = set_var($_POST['optstock']);
+$barcode      = set_var($_POST['barcode']);
+$stock        = set_var($_POST['stock']);
+$tag          = set_var($_POST['tag']);
 $restock_date = set_var($_POST['restock_date']);
-$no_restock = set_var($_POST['no_restock']);
+$no_restock   = set_var($_POST['no_restock']);
 
-for($i=0; $i<sizeof($optstock); $i++){
-    if($i != 0){
+for ($i = 0; $i < sizeof($optstock); $i++) {
+    if ($i != 0) {
         $temp_stock .= ",";
     }
     $temp_stock .= $optstock[$i];
 
 }
 
- // 상품 업데이트
-if($optname) {
-	$opt = implode(",", $optname);
-	//$opt_stock = implode(",", $temp_stock);
-	$opt_stock = $temp_stock;
-	$barcode = implode(",", $barcode);
+// 상품 업데이트
+if ($optname) {
+    $opt = implode(",", $optname);
+    //$opt_stock = implode(",", $temp_stock);
+    $opt_stock = $temp_stock;
+    $barcode   = implode(",", $barcode);
 }
 
-
-if($del_chk == "O" || $del_chk == "C") {
-	$stock = "0";
+if ($del_chk == "O" || $del_chk == "C") {
+    $stock = "0";
 }
 
 //재입고일이 미정일 경우
-if($no_restock == "Y")
-	$restock_date = "1111-00-00";
-
+if ($no_restock == "Y") {
+    $restock_date = "1111-00-00";
+}
 
 $dbup1 = "UPDATE products SET tag='$tag',
 						         opt='$opt',
@@ -62,24 +57,18 @@ $dbup1 = "UPDATE products SET tag='$tag',
 			  WHERE num='$p_num' ";
 $result1 = mysqli_query($connect, $dbup1);
 
-
 //장바구니 옵션도 변경
 //goods_fk
 /*
 $dbup2 = "UPDATE mall_order SET  opt='$opt',
-								 opt_stock = '$opt_stock',
-			  				WHERE num='$oid' ";
+opt_stock = '$opt_stock',
+WHERE num='$oid' ";
 $result2 = mysqli_query($connect, $dbup2);
-*/
+ */
 
-
-if($result1) {
-  //$url = "edit_pro.php?oid=$oid&p_num=$p_num&lcode=$lcode&mcode=$mcode&scode=$scode";
-  show_msg_close('상품 등록정보를 수정했습니다.');
+if ($result1) {
+    //$url = "edit_pro.php?oid=$oid&p_num=$p_num&lcode=$lcode&mcode=$mcode&scode=$scode";
+    show_msg_close('상품 등록정보를 수정했습니다.');
+} else {
+    err_msg('상품 수정 중 DB오류가 발생했습니다.');
 }
-else{
- err_msg('상품 수정 중 DB오류가 발생했습니다.');
-}
-
-
-?>

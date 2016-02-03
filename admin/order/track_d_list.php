@@ -1,13 +1,10 @@
 <?php
 
-//관리자 인증 파일
-include "../../util/admin_auth.php";
-// 데이타베이스 연결정보 및 기타설정
-include "../../util/config.php";
-// 각종 유틸함수
-include "../../util/util.php";
-// MySQL 연결
-$connect=my_connect($host,$dbid,$dbpass,$dbname);
+include_once "../include/admin_auth.php";
+include_once "../../util/config.php";
+include_once "../../util/util.php";
+
+$connect = my_connect($host, $dbid, $dbpass, $dbname);
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
@@ -32,13 +29,13 @@ $connect=my_connect($host,$dbid,$dbpass,$dbname);
 </head>
 <body>
 <!-- wrapper -->
-<div id="wrapper"> 
+<div id="wrapper">
   <!-- header -->
   <?php
-  include "../include/admin_top.php";
-  ?>
+include "../include/admin_top.php";
+?>
   <!-- header end -->
-  <div id="bodyblock"> 
+  <div id="bodyblock">
     <!-- contents -->
     <div id="content">
       <fieldset class="info">
@@ -47,65 +44,67 @@ $connect=my_connect($host,$dbid,$dbpass,$dbname);
           <li style="text-align:left">운송장번호가 입력만 될 뿐 실제 발송완료 처리는 되지 않습니다.</li>
           <li style="text-align:left">발송완료처리는 <a href="track_a_list.php">전체운송장입력</a>에서 하세요.</li>
         </ul>
-      </fieldset>    
+      </fieldset>
       <form action="track_d_list.php" name="f" method="post" >
       <?php
-   $today = date("Y-m-d");
-   	
-	switch ($mode) {
-	case 'search' :
-		$sql_2="SELECT orderid FROM mall_order 
+$today = date("Y-m-d");
+
+switch ($mode) {
+    case 'search':
+        $sql_2 = "SELECT orderid FROM mall_order
 			   WHERE delivery_type = 'L'
 			   AND cancel = 'N'
 			   AND status = '7'
 			   AND recipient_name <> ''
 			   AND track_no is NULL
 			   AND $key LIKE '%$key_value%' ";
-		break;
-	case 'date' : 
-		$sql_2 = "SELECT orderid FROM mall_order
+        break;
+    case 'date':
+        $sql_2 = "SELECT orderid FROM mall_order
 		          WHERE cancel = 'N'
 				  AND delivery_type = 'L'
 				  AND status = '7'
 				  AND recipient_name <> ''
 				  AND track_no is NULL
 				  AND createdate BETWEEN '$date1' AND '$date2' ";
-		break;
-	default :
-	   $sql_2 = "SELECT orderid FROM mall_order 
+        break;
+    default:
+        $sql_2 = "SELECT orderid FROM mall_order
 	   				  WHERE delivery_type = 'L'
 					  AND cancel = 'N'
 					  AND recipient_name <> ''
 					  AND track_no is NULL
-					  AND status = '7' ";	
-	}
-	
-	$res_2 = mysqli_query($connect, $sql_2);
-	$total = mysqli_num_rows($res_2);
+					  AND status = '7' ";
+}
 
-   $scale=50;
-   if ($page == ''){
-      $page=1;
-   }	    
-   
-   $cpage = intval($page);
-   $totalpage = intval($total/$scale);
-	
-    if ($totalpage*$scale != $total)
-  		$totalpage = $totalpage + 1;
-        
-    if ($cpage ==1) {
-	  $cline = 0 ;
-    } else {
- 	  $cline = ($cpage*$scale) - $scale ;
-    } 
-        
-     $limit=$cline+$scale;
-       
-     if ($limit >= $total) 
-       	$limit=$total;
+$res_2 = mysqli_query($connect, $sql_2);
+$total = mysqli_num_rows($res_2);
 
-     $scale1 = $limit - $cline;
+$scale = 50;
+if ($page == '') {
+    $page = 1;
+}
+
+$cpage     = intval($page);
+$totalpage = intval($total / $scale);
+
+if ($totalpage * $scale != $total) {
+    $totalpage = $totalpage + 1;
+}
+
+if ($cpage == 1) {
+    $cline = 0;
+} else {
+    $cline = ($cpage * $scale) - $scale;
+}
+
+$limit = $cline + $scale;
+
+if ($limit >= $total) {
+    $limit = $total;
+}
+
+$scale1 = $limit - $cline;
 ?>
       <form method="get" action="track_d_list.php">
         <input type="hidden" name="mode" value="date" />
@@ -125,7 +124,7 @@ $connect=my_connect($host,$dbid,$dbpass,$dbname);
       <table summary="view the total order list">
         <caption>
         주문 목록 (총
-        <?=number_format($total)?>
+        <?=number_format($total);?>
         건)
         </caption>
         <thead>
@@ -140,9 +139,9 @@ $connect=my_connect($host,$dbid,$dbpass,$dbname);
         <tfoot>
           <tr>
             <td colspan="5" align="center"><?php
-	  						$url = "$PHP_SELF?mode=$mode&key=$key&key_value=$key_value"; 
-      						page_avg($totalpage,$cpage,$url); 
-						 ?></td>
+$url = "$PHP_SELF?mode=$mode&key=$key&key_value=$key_value";
+page_avg($totalpage, $cpage, $url);
+?></td>
           </tr>
           <tr>
             <td  colspan="5" align='center' ><form method="get" name="search" action="track_d_list.php">
@@ -159,78 +158,82 @@ $connect=my_connect($host,$dbid,$dbpass,$dbname);
         <tbody>
           <?php
 switch ($mode) {
-	case 'search' :
-   		$sql_4 = "SELECT * FROM mall_order 
-             WHERE $key LIKE '%$key_value%' 
+    case 'search':
+        $sql_4 = "SELECT * FROM mall_order
+             WHERE $key LIKE '%$key_value%'
 			 AND recipient_name <> ''
 			 AND track_no is NULL
-			 ORDER BY num DESC LIMIT $cline,$scale1 "; 
-		break;
-	case 'date' : 
-		$sql_4 = "SELECT * FROM mall_order
+			 ORDER BY num DESC LIMIT $cline,$scale1 ";
+        break;
+    case 'date':
+        $sql_4 = "SELECT * FROM mall_order
 		          WHERE cancel = 'N'
 				  AND recipient_name <> ''
 				  AND track_no is NULL
-				  AND createdate BETWEEN '$date1' AND '$date2' 
+				  AND createdate BETWEEN '$date1' AND '$date2'
 				  ORDER BY num DESC LIMIT $cline,$scale1 ";
-		break;				
-	default :
-   		$sql_4 = "SELECT * FROM mall_order 
-   		     		WHERE status = '7' 
+        break;
+    default:
+        $sql_4 = "SELECT * FROM mall_order
+   		     		WHERE status = '7'
 					AND cancel = 'N'
 					AND delivery_type = 'L'
 					AND recipient_name <> ''
 					AND track_no is NULL
-             		ORDER BY num DESC LIMIT $cline,$scale1 "; 
+             		ORDER BY num DESC LIMIT $cline,$scale1 ";
 }
 
 $res_4 = mysqli_query($connect, $sql_4);
-$t_no = mysqli_num_rows($res_4);
+$t_no  = mysqli_num_rows($res_4);
 
-if($t_no > 0) {
+if ($t_no > 0) {
 
-	for($i=0; $row = mysqli_fetch_array($res_4); $i++){
-	
-	?>
-          <tr bgcolor="<?=$c_color?>">
-            <td><a href="or_view.php?mode=<?=$mode?>&amp;oid=<?=$row['num']?>&amp;key=<?=$key?>&amp;key_value=<?=$key_value?>&amp;page=<?=$page?>">
-              <?=$row['orderid']?>
+    for ($i = 0; $row = mysqli_fetch_array($res_4); $i++) {
+
+        ?>
+          <tr bgcolor="<?=$c_color;?>">
+            <td><a href="or_view.php?mode=<?=$mode;?>&amp;oid=<?=$row['num'];?>&amp;key=<?=$key;?>&amp;key_value=<?=$key_value;?>&amp;page=<?=$page;?>">
+              <?=$row['orderid'];?>
               </a></td>
-            <td><?=$row['createdate']?></td>
-            <td><?=$row['buyer_name']?></td>
-            <td><?=$row['recipient_name']?></td>
+            <td><?=$row['createdate'];?></td>
+            <td><?=$row['buyer_name'];?></td>
+            <td><?=$row['recipient_name'];?></td>
             <td><form name="form1" method="get" action="or_changed.php">
                 <input type="hidden" name="mode" value="d" />
-                <input type="hidden" name="oid" value="<?=$row['num']?>" />
-                <input type="text" name="track_no" value="<?=$row['track_no']?>" size="16" />
+                <input type="hidden" name="oid" value="<?=$row['num'];?>" />
+                <input type="text" name="track_no" value="<?=$row['track_no'];?>" size="16" />
                 &nbsp;
                 <input type="submit" name="enter" value="입력" />
               </form>
               </td>
           </tr>
-          <?php 
-  } // for loop end
- ?>
           <?php
-}else {
-?>
+
+    }
+    ; // for loop end
+    ?>
+          <?php
+} else {
+    ?>
           <tr>
             <td colspan="5"><p>송장입력이 완료되었거나 해당 주문내역이 없습니다.</p></td>
           </tr>
-          <?php 
- } ?>
+          <?php
+
+}
+?>
         </tbody>
       </table>
       </form>
     </div>
-    <!-- contens end --> 
+    <!-- contens end -->
   </div>
-  <!-- bodyblock end --> 
+  <!-- bodyblock end -->
   <!-- copyright -->
   <?php
 include "../include/admin_bottom.php";
 ?>
-  <!-- copyright  end --> 
+  <!-- copyright  end -->
 </div>
 <!-- wrapper end -->
 </body>

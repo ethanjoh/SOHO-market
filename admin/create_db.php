@@ -1,13 +1,12 @@
 <?php
 //관리자 인증 파일
-include "../util/admin_auth.php";
+include_once "../include/admin_auth.php";
 // 데이타베이스 연결정보 및 기타설정
-include "../util/config.php";
+include_once "../util/config.php";
 // 각종 유틸함수
-include "../util/util.php";
+include_once "../util/util.php";
 // MySQL 연결
-$connect=my_connect($host,$dbid,$dbpass,$dbname);
-
+$connect = my_connect($host, $dbid, $dbpass, $dbname);
 
 $sql1 = "CREATE TABLE products (
   num int(11) NOT NULL auto_increment,
@@ -18,8 +17,8 @@ $sql1 = "CREATE TABLE products (
   company varchar(70) default NULL,
   origin varchar(10) default NULL,
   retail_price varchar(11) default '0',
-  sale_price varchar(11) default '0',	
-  fixed_price varchar(11) default '0',	
+  sale_price varchar(11) default '0',
+  fixed_price varchar(11) default '0',
   mileage varchar(7) default NULL,
   opt varchar(100) default NULL,
   con_html char(1) NOT NULL default '',
@@ -39,7 +38,7 @@ $sql1 = "CREATE TABLE products (
   b_image5 enum('Y','N') NOT NULL default 'N',
   b_image5_ty varchar(5) default NULL,
   d_image enum('Y','N') NOT NULL default 'N',
-  d_image_ty varchar(5) default NULL,					
+  d_image_ty varchar(5) default NULL,
   created date default NULL,
   option1_chk enum('Y','N') NOT NULL default 'N',
   option2_chk enum('Y','N') NOT NULL default 'N',
@@ -48,14 +47,12 @@ $sql1 = "CREATE TABLE products (
   KEY category_l (category_l)
 ) TYPE=MyISAM";
 
-$result1 = mysqli_query($connect, $sql1); 
+$result1 = mysqli_query($connect, $sql1);
 
 if ($result1 == true) {
-	echo "테이블을 생성했습니다.<br>";
+    echo "테이블을 생성했습니다.<br>";
 } else {
-	echo "테이블을 생성 중 에러가 발생했습니다: " . mysql_error();
+    echo "테이블을 생성 중 에러가 발생했습니다: " . mysql_error();
 }
 
 mysql_close($connect);
-
-?>

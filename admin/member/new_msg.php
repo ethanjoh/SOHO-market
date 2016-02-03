@@ -1,13 +1,10 @@
 <?php
 
-//관리자 인증 파일
-include "../../util/admin_auth.php";
-// 데이타베이스 연결정보 및 기타설정
-include "../../util/config.php";
-// 각종 유틸함수
-include "../../util/util.php";
-// MySQL 연결
-$connect=my_connect($host,$dbid,$dbpass,$dbname);
+include_once "../include/admin_auth.php";
+include_once "../../util/config.php";
+include_once "../../util/util.php";
+
+$connect = my_connect($host, $dbid, $dbpass, $dbname);
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
@@ -30,7 +27,7 @@ $connect=my_connect($host,$dbid,$dbpass,$dbname);
 
  function send_chk(){
   var form = document.form1;
-  
+
   if(!form.msg.value) {
      alert("보낼 내용을 입력하세요!");
 	 form.msg.focus();
@@ -46,8 +43,8 @@ $connect=my_connect($host,$dbid,$dbpass,$dbname);
 <body>
 <div id="wrapper">
   <?php
-  include "../include/admin_top.php";
-  ?>
+include "../include/admin_top.php";
+?>
   <div id="bodyblock">
     <div id="content">
       <table summary="message box">
@@ -58,38 +55,38 @@ $connect=my_connect($host,$dbid,$dbpass,$dbname);
         </tbody>
       </table>
       <form method="post" name="form1" action="new_msg_ok.php">
-      <input type="hidden" name="mode" value="<?=$mode?>" />
-      <input type="hidden" name="reply_id" value="<?=$id?>" />
+      <input type="hidden" name="mode" value="<?=$mode;?>" />
+      <input type="hidden" name="reply_id" value="<?=$id;?>" />
         <table summary="body">
           <tbody>
             <tr>
               <td class="column1">받는 사람</td>
               <td class="left"><?php
-			  	if($mode == "reply") {
-					   echo $id;
-            $query2 = "SELECT * FROM message_info WHERE mnum='$mnum' ";
-            $result2 = mysqli_query($connect, $query2);
-            $rows2 = mysqli_fetch_array($result2);                 
-  				}else {
-  					echo "<select name='receive_id'>\n";
-  					
-  					$mqry = "SELECT * FROM member ORDER BY company_name ";
-  					$mres = mysqli_query($connect, $mqry);
+if ($mode == "reply") {
+    echo $id;
+    $query2  = "SELECT * FROM message_info WHERE mnum='$mnum' ";
+    $result2 = mysqli_query($connect, $query2);
+    $rows2   = mysqli_fetch_array($result2);
+} else {
+    echo "<select name='receive_id'>\n";
 
-            
-    
-					
-  					for($i=0; $mrow = mysqli_fetch_array($mres); $i++) {
-  						echo "<option value=".$mrow['id'].">".$mrow['company_name']."(".$mrow['id'].")</option>\n";
-  					}
-					   echo "</select>\n";
-          }
-					
-			  ?>              </td>
+    $mqry = "SELECT * FROM member ORDER BY company_name ";
+    $mres = mysqli_query($connect, $mqry);
+
+    for ($i = 0; $mrow = mysqli_fetch_array($mres); $i++) {
+        echo "<option value=" . $mrow['id'] . ">" . $mrow['company_name'] . "(" . $mrow['id'] . ")</option>\n";
+    }
+    echo "</select>\n";
+}
+
+?>              </td>
             </tr>
             <tr>
               <td class="column1">내용</td>
-              <td class="left"><textarea name="msg" cols="50" rows="15" ><?php if($mnum) {  echo stripslashes($rows2['message'])."\n"; echo "---------------"; } ?></textarea>
+              <td class="left"><textarea name="msg" cols="50" rows="15" ><?php if ($mnum) {
+    echo stripslashes($rows2['message']) . "\n";
+    echo "---------------";}
+?></textarea>
               </td>
             </tr>
           </tbody>

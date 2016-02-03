@@ -1,18 +1,15 @@
 <?php
 
-//관리자 인증 파일
-include "../../util/admin_auth.php";
-// 데이타베이스 연결정보 및 기타설정
-include "../../util/config.php";
-// 각종 유틸함수
-include "../../util/util.php";
-// MySQL 연결
-$connect=my_connect($host,$dbid,$dbpass,$dbname);
+include_once "../include/admin_auth.php";
+include_once "../../util/config.php";
+include_once "../../util/util.php";
+
+$connect = my_connect($host, $dbid, $dbpass, $dbname);
 
 //메타정보
 $info_query = "SELECT * FROM admin_setup";
-$info_res = mysqli_query($connect, $info_query);
-$info = mysqli_fetch_array($info_res);
+$info_res   = mysqli_query($connect, $info_query);
+$info       = mysqli_fetch_array($info_res);
 
 $id = set_var($_GET['id']);
 ?>
@@ -26,7 +23,7 @@ $id = set_var($_GET['id']);
     <meta name="keyword" content="">
     <link rel="shortcut icon" href="/favicon.ico">
 
-    <title><?=$info['company_name']?> :: 운영업체 관리자 홈</title>
+    <title><?=$info['company_name'];?> :: 운영업체 관리자 홈</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.css" rel="stylesheet">
@@ -62,15 +59,16 @@ $id = set_var($_GET['id']);
               <form method="get" name="id_check" action="id_check.php">
               <table class="table">
                 <tbody>
-                <?
-                  $query  = "SELECT id FROM member WHERE id='$id'";
-                  $result = mysqli_query($connect, $query);
-                  $total_num = mysqli_num_rows($result);
-                  if($total_num){
-                ?>
+                <?php
+
+$query     = "SELECT id FROM member WHERE id='$id'";
+$result    = mysqli_query($connect, $query);
+$total_num = mysqli_num_rows($result);
+if ($total_num) {
+    ?>
                   <tr>
                     <td>
-                      <p>선택하신 아이디 : <?=$id?> 는 현재 사용 중인 아이디입니다.</p>
+                      <p>선택하신 아이디 : <?=$id;?> 는 현재 사용 중인 아이디입니다.</p>
                     </td>
                   </tr>
                 </tbody>
@@ -84,12 +82,13 @@ $id = set_var($_GET['id']);
                 </div>
               </div>
 
-                <?
-                }else{
-                ?>
+                <?php
+
+} else {
+    ?>
                 <tr>
                   <td>
-                    <p>선택하신 아이디 : <?=$id?> 는 사용하실 수 있습니다.</p>
+                    <p>선택하신 아이디 : <?=$id;?> 는 사용하실 수 있습니다.</p>
                   </td>
                 </tr>
                 </tbody>
@@ -97,12 +96,13 @@ $id = set_var($_GET['id']);
 
               <div class="row text-center">
                 <div class="col-sm-12">
-                  <a type="button" class="btn btn-success" href="#" onClick="javascript:form_send('<?=$id?>')">사 용</a>
+                  <a type="button" class="btn btn-success" href="#" onClick="javascript:form_send('<?=$id;?>')">사 용</a>
                   <a type="button" class="btn btn-default" href="#" onclick="javascript:window.close();">닫 기</a>
                 </div>
               </div>
 
-            <?  } ?>
+            <?php }
+?>
 
             </form>
             </div>

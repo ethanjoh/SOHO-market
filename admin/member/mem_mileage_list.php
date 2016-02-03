@@ -1,13 +1,10 @@
 <?php
 
-//관리자 인증 파일
-include "../../util/admin_auth.php";
-// 데이타베이스 연결정보 및 기타설정
-include "../../util/config.php";
-// 각종 유틸함수
-include "../../util/util.php";
-// MySQL 연결
-$connect=my_connect($host,$dbid,$dbpass,$dbname);
+include_once "../include/admin_auth.php";
+include_once "../../util/config.php";
+include_once "../../util/util.php";
+
+$connect = my_connect($host, $dbid, $dbpass, $dbname);
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
@@ -41,27 +38,27 @@ function m_check(frm) {
 <div id="wrapper">
   <!-- header -->
   <?php
-  include "../include/admin_top.php";
-  ?>
+include "../include/admin_top.php";
+?>
   <!-- header end -->
   <div id="bodyblock">
     <!-- contents -->
     <div id="content">
       <?php
-if($mode == 'search'){
-  if($id_fk){
-    $keyword = " WHERE id_fk LIKE '%$id_fk%' ";
-  }
+if ($mode == 'search') {
+    if ($id_fk) {
+        $keyword = " WHERE id_fk LIKE '%$id_fk%' ";
+    }
 }
 
-$query = "SELECT * FROM mileage $keyword"; 
+$query  = "SELECT * FROM mileage $keyword";
 $result = mysqli_query($connect, $query);
-$total = mysqli_num_rows($result);
+$total  = mysqli_num_rows($result);
 ?>
       <table summary="mileage list">
         <caption>
         업체별 적립금 관리 (총
-        <?=number_format($total)?>
+        <?=number_format($total);?>
         건)
         </caption>
         <thead>
@@ -75,61 +72,66 @@ $total = mysqli_num_rows($result);
           </tr>
         </thead>
         <?php
-      $scale=100;
-      if ($page == ''){
-       $page=1;
-      }	    
+$scale = 100;
+if ($page == '') {
+    $page = 1;
+}
 
-      $cpage = intval($page);
-      $totalpage = intval($total/$scale);
-	  if ($totalpage*$scale != $total)
-       $totalpage = $totalpage + 1;
-        
-	  if ($cpage ==1) {
-	   $cline = 0 ;
-	  } else {
-	   $cline = ($cpage*$scale) - $scale ;
-	  } 
-        
-	 $limit=$cline+$scale;
-        
-	 if ($limit >= $total) 
-       $limit=$total;
- 
-     $scale1 = $limit - $cline;
-			
-     $sql_2 = "SELECT * FROM mileage $keyword ORDER BY num DESC LIMIT $cline,$scale1 "; 	
-	 $result_2 = mysqli_query($connect, $sql_2);
+$cpage     = intval($page);
+$totalpage = intval($total / $scale);
+if ($totalpage * $scale != $total) {
+    $totalpage = $totalpage + 1;
+}
 
- 	 for($i=1; $row = mysqli_fetch_array($result_2); $i++){				   
-	   $bunho = $total - ( $i + $cline) + 1; 
-	?>
+if ($cpage == 1) {
+    $cline = 0;
+} else {
+    $cline = ($cpage * $scale) - $scale;
+}
+
+$limit = $cline + $scale;
+
+if ($limit >= $total) {
+    $limit = $total;
+}
+
+$scale1 = $limit - $cline;
+
+$sql_2    = "SELECT * FROM mileage $keyword ORDER BY num DESC LIMIT $cline,$scale1 ";
+$result_2 = mysqli_query($connect, $sql_2);
+
+for ($i = 1; $row = mysqli_fetch_array($result_2); $i++) {
+    $bunho = $total - ($i + $cline) + 1;
+    ?>
         <tbody>
           <tr>
-            <td><?=$bunho?></td>
-            <td><?=$row['id_fk']?></td>
-            <td><?=$row['mileage']?></td>
-            <form name="mileage<?=$i?>" method="get" action="mem_update_mileage.php">
-              <input type="hidden" name="id_fk" value="<?=$row['id_fk']?>" />
+            <td><?=$bunho;?></td>
+            <td><?=$row['id_fk'];?></td>
+            <td><?=$row['mileage'];?></td>
+            <form name="mileage<?=$i;?>" method="get" action="mem_update_mileage.php">
+              <input type="hidden" name="id_fk" value="<?=$row['id_fk'];?>" />
               <td width="13%"><input class="num" type="text" name="mod_mileage" size="5" value="" /></td>
-              <td width="12%"><div class="full"><a class="button" href="#" onclick="this.blur();m_check(document.mileage<?=$i?>);"><span>수정</span></a></div></td>
+              <td width="12%"><div class="full"><a class="button" href="#" onclick="this.blur();m_check(document.mileage<?=$i;?>);"><span>수정</span></a></div></td>
             </form>
-            <td><?=$row['mile_desc']?></td>
-            <td><?=$row['wdate']?></td>
+            <td><?=$row['mile_desc'];?></td>
+            <td><?=$row['wdate'];?></td>
           </tr>
-          <?
-    }
-    mysqli_free_result($result); 
-  ?>
-          <?
-   if($total == 0){
-  ?>
+          <?php
+
+}
+mysqli_free_result($result);
+?>
+          <?php
+
+if ($total == 0) {
+    ?>
           <tr>
             <td colspan="6">등록된 적립금 목록이 없습니다.</td>
           </tr>
-          <?
-	}
-  ?>
+          <?php
+
+}
+?>
         </tbody>
       </table>
       </form>

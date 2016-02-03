@@ -1991,22 +1991,22 @@ function cut_string_utf8($str, $max_len, $suffix)
 }
 
 //도서산간지역 우편번호 체크
-function check_zipno($zipno, &$row)
+function check_zipno($zipcode, &$row)
 {
     //예외 우편번호 배열
     $zip_ex = array(235, 250, 252, 409, 417, 535, 537, 548, 556, 650, 690, 695, 697, 699, 799);
 
-    $zipno1 = explode('-', $row['buyer_zipno']);
-    if ($row['recipient_zipno']) {
-        $zipno2 = explode('-', $row['recipient_zipno']);
+    $zipcode1 = explode('-', $row['buyer_zipcode']);
+    if ($row['recipient_zipcode']) {
+        $zipcode2 = explode('-', $row['recipient_zipcode']);
     }
 
-    if (in_array($zipno1[0], $zip_ex)) //배열 내의 값과 비교
+    if (in_array($zipcode1[0], $zip_ex)) //배열 내의 값과 비교
     {
         $bg1 = "bgcolor = \"#FFC8C8\" ";
     }
 
-    if (in_array($zipno2[0], $zip_ex)) {
+    if (in_array($zipcode2[0], $zip_ex)) {
         $bg2 = "bgcolor = \"#FFC8C8\" ";
     }
 

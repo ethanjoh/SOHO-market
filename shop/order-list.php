@@ -96,9 +96,9 @@ if ($_SESSION['p_id']) {
 //$total = mysqli_num_rows($res_2);
 
 //if($total) {
-$page = '';
-
 $scale = 20;
+$page  = '';
+
 if ($page == '') {
     $page = 1;
 }

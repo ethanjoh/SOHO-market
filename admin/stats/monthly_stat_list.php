@@ -1,13 +1,10 @@
 <?php
 
-//관리자 인증 파일
-include "../../util/admin_auth.php";
-// 데이타베이스 연결정보 및 기타설정
-include "../../util/config.php";
-// 각종 유틸함수
-include "../../util/util.php";
-// MySQL 연결
-$connect=my_connect($host,$dbid,$dbpass,$dbname);
+include_once "../include/admin_auth.php";
+include_once "../../util/config.php";
+include_once "../../util/util.php";
+
+$connect = my_connect($host, $dbid, $dbpass, $dbname);
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
@@ -35,13 +32,13 @@ $connect=my_connect($host,$dbid,$dbpass,$dbname);
 </head>
 <body>
 <!-- wrapper -->
-<div id="wrapper"> 
+<div id="wrapper">
   <!-- header -->
   <?php
-  include "../include/admin_top.php";
-  ?>
+include "../include/admin_top.php";
+?>
   <!-- header end -->
-  <div id="bodyblock"> 
+  <div id="bodyblock">
     <!-- contents -->
     <div id="content">
       <fieldset class="info">
@@ -55,7 +52,7 @@ $connect=my_connect($host,$dbid,$dbpass,$dbname);
       <form name="stat" method="get" action="monthly_stat_list.php">
         <input type="hidden" name="mode" value="search" />
         <input type="hidden" name="key" value="company_name" />
-        <!-- <input type="hidden" name="key_value" value="<?=$key_value?>" />           -->
+        <!-- <input type="hidden" name="key_value" value="<?=$key_value;?>" />           -->
         <fieldset>
           <legend>날짜 검색</legend>
           <p>
@@ -68,7 +65,7 @@ $connect=my_connect($host,$dbid,$dbpass,$dbname);
           </p>
           <p>
             <label for="company_name">업체명:</label>
-            <input type="text" name="key_value" value='<?=$company_name?>' size="20" >
+            <input type="text" name="key_value" value='<?=$company_name;?>' size="20" >
           </p>
           <input type="image" src="../images/search_btn.gif" style="background-color:#FFFFFF; border:none;vertical-align: middle; " />
         </fieldset>
@@ -100,187 +97,191 @@ $connect=my_connect($host,$dbid,$dbpass,$dbname);
           </thead>
           <tbody>
             <?php
-	switch ($mode) {
-		case 'search' :
-		  	if($key_value != ''){
-  				$sql_1 = "SELECT * FROM member WHERE $key LIKE '%$key_value%' ";
-  				$result_1 = mysqli_query($connect, $sql_1);
-  				$list = mysqli_fetch_array($result_1);
-  				
-  				$sql_2= "SELECT * FROM member m, tax_list t WHERE t.id = '$list[id]' AND m.id = '$list[id]' ORDER BY t.num DESC ";
-	  		}else {
-  				$sql_2= "SELECT * FROM member m, tax_list t WHERE m.id=t.id AND t.reg_date BETWEEN '$date1' AND '$date2' ORDER BY t.num DESC ";
-			}
-			break;	
-		case 'chk' :
-			$sql_2 = "SELECT * FROM member m, tax_list t WHERE m.id=t.id AND t.approved='Y' ORDER BY t.num DESC ";					 
-			break;	
-		case 'unchk' :
-			$sql_2 = "SELECT * FROM member m, tax_list t WHERE m.id=t.id AND t.approved='N' ORDER BY t.num DESC ";									 
-			break;
-		case 'cancel' :
-			$sql_2 = "SELECT * FROM member m, tax_list t WHERE m.id=t.id AND t.cancel = 'Y' ORDER BY t.num DESC ";				 
-			break;		
-		default :
-		   $sql_2 = "SELECT * FROM member m, tax_list t WHERE m.id=t.id ORDER BY t.num DESC "; 
-	}
-	
-	$res_2 = mysqli_query($connect, $sql_2);
-	$total = mysqli_num_rows($res_2);
+switch ($mode) {
+    case 'search':
+        if ($key_value != '') {
+            $sql_1    = "SELECT * FROM member WHERE $key LIKE '%$key_value%' ";
+            $result_1 = mysqli_query($connect, $sql_1);
+            $list     = mysqli_fetch_array($result_1);
 
-   $scale=100;
-   if ($page == ''){
-      $page=1;
-   }	    
-   
-   $cpage = intval($page);
-   $totalpage = intval($total/$scale);
-	
-    if ($totalpage*$scale != $total)
-  		$totalpage = $totalpage + 1;
-        
-    if ($cpage ==1) {
-	  $cline = 0 ;
-    } else {
- 	  $cline = ($cpage*$scale) - $scale ;
-    } 
-        
-     $limit=$cline+$scale;
-       
-     if ($limit >= $total) 
-       	$limit=$total;
+            $sql_2 = "SELECT * FROM member m, tax_list t WHERE t.id = '$list[id]' AND m.id = '$list[id]' ORDER BY t.num DESC ";
+        } else {
+            $sql_2 = "SELECT * FROM member m, tax_list t WHERE m.id=t.id AND t.reg_date BETWEEN '$date1' AND '$date2' ORDER BY t.num DESC ";
+        }
+        break;
+    case 'chk':
+        $sql_2 = "SELECT * FROM member m, tax_list t WHERE m.id=t.id AND t.approved='Y' ORDER BY t.num DESC ";
+        break;
+    case 'unchk':
+        $sql_2 = "SELECT * FROM member m, tax_list t WHERE m.id=t.id AND t.approved='N' ORDER BY t.num DESC ";
+        break;
+    case 'cancel':
+        $sql_2 = "SELECT * FROM member m, tax_list t WHERE m.id=t.id AND t.cancel = 'Y' ORDER BY t.num DESC ";
+        break;
+    default:
+        $sql_2 = "SELECT * FROM member m, tax_list t WHERE m.id=t.id ORDER BY t.num DESC ";
+}
 
-     $scale1 = $limit - $cline;	
-		  
-	//쿼리 결과가 없을 경우
-	if($total == 0) {
-	?>
+$res_2 = mysqli_query($connect, $sql_2);
+$total = mysqli_num_rows($res_2);
+
+$scale = 100;
+if ($page == '') {
+    $page = 1;
+}
+
+$cpage     = intval($page);
+$totalpage = intval($total / $scale);
+
+if ($totalpage * $scale != $total) {
+    $totalpage = $totalpage + 1;
+}
+
+if ($cpage == 1) {
+    $cline = 0;
+} else {
+    $cline = ($cpage * $scale) - $scale;
+}
+
+$limit = $cline + $scale;
+
+if ($limit >= $total) {
+    $limit = $total;
+}
+
+$scale1 = $limit - $cline;
+
+//쿼리 결과가 없을 경우
+if ($total == 0) {
+    ?>
             <tr>
               <td colspan="8"><p>발행 목록이 없습니다.</p></td>
             </tr>
             <?php
-	}else {		
-	
-	switch ($mode) {
-		case 'search' :
-		  	if($key_value != ''){
-  				$sql_1 = "SELECT * FROM member WHERE $key LIKE '%$key_value%' ";
-  				$result_1 = mysqli_query($connect, $sql_1);
-  				$list = mysqli_fetch_array($result_1);
-  				$list_num = mysqli_num_rows($result_1);
-  				
-  				//결과 갯수를 카운팅해서 for 문으로 돌린다. (유사업체명 출력)
+} else {
 
-  				$sql_2= "SELECT * FROM member m, tax_list t WHERE t.id = '$list[id]' AND m.id = '$list[id]' ORDER BY t.num DESC ";
+    switch ($mode) {
+        case 'search':
+            if ($key_value != '') {
+                $sql_1    = "SELECT * FROM member WHERE $key LIKE '%$key_value%' ";
+                $result_1 = mysqli_query($connect, $sql_1);
+                $list     = mysqli_fetch_array($result_1);
+                $list_num = mysqli_num_rows($result_1);
 
-	  		}else {
-  				$sql_2= "SELECT * FROM member m, tax_list t WHERE m.id=t.id AND t.reg_date BETWEEN '$date1' AND '$date2' ORDER BY t.num DESC ";
-			}
-			break;
-		case 'chk' :
-			$sql_2 = "SELECT * FROM member m, tax_list t WHERE m.id=t.id AND t.approved='Y' ORDER BY t.num DESC ";					 
-			break;	
-		case 'unchk' :
-			$sql_2 = "SELECT * FROM member m, tax_list t WHERE m.id=t.id AND t.approved='N' ORDER BY t.num DESC ";									 
-									 
-			break;
-		case 'cancel' :
-			$sql_2 = "SELECT * FROM member m, tax_list t WHERE m.id=t.id AND t.cancel = 'Y' ORDER BY t.num DESC ";				 
-			break;		
-		default :
-		  	$sql_2 = "SELECT * FROM member m, tax_list t WHERE m.id = t.id ORDER BY t.num DESC LIMIT $cline,$scale1";
-	}
-	 
+                //결과 갯수를 카운팅해서 for 문으로 돌린다. (유사업체명 출력)
+
+                $sql_2 = "SELECT * FROM member m, tax_list t WHERE t.id = '$list[id]' AND m.id = '$list[id]' ORDER BY t.num DESC ";
+
+            } else {
+                $sql_2 = "SELECT * FROM member m, tax_list t WHERE m.id=t.id AND t.reg_date BETWEEN '$date1' AND '$date2' ORDER BY t.num DESC ";
+            }
+            break;
+        case 'chk':
+            $sql_2 = "SELECT * FROM member m, tax_list t WHERE m.id=t.id AND t.approved='Y' ORDER BY t.num DESC ";
+            break;
+        case 'unchk':
+            $sql_2 = "SELECT * FROM member m, tax_list t WHERE m.id=t.id AND t.approved='N' ORDER BY t.num DESC ";
+
+            break;
+        case 'cancel':
+            $sql_2 = "SELECT * FROM member m, tax_list t WHERE m.id=t.id AND t.cancel = 'Y' ORDER BY t.num DESC ";
+            break;
+        default:
+            $sql_2 = "SELECT * FROM member m, tax_list t WHERE m.id = t.id ORDER BY t.num DESC LIMIT $cline,$scale1";
+    }
+
     $result_2 = mysqli_query($connect, $sql_2);
 
-	for($i=1; $list = mysqli_fetch_array($result_2); $i++){
-      
-	   $bunho = $total - ( $i + $cline) + 1; 
-	   
-      if($i%2 == 0)
-	      echo "<tr class=\"odd\">\n";
-		  
- ?>
-          <td><?=$bunho?></td>
-            <td><?=$list['title']?></td>
-            <td><?=$list['reg_date']?></td>
-            <td class="left"><?=$list['company_name']?></td>
-            <td class="left"><?=$list['goods_name']?></td>
-            <?php
-				if($list['approved'] == "Y" && $list['cancel'] == "N") {
-					echo "<td class=\"won\">".number_format($list['sum'])."</td>\n";
-					echo "<td><img src=\"../images/9.png\" />승인</td>\n";
-					echo "<td><a href=\"javascript:open_win('print_tax.php?num=".$list['num']."&id=".$list['id']."','nwin','scrollbars=yes,resizable=yes');\"><img src=\"../images/printer_go.png\" /></a>
-              </td>\n";
-				}else if($list['approved'] == "N" && $list['cancel'] == "N") {
-					echo "<td class=\"won\">".number_format($list['sum'])."</td>\n";
-					echo "<td><img src=\"../images/pause_blue.png\" />미승인</td>\n";
-					echo "<td><a href=\"javascript:open_win('print_tax.php?num=".$list['num']."&id=".$list['id']."','nwin','scrollbars=yes,resizable=yes');\"><img src=\"../images/printer_go.png\" /></a>
-              </td>\n";
-				}else if($list['approved'] == "N" && $list['cancel'] == "Y") {
-					echo "<td class=\"won\">-</td>\n";
-					echo "<td><img src=\"../images/rewind_blue.png\" /><font color=\"#990000\"><strong>반려/취소</strong></font></td>\n";
-					echo "<td>&nbsp;</td>\n";
-					$tot_amount = $tot_amount - (int)$list['sum'];
-				}else if($list['approved'] == "Y" && $list['cancel'] == "Y") {
-					echo "<td class=\"won\">-</td>\n";
-					echo "<td><img src=\"../images/rewind_blue.png\" /><font color=\"#990000\"><strong>반려/취소</strong></font></td>\n";
-					echo "<td>&nbsp;</td>\n";
-					$tot_amount = $tot_amount - (int)$list['sum'];
-				}
+    for ($i = 1; $list = mysqli_fetch_array($result_2); $i++) {
 
-        if($list['cancel'] == "Y") {
-			?>
-            <td><a href="delete_tax.php?mode=del&num=<?=$list['num']?>"><img src="../images/delete.gif" /></a></td>
+        $bunho = $total - ($i + $cline) + 1;
+
+        if ($i % 2 == 0) {
+            echo "<tr class=\"odd\">\n";
+        }
+
+        ?>
+          <td><?=$bunho;?></td>
+            <td><?=$list['title'];?></td>
+            <td><?=$list['reg_date'];?></td>
+            <td class="left"><?=$list['company_name'];?></td>
+            <td class="left"><?=$list['goods_name'];?></td>
+            <?php
+if ($list['approved'] == "Y" && $list['cancel'] == "N") {
+            echo "<td class=\"won\">" . number_format($list['sum']) . "</td>\n";
+            echo "<td><img src=\"../images/9.png\" />승인</td>\n";
+            echo "<td><a href=\"javascript:open_win('print_tax.php?num=" . $list['num'] . "&id=" . $list['id'] . "','nwin','scrollbars=yes,resizable=yes');\"><img src=\"../images/printer_go.png\" /></a>
+              </td>\n";
+        } else if ($list['approved'] == "N" && $list['cancel'] == "N") {
+            echo "<td class=\"won\">" . number_format($list['sum']) . "</td>\n";
+            echo "<td><img src=\"../images/pause_blue.png\" />미승인</td>\n";
+            echo "<td><a href=\"javascript:open_win('print_tax.php?num=" . $list['num'] . "&id=" . $list['id'] . "','nwin','scrollbars=yes,resizable=yes');\"><img src=\"../images/printer_go.png\" /></a>
+              </td>\n";
+        } else if ($list['approved'] == "N" && $list['cancel'] == "Y") {
+            echo "<td class=\"won\">-</td>\n";
+            echo "<td><img src=\"../images/rewind_blue.png\" /><font color=\"#990000\"><strong>반려/취소</strong></font></td>\n";
+            echo "<td>&nbsp;</td>\n";
+            $tot_amount = $tot_amount - (int) $list['sum'];
+        } else if ($list['approved'] == "Y" && $list['cancel'] == "Y") {
+            echo "<td class=\"won\">-</td>\n";
+            echo "<td><img src=\"../images/rewind_blue.png\" /><font color=\"#990000\"><strong>반려/취소</strong></font></td>\n";
+            echo "<td>&nbsp;</td>\n";
+            $tot_amount = $tot_amount - (int) $list['sum'];
+        }
+
+        if ($list['cancel'] == "Y") {
+            ?>
+            <td><a href="delete_tax.php?mode=del&num=<?=$list['num'];?>"><img src="../images/delete.gif" /></a></td>
       <?php
-        }else {
-      ?>
-            <td><a href="delete_tax.php?mode=cancel&num=<?=$list['num']?>"><img src="../images/delete.gif" /></a></td>
-      <?php    
+} else {
+            ?>
+            <td><a href="delete_tax.php?mode=cancel&num=<?=$list['num'];?>"><img src="../images/delete.gif" /></a></td>
+      <?php
+
         }
         ?>
           </tr>
           <?php
-		
-		$tot_amount = $tot_amount + (int)$list['sum'];
-	}
+
+        $tot_amount = $tot_amount + (int) $list['sum'];
+    }
     mysqli_free_result($result_2);
-  ?>
+    ?>
           <tr>
             <td colspan="5"><strong>발행금액 합계:</strong></td>
             <td class="won"><strong>
-              <?=number_format($tot_amount)?>
+              <?=number_format($tot_amount);?>
               </strong></td>
             <td colspan="2"></td>
           </tr>
             </tbody>
-          
+
         </table>
         <table summary="page nav">
           <tbody>
             <tr>
               <td height="40" align="center" class="text">
               <?php
-              	 $url = "monthly_stat_list.php?mode=$mode"; 
-               	 page_avg($totalpage,$cpage,$url); 
-              ?>
+$url = "monthly_stat_list.php?mode=$mode";
+    page_avg($totalpage, $cpage, $url);
+    ?>
                 &nbsp; </td>
             </tr>
             <?php
-	 }
-	 ?>
+}
+?>
           </tbody>
         </table>
       </form>
     </div>
-    <!-- contens end --> 
+    <!-- contens end -->
   </div>
-  <!-- bodyblock end --> 
+  <!-- bodyblock end -->
   <!-- copyright -->
   <?php
 include "../include/admin_bottom.php";
 ?>
-  <!-- copyright  end --> 
+  <!-- copyright  end -->
 </div>
 <!-- wrapper end -->
 </body>

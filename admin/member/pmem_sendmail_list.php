@@ -1,13 +1,10 @@
 <?php
 
-//관리자 인증 파일
-include "../../util/admin_auth.php";
-// 데이타베이스 연결정보 및 기타설정
-include "../../util/config.php";
-// 각종 유틸함수
-include "../../util/util.php";
-// MySQL 연결
-$connect=my_connect($host,$dbid,$dbpass,$dbname);
+include_once "../include/admin_auth.php";
+include_once "../../util/config.php";
+include_once "../../util/util.php";
+
+$connect = my_connect($host, $dbid, $dbpass, $dbname);
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
@@ -43,7 +40,7 @@ $connect=my_connect($host,$dbid,$dbpass,$dbname);
 <!--
 function send_mail() {
   var form = document.mail;
-  
+
   oEditors.getById["contents"].exec("UPDATE_IR_FIELD", []);
   form.submit();
  }
@@ -55,8 +52,8 @@ function send_mail() {
 <div id="wrapper">
   <!-- header -->
   <?php
-  include "../include/admin_top.php";
-  ?>
+include "../include/admin_top.php";
+?>
   <!-- header end -->
   <div id="bodyblock">
     <!-- contents -->
@@ -70,22 +67,21 @@ function send_mail() {
       </fieldset>
       <?php
 
-if($mode == 'search'){
-  if($id){
-    $search_keyword .= " and id = '$id' ";
-  }
+if ($mode == 'search') {
+    if ($id) {
+        $search_keyword .= " and id = '$id' ";
+    }
 
-
-  if($company_name){
-    $search_keyword .= " AND name LIKE '%$name%' ";
-  }
+    if ($company_name) {
+        $search_keyword .= " AND name LIKE '%$name%' ";
+    }
 
 }
 
 //회원 테이블의 리스트를 불러옵니다.
-$query = "SELECT * FROM pmember WHERE email <> '' AND optin='Y' $search_keyword "; 
+$query  = "SELECT * FROM pmember WHERE email <> '' AND optin='Y' $search_keyword ";
 $result = mysqli_query($connect, $query);
-$total = mysqli_num_rows($result);
+$total  = mysqli_num_rows($result);
 
 ?>
       <form name="form1" method="post" action="pmem_sendmail_list.php">
@@ -94,18 +90,18 @@ $total = mysqli_num_rows($result);
         <legend>개인회원 찾기</legend>
         <p>
         <label for="id">아이디:</label>
-        <input type="text" name="id" value='<?=$id?>' size="20">
+        <input type="text" name="id" value='<?=$id;?>' size="20">
         </p>
         <p>
         <label for="company_name">성명:</label>
-        <input type="text" name="name" value='<?=$name?>' size="20" >
+        <input type="text" name="name" value='<?=$name;?>' size="20" >
         </p>
         <input type="image" src="../images/search_btn.gif" style="background-color:#FFFFFF; border:none;vertical-align: middle; " />
         </fieldset>
         <table summary="member list">
           <caption>
           전체 개인회원 메일보내기 (총 회원 수:
-          <?=number_format($total)?>
+          <?=number_format($total);?>
           건 )
           </caption>
           <thead>
@@ -120,77 +116,79 @@ $total = mysqli_num_rows($result);
           </thead>
           <tbody>
             <?php
-    if(!$page_scale){
-	   $scale=30;
-    }
-    else if($page_scale == "all"){
-	  if($total == 0){
-	    $scale = 1;
-      }
-      else{
-	    $scale = $total;
-      }
-	  $checked = "checked";
-    }
-
-    if ($page == ''){
-      $page=1;
-    }	    
-
-    $cpage = intval($page);
-    $totalpage = intval($total/$scale);
-    if ($totalpage*$scale != $total)
-       $totalpage = $totalpage + 1;
-        
-    if ($cpage ==1) {
-      $cline = 0 ;
+if (!$page_scale) {
+    $scale = 30;
+} else if ($page_scale == "all") {
+    if ($total == 0) {
+        $scale = 1;
     } else {
-      $cline = ($cpage*$scale) - $scale ;
-	} 
-        
-	$limit=$cline+$scale;
-        
-	 if ($limit >= $total) 
-       $limit=$total;
- 
-    $scale1 = $limit - $cline;
-				    
-	$sql_2 = "select * from pmember where email <> '' $sear_char order by seq_num desc LIMIT $cline,$scale1 "; 
-    $result_2 = mysqli_query($connect, $sql_2);
- 	for($i=1; $list = mysqli_fetch_array($result_2); $i++){
-      
-	   $bunho = $total - ( $i + $cline) + 1; 
-	   
-      if($i%2 == 0)
-	      echo "<tr class=odd>\n";	   
- ?>
-          <td><?=$bunho?></td>
-            <td><a href="javascript:open_win('mem_view_pmember.php?num=<?=$list['seq_num']?>&amp;from=mail','nwin','scrollbars=yes,resizable=yes, width=650,height=650');">
-              <?=$list['id']?>
+        $scale = $total;
+    }
+    $checked = "checked";
+}
+
+if ($page == '') {
+    $page = 1;
+}
+
+$cpage     = intval($page);
+$totalpage = intval($total / $scale);
+if ($totalpage * $scale != $total) {
+    $totalpage = $totalpage + 1;
+}
+
+if ($cpage == 1) {
+    $cline = 0;
+} else {
+    $cline = ($cpage * $scale) - $scale;
+}
+
+$limit = $cline + $scale;
+
+if ($limit >= $total) {
+    $limit = $total;
+}
+
+$scale1 = $limit - $cline;
+
+$sql_2    = "select * from pmember where email <> '' $sear_char order by seq_num desc LIMIT $cline,$scale1 ";
+$result_2 = mysqli_query($connect, $sql_2);
+for ($i = 1; $list = mysqli_fetch_array($result_2); $i++) {
+
+    $bunho = $total - ($i + $cline) + 1;
+
+    if ($i % 2 == 0) {
+        echo "<tr class=odd>\n";
+    }
+
+    ?>
+          <td><?=$bunho;?></td>
+            <td><a href="javascript:open_win('mem_view_pmember.php?num=<?=$list['seq_num'];?>&amp;from=mail','nwin','scrollbars=yes,resizable=yes, width=650,height=650');">
+              <?=$list['id'];?>
               </a></td>
-            <td><?=$list['name']?></td>
-            <td><?=$list['email']?></td>
-            <td><?=$list['reg_date']?></td>
-            <td><input type="checkbox" name="num[]" value="<?=$list['seq_num']?>"></td>
+            <td><?=$list['name'];?></td>
+            <td><?=$list['email'];?></td>
+            <td><?=$list['reg_date'];?></td>
+            <td><input type="checkbox" name="num[]" value="<?=$list['seq_num'];?>"></td>
           </tr>
           <?php
-    }
-    mysqli_free_result($result_2);
-  ?>
+}
+mysqli_free_result($result_2);
+?>
           </tbody>
-          
+
         </table>
         <table summary="send mail">
           <tbody>
             <tr>
               <td width="20%"><div class="full"><a class="button" href="#" onclick="this.blur();javascript:mail_send();"><span>메일 보내기</span></a></div></td>
               <td width="45%"><?php
-	 $url = "pmem_sendmail_list.php?$id=$id&mode=$mode&license_no=$license_no&md_email=$md_email&o_phone=$o_phone&company_name=$company_name&page_scale=$page_scale"; 
-	                                                 
- 	 page_avg($totalpage,$cpage,$url); 
-   ?>
+$url = "pmem_sendmail_list.php?$id=$id&mode=$mode&license_no=$license_no&md_email=$md_email&o_phone=$o_phone&company_name=$company_name&page_scale=$page_scale";
+
+page_avg($totalpage, $cpage, $url);
+?>
                 &nbsp; </td>
-              <td width="22%"><input type="checkbox" name="page_scale" value="all" <?=$checked?> onClick="document.form1.submit()">
+              <td width="22%"><input type="checkbox" name="page_scale" value="all" <?=$checked;?> onClick="document.form1.submit()">
                 한 화면으로 보기 </td>
             </tr>
           </tbody>

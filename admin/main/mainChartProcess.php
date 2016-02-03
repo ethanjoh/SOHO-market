@@ -1,6 +1,6 @@
 <?php
 
-include "../util/admin_auth.php";
+include "../include/admin_auth.php";
 include "../util/config.php";
 include "../util/util.php";
 

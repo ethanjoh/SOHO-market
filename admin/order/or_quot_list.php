@@ -1,13 +1,10 @@
 <?php
 
-//관리자 인증 파일
-include "../../util/admin_auth.php";
-// 데이타베이스 연결정보 및 기타설정
-include "../../util/config.php";
-// 각종 유틸함수
-include "../../util/util.php";
-// MySQL 연결
-$connect=my_connect($host,$dbid,$dbpass,$dbname);
+include_once "../include/admin_auth.php";
+include_once "../../util/config.php";
+include_once "../../util/util.php";
+
+$connect = my_connect($host, $dbid, $dbpass, $dbname);
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
@@ -35,73 +32,73 @@ $connect=my_connect($host,$dbid,$dbpass,$dbname);
 <div id="wrapper">
   <!-- header -->
   <?php
-  include "../include/admin_top.php";
-  ?>
+include "../include/admin_top.php";
+?>
   <!-- header end -->
   <div id="bodyblock">
     <!-- contents -->
     <div id="content">
       <form action="or_quot_list.php" name="f" method="post" >
       <?php
-	
-	switch ($mode) {
-	case 'search' :
-		$sql_2="SELECT orderid FROM mall_order 
+
+switch ($mode) {
+    case 'search':
+        $sql_2 = "SELECT orderid FROM mall_order
 			   WHERE cancel = 'N' AND user_id = 'guest'
 			   AND $key LIKE '%$key_value%' ";
-		break;
-	case 'date' : 
-		$sql_2 = "SELECT orderid FROM mall_order
+        break;
+    case 'date':
+        $sql_2 = "SELECT orderid FROM mall_order
 		          WHERE cancel = 'N' AND user_id = 'guest'
 				  AND createdate BETWEEN '$date1' AND '$date2' ";
-		break;
-	case 'today' :
-	    $today = date("Y-m-d");
-		$sql_2 = "SELECT orderid FROM mall_order
+        break;
+    case 'today':
+        $today = date("Y-m-d");
+        $sql_2 = "SELECT orderid FROM mall_order
 		          WHERE cancel = 'N' AND user_id = 'guest'
-				  AND createdate = '$today' ";		
-		break;
-	case 'unchk' :
-		$sql_2 = "SELECT orderid FROM mall_order
+				  AND createdate = '$today' ";
+        break;
+    case 'unchk':
+        $sql_2 = "SELECT orderid FROM mall_order
 		          WHERE cancel = 'N' AND user_id = 'guest'
-				  AND status = '3' ";		
-		break;
-	case 'cancel' :
-		$sql_2 = "SELECT orderid FROM mall_order
+				  AND status = '3' ";
+        break;
+    case 'cancel':
+        $sql_2 = "SELECT orderid FROM mall_order
 		          WHERE cancel = 'Y'
-				 AND user_id = 'guest' ";		
-	default :
-	   $sql_2 = "SELECT orderid FROM mall_order WHERE cancel='N' AND user_id='guest' "; 
-	}
-			
+				 AND user_id = 'guest' ";
+    default:
+        $sql_2 = "SELECT orderid FROM mall_order WHERE cancel='N' AND user_id='guest' ";
+}
 
-	$res_2 = mysqli_query($connect, $sql_2);
-	$total = mysqli_num_rows($res_2);
+$res_2 = mysqli_query($connect, $sql_2);
+$total = mysqli_num_rows($res_2);
 
+$scale = 30;
+if ($page == '') {
+    $page = 1;
+}
 
-   $scale=30;
-   if ($page == ''){
-      $page=1;
-   }	    
-   
-   $cpage = intval($page);
-   $totalpage = intval($total/$scale);
-	
-    if ($totalpage*$scale != $total)
-  		$totalpage = $totalpage + 1;
-        
-    if ($cpage ==1) {
-	  $cline = 0 ;
-    } else {
- 	  $cline = ($cpage*$scale) - $scale ;
-    } 
-        
-     $limit=$cline+$scale;
-       
-     if ($limit >= $total) 
-       	$limit=$total;
+$cpage     = intval($page);
+$totalpage = intval($total / $scale);
 
-     $scale1 = $limit - $cline;
+if ($totalpage * $scale != $total) {
+    $totalpage = $totalpage + 1;
+}
+
+if ($cpage == 1) {
+    $cline = 0;
+} else {
+    $cline = ($cpage * $scale) - $scale;
+}
+
+$limit = $cline + $scale;
+
+if ($limit >= $total) {
+    $limit = $total;
+}
+
+$scale1 = $limit - $cline;
 ?>
       <form method="get" action="or_quot_list.php">
         <input type="hidden" name="mode" value="date" />
@@ -143,9 +140,9 @@ $connect=my_connect($host,$dbid,$dbpass,$dbname);
         <tfoot>
           <tr>
             <td colspan="8" align="center"><?php
-	  						$url = "$PHP_SELF?mode=$mode&key=$key&key_value=$key_value"; 
-      						page_avg($totalpage,$cpage,$url); 
-						 ?></td>
+$url = "$PHP_SELF?mode=$mode&key=$key&key_value=$key_value";
+page_avg($totalpage, $cpage, $url);
+?></td>
           </tr>
           <tr>
             <td  colspan="10" align='center' ><select name='key'>
@@ -159,122 +156,125 @@ $connect=my_connect($host,$dbid,$dbpass,$dbname);
         </tfoot>
         <tbody>
           <?php
-	switch ($mode) {
-	case 'search' :
-   $sql_4 = "SELECT * FROM mall_order 
-             WHERE user_id = 'guest' 
-			 AND $key LIKE '%$key_value%' 
-			 ORDER BY num DESC LIMIT $cline,$scale1 "; 
-		break;
-	case 'date' : 
-		$sql_4 = "SELECT * FROM mall_order
+switch ($mode) {
+    case 'search':
+        $sql_4 = "SELECT * FROM mall_order
+             WHERE user_id = 'guest'
+			 AND $key LIKE '%$key_value%'
+			 ORDER BY num DESC LIMIT $cline,$scale1 ";
+        break;
+    case 'date':
+        $sql_4 = "SELECT * FROM mall_order
 		          WHERE user_id = 'guest'
-				  AND createdate BETWEEN '$date1' AND '$date2' 
+				  AND createdate BETWEEN '$date1' AND '$date2'
 				  ORDER BY num DESC LIMIT $cline,$scale1 ";
-		break;
-	case 'today' :
-	    $today = date("Y-m-d");
-		$sql_4 = "SELECT * FROM mall_order
+        break;
+    case 'today':
+        $today = date("Y-m-d");
+        $sql_4 = "SELECT * FROM mall_order
 		          WHERE user_id = 'guest'
-				  AND createdate = '$today' ";				 
-		break;
-	case 'unchk' :
-		$sql_4 = "SELECT * FROM mall_order
+				  AND createdate = '$today' ";
+        break;
+    case 'unchk':
+        $sql_4 = "SELECT * FROM mall_order
 		          WHERE user_id = 'guest'
 				  AND status = '3'
-				  ORDER BY num DESC LIMIT $cline,$scale1 ";		
-		break;
-	case 'cancel' :
-		$sql_4 = "SELECT * FROM mall_order
+				  ORDER BY num DESC LIMIT $cline,$scale1 ";
+        break;
+    case 'cancel':
+        $sql_4 = "SELECT * FROM mall_order
 		          WHERE cancel = 'Y'
-				 AND user_id = 'guest' 
-				  ORDER BY num DESC LIMIT $cline,$scale1 ";		
-		break;	
-	default :
-   		$sql_4 = "SELECT * FROM mall_order 
-   		     WHERE user_id = 'guest' 
-             ORDER BY num DESC LIMIT $cline,$scale1 "; 
-	}
+				 AND user_id = 'guest'
+				  ORDER BY num DESC LIMIT $cline,$scale1 ";
+        break;
+    default:
+        $sql_4 = "SELECT * FROM mall_order
+   		     WHERE user_id = 'guest'
+             ORDER BY num DESC LIMIT $cline,$scale1 ";
+}
 
 $a_pay_type['1'] = "무통장 입금";
 $a_pay_type['2'] = "신용카드";
 $a_pay_type['3'] = "휴대폰 결제";
 
 $res_4 = mysqli_query($connect, $sql_4);
-$t_no = mysqli_num_rows($res_4);
+$t_no  = mysqli_num_rows($res_4);
 
-if($t_no > 0) {
+if ($t_no > 0) {
 
-	$total = 0; //금일주문총액
+    $total = 0; //금일주문총액
 
-	for($i=0; $row = mysqli_fetch_array($res_4); $i++){
-		if($row['cancel'] == 'Y') {
-			$c_color="#EBEBEB"; 
-			$status_now="주문취소";
-		?>
-          <tr bgcolor="<?=$c_color?>">
-            <td><a href="or_quot_view.php?oid=<?=$row['num']?>&amp;page=<?=$page?>">
-              <?=$row['orderid']?>
+    for ($i = 0; $row = mysqli_fetch_array($res_4); $i++) {
+        if ($row['cancel'] == 'Y') {
+            $c_color    = "#EBEBEB";
+            $status_now = "주문취소";
+            ?>
+          <tr bgcolor="<?=$c_color;?>">
+            <td><a href="or_quot_view.php?oid=<?=$row['num'];?>&amp;page=<?=$page;?>">
+              <?=$row['orderid'];?>
               </a></td>
-            <td><?=$row['createdate']?></td>
-            <td><?=$row['buyer_name']?></td>
-            <td><?=number_format($row['amount'])?>
+            <td><?=$row['createdate'];?></td>
+            <td><?=$row['buyer_name'];?></td>
+            <td><?=number_format($row['amount']);?>
               원</td>
             <td>-</td>
-            <td><?=$status_now?></td>
+            <td><?=$status_now;?></td>
             <td><a href="javascript:alert('이미 취소된 주문입니다.')"><img src="../images/forbbiden.gif"  alt="취소불가" /></a></td>
           </tr>
           <?php
-		}else { 
+} else {
 
-		if($row['status']=='1'){
-			$c_color='#FFC8C8'; 
-			$status_now="미처리";
-		} else if ($row['status']=='3'){ 
-			$c_color='#FFC8C8'; 
-			$status_now="미처리";
-		} else if($row['status']=='5'){
-			$c_color='#E0FFE0'; 
-			$status_now="주문확인";
-		} else if ($row['status']=='7'){ 
-			$c_color='#EFFCFC';
-			$status_now="포장완료";
-		} else if ($row['status']=='8'){ 
-			$c_color='#FFFFFF'; 
-			$status_now="발송완료";
-		}
+            if ($row['status'] == '1') {
+                $c_color    = '#FFC8C8';
+                $status_now = "미처리";
+            } else if ($row['status'] == '3') {
+                $c_color    = '#FFC8C8';
+                $status_now = "미처리";
+            } else if ($row['status'] == '5') {
+                $c_color    = '#E0FFE0';
+                $status_now = "주문확인";
+            } else if ($row['status'] == '7') {
+                $c_color    = '#EFFCFC';
+                $status_now = "포장완료";
+            } else if ($row['status'] == '8') {
+                $c_color    = '#FFFFFF';
+                $status_now = "발송완료";
+            }
 
-?>
-          <tr bgcolor="<?=$c_color?>">
-            <td><a href='or_quot_view.php?oid=<?=$row['num']?>&amp;page=<?=$page?>'>
-              <?=$row['orderid']?>
+            ?>
+          <tr bgcolor="<?=$c_color;?>">
+            <td><a href='or_quot_view.php?oid=<?=$row['num'];?>&amp;page=<?=$page;?>'>
+              <?=$row['orderid'];?>
               </a></td>
-            <td><?=$row['createdate']?></td>
-            <td><?=$row['buyer_name']?></td>
-            <td><?=number_format($row['amount'])?>
+            <td><?=$row['createdate'];?></td>
+            <td><?=$row['buyer_name'];?></td>
+            <td><?=number_format($row['amount']);?>
               원</td>
-            <td><?php echo ($row['last_amount'] == 0) ? " 미확정" : number_format($row['last_amount'])." 원"; ?></td>
-            <td><?=$status_now?></td>
-            <td><a href="or_delete.php?oid=<?=$row['num']?>&amp;page=<?=$page?>&amp;from=quot" onclick="return confirm('주문을 취소하시겠습니까?')"><img src="../images/delete.gif" border="0" /></a></td>
+            <td><?php echo ($row['last_amount'] == 0) ? " 미확정" : number_format($row['last_amount']) . " 원"; ?></td>
+            <td><?=$status_now;?></td>
+            <td><a href="or_delete.php?oid=<?=$row['num'];?>&amp;page=<?=$page;?>&amp;from=quot" onclick="return confirm('주문을 취소하시겠습니까?')"><img src="../images/delete.gif" border="0" /></a></td>
           </tr>
-          <?php 
-			$total += $row['amount'];
-		}
-  	}
- ?>
+          <?php
+
+            $total += $row['amount'];
+        }
+    }
+    ?>
           <tr class="odd">
             <td colspan="10">주문 총합:
-              <?=number_format($total)?>
+              <?=number_format($total);?>
               원</td>
           </tr>
           <?php
-}else {
-?>
+} else {
+    ?>
           <tr>
             <td colspan="10"><p>해당 주문 내역이 없습니다.</p></td>
           </tr>
-          <?php 
-} ?>
+          <?php
+
+}
+?>
         </tbody>
       </table>
       </form>

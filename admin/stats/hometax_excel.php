@@ -1,18 +1,15 @@
 <?php
-$file_name = "hometax_excel_".date("Y-m-d");
+$file_name = "hometax_excel_" . date("Y-m-d");
 
-header( "Content-type: application/vnd.ms-excel; charset=UTF-8" );
-header( "Content-Disposition: attachment; filename=$file_name.xls" );
-header( "Content-Description: PHP4 Generated Data" );
+header("Content-type: application/vnd.ms-excel; charset=UTF-8");
+header("Content-Disposition: attachment; filename=$file_name.xls");
+header("Content-Description: PHP4 Generated Data");
 
-//관리자 인증 파일
-include "../../util/admin_auth.php";
-// 데이타베이스 연결정보 및 기타설정
-include "../../util/config.php";
-// 각종 유틸함수
-include "../../util/util.php";
-// MySQL 연결
-$connect=my_connect($host,$dbid,$dbpass,$dbname);
+include_once "../include/admin_auth.php";
+include_once "../../util/config.php";
+include_once "../../util/util.php";
+
+$connect = my_connect($host, $dbid, $dbpass, $dbname);
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
@@ -148,79 +145,83 @@ body {
 
 <?php
 
-    $date1      = $_GET['date1'];
-    $date2      = $_GET['date2'];
-    $makedate   = date("m.d");
-    $makedate2  = date("d");
+$date1     = $_GET['date1'];
+$date2     = $_GET['date2'];
+$makedate  = date("m.d");
+$makedate2 = date("d");
 
-    $info_query = "SELECT * FROM admin_setup";
-    $info_res = mysqli_query($connect, $info_query);
-    $info = mysqli_fetch_array($info_res);
+$info_query = "SELECT * FROM admin_setup";
+$info_res   = mysqli_query($connect, $info_query);
+$info       = mysqli_fetch_array($info_res);
 
-    if (empty($date1)) $date1 = $date1;
-    if (empty($date2)) $date2 = $date2;
+if (empty($date1)) {
+    $date1 = $date1;
+}
 
-    //1. 기간별 주문을 구한다.
-    $sql = "SELECT * FROM mall_order
+if (empty($date2)) {
+    $date2 = $date2;
+}
+
+//1. 기간별 주문을 구한다.
+$sql = "SELECT * FROM mall_order
             WHERE cancel='N' AND status='8' AND createdate BETWEEN '$date1' AND '$date2'
             ORDER BY num DESC";
-    $res = mysqli_query($connect, $sql);
+$res = mysqli_query($connect, $sql);
 
-    //2. 각 주문에서 제품코드를 구한다.
-    for($i=0; $row = mysqli_fetch_array($res); $i++) {
-      //판매금액 집계를 위한 배열
-      $sales[] = array(num=>$row['num'], id=>$row['user_id'], sub_total=>$row['last_amount']);
-      $total += $row['last_amount'];
-    }//for end
+//2. 각 주문에서 제품코드를 구한다.
+for ($i = 0; $row = mysqli_fetch_array($res); $i++) {
+    //판매금액 집계를 위한 배열
+    $sales[] = array(num => $row['num'], id => $row['user_id'], sub_total => $row['last_amount']);
+    $total += $row['last_amount'];
+} //for end
 
+foreach ($sales as $key => $values) {
+    //$sum[$values['company_name']] += $values['sub_total'];
+    $sum[$values['id']] += $values['sub_total'];
+}
 
-    foreach($sales as $key => $values) {
-      //$sum[$values['company_name']] += $values['sub_total'];
-      $sum[$values['id']] += $values['sub_total'];
-    }
+reset($sum);
+arsort($sum);
 
-    reset($sum);
-    arsort($sum);
+$i = 0;
+foreach ($sum as $id => $sub_total) {
 
-    $i=0;
-    foreach($sum as $id=>$sub_total) {
+    // 공급받는자 상호
+    $c_sql    = "SELECT * FROM member WHERE id='$id' ";
+    $c_result = mysqli_query($connect, $c_sql);
+    $c_row    = mysqli_fetch_array($c_result);
 
-      // 공급받는자 상호
-      $c_sql="SELECT * FROM member WHERE id='$id' ";
-      $c_result = mysqli_query($connect, $c_sql);
-      $c_row = mysqli_fetch_array($c_result);
-
-?>
+    ?>
     <tr>
       <td class="ess" style="mso-number-format:\@">01</td>
-      <td class="ess" style="mso-number-format:mm\/dd"><?=$makedate?></td>
-      <td class="ess" style="mso-number-format:\@"><?=$info['license_no']?></td>
+      <td class="ess" style="mso-number-format:mm\/dd"><?=$makedate;?></td>
+      <td class="ess" style="mso-number-format:\@"><?=$info['license_no'];?></td>
       <td class="txt"></td>
-      <td class="ess"><?=$info['company_name']?></td>
-      <td class="ess"><?=$info['ceo']?></td>
-      <td class="txt"><?=$info['addr1']?> <?=$info['addr2']?></td>
-      <td class="txt"><?=$info['category1']?></td>
-      <td class="txt"><?=$info['category2']?></td>
-      <td class="txt"><?=$info['email']?></td>
-      <td class="ess" style="mso-number-format:\@"><?=$c_row['license_no']?></td>
+      <td class="ess"><?=$info['company_name'];?></td>
+      <td class="ess"><?=$info['ceo'];?></td>
+      <td class="txt"><?=$info['addr1'];?> <?=$info['addr2'];?></td>
+      <td class="txt"><?=$info['category1'];?></td>
+      <td class="txt"><?=$info['category2'];?></td>
+      <td class="txt"><?=$info['email'];?></td>
+      <td class="ess" style="mso-number-format:\@"><?=$c_row['license_no'];?></td>
       <td class="txt"></td>
-      <td class="ess"><?=$c_row['company_name']?></td>
-      <td class="ess"><?=$c_row['ceo']?></td>
-      <td class="txt"><?=$c_row['addr1']?> <?=$c_row['addr2']?></td>
-      <td class="txt"><?=$c_row['category1']?></td>
-      <td class="txt"><?=$c_row['category2']?></td>
-      <td class="txt"><?=$c_row['md_email']?></td>
+      <td class="ess"><?=$c_row['company_name'];?></td>
+      <td class="ess"><?=$c_row['ceo'];?></td>
+      <td class="txt"><?=$c_row['addr1'];?> <?=$c_row['addr2'];?></td>
+      <td class="txt"><?=$c_row['category1'];?></td>
+      <td class="txt"><?=$c_row['category2'];?></td>
+      <td class="txt"><?=$c_row['md_email'];?></td>
       <td class="txt"></td>
-      <td class="ess"><?=number_format($sub_total)?></td>
-      <td class="ess"><?=number_format($sub_total*.1)?></td>
+      <td class="ess"><?=number_format($sub_total);?></td>
+      <td class="ess"><?=number_format($sub_total * .1);?></td>
       <td class="txt"></td>
-      <td class="ess" style="mso-number-format:\@"><?=$makedate2?></td>
-      <td class="txt"></td>
-      <td class="txt"></td>
+      <td class="ess" style="mso-number-format:\@"><?=$makedate2;?></td>
       <td class="txt"></td>
       <td class="txt"></td>
-      <td class="ess"><?=number_format($sub_total)?></td>
-      <td class="ess"><?=number_format($sub_total*.1)?></td>
+      <td class="txt"></td>
+      <td class="txt"></td>
+      <td class="ess"><?=number_format($sub_total);?></td>
+      <td class="ess"><?=number_format($sub_total * .1);?></td>
       <td class="txt"></td>
       <td class="txt"></td>
       <td class="txt"></td>
@@ -254,7 +255,8 @@ body {
     </tr>
 
 <?php
-  } // for loop end
+}
+; // for loop end
 
 ?>
   </tbody>

@@ -1,13 +1,10 @@
 <?php
 
-//관리자 인증 파일
-include "../../util/admin_auth.php";
-// 데이타베이스 연결정보 및 기타설정
-include "../../util/config.php";
-// 각종 유틸함수
-include "../../util/util.php";
-// MySQL 연결
-$connect=my_connect($host,$dbid,$dbpass,$dbname);
+include_once "../include/admin_auth.php";
+include_once "../../util/config.php";
+include_once "../../util/util.php";
+
+$connect = my_connect($host, $dbid, $dbpass, $dbname);
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
@@ -35,28 +32,28 @@ $connect=my_connect($host,$dbid,$dbpass,$dbname);
 <div id="wrapper">
   <!-- header -->
   <?php
-  include "../include/admin_top.php";
-  ?>
+include "../include/admin_top.php";
+?>
   <!-- header end -->
   <div id="bodyblock">
     <!-- contents -->
     <div id="content">
       <?php
 
-if($mode == 'search'){
-    $search_keyword .= " AND createdate BETWEEN  '$date1' AND '$date2' ";  
+if ($mode == 'search') {
+    $search_keyword .= " AND createdate BETWEEN  '$date1' AND '$date2' ";
 }
 
 //회원 테이블의 리스트를 불러옵니다.
-//$query = "SELECT * FROM member WHERE 1 $search_keyword "; 
-$query = "SELECT orderid FROM offer WHERE id='$id' AND status = '4'  $search_keyword ";
+//$query = "SELECT * FROM member WHERE 1 $search_keyword ";
+$query  = "SELECT orderid FROM offer WHERE id='$id' AND status = '4'  $search_keyword ";
 $result = mysqli_query($connect, $query);
-$total = mysqli_num_rows($result);
+$total  = mysqli_num_rows($result);
 
 ?>
       <form name="stat" method="get" action="view_stat.php">
         <input type="hidden" name="mode" value="search" />
-        <input type="hidden" name="id" value="<?=$id?>" />
+        <input type="hidden" name="id" value="<?=$id;?>" />
         <fieldset>
         <legend>날짜 검색</legend>
         <p>
@@ -70,11 +67,11 @@ $total = mysqli_num_rows($result);
         </fieldset>
       </form>
       <form name="reg" method="post" action="reg_tax.php">
-        <input type="hidden" name="id" value="<?=$id?>" />
+        <input type="hidden" name="id" value="<?=$id;?>" />
         <table summary="member list">
           <caption>
           공급업체 정산리스트 (
-          <?=number_format($total)?>
+          <?=number_format($total);?>
           건 )<br />
           (입고 완료된 건에 대해서만 출력됩니다.)
           </caption>
@@ -91,96 +88,98 @@ $total = mysqli_num_rows($result);
           </thead>
           <tbody>
             <?php
-    $scale=30;
-    if ($page == ''){
-      $page=1;
-    }	    
+$scale = 30;
+if ($page == '') {
+    $page = 1;
+}
 
-    $cpage = intval($page);
-    $totalpage = intval($total/$scale);
-    if ($totalpage*$scale != $total)
-       $totalpage = $totalpage + 1;
-        
-    if ($cpage ==1) {
-      $cline = 0 ;
-    } else {
-      $cline = ($cpage*$scale) - $scale ;
-	} 
-        
-	$limit=$cline+$scale;
-        
-	 if ($limit >= $total) 
-       $limit=$total;
- 
-    $scale1 = $limit - $cline;
-				    
-	$sql_2 = "SELECT * FROM supplier, offer 
-	          WHERE (supplier.id='$id') 
-			  AND (offer.id='$id') 
+$cpage     = intval($page);
+$totalpage = intval($total / $scale);
+if ($totalpage * $scale != $total) {
+    $totalpage = $totalpage + 1;
+}
+
+if ($cpage == 1) {
+    $cline = 0;
+} else {
+    $cline = ($cpage * $scale) - $scale;
+}
+
+$limit = $cline + $scale;
+
+if ($limit >= $total) {
+    $limit = $total;
+}
+
+$scale1 = $limit - $cline;
+
+$sql_2 = "SELECT * FROM supplier, offer
+	          WHERE (supplier.id='$id')
+			  AND (offer.id='$id')
 			  AND (offer.status = '4' )
 			  ORDER BY offer.num DESC LIMIT $cline,$scale1";
-	 
-    $result_2 = mysqli_query($connect, $sql_2);
-	$total_2 = mysqli_num_rows($result_2);
-	
-	if($total_2 == 0) {
-?>
+
+$result_2 = mysqli_query($connect, $sql_2);
+$total_2  = mysqli_num_rows($result_2);
+
+if ($total_2 == 0) {
+    ?>
             <tr>
               <td colspan="7"><p>정산할 내역이 없습니다.</p></td>
             </tr>
             <?php
-    }else {     
+} else {
 
-	for($i=1; $list = mysqli_fetch_array($result_2); $i++){
+    for ($i = 1; $list = mysqli_fetch_array($result_2); $i++) {
 
-		$or_sql = "SELECT * FROM offer WHERE num = '$list[num]' ";
-		$or_res = mysqli_query($connect, $or_sql);
-		$or_row = mysqli_fetch_array($or_res);
+        $or_sql = "SELECT * FROM offer WHERE num = '$list[num]' ";
+        $or_res = mysqli_query($connect, $or_sql);
+        $or_row = mysqli_fetch_array($or_res);
 
-		$a_goods_fk = explode(",", $or_row['goods_fk']);
-		
-		$pro_sql="SELECT * FROM products WHERE num='$a_goods_fk[0]'";
-   		$pro_result = mysqli_query($connect, $pro_sql);
-   		$pro_row = mysqli_fetch_array($pro_result);
+        $a_goods_fk = explode(",", $or_row['goods_fk']);
 
-   		$goods_name= shortenStr($pro_row['name'],30);
-      
-	   $bunho = $total - ( $i + $cline) + 1; 
-	   
-      if($i%2 == 0)
-	      echo "<tr class=odd>\n";
-		  
- ?>
-          <td><?=$bunho?></td>
-            <td><?=$list['createdate']?></td>
-            <td><?=$list['company_name']?></td>
-            <td class="left"><?=$goods_name?>
+        $pro_sql    = "SELECT * FROM products WHERE num='$a_goods_fk[0]'";
+        $pro_result = mysqli_query($connect, $pro_sql);
+        $pro_row    = mysqli_fetch_array($pro_result);
+
+        $goods_name = shortenStr($pro_row['name'], 30);
+
+        $bunho = $total - ($i + $cline) + 1;
+
+        if ($i % 2 == 0) {
+            echo "<tr class=odd>\n";
+        }
+
+        ?>
+          <td><?=$bunho;?></td>
+            <td><?=$list['createdate'];?></td>
+            <td><?=$list['company_name'];?></td>
+            <td class="left"><?=$goods_name;?>
               (외)</td>
-            <td><?=number_format($list['amount'])?>
+            <td><?=number_format($list['amount']);?>
               원</td>
-            <td><?=number_format($list['last_amount'])?>
+            <td><?=number_format($list['last_amount']);?>
               원</td>
-            <td><a href="#" onclick="javascript:open_win('view_offer.php?oid=<?=$list['num']?>&amp;from=stat&amp;page=<?=$page?>&amp;id=<?=$id?>');"> <img src="../images/details.gif" alt="발주내역 보기" /> </a></td>
+            <td><a href="#" onclick="javascript:open_win('view_offer.php?oid=<?=$list['num'];?>&amp;from=stat&amp;page=<?=$page;?>&amp;id=<?=$id;?>');"> <img src="../images/details.gif" alt="발주내역 보기" /> </a></td>
           </tr>
           <?php
-	    $goods_name = $goods_name." (외)";	
-		$tot_amount = $tot_amount + (int)$list['last_amount'];
-	}
-	
-	
+$goods_name = $goods_name . " (외)";
+        $tot_amount = $tot_amount + (int) $list['last_amount'];
+    }
+
     mysqli_free_result($result_2);
-  ?>
+    ?>
           <tr>
             <td colspan="5">실정산액 합계:</td>
-            <td><?=number_format($tot_amount)?>
+            <td><?=number_format($tot_amount);?>
               원</td>
             <td></td>
           </tr>
           <?php
-		  }
-		  ?>
+}
+?>
           </tbody>
-          
+
         </table>
         <fieldset>
         <legend>정산등록</legend>
@@ -193,8 +192,8 @@ $total = mysqli_num_rows($result);
           결제
           <input type="radio" name="paid" value="N" checked />
           미결제
-          <input type="hidden" name="sum" value="<?=$tot_amount?>" />
-          <input type="hidden" name="goods_name" value="<?=$goods_name?>" />
+          <input type="hidden" name="sum" value="<?=$tot_amount;?>" />
+          <input type="hidden" name="goods_name" value="<?=$goods_name;?>" />
         </p>
         <div class="clear"><a class="button" href="javascript:document.reg.submit()" onclick="this.blur();"><span>등록</span></a></div>
         </fieldset>
@@ -203,9 +202,9 @@ $total = mysqli_num_rows($result);
         <tbody>
           <tr>
             <td height="40" align="center" class="text"><?php
-	 $url = "view_stat.php?id=$id&mode=$mode&license_no=$license_no&company_name=$company_name"; 
- 	 page_avg($totalpage,$cpage,$url); 
-   ?>
+$url = "view_stat.php?id=$id&mode=$mode&license_no=$license_no&company_name=$company_name";
+page_avg($totalpage, $cpage, $url);
+?>
               &nbsp; </td>
           </tr>
           <tr>

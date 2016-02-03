@@ -1,13 +1,10 @@
 <?php
 
-//관리자 인증 파일
-include "../../../util/admin_auth.php";
-// 데이타베이스 연결정보 및 기타설정
-include "../../../util/config.php";
-// 각종 유틸함수
-include "../../../util/util.php";
-// MySQL 연결
-$connect=my_connect($host,$dbid,$dbpass,$dbname);
+include_once "../../../inlcude/admin_auth.php";
+include_once "../../../util/config.php";
+include_once "../../../util/util.php";
+
+$connect = my_connect($host, $dbid, $dbpass, $dbname);
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
@@ -52,18 +49,18 @@ function send_check() {
 <div id="content" class="mail">
   <form method="post" name="mail" action="sendmail_all_ok.php">
     <?php
-	$tot_cnt = sizeof($num);
-	
- for($i=0;$i < sizeof($num);$i++){
- ?>
-    <input type=hidden name='num[]' value='<?=$num[$i]?>'>
+$tot_cnt = sizeof($num);
+
+for ($i = 0; $i < sizeof($num); $i++) {
+    ?>
+    <input type=hidden name='num[]' value='<?=$num[$i];?>'>
     <?php
-  }
- ?>
+}
+?>
     <table summary="send mail">
       <caption>
       메일 발송 (발송할 회원 수 :
-      <?=$tot_cnt?>
+      <?=$tot_cnt;?>
       )
       </caption>
       <tbody>

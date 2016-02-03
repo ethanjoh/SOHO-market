@@ -1,13 +1,10 @@
 <?php
 
-//관리자 인증 파일
-include "../../util/admin_auth.php";
-// 데이타베이스 연결정보 및 기타설정
-include "../../util/config.php";
-// 각종 유틸함수
-include "../../util/util.php";
-// MySQL 연결
-$connect=my_connect($host,$dbid,$dbpass,$dbname);
+include_once "../include/admin_auth.php";
+include_once "../../util/config.php";
+include_once "../../util/util.php";
+
+$connect = my_connect($host, $dbid, $dbpass, $dbname);
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
@@ -54,18 +51,18 @@ function send_check() {
 <body topmargin="0" style="background-color:#ffffff">
   <form method="post" name="mail" action="sendmail_ok.php" enctype="multipart/form-data">
     <?php
-	$tot_cnt = sizeof($num);
-	
- for($i=0;$i < sizeof($num);$i++){
- ?>
-    <input type=hidden name='num[]' value='<?=$num[$i]?>'>
+$tot_cnt = sizeof($num);
+
+for ($i = 0; $i < sizeof($num); $i++) {
+    ?>
+    <input type=hidden name='num[]' value='<?=$num[$i];?>'>
     <?php
-  }
- ?>
+}
+?>
     <table summary="send mail">
       <caption>
       메일 발송 (발송할 회원 수 :
-      <?=$tot_cnt?>
+      <?=$tot_cnt;?>
       )
       </caption>
       <tbody>
@@ -109,7 +106,7 @@ function send_check() {
 </body>
 <script>
 var oEditors = [];
-// 마지막 옵션은 체감 속도 증진을 위해서 페이지 로딩 완료시 까지 화면 표시를 하지 않는 옵션 입니다. 
+// 마지막 옵션은 체감 속도 증진을 위해서 페이지 로딩 완료시 까지 화면 표시를 하지 않는 옵션 입니다.
 // 개발 작업시에는 이 값을 false로 설정 하세요.
 //nhn.husky.EZCreator.createInIFrame(oEditors, "contents", "SEditorSkin.html", "createSEditorInIFrame", null, false);
 nhn.husky.EZCreator.createInIFrame({

@@ -1,13 +1,10 @@
 <?php
 
-//관리자 인증 파일
-include "../../util/admin_auth.php";
-// 데이타베이스 연결정보 및 기타설정
-include "../../util/config.php";
-// 각종 유틸함수
-include "../../util/util.php";
-// MySQL 연결
-$connect=my_connect($host,$dbid,$dbpass,$dbname);
+include_once "../include/admin_auth.php";
+include_once "../../util/config.php";
+include_once "../../util/util.php";
+
+$connect = my_connect($host, $dbid, $dbpass, $dbname);
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
@@ -37,31 +34,31 @@ window.open("../../bbclone/","_blank","scrollbars=yes, resizable=no, copyhistory
 <div id="wrapper">
   <!-- header -->
   <?php
-  include "../include/admin_top.php";
-  ?>
+include "../include/admin_top.php";
+?>
   <!-- header end -->
   <div id="bodyblock">
     <!-- contents -->
     <div id="content">
     <!--
       <?php
- // install directory path, starting from the www-root and with a trailing slash 
- /*
- define("_BBCLONE_DIR", "../../bbclone/"); 
- 
- if (is_readable(_BBCLONE_DIR."constants.php")) {
-   require(_BBCLONE_DIR."constants.php");
- }
- else exit("invalid path given. it must end with a slash");
+// install directory path, starting from the www-root and with a trailing slash
+/*
+define("_BBCLONE_DIR", "../../bbclone/");
 
- $BBC_IMAGES_PATH = "../../bbclone/images/"; // a workaround 
- 
- foreach (array("conf/config", "lib/selectlang", "var/access", "show_global") as $i) {
-   if (is_readable(_BBCLONE_DIR.$i.".php")) require(_BBCLONE_DIR.$i.".php");
-   else exit(bbc_msg(_BBCLONE_DIR.$i.".php"));
- }
-*/
- ?>    
+if (is_readable(_BBCLONE_DIR."constants.php")) {
+require(_BBCLONE_DIR."constants.php");
+}
+else exit("invalid path given. it must end with a slash");
+
+$BBC_IMAGES_PATH = "../../bbclone/images/"; // a workaround
+
+foreach (array("conf/config", "lib/selectlang", "var/access", "show_global") as $i) {
+if (is_readable(_BBCLONE_DIR.$i.".php")) require(_BBCLONE_DIR.$i.".php");
+else exit(bbc_msg(_BBCLONE_DIR.$i.".php"));
+}
+ */
+;?>
       <fieldset class="info">
         <legend><img src="../images/info.png" alt="안내" /> 사용방법</legend>
         <ul>
@@ -78,14 +75,14 @@ window.open("../../bbclone/","_blank","scrollbars=yes, resizable=no, copyhistory
           <tr>
             <td colspan="2"><fieldset class="page">
                 <legend><img src="../images/page_portrait.png" /> 방문 페이지 TOP 10</legend>
-                <?php //bbc_show_top_pages()?>
+                <?php //bbc_show_top_pages();;?>
               </fieldset></td>
           </tr>
         </tbody>
       </table>
     </div>
     -->
-    <iframe src="http://www.<?=$_SERVER['SERVER_NAME']?>/bbclone/index.php" width="90%" height="700px"></iframe>
+    <iframe src="http://www.<?=$_SERVER['SERVER_NAME'];?>/bbclone/index.php" width="90%" height="700px"></iframe>
     <!-- contents end -->
   </div>
   <!-- bodyblock end -->

@@ -1,13 +1,10 @@
 <?php
 
-//관리자 인증 파일
-include "../../util/admin_auth.php";
-// 데이타베이스 연결정보 및 기타설정
-include "../../util/config.php";
-// 각종 유틸함수
-include "../../util/util.php";
-// MySQL 연결
-$connect=my_connect($host,$dbid,$dbpass,$dbname);
+include_once "../include/admin_auth.php";
+include_once "../../util/config.php";
+include_once "../../util/util.php";
+
+$connect = my_connect($host, $dbid, $dbpass, $dbname);
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
@@ -38,17 +35,17 @@ $connect=my_connect($host,$dbid,$dbpass,$dbname);
 			 }
 	     }
 	 }
-	
+
 	if(b == 0) {
 	 alert("적어도 하나의 항목은 선택하셔야 합니다.");
 	     return;
     }
    form.gb.value="2";
-   
+
    ret = confirm('삭제하시겠습니까?');
    if(ret) {
    	form.submit();
-   }   
+   }
   }
 
 //-->
@@ -57,8 +54,8 @@ $connect=my_connect($host,$dbid,$dbpass,$dbname);
 <body>
 <div id="wrapper">
   <?php
-  include "../include/admin_top.php";
-  ?>
+include "../include/admin_top.php";
+?>
   <div id="bodyblock">
     <div id="content">
       <form method='post' name="form1" action="del_msg.php">
@@ -80,76 +77,81 @@ $connect=my_connect($host,$dbid,$dbpass,$dbname);
               <th width="19%">보낸시간</th>
             </tr>
           </thead>
-          <?
-    $a_re_chk['Y'] = "<img src=\"../images/email_open.png\" alt=\"확인\" />";  
-	$a_re_chk['N'] = "<img src=\"../images/email.png\" alt=\"미확인\" />";
+          <?php
 
-	$query = "select mnum from message_info
-	          where sendid_fk = 'admin' And 
+$a_re_chk['Y'] = "<img src=\"../images/email_open.png\" alt=\"확인\" />";
+$a_re_chk['N'] = "<img src=\"../images/email.png\" alt=\"미확인\" />";
+
+$query = "select mnum from message_info
+	          where sendid_fk = 'admin' And
 			        send_del = 'N' ";
-	$result = mysqli_query($connect, $query);
-	$total_bnum = mysqli_num_rows($result);
-	mysqli_free_result($result);
+$result     = mysqli_query($connect, $query);
+$total_bnum = mysqli_num_rows($result);
+mysqli_free_result($result);
 
-	 if(!$page){
-		$page = 1;
-	 }
-   
-	 $p_scale=5;
+if (!$page) {
+    $page = 1;
+}
 
-	 $cpage = intval($page);
-	 $totalpage = intval($total_bnum/$p_scale);
-     if ($totalpage*$p_scale != $total_bnum)
-		$totalpage = $totalpage + 1;
-					  
-     if ($cpage ==1) {
-	    $cline = 0 ;
-	 } else {
-	     $cline = ($cpage*$p_scale) - $p_scale ;
-	 } 
-						
-	 $limit=$cline+$p_scale;
-						
-	 if ($limit >= $total_bnum) 
-		$limit=$total_bnum;
+$p_scale = 5;
 
-	  $p_scale1 = $limit - $cline;
+$cpage     = intval($page);
+$totalpage = intval($total_bnum / $p_scale);
+if ($totalpage * $p_scale != $total_bnum) {
+    $totalpage = $totalpage + 1;
+}
 
-	  $query2 = "select * from message_info
-	             where sendid_fk = 'admin' And 
+if ($cpage == 1) {
+    $cline = 0;
+} else {
+    $cline = ($cpage * $p_scale) - $p_scale;
+}
+
+$limit = $cline + $p_scale;
+
+if ($limit >= $total_bnum) {
+    $limit = $total_bnum;
+}
+
+$p_scale1 = $limit - $cline;
+
+$query2 = "select * from message_info
+	             where sendid_fk = 'admin' And
 			           send_del = 'N'
 		  	     order by mnum desc limit $cline,$p_scale1";
-	  $result2 = mysqli_query($connect, $query2);
-	  for($i=0; $rows2 = mysqli_fetch_array($result2); $i++){
-	   $bunho = $total_bnum - ($i + $cline) + 1;
-	   //$msg_char = shortenStr($rows2[message],30);
-	   $msg_char = cut_string_utf8($rows2['message'], 20, "..."); //UTF-8 처리
- ?>
+$result2 = mysqli_query($connect, $query2);
+for ($i = 0; $rows2 = mysqli_fetch_array($result2); $i++) {
+    $bunho = $total_bnum - ($i + $cline) + 1;
+    //$msg_char = shortenStr($rows2[message],30);
+    $msg_char = cut_string_utf8($rows2['message'], 20, "..."); //UTF-8 처리
+    ?>
           <tbody>
             <tr>
-              <td><input type="checkbox" name="mnum[]" value="<?=$rows2['mnum']?>"></td>
-              <td><?=$rows2['receiveid_fk']?>
+              <td><input type="checkbox" name="mnum[]" value="<?=$rows2['mnum'];?>"></td>
+              <td><?=$rows2['receiveid_fk'];?>
                 &nbsp; </td>
-              <td class="left"><a href="read_msg.php?mnum=<?=$rows2['mnum']?>&amp;gb=2">
-                <?=$msg_char?>
+              <td class="left"><a href="read_msg.php?mnum=<?=$rows2['mnum'];?>&amp;gb=2">
+                <?=$msg_char;?>
                 </a> </td>
-              <td><?=$a_re_chk[$rows2['receive_chk']]?></td>
-              <td><?=$rows2['send_reg']?></td>
+              <td><?=$a_re_chk[$rows2['receive_chk']];?></td>
+              <td><?=$rows2['send_reg'];?></td>
             </tr>
-            <?
-	 }  
-	 mysqli_free_result($result2);
-    ?>
+            <?php
+
+}
+mysqli_free_result($result2);
+?>
           </tbody>
         </table>
         <table summary="button">
           <tbody>
             <tr>
               <td width="27%"><div class="full"><a class="button" href="javascript:form_delete()" onclick="this.blur();"><span>삭제</span></a> </div></td>
-              <td><?
-		 $url = "sent_msg.php?gb=2"; 
-	  	 page_avg($totalpage,$cpage,$url); 
-		 ?>              </td>
+              <td><?php
+
+$url = "sent_msg.php?gb=2";
+page_avg($totalpage, $cpage, $url);
+?>              </td>
             </tr>
           </tbody>
         </table>

@@ -1,17 +1,14 @@
 <?php
 
-//관리자 인증 파일
-include "../../util/admin_auth.php";
-// 데이타베이스 연결정보 및 기타설정
-include "../../util/config.php";
-// 각종 유틸함수
-include "../../util/util.php";
-// MySQL 연결
-$connect=my_connect($host,$dbid,$dbpass,$dbname);
+include_once "../include/admin_auth.php";
+include_once "../../util/config.php";
+include_once "../../util/util.php";
+
+$connect = my_connect($host, $dbid, $dbpass, $dbname);
 
 // 카테고리값이 1이상이 아닐경우 1로..
-if(!$level){
-	$level = 1;
+if (!$level) {
+    $level = 1;
 }
 ?>
 <!DOCTYPE html>
@@ -36,8 +33,8 @@ if(!$level){
 <div id="wrapper">
   <!-- header -->
   <?php
-  include "../include/admin_top.php";
-  ?>
+include "../include/admin_top.php";
+?>
   <!-- header end -->
   <div id="bodyblock">
     <!-- contents -->
@@ -48,7 +45,7 @@ if(!$level){
         <li style="text-align:left">업체가 등록한 상품만 표시됩니다.</li>
         <li style="text-align:left">품절 시 전체재고란에 0을 입력하세요.</li>
         <li style="text-align:left">옵션은 각 옵션별 품절처리만 가능합니다. (품절: 0, 그 외 1)</li>
-        <li style="text-align:left">옵션품절에서 각 품절 여부는 '|'로 구분하세요. (예: 0|1|1|0)</li>      
+        <li style="text-align:left">옵션품절에서 각 품절 여부는 '|'로 구분하세요. (예: 0|1|1|0)</li>
       </ul>
       </fieldset>
       <table summary="view product list">
@@ -67,100 +64,106 @@ if(!$level){
         </thead>
         <tbody>
           <?php
-				if($mode =='search'){
- 					$search_keyword = " AND $key LIKE '%$key_value%' ";
-				}
+if ($mode == 'search') {
+    $search_keyword = " AND $key LIKE '%$key_value%' ";
+}
 
-				// 상품의 정보를 모두 가져옴
-				$query  = "SELECT * FROM products WHERE id<>'$_COOKIE[ROOT_ID]' $search_keyword ";
-				$result = mysqli_query($connect, $query);
-				
-				if($result) {
-					$total  = mysqli_num_rows($result);
-					mysqli_free_result($result);
-				}
-	
-   				$scale=15;
+// 상품의 정보를 모두 가져옴
+$query  = "SELECT * FROM products WHERE id<>'$_COOKIE[ROOT_ID]' $search_keyword ";
+$result = mysqli_query($connect, $query);
 
-   				if ($page == ''){
-       				$page=1;
-    			}	    
+if ($result) {
+    $total = mysqli_num_rows($result);
+    mysqli_free_result($result);
+}
 
-    			$cpage = intval($page);
-    			$totalpage = intval($total/$scale);
-    
-				if ($totalpage*$scale != $total)
-      				$totalpage = $totalpage + 1;
-        
-    			if ($cpage ==1) {
-	   				$cline = 0 ;
-    			} else {
-	   				$cline = ($cpage*$scale) - $scale ;
-    			} 
-        
-				$limit=$cline+$scale;
-        
-				if ($limit >= $total) 
-       				$limit=$total;
- 
-    			$scale1 = $limit - $cline;
+$scale = 15;
 
-  				$query1 = "SELECT * FROM products WHERE id<>'$_COOKIE[ROOT_ID]' $search_keyword 
+if ($page == '') {
+    $page = 1;
+}
+
+$cpage     = intval($page);
+$totalpage = intval($total / $scale);
+
+if ($totalpage * $scale != $total) {
+    $totalpage = $totalpage + 1;
+}
+
+if ($cpage == 1) {
+    $cline = 0;
+} else {
+    $cline = ($cpage * $scale) - $scale;
+}
+
+$limit = $cline + $scale;
+
+if ($limit >= $total) {
+    $limit = $total;
+}
+
+$scale1 = $limit - $cline;
+
+$query1 = "SELECT * FROM products WHERE id<>'$_COOKIE[ROOT_ID]' $search_keyword
 							    ORDER BY num DESC LIMIT $cline,$scale1";
-  				$result1 = mysqli_query($connect, $query1);
-				
-				if($result1) {
+$result1 = mysqli_query($connect, $query1);
 
-  				for($i=0; $row = mysqli_fetch_array($result1); $i++){
-					$list_num = $total - ($cline + $i);
-      
-        			if($i%2 == 1)
-                		echo "<tr class=\"odd\">\n";
-					else
-						echo "<tr>";
-			?>
-        <td><?=$list_num?></td>
-          <td><img src="<?=$row['s_image_name']?>" width="30" height="30" alt="small image" /></td>
-          <td class="left"><?=$row['name']?></td>
+if ($result1) {
+
+    for ($i = 0; $row = mysqli_fetch_array($result1); $i++) {
+        $list_num = $total - ($cline + $i);
+
+        if ($i % 2 == 1) {
+            echo "<tr class=\"odd\">\n";
+        } else {
+            echo "<tr>";
+        }
+
+        ?>
+        <td><?=$list_num;?></td>
+          <td><img src="<?=$row['s_image_name'];?>" width="30" height="30" alt="small image" /></td>
+          <td class="left"><?=$row['name'];?></td>
           <form name="s" method="post" action="change_stock.php">
-          <input type="hidden" name="num" value="<?=$row['num']?>" />
+          <input type="hidden" name="num" value="<?=$row['num'];?>" />
           <td><?php
-          		if($row['opt']) {	          
-		  			show_option($row);
-				?></td>
+if ($row['opt']) {
+            show_option($row);
+            ?></td>
           <td>
-            <input type="text" name="opt_stock[]" value="<?=$row['opt_stock']?>" />
+            <input type="text" name="opt_stock[]" value="<?=$row['opt_stock'];?>" />
             </td>
-          <td><input class="num" type="text" name="stock" value="<?=$row['stock']?>" size="5" /> 개</td>
-          <?php	
-			}else {
-			?>
+          <td><input class="num" type="text" name="stock" value="<?=$row['stock'];?>" size="5" /> 개</td>
+          <?php
+
+        } else {
+            ?>
           <td>N/A</td>
-            <td><input class="num" type="text" name="stock" value="<?=$row['stock']?>" size="5" />
+            <td><input class="num" type="text" name="stock" value="<?=$row['stock'];?>" size="5" />
               개</td>
             <?php
-            }
-			?>
+}
+        ?>
             <td><input type="submit" name="modify" id="modify" value="수정" />
             </td>
           </form>        </tr>
         <?php
 }
-mysqli_free_result($result1);
+    mysqli_free_result($result1);
 
-				}//if($result1)
+}
+; //if($result1)
 ?>
         <?php
-if($total == 0){
-?>
+if ($total == 0) {
+    ?>
         <tr>
           <td colspan="8"><p>등록된 상품이 없습니다.</p></td>
         </tr>
         <?php
-	}
+}
 ?>
         </tbody>
-        
+
       </table>
       <form action='sp_stock_list.php' name='f' method='post' >
         <tr bgcolor="#FFFFFF" align="center">
@@ -183,9 +186,9 @@ if($total == 0){
         <tbody>
           <tr bgcolor="#FFFFFF" align="center">
             <td><?php
-	  $url = "$PHP_SELF?mode=$mode&amp;key=$key&amp;key_value=$key_value"; 
-      page_avg($totalpage,$cpage,$url); 
-	?>
+$url = "$PHP_SELF?mode=$mode&amp;key=$key&amp;key_value=$key_value";
+page_avg($totalpage, $cpage, $url);
+?>
             </td>
           </tr>
         </tbody>

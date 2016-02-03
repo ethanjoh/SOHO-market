@@ -1,13 +1,10 @@
 <?php
 
-//관리자 인증 파일
-include "../util/admin_auth.php";
-// 데이타베이스 연결정보 및 기타설정
-include "../util/config.php";
-// 각종 유틸함수
-include "../util/util.php";
+include_once "../include/admin_auth.php";
+include_once "../util/config.php";
+include_once "../util/util.php";
 // MySQL 연결
-$connect=my_connect($host,$dbid,$dbpass,$dbname);
+$connect = my_connect($host, $dbid, $dbpass, $dbname);
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
@@ -31,13 +28,13 @@ $connect=my_connect($host,$dbid,$dbpass,$dbname);
 <div id="wrapper">
   <!-- header -->
   <?php
-  include "include/admin_top.php";
-  ?>
+include "include/admin_top.php";
+?>
   <!-- header end -->
-  
+
   <div id="bodyblock">
     <!-- contents -->
-    <div id="content"> 관리자 어드민 초기화면입니다. 
+    <div id="content"> 관리자 어드민 초기화면입니다.
     </div>
     <!-- contents end -->
   </div><!-- bodyblock end -->

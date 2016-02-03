@@ -1,13 +1,10 @@
 <?php
 
-//관리자 인증 파일
-include "../../util/admin_auth.php";
-// 데이타베이스 연결정보 및 기타설정
-include "../../util/config.php";
-// 각종 유틸함수
-include "../../util/util.php";
-// MySQL 연결
-$connect=my_connect($host,$dbid,$dbpass,$dbname);
+include_once "../include/admin_auth.php";
+include_once "../../util/config.php";
+include_once "../../util/util.php";
+
+$connect = my_connect($host, $dbid, $dbpass, $dbname);
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
@@ -41,15 +38,15 @@ $connect=my_connect($host,$dbid,$dbpass,$dbname);
 <div id="wrapper">
   <!-- header -->
   <?php
-  include "../include/admin_top.php";
-  ?>
+include "../include/admin_top.php";
+?>
   <!-- header end -->
   <div id="bodyblock">
     <!-- contents -->
     <div id="content">
       <?php
-$qry = "SELECT * FROM main_setup ";
-$res = mysqli_query($connect, $qry);
+$qry  = "SELECT * FROM main_setup ";
+$res  = mysqli_query($connect, $qry);
 $rows = mysqli_fetch_array($res);
 
 ?>
@@ -65,49 +62,58 @@ $rows = mysqli_fetch_array($res);
               <th width="16%" class="column1">메인 상단 로고</th>
               <td width="84%" class="member"><input type="file" name="logo_image" />
                 &nbsp;
-                <?= ($rows['logo_image'] == 'Y') ? "<img src=\"$rows[logo_image_name]\" width=\"150\" alt=\"[LOGO]\" />" : "[로고 이미지를 등록해 주세요.]"; ?>
+                <?=($rows['logo_image'] == 'Y') ? "<img src=\"$rows[logo_image_name]\" width=\"150\" alt=\"[LOGO]\" />" : "[로고 이미지를 등록해 주세요.]";?>
                 <p>이미지 사이즈: 200x50px 으로 등록해 주세요.</p></td>
             </tr>
             <tr class="odd">
               <th class="column1">신상품 타이틀바</th>
               <td class="member"><input type="file" name="new_image" />
                 &nbsp;
-                <?= ($rows['new_image'] == 'Y') ? "<img src=\"$rows[new_image_name]\" width=\"300\" alt=\"[신상품]\" />" : "[이미지를 등록해 주세요.]"; ?>
+                <?=($rows['new_image'] == 'Y') ? "<img src=\"$rows[new_image_name]\" width=\"300\" alt=\"[신상품]\" />" : "[이미지를 등록해 주세요.]";?>
                 <p>이미지 사이즈: 928x40px 으로 등록해 주세요.</p></td>
             </tr>
             <tr class="odd">
-              <th class="column1">신상품 전시</th> 
-              <td class="member"><input type="checkbox" name="show_new" value="Y" <?php if($rows['show_new'] =="Y") echo "checked=\"checked\"";?>  />
+              <th class="column1">신상품 전시</th>
+              <td class="member"><input type="checkbox" name="show_new" value="Y" <?php if ($rows['show_new'] == "Y") {
+    echo "checked=\"checked\"";
+}
+?>  />
                 메인에 보이기 / 보여줄 상품 갯수:
-                  <input type="text" class="num" name="new_num" size="2" value="<?=$rows['new_num']?>" /> 
+                  <input type="text" class="num" name="new_num" size="2" value="<?=$rows['new_num'];?>" />
                   개 (5개 단위)</td>
             </tr>
             <tr>
               <th class="column1">기획상품 타이틀바</th>
               <td class="member"><input type="file" name="special_image" />
                 &nbsp;
-                <?= ($rows['special_image'] == 'Y') ? "<img src=\"$rows[special_image_name]\" width=\"300\" alt=\"[기획상품]\" />" : "[이미지를 등록해 주세요.]"; ?>
+                <?=($rows['special_image'] == 'Y') ? "<img src=\"$rows[special_image_name]\" width=\"300\" alt=\"[기획상품]\" />" : "[이미지를 등록해 주세요.]";?>
                 <p>이미지 사이즈: 928x40px 으로 등록해 주세요.</p></td>
             </tr>
             <tr>
               <th class="column1">기획상품 전시</th>
-              <td class="member"><input type="checkbox" name="show_special" value="Y" <?php if($rows['show_special'] =="Y") echo "checked=\"checked\"";?>  />
+              <td class="member"><input type="checkbox" name="show_special" value="Y" <?php if ($rows['show_special'] == "Y") {
+    echo "checked=\"checked\"";
+}
+?>  />
                 메인에 보이기 / 보여줄 상품 갯수:
-                <input type="text" class="num" name="special_num" size="2" value="<?=$rows['special_num']?>" />
+                <input type="text" class="num" name="special_num" size="2" value="<?=$rows['special_num'];?>" />
                 개 (5개 단위)</td>
             </tr>
             <tr class="odd">
               <th class="column1">인기상품 타이틀바</th>
               <td class="member"><input type="file" name="best_image" />
                 &nbsp;
-                <?= ($rows['best_image'] == 'Y') ? "<img src=\"$rows[best_image_name]\" width=\"300\" alt=\"[인기상품]\" />" : "[이미지를 등록해 주세요.]"; ?>
+                <?=($rows['best_image'] == 'Y') ? "<img src=\"$rows[best_image_name]\" width=\"300\" alt=\"[인기상품]\" />" : "[이미지를 등록해 주세요.]";?>
                 <p>이미지 사이즈: 928x40px 으로 등록해 주세요.</p></td>
             </tr>
             <tr class="odd">
               <th class="column1">인기상품 전시</th>
-              <td class="member"><input type="checkbox" name="show_best" value="Y" <?php if($rows['show_best'] =="Y") echo "checked=\"checked\"";?>  />
+              <td class="member"><input type="checkbox" name="show_best" value="Y" <?php if ($rows['show_best'] == "Y") {
+    echo "checked=\"checked\"";
+}
+?>  />
                 메인에 보이기 / 보여줄 상품 갯수:
-                <input type="text" class="num" name="best_num" size="2" value="<?=$rows['best_num']?>" />
+                <input type="text" class="num" name="best_num" size="2" value="<?=$rows['best_num'];?>" />
                 개 (5개 단위)</td>
             </tr>
           </tbody>

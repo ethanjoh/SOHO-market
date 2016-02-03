@@ -1,23 +1,23 @@
 $(function() {
- 
+
     $("#key_value").autocomplete({
         source: "autocomplete.php",
         minLength: 2,
         select: function(event, ui) {
             var url = ui.item.id;
-            if(url != '#') {
+            if (url != '#') {
                 location.href = 'top_order_list.php?mode=search&key_value=' + url;
             }
         },
- 
+
         html: true, // optional (jquery.ui.autocomplete.html.js required)
- 
-      // optional (if other layers overlap autocomplete list)
+
+        // optional (if other layers overlap autocomplete list)
         open: function(event, ui) {
             $(".ui-autocomplete").css("z-index", 1000);
         }
     });
- 
+
 });
 
 // $(function() {
