@@ -6,11 +6,14 @@ include_once "../../util/util.php";
 
 $connect = my_connect($host, $dbid, $dbpass, $dbname);
 
-$mode      = set_var($_POST['mode']);
-$oid       = set_var($_GET['oid']);
-$key       = set_var($_GET['key']);
-$key_value = set_var($_GET['key_value']);
-$page      = set_var($_GET['page']);
+$mode        = set_var($_POST['mode']);
+$oid         = set_var($_POST['oid']);
+$key         = set_var($_POST['key']);
+$key_value   = set_var($_POST['key_value']);
+$page        = set_var($_POST['page']);
+$track_no    = set_var($_POST['track_no']);
+$senddate    = set_var($_POST['senddate']);
+$last_amount = set_var($_POST['last_amount']);
 
 //택배비 변경
 if ($mode == 'd1') {

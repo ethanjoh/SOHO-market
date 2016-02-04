@@ -5,6 +5,14 @@ custom style
     margin-top: 10px;
 }
 
+.margin-top-30 {
+    margin-top: 30px;
+}
+
+.margin-bottom-30 {
+    margin-bottom: 30px;
+}
+
 .register-intro {
     text-align: center;
     margin: 0 auto;
@@ -78,4 +86,22 @@ custom style
 
 .cutout {
 	color = red;
+}
+
+.buyer-info-padding {
+    padding: 5px 15px;
+}
+
+.bg-danger{
+    background-color: #E7543D;
+    color: #fff;
+    padding: 10px;
+}
+
+.order-detail tr, .order-detail th{
+    text-align: center;
+}
+
+.date-input {
+    margin-right: 20px;
 }

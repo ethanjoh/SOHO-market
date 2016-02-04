@@ -232,7 +232,7 @@ if ($mode == "search") {
 						            <th>업체명</th>
 						            <!-- <th>거래형태</th> -->
 						            <th>할인율</th>
-						            <th>주문액<br />(NET)</th>
+						            <th>주문액</th>
 						            <!-- <th>택배비</th> -->
 						            <th>처리</br>(발송일)</th>
 						            <th>취소/삭제</th>
@@ -336,7 +336,7 @@ if ($row['recipient_name']) {
 					            <td><?=$trow['dc_rate'];?> %</td>
 					            <td>-</td>
 					            <td>-</td>
-					            <td><a type="button" class="btn btn-danger" href="or_delete.php?mode=d&amp;oid=<?=$row['num'];?>&amp;page=<?=$page;?>&amp;pay_type=<?=$row['pay_type'];?>" onclick="return confirm('취소된 주문입니다.\n삭제하시겠습니까?')"><i class="fa fa-trash-o"></i></a></td>
+					            <td><a type="button" class="btn btn-danger" href="or_delete.php?mode=d&amp;oid=<?=$row['num'];?>&amp;page=<?=$page;?>" onclick="return confirm('취소된 주문입니다.\n삭제하시겠습니까?')"><i class="fa fa-trash-o"></i></a></td>
 					            <?php
 } else {
             if ($row['status'] == '1') {
@@ -433,10 +433,11 @@ if ($row['delivery_type'] == 'L' || $row['delivery_type'] == 'L1') {
 								-->
 
 					            <td><?=$status_now;?></td>
-					            <td><a type="button" class="btn btn-default" href="or_delete.php?oid=<?=$row['num'];?>&amp;page=<?=$page;?>&amp;pay_type=<?=$row['payment_type'];?>" onclick="return confirm('정말 주문을 취소하시겠습니까?')"><i class="fa fa-times"></i></a></td>
+					            <td><a type="button" class="btn btn-default" href="or_delete.php?oid=<?=$row['num'];?>&amp;page=<?=$page;?>" onclick="return confirm('정말 주문을 취소하시겠습니까?')"><i class="fa fa-times"></i></a></td>
 					          </tr>
 					          <?php
-$o_total += $row['amount'];
+
+            $o_total += $row['amount'];
             $total += $row['last_amount'];
         } // else end
     }

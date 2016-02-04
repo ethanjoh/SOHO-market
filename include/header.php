@@ -16,11 +16,11 @@ if (!$p_sid) {
 $p_id   = set_var($_SESSION['p_id']);
 $p_name = set_var($_SESSION['p_name']);
 
-if (isset($p_id)) {
-    $mqry = "SELECT * FROM member WHERE id = '$p_id' ";
-    $mres = mysqli_query($connect, $mqry);
-    $mrow = mysqli_fetch_array($mres);
-}
+// if (isset($p_id)) {
+//     $mqry = "SELECT * FROM member WHERE id = '$p_id' ";
+//     $mres = mysqli_query($connect, $mqry);
+//     $mrow = mysqli_fetch_array($mres);
+// }
 
 $info_query = "SELECT * FROM admin_setup";
 $info_res   = mysqli_query($connect, $info_query);
@@ -31,9 +31,9 @@ $uri = $_SERVER["REQUEST_URI"];
 $uri = urlencode($uri);
 
 //메인설정 정보
-$main_query = "SELECT * FROM main_setup";
-$main_res   = mysqli_query($connect, $main_query);
-$main       = mysqli_fetch_array($main_res);
+// $main_query = "SELECT * FROM main_setup";
+// $main_res   = mysqli_query($connect, $main_query);
+// $main       = mysqli_fetch_array($main_res);
 ?>
 
 <!doctype html>
@@ -54,6 +54,9 @@ $main       = mysqli_fetch_array($main_res);
 		<!-- Bootstrap CSS
 		============================================ -->
         <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <!-- Jquery UI CSS
+        ============================================ -->
+        <link rel="stylesheet" href="/css/jquery-ui.min.css" >
 		<!-- Font awesome CSS
 		============================================ -->
         <link rel="stylesheet" href="/css/font-awesome.min.css">

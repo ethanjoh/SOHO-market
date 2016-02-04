@@ -1,5 +1,5 @@
 <?php
-include 'config.php';
+include_once 'config.php';
 
 //메인에 팝업공지 띄우기
 function show_popup()
@@ -457,7 +457,7 @@ HEREDOC;
                                         <div class="home" id="right">
                                             <ul>
                                                 <li><a href="/shop/order-list.php"><i class="fa fa-list-alt"></i> 주문내역</a></li>
-                                                <li><a href=""><i class="fa fa-bar-chart"></i> 통계보기</a></li>
+                                                <li><a href="/shop/order-stat-list.php"><i class="fa fa-bar-chart"></i> 통계보기</a></li>
                                                 <li><a href="/member/register-form.php?mode=edit"><i class="fa fa-wrench"></i> 정보수정</a></li>
                                             </ul>
                                         </div>
@@ -1198,13 +1198,56 @@ function calc_delivery_fee($total)
     $result = mysqli_query($connect, $query);
     $row    = mysqli_fetch_array($result);
 
-    if ((int) $total < $row['min_sum']) {
+    if ($row['min_sum'] > $total) {
         $cost = $row['d_charge'];
     } else {
         $cost = 0;
     }
 
     return $cost;
+}
+
+/**
+ * [show_logistics 택배사 보여주기]
+ * @return [type] [description]
+ */
+function show_logistics()
+{
+    global $host, $dbid, $dbpass, $dbname;
+    $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
+
+    $log_sql    = "SELECT * FROM misc_setup";
+    $log_result = mysqli_query($connect, $log_sql);
+    $log_row    = mysqli_fetch_array($log_result);
+
+    $logistics = $log_row['logistics'];
+
+    return $logistics;
+}
+
+/**
+ * [show_track_no 운송장번호 보여주기]
+ * @param  [type] $oid [주문번호]
+ * @return [type]      [운송장번호]
+ */
+function show_track_no($oid)
+{
+    global $host, $dbid, $dbpass, $dbname;
+    $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
+
+    $sql = "SELECT * FROM mall_order WHERE num = '$oid' ";
+    $res = mysqli_query($connect, $sql);
+    $row = mysqli_fetch_array($res);
+
+    $t_no_arr = explode(",", $row['track_no']);
+
+    for ($i = 0; $i < count($t_no_arr); $i++) {
+        //운송장번호 '-' 제거
+        $t_no     = preg_replace("/-/", "", $t_no_arr[$i]);
+        $track_no = '<a href="#" onClick="TrackInfo(' . $t_no . ');">' . $t_no . '</a>';
+    }
+
+    return $track_no;
 }
 
 /**

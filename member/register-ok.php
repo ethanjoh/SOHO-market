@@ -39,6 +39,16 @@ $d_phone      = set_var($_POST['d_phone']);
 $d_fax        = set_var($_POST['d_fax']);
 // $seller         = set_var($_POST['seller']);
 
+// 관리자 정보 가져오기
+$qry = "SELECT * FROM admin_setup";
+$res = mysqli_query($connect, $qry);
+$row = mysqli_fetch_array($res);
+
+$op_company = $row['company_name'];
+$op_email   = $row['email'];
+$op_tel     = $row['tel'];
+$op_fax     = $row['fax'];
+
 if ("edit" == $mode) {
     // 이름과 아이디에 해당되는 세션이 존재하는지 확인
     if (!isset($sid) || !isset($sname)) {
@@ -56,64 +66,9 @@ if ("edit" == $mode) {
         show_msg($msg, $url);
 
     } else {
-        //비밀번호 수정만
-        // if ($changePW == "Y") {
-        //     $passwd  = sha1($new_passwd2);
-        //     $query3  = "UPDATE member SET passwd = '$passwd' WHERE id='$sid' ";
-        //     $result3 = mysqli_query($connect, $query3);
 
-        //     // 게시판의 글들에 대한 비밀번호도 모두 수정한다.
-        //     $query2  = "UPDATE board SET passwd='$passwd' WHERE id='$sid' ";
-        //     $result2 = mysqli_query($connect, $query2);
-
-        //     // 저장과정에서 오류가 발생하면
-        //     if (!$result2) {
-        //         err_msg('게시판 비밀번호 수정 중 DB 오류가 발생했습니다.');
-        //     } else if (!$result3) {
-        //         err_msg('비밀번호 변경 중 DB 오류가 발생했습니다.');
-        //     }
-
-        //     // 세션을 다시 부여합니다.
-        //     session_register("p_name");
-        //     session_register("p_email");
-
-        //     $p_name  = $company_name;
-        //     $p_email = $md_email;
-
-        //     $sender       = "=?EUC-KR?B?" . base64_encode(iconv("UTF-8", "EUC-KR", "신수상사")) . "?=\r\n";
-        //     $sender_email = "griptech@hanmail.net";
-
-        //     $subject   = $company_name . "님, 신수상사 사이트 비밀번호 변경안내";
-        //     $subject_c = "=?EUC-KR?B?" . base64_encode(iconv("UTF-8", "EUC-KR", $subject)) . "?=\r\n";
-        //     $subject_c = addslashes($subject_c);
-
-        //     $contents = "<p>골프그립 전문기업 신수상사를 이용해 주셔서 고맙습니다.<br />";
-        //     $contents .= "당사 사이트에서 비밀번호 변경이 되어 안내드립니다.</p>";
-        //     $contents .= "<p>비밀번호 변경을 하지 않았다면 보안을 위해 당사로 연락부탁드립니다.<br/>";
-        //     $contents .= "이용해 주셔서 고맙습니다.</p>";
-        //     $contents = addslashes($contents);
-
-        //     $headers = "Return-Path: $sender_email\r\n";
-        //     $headers .= "From: $sender <$sender_email>\r\n";
-
-        //     $boundary = "----" . uniqid("part");
-
-        //     $headers .= "Content-Type: text/html; charset=utf-8\r\n";
-        //     $message = stripslashes($contents);
-
-        //     $to = $md_email;
-
-        //     mail($to, $subject_c, $message, $headers);
-
-        //     $msg = "비밀번호를 정상적으로 수정했습니다. 다시 로그인해주세요.";
-        //     $url = "http://" . $_SERVER['SERVER_NAME'] . "/index.php";
-
-        //     show_msg($msg, $url);
-
-        // } else {
-
-        $o_zipcode = $o_zipcode1 . "-" . $o_zipcode2;
-        $d_zipcode = $d_zipcode1 . "-" . $d_zipcode2;
+        $o_zipcode = $o_zipcode1;
+        $d_zipcode = $d_zipcode1;
 
         $md_email = addslashes($md_email);
         $o_addr1  = addslashes($o_addr1);
@@ -158,8 +113,6 @@ if ("edit" == $mode) {
 					  WHERE id='$sid' ";
         $result = mysqli_query($connect, $query);
 
-        // } // changePw end
-
         if (!$result) {
             err_msg('DB 오류가 발생했습니다.');
         } else {
@@ -182,8 +135,8 @@ if ("edit" == $mode) {
     // $d_addr1  = addslashes($d_addr1);
     // $d_addr2  = addslashes($d_addr2);
 
-    $o_zipcode = $o_zipcode1 . "-" . $o_zipcode2;
-    $d_zipcode = $d_zipcode1 . "-" . $d_zipcode2;
+    $o_zipcode = $o_zipcode1;
+    $d_zipcode = $d_zipcode1;
 
     $passwd = sha1($passwd);
 
@@ -263,28 +216,25 @@ if ("edit" == $mode) {
 
     $result = mysqli_query($connect, $query);
 
-    // $query2 = "INSERT INTO message_info (sendid_fk, receiveid_fk, message, send_reg) VALUES ('admin', '$id', '가입을 환영합니다. 등록하신 이메일로 메일을 보냈으니 확인부탁드립니다.', now() )";
-    // $result2 = mysqli_query($connect, $query2);
-
     // 저장과정에서 오류가 발생하면
     if (!$result) {
         err_msg('데이터베이스 오류가 발생하였습니다.\n 관리자에게 문의하시기 바랍니다.');
     } else {
         //가입메일 보내기
-        $sender       = "=?EUC-KR?B?" . base64_encode(iconv("UTF-8", "EUC-KR", "(주)에스메딕스 솔루션")) . "?=\r\n";
-        $sender_email = "webmaster@smedics.co.kr";
+        $sender       = "=?EUC-KR?B?" . base64_encode(iconv("UTF-8", "EUC-KR", "" . $op_company . "")) . "?=\r\n";
+        $sender_email = $op_email;
 
         $subject   = $company_name . "님, 가입을 환영합니다. (이용안내 필독)";
         $subject_c = "=?EUC-KR?B?" . base64_encode(iconv("UTF-8", "EUC-KR", $subject)) . "?=\r\n";
         $subject_c = addslashes($subject_c);
 
-        $contents = "<p><a href=\"http://www." . $_SERVER['SERVER_NAME'] . "\">의료기기 전문기업 (주)에스메딕스 솔루션</a>에 가입하신 것을 환영합니다.<br />";
+        $contents = "<p><a href=\"http://www." . $_SERVER['SERVER_NAME'] . "\">" . $op_company . "</a>에 가입하신 것을 환영합니다.<br />";
         $contents .= "아래 이용안내를 필히 확인하시고 이용부탁드립니다.</p>";
         $contents .= "<p>사용하시는 이메일 계정에서 수신거부 등으로 공지메일 등이 반송될 경우 별도통지없이 회원탈퇴처리될 수 있습니다.<br />";
         $contents .= "담당자와 연락이 닿지 않는 경우 사용정지될 수 있으니 연락가능한 전화번호를 필히 기재하시기 바랍니다.<br />";
-        $contents .= "회원가입 후 사업자등록증 사본을 팩스(02-3437-8890)로 보내주시기 바랍니다.<br />";
+        $contents .= "기존 거래업체가 아닌 신규 회원가입업체께서는 사업자등록증 사본을 팩스(" . $op_fax . ")로 보내주시기 바랍니다.<br />";
         $contents .= " <p><br />";
-        $contents .= " <p>기타 문의사항은 [이용안내] 게시판에서 먼저 확인해 주시고, 02-3437-8891 또는 1:1 문의게시판을 이용해주시기 바랍니다.<br>";
+        $contents .= " <p>기타 문의사항은 [이용안내] 게시판에서 먼저 확인해 주시고, " . $op_tel . " 또는 1:1 문의게시판을 이용해주시기 바랍니다.<br>";
         $contents .= " 이용해 주셔서 고맙습니다.</p>";
         $contents = addslashes($contents);
 

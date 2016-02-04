@@ -7,33 +7,6 @@ session_start();
 
 // $lgd_oid = $LGD_OID;
 
-//purchase.php에서 넘어온 값들
-// $products_num    = set_var($_POST['products_fk']);
-// $products_name  = set_var($_POST['products_name']);
-// $products_kind  = set_var($_POST['products_kind']);
-// $products_count = set_var($_POST['products_count']);
-// $products_price = set_var($_POST['products_price']);
-// $products_point = set_var($_POST['products_point']);
-// $products_stock = set_var($_POST['products_stock']);
-//$products_opt_stock = set_var($_POST['products_opt_stock']);
-
-//구매자 정보
-// $buyer_zipcode   = set_var($_POST['buyer_zipcode']);
-// $buyer_address01 = set_var($_POST['buyer_address01']);
-// $buyer_address02 = set_var($_POST['buyer_address02']);
-// $buyer_phone     = set_var($_POST['buyer_phone']);
-// $buyer_hphone    = set_var($_POST['buyer_hphone']);
-// $sms             = set_var($_POST['sms']);
-
-//$deposit_year = set_var($_POST['deposit_year']);
-//$deposit_month = set_var($_POST['deposit_month']);
-//$deposit_day = set_var($_POST['deposit_day']);
-// $company_name = set_var($_POST['company_name']); //입금자명, 별도로 입력하지 않으면 업체명
-// $buyer_name   = set_var($_POST['buyer_name']);
-// $deposit_date = set_var($_POST['deposit_date']);
-
-// $bank_name     = set_var($_POST['bank_name']);
-// $delivery         = set_var($_POST['delivery_type']);
 $memo_to_delivery = set_var($_POST['memo_to_delivery']);
 $memo_to_admin    = set_var($_POST['memo_to_admin']);
 
@@ -96,28 +69,7 @@ if ("option1" == $check_diff_addr) {
 
 $memo_to_delivery = addslashes($memo_to_delivery);
 $memo_to_admin    = addslashes($memo_to_admin);
-$pay_code         = '3'; //입금 확인 전
-
-// if ($seller == "3") {
-//     $deposit_date = "";
-// } else {
-//     //$deposit_date = $deposit_year."-".$deposit_month."-".$deposit_day;
-//     $deposit_date = $deposit_date;
-// }
-
-//무통장일 경우 초기값를 입금확인전으로
-// $pay_code = '3';
-
-// $pay_name = "무통장 입금<br/>\n";
-// $pay_name .= "- 입금은행명 : $bank_name<br/>\n";
-// $pay_name .= "- 입금자명 : $company_name<br/>\n";
-// $pay_name .= "- 입금예정일 : $deposit_date\n";
-
-//JOIN문을 사용해 장바구니와 제품정보에서 데이터를 가져옴
-// 카테고리와 등록 순서로 정렬
-$query  = "SELECT * FROM products p, products_cart c WHERE c.user_id='$p_id' AND p.num=c.product_code";
-$result = mysqli_query($connect, $query);
-// $total_count = mysqli_num_rows($result);
+$status           = '3'; //입금 확인 전
 
 $products_num   = array();
 $products_name  = array();
@@ -126,6 +78,11 @@ $products_count = array();
 $products_kind  = array();
 $products_stock = array();
 $trans_cost     = null;
+
+//JOIN문을 사용해 장바구니와 제품정보에서 데이터를 가져옴
+// 카테고리와 등록 순서로 정렬
+$query  = "SELECT * FROM products p, products_cart c WHERE c.user_id='$p_id' AND p.num=c.product_code";
+$result = mysqli_query($connect, $query);
 
 if ($result) {
 
@@ -194,19 +151,19 @@ for ($i = 0; $i < sizeof($products_count); $i++) {
 
 $query = "INSERT INTO mall_order(orderid,goods_fk,goods_price, mod_price,
 								goods_name,goods_kind,goods_count,mod_count,
-								user_id, volume,trans_cost,	createdate,
+								user_id, amount, volume, trans_cost, createdate,
 								buyer_name,buyer_zipcode,buyer_address,buyer_phone,
 								buyer_hphone,buyer_email,
 								recipient_name,recipient_zipcode,recipient_address,
-								recipient_phone,recipient_hphone,
+								recipient_phone,recipient_hphone,status,
 								delivery_type, memo_to_delivery, memo_to_admin )
 		 VALUES ('$trade_code','$temp_code','$temp_price', '$temp_price',
 				'$temp_name','$temp_kind', '$temp_count', '$temp_count',
-				'$user_id', '$temp_count','$trans_cost', now(),
+				'$user_id', '$tot_money', '$temp_count','$trans_cost', now(),
 				'$buyer_name','$buyer_zipcode', '$buyer_address', '$buyer_phone',
 				'$buyer_hphone', '$buyer_email',
 				'$recipient_name', '$recipient_zipcode','$recipient_address',
-				'$recipient_phone','$recipient_hphone',
+				'$recipient_phone','$recipient_hphone', '$status',
 				'$delivery_type', '$memo_to_delivery', '$memo_to_admin')";
 
 $result = mysqli_query($connect, $query);

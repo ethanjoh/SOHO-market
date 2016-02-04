@@ -1,10 +1,19 @@
 <?php include_once '../include/header.php';?>
 
+    <!-- HOME -->
+    <div class="container">
+        <div class="row text-center">
+            <h1>주문 내역</h1>
+        </div>
+    </div>
+    <!-- /.home -->
+
     <!-- content -->
     <div class="content">
 
         <!-- CONTAINER: order list -->
         <div class="container">
+
             <?php
 $oid  = set_var($_GET['oid']);
 $page = set_var($_GET['page']);
@@ -65,25 +74,34 @@ $t_count    = 0;
 $mt_count   = 0;
 $pay_status = '';
 
-$order_detail = '<div class="panel panel-success margin-top-10">';
-$order_detail .= '  <div class="panel-heading">주문내역</div>';
-$order_detail .= '    <div class="panel-body">';
-$order_detail .= '      <div class="table-responsive">';
-$order_detail .= '          <table class="table">';
-$order_detail .= '            <thead>';
-$order_detail .= '              <tr>';
-$order_detail .= '                <th>이미지</th>';
-$order_detail .= '                <th>상품명</th>';
-$order_detail .= '                <th>옵션</th>';
-$order_detail .= '                <th>주문수량</th>';
-$order_detail .= '                <th>출고수량</th>';
-$order_detail .= '                <th>공급가</th>';
-$order_detail .= '                <th>변경공급가</th>';
-$order_detail .= '                <th>공급가합</th>';
-$order_detail .= '             </tr>';
-$order_detail .= '           </thead>';
-$order_detail .= '           <tbody>';
+?>
 
+                <div class="row margin-top-30 margin-bottom-30">
+                    <ul>
+                      <li><i class="fa fa-info-circle"></i> 주문하신 상세 내역을 조회할 수 있습니다.</li>
+                    </ul>
+                </div>
+
+                <div class="panel panel-success margin-top-10">
+                    <div class="panel-heading">주문 상세내역</div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table order-detail">
+                                <thead>
+                                    <tr>
+                                        <th>이미지</th>
+                                        <th>상품명</th>
+                                        <th>옵  션</th>
+                                        <th>주문수량</th>
+                                        <!-- <th>출고수량</th> -->
+                                        <th>공 급 가</th>
+                                        <!-- <th>변경공급가</th> -->
+                                        <th>소    계</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+<?php
 //물건 정보를 불러옵니다.
 for ($i = 0; $i < sizeof($a_goods_fk); $i++) {
     $pro_sql    = "SELECT * FROM products WHERE num='$a_goods_fk[$i]'";
@@ -116,137 +134,97 @@ for ($i = 0; $i < sizeof($a_goods_fk); $i++) {
             }
         } //end of for loop
 
-    } //end of if clause
-
-    $order_detail .= "        <tr>\n";
-    $order_detail .= "          <td><img src=\"" . $img_char . "\" /></td>\n";
-    $order_detail .= "          <td>" . show_icon($pro_row) . stripslashes($goods_name) . "</td>\n";
-    $order_detail .= "          <td>\n";
-
-    if ($option[$i]) {
-        $order_detail .= $option[$i];
     }
+    ; //end of if clause
 
-    $order_detail .= "          </td>\n";
-    $order_detail .= "          <td>" . $org_volume[$i] . "</td>\n";
-    $order_detail .= "          <td>" . $mod_volume[$i] . "</td>\n";
+    ?>
 
-    if ($pro_row['fixed_price']) {
-        $order_detail .= "        <td><img src=\"../images/lock.png\" alt=\"고정공급가\">" . number_format($org_price[$i]) . "</td>\n";
-
-    } else {
-        $order_detail .= "        <td>" . number_format($org_price[$i]) . "</td>\n";
+                                <tr>
+                                    <td><a href="detail.php?pnum=<?php echo $pro_row['num']; ?>" target="_blank"><img src="<?php echo $img_char; ?>" /></a></td>
+                                    <td><?php echo show_icon($pro_row); ?> <a href="detail.php?pnum=<?php echo $pro_row['num']; ?>" target="_blank"><?php echo stripslashes($goods_name); ?></a></td>
+                                    <td>
+<?php
+if ($option[$i]) {
+        echo $option[$i];
     }
-
-    $order_detail .= "          <td>" . number_format($mod_price[$i]) . "</td>\n";
-
-    $sub_amount = (int) $mod_volume[$i] * (int) $mod_price[$i];
-    $sub_amount = number_format($sub_amount);
-
-    $order_detail .= "          <td>" . $sub_amount . "</td>\n";
-    $order_detail .= "        </tr>\n";
+    ?>
+                                    </td>
+                                    <td><?php echo $org_volume[$i]; ?></td>
+                                    <!-- <td><?php echo $mod_volume[$i]; ?></td> -->
+<?php
+if ($pro_row['fixed_price']) {
+        ?>
+                                    <td><i class="fa fa-lock"></i><?php echo number_format($org_price[$i]); ?></td>
+<?php
+} else {
+        ?>
+                                    <td><?php echo number_format($org_price[$i]); ?></td>
+<?php
+}
+    ?>
+                                    <!-- <td><?php echo number_format($mod_price[$i]); ?></td> -->
+<?php
+$sub_amount = (int) $mod_volume[$i] * (int) $mod_price[$i];
+    ?>
+                                    <td><?php echo number_format($sub_amount); ?></td>
+                                </tr>
+<?php
 
     $tot_amount = $tot_amount + ((int) $mod_price[$i] * (int) $mod_volume[$i]);
     $org_amount = $org_amount + ((int) $org_price[$i] * (int) $org_volume[$i]);
     $t_count    = $t_count + (int) $org_volume[$i];
     $mt_count   = $mt_count + (int) $mod_volume[$i];
+} // ./ for ($i = 0; $i < sizeof($a_goods_fk); $i++)
 
-}
+$last_cost = $tot_amount;
 
-$trans_cost = trans_cal($tot_amount);
-$last_cost  = $tot_amount + $trans_cost;
+?>
+                                <tr>
+                                    <td colspan="3">총 수량 :</td>
+                                    <td><?php echo $t_count; ?> 개</td>
+                                    <td></td>
+                                    <td colspan="2"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">택배비 :</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td colspan="2"><i class="fa fa-plus-circle"></i> <?php echo show_delivery_fee($last_cost); ?></td>
 
-if ($trans_cost > 0) {
-    $amount_o            = $tot_amount + $trans_cost;
-    $amount_order_detail = " ( $tot_amount 원 + $trans_cost 원 ) ";
-} else {
-    $amount_o = $tot_amount;
-}
-
-//$tot_amount = number_format($tot_amount);
-$order_detail .= "          <tr>\n";
-$order_detail .= "            <td colspan=\"3\"> 추가금액 :</td>\n";
-$order_detail .= "            <td colspan=\"5\"></td>\n";
-$order_detail .= "            <td>\n";
-
-if ($row['a_charge'] != 0) {
-    $order_detail .= "+ " . number_format($row['a_charge']);
-}
-
-$order_detail .= "            </td>\n";
-$order_detail .= "          </tr>\n";
-
-$last_cost2 = $last_cost + $row['a_charge'];
-
-$order_detail .= "          <tr>\n";
-$order_detail .= "            <td colspan=\"3\"><h4>합계 : </h4></td>\n";
-$order_detail .= "            <td>" . $t_count . " 개</td>\n";
-$order_detail .= "            <td>" . $mt_count . " 개</td>\n";
-
-// get delivery fee info.
-$dqry = "SELECT * FROM misc_setup ";
-$dres = mysqli_query($connect, $dqry);
-$drow = mysqli_fetch_array($dres);
-
-$t_str = '';
-
-if ($tot_amount >= $drow['min_sum']) {
-    $t_str .= "<strong>" . number_format($last_cost2) . "&nbsp;원 (VAT 포함)<br/>(배송비 무료)</strong>";
-} else {
-    $t_str .= "<strong>" . number_format($last_cost2) . "&nbsp;원 (VAT 포함)<br/>(배송비: 착불)</strong>";
-}
-
-$order_detail .= "              <td></td>\n";
-$order_detail .= "              <td></td>\n";
-$order_detail .= "              <td colspan=\"2\"><h4>" . $t_str . "</h4></td>\n";
-$order_detail .= "            </tr>\n";
-$order_detail .= "          </tbody>\n";
-$order_detail .= "        </table>\n";
-$order_detail .= "      </div>\n";
-$order_detail .= "    </div> <!-- end of table-resposive -->\n";
-$order_detail .= "</div>\n";
-
+                                </tr>
+                                <tr>
+                                    <td colspan="3"><h4>총 합 : </h4></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td colspan="2"><h4><?php echo number_format($last_cost); ?></h4>(VAT 포함)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div> <!-- end of table-resposive -->
+            </div>
+<?php
 if ($row['payment_type'] == 1) {$payment_type = "무통장 입금";}
 if ($row['payment_type'] == 2) {$payment_type = "신용카드";}
 if ($row['payment_type'] == 3) {$payment_type = "실시간 계좌이체";}
 
-//택배사 정보
-$log_sql    = "SELECT * FROM misc_setup";
-$log_result = mysqli_query($connect, $log_sql);
-$log_row    = mysqli_fetch_array($log_result);
-
-//운송장번호 '-' 제거
-// $tracking_no =  preg_replace("/-/","",$row['track_no']);
-
-$a_status['3'] = "<i class=\"fa fa-pause\"></i>상품을 준비 중입니다.";
-$a_status['5'] = "<i class=\"fa fa-check\"></i>주문확인 후 포장 중입니다.";
-$a_status['7'] = "<i class=\"fa fa-flag-checkered\"></i>포장완료 후 발송 준비 중입니다.";
-$a_status['8'] = "<i class=\"fa fa-check-square-o\"></i> 상품을 발송했습니다. (운송장 번호: " . $log_row['logistics'] . " 택배 ";
-$t_no_arr      = explode(",", $row['track_no']);
-
-for ($i = 0; $i < count($t_no_arr); $i++) {
-    //운송장번호 '-' 제거
-    $t_no = preg_replace("/-/", "", $t_no_arr[$i]);
-    $a_status['8'] .= "<a href=\"#\" onClick=\"javascript:TrackInfo(" . $t_no . ");\">" . $t_no . " </a> ";
-}
-
-$a_status['8'] .= ")";
+$a_status['3'] = '<i class="fa fa-pause"></i> 상품을 준비 중입니다.';
+$a_status['5'] = '<i class="fa fa-check"></i> 주문확인 후 포장 중입니다.';
+$a_status['7'] = '<i class="fa fa-flag-checkered"></i> 포장완료 후 발송 준비 중입니다.';
+$a_status['8'] = '<i class="fa fa-check-square-o"></i> 상품을 발송했습니다. (운송장 번호: ' . show_logistics() . ' ' . show_track_no($oid) . ' )';
 
 ?>
-
-        <?php echo $order_detail; ?>
-
             <div class="panel panel-info">
               <div class="panel-heading">주문정보</div>
                 <div class="panel-body">
 
                     <div class="row">
-                        <div class="col-sm-3">주문번호</div>
-                        <div class="col-sm-9"><?php echo $row['orderid']; ?> (주문일 : <?php echo $row['createdate']; ?> )</div>
+                        <div class="col-sm-3 buyer-info-padding">주문번호</div>
+                        <div class="col-sm-9 buyer-info-padding"><?php echo $row['orderid']; ?> (주문일 : <?php echo $row['createdate']; ?> )</div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-3">구매자( <?php echo $row['user_id']; ?> )</div>
-                        <div class="col-sm-9">
+                        <div class="col-sm-3 buyer-info-padding">구매자( <?php echo $row['user_id']; ?> )</div>
+                        <div class="col-sm-9 buyer-info-padding">
                             <?php echo $row['buyer_name']; ?><br />
                             <?php echo $row['buyer_zipcode']; ?> <br />
                             <?php echo $row['buyer_address']; ?><br />
@@ -255,8 +233,8 @@ $a_status['8'] .= ")";
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-3">수령자</div>
-                        <div class="col-sm-9">
+                        <div class="col-sm-3 buyer-info-padding">수령자</div>
+                        <div class="col-sm-9 buyer-info-padding">
                             <?php echo $row['recipient_name']; ?><br />
                             <?php echo $row['recipient_zipcode']; ?><br />
                             <?php echo $row['recipient_address']; ?><br />
@@ -264,8 +242,8 @@ $a_status['8'] .= ")";
                             <?php echo $row['recipient_hphone']; ?></div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-3">결제방법</div>
-                        <div class="col-sm-9">
+                        <div class="col-sm-3 buyer-info-padding">결제방법</div>
+                        <div class="col-sm-9 buyer-info-padding">
                             <?php echo $pay_status; ?>
                             <?php
 //무통장 입금시만 출력
@@ -276,30 +254,29 @@ if ($row['payment_type'] == '3') {
                                   (입금자: <?php echo $row['account']; ?> / 입금예정일 : <?php echo $row['deposit_date']; ?>)
                                   </p>
                               <?php
-
 }
 ?>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-3">주문금액</div>
-                        <div class="col-sm-9"><?php echo number_format($org_amount); ?> 원</div>
+                        <div class="col-sm-3 buyer-info-padding">주문금액</div>
+                        <div class="col-sm-9 buyer-info-padding"><?php echo number_format($org_amount); ?> 원 (VAT 포함)</div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-3">처리상태</div>
-                        <div class="col-sm-9"><?php echo $a_status[$row['status']]; ?></div>
+                        <div class="col-sm-3 buyer-info-padding">처리상태</div>
+                        <div class="col-sm-9 buyer-info-padding"><?php echo $a_status[$row['status']]; ?></div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-3">배송 시 요청사항</div>
-                        <div class="col-sm-9"><?php echo nl2br($row['memo_to_delivery']); ?></div>
+                        <div class="col-sm-3 buyer-info-padding">배송 시 요청사항</div>
+                        <div class="col-sm-9 buyer-info-padding"><?php echo nl2br($row['memo_to_delivery']); ?></div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-3">담당자에게 요청사항</div>
-                        <div class="col-sm-9"><?php echo nl2br($row['memo_to_admin']); ?></div>
+                        <div class="col-sm-3 buyer-info-padding">담당자에게 요청사항</div>
+                        <div class="col-sm-9 buyer-info-padding"><?php echo nl2br($row['memo_to_admin']); ?></div>
                     </div>
-                    <div class="row warning">
-                        <div class="col-sm-3">※ 관리자 메모</div>
-                        <div class="col-sm-9"><?php echo nl2br($row['supplement']); ?></div>
+                    <div class="row bg-danger">
+                        <div class="col-sm-3 buyer-info-padding">※ 관리자 메모</div>
+                        <div class="col-sm-9 buyer-info-padding"><?php echo nl2br($row['supplement']); ?></div>
                     </div>
 
 
@@ -315,8 +292,7 @@ if ($row['payment_type'] == '3') {
         <!-- /.container -->
     </div>
     <!-- /.content -->
-</div>
-<!-- /.wrapper -->
+
 
 <?php include_once '../include/brands.php';?>
 

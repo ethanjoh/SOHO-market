@@ -422,20 +422,6 @@ switch ($rows['approved']) {
                               ( <input type="checkbox" name="sms_chk" value="Y" /> 승인 시 SMS보내기)
                             </td>
                           </tr>
-            <!--               <tr>
-                            <th> 사업자등록증 사본 </th>
-                            <td>
-                            <?php
-if ($rows['filename']) {
-    $path = $rows['filename'];
-
-    //Array 값으로 분리, [0]에는 "_"이전 값이, [1]에는 "_"이후 값이 들어있다.
-    $chk_name  = explode("_", $rows['filename']);
-    $real_name = $chk_name[sizeof($chk_name) - 1];
-}
-?>
-                            <a href="/member/upload/<?php echo $path; ?>"><img src="/member/upload/<?php echo $path; ?>" width="300"></a> </td>
-                          </tr> -->
                         </tbody>
                       </table>
                     </div>

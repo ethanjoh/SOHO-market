@@ -51,9 +51,13 @@
                               <select class="form-control" name="lcode" onchange="show_msub();">
                                 <option>--- 카테고리 ---</option>
                                 <?php
-$lcode = $_GET['lcode'];
-$mcode = $_GET['mcode'];
-$page  = $_GET['page'];
+$lcode   = set_var($_GET['lcode']);
+$mcode   = set_var($_GET['mcode']);
+$pmode   = set_var($_GET['pmode']);
+$mode    = set_var($_GET['mode']);
+$page    = set_var($_GET['page']);
+$key     = set_var($_GET['key']);
+$keyword = set_var($_GET['keyword']);
 
 $query   = "SELECT * FROM products_category1 ORDER BY num ";
 $result2 = mysqli_query($connect, $query);
@@ -92,29 +96,6 @@ if ($lcode) {
 ?>
                             </select>
                           </td>
-<!--
-                          <td>
-                            <select class="form-control" name="scode" onchange="show_last('<?php echo $lcode; ?>', '<?php echo $mcode; ?>');">
-                              <option>--- 소분류 ---</option>
-                              <?php
-if ($mcode) {
-    $query3  = "SELECT * FROM products_category3 WHERE up_category='$mcode' ORDER BY code";
-    $result3 = mysqli_query($connect, $query3);
-
-    for ($i = 0; $srow = mysqli_fetch_array($result3); $i++) {
-        if ($scode == $srow['code']) {
-            $sel3 = 'selected="selected"';
-        } else {
-            $sel3 = "";
-        }
-
-        echo '<option value="' . $srow['code'] . '"' . $sel3 . '>' . $srow['name'] . '</option>';
-    }
-}
-?>
-                            </select>
-                          </td>
--->
                         </tr>
 
                     </tbody>
@@ -140,15 +121,11 @@ if ($mcode) {
     $qry_char .= " AND category_m ='$mcode' ";
 }
 
-if ($scode) {
-    $qry_char .= " AND category_s ='$scode' ";
-}
-
-if ($mode == "search") {
+if ("search" == $mode) {
     $qry_char .= " AND $key LIKE '%$keyword%' ";
 }
 
-if ($pmode == "out") {
+if ("out" == $pmode) {
     $qry_char .= "AND del_chk = 'O' ";
 } else if ($pmode == "cut") {
     $qry_char .= "AND del_chk = 'C' ";
@@ -176,10 +153,10 @@ if ($result) {
                   <tbody>
                     <tr>
                       <td>
-                        <a class="btn btn-default" href="top_pro_list.php?pmode=out&lcode=<?php echo $lcode; ?>&mcode=<?php echo $mcode; ?>&scode=<?php echo $scode; ?>&page=<?php echo $page; ?>">[품절상품]만 보기</a>
-                        <a class="btn btn-default" href="top_pro_list.php?pmode=cut&lcode=<?php echo $lcode; ?>&mcode=<?php echo $mcode; ?>&scode=<?php echo $scode; ?>&page=<?php echo $page; ?>">[단종상품]만 보기</a>
-                        <a class="btn btn-default" href="top_pro_list.php?pmode=end&lcode=<?php echo $lcode; ?>&mcode=<?php echo $mcode; ?>&scode=<?php echo $scode; ?>&page=<?php echo $page; ?>">[판매종료 상품]만 보기</a>
-                        <a class="btn btn-primary" href="top_pro_list.php?lcode=<?php echo $lcode; ?>&mcode=<?php echo $mcode; ?>&scode=<?php echo $scode; ?>&page=<?php echo $page; ?>">전체보기(판매종료 제외)</a>
+                        <a class="btn btn-default" href="top_pro_list.php?pmode=out&lcode=<?php echo $lcode; ?>&mcode=<?php echo $mcode; ?>&page=<?php echo $page; ?>">[품절상품]만 보기</a>
+                        <a class="btn btn-default" href="top_pro_list.php?pmode=cut&lcode=<?php echo $lcode; ?>&mcode=<?php echo $mcode; ?>&page=<?php echo $page; ?>">[단종상품]만 보기</a>
+                        <a class="btn btn-default" href="top_pro_list.php?pmode=end&lcode=<?php echo $lcode; ?>&mcode=<?php echo $mcode; ?>&page=<?php echo $page; ?>">[판매종료 상품]만 보기</a>
+                        <a class="btn btn-primary" href="top_pro_list.php?lcode=<?php echo $lcode; ?>&mcode=<?php echo $mcode; ?>&page=<?php echo $page; ?>">전체보기(판매종료 제외)</a>
                       </td>
                     </tr>
                   </tbody>
@@ -260,16 +237,16 @@ if ($result1) {
         ?>
                   <tr>
                     <td class="text-right"><?php echo $list_num; ?></td>
-                    <td><img src="<?php echo $prow['s_image_name']; ?>" width="50" height="50" alt="thumbnail image" /></td>
+                    <td><img src="<?php echo $prow['s_image1_name']; ?>" width="50" height="50" alt="thumbnail image" /></td>
                     <td class="left"><?php echo show_icon($prow); ?>
-                      <a href="pro_register.php?mode=update&amp;pmode=<?php echo $pmode; ?>&amp;p_num=<?php echo $prow['num']; ?>&amp;lcode=<?php echo $prow['category_l']; ?>&amp;mcode=<?php echo $prow['category_m']; ?>&amp;scode=<?php echo $prow['category_s']; ?>&amp;page=<?php echo $page; ?>">
+                      <a href="pro_register.php?mode=update&amp;pmode=<?php echo $pmode; ?>&amp;p_num=<?php echo $prow['num']; ?>&amp;lcode=<?php echo $prow['category_l']; ?>&amp;mcode=<?php echo $prow['category_m']; ?>&amp;page=<?php echo $page; ?>">
                       <?php echo stripslashes($prow['name']); ?></a>
-                      </a>&nbsp;<a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/shop/catalog-list.php?lcode=<?php echo $prow['category_l']; ?>&amp;mcode=<?php echo $prow['category_m']; ?>&amp;scode=<?php echo $prow['category_s']; ?>" target="_blank"><img src="../images/browser_explorer.png" alt="상품보기" /> </a>
+                      </a>&nbsp;<a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/shop/catalog-list.php?lcode=<?php echo $prow['category_l']; ?>&amp;mcode=<?php echo $prow['category_m']; ?>" target="_blank"><img src="../images/browser_explorer.png" alt="상품보기" /> </a>
                     </td>
                     <td>
                     <?php
 if ($prow['opt']) {
-            show_option($prow);
+            show_option($prow['num']);
         }
 
         ?>
@@ -338,7 +315,7 @@ if ($total == 0) {
         <!-- page navigation start -->
         <div class="pull-left">
           <?php
-$url = $PHP_SELF . "?mode=" . $mode . "&pmode=" . $pmode . "&lcode=" . $lcode . "&mcode=" . $mcode . "&scode=" . $scode . "&key=" . $key . "&keyword=" . $keyword;
+$url = $_SERVER['PHP_SELF'] . "?mode=" . $mode . "&pmode=" . $pmode . "&lcode=" . $lcode . "&mcode=" . $mcode . "&key=" . $key . "&keyword=" . $keyword;
 page_nav($totalpage, $cpage, $url);
 ?>
         </div>
@@ -346,7 +323,7 @@ page_nav($totalpage, $cpage, $url);
 
         <!-- function buttons start -->
         <div class="pull-right margin-20">
-          <a type="button" class="btn btn-success" href="pro_register.php?lcode=<?php echo $lcode; ?>&amp;mcode=<?php echo $mcode; ?>&amp;scode=<?php echo $scode; ?>&amp;page=<?php echo $page; ?>">상품등록</a>
+          <a type="button" class="btn btn-success" href="pro_register.php?lcode=<?php echo $lcode; ?>&amp;mcode=<?php echo $mcode; ?>&amp;page=<?php echo $page; ?>">상품등록</a>
         </div>
         <!-- function buttons end -->
 
@@ -364,7 +341,6 @@ page_nav($totalpage, $cpage, $url);
               <input type="hidden" name="mode" value="search" />
               <input type="hidden" name="lcode" value="<?php echo $lcode; ?>" />
               <input type="hidden" name="mcode" value="<?php echo $mcode; ?>" />
-              <input type="hidden" name="scode" value="<?php echo $scode; ?>" />
               <div class="ui-widget form-group">
                 <input type="text" class="form-control" name="keyword" size="16" />
                 <button class="btn btn-primary" onclick="search.submit()"><i class="fa fa-search"></i>검 색</button>

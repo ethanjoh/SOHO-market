@@ -1,8 +1,8 @@
 <?php
 
 include "../include/admin_auth.php";
-include "../util/config.php";
-include "../util/util.php";
+include "../../util/config.php";
+include "../../util/util.php";
 
 $connect = my_connect($host, $dbid, $dbpass, $dbname);
 
@@ -17,7 +17,7 @@ $res = mysqli_query($connect, $sql);
 for ($i = 0; $row = mysqli_fetch_array($res); $i++) {
     $a_goods_fk = explode(",", $row['goods_fk']);
     $mod_volume = explode(",", $row['mod_count']); //변경된 수량
-    // $mod_price  = explode(",", $row['mod_price']); //변경된 수량
+    // $mod_price  = explode(",", $row['mod_price']); //변경된 가격
     // $option     = explode(",", $row['goods_kind']); //옵션정보
 
     //판매금액 집계를 위한 배열
@@ -32,17 +32,17 @@ for ($i = 0; $row = mysqli_fetch_array($res); $i++) {
     for ($j = 0; $j < sizeof($a_goods_fk); $j++) {
         $p_sql    = "SELECT * FROM products WHERE num='$a_goods_fk[$j]' ";
         $p_result = mysqli_query($connect, $p_sql);
+        $p_row    = mysqli_fetch_array($p_result);
+        $p_no     = mysqli_num_rows($p_result);
 
-        $p_row       = mysqli_fetch_array($p_result);
-        $p_no        = mysqli_num_rows($p_result);
-        $offer_price = $mod_price[$j];
+        // $offer_price = $mod_price[$j];
 
         $goods[] = array(
-            num      => $p_row['num'],
+            'num'      => $p_row['num'],
             // company=>$p_row['company'],
-            name     => $p_row['name'],
+            'name'     => $p_row['name'],
             // option=>$option[$j],
-            quantity => $mod_volume[$j],
+            'quantity' => $mod_volume[$j],
             // amount=>$mod_price[$j]*$mod_volume[$j]
         );
 

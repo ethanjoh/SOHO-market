@@ -6,6 +6,10 @@ include_once "../../util/util.php";
 
 $connect = my_connect($host, $dbid, $dbpass, $dbname);
 
+$mode = set_var($_GET['mode']);
+$oid  = set_var($_GET['oid']);
+$page = set_var($_GET['page']);
+
 //주문 취소에 따른 재고 복구
 $sql = "SELECT * FROM mall_order WHERE num = '$oid' ";
 $res = mysqli_query($connect, $sql);
@@ -25,7 +29,7 @@ for ($i = 0; $i < sizeof($a_goods_fk); $i++) {
     mysqli_query($connect, $update1);
 }
 
-if ($mode == "d") {
+if ("d" == $mode) {
     $update = "DELETE FROM mall_order WHERE num='$oid' ";
 } else
 // 해당 주문정보를 취소처리 합니다.
@@ -35,8 +39,5 @@ if ($mode == "d") {
 
 $result = mysqli_query($connect, $update);
 
-if ($from != "quot") {
-    echo "<meta http-equiv='refresh' content='0; URL=top_order_list.php?page=$page'>";
-} else {
-    echo "<meta http-equiv='refresh' content='0; URL=or_quot_list.php?page=$page'>";
-}
+// echo "<meta http-equiv='refresh' content='0; URL=top_order_list.php?page=$page'>";
+header("Location: top_order_list.php?page=" . $page . "");
