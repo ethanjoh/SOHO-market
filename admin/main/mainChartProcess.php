@@ -17,20 +17,10 @@ $res = mysqli_query($connect, $sql);
 for ($i = 0; $row = mysqli_fetch_array($res); $i++) {
     $a_goods_fk = explode(",", $row['goods_fk']);
     $mod_volume = explode(",", $row['mod_count']); //변경된 수량
-    // $mod_price  = explode(",", $row['mod_price']); //변경된 가격
-    // $option     = explode(",", $row['goods_kind']); //옵션정보
-
-    //판매금액 집계를 위한 배열
-    // $sales[] = array(
-    //       num=>$row['num'],
-    //       createdate=>$row['createdate'],
-    //       sub_total=>$row['last_amount']
-    //    );
-    // $total += $row['last_amount'];
 
     //3. 해당 주문에서 해당 공급업체의 상품이 있는지 확인한다.
     for ($j = 0; $j < sizeof($a_goods_fk); $j++) {
-        $p_sql    = "SELECT * FROM products WHERE num='$a_goods_fk[$j]' ";
+        $p_sql    = "SELECT * FROM products WHERE num='" . $a_goods_fk[$j] . "' ";
         $p_result = mysqli_query($connect, $p_sql);
         $p_row    = mysqli_fetch_array($p_result);
         $p_no     = mysqli_num_rows($p_result);
@@ -39,11 +29,8 @@ for ($i = 0; $row = mysqli_fetch_array($res); $i++) {
 
         $goods[] = array(
             'num'      => $p_row['num'],
-            // company=>$p_row['company'],
             'name'     => $p_row['name'],
-            // option=>$option[$j],
             'quantity' => $mod_volume[$j],
-            // amount=>$mod_price[$j]*$mod_volume[$j]
         );
 
         //$total += $sub_total;
@@ -62,34 +49,20 @@ function cmp($a, $b)
 
 if ($p_no) {
     foreach ($goods as $key => $values) {
-        // $new[$values['num']]['company']   = $values['company'];
         $new[$values['num']]['name'] = $values['name'];
-        // $new[$values['num']]['option']    = $values['option'];
         $new[$values['num']]['quantity'] += $values['quantity'];
-        // $new[$values['num']]['amount']   += $values['amount'];
     }
 
     unset($values);
     usort($new, "cmp"); //수량에 따라 정열
 
-    $i = 0;
+    // $i = 0;
+
     foreach ($new as $row) {
         $data[] = array(
             'item'     => $row['name'],
             'quantity' => $row['quantity'],
         );
-
-        // if($i!=0) {
-        //   $temp_qty .= ",";
-        //   $temp_name .= ",";
-        // }
-        //   $temp_qty .= $row['quantity'];
-        //   $temp_name .= $row['name'];
-
-        // if($i <= 10)
-        //   $i++;
-        // else
-        //   break;
     }
 
     unset($row);
@@ -112,26 +85,26 @@ for ($i = 0; $row = mysqli_fetch_array($res); $i++) {
 }
 
 // $sales_data = array(
-//                      array(
-//                          "period"=> "2015-06",
-//                          "amount"=> 120000000
-//                          ),
-//                      array(
-//                          "period"=> "2015-05",
-//                          "amount"=> 150000000
-//                          ),
-//                      array(
-//                          "period"=> "2015-04",
-//                          "amount"=> 140000000
-//                          ),
-//                      array(
-//                          "period"=> "2015-03",
-//                          "amount"=> 130000000
-//                          ),
-//                      array(
-//                          "period"=> "2015-02",
-//                          "amount"=> 120000000
-//                          )
-//                );
+//     array(
+//         "period" => "2015-06",
+//         "amount" => 120000000,
+//     ),
+//     array(
+//         "period" => "2015-05",
+//         "amount" => 150000000,
+//     ),
+//     array(
+//         "period" => "2015-04",
+//         "amount" => 140000000,
+//     ),
+//     array(
+//         "period" => "2015-03",
+//         "amount" => 130000000,
+//     ),
+//     array(
+//         "period" => "2015-02",
+//         "amount" => 120000000,
+//     ),
+// );
 
 echo json_encode(array("item" => $data, "monthly" => $sales_data));

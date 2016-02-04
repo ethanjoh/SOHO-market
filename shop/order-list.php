@@ -87,19 +87,6 @@ switch ($mode) {
 $res_2 = mysqli_query($connect, $sql_2);
 $total = mysqli_num_rows($res_2);
 
-//적립금 계산
-// if ($_SESSION['p_id']) {
-//     $msql2  = "SELECT SUM(mileage) AS mileage FROM mileage WHERE id_fk = '$p_id' ";
-//     $mres2  = mysqli_query($connect, $msql2);
-//     $mrow2  = mysqli_fetch_array($mres2);
-//     $t_mile = number_format($mrow2['mileage']);
-// } else {
-//     $t_mile = 0;
-// }
-
-//$total = mysqli_num_rows($res_2);
-
-//if($total) {
 $scale = 20;
 $page  = '';
 

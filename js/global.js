@@ -1,4 +1,3 @@
-<!--
 
 function MM_jumpMenu(targ,selObj,restore){ //v3.0
   eval(targ+".location='"+selObj.options[selObj.selectedIndex].value+"'");
@@ -81,28 +80,6 @@ function closeWin() {
 }
 
 
-// function closePopup() {
-//     if ( document.notice_form.chkbox.checked ){
-//         setCookie( "maindiv", "done" , 1 );
-//     }
-//     document.all['divpop'].style.visibility = "hidden";
-// }
-
-// // $( document ).on( "pageinit", "#demo-page", function() {
-// //     $( document ).on( "swipeleft swiperight", "#demo-page", function( e ) {
-// //         // We check if there is no open panel on the page because otherwise
-// //         // a swipe to close the left panel would also open the right panel (and v.v.).
-// //         // We do this by checking the data that the framework stores on the page element (panel: open).
-// //         if ( $.mobile.activePage.jqmData( "panel" ) !== "open" ) {
-// //             if ( e.type === "swipeleft"  ) {
-// //                 $( "#right-panel" ).panel( "open" );
-// //             } else if ( e.type === "swiperight" ) {
-// //                 $( "#left-panel" ).panel( "open" );
-// //             }
-// //         }
-// //     });
-// // });
-
 function getCookie( name ) {
 	var nameOfCookie = name + "=";
 	var x = 0;
@@ -124,4 +101,3 @@ function getCookie( name ) {
 	return "";
 }
 
-//-->

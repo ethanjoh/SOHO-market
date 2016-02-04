@@ -17,6 +17,13 @@
       <form action="track_a_list.php" class="form-inline" role="form" name="f" method="post" >
 
       <?php
+$mode      = set_var($_GET['mode']);
+$page      = set_var($_GET['page']);
+$date1     = set_var($_GET['date1']);
+$date2     = set_var($_GET['date2']);
+$key       = set_var($_GET['key']);
+$key_value = set_var($_GET['key_value']);
+
 $today = date("Y-m-d");
 
 switch ($mode) {
@@ -193,7 +200,7 @@ if ($t_no > 0) {
                         <tr>
                           <td>
                             <?php
-$url = "$PHP_SELF?mode=" . $mode . "&key=" . $key . "&key_value=" . $key_value;
+$url = $_SERVER['PHP_SELF'] . '?mode=' . $mode . '&key=' . $key . '&key_value=' . $key_value;
 page_nav($totalpage, $cpage, $url);
 ?>
                           </td>

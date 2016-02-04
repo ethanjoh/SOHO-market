@@ -6,8 +6,7 @@ $.ajax({
         dataType: "json",
         timeout:3000,
         success : function (data) {
-        // console.log(data.monthly);
-
+        console.log(data.monthly);
         // console.log((data.item).length);
 
         var params = {};
@@ -18,10 +17,6 @@ $.ajax({
         if((data.item)) {
             for($i=0;$i < (data.item).length;$i++)
             {
-                // if($i < (data.item).length-1)
-                //     params += JSON.stringify(data.item[$i])+',';
-                // else
-                //     params += JSON.stringify(data.item[$i]);
                 params = data.item[$i];
                 arr.push(params);
             }
@@ -39,12 +34,6 @@ $.ajax({
         Morris.Bar({
             element: 'hero-bar',
             data: arr,
-            // data : [
-            //     data.item[0],
-            //     data.item[1]
-
-
-            // ],
             xkey: 'item',
             ykeys: ['quantity'],
             labels: ['quantity'],
@@ -56,13 +45,6 @@ $.ajax({
 
       Morris.Line({
         element: 'hero-graph',
-        // data: [
-        //         data.monthly[0],
-        //         data.monthly[1],
-        //         data.monthly[2],
-        //         data.monthly[3],
-        //         data.monthly[4]
-        // ],
         data: arr2,
         xkey: 'period',
         ykeys: ['amount'],

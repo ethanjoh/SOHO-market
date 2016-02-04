@@ -182,8 +182,6 @@ if ($mode == "search") {
 
 		<?php }
 ?>
-
-
 					</div>
 				</div>
 				<!-- info end -->
@@ -234,7 +232,7 @@ if ($mode == "search") {
 						            <th>할인율</th>
 						            <th>주문액</th>
 						            <!-- <th>택배비</th> -->
-						            <th>처리</br>(발송일)</th>
+						            <th>처리상태</br>(발송일)</th>
 						            <th>취소/삭제</th>
 						          </tr>
 						        </thead>
@@ -444,7 +442,7 @@ if ($row['delivery_type'] == 'L' || $row['delivery_type'] == 'L1') {
     ; // for loop end
     ?>
 					          <tr>
-					            <td colspan="4"><strong>총합(NET):</strong></td>
+					            <td colspan="4"><strong>총합:</strong></td>
 					            <!--<td><strong>
 					              <?=number_format($o_total);?>
 					              </strong></td>-->

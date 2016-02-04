@@ -33,6 +33,10 @@
         <!-- info end -->
 
       <?php
+$mode  = set_var($_GET['mode']);
+$page  = set_var($_GET['page']);
+$date1 = set_var($_GET['date1']);
+$date2 = set_var($_GET['date2']);
 $today = date("Y-m-d");
 
 //if (empty($date1)) $date1 = $today;

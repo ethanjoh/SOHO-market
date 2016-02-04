@@ -1,9 +1,8 @@
 <?php include_once '../include/header.php';?>
 
 <?php
-$sql_1       = "SELECT num FROM mall_order WHERE cancel='N' AND status='3' AND user_id <> 'guest' ";
-$res_1       = mysqli_query($connect, $sql_1);
-$unchk_total = mysqli_num_rows($res_1);
+$mode = set_var($_POST['mode']);
+
 ?>
 
   <body>
@@ -153,9 +152,9 @@ for ($i = 0; $row = mysqli_fetch_array($res); $i++) {
     $convert_date = date_format($raw_date, "Y-m-d");
 
     $sales[] = array(
-        num        => $row['num'],
-        createdate => $convert_date,
-        sub_total  => $row['last_amount'],
+        'num'        => $row['num'],
+        'createdate' => $convert_date,
+        'sub_total'  => $row['last_amount'],
     );
     $total += $row['last_amount'];
 
@@ -171,7 +170,14 @@ for ($i = 0; $row = mysqli_fetch_array($res); $i++) {
         $offer_price = $mod_price[$j];
         //$sub_total = $offer_price * $mod_volume[$j];
 
-        $goods[] = array(num => $p_row['num'], company => $p_row['company'], name => $p_row['name'], option => $option[$j], quantity => $mod_volume[$j], amount => $mod_price[$j] * $mod_volume[$j]);
+        $goods[] = array(
+            'num'      => $p_row['num'],
+            'company'  => $p_row['company'],
+            'name'     => $p_row['name'],
+            'option'   => $option[$j],
+            'quantity' => $mod_volume[$j],
+            'amount'   => $mod_price[$j] * $mod_volume[$j],
+        );
         //$total += $sub_total;
     } //for end
 } //for end
@@ -313,7 +319,7 @@ foreach ($sales as $key => $values) {
     <script src="/js/vendor/jquery-2.2.0.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/admin/js/jquery-ui-1.9.2.custom.min.js"></script>
-    <script class="include" type="text/javascript" src="/admin/js/jquery.dcjqaccordion.2.7.js"></script>
+    <script src="/admin/js/jquery.dcjqaccordion.2.7.js"></script>
     <script src="/admin/js/jquery.scrollTo.min.js"></script>
     <script src="/admin/js/jquery.nicescroll.js" type="text/javascript"></script>
     <script src="/admin/js/respond.min.js" ></script>
