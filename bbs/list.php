@@ -1,0 +1,367 @@
+<?php include_once '../include/header.php';?>
+
+
+    <!-- HOME -->
+    <div class="container">
+        <div class="row text-center">
+            <h1>공지사항</h1>
+        </div>
+    </div>
+    <!-- /.home -->
+
+    <!-- CONTENT -->
+    <div class="content">
+      <?php
+$mode     = set_var($_GET['mode']);
+$code     = set_var($_GET['code']);
+$page     = set_var($_GET['page']);
+$main_no  = set_var($_POST['main_no']);
+$reply_no = set_var($_POST['reply_no']);
+
+$p_id   = set_var($_SESSION['p_id']);
+$p_name = set_var($_SESSION['p_name']);
+
+$s_sql = '';
+
+if ($mode == "search") {
+    switch ($key) {
+        case 'title':
+            $s_sql .= " AND title LIKE '%$keyword%' ";
+            break;
+
+        case 'contents':
+            $s_sql .= " AND contents LIKE '%$keyword%' ";
+            break;
+
+        case 'name':
+            $s_sql .= " AND name LIKE '%$keyword%' ";
+            break;
+    }
+}
+
+//게시판 코드값을 가져온다.
+if ($code) {
+    //게시판 코드에서 readonly 속성 추출
+    $bqry1 = "SELECT * FROM code WHERE code='$code' ";
+    $bres1 = mysqli_query($connect, $bqry1);
+    $brow1 = mysqli_fetch_array($bres1);
+
+    $board = 'bbs_' . $code;
+
+    //해당 아이디 사용자의 글만 추출
+    if ($brow1['readonly'] == 'N' && $p_id != 'admin') {
+        $sql = "SELECT * FROM $board WHERE (id='$p_id' OR id='admin') $s_sql ORDER BY main_no DESC ";
+    } else {
+        $sql = "SELECT * FROM $board WHERE 1 $s_sql ORDER BY main_no DESC";
+    }
+
+    //쿼리 후 결과를 저장한다.
+    $result = mysqli_query($connect, $sql);
+    //테이블에 있는 총 갯수를 가져온다.
+    $total = mysqli_num_rows($result);
+
+} else {
+    err_msg('선택한 게시판이 없습니다.', 1);
+    exit;
+}
+
+$scale = 20;
+if ($page == '') {
+    $page = 1;
+}
+
+$cpage     = intval($page);
+$totalpage = intval($total / $scale);
+
+if ($totalpage * $scale != $total) {
+    $totalpage = $totalpage + 1;
+}
+
+if ($cpage == 1) {
+    $cline = 0;
+} else {
+    $cline = ($cpage * $scale) - $scale;
+}
+
+$limit = $cline + $scale;
+
+if ($limit >= $total) {
+    $limit = $total;
+}
+
+$scale1 = $limit - $cline;
+?>
+
+      <?php
+if (!$p_id || !$p_name) {; // not logged in status
+    ?>
+
+        <!-- CONTAINER -->
+        <div class="container">
+            <div class="row">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                      <div class="row text-center alert alert-danger" role="alert">
+                        <p><a href="" data-popup="login" class="a-login btn btn-xs btn-primary">Login</a></p>
+                      </div>
+                    </table>
+                </div> <!-- table-responsive -->
+            </div> <!-- row -->
+
+      <?php
+} else {
+    ; // logged in status
+    ?>
+
+      <form name="form1" method="post" action="admin_delete.php?code=<?=$code;?>">
+        <input type="hidden" name="code" value=<?=$code;?> />
+
+        <!-- CONTAINER -->
+        <div class="container">
+            <div class="row">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+
+                        <thead>
+                            <tr>
+
+                              <?php
+if ('admin' == $p_id) {
+        echo '<th>선택</th>';
+    }
+    ?>
+
+                                <th>번호</th>
+                                <th>제 목</th>
+                                <th>작성자</th>
+                                <th>작성일</th>
+                                <th>조 회</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        <?php
+// 만약 검색 결과가 없다면,
+    if ($total == 0) {
+        if ('admin' == $p_id) {
+            $num = 6;
+        } else {
+            $num = 5;
+        }
+        ?>
+
+                            <tr>
+                              <td colspan="<?=$num;?>"><p>아직 글이 없습니다.</p></td>
+                            </tr>
+
+                      <?php
+} else {
+        if ('admin' == $p_id) {
+            $num = 6;
+        } else {
+            $num = 5;
+        }
+
+        if ($brow1['readonly'] == 'N' && $p_id != 'admin') {
+            $sql = "SELECT * FROM $board WHERE (id='$_SESSION[p_id]' OR id='admin') $s_sql ORDER BY mod_date DESC LIMIT $cline,$scale1";
+        } else {
+            $sql = "SELECT * FROM $board WHERE 1 $s_sql ORDER BY mod_date DESC LIMIT $cline,$scale1";
+        }
+
+        //쿼리 후 결과를 저장한다.
+        $result = mysqli_query($connect, $sql);
+
+        for ($i = 0; $row = mysqli_fetch_array($result); $i++) {
+
+            echo "<tr>\n";
+
+            if ('admin' == $p_id) {
+                echo "<td><input type=\"checkbox\" name=\"chk[]\" value=\"" . $row['main_no'] . "\"></td>\n";
+            }
+            ?>
+                              <td><?=$row['main_no'];?></td>
+                            <!-- 답변글이 있다면 -->
+                            <?php
+//답변만 있는 경우
+            if ($row['depth'] > 0 && (!$row['filename'])) {
+                ?>
+                                    <td><a href="read.php?code=<?=$code;?>&amp;main_no=<?=$row['main_no'];?>&amp;page=<?=$page;?>"><?=stripslashes($row['title']);?></a>&nbsp;<span class="badge"><?=$row['depth'];?></span></td>
+                            <?php
+//답변과 첨부파일이 다 있는 경우
+            } else if ($row['depth'] > 0 && ($row['filename'])) {
+                ?>
+                                    <td><a href="read.php?code=<?=$code;?>&amp;main_no=<?=$row['main_no'];?>&amp;page=<?=$page;?>"><?=stripslashes($row['title']);?></a>&nbsp;<i class="fa fa-floppy-o"></i>&nbsp;<span class="badge"><?=$row['depth'];?></span></td>
+                            <?php
+//첨부파일만 있는 경우
+            } else if ($row['depth'] == 0 && ($row['filename'])) {
+                ?>
+                                    <td><a href="read.php?code=<?=$code;?>&amp;main_no=<?=$row['main_no'];?>&amp;page=<?=$page;?>"><?=stripslashes($row['title']);?></a>&nbsp;<i class="fa fa-floppy-o"></i>&nbsp;</td>
+                            <?php
+} else {
+
+                ?>
+                                    <td><a href="read.php?code=<?=$code;?>&amp;main_no=<?=$row['main_no'];?>&amp;page=<?=$page;?>"><?=stripslashes($row['title']);?></a> <?=check_new_post($connect, 'notice', $row['main_no'], 3);?></td>
+                            <?php
+}
+            //날짜 형식을 바꾼다.
+            $post_date = substr($row['date'], 0, 11);
+            ?>
+                              <td><?=$row['name'];?></td>
+                              <td><?=$post_date;?></td>
+                              <td><?=$row['count'];?></td>
+                            </tr>
+
+                          <?php
+}
+        ; // end for loop
+        ?>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                              <td colspan="<?=$num;?>" class="text-center">
+                              <?php
+//쪽 수를 표시
+        $url = $_SERVER['PHP_SELF'] . "?code=" . $code;
+        page_avg($totalpage, $cpage, $url);
+    }
+    ; // end else -->
+    ?>
+                              </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div> <!-- table-responsive -->
+            </div> <!-- row -->
+
+            <div class="row">
+
+              <?php
+$qry  = "SELECT * FROM code WHERE code='$code' ";
+    $res  = mysqli_query($connect, $qry);
+    $row1 = mysqli_fetch_array($res);
+
+    //관리자 전용쓰기 게시판 여부 확인
+    if ($row1['readonly'] == 'Y' && 'admin' == $p_id) {; // 읽기전용 & 관리자
+        ?>
+
+              <p><a class="btn btn-success btn-xs" href="post.php?code=<?=$code;?>"><i class="fa fa-pencil-square-o"></i>쓰 기</a> &nbsp; <a class="btn btn-danger btn-xs" href="#" onClick="javascript:del_send();"><i class="fa fa-trash-o"></i>삭 제</a></p>
+
+              <?php
+} else if ($row1['readonly'] == 'Y' && $p_id != 'admin') {; // 읽기전용 & 일반회원
+        ?>
+
+              <!-- <p><a class="a-login btn btn-xs btn-primary pull-right" href="" data-popup="login2"><i class="fa fa-cog"></i>ADMIN LOGIN</a></p> -->
+
+              <?php
+} else if ($row1['readonly'] == 'N' && $p_id && $p_name && $p_id != 'admin') {; //회원 로그인 확인
+        ?>
+
+              <p><a class="btn btn-success btn-xs" href="post.php?code=<?=$code;?>"><i class="fa fa-pencil-square-o"></i>쓰 기</a><a class="a-login btn btn-xs btn-primary pull-right" href="" data-popup="login2"><i class="fa fa-cog"></i>ADMIN LOGIN</a></p>
+
+              <?php
+} else if ($row1['readonly'] == 'N' && 'admin' == $p_id) {
+        ?>
+
+              <p><a class="btn btn-success btn-xs" href="post.php?code=<?=$code;?>"><i class="fa fa-pencil-square-o"></i>쓰 기</a> &nbsp; <a class="btn btn-danger btn-xs" href="#" onClick="javascript:del_send();"><i class="fa fa-trash-o"></i>삭 제</a></p>
+
+              <?php
+} else if ($row1['readonly'] == 'N' && $p_id != 'admin') {; //일반 게시판 & 일반회원
+        ?>
+
+              <!-- <p><a class="a-login btn btn-xs btn-primary pull-right" href="" data-popup="login2"><i class="fa fa-cog"></i>ADMIN LOGIN</a></p> -->
+
+              <?php
+}
+    ?>
+            </div>
+        </form>
+
+        <form name="search_form" action="list.php?code=<?=$code;?>" method="post">
+            <div class="row margin-top-10">
+                <div class="col-sm-2 col-sm-offset-3">
+                    <select data-width="100%">
+                        <option value="title">제 목</option>
+                        <option value="name">작성자</option>
+                        <option value="content">내 용</option>
+                    </select>
+                </div>
+                <div class="col-sm-3">
+                  <input type="hidden" name="mode" value="search" />
+                  <input type="hidden" name="code" value="<?=$code;?>" />
+                  <input type="text" name="keyword" placeholder="검색어" />
+                </div>
+                <div class="col-sm-3">
+                  <button type="submit" class="btn btn-primary btn-sm" name="submit" /><i class="fa fa-search"></i>검 색</button>
+                </div>
+            </div>
+        </form>
+
+        <!-- Popup: BBS admin login -->
+        <div class="block-popup popup plogin" id="login2">
+            <a href="" class="pclose small"><i class="custom-icon custom-icon-close-s"></i></a>
+            <h3 class="text-center">Login to BBS admin</h3>
+            <form method="post" name="login" class="loginform" action="//<?=$_SERVER['SERVER_NAME'];?>:<?=$port;?>/member/login_ok.php" onsubmit="JavaScript:return(login_check());">
+            <input type="hidden" name="main_no" value="<?=$main_no;?>">
+            <input type="hidden" name="reply_no" value="<?=$reply_no;?>">
+            <input type="hidden" name="code" value="<?=$code;?>">
+            <input type="hidden" name="uri" value="<?=$uri;?>">
+            <div class="formwrap">
+                <div class="form-group has-feedback">
+                    <input type="password" class="form-control login-password" name="pwd2" placeholder="Password" id="login-password2">
+                </div>
+            </div>
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-default block">Login</button>
+            </div>
+            </form>
+        </div>
+        <!-- end popup -->
+
+
+      <?php
+//회원로그인 else end
+}
+?>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.content -->
+
+<?php include_once '../include/brands.php';?>
+
+<?php include_once '../include/footer.php';?>
+
+      <script src="/js/jquery.plugins.js"></script>
+      <script src="/js/jquery-ui.min.js"></script>
+      <script src="/js/highcharts.js"></script>
+      <script src="/js/jquery.highchartTable-min.js"></script>
+      <script src="/js/showChart.js"></script>
+      <script src="/js/jq_datepicker.js"></script>
+      <script type="text/javascript">
+        function del_send() {
+        var form = document.form1;
+          var b=0;
+
+          for (i=0; i < form.elements.length; i++) {
+          if (form.elements[i].name =="chk[]") {
+                  if (form.elements[i].checked == true) {
+                b++;
+            }
+            }
+        }
+
+        if(b == 0) {
+          alert("삭제할 게시물을 하나 이상 선택하세요.");
+            return;
+          }
+
+        var x = confirm('답글까지 모두 삭제됩니다.\n삭제하시겠습니까?');
+          if(x == true) {
+            form.submit();
+          }
+      }
+      </script>
+    </body>
+</html>
+

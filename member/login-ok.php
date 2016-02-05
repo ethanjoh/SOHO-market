@@ -7,6 +7,7 @@ $connect = my_connect($host, $dbid, $dbpass, $dbname);
 
 $id        = set_var($_POST['id']);
 $id        = trim($id); //앞뒤 공백제거
+$id        = mysqli_escape_string($connect, $id);
 $pwd       = set_var($_POST['pwd']);
 $msave_all = set_var($_POST['msave_all']);
 
@@ -39,7 +40,7 @@ if ($rows['passwd'] != sha1($pwd)) {
     }
 
     //장바구니용 쿠키 선언
-    if (!$_COOKIE['member_sid']) {
+    if (!$_COOKIE['p_sid']) {
         $SID = md5(uniqid(rand()));
         SetCookie("p_sid", $SID, 0, "/");
     }
@@ -64,4 +65,6 @@ if ($_POST['uri']) {
         header('Location: http://' . $_SERVER['SERVER_NAME'] . '');
     }
 
+} else {
+    header('Location: http://' . $_SERVER['SERVER_NAME'] . '');
 }

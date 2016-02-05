@@ -1,0 +1,167 @@
+/*** COMMON ELEMENTS
+********************************/
+html,body,div {
+	margin: 0 auto;
+	padding: 0;
+}
+
+body {
+	font: 12px Verdana, Geneva, sans-serif;
+	background-color: #fff;
+}
+
+a:link,a:visited,a:active {
+	color: #4ecdc4;
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+h2 {
+	color: #556270;
+	font-size: 24px;
+}
+
+h3 {
+	color: #c44d58;
+	font-size: 18px;
+}
+
+h4 {
+	color: #c44d58;
+	font-size: 14px;
+}
+
+/*** TITLE
+********************************/
+#title h1 {
+	position: relative;
+	width: 515px;
+	//
+	이미지
+	사이즈와
+	동일하게
+	height
+	:
+	105px;
+	//
+	이미지
+	사이즈와
+	동일하게
+	overflow
+	:
+	hidden;
+}
+
+#title h1 span {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-image: url(../images/title.jpg);
+	background-repeat: no-repeat;
+}
+
+/*** NAVIGATION
+********************************/
+#navigation {
+	height: 65px;
+	width: 760px;
+}
+
+#navigation ul {
+	margin: 0;
+	padding: 0 0 0 15px;
+	list-style: none;
+}
+
+#navigation ul li {
+	float: left;
+	display: inline;
+	padding-right: 10px;
+}
+
+#navigation ul li a {
+	height: 29px;
+	min-width: 10px; /* add width: 10px; to a IE6 CSS */
+	color: #000;
+	font-size: 18px;
+	font-weight: normal;
+	letter-spacing: 1px;
+	text-decoration: none;
+	display: block;
+	padding: 6px 7px 0;
+}
+
+#navigation ul li a:hover,#navigation ul li a.selected {
+	background-color: #7fefe7;
+}
+
+/*** WRAPPERS
+********************************/
+#content_wrapper,#info_wrapper {
+	width: 760px;
+	overflow: hidden;
+	padding: 0 10px;
+}
+
+/*** CONTENT
+********************************/
+#content {
+	float: left;
+	width: 760px;
+}
+
+/*** INFO
+********************************/
+#info {
+	border-width: 1px;
+	border-style: solid;
+	border-color: #000;
+	width: 760px;
+	height: 30px;
+	color: #000;
+	font-size: 11px;
+}
+
+#info a:link,#info a:visited,#info a:active {
+	color: #fff;
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+#info a:hover {
+	text-decoration: none;
+}
+
+#info p,ul.sup_nav {
+	margin: 0;
+	padding: 0;
+}
+
+#info .one {
+	float: left;
+	width: 480px;
+	padding-top: 18px;
+}
+
+#info .two {
+	float: right;
+	width: 230px;
+	padding-top: 18px;
+}
+
+ul.sup_nav {
+	list-style: none;
+}
+
+ul.sup_nav li {
+	display: inline;
+	border-right: 1px solid #fff;
+	margin-right: 10px;
+	padding-right: 10px;
+}

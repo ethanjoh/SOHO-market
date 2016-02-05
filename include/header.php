@@ -1,18 +1,13 @@
 <?php
 include_once "../util/config.php";
 include_once "../util/util.php";
+include_once "../util/shop-functions.php";
 
 $connect = my_connect($host, $dbid, $dbpass, $dbname);
 
 session_start();
 
-$p_sid = set_var($_COOKIE['p_sid']);
-
-if (!$p_sid) {
-    $SID = md5(uniqid(rand()));
-    SetCookie("p_sid", $SID, 0, "/");
-}
-
+$p_sid  = set_var($_COOKIE['p_sid']);
 $p_id   = set_var($_SESSION['p_id']);
 $p_name = set_var($_SESSION['p_name']);
 

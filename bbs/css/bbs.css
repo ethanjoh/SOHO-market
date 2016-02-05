@@ -1,0 +1,37 @@
+/* Layout Stylesheet */ 
+
+#edit_re {
+    margin:0px;
+	padding:0.3em;
+	width:600;
+	background:#ffffff;
+	color: #333333;
+ }
+
+
+/*Default style for SPAN icons. Edit if desired: */
+
+.iconspan{
+float: left;
+margin: 3px;
+cursor:hand;
+cursor:pointer;
+font-weight: bold;
+}
+
+/*CSS used to style the examples. Remove if desired: */
+
+.eg-bar{
+background-color: #FFFFCC;
+font-weight: bold;
+padding: 3px;
+}
+
+div.eg-bar{
+
+}
+
+.icongroup1{
+
+}
+

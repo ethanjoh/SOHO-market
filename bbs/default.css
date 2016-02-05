@@ -1,0 +1,42 @@
+/*Default style for SPAN icons.  */
+.iconspan {
+	float: left;
+	margin: 3px;
+	cursor: hand;
+	cursor: pointer;
+	font-weight: bold;
+}
+
+/*CSS for reply */
+.eg-bar {
+	background-color: lightyellow;
+	font-weight: bold;
+	border: 1px solid lightgray; */
+	padding: 3px;
+}
+
+div.eg-bar {
+	width: 500px;
+}
+
+.icongroup1 {
+	width: 80%;
+}
+
+.snapshot {
+	border: 1px solid #666666;
+	padding: 10px 10px 60px 10px;
+}
+
+.content {
+	border: 1px solid #666666;
+	padding: 10px 10px 10px 10px;
+}
+
+/*CSS for top title */
+.plain {
+	border: 1px solid #4C3C1B;
+	padding: 5px;
+	width: 80%;
+	background-color: #EFEECB;
+}
