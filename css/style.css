@@ -795,7 +795,7 @@ select.select option {
 }
 
 .top-cart-wrapper {
-    cursor: pointer;
+    /*cursor: pointer;*/
     display: inline-block;
     float: right;
     margin-left: 3px;
@@ -825,9 +825,9 @@ select.select option {
     margin-top: 7px;
 }
 
-.block-cart {
+/*.block-cart {
     line-height: 1.25;
-}
+}*/
 
 .top-cart-wrapper .my-cart {
     color: #f4a137;
@@ -1983,7 +1983,7 @@ address {
 
 .home-1 .top-cart-title {
     font-weight: 500;
-    margin-top: 5px;
+    margin-top: 15px;
     margin-left: 12px;
 }
 
@@ -2608,14 +2608,14 @@ home-4 .outlink ul li a {
     border-bottom: 1px solid #dddddd;
 }
 
-.label {
+/*.label {
     display: block;
     font-weight: inherit;
     text-align: left;
     color: inherit;
     color: #797979;
     font-size: 12px;
-}
+}*/
 
 .currently .current_one span.value {
     color: #00a9e0;
@@ -2659,9 +2659,9 @@ home-4 .outlink ul li a {
     margin: 2px 3px 0px 0px;
 }
 
-.label {
+/*.label {
     padding: 0.2em 0.0em 0.3em;
-}
+}*/
 
 .block-content .actions {
     font-size: 11px;

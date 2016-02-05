@@ -503,4 +503,11 @@ fieldset.bbs {
         margin: 100px 500px;
 }
 
+.memo {
+	color:#AE3E0D;
+	text-align: left;
+}
 
+.margin-top-10 {
+	margin-top: 10px;
+}

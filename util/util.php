@@ -153,8 +153,16 @@ function make_thumbnail($source_file, $_width, $_height, $object_file)
 
 //상품명 앞에 아이콘 보이기
 //function show_icon(상품정보 쿼리결과값)
-function show_icon(&$rows)
+function show_icon($pnum)
 {
+
+    global $host, $dbid, $dbpass, $dbname;
+    $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
+
+    $qry  = "SELECT * FROM products WHERE num='$pnum'";
+    $res  = mysqli_query($connect, $qry);
+    $rows = mysqli_fetch_array($res);
+
     //품절 처리 시
     if ($rows['del_chk'] == "O") {
         return $str = '<span class="label label-warning">일시품절</span>';

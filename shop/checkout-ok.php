@@ -52,13 +52,7 @@ $trade_code = "r-" . $wdate . "-" . $p_code;
 
 $delivery_type = 'L';
 
-if ("option1" == $check_diff_addr) {
-
-    // $recipient_zipcode = $recipient_zipcode01 . "-" . $recipient_zipcode02;
-    $recipient_zipcode = $recipient_zipcode01;
-    $recipient_address = $recipient_address01 . " " . $recipient_address02;
-
-} else {
+if ("option1" != $check_diff_addr) {
     $recipient_name      = '';
     $recipient_zipcode01 = '';
     $recipient_address01 = '';

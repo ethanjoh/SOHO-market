@@ -135,10 +135,10 @@ for ($i = 0; $i < sizeof($a_goods_fk); $i++) {
 									  		<a href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/shop/detail.php?pnum=<?php echo $pro_row['num']; ?>&amp;lcode=<?php echo $pro_row['category_l']; ?>&amp;mcode=<?php echo $pro_row['category_m']; ?>&amp;scode=<?php echo $pro_row['category_s']; ?>" target="_blank"><img src="<?php echo $img_char; ?>" width="50" height="50"></a>
 									  	</td>
 									  	<td><div class="brand">[<?php echo $pro_row['company']; ?>]</div>
-										  <?php echo show_icon($pro_row); ?> &nbsp;<a href="" onclick="javascript:open_win('edit_pro.php?oid=<?php echo $oid; ?>&amp;p_num=<?php echo $pro_row['num']; ?>&amp;lcode=<?php echo $pro_row['category_l']; ?>&amp;mcode=<?php echo $pro_row['category_m']; ?>&amp;scode=<?php echo $pro_row['category_s']; ?>','nwin','scrollbars=yes,resizable=yes, width=800,height=650');"><?php echo stripslashes($goods_name); ?></a>
+										  <?php echo show_icon($pro_row['num']); ?> &nbsp;<a href="" onclick="javascript:open_win('edit_pro.php?oid=<?php echo $oid; ?>&amp;p_num=<?php echo $pro_row['num']; ?>&amp;lcode=<?php echo $pro_row['category_l']; ?>&amp;mcode=<?php echo $pro_row['category_m']; ?>&amp;scode=<?php echo $pro_row['category_s']; ?>','nwin','scrollbars=yes,resizable=yes, width=800,height=650');"><?php echo stripslashes($goods_name); ?></a>
 										<?php
 if ($option[$i]) {
-        echo "<p>" . $option[$i] . "</p>\n";
+        echo "<p>[" . $option[$i] . "]</p>\n";
     }
 
     ?>
@@ -230,15 +230,13 @@ $misc    = mysqli_fetch_array($result4);
 // $final = $last_cost + $last_cost2;
 $final = $last_cost;
 ?>
-
  									<tr>
- 						    			<td colspan="2" >▶ 배송 시 요청사항 </td>
- 							   			<td colspan="6" ><font color="#AE3E0D"><?php echo nl2br($row['memo_to_delivery']); ?></font></td>
+ 						    			<td colspan="8" >▶ 배송 시 요청사항: <span><?php echo nl2br($row['memo_to_delivery']); ?></span>
+ 						    			<p class="margin-top-10">▶ 담당자에게 요청사항:  <span><?php echo nl2br($row['memo_to_admin']); ?></span></p></td>
  									</tr>
 	 						 	</tbody>
 	 						</table>
 	 						</div>
-
 					     </div>
 						</section>
 					</div>

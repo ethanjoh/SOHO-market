@@ -64,7 +64,6 @@ function show_login_menu()
                                     <div class="top-cart-contain">
                                         <div class="block-cart">
                                             <div class="top-cart-title">
-                                                <div class="my-cart">카트</div>
                                                 <a href="/shop/cart.php"><p>빈 카트</span></p></a>
                                             </div>
                                         </div>
@@ -95,14 +94,15 @@ HEREDOC;
 
 // 로그인
     } else {
+        $numberOfItems = get_cart_item();
+
         echo <<<HEREDOC
                                 <div class="top-cart-wrapper">
                                     <div class="top-cart-contain">
                                         <div class="block-cart">
                                             <div class="top-cart-title">
                                                 <a href="/shop/cart.php">
-                                                <div class="my-cart">카트</div>
-                                                <p><span id="cartInfo"></span> </p></a>
+                                                <span id="cartInfo" class="cart-item">{$numberOfItems}</span></a>
                                             </div>
                                         </div>
                                     </div>
@@ -136,6 +136,21 @@ HEREDOC;
 
 }
 
+function get_cart_item()
+{
+    global $host, $dbid, $dbpass, $dbname;
+    $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
+
+    $p_id = set_var($_SESSION['p_id']);
+
+    $qry           = "SELECT sum(volume) AS numberOfItems FROM products_cart WHERE user_id = '$p_id'";
+    $res           = mysqli_query($connect, $qry);
+    $row           = mysqli_fetch_array($res);
+    $numberOfItems = $row['numberOfItems'];
+
+    return $numberOfItems;
+
+}
 /**
  * [main_show_products 메인페이지에 표시]
  * @param  [type] $main_flag [best, new 구분]
@@ -1420,4 +1435,259 @@ HEREDOC;
 
     }
 
+}
+
+function show_order_item($oid)
+{
+
+    global $host, $dbid, $dbpass, $dbname;
+    $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
+
+    $sql = "SELECT * FROM mall_order WHERE num = '$oid' ";
+    $res = mysqli_query($connect, $sql);
+    $row = mysqli_fetch_array($res);
+
+    $a_goods_fk = explode(",", $row['goods_fk']);
+    $org_price  = explode(",", $row['goods_price']);
+    $mod_price  = explode(",", $row['mod_price']);
+    $org_volume = explode(",", $row['goods_count']);
+    $mod_volume = explode(",", $row['mod_count']);
+    $option     = explode(",", $row['goods_kind']);
+    $tot_amount = 0;
+    $org_amount = 0;
+    $t_count    = 0;
+    $mt_count   = 0;
+    $pay_status = '';
+
+    //주문 상품 정보를 불러옵니다.
+    for ($i = 0; $i < sizeof($a_goods_fk); $i++) {
+        $pro_sql    = "SELECT * FROM products WHERE num='$a_goods_fk[$i]'";
+        $pro_result = mysqli_query($connect, $pro_sql);
+        $pro_row    = mysqli_fetch_array($pro_result);
+
+        $goods_name  = $pro_row['name'];
+        $img_char    = $pro_row['s_image1_name'];
+        $pnum        = $pro_row['num'];
+        $fixed_price = $pro_row['fixed_price'];
+        $company     = $pro_row['company'];
+
+        //상품옵션 품절표시
+        //상품 옵션이 있는지 확인 후 진행
+        if ($option[$i] != "" || $option2[$i] != "") {
+            //장바구니의 옵션과 제품정보를 비교하여 품절옵션이 있는지 확인
+            $t_opt       = explode(",", $pro_row['opt']); //제품의 옵션명을 배열로 만들어준다
+            $t_opt_stock = explode(",", $pro_row['opt_stock']); //제품의 옵션재고를 배열로 만들어준다
+
+            //옵션의 문자열 비교
+            for ($j = 0; $j < count($t_opt); $j++) {
+                $str = strcmp($t_opt[$j], $option[$i]);
+
+                if (!$str) {
+                    //문자열이 같다면 문자열 대체
+                    if ($t_opt_stock[$j] == "0") {
+                        $option[$i] .= " (품절)";
+                    } elseif ($t_opt_stock[$j] == "-1") {
+                        $option[$i] .= " (단종)";
+                    } else {
+                        $option[$i] = $t_opt[$j];
+                    }
+
+                }
+            } // ./for ($j = 0; $j < count($t_opt); $j++)
+
+        } // ./if ($option[$i] != "" || $option2[$i] != "")
+
+        $goods_name = stripslashes($goods_name);
+        $show_icon  = show_icon($pro_row['num']);
+
+        echo <<<HEREDOC
+
+                                <tr>
+                                    <td><a href="detail.php?pnum={$pnum}" target="_blank"><img src="{$img_char}" /></a></td>
+                                    <td><div class="brand">[{$company}]</div>{$show_icon}&nbsp;<a href="detail.php?pnum={$pnum}" target="_blank">{$goods_name}</a></td>
+                                    <td>
+
+HEREDOC;
+
+        if ($option[$i]) {
+            echo $option[$i];
+        }
+
+        echo <<<HEREDOC
+                                    </td>
+                                    <td>{$org_volume[$i]}</td>
+HEREDOC;
+
+        if ($fixed_price) {
+            echo '                          <td><i class="fa fa-lock"></i>' . number_format($org_price[$i]) . '</td>';
+        } else {
+            echo '                          <td>' . number_format($org_price[$i]) . '</td>';
+        }
+
+        $sub_amount      = (int) $mod_volume[$i] * (int) $mod_price[$i];
+        $show_sub_amount = number_format($sub_amount);
+        echo <<<HEREDOC
+                                    <td>{$show_sub_amount}</td>
+                                </tr>
+HEREDOC;
+
+        $tot_amount = $tot_amount + ((int) $mod_price[$i] * (int) $mod_volume[$i]);
+        $org_amount = $org_amount + ((int) $org_price[$i] * (int) $org_volume[$i]);
+        $t_count    = $t_count + (int) $org_volume[$i];
+        $mt_count   = $mt_count + (int) $mod_volume[$i];
+    } // ./ for ($i = 0; $i < sizeof($a_goods_fk); $i++)
+
+    $last_cost         = $tot_amount;
+    $show_delivery_fee = show_delivery_fee($last_cost);
+    $show_last_cost    = number_format($last_cost);
+
+    echo <<<HEREDOC
+                                <tr>
+                                    <td colspan="3">총 수량 :</td>
+                                    <td>{$t_count} 개</td>
+                                    <td></td>
+                                    <td colspan="2"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">택배비 :</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td colspan="2"><i class="fa fa-plus-circle"></i> {$show_delivery_fee}</td>
+
+                                </tr>
+                                <tr>
+                                    <td colspan="3"><h4>총 합 : </h4></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td colspan="2"><h4>{$show_last_cost}</h4>(VAT 포함)</td>
+                                </tr>
+HEREDOC;
+}
+
+function show_order_status($oid, $order_status)
+{
+    global $host, $dbid, $dbpass, $dbname;
+    $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
+
+    $sql = "SELECT * FROM mall_order WHERE num = '$oid' ";
+    $res = mysqli_query($connect, $sql);
+    $row = mysqli_fetch_array($res);
+
+    if ($row['payment_type'] == 1) {
+        $payment_type = "무통장 입금";
+    }
+
+    if ($row['payment_type'] == 2) {
+        $payment_type = "신용카드";
+    }
+
+    if ($row['payment_type'] == 3) {
+        $payment_type = "실시간 계좌이체";
+    }
+
+    switch ($order_status) {
+        case '3':
+            return $ret = '<i class="fa fa-pause"></i> 상품을 준비 중입니다.';
+            break;
+        case '5':
+            return $ret = '<i class="fa fa-check"></i> 주문확인 후 포장 중입니다.';
+            break;
+        case '7':
+            return $ret = '<i class="fa fa-flag-checkered"></i> 포장완료 후 발송 준비 중입니다.';
+            break;
+        case '8':
+            return $ret = '<i class="fa fa-check-square-o"></i> 상품을 발송했습니다. (운송장 번호: ' . show_logistics() . ' ' . show_track_no($oid) . ' )';
+            break;
+        default:
+            return $ret = '<i class="fa fa-pause"></i> 상품을 준비 중입니다.';
+            break;
+    }
+
+    // $a_status['3'] = '<i class="fa fa-pause"></i> 상품을 준비 중입니다.';
+    // $a_status['5'] = '<i class="fa fa-check"></i> 주문확인 후 포장 중입니다.';
+    // $a_status['7'] = '<i class="fa fa-flag-checkered"></i> 포장완료 후 발송 준비 중입니다.';
+    // $a_status['8'] = '<i class="fa fa-check-square-o"></i> 상품을 발송했습니다. (운송장 번호: ' . show_logistics() . ' ' . show_track_no($oid) . ' )';
+
+    // return $a_status;
+}
+
+function show_buyer_detail($oid)
+{
+    global $host, $dbid, $dbpass, $dbname;
+    $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
+
+    $sql = "SELECT * FROM mall_order WHERE num = '$oid' ";
+    $res = mysqli_query($connect, $sql);
+    $row = mysqli_fetch_array($res);
+
+    echo <<<HEREDOC
+
+	                    <div class="row">
+                        <div class="col-sm-3 buyer-info-padding">주문번호</div>
+                        <div class="col-sm-9 buyer-info-padding">{$row['orderid']} (주문일 : {$row['createdate']} )</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3 buyer-info-padding">구매자( {$row['user_id']} )</div>
+                        <div class="col-sm-9 buyer-info-padding">
+                            {$row['buyer_name']}<br />
+                            {$row['buyer_zipcode']} <br />
+                            {$row['buyer_address']}<br />
+                            {$row['buyer_phone']}<br />
+                            {$row['buyer_hphone']}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3 buyer-info-padding">수령자</div>
+                        <div class="col-sm-9 buyer-info-padding">
+                            {$row['recipient_name']}<br />
+                            {$row['recipient_zipcode']}<br />
+                            {$row['recipient_address']}<br />
+                            {$row['recipient_phone']}<br />
+                            {$row['recipient_hphone']}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3 buyer-info-padding">결제방법</div>
+                        <div class="col-sm-9 buyer-info-padding">
+                            {pay_status}
+HEREDOC;
+//무통장 입금시만 출력
+    if ($row['payment_type'] == '3') {
+        echo <<<HEREDOC
+                                  <p>
+                                  {$row['bank']}<br />
+                                  (입금자: {$row['account']} / 입금예정일 : {$row['deposit_date']})
+                                  </p>
+HEREDOC;
+    }
+
+    $show_org_amount  = number_format($row['amount']);
+    $status           = show_order_status($oid, $row['status']);
+    $memo_to_delivery = nl2br($row['memo_to_delivery']);
+    $memo_to_admin    = nl2br($row['memo_to_admin']);
+    $memo_from_admin  = nl2br($row['supplement']);
+
+    echo <<<HEREDOC
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3 buyer-info-padding">주문금액</div>
+                        <div class="col-sm-9 buyer-info-padding">{$show_org_amount} 원 (VAT 포함)</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3 buyer-info-padding">처리상태</div>
+                        <div class="col-sm-9 buyer-info-padding">{$status}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3 buyer-info-padding">배송 시 요청사항</div>
+                        <div class="col-sm-9 buyer-info-padding">{$memo_to_delivery}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3 buyer-info-padding">담당자에게 요청사항</div>
+                        <div class="col-sm-9 buyer-info-padding">{$memo_to_admin}</div>
+                    </div>
+                    <div class="row bg-danger">
+                        <div class="col-sm-3 buyer-info-padding">※ 관리자 메모</div>
+                        <div class="col-sm-9 buyer-info-padding">{$memo_from_admin}</div>
+                    </div>
+HEREDOC;
 }

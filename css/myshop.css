@@ -1,6 +1,7 @@
 /*
 custom style
  */
+
 .margin-top-10 {
     margin-top: 10px;
 }
@@ -73,7 +74,8 @@ custom style
     text-align: right;
 }
 
-.cart-form .cart-table td.total-amount, .cart-form .cart-table td.total-text {
+.cart-form .cart-table td.total-amount,
+.cart-form .cart-table td.total-text {
     padding: 20px;
     background-color: #F3F3F3;
     text-align: right;
@@ -81,27 +83,40 @@ custom style
 }
 
 .soldout {
-	color = blue;
+    color=blue;
 }
 
 .cutout {
-	color = red;
+    color=red;
 }
 
 .buyer-info-padding {
     padding: 5px 15px;
 }
 
-.bg-danger{
+.bg-danger {
     background-color: #E7543D;
     color: #fff;
     padding: 10px;
 }
 
-.order-detail tr, .order-detail th{
+.order-detail tr,
+.order-detail th {
     text-align: center;
 }
 
 .date-input {
     margin-right: 20px;
+}
+
+.cart-item {
+    background: #BADA55;
+    /*border-radius: 50%;*/
+    color: #fff;
+    font-size: 1.3em;
+    height: 20px;
+    width: 20px;
+    padding: 10px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
 }

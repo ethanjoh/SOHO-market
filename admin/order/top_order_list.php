@@ -157,8 +157,8 @@ if ($mode == "search") {
 						<!-- calendar start -->
 						<form name="form" method="get" action="top_order_list.php" class="form-inline form-group" role="form">
 						<input type="hidden" name="mode" value="date" />
-						<input type="hidden" name="key" value="<?=$key;?>" />
-						<input type="hidden" name="key_value" value="<?=$key_value;?>" />
+						<input type="hidden" name="key" value="<?php echo $key; ?>" />
+						<input type="hidden" name="key_value" value="<?php echo $key_value; ?>" />
 						<div class="panel panel-info">
 						  <div class="panel-heading">날짜 검색</div>
 							  <div class="panel-body text-center">
@@ -194,11 +194,11 @@ if ($mode == "search") {
 							<tbody>
 							  <tr>
 							    <td class="text-center">
-						        	<a class="btn btn-default" href="top_order_list.php?mode=today">금일 주문건 (<?=$today_total;?>)</a>
-						        	<a class="btn btn-default" href="top_order_list.php?mode=unchk">미처리 주문건 (<?=$unchk_total;?>)</a>
+						        	<a class="btn btn-default" href="top_order_list.php?mode=today">금일 주문건 (<?php echo $today_total; ?>)</a>
+						        	<a class="btn btn-default" href="top_order_list.php?mode=unchk">미처리 주문건 (<?php echo $unchk_total; ?>)</a>
 						        	<a class="btn btn-default" href="top_order_list.php?mode=chk">주문확인건 </a>
-						        	<a class="btn btn-default" href="top_order_list.php?mode=delay">발송지연건(<?=$delay_total;?>)</a>
-						        	<a class="btn btn-default" href="top_order_list.php?mode=paid">발송대기건 (<?=$paid_total;?>)</a>
+						        	<a class="btn btn-default" href="top_order_list.php?mode=delay">발송지연건(<?php echo $delay_total; ?>)</a>
+						        	<a class="btn btn-default" href="top_order_list.php?mode=paid">발송대기건 (<?php echo $paid_total; ?>)</a>
 						        	<a class="btn btn-default" href="top_order_list.php?mode=finish">발송완료건</a>
 						        	<a class="btn btn-default" href="top_order_list.php?mode=cancel">주문취소건</a>
 						        	<!-- <a class="btn btn-default" href="top_order_list.php?mode=return">반품회수건</a> -->
@@ -217,7 +217,7 @@ if ($mode == "search") {
 		            <div class="col-sm-12">
 						<section class="panel">
 							<header class="panel-heading table-head">
-							    주문 목록 (총 <?=number_format($total);?> 건)
+							    주문 목록 (총 <?php echo number_format($total); ?> 건)
 						  	</header>
 						  	<div class="panel-body">
 						  	<div class="table-responsive">
@@ -294,14 +294,6 @@ if ($res_4) {
 
     for ($i = 0; $row = mysqli_fetch_array($res_4); $i++) {
 
-        //주문소스 추출
-        $os = substr($row['num'], 0, 1);
-        if ($os == "m") {
-            $os_icon = "<img src=\"../images/smartphone.png\">";
-        } else {
-            $os_icon = "";
-        }
-
         //회원정보
         $sql  = "SELECT * FROM member WHERE id='$row[user_id]' ";
         $res  = mysqli_query($connect, $sql);
@@ -313,28 +305,29 @@ if ($res_4) {
             //$o_total -= $row['amount'];
             $total -= $row['last_amount']; //취소에 따른 합계금액차감
             ?>
-					          <tr bgcolor="<?=$c_color;?>">
-					            <td><?=$os_icon;?> <a href="or_view.php?mode=<?=$mode;?>&amp;oid=<?=$row['num'];?>&amp;key=<?=$key;?>&amp;key_value=<?=$key_value;?>&amp;page=<?=$page;?>"><?=$row['createdate'];?></a></td>
-					            <td><?=$row['user_id'];?></td>
+					          <tr bgcolor="<?php echo $c_color; ?>">
+					            <td><a href="or_view.php?mode=<?php echo $mode; ?>&amp;oid=<?php echo $row['num']; ?>&amp;key=<?php echo $key; ?>&amp;key_value=<?php echo $key_value; ?>&amp;page=<?php echo $page; ?>"><?php echo $row['createdate']; ?></a></td>
+					            <td><?php echo $row['user_id']; ?></td>
 					            <td>
 					            <?php
-if ($row['recipient_name']) {
-                echo "<a href=\"top_order_list.php?mode=search&amp;key=user_id&amp;key_value=" . $row['user_id'] . "\">" . $row['buyer_name'] . "</a> -> (" . $row['recipient_name'] . ") ";
+
+            if ($row['recipient_name']) {
+                echo '<a href="top_order_list.php?mode=search&amp;key=user_id&amp;key_value=' . $row['user_id'] . '">' . $row['buyer_name'] . '</a> <i class="fa fa-arrow-right"></i> (' . $row['recipient_name'] . ')';
             } else {
-                echo "<a href=\"top_order_list.php?mode=search&amp;key=user_id&amp;key_value=" . $row['user_id'] . "\">" . $row['buyer_name'] . "</a> ";
+                echo '<a href="top_order_list.php?mode=search&amp;key=user_id&amp;key_value=' . $row['user_id'] . '">' . $row['buyer_name'] . '</a>';
             }
 
             if ($row['supplement']) {
                 ?>
-                        			<i class="fa fa-comment pop" data-toggle="popover" data-container="body" title="관리자 메모" data-content="<?=$row['supplement'];?>"></i>
+                        			<i class="fa fa-comment pop" data-toggle="popover" data-container="body" title="관리자 메모" data-content="<?php echo $row['supplement']; ?>"></i>
 					             <?php
 }
             ?>
 								</td>
-					            <td><?=$trow['dc_rate'];?> %</td>
+					            <td><?php echo $trow['dc_rate']; ?> %</td>
 					            <td>-</td>
 					            <td>-</td>
-					            <td><a type="button" class="btn btn-danger" href="or_delete.php?mode=d&amp;oid=<?=$row['num'];?>&amp;page=<?=$page;?>" onclick="return confirm('취소된 주문입니다.\n삭제하시겠습니까?')"><i class="fa fa-trash-o"></i></a></td>
+					            <td><a type="button" class="btn btn-danger" href="or_delete.php?mode=d&amp;oid=<?php echo $row['num']; ?>&amp;page=<?php echo $page; ?>" onclick="return confirm('취소된 주문입니다.\n삭제하시겠습니까?')"><i class="fa fa-trash-o"></i></a></td>
 					            <?php
 } else {
             if ($row['status'] == '1') {
@@ -375,25 +368,25 @@ if ($row['recipient_name']) {
 
             ?>
 					          <tr>
-					            <td><?=$os_icon;?> <a href="or_view.php?mode=<?=$mode;?>&amp;oid=<?=$row['num'];?>&amp;key=<?=$key;?>&amp;key_value=<?=$key_value;?>&amp;page=<?=$page;?>"><?=$row['createdate'];?></a></td>
-					            <td><?=$row['user_id'];?></td>
+					            <td><?php echo $os_icon; ?> <a href="or_view.php?mode=<?php echo $mode; ?>&amp;oid=<?php echo $row['num']; ?>&amp;key=<?php echo $key; ?>&amp;key_value=<?php echo $key_value; ?>&amp;page=<?php echo $page; ?>"><?php echo $row['createdate']; ?></a></td>
+					            <td><?php echo $row['user_id']; ?></td>
 					            <td>
 					            <?php
 
             if ($row['recipient_name']) {
-                echo "<a href=\"top_order_list.php?mode=search&amp;key=user_id&amp;key_value=" . $row['user_id'] . "\">" . $row['buyer_name'] . "</a> -> (" . $row['recipient_name'] . ") ";
+                echo '<a href="top_order_list.php?mode=search&amp;key=user_id&amp;key_value=' . $row['user_id'] . '">' . $row['buyer_name'] . '</a> <i class="fa fa-arrow-right"></i> (' . $row['recipient_name'] . ')';
             } else {
-                echo "<a href=\"top_order_list.php?mode=search&amp;key=user_id&amp;key_value=" . $row['user_id'] . "\">" . $row['buyer_name'] . "</a> ";
+                echo '<a href="top_order_list.php?mode=search&amp;key=user_id&amp;key_value=' . $row['user_id'] . '">' . $row['buyer_name'] . '</a>';
             }
 
             if ($row['supplement']) {
                 ?>
-                        			<i class="fa fa-comment pop" data-toggle="popover" data-container="body" title="관리자 메모" data-content="<?=$row['supplement'];?>"></i>
+                        			<i class="fa fa-comment pop" data-toggle="popover" data-container="body" title="관리자 메모" data-content="<?php echo $row['supplement']; ?>"></i>
 					             <?php
 }
             ?>
 								</td>
-					            <td><?=$trow['dc_rate'];?> %</td>
+					            <td><?php echo $trow['dc_rate']; ?> %</td>
 					            <td>
 					            	<?php
 if ($row['last_amount'] == 0 && $row['status'] == "8") {
@@ -430,8 +423,8 @@ if ($row['delivery_type'] == 'L' || $row['delivery_type'] == 'L1') {
 								</td>
 								-->
 
-					            <td><?=$status_now;?></td>
-					            <td><a type="button" class="btn btn-default" href="or_delete.php?oid=<?=$row['num'];?>&amp;page=<?=$page;?>" onclick="return confirm('정말 주문을 취소하시겠습니까?')"><i class="fa fa-times"></i></a></td>
+					            <td><?php echo $status_now; ?></td>
+					            <td><a type="button" class="btn btn-default" href="or_delete.php?oid=<?php echo $row['num']; ?>&amp;page=<?php echo $page; ?>" onclick="return confirm('정말 주문을 취소하시겠습니까?')"><i class="fa fa-times"></i></a></td>
 					          </tr>
 					          <?php
 
@@ -444,9 +437,9 @@ if ($row['delivery_type'] == 'L' || $row['delivery_type'] == 'L1') {
 					          <tr>
 					            <td colspan="4"><strong>총합:</strong></td>
 					            <!--<td><strong>
-					              <?=number_format($o_total);?>
+					              <?php echo number_format($o_total); ?>
 					              </strong></td>-->
-					            <td><strong><?=number_format($total);?></strong></td>
+					            <td><strong><?php echo number_format($total); ?></strong></td>
 					            <td></td>
 					            <td></td>
 					            <!-- <td></td> -->
