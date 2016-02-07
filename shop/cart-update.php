@@ -58,7 +58,7 @@ if ("cart" == $from || "cart" == $where) {
  */
 } else if ("detail" == $from) {
 
-    //장바구니에 있는 상품확인
+    //카트에 있는 상품확인
     $qry = "SELECT * FROM products_cart WHERE user_id='$id_fk' AND product_code='$pnum' AND p_opt='$selected_opt'  ";
     $res = mysqli_query($connect, $qry);
     $row = mysqli_fetch_array($res);
@@ -77,12 +77,10 @@ if ("cart" == $from || "cart" == $where) {
         redirect('checkout.php?from=detail');
         // echo "<meta http-equiv='Refresh' content='0; URL=checkout.php?from=detail'>";
     } else {
-        // $url = "detail.php?pnum=$pnum&lcode=$lcode&mcode=$mcode&scode=$scode";
-        // show_msg('장바구니에 담았습니다.', $url);
 
         $msg = "<meta http-equiv='content-type' content='text/html; charset=UTF-8' />\n";
         $msg .= "<script>\n";
-        $msg .= "window.alert('장바구니에 담았습니다.')\n";
+        $msg .= "window.alert('카트에 담았습니다.')\n";
         $msg .= "</script>\n";
 
         // get quantity from cart
@@ -103,7 +101,7 @@ if ("cart" == $from || "cart" == $where) {
         $products_count = 1;
     }
 
-    //장바구니에 있는 상품확인
+    //카트에 있는 상품확인
     $qry = "SELECT * FROM products_cart WHERE user_id='$id_fk' AND product_code='$pnum' AND p_opt='$selected_opt'  ";
     $res = mysqli_query($connect, $qry);
     $row = mysqli_fetch_array($res);
@@ -123,7 +121,7 @@ if ("cart" == $from || "cart" == $where) {
     } else {
         $msg = "<meta http-equiv='content-type' content='text/html; charset=UTF-8' />\n";
         $msg .= "<script>\n";
-        $msg .= "window.alert('장바구니에 담았습니다.')\n";
+        $msg .= "window.alert('카트에 담았습니다.')\n";
         $msg .= "</script>\n";
 
         // get quantity from cart
@@ -140,7 +138,7 @@ if ("cart" == $from || "cart" == $where) {
         $products_count = 1;
     }
 
-    //장바구니에 있는 상품확인
+    //카트에 있는 상품확인
     $qry = "SELECT * FROM products_cart WHERE user_id='$id_fk' AND product_code='$pnum' AND p_opt='$selected_opt'  ";
     $res = mysqli_query($connect, $qry);
     $row = mysqli_fetch_array($res);
@@ -160,11 +158,11 @@ if ("cart" == $from || "cart" == $where) {
         // echo "<meta http-equiv='Refresh' content='0; URL=checkout.php?from=detail'>";
     } else {
         $url = "sub_list.php?mode=$mode&page=$page";
-        show_msg('장바구니에 담았습니다.', $url);
+        show_msg('카트에 담았습니다.', $url);
     }
 } else if ("dir" == $from) {
     // 비회원 바로구매
-    //장바구니에 있는 상품확인
+    //카트에 있는 상품확인
     $qry = "SELECT * FROM products_cart WHERE user_id='$id_fk' AND product_code='$pnum' AND p_opt='$selected_opt'  ";
     $res = mysqli_query($connect, $qry);
     $row = mysqli_fetch_array($res);
@@ -182,7 +180,7 @@ if ("cart" == $from || "cart" == $where) {
     // echo "<meta http-equiv='Refresh' content='0; URL=purchase_p.php?from=dir'>"; //별도의 구매페이지로 이동
 } else if ("5" == $chk) {
     // 검색결과
-    //장바구니에 있는 상품확인
+    //카트에 있는 상품확인
     $qry = "SELECT * FROM products_cart WHERE user_id='$id_fk' AND product_code='$pnum' AND p_opt='$selected_opt'  ";
     $res = mysqli_query($connect, $qry);
     $row = mysqli_fetch_array($res);
@@ -198,7 +196,7 @@ if ("cart" == $from || "cart" == $where) {
     }
 
     $url = "sub_list.php?mode=search&key=$key&keyword=$keyword&page=$page";
-    show_msg('장바구니에 담았습니다.', $url);
+    show_msg('카트에 담았습니다.', $url);
 } else {
     redirect('cart.php');
     // echo "<meta http-equiv='Refresh' content='0; URL=cart.php'>";

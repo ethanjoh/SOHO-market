@@ -317,9 +317,9 @@ if ($res_4) {
                 echo '<a href="top_order_list.php?mode=search&amp;key=user_id&amp;key_value=' . $row['user_id'] . '">' . $row['buyer_name'] . '</a>';
             }
 
-            if ($row['supplement']) {
+            if ($row['memo_to_admin']) {
                 ?>
-                        			<i class="fa fa-comment pop" data-toggle="popover" data-container="body" title="관리자 메모" data-content="<?php echo $row['supplement']; ?>"></i>
+                        			<i class="fa fa-envelope pop" data-toggle="popover" data-container="body" title="담당자에게 요청사항" data-content="<?php echo $row['memo_to_admin']; ?>"></i>
 					             <?php
 }
             ?>
@@ -379,9 +379,9 @@ if ($res_4) {
                 echo '<a href="top_order_list.php?mode=search&amp;key=user_id&amp;key_value=' . $row['user_id'] . '">' . $row['buyer_name'] . '</a>';
             }
 
-            if ($row['supplement']) {
+            if ($row['memo_to_admin']) {
                 ?>
-                        			<i class="fa fa-comment pop" data-toggle="popover" data-container="body" title="관리자 메모" data-content="<?php echo $row['supplement']; ?>"></i>
+                        			<i class="fa fa-envelope pop" data-toggle="popover" data-container="body" title="담당자에게 요청사항" data-content="<?php echo $row['memo_to_admin']; ?>"></i>
 					             <?php
 }
             ?>

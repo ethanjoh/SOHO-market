@@ -393,7 +393,7 @@ body {
 
 .top-register {
     float: right;
-    margin-left: 20px;
+    margin-left: 5px;
     border-left: 1px solid #cccccc;
     margin-top: 20px;
     padding: 0px 15px;
@@ -442,7 +442,7 @@ body {
 }
 
 .top-login {
-    float: right;
+    float: left;
     margin-top: 20px;
     position: relative;
 }

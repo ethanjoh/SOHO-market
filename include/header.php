@@ -138,9 +138,7 @@ $uri = urlencode($uri);
                         </div>
                         <div class="col-md-4 col-sm-4 col-xs-12">
                             <div class="header-wrapper">
-
-<?php show_login_menu();?>
-
+                                <?php show_login_menu();?>
                             </div> <!-- /.header-wrapper -->
                         </div> <!-- /.col-md-4 col-sm-4 col-xs-12 -->
 
@@ -158,7 +156,7 @@ $uri = urlencode($uri);
                                         <h2>브랜드</h2>
                                     </div>
                                     <div class="category-menu-list">
-<?php show_brands();?>
+                                        <?php show_brands();?>
                                     </div>
                                 </div>
                             </div>
@@ -167,10 +165,10 @@ $uri = urlencode($uri);
                             <div class="home_menu">
                                 <nav>
                                     <ul>
-                                        <li><a href="about-us.html">회사 소개</a></li>
-                                        <li><a href="blog.html">뉴스&amp;이벤트</a></li>
+                                        <li><a href="/member/about-us.php">회사 소개</a></li>
+                                        <li><a href="/bbs/list.php?code=notice">뉴스&amp;이벤트</a></li>
                                         <li><a href="#">대리점 안내</a></li>
-                                        <li><a href="contact-us.html">제휴문의</a></li>
+                                        <li><a href="/member/contact-us.php">제휴문의</a></li>
                                     </ul>
                                 </nav>
                             </div>
@@ -186,29 +184,12 @@ $uri = urlencode($uri);
                             <div class="mobile-menu">
                                 <nav id="dropdown">
                                     <ul>
-                                        <li class="active1"><a href="index.html">Home</a>
-                                            <ul>
-                                                <li><a href="index-2.html">Home 2</a></li>
-                                                <li><a href="index-3.html">Home 3</a></li>
-                                                <li><a href="index-4.html">Home 4</a></li>
-                                            </ul>
+                                        <li class="active1"><a href="/">Home</a>
                                         </li>
-                                        <li><a href="about-us.html">about us</a></li>
-                                        <li><a href="blog.html">Blog</a></li>
-                                        <li class="active1"><a href="#">Pages</a>
-                                            <ul>
-                                                <li><a href="about-us.html">about us</a></li>
-                                                <li><a href="blog.html">blog</a></li>
-                                                <li><a href="blog-details.html">blog details</a></li>
-                                                <li><a href="checkout.html">checkout</a></li>
-                                                <li><a href="contact-us.html">Contacts</a></li>
-                                                <li><a href="shop.html">shop</a></li>
-                                                <li><a href="single-product.html">single-product</a></li>
-                                                <li><a href="shopping-cart.html">shopping-cart</a></li>
-                                                <li><a href="wishlist.html">wishlist</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="contact-us.html">Contacts</a></li>
+                                        <li><a href="/member/about-us.php">회사 소개</a></li>
+                                        <li><a href="/bbs/list.php?code=notice">뉴스&amp;이벤트</a></li>
+                                        <li><a href="#">대리점 안내</a></li>
+                                        <li><a href="/member/contact-us.php">제휴문의</a></li>
                                     </ul>
                                 </nav>
                             </div>

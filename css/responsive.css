@@ -1,3 +1,12 @@
+/* Large desktop : 1200px */
+@media (min-width: 1200px){
+    .top-login {
+        float: right;
+        margin-right: 10px;
+    }
+
+}
+
 /* Normal desktop :992px. */
 @media (min-width: 992px) and (max-width: 1169px){
     .container {
@@ -426,7 +435,7 @@
       padding-left: 0;
     }
     .home-1 .header {
-      padding: 10px 0 0;
+      padding: 10px 0 10px;
     }
     .blog-right-sidebar .sp-module-title {
         margin-top: 30px;

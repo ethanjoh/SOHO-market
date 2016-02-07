@@ -1,7 +1,6 @@
 <?php include_once '../include/header.php';?>
 
 <?php
-
 $mode      = set_var($_GET['mode']);
 $oid       = set_var($_GET['oid']);
 $key       = set_var($_GET['key']);
@@ -231,8 +230,8 @@ $misc    = mysqli_fetch_array($result4);
 $final = $last_cost;
 ?>
  									<tr>
- 						    			<td colspan="8" >▶ 배송 시 요청사항: <span><?php echo nl2br($row['memo_to_delivery']); ?></span>
- 						    			<p class="margin-top-10">▶ 담당자에게 요청사항:  <span><?php echo nl2br($row['memo_to_admin']); ?></span></p></td>
+ 						    			<td colspan="8" ><i class="fa fa-envelope"></i> 배송 시 요청사항: <span><?php echo nl2br($row['memo_to_delivery']); ?></span>
+ 						    			<p class="margin-top-10"><i class="fa fa-envelope"></i> 담당자에게 요청사항:  <span><?php echo nl2br($row['memo_to_admin']); ?></span></p></td>
  									</tr>
 	 						 	</tbody>
 	 						</table>
@@ -292,7 +291,7 @@ $a_status['8'] = '<i class="fa fa-truck"></i> 발송완료(' . $row['senddate'] 
 								<table class="table">
 								<tbody>
 								  <tr>
-								    <th>구매자(<?php echo $row['user_id']; ?>)
+								    <th width="15%">구매자(<?php echo $row['user_id']; ?>)
 								    	<!-- <p><img src="../images/12.gif" /><a href="../member/new_msg.php?mode=reply&amp;id=<?php echo $row['user_id']; ?>" target="_blank">[쪽지 보내기]</a></p> -->
 								    </th>
 								    <td
@@ -305,7 +304,7 @@ $a_status['8'] = '<i class="fa fa-truck"></i> 발송완료(' . $row['senddate'] 
 								     	</ul>
 								     </td>
 								    <th>수령자</th>
-								    <td>
+								    <td width="25%">
 								    	<ul>
 								        	<li><?php echo $row['recipient_name']; ?></li>
 								        	<li><?php echo $row['recipient_zipcode']; ?></li>
@@ -439,10 +438,10 @@ if ($row['status'] == '7' || $row['status'] == '8') {
 								        <input type="hidden" name="last_amount" id="last_amount3" value="<?php echo $final; ?>" />
 								        <input type="hidden" name="senddate" value="<?php echo $row['status'] == '8' ? $row['senddate'] : $today; ?>" />
 								         운송장 번호
-								        <input type="text" class="form-control" name="track_no" id="track_no" value="<?php echo $row['track_no']; ?>" size="80" />
+								        <input type="text" class="form-control" name="track_no" id="track_no" value="<?php echo $row['track_no']; ?>" size="50" />
 								        &nbsp;
 								        <button id="send" class="btn btn-success" type="submit" onclick="return confirm('운송장번호를 입력하셨습니까?')"><i class="fa fa-truck"></i> 발송완료</button>&nbsp;<i class="fa fa-calendar"></i>&nbsp;<input type="text" class="form-control" name="senddate" id="senddate" value="<?php echo $row['status'] == '8' ? $row['senddate'] : $today; ?>" size="10" />
-								        <p class="help-block"><i class="fa fa-exclamation-triangle"></i> 여러 개 운송장 입력 시 구분은 ',(콤마)' 하세요 </p>
+								        <p class="help-block"><i class="fa fa-exclamation-triangle"></i> 여러 개 운송장 입력 시 구분은 ',(콤마)'로 분리하세요 </p>
 								      </form>
 <?php
 if ($row['status'] == "8" || $row['status'] == "-1" && $row['delivery_type'] == "L") {

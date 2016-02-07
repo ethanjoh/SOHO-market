@@ -176,6 +176,16 @@ page_nav($totalpage, $cpage, $url);
       <script src="/js/jquery.highchartTable-min.js"></script>
       <script src="/js/showChart.js"></script>
       <script src="/js/jq_datepicker.js"></script>
+      <script>
+          $(document).ready(function() {
 
+              $(".pop").popover({
+                placement : 'top'
+              });
+
+              $("#guestModal0").modal("show");
+
+          });
+      </script>
     </body>
 </html>

@@ -1,4 +1,4 @@
-<?php //include_once '../include/auth.php';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;?>
+<?php //include_once '../include/auth.php';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;?>
 
 <?php include_once '../include/header.php';?>
 
@@ -15,7 +15,7 @@
                             </div>
                             <div class="cart-form table-responsive">
                             <!-- 카트 아이템 보여주기 반환값: 총합 -->
-                            <?php $show_total = show_cart_item();?>
+                            <?php $total = show_cart_item();?>
                             <!-- 카트 아이템 보여주기 -->
                                 <div class="a-all ">
                                     <div class="a-left">
@@ -37,10 +37,10 @@
                     <div class="col-md-4 col-sm-12">
                         <div class="totals">
                             <div class="subtotal">
-                                <p><i class="fa fa-truck"></i> 택배비: <span><?php echo show_delivery_fee($show_total); ?></span></p>
-                                <p class="grand-total">총  합: <span><i class="fa fa-krw"></i> <?php echo $show_total; ?></span> (VAT 포함)</p>
+                                <p><i class="fa fa-truck"></i> 택배비: <span><?php echo show_delivery_fee($total); ?></span></p>
+                                <p class="grand-total">총  합: <span><i class="fa fa-krw"></i> <?php echo number_format($total); ?></span> (VAT 포함)</p>
                             </div>
-                            <button class="button2 get" type="button" onclick="<?php echo go_purchase($show_total); ?>">
+                            <button class="button2 get" type="button" onclick="<?php echo go_purchase($total); ?>">
                                 <span>결제하기</span>
                             </button>
                         </div>

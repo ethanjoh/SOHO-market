@@ -38,7 +38,7 @@ show_brand_name($lcode);
                                         <h2>서브 카테고리</h2>
                                     </div>
                                     <div class="odd">
-<?php show_sub_category($lcode);?>
+                                        <?php show_sub_category($lcode);?>
                                     </div>
                                 </div>
                             </div>
@@ -62,19 +62,13 @@ show_brand_name($lcode);
                                             <div role="tabpanel" class="tab-pane active" id="home">
                                                 <div class="row">
                                                     <div class="shop-tab">
-<?php
-show_catalog_products($lcode, $mcode, 'home');
-?>
-
+                                                        <?php echo show_catalog_products($lcode, $mcode, 'home'); ?>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div role="tabpanel" class="tab-pane" id="profile">
                                                 <div class="row">
-<?php
-show_catalog_products($lcode, $mcode, 'profile');
-?>
-
+                                                    <?php show_catalog_products($lcode, $mcode, 'profile');?>
                                                 </div>
                                             </div>
                                         </div>

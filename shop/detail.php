@@ -18,20 +18,20 @@ $result = mysqli_query($connect, $query);
 $rows   = mysqli_fetch_array($result);
 mysqli_free_result($result);
 
-$pnum          = $rows['num'];
-$lcode         = $rows['category_l'];
-$product_name  = $rows['name'];
-$short_desc    = $rows['short_desc'];
-$option        = $rows['opt'];
-$b_image1_name = $rows['b_image1_name'];
-$b_image2_name = $rows['b_image2_name'];
-$b_image3_name = $rows['b_image3_name'];
-$b_image4_name = $rows['b_image4_name'];
-$s_image1_name = $rows['s_image1_name'];
-$s_image2_name = $rows['s_image2_name'];
-$s_image3_name = $rows['s_image3_name'];
-$s_image4_name = $rows['s_image4_name'];
-$contents      = $rows['contents'];
+$pnum         = $rows['num'];
+$lcode        = $rows['category_l'];
+$product_name = $rows['name'];
+$short_desc   = $rows['short_desc'];
+$option       = $rows['opt'];
+// $b_image1_name = $rows['b_image1_name'];
+// $b_image2_name = $rows['b_image2_name'];
+// $b_image3_name = $rows['b_image3_name'];
+// $b_image4_name = $rows['b_image4_name'];
+// $s_image1_name = $rows['s_image1_name'];
+// $s_image2_name = $rows['s_image2_name'];
+// $s_image3_name = $rows['s_image3_name'];
+// $s_image4_name = $rows['s_image4_name'];
+$contents = $rows['contents'];
 
 $l_qry = "SELECT * FROM products_category1 WHERE code='$lcode'";
 $l_res = mysqli_query($connect, $l_qry);
@@ -53,19 +53,14 @@ $l_row = mysqli_fetch_array($l_res);
                                 </span>
                             </li>
                             <li class="home-two">
-<?php
-show_brand_name($lcode);
-?>
-
+                                <?php show_brand_name($lcode);?>
                                 <span>
                                     <i class="fa fa-angle-right"></i>
                                 </span>
                             </li>
                             <li class="category3">
                                 <strong>
-<?php
-show_sub_category_name($lcode, $mcode);
-?>
+                                    <?php show_sub_category_name($lcode, $mcode);?>
                                 </strong>
                             </li>
                         </ul>
@@ -78,83 +73,12 @@ show_sub_category_name($lcode, $mcode);
                         <div class="col-md-4 col-sm-6 hidden-xs">
                             <div class="s_big">
                                 <div>
-                                  <!-- Tab panes -->
-                                    <div class="tab-content">
-                                        <div id="image1" class="tab-pane fade in active">
-                                            <div class="simpleLens-big-image-container">
-                                                <a class="simpleLens-lens-image" data-lens-image="<?php show_image('b', 1, $pnum);?>">
-                                                    <img alt="" src="<?php show_image('b', 1, $pnum);?>" class="simpleLens-big-image">
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div id="image2" class="tab-pane fade">
-                                            <div class="simpleLens-big-image-container">
-                                                <a class="simpleLens-lens-image" data-lens-image="<?php show_image('b', 2, $pnum);?>">
-                                                    <img alt="" src="<?php show_image('b', 2, $pnum);?>" class="simpleLens-big-image">
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div id="image3" class="tab-pane fade">
-                                            <div class="simpleLens-big-image-container">
-                                                <a class="simpleLens-lens-image" data-lens-image="<?php show_image('b', 3, $pnum);?>">
-                                                    <img alt="" src="<?php show_image('b', 3, $pnum);?>" class="simpleLens-big-image">
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div id="image4" class="tab-pane fade">
-                                            <div class="simpleLens-big-image-container">
-                                                <a class="simpleLens-lens-image" data-lens-image="<?php show_image('b', 4, $pnum);?>" >
-                                                    <img alt="" src="<?php show_image('b', 4, $pnum);?>" class="simpleLens-big-image">
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="thumnail-image fix">
-                                        <ul class="tab-menu">
-                                            <li class="active"><a data-toggle="tab" href="#image1"><img alt="" src="<?php show_image('s', 1, $pnum);?>"></a></li>
-                                            <li><a data-toggle="tab" href="#image2"><img alt="" src="<?php show_image('s', 2, $pnum);?>" ></a></li>
-                                            <li><a data-toggle="tab" href="#image3"><img alt="" src="<?php show_image('s', 3, $pnum);?>"></a></li>
-                                            <li><a data-toggle="tab" href="#image4"><img alt="" src="<?php show_image('s', 4, $pnum);?>"></a></li>
-                                        </ul>
-                                    </div>
+                                    <?php echo show_product_image($pnum); ?>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-5 col-sm-6 col-xs-12">
-                            <div class="cras">
-                                <div class="product-name">
-                                    <h1><?php echo $product_name; ?></h1>
-                                </div>
-                                <div class="pro-rating">
-                                    모델명: <?php echo $short_desc; ?>
-                                </div>
-                                <p class="availability in-stock">
-                                    재고:
-                                    <span>In stock</span>
-                                </p>
-                                <div class="short-description">
-                                    <p> <?php echo $option; ?> </p>
-                                </div>
-                                <div class="pre-box">
-                                    <?php show_me_price($p_id, $pnum);?>
-                                </div>
-                                <div class="add-to-box1">
-                                    <div class="add-to-box add-to-box2">
-                                        <div class="add-to-cart">
-                                            <div class="input-content">
-                                                <label for="qty">수량:</label>
-                                                <input id="qty" class="input-text qty" type="text" title="Qty" value="1" maxlength="12" name="qty">
-                                            </div>
-                                            <button class="button2 btn-cart" onclick="productAddToCartForm.submit(this)" title="" type="button">
-                                                <span>카트담기</span>
-                                            </button>
-                                            <button class="button2 btn-cart" onclick="productAddToCartForm.submit(this)" title="" type="button">
-                                                <span>주문하기</span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <?php echo show_product_info($pnum); ?>
                         </div>
                         <div class="col-md-3 col-sm-12 col-xs-12">
                             <div class="ma-title">
