@@ -1,7 +1,10 @@
 <?php include_once '../include/header.php';?>
 
 <?php
-$mode = set_var($_POST['mode']);
+$mode  = set_var($_GET['mode']);
+$date1 = set_var($_GET['date1']);
+$date2 = set_var($_GET['date2']);
+$id    = set_var($_GET['id']);
 
 ?>
 
@@ -139,6 +142,8 @@ if ($mode == "date") {
 $sql = "SELECT * FROM mall_order WHERE cancel='N' AND status='8' $search_qry  ORDER BY num DESC";
 $res = mysqli_query($connect, $sql);
 
+$p_no = 0;
+
 //2. 각 주문에서 제품코드를 구한다.
 for ($i = 0; $row = mysqli_fetch_array($res); $i++) {
     $a_goods_fk = explode(",", $row['goods_fk']);
@@ -204,9 +209,14 @@ if ($p_no) {
         $new[$values['num']]['company'] = $values['company'];
         $new[$values['num']]['name']    = $values['name'];
         $new[$values['num']]['option']  = $values['option'];
-        $new[$values['num']]['quantity'] += $values['quantity'];
-        $new[$values['num']]['amount'] += $values['amount'];
 
+        // if (isset($values['quantity'])) {
+        $new[$values['num']]['quantity'] += $values['quantity'];
+        // }
+
+        // if (isset($values['amount'])) {
+        $new[$values['num']]['amount'] += $values['amount'];
+        // }
     }
 
     unset($values);

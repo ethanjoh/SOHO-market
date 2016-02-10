@@ -7,6 +7,8 @@ include_once "../../util/util.php";
 $connect = my_connect($host, $dbid, $dbpass, $dbname);
 
 $m_num = set_var($_GET['m_num']);
+$from  = set_var($_GET['from']);
+$page  = set_var($_GET['page']);
 
 $query  = "SELECT * FROM member WHERE seq_num='$m_num' ";
 $result = mysqli_query($connect, $query);

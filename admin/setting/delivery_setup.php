@@ -43,7 +43,6 @@ if ($total > 0) {
     $mode = "insert";
 }
 ?>
-
         <!-- setup start -->
         <div class="row">
           <div class="col-sm-12">
@@ -87,21 +86,20 @@ if ($total > 0) {
                         </tr>
                       </tbody>
                     </table>
-
-                    <div class="row text-center">
-                      <div class="col-sm-12">
-                        <button class="btn btn-success" onClick="document.form1.submit();">저장</button>
-                        <a class="btn btn-default" href="../main.php">취소</a>
-                      </div>
-                    </div>
-                    </form>
-
                   </div>
                 </div>
               </section>
             </div>
           </div>
           <!-- setup end -->
+
+            <div class="row text-center">
+              <div class="col-sm-12">
+                <button class="btn btn-success" onClick="document.form1.submit();">저장</button>
+                <a class="btn btn-default" href="../main/main.php">취소</a>
+              </div>
+            </div>
+            </form>
 
 
            </section>

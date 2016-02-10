@@ -73,7 +73,7 @@ mysqli_free_result($result);
         <div class="row text-center">
           <div class="col-sm-12">
             <button class="btn btn-success" onclick="send_popup('contents');">저장</button>
-            <a type="button" class="btn btn-default" href="../main.php">취소</a>
+            <a type="button" class="btn btn-default" href="../main/main.php">취소</a>
           </div>
         </div>
                   </form>

@@ -9,8 +9,7 @@
     </div>
     <!-- /.home -->
 
-    <!-- CONTENT -->
-    <div class="content">
+
       <?php
 $mode     = set_var($_GET['mode']);
 $code     = set_var($_GET['code']);
@@ -99,13 +98,10 @@ if (!$p_id || !$p_name) {; // not logged in status
         <!-- CONTAINER -->
         <div class="container">
             <div class="row">
-                <div class="table-responsive">
-                    <table class="table table-striped table-hover">
-                      <div class="row text-center alert alert-danger" role="alert">
-                        <p><a href="" data-popup="login" class="a-login btn btn-xs btn-primary">Login</a></p>
-                      </div>
-                    </table>
-                </div> <!-- table-responsive -->
+              <div class="text-center alert alert-danger" role="alert">
+                <p><a href="" data-popup="login" class="a-login btn btn-primary">로그인</a></p>
+                <p class="help-block">가입업체 전용 게시판으로 먼저 로그인하세요</p>
+              </div>
             </div> <!-- row -->
 
       <?php
@@ -113,24 +109,21 @@ if (!$p_id || !$p_name) {; // not logged in status
     ; // logged in status
     ?>
 
-      <form name="form1" method="post" action="admin_delete.php?code=<?=$code;?>">
-        <input type="hidden" name="code" value=<?=$code;?> />
+      <form name="form1" method="post" action="admin_delete.php?code=<?php echo $code; ?>">
+        <input type="hidden" name="code" value="<?php echo $code; ?>" />
 
         <!-- CONTAINER -->
         <div class="container">
             <div class="row">
                 <div class="table-responsive">
                     <table class="table table-striped table-hover">
-
                         <thead>
                             <tr>
-
                               <?php
 if ('admin' == $p_id) {
         echo '<th>선택</th>';
     }
     ?>
-
                                 <th>번호</th>
                                 <th>제 목</th>
                                 <th>작성자</th>
@@ -151,7 +144,7 @@ if ('admin' == $p_id) {
         ?>
 
                             <tr>
-                              <td colspan="<?=$num;?>"><p>아직 글이 없습니다.</p></td>
+                              <td colspan="<?php echo $num; ?>"><p class="text-center">아직 글이 없습니다.</p></td>
                             </tr>
 
                       <?php
@@ -179,36 +172,36 @@ if ('admin' == $p_id) {
                 echo "<td><input type=\"checkbox\" name=\"chk[]\" value=\"" . $row['main_no'] . "\"></td>\n";
             }
             ?>
-                              <td><?=$row['main_no'];?></td>
+                              <td><?php echo $row['main_no']; ?></td>
                             <!-- 답변글이 있다면 -->
                             <?php
 //답변만 있는 경우
             if ($row['depth'] > 0 && (!$row['filename'])) {
                 ?>
-                                    <td><a href="read.php?code=<?=$code;?>&amp;main_no=<?=$row['main_no'];?>&amp;page=<?=$page;?>"><?=stripslashes($row['title']);?></a>&nbsp;<span class="badge"><?=$row['depth'];?></span></td>
+                                    <td><a href="read.php?code=<?php echo $code; ?>&amp;main_no=<?php echo $row['main_no']; ?>&amp;page=<?php echo $page; ?>"><?php echo stripslashes($row['title']); ?></a>&nbsp;<span class="badge"><?php echo $row['depth']; ?></span></td>
                             <?php
 //답변과 첨부파일이 다 있는 경우
             } else if ($row['depth'] > 0 && ($row['filename'])) {
                 ?>
-                                    <td><a href="read.php?code=<?=$code;?>&amp;main_no=<?=$row['main_no'];?>&amp;page=<?=$page;?>"><?=stripslashes($row['title']);?></a>&nbsp;<i class="fa fa-floppy-o"></i>&nbsp;<span class="badge"><?=$row['depth'];?></span></td>
+                                    <td><a href="read.php?code=<?php echo $code; ?>&amp;main_no=<?php echo $row['main_no']; ?>&amp;page=<?php echo $page; ?>"><?php echo stripslashes($row['title']); ?></a>&nbsp;<i class="fa fa-floppy-o"></i>&nbsp;<span class="badge"><?php echo $row['depth']; ?></span></td>
                             <?php
 //첨부파일만 있는 경우
             } else if ($row['depth'] == 0 && ($row['filename'])) {
                 ?>
-                                    <td><a href="read.php?code=<?=$code;?>&amp;main_no=<?=$row['main_no'];?>&amp;page=<?=$page;?>"><?=stripslashes($row['title']);?></a>&nbsp;<i class="fa fa-floppy-o"></i>&nbsp;</td>
+                                    <td><a href="read.php?code=<?php echo $code; ?>&amp;main_no=<?php echo $row['main_no']; ?>&amp;page=<?php echo $page; ?>"><?php echo stripslashes($row['title']); ?></a>&nbsp;<i class="fa fa-floppy-o"></i>&nbsp;</td>
                             <?php
 } else {
 
                 ?>
-                                    <td><a href="read.php?code=<?=$code;?>&amp;main_no=<?=$row['main_no'];?>&amp;page=<?=$page;?>"><?=stripslashes($row['title']);?></a> <?=check_new_post($connect, 'notice', $row['main_no'], 3);?></td>
+                                    <td><a href="read.php?code=<?php echo $code; ?>&amp;main_no=<?php echo $row['main_no']; ?>&amp;page=<?php echo $page; ?>"><?php echo stripslashes($row['title']); ?></a> <?php echo check_new_post($connect, 'notice', $row['main_no'], 3); ?></td>
                             <?php
 }
             //날짜 형식을 바꾼다.
             $post_date = substr($row['date'], 0, 11);
             ?>
-                              <td><?=$row['name'];?></td>
-                              <td><?=$post_date;?></td>
-                              <td><?=$row['count'];?></td>
+                              <td><?php echo $row['name']; ?></td>
+                              <td><?php echo $post_date; ?></td>
+                              <td><?php echo $row['count']; ?></td>
                             </tr>
 
                           <?php
@@ -218,7 +211,7 @@ if ('admin' == $p_id) {
                         </tbody>
                         <tfoot>
                             <tr>
-                              <td colspan="<?=$num;?>" class="text-center">
+                              <td colspan="<?php echo $num; ?>" class="text-center">
                               <?php
 //쪽 수를 표시
         $url = $_SERVER['PHP_SELF'] . "?code=" . $code;
@@ -226,9 +219,9 @@ if ('admin' == $p_id) {
     }
     ; // end else -->
     ?>
-                              </td>
+<!--                               </td>
                             </tr>
-                        </tfoot>
+                        </tfoot> -->
                     </table>
                 </div> <!-- table-responsive -->
             </div> <!-- row -->
@@ -244,25 +237,25 @@ $qry  = "SELECT * FROM code WHERE code='$code' ";
     if ($row1['readonly'] == 'Y' && 'admin' == $p_id) {; // 읽기전용 & 관리자
         ?>
 
-              <p><a class="btn btn-success btn-xs" href="post.php?code=<?=$code;?>"><i class="fa fa-pencil-square-o"></i>쓰 기</a> &nbsp; <a class="btn btn-danger btn-xs" href="#" onClick="javascript:del_send();"><i class="fa fa-trash-o"></i>삭 제</a></p>
+              <p><a class="btn btn-success btn-xs" href="post.php?code=<?php echo $code; ?>"><i class="fa fa-pencil-square-o"></i>쓰 기</a> &nbsp; <a class="btn btn-danger btn-xs" href="#" onClick="javascript:del_send();"><i class="fa fa-trash-o"></i>삭 제</a></p>
 
               <?php
 } else if ($row1['readonly'] == 'Y' && $p_id != 'admin') {; // 읽기전용 & 일반회원
         ?>
 
-              <!-- <p><a class="a-login btn btn-xs btn-primary pull-right" href="" data-popup="login2"><i class="fa fa-cog"></i>ADMIN LOGIN</a></p> -->
+              <p><a class="a-login btn btn-xs btn-primary pull-right" href="" data-popup="login2"><i class="fa fa-cog"></i>ADMIN LOGIN</a></p>
 
               <?php
 } else if ($row1['readonly'] == 'N' && $p_id && $p_name && $p_id != 'admin') {; //회원 로그인 확인
         ?>
 
-              <p><a class="btn btn-success btn-xs" href="post.php?code=<?=$code;?>"><i class="fa fa-pencil-square-o"></i>쓰 기</a><a class="a-login btn btn-xs btn-primary pull-right" href="" data-popup="login2"><i class="fa fa-cog"></i>ADMIN LOGIN</a></p>
+              <p><a class="btn btn-success btn-xs" href="post.php?code=<?php echo $code; ?>"><i class="fa fa-pencil-square-o"></i>쓰 기</a><a class="a-login btn btn-xs btn-primary pull-right" href="" data-popup="login2"><i class="fa fa-cog"></i>ADMIN LOGIN</a></p>
 
               <?php
 } else if ($row1['readonly'] == 'N' && 'admin' == $p_id) {
         ?>
 
-              <p><a class="btn btn-success btn-xs" href="post.php?code=<?=$code;?>"><i class="fa fa-pencil-square-o"></i>쓰 기</a> &nbsp; <a class="btn btn-danger btn-xs" href="#" onClick="javascript:del_send();"><i class="fa fa-trash-o"></i>삭 제</a></p>
+              <p><a class="btn btn-success btn-xs" href="post.php?code=<?php echo $code; ?>"><i class="fa fa-pencil-square-o"></i>쓰 기</a> &nbsp; <a class="btn btn-danger btn-xs" href="#" onClick="javascript:del_send();"><i class="fa fa-trash-o"></i>삭 제</a></p>
 
               <?php
 } else if ($row1['readonly'] == 'N' && $p_id != 'admin') {; //일반 게시판 & 일반회원
@@ -276,7 +269,7 @@ $qry  = "SELECT * FROM code WHERE code='$code' ";
             </div>
         </form>
 
-        <form name="search_form" action="list.php?code=<?=$code;?>" method="post">
+        <form name="search_form" action="list.php?code=<?php echo $code; ?>" method="post">
             <div class="row margin-top-10">
                 <div class="col-sm-2 col-sm-offset-3">
                     <select data-width="100%">
@@ -287,7 +280,7 @@ $qry  = "SELECT * FROM code WHERE code='$code' ";
                 </div>
                 <div class="col-sm-3">
                   <input type="hidden" name="mode" value="search" />
-                  <input type="hidden" name="code" value="<?=$code;?>" />
+                  <input type="hidden" name="code" value="<?php echo $code; ?>" />
                   <input type="text" name="keyword" placeholder="검색어" />
                 </div>
                 <div class="col-sm-3">
@@ -300,11 +293,11 @@ $qry  = "SELECT * FROM code WHERE code='$code' ";
         <div class="block-popup popup plogin" id="login2">
             <a href="" class="pclose small"><i class="custom-icon custom-icon-close-s"></i></a>
             <h3 class="text-center">Login to BBS admin</h3>
-            <form method="post" name="login" class="loginform" action="//<?=$_SERVER['SERVER_NAME'];?>:<?=$port;?>/member/login_ok.php" onsubmit="JavaScript:return(login_check());">
-            <input type="hidden" name="main_no" value="<?=$main_no;?>">
-            <input type="hidden" name="reply_no" value="<?=$reply_no;?>">
-            <input type="hidden" name="code" value="<?=$code;?>">
-            <input type="hidden" name="uri" value="<?=$uri;?>">
+            <form method="post" name="login" class="loginform" action="//<?php echo $_SERVER['SERVER_NAME']; ?>:<?php echo $port; ?>/member/login_ok.php" onsubmit="JavaScript:return(login_check());">
+            <input type="hidden" name="main_no" value="<?php echo $main_no; ?>">
+            <input type="hidden" name="reply_no" value="<?php echo $reply_no; ?>">
+            <input type="hidden" name="code" value="<?php echo $code; ?>">
+            <input type="hidden" name="uri" value="<?php echo $uri; ?>">
             <div class="formwrap">
                 <div class="form-group has-feedback">
                     <input type="password" class="form-control login-password" name="pwd2" placeholder="Password" id="login-password2">
@@ -322,11 +315,10 @@ $qry  = "SELECT * FROM code WHERE code='$code' ";
 //회원로그인 else end
 }
 ?>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- /.content -->
+      </div> <!-- /.container -->
+<!--         </div>
+      </div> -->
+
 
 <?php include_once '../include/brands.php';?>
 

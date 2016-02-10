@@ -64,7 +64,7 @@ function show_login_menu()
                                     <div class="top-cart-contain">
                                         <div class="block-cart">
                                             <div class="top-cart-title">
-                                                <a href="/shop/cart.php"><p>빈 카트</span></p></a>
+                                                <a href="/shop/cart.php"><p><span>빈 카트</span></p></a>
                                             </div>
                                         </div>
                                     </div>

@@ -48,9 +48,14 @@ function cmp($a, $b)
 }
 
 if ($p_no) {
+
     foreach ($goods as $key => $values) {
         $new[$values['num']]['name'] = $values['name'];
-        $new[$values['num']]['quantity'] += $values['quantity'];
+
+        if (isset($values['quantity'])) {
+            $new[$values['num']]['quantity'] += $values['quantity'];
+        }
+
     }
 
     unset($values);

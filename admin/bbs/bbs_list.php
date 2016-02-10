@@ -63,6 +63,7 @@ $total  = mysqli_num_rows($result);
                     </thead>
                     <tbody>
                       <?php
+$page  = '';
 $scale = 10;
 
 if ($page == '') {
@@ -99,31 +100,35 @@ if ($total == 0) {
         $board   = 'bbs_' . $rows['code'];
         $query2  = "SELECT * FROM $board WHERE 1 ";
         $result2 = mysqli_query($connect, $query2);
-        $total2  = mysqli_num_rows($result2);
+        if ($result2) {
+            $total2 = mysqli_num_rows($result2);
+        } else {
+            $total2 = 0;
+        }
 
         $bunho = $total - ($i + $cline);
 
         ?>
                     <tr>
-                      <td><?=$bunho;?></td>
-                      <td><a href="../../bbs/list.php?code=<?=$rows['code'];?>" target="_blank"><?=$rows['code'];?></a></td>
+                      <td><?php echo $bunho; ?></td>
+                      <td><a href="../../bbs/list.php?code=<?php echo $rows['code']; ?>" target="_blank"><?php echo $rows['code']; ?></a></td>
                       <td>
-                        <form class="form-inline" role="form" name="bbs_name<?=$i;?>" action="update_bbs.php" method="post">
+                        <form class="form-inline" role="form" name="bbs_name<?php echo $i; ?>" action="update_bbs.php" method="post">
                         <input type="hidden" name="mode" value="modify" />
-                        <input type="hidden" name="num" value="<?=$rows['num'];?>" />
-                        <input type="text" class="form-control" name="title" value="<?=$rows['bbs_name'];?>" />
+                        <input type="hidden" name="num" value="<?php echo $rows['num']; ?>" />
+                        <input type="text" class="form-control" name="title" value="<?php echo $rows['bbs_name']; ?>" />
                         &nbsp;
-                        <button class="btn btn-warning" onclick="document.bbs_name<?=$i;?>.submit();" />변경</button>
+                        <button class="btn btn-warning" onclick="document.bbs_name<?php echo $i; ?>.submit();" />변경</button>
                         </form>
                       </td>
-                      <td><?=$total2;?></td>
+                      <td><?php echo $total2; ?></td>
                       <td>
-                        <form class="form-inline" role="form" name="pass<?=$i;?>" action="update_bbs.php" method="post">
+                        <form class="form-inline" role="form" name="pass<?php echo $i; ?>" action="update_bbs.php" method="post">
                         <input type="hidden" name="mode" value="pw" />
-                        <input type="hidden" name="num" value="<?=$rows['num'];?>" />
+                        <input type="hidden" name="num" value="<?php echo $rows['num']; ?>" />
                         <input type="password" class="form-control" name="passwd" value="">
                         &nbsp;
-                        <button class="btn btn-warning" onclick="document.pass<?=$i;?>.submit();" />변경</button>
+                        <button class="btn btn-warning" onclick="document.pass<?php echo $i; ?>.submit();" />변경</button>
                         </form>
                       </td>
                       <td>
@@ -139,8 +144,8 @@ switch ($rows['readonly']) {
         ?>
                       <form class="form-inline" role="form" name="del" action="update_bbs.php" method="post" onsubmit="javascript:return confirm('정말 삭제하시겠습니까?');">
                         <input type="hidden" name="mode" value="del" />
-                        <input type="hidden" name="num" value="<?=$rows['num'];?>" />
-                        <input type="hidden" name="code" value="<?=$rows['code'];?>" />
+                        <input type="hidden" name="num" value="<?php echo $rows['num']; ?>" />
+                        <input type="hidden" name="code" value="<?php echo $rows['code']; ?>" />
                       <td>
                         <button class="btn btn-danger" onclick="return confirm('정말 삭제하시겠습니까?');" /><i class="fa fa-trash-o"></i></button>
                       </td>

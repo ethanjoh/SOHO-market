@@ -171,7 +171,12 @@ if ($total == 0) {
         $board   = 'bbs_' . $rows['code'];
         $query2  = "SELECT * FROM $board WHERE 1 ORDER BY mod_date DESC LIMIT 5";
         $result2 = mysqli_query($connect, $query2);
-        $total2  = mysqli_num_rows($result2);
+
+        if ($result2) {
+            $total2 = mysqli_num_rows($result2);
+        } else {
+            $total2 = 0;
+        }
         ?>
                   <section class="panel">
                     <div class="weather-bg">
