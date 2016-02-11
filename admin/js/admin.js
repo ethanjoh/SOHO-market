@@ -255,9 +255,26 @@ function sform_send(){
 
 //pro_register.php 에서 호출
 function change_code() {
-    document.form1.action = "pro_register.php";
+
+    document.form1.action = "pro_register.php?mode=insert";
 	document.form1.submit();
+
 }
+
+function change_lcode(p_num, lcode) {
+
+    document.form1.action = 'pro_register.php?mode=update&p_num=' + p_num + '&lcode=' + lcode;
+    document.form1.submit();
+
+}
+
+function change_mcode(p_num, lcode, mcode) {
+
+    document.form1.action = 'pro_register.php?mode=update&p_num=' + p_num + '&lcode=' + lcode + '&mcode=' + mcode;;
+    document.form1.submit();
+
+}
+
 
 function sp_change_code() {
     document.form1.action = "sp_pro_register.php";

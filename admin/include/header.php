@@ -38,4 +38,6 @@ $info     = mysqli_fetch_array($info_res);
     <script src="/admin/js/html5shiv.js"></script>
     <script src="/admin/js/respond.min.js"></script>
     <![endif]-->
+    <script src="/admin/ckeditor/ckeditor.js" charset="utf-8"></script>
+
   </head>

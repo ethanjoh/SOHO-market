@@ -30,11 +30,23 @@ $mode = $_GET['mode'];
 // $prod_code = $_GET['prod_code'];
 //
 if ("update" == $mode) {
-    $p_num = $_GET['p_num'];
-    $lcode = $_GET['lcode'];
-    $mcode = $_GET['mcode'];
-    $page  = $_GET['page'];
-    // $flag  = $_GET['flag'];
+    if (isset($_GET)) {
+        echo 'get';
+
+        // 상품목록에서
+        $p_num = set_var($_GET['p_num']);
+        $lcode = set_var($_POST['lcode']);
+        $mcode = set_var($_POST['mcode']);
+        $page  = set_var($_GET['page']);
+        // $flag  = $_GET['flag'];
+    } elseif (isset($_POST)) {
+        // 카테고리를 바꿨을 때 post로 전달
+        echo 'post';
+        $p_num = set_var($_POST['p_num']);
+        $lcode = set_var($_POST['lcode']);
+        $mcode = set_var($_POST['mcode']);
+        $page  = set_var($_POST['page']);
+    }
 
     // if ($prod_code) {
     //     $update_qry = "SELECT * FROM products WHERE prod_code='$prod_code' ";
@@ -44,12 +56,13 @@ if ("update" == $mode) {
 
     $update_result = mysqli_query($connect, $update_qry);
     $update_row    = mysqli_fetch_array($update_result);
-    mysqli_free_result($update_result);
+
+    $lcode = $update_row['category_l'];
+    $mcode = $update_row['category_m'];
+
     ?>
 
 					<form name="form1" class="form-inline" role="form" method="post" enctype="multipart/form-data" action="pro_register_ok.php">
-						<!-- <input type="hidden" name="con_html" value="1" /> -->
-						<!-- <input type="hidden" name="prod_code" value="<?php echo $prod_code; ?>" /> -->
 						<div class="row">
 							<div class="col-sm-12">
 								<section class="panel">
@@ -120,10 +133,12 @@ if ("update" == $mode) {
 													<tr >
 														<th><img src="../images/icn_04.gif" width="24" height="14" alt="필수" /> 분류</th>
 														<td>
-															<select class="form-control" name="lcode" onChange="change_code()">
-																<?php
-$ca1_qry    = "SELECT * FROM products_category1 ORDER BY name";
+															<select class="form-control" name="lcode" onChange="change_lcode(<?=$p_num;?>, <?=$lcode;?>)">
+<?php
+
+    $ca1_qry    = "SELECT * FROM products_category1 ORDER BY code";
     $ca1_result = mysqli_query($connect, $ca1_qry);
+
     for ($i = 0; $ca1_row = mysqli_fetch_array($ca1_result); $i++) {
         if ($ca1_row['code'] == $lcode) {
             ?>
@@ -139,12 +154,13 @@ $ca1_qry    = "SELECT * FROM products_category1 ORDER BY name";
 																<?php
 
         }
-    } //end for
-    mysqli_free_result($ca1_result);
+    }
+    ; //end for
+
     ?>
 															</select>
 
-															<select class="form-control" name="mcode" onChange="change_code()">
+															<select class="form-control" name="mcode" onChange="change_mcode(<?=$p_num;?>, <?=$lcode;?>, <?=$mcode;?>)">
 																<option value="">선택하세요</option>
 																<?php
 $ca2_qry    = "SELECT * FROM products_category2 WHERE up_category='$lcode' ORDER BY code";
@@ -231,15 +247,9 @@ $ca3_qry    = "SELECT * FROM products_category3 WHERE up_category='$mcode' ORDER
 														<td>
 															<input name="downRate" id="downRate" class="form-control" type="text"  value="" onkeyup="setPrice()" placeholder="할인율" size="3" />%↓
 															<input name="fixed_price" id="fixed_price" class="form-control" type="text" value="<?php echo $update_row['fixed_price']; ?>" readonly="readonly" placeholder="자동계산" /> 원 (<img src="../images/warning.gif" alt="주의" />고정된 공급가로만 판매 시)<br />
-															<?php
-if ("update" == $mode) {
-        ?>
 															<script>
 															getRate();
 															</script>
-															<?php
-}
-    ?>
 															<p class="help-block"><input type="checkbox" name="pflag" <?php echo ($update_row['pflag'] == 'Y') ? "checked" : ""; ?> />
 														<i class="fa fa-exclamation-triangle"></i> 마진율 무시 특별공급가 책정 시 체크(업체에 관계없이 동일한 공급가 적용)</p>
 													</td>
@@ -250,67 +260,48 @@ if ("update" == $mode) {
 													<td><input type="text" class="form-control" name="moq" value="<?php echo $update_row['moq']; ?>" size="5"/> 개</td>
 												</tr>
 												<tr>
-													<?php
-if ("insert" == $mode) {; //copy 할 때 옵션초기화를 위해 flag를 설정
-        ?>
 													<th><img src="../images/icn_05.gif" width="24" height="14" alt="선택" /> 선택사항</th>
-													<td>
-														<input name="optname_ins" type="text" class="form-control" value="" size="100" >
-														<p class="help-block"><i class="fa fa-exclamation-triangle"></i> 구분은 ',(콤마)' 하세요 (예:블루,레드,블랙)</p>
-													</td>
-												</tr>
-												<!--                         <tr>
-													<th><img src="../images/icn_05.gif" width="24" height="14" alt="선택" /> 바코드</th>
-													<td>
-														<input name="barcode_ins" type="text" class="form-control" value="" size="100" >
-														<p class="help-block"><i class="fa fa-exclamation-triangle"></i> 구분은 ',(콤마)' 하세요 (예:8801201203,8801201204)</p>
-													</td>
-												</tr> -->
-												<?php
-} else {
-        ?>
-												<th><img src="../images/icn_05.gif" width="24" height="14" alt="선택" /> 선택사항</th>
 												<?php
 if ($update_row['opt']) {
-            ?>
+        ?>
 												<td>
 													<?php
 
-            $optname  = explode(",", $update_row['opt']);
-            $optstock = explode(",", $update_row['opt_stock']);
-            // $barcode  = explode(",", $update_row['barcode']);
+        $optname  = explode(",", $update_row['opt']);
+        $optstock = explode(",", $update_row['opt_stock']);
+        // $barcode  = explode(",", $update_row['barcode']);
 
-            for ($i = 0; $i < count($optname); $i++) {
-                echo '<input name="optname[]" type="text" class="form-control" value="' . $optname[$i] . '" size="20" >&nbsp;';
-                // echo '<input name="optstock[]" type="text" value="' . $optstock[$i] . '" size="2" ><br/>';
-                if ($optstock[$i] == 1) {
-                    $a = "checked";
-                } else {
-                    $a = "";
-                }
-
-                if ($optstock[$i] == 0) {
-                    $b = "checked";
-                } else {
-                    $b = "";
-                }
-
-                if ($optstock[$i] == -1) {
-                    $c = "checked";
-                } else {
-                    $c = "";
-                }
-
-                echo '<input name="opt_stock[' . $i . ']" type="radio" value="1" ' . $a . ' />재고 있음&nbsp;';
-                echo '<input name="opt_stock[' . $i . ']" type="radio" value="0" ' . $b . ' />품절&nbsp;';
-                echo '<input name="opt_stock[' . $i . ']" type="radio" value="-1" ' . $c . ' />단종';
-                // echo "<input name=\"barcode[]\" type=\"text\" value=\"$barcode[$i]\" /> (바코드)<br />";
+        for ($i = 0; $i < count($optname); $i++) {
+            echo '<input name="optname[]" type="text" class="form-control" value="' . $optname[$i] . '" size="20" >&nbsp;';
+            // echo '<input name="optstock[]" type="text" value="' . $optstock[$i] . '" size="2" ><br/>';
+            if ($optstock[$i] == 1) {
+                $a = "checked";
+            } else {
+                $a = "";
             }
-            ?>
+
+            if ($optstock[$i] == 0) {
+                $b = "checked";
+            } else {
+                $b = "";
+            }
+
+            if ($optstock[$i] == -1) {
+                $c = "checked";
+            } else {
+                $c = "";
+            }
+
+            echo '<input name="opt_stock[' . $i . ']" type="radio" value="1" ' . $a . ' />재고 있음&nbsp;';
+            echo '<input name="opt_stock[' . $i . ']" type="radio" value="0" ' . $b . ' />품절&nbsp;';
+            echo '<input name="opt_stock[' . $i . ']" type="radio" value="-1" ' . $c . ' />단종';
+            // echo "<input name=\"barcode[]\" type=\"text\" value=\"$barcode[$i]\" /> (바코드)<br />";
+        }
+        ?>
 												</td>
 												<?php
 } else {
-            ?>
+        ?>
 												<td><p>N/A</p></td>
 											</tr>
 											<!--                         <tr>
@@ -319,7 +310,6 @@ if ($update_row['opt']) {
 											</tr> -->
 											<?php
 }
-    }
     ?>
 											<!--
 											<tr>
@@ -442,7 +432,12 @@ if ($update_row['restock_date'] == "1111-00-00") {
 					<tr>
 						<th><img src="../images/icn_04.gif" width="24" height="14" alt="필수" /> 상세설명</th>
 						<td>
-							<textarea name="contents" class="form-control" id="contents" style="width:100%; height:600px"><?php echo stripslashes($update_row['contents']); ?></textarea>
+							<!-- <textarea name="contents" class="form-control" id="contents" style="width:100%; height:600px"><?php echo stripslashes($update_row['contents']); ?></textarea> -->
+							<textarea name="contents" class="form-control" id="contents"><?php echo stripslashes($update_row['contents']); ?></textarea>
+							<script type="text/javascript">
+				                CKEDITOR.replace( 'contents' );
+				            </script>
+
 						</td>
 					</tr>
 				</tbody>
@@ -547,40 +542,60 @@ if ($update_row['restock_date'] == "1111-00-00") {
 													<tr >
 														<th><img src="../images/icn_04.gif" width="24" height="14" alt="필수" /> 분류</th>
 														<td>
-															<select class="form-control" name="lcode" onChange="change_code()">
+															<select class="form-control" name="lcode" onChange="change_code();">
+																<option value="">선택하세요</option>
 <?php
 
     $ca1_qry    = "SELECT * FROM products_category1 ORDER BY name";
     $ca1_result = mysqli_query($connect, $ca1_qry);
 
+    $lcode = set_var($_POST['lcode']);
+
     for ($i = 0; $ca1_row = mysqli_fetch_array($ca1_result); $i++) {
-        ?>
+        if ($ca1_row['code'] == $lcode) {
+            ?>
+																<option value="<?php echo $ca1_row['code']; ?>" selected="selected">
+																	<?php echo $ca1_row['name']; ?>
+																</option>
+																<?php
+} else {
+            ?>
 																<option value="<?php echo $ca1_row['code']; ?>">
 																	<?php echo $ca1_row['name']; ?>
 																</option>
 																<?php
 
-    } //end for
-    mysqli_free_result($ca1_result);
+        }
+    }
+    ; //end for
     ?>
+															</select>
 															</select>
 
 															<select class="form-control" name="mcode" onChange="change_code()">
 																<option value="">선택하세요</option>
 <?php
 
-    $ca2_qry    = "SELECT * FROM products_category2 WHERE up_category='$ca1_row[category_l]' ORDER BY code";
+    $ca2_qry    = "SELECT * FROM products_category2 WHERE up_category='$lcode' ORDER BY name";
     $ca2_result = mysqli_query($connect, $ca2_qry);
 
+    $mcode = set_var($_POST['mcode']);
+
     for ($i = 0; $ca2_row = mysqli_fetch_array($ca2_result); $i++) {
-        ?>
+        if ($ca2_row['code'] == $mcode) {
+            ?>
+																<option value="<?php echo $ca2_row['code']; ?>" selected="selected">
+																	<?php echo $ca2_row['name']; ?>
+																</option>
+																<?php
+} else {
+            ?>
 																<option value="<?php echo $ca2_row['code']; ?>">
 																	<?php echo $ca2_row['name']; ?>
 																</option>
 																<?php
-
+}
     }
-    mysqli_free_result($ca2_result);
     ?>
 															</select>
 															<!-- hidden
@@ -600,7 +615,6 @@ $ca3_qry    = "SELECT * FROM products_category3 WHERE up_category='$mcode' ORDER
 																<?php
 }
     }
-    mysqli_free_result($ca3_result);
     ?>
 															</select>
 															-->
@@ -619,7 +633,7 @@ $ca3_qry    = "SELECT * FROM products_category3 WHERE up_category='$mcode' ORDER
 														<td>
 															<div align="left">
 																<!-- <input type="text" class="form-control" name="short_desc" value="" size="100%" /> -->
-																<textarea class="form-control" name="short_desc" style="width:100%; height:200px"><?php echo str_replace("<br />", "", $update_row['short_desc']); ?></textarea>
+																<textarea class="form-control" name="short_desc" style="width:100%; height:200px"></textarea>
 															</div>
 														</td>
 													</tr>
@@ -667,7 +681,7 @@ if ("update" == $mode) {
 												</tr>
 												<tr>
 													<?php
-if ("insert" == $mode) {; //copy 할 때 옵션초기화를 위해 flag를 설정
+if ("insert" == $mode) {
         ?>
 													<th><img src="../images/icn_05.gif" width="24" height="14" alt="선택" /> 선택사항</th>
 													<td>
@@ -807,28 +821,31 @@ if ($update_row['restock_date'] == "1111-00-00") {
 										</tr>
 										<tr >
 											<th><img src="../images/icn_04.gif" width="24" height="14" alt="필수" /> 대 1</th>
-											<td><input type="file" class="form-control" name="b_image1" size="30" /><img src="http://placehold.it/50x50"></td>
+											<td><input type="file" class="form-control" name="b_image1" size="30" /> <img src="http://placehold.it/50x50"></td>
 										</tr>
 										<tr>
 											<th><img src="../images/icn_05.gif" width="24" height="14" alt="선택" /> 대 2</th>
-											<td><input type="file" class="form-control" name="b_image2" size="30" /><img src="http://placehold.it/50x50"></td>
+											<td><input type="file" class="form-control" name="b_image2" size="30" /> <img src="http://placehold.it/50x50"></td>
 										</tr>
 										<tr >
 											<th><img src="../images/icn_05.gif" width="24" height="14" alt="선택" /> 대 3</th>
-											<td><input type="file" class="form-control" name="b_image3" size="30" /><img src="http://placehold.it/50x50"></td>
+											<td><input type="file" class="form-control" name="b_image3" size="30" /> <img src="http://placehold.it/50x50"></td>
 										</tr>
 										<tr>
 											<th><img src="../images/icn_05.gif" width="24" height="14" alt="선택" /> 대 4</th>
-											<td><input type="file" class="form-control" name="b_image4" size="30" /><img src="http://placehold.it/50x50"></td>
+											<td><input type="file" class="form-control" name="b_image4" size="30" /> <img src="http://placehold.it/50x50"></td>
 										</tr>
 										<tr >
 											<th><img src="../images/icn_05.gif" width="24" height="14" alt="선택" /> 대 5</th>
-											<td><input type="file" class="form-control" name="b_image5" size="30" /><img src="http://placehold.it/50x50"></td>
+											<td><input type="file" class="form-control" name="b_image5" size="30" /> <img src="http://placehold.it/50x50"></td>
 										</tr>
 										<tr>
 											<th><img src="../images/icn_04.gif" width="24" height="14" alt="필수" /> 상세설명</th>
 											<td>
-												<textarea name="contents" class="form-control" id="contents" style="width:100%; height:600px"></textarea>
+												<textarea name="contents" class="form-control" id="contents"></textarea>
+												<script type="text/javascript">
+									                CKEDITOR.replace( 'contents' );
+									            </script>
 											</td>
 										</tr>
 									</tbody>
@@ -842,12 +859,12 @@ if ($update_row['restock_date'] == "1111-00-00") {
 				<div class="col-sm-12">
 				<input type="hidden" name="mode" value="<?php echo $mode; ?>" />
 				<!-- <input type="hidden" name="pmode" value="<?php echo $pmode; ?>" /> -->
-				<input type="hidden" name="p_num" value="<?php echo $p_num; ?>" />
-				<input type="hidden" name="page" value="<?php echo $page; ?>" />
+				<!-- <input type="hidden" name="p_num" value="<?php echo $p_num; ?>" /> -->
+				<!-- <input type="hidden" name="page" value="<?php echo $page; ?>" /> -->
 				<button class="btn btn-success" onclick="send_post('contents');">등록</button>
-				<a type="button" class="btn btn-default" href="top_pro_list.php?lcode=<?php echo $lcode; ?>&mcode=<?php echo $mcode; ?>&page=<?php echo $page; ?>">취소</a>
-				<a type="button" class="btn btn-danger" href="pro_delete.php?p_num=<?php echo $p_num; ?>&amp;lcode=<?php echo $lcode; ?>&amp;mcode=<?php echo $mcode; ?>&amp;page=<?php echo $page; ?>" onclick="return confirm('정말 삭제하시겠습니까?')">삭제</a>
-				</div>
+				<a type="button" class="btn btn-default" href="top_pro_list.php">취소</a>
+<!-- 				<a type="button" class="btn btn-danger" href="pro_delete.php?p_num=<?php echo $p_num; ?>&amp;lcode=<?php echo $lcode; ?>&amp;mcode=<?php echo $mcode; ?>&amp;page=<?php echo $page; ?>" onclick="return confirm('정말 삭제하시겠습니까?')">삭제</a>
+ -->				</div>
 			</div>
 			</form>
 
@@ -872,7 +889,8 @@ if ($update_row['restock_date'] == "1111-00-00") {
 	<script src="/js/global.js" ></script>
 	<script src="/admin/js/admin.js" ></script>
 	<script src="js/HuskyEZCreator.js" charset="utf-8"></script>
-	<script>
+
+<!-- 	<script>
 		var oEditors = [];
 		nhn.husky.EZCreator.createInIFrame({
 			oAppRef: oEditors,
@@ -889,6 +907,6 @@ if ($update_row['restock_date'] == "1111-00-00") {
 			},
 			fCreator: "createSEditor2"
 		});
-	</script>
+	</script> -->
 	</body>
 </html>

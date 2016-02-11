@@ -6,6 +6,12 @@ include_once "../../util/util.php";
 
 $connect = my_connect($host, $dbid, $dbpass, $dbname);
 
+$p_num = set_var($_GET['p_num']);
+$lcode = set_var($_GET['lcode']);
+$mcode = set_var($_GET['mcode']);
+// $scode = set_var($_GET['scode']);
+$page = set_var($_GET['page']);
+
 $query  = "SELECT * FROM products WHERE num='$p_num'";
 $result = mysqli_query($connect, $query);
 $row    = mysqli_fetch_array($result);
@@ -39,4 +45,4 @@ $query = "DELETE FROM products WHERE num=$p_num";
 mysqli_query($connect, $query);
 
 // 리스트로 이동
-echo ("<meta http-equiv='refresh' content='0; URL=top_pro_list.php?lcode=$lcode&amp;mcode=$mcode&amp;scode=$scode&amp;page=$page'>");
+echo ("<meta http-equiv='refresh' content='0; URL=top_pro_list.php?lcode=$lcode&amp;mcode=$mcode&amp;page=$page'>");
