@@ -239,7 +239,7 @@ if ($result1) {
                     <td class="text-right"><?php echo $list_num; ?></td>
                     <td><img src="<?php echo $prow['s_image1_name']; ?>" width="50" height="50" alt="thumbnail image" /></td>
                     <td class="left"><?php echo show_icon($prow['num']); ?>
-                      <a href="pro_register.php?mode=update&amp;pmode=<?php echo $pmode; ?>&amp;p_num=<?php echo $prow['num']; ?>&amp;lcode=<?php echo $prow['category_l']; ?>&amp;mcode=<?php echo $prow['category_m']; ?>&amp;page=<?php echo $page; ?>">
+                      <a href="pro_register.php?mode=update&amp;p_num=<?php echo $prow['num']; ?>&amp;lcode=<?php echo $prow['category_l']; ?>&amp;mcode=<?php echo $prow['category_m']; ?>&amp;page=<?php echo $page; ?>">
                       <?php echo stripslashes($prow['name']); ?></a>
                       </a>&nbsp;<a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/shop/catalog-list.php?lcode=<?php echo $prow['category_l']; ?>&amp;mcode=<?php echo $prow['category_m']; ?>" target="_blank"><img src="../images/browser_explorer.png" alt="상품보기" /> </a>
                     </td>
@@ -323,7 +323,7 @@ page_nav($totalpage, $cpage, $url);
 
         <!-- function buttons start -->
         <div class="pull-right margin-20">
-          <a type="button" class="btn btn-success" href="pro_register.php?lcode=<?php echo $lcode; ?>&amp;mcode=<?php echo $mcode; ?>&amp;page=<?php echo $page; ?>">상품등록</a>
+          <a type="button" class="btn btn-success" href="pro_register.php?mode=insert&amp;page=<?php echo $page; ?>">상품등록</a>
         </div>
         <!-- function buttons end -->
 

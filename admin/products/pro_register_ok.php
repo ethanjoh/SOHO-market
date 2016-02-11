@@ -482,7 +482,7 @@ if ($mode == "insert") {
         err_msg('상품 수정 중 DB오류가 발생했습니다.');
     }
     // 상품 복사
-} else if ($mode == "copy") {
+} else if ("copy" == $mode) {
 
     $query = "INSERT INTO products_code VALUES ('')";
     mysqli_query($connect, $query);

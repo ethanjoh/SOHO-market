@@ -38,7 +38,7 @@
 	                      </a>
 	                      <ul class="sub">
 	                          <li><a  href="/admin/products/top_pro_list.php">상품 목록</a></li>
-	                          <li><a  href="/admin/products/pro_register.php">상품 등록</a></li>
+	                          <li><a  href="/admin/products/pro_register.php?mode=insert">상품 등록</a></li>
 	                      </ul>
 	                  </li>
 	                  <li class="sub-menu">

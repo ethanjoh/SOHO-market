@@ -209,7 +209,7 @@ function show_main_products($main_flag, $no_item)
                                             <div class="price-box">
 HEREDOC;
 
-            // show_me_price($p_id, $pnum);
+            echo show_me_price($pnum);
             // $option = show_option($pnum);
 
             echo <<<HEREDOC
@@ -218,18 +218,18 @@ HEREDOC;
                                             <div class="product-icon">
 HEREDOC;
 
-            // if ($p_id) {
-            //     echo '                          <input type="text" name="products_count" id="products_count_' . $pnum . '" value="' . $moq . '" size="2">
-            //                                     <a href="#" id="' . $pnum . '" class="addCart_submit"><i class="fa fa-shopping-cart"></i></a>
-            //                                     <a href="/shop/cart.php"><i class="fa fa-check"></i></a>
-            //                                     <div id="loadplace' . $pnum . '"></div>
-            //                                     <input type="hidden" name="amount" id="amount_' . $pnum . '" value="' . $offer_price . '">
-            //                                     <input type="hidden" name="from" id="from" value="list">';
+            if ($p_id) {
+                echo '                          <input type="text" name="products_count" id="products_count_' . $pnum . '" value="' . $moq . '" size="2">
+                                                <a href="#" id="' . $pnum . '" class="addCart_submit"><i class="fa fa-shopping-cart"></i></a>
+                                                <a href="/shop/cart.php"><i class="fa fa-check"></i></a>
+                                                <div id="loadplace' . $pnum . '"></div>
+                                                <input type="hidden" name="amount" id="amount_' . $pnum . '" value="' . $offer_price . '">
+                                                <input type="hidden" name="from" id="from" value="list">';
 
-            // } else {
-            //     echo '                          <a href="/member/login.php"><i class="fa fa-shopping-cart"></i></a>
-            //                                     <a href="/member/login.php"><i class="fa fa-check"></i></a>';
-            // }
+            } else {
+                echo '                          <a href="/member/login.php"><i class="fa fa-shopping-cart"></i></a>
+                                                <a href="/member/login.php"><i class="fa fa-check"></i></a>';
+            }
 
             echo <<<HEREDOC
                                             </div>
@@ -287,7 +287,7 @@ function show_catalog_products($lcode, $mcode, $tabid)
             $p_id         = set_var($_SESSION['p_id']);
             $offer_price  = calc_offer_price($rows['retail_price'], $p_id);
             $dealer_price = number_format($offer_price);
-            $price        = show_me_price($p_id, $pnum);
+            $price        = show_me_price($pnum);
 
             $option = show_option($pnum);
 
@@ -415,11 +415,12 @@ function show_me_price($pnum)
 
     $offer_price  = calc_offer_price($rows['retail_price'], $p_id);
     $dealer_price = number_format($offer_price);
+    $shop_price   = number_format($rows['shop_price']);
 
     if ($p_id) {
         $ret = '                                <span class="special-price"><i class="fa fa-krw"></i> ' . $dealer_price . '</span>';
     } else {
-        $ret = '                                <span class="special-price"><i class="fa fa-krw"></i> 회원가</span>';
+        $ret = '                                <span class="shop-price"><i class="fa fa-krw"></i> ' . $shop_price . '</span>';
     }
 
     return $ret;
@@ -1874,13 +1875,15 @@ function show_product_info($pnum)
                                 </div>
                                 <div class="add-to-box1">
                                     <div class="add-to-box add-to-box2">
+                                        <div class="add-to-cart">
 HEREDOC;
 
     if ($p_id) {
         echo <<<HEREDOC
-                                            <div class="add-to-cart product-icon">
+                                            <div class="product-icon">
                                                 <div class="input-content">
-                                                    <input type="text" class="input-text qty" name="products_count" id="products_count_{$pnum}" value="{$moq}" size="2">
+                                                    <label for="products_count">수량: </label>
+                                                    <input type="text" class="input-text qty" name="products_count" id="products_count_{$pnum}" value="{$moq}">
                                                 </div>
                                                 <button id="{$pnum}" class="button2 btn-cart addCart_submit" title="" type="button">
                                                     <span>카트 담기</span>
@@ -1889,24 +1892,84 @@ HEREDOC;
                                                 <input type="hidden" name="from" id="from" value="detail">
                                                 <input type="hidden" name="amount" id="amount_{$pnum}" value="{$offer_price}">
                                             </div>
-                                            </form>
 HEREDOC;
     } else {
         echo <<<HEREDOC
+                                            <div class="product-icon">
                                                 <div class="input-content">
-                                                    <input type="text" class="input-text qty" value="1" size="2">
+                                                    <label for="qty">수량: </label>
+                                                    <input id="qty" name="qty" type="text" class="input-text qty" value="1">
                                                 </div>
-                                                <button class="button2 btn-cart" title="" type="button" onclick="location.href=/member/login.php">
+                                                <button class="button2 btn-cart" title="" type="button" onclick="location.href='/member/login.php'">
                                                     <span>카트 담기</span>
                                                 </button>
+                                            </div>
 HEREDOC;
     }
 
     echo <<<HEREDOC
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-
+                            </form>
 HEREDOC;
 
+}
+
+/**
+ * [show_relative_item 연관상품 보여주기]
+ * @param  [type] $lcode [대카테고리]
+ * @param  [type] $mcode [중카테고리]
+ * @return [type]        [description]
+ */
+function show_relative_item($lcode, $mcode)
+{
+    global $host, $dbid, $dbpass, $dbname;
+    $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
+
+    $qry = "SELECT * FROM products WHERE del_chk='N' AND category_l='$lcode' AND category_m='$mcode' AND approved = 'Y' ORDER BY rand() LIMIT 4 ";
+    $res = mysqli_query($connect, $qry);
+
+    for ($i = 0; $i < $rows = mysqli_fetch_array($res); $i++) {
+        $p_id = set_var($_SESSION['p_id']);
+
+        $small_image  = $rows['s_image1_name'];
+        $product_name = $rows['name'];
+        $short_desc   = get_short($rows['short_desc'], 25);
+        $shop_price   = number_format($rows['shop_price']);
+        $offer_price  = calc_offer_price($rows['retail_price'], $p_id);
+        $dealer_price = number_format($offer_price);
+
+        echo <<<HEREDOC
+
+                                        <div class="ma-box-content">
+                                            <div class="product-img-right">
+                                                <a href="#">
+                                                    <img class="primary-image" alt="" src="{$small_image}">
+                                                </a>
+                                            </div>
+                                            <div class="product-content">
+                                                <h2 class="product-name">
+                                                    <a href="#">{$product_name}</a>
+                                                </h2>
+                                                <div class="pro-rating">
+                                                    {$short_desc}
+                                                </div>
+                                                <div class="price-box">
+HEREDOC;
+
+        if ($p_id) {
+            echo '                                                <span class="special"><i class="fa fa-krw"></i> ' . $dealer_price . '</span>';
+        } else {
+            echo '                                                <span class="shop"><i class="fa fa-krw"></i> ' . $shop_price . '</span>';
+        }
+
+        echo <<<HEREDOC
+                                                </div>
+                                            </div>
+                                        </div>
+
+HEREDOC;
+    }
 }

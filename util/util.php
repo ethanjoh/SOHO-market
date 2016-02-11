@@ -1036,6 +1036,18 @@ function cut_string_utf8($str, $max_len, $suffix)
     return substr($str, 0, $n) . $suffix;
 }
 
+/**
+ * 타이틀 텍스트 줄이기
+ * @param  string $tite
+ * @param  integer $end
+ * @return string $str
+ */
+function get_short($title, $end)
+{
+    $str = mb_strimwidth($title, '0', $end, '&#183;&#183;&#183;', 'utf-8');
+    return stripslashes($str);
+}
+
 //도서산간지역 우편번호 체크
 function check_zipno($zipcode, &$row)
 {

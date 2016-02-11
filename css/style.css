@@ -1230,6 +1230,18 @@ select.select option {
     margin-right: 5px;
 }
 
+.product-content .price-box span.shop-price {
+    background: #394EC5 none repeat scroll 0 0;
+    border-radius: 2px;
+    color: #fff;
+    float: left;    /*font-family: Lato;*/
+    font-size: 14px;
+    font-weight: 900;
+    padding: 0 5px;
+    margin-right: 5px;
+}
+
+
 .product-content .price-box span.old-price {
     background: #B2B2B2 none repeat scroll 0 0;
     border-radius: 2px;
@@ -2999,6 +3011,15 @@ home-4 .outlink ul li a {
     margin-bottom: 17px;
 }
 
+.f-fix .p-box span.shop-price {
+
+    /*font-family: Lato;*/
+    font-size: 16px;
+    font-weight: 900;
+    color: #394EC5;
+    margin-bottom: 17px;
+}
+
 .f-fix .p-box span.old-price {
 
     /*font-family: Lato;*/
@@ -3071,8 +3092,25 @@ home-4 .outlink ul li a {
     display: block;
 }
 
+.cras .pre-box span.shop-price {
+    border-bottom: 1px solid #e5e5e5;
+    border-top: 1px solid #e5e5e5;
+    font-size: 24px;
+    font-weight: 700;
+    margin-top: 15px;
+    overflow: hidden;
+    padding: 5px 0;
+    display: block;
+}
+
 .pre-box span.special-price {
     color: #f65656;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.pre-box span.shop-price {
+    color: #394EC5;
     font-size: 14px;
     font-weight: 700;
 }
@@ -3278,7 +3316,7 @@ button.button2:hover {
 }
 
 .ma-box-content {
-    padding: 0px 0px 30px;
+    padding: 10px 10px 10px 30px;
 }
 
 .product-content .pro-rating .proin {
@@ -3288,6 +3326,12 @@ button.button2:hover {
 
 .product-content .price-box span.special {
     color: #f65656;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.product-content .price-box span.shop {
+    color: #394EC5;
     font-size: 14px;
     font-weight: 700;
 }
