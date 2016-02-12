@@ -376,6 +376,18 @@ if ($mode == "insert") {
 
     $savedir = "../../upload/p_image/" . $name;
 
+    $s_temp1_char = '';
+    $s_temp2_char = '';
+    $s_temp3_char = '';
+    $s_temp4_char = '';
+    $s_temp5_char = '';
+
+    $b_temp1_char = '';
+    $b_temp2_char = '';
+    $b_temp3_char = '';
+    $b_temp4_char = '';
+    $b_temp5_char = '';
+
     if ($_FILES['b_image1']['name']) {
         $b_temp1 = $savedir . "/b/" . $_FILES['b_image1']['name'];
         move_uploaded_file($_FILES['b_image1']['tmp_name'], $b_temp1);

@@ -248,4 +248,5 @@ Image Zoom
 		loading_image: '/images/loading.gif'
 	});
 
+
 })(jQuery);

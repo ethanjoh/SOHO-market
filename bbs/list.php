@@ -1,16 +1,6 @@
 <?php include_once '../include/header.php';?>
 
-
-    <!-- HOME -->
-    <div class="container">
-        <div class="row text-center">
-            <h1>공지사항</h1>
-        </div>
-    </div>
-    <!-- /.home -->
-
-
-      <?php
+<?php
 $mode     = set_var($_GET['mode']);
 $code     = set_var($_GET['code']);
 $page     = set_var($_GET['page']);
@@ -22,7 +12,7 @@ $p_name = set_var($_SESSION['p_name']);
 
 $s_sql = '';
 
-if ($mode == "search") {
+if ("search" == $mode) {
     switch ($key) {
         case 'title':
             $s_sql .= " AND title LIKE '%$keyword%' ";
@@ -48,7 +38,7 @@ if ($code) {
     $board = 'bbs_' . $code;
 
     //해당 아이디 사용자의 글만 추출
-    if ($brow1['readonly'] == 'N' && $p_id != 'admin') {
+    if ($brow1['readonly'] == 'N' && 'admin' != $p_id) {
         $sql = "SELECT * FROM $board WHERE (id='$p_id' OR id='admin') $s_sql ORDER BY main_no DESC ";
     } else {
         $sql = "SELECT * FROM $board WHERE 1 $s_sql ORDER BY main_no DESC";
@@ -57,12 +47,28 @@ if ($code) {
     //쿼리 후 결과를 저장한다.
     $result = mysqli_query($connect, $sql);
     //테이블에 있는 총 갯수를 가져온다.
-    $total = mysqli_num_rows($result);
+    if ($result) {
+        $total = mysqli_num_rows($result);
+    } else {
+        $total = 0;
+    }
 
 } else {
     err_msg('선택한 게시판이 없습니다.', 1);
     exit;
 }
+?>
+
+    <!-- HOME -->
+    <div class="container">
+        <div class="row text-center">
+            <h1><?php echo $brow1['bbs_name']; ?></h1>
+        </div>
+    </div>
+    <!-- /.home -->
+
+
+<?php
 
 $scale = 20;
 if ($page == '') {
@@ -89,24 +95,25 @@ if ($limit >= $total) {
 }
 
 $scale1 = $limit - $cline;
-?>
 
-      <?php
-if (!$p_id || !$p_name) {; // not logged in status
+// not logged in status
+if (!$p_id) {
     ?>
 
         <!-- CONTAINER -->
         <div class="container">
             <div class="row">
               <div class="text-center alert alert-danger" role="alert">
-                <p><a href="" data-popup="login" class="a-login btn btn-primary">로그인</a></p>
-                <p class="help-block">가입업체 전용 게시판으로 먼저 로그인하세요</p>
+                <p>
+                <a href="/member/login.php" class="a-login btn btn-primary">로그인</a></p>
+                <p class="help-block">가입업체 전용 게시판입니다. 먼저 로그인하세요</p>
               </div>
             </div> <!-- row -->
 
-      <?php
+<?php
+// logged in status
 } else {
-    ; // logged in status
+
     ?>
 
       <form name="form1" method="post" action="admin_delete.php?code=<?php echo $code; ?>">
@@ -119,8 +126,9 @@ if (!$p_id || !$p_name) {; // not logged in status
                     <table class="table table-striped table-hover">
                         <thead>
                             <tr>
-                              <?php
-if ('admin' == $p_id) {
+<?php
+
+    if ('admin' == $p_id) {
         echo '<th>선택</th>';
     }
     ?>
@@ -133,8 +141,9 @@ if ('admin' == $p_id) {
                         </thead>
                         <tbody>
 
-                        <?php
-// 만약 검색 결과가 없다면,
+<?php
+
+    // 만약 검색 결과가 없다면,
     if ($total == 0) {
         if ('admin' == $p_id) {
             $num = 6;
@@ -147,8 +156,9 @@ if ('admin' == $p_id) {
                               <td colspan="<?php echo $num; ?>"><p class="text-center">아직 글이 없습니다.</p></td>
                             </tr>
 
-                      <?php
-} else {
+<?php
+
+    } else {
         if ('admin' == $p_id) {
             $num = 6;
         } else {
@@ -174,28 +184,33 @@ if ('admin' == $p_id) {
             ?>
                               <td><?php echo $row['main_no']; ?></td>
                             <!-- 답변글이 있다면 -->
-                            <?php
-//답변만 있는 경우
+<?php
+
+            //답변만 있는 경우
             if ($row['depth'] > 0 && (!$row['filename'])) {
                 ?>
                                     <td><a href="read.php?code=<?php echo $code; ?>&amp;main_no=<?php echo $row['main_no']; ?>&amp;page=<?php echo $page; ?>"><?php echo stripslashes($row['title']); ?></a>&nbsp;<span class="badge"><?php echo $row['depth']; ?></span></td>
-                            <?php
-//답변과 첨부파일이 다 있는 경우
+<?php
+
+                //답변과 첨부파일이 다 있는 경우
             } else if ($row['depth'] > 0 && ($row['filename'])) {
                 ?>
                                     <td><a href="read.php?code=<?php echo $code; ?>&amp;main_no=<?php echo $row['main_no']; ?>&amp;page=<?php echo $page; ?>"><?php echo stripslashes($row['title']); ?></a>&nbsp;<i class="fa fa-floppy-o"></i>&nbsp;<span class="badge"><?php echo $row['depth']; ?></span></td>
-                            <?php
-//첨부파일만 있는 경우
+<?php
+
+                //첨부파일만 있는 경우
             } else if ($row['depth'] == 0 && ($row['filename'])) {
                 ?>
                                     <td><a href="read.php?code=<?php echo $code; ?>&amp;main_no=<?php echo $row['main_no']; ?>&amp;page=<?php echo $page; ?>"><?php echo stripslashes($row['title']); ?></a>&nbsp;<i class="fa fa-floppy-o"></i>&nbsp;</td>
-                            <?php
-} else {
+<?php
+
+            } else {
 
                 ?>
-                                    <td><a href="read.php?code=<?php echo $code; ?>&amp;main_no=<?php echo $row['main_no']; ?>&amp;page=<?php echo $page; ?>"><?php echo stripslashes($row['title']); ?></a> <?php echo check_new_post($connect, 'notice', $row['main_no'], 3); ?></td>
-                            <?php
-}
+                                    <td><a href="read.php?code=<?php echo $code; ?>&amp;main_no=<?php echo $row['main_no']; ?>&amp;page=<?php echo $page; ?>"><?php echo stripslashes($row['title']); ?></a> <?php echo check_new_post('notice', $row['main_no'], 3); ?></td>
+<?php
+
+            }
             //날짜 형식을 바꾼다.
             $post_date = substr($row['date'], 0, 11);
             ?>
@@ -204,16 +219,18 @@ if ('admin' == $p_id) {
                               <td><?php echo $row['count']; ?></td>
                             </tr>
 
-                          <?php
-}
+<?php
+
+        }
         ; // end for loop
         ?>
                         </tbody>
                         <tfoot>
                             <tr>
                               <td colspan="<?php echo $num; ?>" class="text-center">
-                              <?php
-//쪽 수를 표시
+<?php
+
+        //쪽 수를 표시
         $url = $_SERVER['PHP_SELF'] . "?code=" . $code;
         page_avg($totalpage, $cpage, $url);
     }
@@ -228,43 +245,58 @@ if ('admin' == $p_id) {
 
             <div class="row">
 
-              <?php
-$qry  = "SELECT * FROM code WHERE code='$code' ";
+<?php
+
+    $qry  = "SELECT * FROM code WHERE code='$code' ";
     $res  = mysqli_query($connect, $qry);
     $row1 = mysqli_fetch_array($res);
 
     //관리자 전용쓰기 게시판 여부 확인
-    if ($row1['readonly'] == 'Y' && 'admin' == $p_id) {; // 읽기전용 & 관리자
+    // 읽기전용 & 관리자
+    if ($row1['readonly'] == 'Y' && 'admin' == $p_id) {
         ?>
 
-              <p><a class="btn btn-success btn-xs" href="post.php?code=<?php echo $code; ?>"><i class="fa fa-pencil-square-o"></i>쓰 기</a> &nbsp; <a class="btn btn-danger btn-xs" href="#" onClick="javascript:del_send();"><i class="fa fa-trash-o"></i>삭 제</a></p>
+              <p><a class="btn btn-success" href="post.php?code=<?php echo $code; ?>"><i class="fa fa-pencil-square-o"></i> 쓰 기</a> &nbsp; <a class="btn btn-danger" href="#" onClick="javascript:del_send();"><i class="fa fa-trash-o"></i> 삭 제</a></p>
 
-              <?php
-} else if ($row1['readonly'] == 'Y' && $p_id != 'admin') {; // 읽기전용 & 일반회원
+<?php
+
+        // 읽기전용 & 일반회원
+    } else if ($row1['readonly'] == 'Y' && 'admin' != $p_id) {
         ?>
 
-              <p><a class="a-login btn btn-xs btn-primary pull-right" href="" data-popup="login2"><i class="fa fa-cog"></i>ADMIN LOGIN</a></p>
+              <p>
+                <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#login2">
+                  <i class="fa fa-cog"></i> ADMIN LOGIN
+                </button>
+              </p>
+              <!-- <a class="a-login btn btn-primary pull-right" href="" data-popup="login2"><i class="fa fa-cog"></i>ADMIN LOGIN</a></p> -->
 
-              <?php
-} else if ($row1['readonly'] == 'N' && $p_id && $p_name && $p_id != 'admin') {; //회원 로그인 확인
+<?php
+
+        //회원 로그인 확인
+    } else if ($row1['readonly'] == 'N' && $p_id && 'admin' != $p_id) {
         ?>
 
-              <p><a class="btn btn-success btn-xs" href="post.php?code=<?php echo $code; ?>"><i class="fa fa-pencil-square-o"></i>쓰 기</a><a class="a-login btn btn-xs btn-primary pull-right" href="" data-popup="login2"><i class="fa fa-cog"></i>ADMIN LOGIN</a></p>
+              <p><a class="btn btn-success" href="post.php?code=<?php echo $code; ?>"><i class="fa fa-pencil-square-o"></i> 쓰 기</a><a class="a-login btn btn-primary pull-right" href="" data-popup="login2"><i class="fa fa-cog"></i> ADMIN LOGIN</a></p>
 
-              <?php
-} else if ($row1['readonly'] == 'N' && 'admin' == $p_id) {
+<?php
+
+    } else if ($row1['readonly'] == 'N' && 'admin' == $p_id) {
         ?>
 
-              <p><a class="btn btn-success btn-xs" href="post.php?code=<?php echo $code; ?>"><i class="fa fa-pencil-square-o"></i>쓰 기</a> &nbsp; <a class="btn btn-danger btn-xs" href="#" onClick="javascript:del_send();"><i class="fa fa-trash-o"></i>삭 제</a></p>
+              <p><a class="btn btn-success" href="post.php?code=<?php echo $code; ?>"><i class="fa fa-pencil-square-o"></i> 쓰 기</a> &nbsp; <a class="btn btn-danger" href="#" onClick="javascript:del_send();"><i class="fa fa-trash-o"></i> 삭 제</a></p>
 
-              <?php
-} else if ($row1['readonly'] == 'N' && $p_id != 'admin') {; //일반 게시판 & 일반회원
+<?php
+
+    } else if ($row1['readonly'] == 'N' && 'admin' != $p_id) {
+        ; //일반 게시판 & 일반회원
         ?>
 
-              <!-- <p><a class="a-login btn btn-xs btn-primary pull-right" href="" data-popup="login2"><i class="fa fa-cog"></i>ADMIN LOGIN</a></p> -->
+              <p><a class="a-login btn btn-primary pull-right" href="" data-popup="login2"><i class="fa fa-cog"></i> ADMIN LOGIN</a></p>
 
-              <?php
-}
+<?php
+
+    }
     ?>
             </div>
         </form>
@@ -290,46 +322,49 @@ $qry  = "SELECT * FROM code WHERE code='$code' ";
         </form>
 
         <!-- Popup: BBS admin login -->
-        <div class="block-popup popup plogin" id="login2">
-            <a href="" class="pclose small"><i class="custom-icon custom-icon-close-s"></i></a>
-            <h3 class="text-center">Login to BBS admin</h3>
-            <form method="post" name="login" class="loginform" action="//<?php echo $_SERVER['SERVER_NAME']; ?>:<?php echo $port; ?>/member/login_ok.php" onsubmit="JavaScript:return(login_check());">
-            <input type="hidden" name="main_no" value="<?php echo $main_no; ?>">
-            <input type="hidden" name="reply_no" value="<?php echo $reply_no; ?>">
-            <input type="hidden" name="code" value="<?php echo $code; ?>">
-            <input type="hidden" name="uri" value="<?php echo $uri; ?>">
-            <div class="formwrap">
-                <div class="form-group has-feedback">
-                    <input type="password" class="form-control login-password" name="pwd2" placeholder="Password" id="login-password2">
-                </div>
+        <div class="modal fade" id="login2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">게시판 관리자 로그인</h4>
+              </div>
+              <div class="modal-body">
+                  <form method="post" name="login" class="loginform" action="//<?php echo $_SERVER['SERVER_NAME']; ?>:<?php echo $port; ?>/bbs/login_ok.php" onsubmit="JavaScript:return(admin_login_check());">
+                  <input type="hidden" name="main_no"  value="<?php echo $main_no; ?>">
+                  <input type="hidden" name="reply_no" value="<?php echo $reply_no; ?>">
+                  <input type="hidden" name="code"     value="<?php echo $code; ?>">
+                  <input type="hidden" name="uri"      value="<?php echo $uri; ?>">
+                  <div class="formwrap">
+                      <div class="form-group has-feedback">
+                          <input type="password" class="form-control login-password" name="pwd2" placeholder="게시판 관리용 비밀번호" id="login-password2">
+                      </div>
+                  </div>
+                  <div class="form-group text-center">
+                      <button type="submit" class="btn btn-primary block">로그인</button>
+                      <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+                  </div>
+                  </form>
+              </div>
             </div>
-            <div class="form-group text-center">
-                <button type="submit" class="btn btn-default block">Login</button>
-            </div>
-            </form>
+          </div>
         </div>
         <!-- end popup -->
 
 
-      <?php
-//회원로그인 else end
+<?php
+
+    //회원로그인 else end
 }
 ?>
       </div> <!-- /.container -->
-<!--         </div>
-      </div> -->
+
 
 
 <?php include_once '../include/brands.php';?>
 
 <?php include_once '../include/footer.php';?>
 
-      <script src="/js/jquery.plugins.js"></script>
-      <script src="/js/jquery-ui.min.js"></script>
-      <script src="/js/highcharts.js"></script>
-      <script src="/js/jquery.highchartTable-min.js"></script>
-      <script src="/js/showChart.js"></script>
-      <script src="/js/jq_datepicker.js"></script>
       <script type="text/javascript">
         function del_send() {
         var form = document.form1;

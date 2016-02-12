@@ -89,6 +89,8 @@ $uri = urlencode($uri);
 		<!-- modernizr JS
 		============================================ -->
         <script src="/js/vendor/modernizr-2.8.3.min.js"></script>
+        <script src="/bbs/ckeditor/ckeditor.js" charset="utf-8"></script>
+
     </head>
     <body class="home-1">
         <!--[if lt IE 8]>
@@ -166,7 +168,7 @@ $uri = urlencode($uri);
                                 <nav>
                                     <ul>
                                         <li><a href="/member/about-us.php">회사 소개</a></li>
-                                        <li><a href="/bbs/list.php?code=notice">뉴스&amp;이벤트</a></li>
+                                        <li><a href="/bbs/list.php?code=fitting">피팅 가이드</a></li>
                                         <li><a href="#">대리점 안내</a></li>
                                         <li><a href="/member/contact-us.php">제휴문의</a></li>
                                     </ul>
@@ -187,7 +189,7 @@ $uri = urlencode($uri);
                                         <li class="active1"><a href="/">Home</a>
                                         </li>
                                         <li><a href="/member/about-us.php">회사 소개</a></li>
-                                        <li><a href="/bbs/list.php?code=notice">뉴스&amp;이벤트</a></li>
+                                        <li><a href="/bbs/list.php?code=fitting">피팅 가이드</a></li>
                                         <li><a href="#">대리점 안내</a></li>
                                         <li><a href="/member/contact-us.php">제휴문의</a></li>
                                     </ul>

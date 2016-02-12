@@ -1,24 +1,32 @@
 <?php
-//there are enough examples around to handle the upload...
-//the only important difference is the error reporting and the starting of the next form upload...
-//presume $uploadOk is a boolean that is true if the upload succeeds; false if it fails...
-//note the use of "parent" in the outputted javascript... the script is outputted into the CSR iFrame... therefor it needs parent to acces dom objects and javascript of the main page.
 
-$currentFormId = $_POST['formId'];
-$nextFormId = $_POST['formId'] + 1;
+if ($_FILES["upload"]["size"] > 0) {
 
-echo "<script type=\"javascript\">";
+    // 현재시간 추출
+    $date_filedir = date("YmdHis");
 
-//change the content of your loader div to a desired image
-if($uploadOk){
-    echo "parent.loader_{$currentFormId}.innerHTML = 'uploadOk.gif';";
+    //오리지널 파일 이름.확장자
+    $ext          = substr(strrchr($_FILES["upload"]["name"], "."), 1);
+    $ext          = strtolower($ext);
+    $savefilename = $date_filedir . "_" . str_replace(" ", "_", $_FILES["upload"]["name"]);
+
+    $uploadpath = $_SERVER['DOCUMENT_ROOT'] . "/bbs/upload/images";
+    $uploadsrc  = $_SERVER['HTTP_HOST'] . "/bbs/upload/images/";
+    $http       = 'http' . ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 's' : '') . '://';
+
+    //php 파일업로드하는 부분
+    if ($ext == "jpg" or $ext == "gif" or $ext == "png") {
+        if (move_uploaded_file($_FILES['upload']['tmp_name'], $uploadpath . "/" . iconv("UTF-8", "EUC-KR", $savefilename))) {
+            $uploadfile = $savefilename;
+            echo "<script type='text/javascript'>alert('업로드성공: " . $savefilename . "');</script>;";
+        }
+    } else {
+        echo "<script type='text/javascript'>alert('jpg,gif,png파일만 업로드가능합니다.');</script>;";
+    }
+
 } else {
-    echo "parent.loader_{$currentFormId}.innerHTML = 'uploadNotOk.gif';";
+    exit;
+
 }
 
-//submit the next form... the javascript function will only perform it if the form exists.
-echo "parent.upload(document.form_{$nextFormId}, document.loader_{$nextFormId});";
-
-echo "</script>";
-
-?>
+echo "<script type='text/javascript'> window.parent.CKEDITOR.tools.callFunction({$_GET['CKEditorFuncNum']}, '" . $http . $uploadsrc . "$uploadfile');</script>;";

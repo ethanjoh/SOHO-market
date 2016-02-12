@@ -1238,8 +1238,11 @@ function show_sup_price($connect, $com_id, $pro_id)
 
 /* $day는 new가 표시되는 기간
  * 게시판 목록에서 사용하는 함수 */
-function check_new_post($connect, $code, $main_no, $day)
+function check_new_post($code, $main_no, $day)
 {
+    global $host, $dbid, $dbpass, $dbname;
+    $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
+
     $bbs_name = "bbs_" . $code;
 
     $sql    = "SELECT * FROM $bbs_name WHERE main_no = $main_no";
@@ -1254,7 +1257,7 @@ function check_new_post($connect, $code, $main_no, $day)
         // echo $diff;
 
         if ($diff <= $day) {
-            echo "<img src=\"/images/New_icons_50.gif\">";
+            echo '<span class="label label-success">NEW</span>';
         }
     } else {
         echo "NO DATA";

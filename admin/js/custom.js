@@ -11,3 +11,7 @@ $(document).bind("mobileinit", function() {
 $(document).on("pagehide", "#[list]", function(event) {
     $(event.target).remove();
 }); // page refreshing forcely
+
+
+
+

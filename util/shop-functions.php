@@ -227,8 +227,8 @@ HEREDOC;
                                                 <input type="hidden" name="from" id="from" value="list">';
 
             } else {
-                echo '                          <a href="/member/login.php"><i class="fa fa-shopping-cart"></i></a>
-                                                <a href="/member/login.php"><i class="fa fa-check"></i></a>';
+                // echo '                          <a href="/member/login.php"><i class="fa fa-shopping-cart"></i></a>
+                //                                 <a href="/member/login.php"><i class="fa fa-check"></i></a>';
             }
 
             echo <<<HEREDOC

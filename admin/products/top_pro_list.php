@@ -196,7 +196,7 @@ if ($lcode) {
                     </tr>
                   </thead>
                   <tbody>
-                    <?php
+<?php
 $scale = 20;
 
 if ($page == "") {
@@ -241,7 +241,7 @@ if ($result1) {
                     <td class="left"><?php echo show_icon($prow['num']); ?>
                       <a href="pro_register.php?mode=update&amp;p_num=<?php echo $prow['num']; ?>&amp;page=<?php echo $page; ?>">
                       <?php echo stripslashes($prow['name']); ?></a>
-                      </a>&nbsp;<a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/shop/catalog-list.php?lcode=<?php echo $prow['category_l']; ?>&amp;mcode=<?php echo $prow['category_m']; ?>" target="_blank"><img src="../images/browser_explorer.png" alt="상품보기" /> </a>
+                      </a>&nbsp;<a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/shop/detail.php?pnum=<?php echo $prow['num']; ?>&amp;lcode=<?php echo $prow['category_l']; ?>&amp;mcode=<?php echo $prow['category_m']; ?>" target="_blank"> <i class="fa fa-external-link"></i> </a>
                     </td>
                     <td>
                     <?php

@@ -13,7 +13,8 @@
     <!--main content start-->
     <section id="main-content">
       <section class="wrapper">
-      <?php
+<?php
+
 $query  = "SELECT * FROM code WHERE 1 ORDER BY num DESC";
 $result = mysqli_query($connect, $query);
 $total  = mysqli_num_rows($result);
@@ -32,7 +33,6 @@ $total  = mysqli_num_rows($result);
                 <li><i class="fa fa-info-circle"></i> 공지사항 게시판의 코드는 반드시 <strong>notice</strong>로 해야합니다.</li>
                 <li><i class="fa fa-info-circle"></i> 코드명은 영문으로 입력하세요.</li>
                 <li><i class="fa fa-info-circle"></i> 비밀번호는 각 게시판에 관리자권한으로 접속할 때 필요합니다.</li>
-
               </ul>
             </section>
           </div>
@@ -45,10 +45,10 @@ $total  = mysqli_num_rows($result);
           <div class="col-sm-12">
             <section class="panel">
               <header class="panel-heading table-head">
-                  게시판 목록
-                </header>
-                <div class="panel-body">
-                  <div class="table-responsive">
+                게시판 목록
+              </header>
+              <div class="panel-body">
+                <div class="table-responsive">
                   <table class="table">
                     <thead>
                       <tr>
@@ -62,7 +62,8 @@ $total  = mysqli_num_rows($result);
                       </tr>
                     </thead>
                     <tbody>
-                      <?php
+<?php
+
 $page  = '';
 $scale = 10;
 
@@ -132,8 +133,9 @@ if ($total == 0) {
                         </form>
                       </td>
                       <td>
-                      <?php
-switch ($rows['readonly']) {
+<?php
+
+        switch ($rows['readonly']) {
             case "Y":
                 echo "관리자";
                 break;
@@ -151,8 +153,9 @@ switch ($rows['readonly']) {
                       </td>
                       </form>
                     </tr>
-                    <?php
-}
+<?php
+
+    }
 }
 ?>
                     </tbody>
@@ -195,7 +198,7 @@ switch ($rows['readonly']) {
                           </div>
                       </div>
                       <div class="text-center">
-                        <button class="btn btn-success" onclick="javascript:document.ins.submit();">만들기</button>
+                        <button class="btn btn-success" type="submit">만들기</button>
                       </div>
 
                   </form>

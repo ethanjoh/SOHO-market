@@ -807,4 +807,15 @@ function login_check() {
 }
 
 
+function admin_login_check() {
+    var form = document.login;
+
+
+    if (!form.pwd2.value) {
+        alert("비밀번호를 입력하세요");
+        form.pwd2.focus();
+        return false;
+    }
+}
+
 //-->

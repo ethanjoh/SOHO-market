@@ -25,29 +25,23 @@
 						</div>
 					</div>
 					<!-- info end -->
-					<?php
+<?php
+
 $mode = $_GET['mode'];
 // $prod_code = $_GET['prod_code'];
-//
+
 if ("update" == $mode) {
-    if (isset($_GET)) {
-        echo 'get';
+    // if (isset($_GET)) {
+    //     echo 'get';
 
-        // 상품목록에서
-        $p_num = set_var($_GET['p_num']);
-        $lcode = set_var($_POST['lcode']);
-        $mcode = set_var($_POST['mcode']);
-        $page  = set_var($_GET['page']);
-        // $flag  = $_GET['flag'];
-    } elseif (isset($_POST)) {
-        // 카테고리를 바꿨을 때 post로 전달
-        echo 'post';
-        $p_num = set_var($_POST['p_num']);
-        $lcode = set_var($_POST['lcode']);
-        $mcode = set_var($_POST['mcode']);
-        $page  = set_var($_POST['page']);
-    }
+    // 상품목록에서
+    $p_num = set_var($_GET['p_num']);
+    $lcode = set_var($_GET['lcode']);
+    $mcode = set_var($_GET['mcode']);
+    $page  = set_var($_GET['page']);
+    // $flag  = $_GET['flag'];
 
+    // }
     // if ($prod_code) {
     //     $update_qry = "SELECT * FROM products WHERE prod_code='$prod_code' ";
     // } else {
@@ -133,7 +127,10 @@ if ("update" == $mode) {
 													<tr >
 														<th><img src="../images/icn_04.gif" width="24" height="14" alt="필수" /> 분류</th>
 														<td>
-															<select class="form-control" name="lcode" onChange="change_lcode(<?=$p_num;?>, <?=$lcode;?>)">
+															<!-- <select class="form-control" name="lcode" onChange="change_lcode(<?=$p_num;?>, <?=$lcode;?>)"> -->
+															<select class="form-control" name="lcode">
+
+																<option value="">선택하세요</option>
 <?php
 
     $ca1_qry    = "SELECT * FROM products_category1 ORDER BY code";
@@ -145,65 +142,49 @@ if ("update" == $mode) {
 																<option value="<?php echo $ca1_row['code']; ?>" selected="selected">
 																	<?php echo $ca1_row['name']; ?>
 																</option>
-																<?php
-} else {
+<?php
+
+        } else {
             ?>
 																<option value="<?php echo $ca1_row['code']; ?>">
 																	<?php echo $ca1_row['name']; ?>
 																</option>
-																<?php
+<?php
 
         }
     }
-    ; //end for
 
     ?>
 															</select>
 
-															<select class="form-control" name="mcode" onChange="change_mcode(<?=$p_num;?>, <?=$lcode;?>, <?=$mcode;?>)">
+															<select class="form-control" name="mcode">
+															<!-- <select class="form-control" name="mcode" onChange="change_mcode(<?=$p_num;?>, <?=$lcode;?>, <?=$mcode;?>)"> -->
+
 																<option value="">선택하세요</option>
-																<?php
-$ca2_qry    = "SELECT * FROM products_category2 WHERE up_category='$lcode' ORDER BY code";
+<?php
+
+    $ca2_qry    = "SELECT * FROM products_category2 WHERE up_category='$lcode' ORDER BY code";
     $ca2_result = mysqli_query($connect, $ca2_qry);
+
     for ($i = 0; $ca2_row = mysqli_fetch_array($ca2_result); $i++) {
         if ($ca2_row['code'] == $mcode) {
             ?>
 																<option value="<?php echo $ca2_row['code']; ?>" selected="selected">
 																	<?php echo $ca2_row['name']; ?>
 																</option>
-																<?php
-} else {
+<?php
+
+        } else {
             ?>
 																<option value="<?php echo $ca2_row['code']; ?>">
 																	<?php echo $ca2_row['name']; ?>
 																</option>
-																<?php
-}
+<?php
+
+        }
     }
-    mysqli_free_result($ca2_result);
     ?>
 															</select>
-															<!-- hidden
-															<select class="form-group" name="scode" onChange="change_code()">
-																<option value="">선택하세요</option>
-																<?php
-$ca3_qry    = "SELECT * FROM products_category3 WHERE up_category='$mcode' ORDER BY code";
-    $ca3_result = mysqli_query($connect, $ca3_qry);
-    for ($i = 0; $ca3_row = mysqli_fetch_array($ca3_result); $i++) {
-        if ($ca3_row['code'] == $scode) {
-            ?>
-																<option value="<?php echo $ca3_row['code']; ?>" selected="selected" ><?php echo $ca3_row['name']; ?></option>
-																<?php
-} else {
-            ?>
-																<option value="<?php echo $ca3_row['code']; ?>" ><?php echo $ca3_row['name']; ?></option>
-																<?php
-}
-    }
-    mysqli_free_result($ca3_result);
-    ?>
-															</select>
-															-->
 														</td>
 													</tr>
 													<tr >

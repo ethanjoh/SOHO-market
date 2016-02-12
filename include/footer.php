@@ -11,7 +11,7 @@
                                     <div class="f-col f-col2 col-md-6 hidden-sm col-xs-12">
                                         <div class="static_all">
                                             <div class="footer-static-title">
-                                                <h3>뉴스&이벤트</h3>
+                                                <h3>피팅 가이드</h3>
                                             </div>
                                             <div class="footer-static-content">
                                                 <ul>
