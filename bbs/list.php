@@ -246,8 +246,6 @@ if ($total == 0) {
                 </div> <!-- table-responsive -->
             </div> <!-- row -->
 
-            <div class="row">
-
 <?php
 
 $qry  = "SELECT * FROM code WHERE code='$code' ";
@@ -258,71 +256,67 @@ $row1 = mysqli_fetch_array($res);
 // 읽기권한: 회원 및 관리자
 if ($row1['readable'] == 'M' && 'admin' == $p_id) {
     ?>
+            <div class="row">
               <p>
                 <a class="btn btn-success" href="post.php?code=<?php echo $code; ?>"><i class="fa fa-pencil-square-o"></i> 쓰 기</a> &nbsp;
                 <a class="btn btn-danger" href="#" onClick="del_send();"><i class="fa fa-trash-o"></i> 삭 제</a>
               </p>
-
+            </div>
 <?php
 
     // 비회원 읽기 가능
 } else if ($row1['readable'] == 'E' && 'admin' != $p_id) {
     ?>
-
+            <div class="row">
               <p>
                 <button type="button" class="btn btn-xs btn-primary pull-right" data-toggle="modal" data-target="#login2">
                   <i class="fa fa-cog"></i> ADMIN LOGIN
                 </button>
               </p>
               <!-- <a class="a-login btn btn-primary pull-right" href="" data-popup="login2"><i class="fa fa-cog"></i>ADMIN LOGIN</a></p> -->
-
+            </div>
 <?php
 
     //회원 로그인 확인
 } else if ($row1['readable'] == 'E' && $p_id && 'admin' != $p_id) {
     ?>
-
+            <div class="row">
               <p><a class="btn btn-success" href="post.php?code=<?php echo $code; ?>"><i class="fa fa-pencil-square-o"></i> 쓰 기</a><a class="a-login btn btn-xs btn-primary pull-right" href="" data-popup="login2"><i class="fa fa-cog"></i> ADMIN LOGIN</a></p>
-
+            </div>
 <?php
 
 } else if ($row1['readable'] == 'E' && 'admin' == $p_id) {
     ?>
-
+            <div class="row">
               <p><a class="btn btn-success" href="post.php?code=<?php echo $code; ?>"><i class="fa fa-pencil-square-o"></i> 쓰 기</a> &nbsp; <a class="btn btn-danger" href="#" onClick="javascript:del_send();"><i class="fa fa-trash-o"></i> 삭 제</a></p>
-
+            </div>
 <?php
 
 } else if ($row1['readable'] == 'E' && 'admin' != $p_id) {
     ; //일반 게시판 & 일반회원
     ?>
-
+            <div class="row">
               <p><a class="a-login btn btn-xs btn-primary pull-right" href="" data-popup="login2"><i class="fa fa-cog"></i> ADMIN LOGIN</a></p>
-
+            </div>
 <?php
 
 }
 ?>
-            </div>
         </form>
 
-        <form name="search_form" action="list.php?code=<?php echo $code; ?>" method="post">
-            <div class="row margin-top-10">
-                <div class="col-sm-2 col-sm-offset-3">
-                    <select data-width="100%">
-                        <option value="title">제 목</option>
-                        <option value="name">작성자</option>
-                        <option value="content">내 용</option>
-                    </select>
-                </div>
-                <div class="col-sm-3">
-                  <input type="hidden" name="mode" value="search" />
-                  <input type="hidden" name="code" value="<?php echo $code; ?>" />
-                  <input type="text" name="keyword" placeholder="검색어" />
-                </div>
-                <div class="col-sm-3">
-                  <button type="submit" class="btn btn-primary btn-sm" name="submit" /><i class="fa fa-search"></i>검 색</button>
-                </div>
+        <form name="search_form" class="form-inline" action="list.php?code=<?php echo $code; ?>" method="post">
+            <input type="hidden" name="mode" value="search" />
+            <input type="hidden" name="code" value="<?php echo $code; ?>" />
+            <div class="row margin-top-10 text-center">
+              <div class="col-md-12">
+                <select class="form-control">
+                  <option value="title">제 목</option>
+                  <option value="name">작성자</option>
+                  <option value="content">내 용</option>
+                </select>
+                <input type="text" class="form-control" name="keyword" placeholder="검색어" />
+                <button type="submit" class="btn btn-primary" name="submit" /><i class="fa fa-search"></i>검 색</button>
+              </div>
             </div>
         </form>
 
