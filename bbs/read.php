@@ -23,44 +23,71 @@ $bqry = "SELECT * FROM code WHERE code='$code' ";
 $bres = mysqli_query($connect, $bqry);
 $brow = mysqli_fetch_array($bres);
 
+$readable = $brow['readable'];
+$writable = $brow['writable'];
+
 //조회수 증가
 if ('admin' != $p_id) {
     $board = 'bbs_' . $code;
     mysqli_query($connect, "UPDATE $board SET count = count+1 WHERE main_no = '$main_no' ");
 }
 
-//테이블 값을 불러온다
-$sql    = "SELECT * FROM $board WHERE main_no='$main_no' ";
-$result = mysqli_query($connect, $sql);
-$row    = mysqli_fetch_array($result);
-
 ?>
 
-    <!-- contents -->
+        <!-- contents -->
         <div class="container">
-            <div class="row">
-                <div class="table-responsive">
 
 <?php
 
-if (!$p_id && $brow['readonly'] == 'N') {
-    $msg = "잘못된 접근이거나 로그인하시기 바랍니다.";
-    $url = "list.php?code=" . $code;
-    show_msg($msg, $url);
-} else if ($p_id != 'admin' && $brow['readonly'] == 'Y' && $row['id'] != 'admin') {
-    $sql1    = "SELECT * FROM member WHERE id='$p_id' ";
-    $result1 = mysqli_query($connect, $sql1);
-    $row1    = mysqli_fetch_array($result1);
+switch ($readable) {
+    case 'E':
+        $sql = "SELECT * FROM $board ORDER BY main_no DESC ";
 
-    if ($row1['id'] != $row['id']) {
-        $msg = "본인이 작성한 글이 아니거나 로그인하시기 바랍니다.";
-        $url = "list.php?code=" . $code;
-        err_msg($msg, $url);
-    }
-} // end else if
+        break;
 
-if ('admin' == $p_id || $row1['id'] == $row['id'] || 'Y ' == $brow['readonly'] || 'admin' == $row['id']) {
+    case 'A':
+        // 작성자 및 관리자만 읽기 가능 (1:1 게시판 등)
+        if ('admin' == $p_id || $row['id'] == $p_id) {
+            $sql = "SELECT * FROM $board WHERE (id='$p_id' OR id='admin') ORDER BY main_no DESC ";
+        } else {
+            echo <<<HEREDOC
+                    <div class="row">
+                      <div class="text-center alert alert-danger" role="alert">
+                        <p><a href="/member/login.php" class="a-login btn btn-primary">로그인</a></p>
+                        <p class="help-block">본인이 작성한 글이 아닙니다. 먼저 로그인하세요</p>
+                      </div>
+                    </div>
+HEREDOC;
+        }
+
+        break;
+
+    case 'M':
+        if ($p_id) {
+            $sql = "SELECT * FROM $board ORDER BY main_no DESC ";
+        } else {
+            echo <<<HEREDOC
+                    <div class="row">
+                      <div class="text-center alert alert-danger" role="alert">
+                        <p><a href="/member/login.php" class="a-login btn btn-primary">로그인</a></p>
+                        <p class="help-block">가입업체 전용 게시판입니다. 먼저 로그인하세요</p>
+                      </div>
+                    </div>
+HEREDOC;
+
+        }
+
+        break;
+
+}
+
+// if ('admin' == $p_id || 'E' == $readable || 'admin' == $row['id']) {
+if (isset($sql)) {
+    $result = mysqli_query($connect, $sql);
+    $row    = mysqli_fetch_array($result);
     ?>
+            <div class="row">
+                <div class="table-responsive">
                     <table class="table">
                         <thead>
                             <tr>
@@ -87,6 +114,7 @@ if ('admin' == $p_id || $row1['id'] == $row['id'] || 'Y ' == $brow['readonly'] |
                             </tr>
                         </tbody>
                     </table>
+
 <?php
 
 ////////////////////////첨부파일 표시//////////////////////////////////
@@ -159,13 +187,13 @@ if ('admin' == $p_id || $row1['id'] == $row['id'] || 'Y ' == $brow['readonly'] |
                 echo '<a href="delete.php?mode=child&code=' . $code . '&amp;main_no=' . $main_no . '&amp;reply_no=' . $re_row['reply_no'] . '" class="btn btn-xs btn-danger"><i class="fa fa-trash-o"></i></a>';
             }
             ?>
-                        <?php echo $re_row['name']; ?> 답변: <?php echo $re_row['title']; ?></strong>
+                        <?php echo $re_row['name']; ?> 답변:
                         <p>
                             <div class="margin-top-10">
                                 <p><?php echo stripslashes($re_row['contents']); ?></p>
                             </div>
                         </p>
-                        <p>작성일 : <?php echo $re_row['date']; ?></p>
+                        <p class="pull-right">[작성일 : <?php echo $re_row['date']; ?>]</p>
                         </div>
 <?php
 
@@ -174,10 +202,9 @@ if ('admin' == $p_id || $row1['id'] == $row['id'] || 'Y ' == $brow['readonly'] |
         }
     }
 
-    if ($p_id) {
-        //로그인을 했을 때만 댓글입력할 수 있도록
-        if ('admin' == $p_id || $row1['id'] == $row['id']) {
-            ?>
+    //로그인을 했을 때만 댓글입력할 수 있도록
+    if ('admin' == $p_id || $p_id) {
+        ?>
 
                       <!-- 댓글 -->
                         <form name="reply_form" method="post" action="//<?php echo $_SERVER['SERVER_NAME']; ?>:<?php echo $port; ?>/bbs/post_ok.php">
@@ -197,12 +224,8 @@ if ('admin' == $p_id || $row1['id'] == $row['id'] || 'Y ' == $brow['readonly'] |
                         </form>
 <?php
 
-        }
+    }
 
-    } //if end
-
-} else {
-    echo "ERROR";
 }
 
 ?>
@@ -217,18 +240,6 @@ if ('admin' == $p_id || $row1['id'] == $row['id'] || 'Y ' == $brow['readonly'] |
 
 <?php include_once '../include/footer.php';?>
 
-    <script language="javascript" type="text/javascript">
-    <!--
-    function editwindow(url) {
-      newwindow=window.open(url,'edit_window','height=400,width=600, left=100, top=100, resizable=yes,scrollbars=yes,status=yes');
-
-    }
-
-    // -->
-    </script>
-
-
-    <!-- smart editor end -->
     <script language="JavaScript">
     <!--
         function send(id)

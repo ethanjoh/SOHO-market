@@ -30,9 +30,10 @@ $total  = mysqli_num_rows($result);
               <ul class="info-body">
                 <li><i class="fa fa-info-circle"></i> 쇼핑몰의 HELP 페이지에 생성됩니다.</li>
                 <li><i class="fa fa-info-circle"></i> 생성한 순서대로 보여지므로 공지사항 게시판을 먼저 생성하세요.</li>
-                <li><i class="fa fa-info-circle"></i> 공지사항 게시판의 코드는 반드시 <strong>notice</strong>로 해야합니다.</li>
+                <!-- <li><i class="fa fa-info-circle"></i> 공지사항 게시판의 코드는 반드시 <strong>notice</strong>로 해야합니다.</li> -->
                 <li><i class="fa fa-info-circle"></i> 코드명은 영문으로 입력하세요.</li>
                 <li><i class="fa fa-info-circle"></i> 비밀번호는 각 게시판에 관리자권한으로 접속할 때 필요합니다.</li>
+                <li><i class="fa fa-info-circle"></i> 게시판 생성 후 코드명을 클릭하면 권한수정이 가능합니다.</li>
               </ul>
             </section>
           </div>
@@ -58,11 +59,15 @@ $total  = mysqli_num_rows($result);
                         <th>게시물 수</th>
                         <th>비밀번호</th>
                         <th>쓰기권한</th>
+                        <th>읽기권한</th>
                         <th>삭제</th>
                       </tr>
                     </thead>
                     <tbody>
 <?php
+
+$mode = set_var($_GET['mode']);
+$code = set_var($_GET['code']);
 
 $page  = '';
 $scale = 10;
@@ -112,7 +117,7 @@ if ($total == 0) {
         ?>
                     <tr>
                       <td><?php echo $bunho; ?></td>
-                      <td><a href="../../bbs/list.php?code=<?php echo $rows['code']; ?>" target="_blank"><?php echo $rows['code']; ?></a></td>
+                      <td><a href="bbs_list.php?mode=edit&amp;code=<?php echo $rows['code']; ?>"><?php echo $rows['code']; ?></a><a href="../../bbs/list.php?code=<?php echo $rows['code']; ?>" target="_blank"> <i class="fa fa-external-link"></a></td>
                       <td>
                         <form class="form-inline" role="form" name="bbs_name<?php echo $i; ?>" action="update_bbs.php" method="post">
                         <input type="hidden" name="mode" value="modify" />
@@ -135,20 +140,39 @@ if ($total == 0) {
                       <td>
 <?php
 
-        switch ($rows['readonly']) {
-            case "Y":
-                echo "관리자";
+        switch ($rows['writable']) {
+            case "E":
+                echo "비회원 가능";
                 break;
-            case "N":
-                echo "관리자/회원";
+            case "A":
+                echo "관리자전용";
+                break;
+            case "M":
+                echo "관리자 및 회원전용";
+                break;
+
+        }
+        ?>
+                      </td>
+                      <td>
+<?php
+
+        switch ($rows['readable']) {
+            case "E":
+                echo "비회원 가능";
+                break;
+            case "M":
+                echo "회원전용";
                 break;
         }
         ?>
-                      <form class="form-inline" role="form" name="del" action="update_bbs.php" method="post" onsubmit="javascript:return confirm('정말 삭제하시겠습니까?');">
+                      </td>
+
+                      <td>
+                        <form class="form-inline" role="form" name="del" action="update_bbs.php" method="post">
                         <input type="hidden" name="mode" value="del" />
                         <input type="hidden" name="num" value="<?php echo $rows['num']; ?>" />
                         <input type="hidden" name="code" value="<?php echo $rows['code']; ?>" />
-                      <td>
                         <button class="btn btn-danger" onclick="return confirm('정말 삭제하시겠습니까?');" /><i class="fa fa-trash-o"></i></button>
                       </td>
                       </form>
@@ -172,33 +196,144 @@ if ($total == 0) {
           <div class="col-sm-12">
             <section class="panel">
               <header class="panel-heading table-head">
-                  신규 게시판 생성
+                  신규 게시판 생성 / 권한수정
                 </header>
                 <div class="panel-body">
                   <form class="form-horizontal" role="form" name="ins" method="post" action="update_bbs.php">
-                    <input type="hidden" name="mode" value="ins" />
-
                       <div class="form-group">
                           <label for="id" class="col-lg-2 col-sm-2 control-label">코드명 :</label>
                           <div class="col-sm-3">
-                              <input type="text" class="form-control" name="code" id="code">
+<?php
+
+if ("edit" == $mode) {
+
+    $query  = "SELECT * FROM code WHERE code='$code'";
+    $result = mysqli_query($connect, $query);
+    $row    = mysqli_fetch_array($result);
+}
+
+if ("edit" == $mode) {
+    echo '<input type="text" class="form-control" name="code" id="code" value="' . $row['code'] . '" readonly="readonly">';
+} else {
+    echo '<input type="text" class="form-control" name="code" id="code">';
+}
+
+?>
                           </div>
                       </div>
                       <div class="form-group">
                           <label for="id" class="col-lg-2 col-sm-2 control-label">게시판명 :</label>
                           <div class="col-sm-3">
-                              <input type="text" class="form-control" name="title" id="title">
+<?php
+
+if ("edit" == $mode) {
+    echo '<input type="text" class="form-control" name="title" id="title" value="' . $row['bbs_name'] . '" readonly="readonly" >';
+} else {
+    echo '<input type="text" class="form-control" name="title" id="title">';
+}
+
+?>
                           </div>
                       </div>
                       <div class="form-group">
                           <label for="id" class="col-lg-2 col-sm-2 control-label">쓰기권한 :</label>
+                          <div class="col-sm-4">
+<?php
+
+if ("edit" == $mode) {
+    switch ($row['writable']) {
+        case 'M':
+            echo <<<HEREDOC
+                            <input type="radio" name="writable" id="writable" value="M" checked="checked" />관리자/회원
+                            <input type="radio" name="writable" id="writable" value="E" />비회원 가능
+                            <input type="radio" name="writable" id="writable" value="A" />관리자 전용
+HEREDOC;
+            break;
+
+        case 'E':
+            echo <<<HEREDOC
+                            <input type="radio" name="writable" id="writable" value="M" />관리자/회원
+                            <input type="radio" name="writable" id="writable" value="E" checked="checked" />비회원 가능
+                            <input type="radio" name="writable" id="writable" value="A" />관리자 전용
+HEREDOC;
+            break;
+
+        case 'A':
+            echo <<<HEREDOC
+                            <input type="radio" name="writable" id="writable" value="M" />관리자/회원
+                            <input type="radio" name="writable" id="writable" value="E" />비회원 가능
+                            <input type="radio" name="writable" id="writable" value="A" checked="checked" />관리자 전용
+HEREDOC;
+            break;
+    }
+
+} else {
+    echo <<<HEREDOC
+                            <input type="radio" name="writable" id="writable" value="M" />관리자/회원
+                            <input type="radio" name="writable" id="writable" value="E" />비회원 가능
+                            <input type="radio" name="writable" id="writable" value="A" />관리자 전용
+HEREDOC;
+
+}
+?>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label for="id" class="col-lg-2 col-sm-2 control-label">읽기권한 :</label>
                           <div class="col-sm-3">
-                            <input type="radio" name="readonly" id="readonly" value="N" checked="checked" />관리자/회원
-                            <input type="radio" name="readonly" id="readonly" value="Y" />관리자 전용
+<?php
+
+if ("edit" == $mode) {
+    switch ($row['readable']) {
+        case 'E':
+            echo <<<HEREDOC
+                            <input type="radio" name="readable" id="readable" value="E" checked="checked" />비회원 가능
+                            <input type="radio" name="readable" id="readable" value="A" />관리자 전용
+                            <input type="radio" name="readable" id="readable" value="M" />회원 전용
+HEREDOC;
+            break;
+
+        case 'A':
+            echo <<<HEREDOC
+                            <input type="radio" name="readable" id="readable" value="E" />비회원 가능
+                            <input type="radio" name="readable" id="readable" value="A" checked="checked" />관리자 전용
+                            <input type="radio" name="readable" id="readable" value="M" />회원 전용
+HEREDOC;
+            break;
+
+        case 'M':
+            echo <<<HEREDOC
+                            <input type="radio" name="readable" id="readable" value="E" />비회원 가능
+                            <input type="radio" name="readable" id="readable" value="A" />관리자 전용
+                            <input type="radio" name="readable" id="readable" value="M" checked="checked" />회원 전용
+HEREDOC;
+            break;
+
+    }
+} else {
+    echo <<<HEREDOC
+                            <input type="radio" name="readable" id="readable" value="E" />비회원 가능
+                            <input type="radio" name="readable" id="readable" value="A" />관리자 전용
+                            <input type="radio" name="readable" id="readable" value="M" />회원 전용
+HEREDOC;
+
+}
+?>
+
                           </div>
                       </div>
                       <div class="text-center">
-                        <button class="btn btn-success" type="submit">만들기</button>
+<?php
+
+if ("edit" == $mode) {
+    echo '<input type="hidden" name="mode" value="edit" />';
+    echo '<button class="btn btn-success" type="submit">권한수정</button>';
+} else {
+    echo '<input type="hidden" name="mode" value="ins" />';
+    echo '<button class="btn btn-success" type="submit">만들기</button>';
+}
+
+?>
                       </div>
 
                   </form>
