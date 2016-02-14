@@ -8,7 +8,8 @@
       <!--sidebar start-->
       <?php include "../include/admin_sidebar.php";?>
       <!--sidebar end-->
-      <?php
+<?php
+
 $today      = date("Y-m-d");
 $month      = date("Y-m");
 $this_month = date("F, Y", strtotime($month));
@@ -143,12 +144,15 @@ mysqli_query($connect, 'set names utf8');
               <!-- monthly sales end-->
             </div>
           </div>
+
           <!-- bbs start -->
           <div class="row">
-            <?php
+<?php
+
 $query  = "SELECT * FROM code WHERE 1 ORDER BY num";
 $result = mysqli_query($connect, $query);
 $total  = mysqli_num_rows($result);
+
 if ($total == 0) {
     ?>
             <div class="col-sm-12">
@@ -156,17 +160,20 @@ if ($total == 0) {
                 <p>생성된 게시판이 없습니다.</p>
                 <p>관리자 페이지 > 환경설정 > <a href="/admin/bbs/bbs_list.php">게시판 설정</a>에서 게시판을 생성해 주세요.</p>
               </div>
-            <?php
+<?php
+
 } else {
-    if ($total % 2 == 1) {
+    if ($total % 2 == 0) {
         ?>
-              <div class="col-sm-6">
-                <?php
-} else {
+                    <div class="col-sm-6">
+<?php
+
+    } else {
         ?>
-                <div class="col-sm-6">
-                  <?php
-}
+                    <div class="col-sm-6">
+<?php
+
+    }
     for ($i = 0; $rows = mysqli_fetch_array($result); $i++) {
         $board   = 'bbs_' . $rows['code'];
         $query2  = "SELECT * FROM $board WHERE 1 ORDER BY mod_date DESC LIMIT 5";
@@ -178,27 +185,30 @@ if ($total == 0) {
             $total2 = 0;
         }
         ?>
-                  <section class="panel">
-                    <div class="weather-bg">
-                      <header class="panel-heading">
-                        <a href="/bbs/list.php?code=<?php echo $rows['code']; ?>" target="_blank"><span class="bbs-title"><?php echo $rows['bbs_name']; ?></span></a>
-                      </header>
-                    </div>
-                    <div class="table-responsive">
-                      <table class="table table-striped">
-                        <thead>
-                          <tr>
-                            <th>#</th>
-                            <th>제 목</th>
-                            <th>날 짜</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <?php
-if ($total2 == 0) {
-            echo "<tr>
-                            <td colspan=\"4\"><p>등록된 글이 없습니다</p></td>
-                          </tr>";
+                        <section class="panel">
+                          <div class="weather-bg">
+                            <header class="panel-heading">
+                              <a href="/bbs/list.php?code=<?php echo $rows['code']; ?>" target="_blank"><span class="bbs-title"><?php echo $rows['bbs_name']; ?></span></a>
+                            </header>
+                          </div>
+                          <div class="table-responsive">
+                            <table class="table table-striped">
+                              <thead>
+                                <tr>
+                                  <th>#</th>
+                                  <th>제 목</th>
+                                  <th>날 짜</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+<?php
+
+        if ($total2 == 0) {
+            echo <<<HEREDOC
+                              <tr>
+                                <td colspan="4"><p>등록된 글이 없습니다</p></td>
+                              </tr>
+HEREDOC;
         } else {
             for ($j = 0; $rows2 = mysqli_fetch_array($result2); $j++) {
                 //날짜 형식을 바꾼다.
@@ -206,54 +216,59 @@ if ($total2 == 0) {
                 //답변있는 경우
                 if ($rows2['depth'] > 0) {
                     ?>
-                          <tr>
-                            <td><?php echo $rows2['no']; ?></td>
-                            <td><a href="../bbs/read.php?code=<?php echo $rows['code']; ?>&main_no=<?php echo $rows2['main_no']; ?>" target="_blank"><?php echo stripslashes($rows2['title']); ?></a>&nbsp;<span class="badge"><?php echo $rows2['depth']; ?></span></td>
-                            <!-- <td><?php echo $rows['readonly'] == 'N' ? " - ($rows2[name])" : ""; ?></td> -->
-                            <td><?php echo $post_date; ?></td>
-                          </tr>
-                          <?php
-} else {
+                              <tr>
+                                <td><?php echo $rows2['main_no']; ?></td>
+                                <td><a href="../bbs/read.php?code=<?php echo $rows['code']; ?>&main_no=<?php echo $rows2['main_no']; ?>" target="_blank"><?php echo stripslashes($rows2['title']); ?></a>&nbsp;<span class="badge"><?php echo $rows2['depth']; ?></span></td>
+                                <td><?php echo $post_date; ?></td>
+                              </tr>
+<?php
+
+                } else {
                     ?>
-                          <tr>
-                            <td><?php echo $j + 1; ?></td>
-                            <td><a href="../bbs/read.php?code=<?php echo $rows['code']; ?>&main_no=<?php echo $rows2['main_no']; ?>" target="_blank"><?php echo stripslashes($rows2['title']); ?></a></td>
-                            <!-- <td><?php echo $rows['readonly'] == 'N' ? " - ($rows2[name])" : ""; ?></td> -->
-                            <td><?php echo $post_date; ?></td>
-                          </tr>
-                          <?php
-} // end of inner if
+                              <tr>
+                                <td><?php echo $j + 1; ?></td>
+                                <td><a href="../bbs/read.php?code=<?php echo $rows['code']; ?>&main_no=<?php echo $rows2['main_no']; ?>" target="_blank"><?php echo stripslashes($rows2['title']); ?></a></td>
+                                <td><?php echo $post_date; ?></td>
+                              </tr>
+<?php
+
+                } // end of inner if
             } // end of inner for loop
         }
         ; // end of outer if
         ?>
-                        </tbody>
-                      </table>
-                    </div>
-                  </section>
-                  <?php
-if ($total2 % 2 == 1) {
-            echo '  </div> <!-- end of col-sm-6 -->
-                 </div>
-                 <div class="row">
-                 <div class="col-sm-6">';
+                              </tbody>
+                            </table>
+                          </div>
+                        </section>
+<?php
+
+        if ($total2 % 2 == 0) {
+            echo <<<HEREDOC
+                       </div> <!-- end of col-sm-6 -->
+                     </div>
+                     <div class="row">
+                       <div class="col-sm-6">
+HEREDOC;
         } else {
-            echo '  </div> <!-- end of col-sm-6 -->
-                <div class="col-sm-6">';
+            echo <<<HEREDOC
+                       </div> <!-- end of col-sm-6 -->
+                       <div class="col-sm-6">
+
+HEREDOC;
         }
     } // end of outer for loop
 }
 ; //end of if($total == 0)
 ?>
-
-                    </div>
-                  </div><!-- end of bbs -->
-                </section>
-              </section><!--main content end-->
+                      </div>
+                    </div><!-- end of bbs -->
+                  </section>
+                </section><!--main content end-->
 
 
           <!--footer start-->
-          <?php include "../include/admin_footer.php";?>
+          <?php include_once "../include/admin_footer.php";?>
           <!--footer end-->
         </section>
     <!-- js placed at the end of the document so the pages load faster -->
