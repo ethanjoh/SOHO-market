@@ -169,8 +169,7 @@ $uri = urlencode($uri);
                                     <ul>
                                         <li><a href="/member/about-us.php">회사 소개</a></li>
                                         <li><a href="/bbs/list.php?code=fitting">피팅 가이드</a></li>
-                                        <li><a href="#">대리점 안내</a></li>
-                                        <li><a href="/member/contact-us.php">제휴문의</a></li>
+                                        <li><a href="/member/contact-us.php">문의</a></li>
                                     </ul>
                                 </nav>
                             </div>

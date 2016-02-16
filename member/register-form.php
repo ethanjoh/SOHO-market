@@ -833,7 +833,7 @@ Start Register Form ============================================================
 
 										<div class="row">
 											<div class="col-sm-12 text-center">
-												<button class="btn btn-success" type="submit" onclick="registerConfirm()">등 록</button> <a class="btn btn-primary" role="button" href="../main/index.php" >취 소</a>
+												<button class="btn btn-success" type="submit" onclick="registerConfirm()">등 록</button> <a class="btn btn-primary" role="button" href="/" >취 소</a>
 											</div>
 										</div>
 

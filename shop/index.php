@@ -58,13 +58,13 @@
             <div class="container">
                 <div class="row">
                     <div class="product col-md-4 col-sm-4 col-xs-12">
-                        <a href="#"><img src="/images/product/banner23.jpg" alt=""></a>
+                        <a href="#"><img src="/images/banner/top-banner-1.jpg" alt=""></a>
                     </div>
                     <div class="product col-md-4 col-sm-4 col-xs-12">
-                        <a href="#"><img src="/images/product/banner24.jpg" alt=""></a>
+                        <a href="#"><img src="/images/banner/top-banner-2.jpg" alt=""></a>
                     </div>
                     <div class="product col-md-4 col-sm-4 col-xs-12">
-                        <a href="#"><img src="/images/product/banner25.jpg" alt=""></a>
+                        <a href="#"><img src="/images/banner/top-banner-3.jpg" alt=""></a>
                     </div>
                    <div class="col-md-12">
                         <div class="ma-title">
@@ -86,14 +86,14 @@ show_main_products('best', 10);
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="lenovo">
                             <a href="#">
-                                <img alt="" src="/images/banner/banner15.jpg">
+                                <img alt="" src="/images/banner/mid-banner-1.jpg">
                             </a>
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="lenovo">
                             <a href="#">
-                                <img alt="" src="/images/banner/banner14.jpg">
+                                <img alt="" src="/images/banner/mid-banner-2.jpg">
                             </a>
                         </div>
                     </div>
@@ -122,7 +122,7 @@ show_main_products('new', 10);
                             </div>
                         </div>
                         <div class="banner">
-                            <a href="#"><img src="/images/banner16.jpg" alt=""></a>
+                            <a href="#"><img src="/images/banner/bottom-banner.jpg" alt=""></a>
                         </div>
                     </div>
                 </div>

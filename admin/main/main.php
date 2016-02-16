@@ -164,16 +164,11 @@ if ($total == 0) {
 
 } else {
     if ($total % 2 == 0) {
-        ?>
-                    <div class="col-sm-6">
-<?php
-
+        echo '        <div class="col-sm-6">';
     } else {
-        ?>
-                    <div class="col-sm-6">
-<?php
-
+        echo '        <div class="col-sm-6">';
     }
+
     for ($i = 0; $rows = mysqli_fetch_array($result); $i++) {
         $board   = 'bbs_' . $rows['code'];
         $query2  = "SELECT * FROM $board WHERE 1 ORDER BY mod_date DESC LIMIT 5";

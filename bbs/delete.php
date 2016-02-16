@@ -19,22 +19,21 @@ $code     = set_var($_GET['code']);
     <!-- CONTAINER -->
     <div class="container">
         <form name="delete_form" action="delete_ok.php" method="post" class="form-group">
-            <input type="hidden" name="mode"      value="<?=$mode;?>" />
-            <input type="hidden" name="main_no"   value="<?=$main_no;?>" />
-            <input type="hidden" name="reply_no"  value="<?=$reply_no;?>" />
-            <input type="hidden" name="id"        value="<?=$_SESSION['p_id'];?>" />
-            <input type="hidden" name="code"      value="<?=$code;?>" />
+            <input type="hidden" name="mode"      value="<?php echo $mode; ?>" />
+            <input type="hidden" name="main_no"   value="<?php echo $main_no; ?>" />
+            <input type="hidden" name="reply_no"  value="<?php echo $reply_no; ?>" />
+            <input type="hidden" name="code"      value="<?php echo $code; ?>" />
             <div class="row">
                 <div class="col-md-4 col-md-offset-4">
                     <label for="passwd">비밀번호 (게시판 관리 비밀번호): </label>
                     <input type="password" class="form-control" name="passwd">
                 </div>
             </div>
-            <div class="row text-center">
+            <div class="row text-center margin-top-10">
                 <div class="col-md-4 col-md-offset-4">
-                    <a class="btn btn-primary" href="list.php?code=<?=$code;?>" >목록</a>
+                    <a class="btn btn-primary" href="list.php?code=<?php echo $code; ?>" >목록</a>
                     <a class="btn btn-danger" href="#" onclick="javascript:send();"><i class="fa fa-trash-o"></i>삭제</a>
-                    <a class="btn btn-primary" href="read.php?code=<?=$code;?>&amp;main_no=<?=$main_no;?>" >취소</a>
+                    <a class="btn btn-primary" href="read.php?code=<?php echo $code; ?>&amp;main_no=<?php echo $main_no; ?>" >취소</a>
                 </div>
             </div>
         </form>
@@ -52,8 +51,8 @@ $code     = set_var($_GET['code']);
 
           if(x = true)
              document.delete_form.submit();
-                else
-            document.location.replace("read.php?code=<?=$code;?>&amp;main_no=<?=$main_no;?>");
+          else
+            document.location.replace("read.php?code=<?php echo $code; ?>&amp;main_no=<?php echo $main_no; ?>");
         }
         </script>
     </body>

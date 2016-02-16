@@ -2,7 +2,7 @@
 
 $host   = "localhost";
 $dbid   = "ssss01047271791";
-$dbpass = "Shinsoo19931008";
+$dbpass = "Shinsoo1993!";
 $dbname = "ssss01047271791";
 $port   = "";
 

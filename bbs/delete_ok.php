@@ -7,7 +7,7 @@ $connect = my_connect($host, $dbid, $dbpass, $dbname);
 $mode     = set_var($_POST['mode']);
 $main_no  = set_var($_POST['main_no']);
 $reply_no = set_var($_POST['reply_no']);
-$id       = set_var($_POST['id']);
+$id       = set_var($_SESSION['p_id']);
 $passwd   = set_var($_POST['passwd']);
 $code     = set_var($_POST['code']);
 
