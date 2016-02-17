@@ -8,7 +8,7 @@ Author URI: http://dev7studios.com
 Supports Thumbs: true
 */
 /* -------------------------------------
-preview-1 
+preview-1
 ---------------------------------------- */
 .preview-1 .nivoSlider {
 	position:relative;
@@ -204,6 +204,6 @@ preview-2
   z-index: 999999;
 }
 .preview-2 .nivo-controlNav a:hover, .preview-2 .nivo-controlNav a.active {
-    background: #000;
+    background: #750F0F;
     cursor: pointer;
 }

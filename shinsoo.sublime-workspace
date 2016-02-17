@@ -5,7 +5,11 @@
 		[
 			[
 				"mar",
-				"margin-top"
+				"margin-bottom"
+			],
+			[
+				"lin",
+				"line-height"
 			],
 			[
 				"line",
@@ -395,14 +399,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "style.css",
-			"settings":
-			{
-				"buffer_size": 86415,
-				"line_ending": "Windows"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -411,13 +407,21 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 588.0,
-		"last_filter": "pci",
+		"height": 354.0,
+		"last_filter": "package ",
 		"selected_items":
 		[
 			[
-				"pci",
+				"package ",
 				"Package Control: Install Package"
+			],
+			[
+				"remo",
+				"Package Control: Remove Repository"
+			],
+			[
+				"pci",
+				"Package Control: Remove Repository"
 			],
 			[
 				"pus",
@@ -504,7 +508,7 @@
 				"Package Control: List Packages"
 			]
 		],
-		"width": 732.0
+		"width": 510.0
 	},
 	"console":
 	{
@@ -526,10 +530,31 @@
 	"expanded_folders":
 	[
 		"/C/wamp/www/shinsoo",
-		"/C/wamp/www/shinsoo/css"
+		"/C/wamp/www/shinsoo/images"
 	],
 	"file_history":
 	[
+		"/C/wamp/bin/apache/apache2.4.9/conf/extra/httpd-vhosts.conf",
+		"/C/Users/Joh/Downloads/hosts",
+		"/C/wamp/www/shinsoo/index.php",
+		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/C/wamp/www/modoo/index.html",
+		"/C/wamp/www/modoo/css/wavex.css",
+		"/C/wamp/www/modoo/js/color-switcher.js",
+		"/C/wamp/www/modoo/js/custom.js",
+		"/C/wamp/www/modoo/css/parallax.css",
+		"/C/wamp/www/modoo/css/style.css",
+		"/C/wamp/www/modoo/css/red.css",
+		"/C/wamp/www/modoo/css/animation-icons.css",
+		"/C/wamp/www/modoo/css/header.css",
+		"/C/wamp/www/modoo/css/dark.css",
+		"/C/wamp/www/modoo/css/jquery.fancybox.css",
+		"/C/wamp/www/modoo/css/animate.css",
+		"/C/wamp/www/modoo/css/bootstrap.css",
+		"/C/wamp/www/modoo/css/responsive-tabs.css",
+		"/C/wamp/www/modoo/css/green.css",
+		"/C/wamp/www/modoo/css/yellow.css",
+		"/C/wamp/www/modoo/modoo",
 		"/C/wamp/www/shinsoo/style.css",
 		"/C/Users/Joh/OneDrive/홈페이지 템플릿/신수상사 템플릿/hitstore/index.html",
 		"/C/wamp/www/shinsoo/index.html",
@@ -601,7 +626,6 @@
 		"/C/wamp/www/seminar/admin/include/config.php",
 		"/C/wamp/www/seminar/include/config.php",
 		"/C/wamp/www/seminar/admin/css/timeline.css",
-		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
 		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
 		"/C/wamp/www/seminar/js/creative.js",
 		"/C/wamp/www/seminar/.gitignore",
@@ -637,37 +661,18 @@
 		"/C/Users/Seonghyeon/OneDrive/git_project/makecard/index.php",
 		"/C/Users/Seonghyeon/OneDrive/git_project/makecard/login.php",
 		"/C/Users/Seonghyeon/OneDrive/git_project/makecard/product-view.php",
-		"/C/Users/Seonghyeon/OneDrive/git_project/makecard/include/header.php",
-		"/C/Users/Seonghyeon/OneDrive/git_project/makecard/logout.php",
-		"/C/Users/Seonghyeon/OneDrive/git_project/makecard/login-check.php",
-		"/C/Users/Seonghyeon/OneDrive/git_project/makecard/contents/register-contents.php",
-		"/C/Users/Seonghyeon/OneDrive/git_project/makecard/contents/login-contents.php",
-		"/C/Users/Seonghyeon/OneDrive/git_project/makecard/contents/cart-contents.php",
-		"/C/Users/Seonghyeon/OneDrive/git_project/makecard/include/order-card-section.php",
-		"/C/Users/Seonghyeon/OneDrive/git_project/makecard/locale.php",
-		"/C/Users/Seonghyeon/OneDrive/git_project/makecard/info.php",
-		"/C/Users/Seonghyeon/AppData/Roaming/Sublime Text 3/Packages/phpfmt/message",
-		"/C/Users/Seonghyeon/OneDrive/git_project/makecard/include/footer.php",
-		"/C/Users/Seonghyeon/OneDrive/git_project/makecard/js/main.js",
-		"/C/Users/Seonghyeon/OneDrive/git_project/akip/index.php",
-		"/C/Users/Seonghyeon/OneDrive/git_project/akip/main.css",
-		"/C/Users/Seonghyeon/OneDrive/git_project/akip/notice.php",
-		"/C/Users/Seonghyeon/OneDrive/git_project/akip/intro.php",
-		"/C/Users/Seonghyeon/OneDrive/git_project/akip/joinus.php",
-		"/C/Users/Seonghyeon/OneDrive/git_project/akip/map.php",
-		"/C/Users/Seonghyeon/OneDrive/git_project/akip/footer.php",
-		"/C/Users/Seonghyeon/OneDrive/git_project/akip/assets/css/style.css",
-		"/C/Users/Seonghyeon/OneDrive/git_project/akip/assets/css/color.css"
+		"/C/Users/Seonghyeon/OneDrive/git_project/makecard/include/header.php"
 	],
 	"find":
 	{
-		"height": 34.0
+		"height": 30.0
 	},
 	"find_in_files":
 	{
 		"height": 203.0,
 		"where_history":
 		[
+			"C:\\wamp\\www\\modoo",
 			"C:\\Users\\Seonghyeon\\OneDrive\\git_project\\makecard",
 			"C:\\Users\\Seonghyeon\\OneDrive\\git_project\\akip",
 			"/Users/ethanjoh/Desktop/git_project/smedics",
@@ -686,6 +691,27 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"shinsoo",
+			".change",
+			"counter",
+			".counter",
+			".counters .counter",
+			"who",
+			"s1",
+			"animate fadeIn",
+			"intro",
+			"#intro\n",
+			";\n",
+			"#intro\n",
+			";\n",
+			"#intro",
+			"{\n",
+			"#intro",
+			"url(\"../images/countdown.jpg\")",
+			"experties",
+			"font-family: 'Raleway', sans-serif;",
+			"Rale",
+			"bootstrap",
 			".adress",
 			"adress",
 			"shop_area",
@@ -792,28 +818,7 @@
 			"index.html",
 			"<?php echo",
 			"period",
-			"sales",
-			"amount_o",
-			"t_opt",
-			"optname_ins",
-			"장바구니",
-			"send_check",
-			"createdate",
-			"licensed",
-			"today",
-			"createdate",
-			"buyer_name",
-			"createdate",
-			"status_now",
-			"주문취소",
-			"주문취",
-			"주문취소",
-			"pay_type",
-			"Track",
-			"track",
-			"final",
-			"sp_total",
-			"description"
+			"sales"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -834,108 +839,14 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "style.css",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 86415,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1616,
-								1572
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content"
-							],
-							"color_scheme": "Packages/User/Color Highlighter/themes/Eiffel.tmTheme",
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/CSS/CSS.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 630.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				}
 			]
 		}
 	],
 	"incremental_find":
 	{
-		"height": 23.0
+		"height": 30.0
 	},
 	"input":
 	{
@@ -980,7 +891,7 @@
 	"project": "shinsoo.sublime-project",
 	"replace":
 	{
-		"height": 42.0
+		"height": 56.0
 	},
 	"save_all_on_build": true,
 	"select_file":

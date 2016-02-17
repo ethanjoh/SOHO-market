@@ -1,0 +1,122 @@
+/*
+custom style
+ */
+
+.margin-top-10 {
+    margin-top: 10px;
+}
+
+.margin-top-30 {
+    margin-top: 30px;
+}
+
+.margin-bottom-30 {
+    margin-bottom: 30px;
+}
+
+.register-intro {
+    text-align: center;
+    margin: 0 auto;
+    width: 80%;
+}
+
+.login-form {
+    text-align: center;
+    margin: 0 auto;
+    width: 30%;
+}
+
+.register-font {
+    padding: 5px 5px 10px 20px;
+}
+
+.form-bottom-line {
+    border-bottom: 1px dashed #ddd;
+    padding-bottom: 20px;
+    margin-bottom: 10px;
+}
+
+.login-form-head {
+    margin-bottom: 40px;
+    text-align: center;
+    /*width: 80%;*/
+    margin: 0 auto;
+}
+
+.login-form-element a {
+    border: 1px solid #2BA8DB;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 28px;
+    overflow: hidden;
+    padding: 0 20px;
+    text-transform: uppercase;
+    transition: all 0.3s ease 0s;
+}
+
+.login-form-element a:hover {
+    background: #2BA8DB none repeat scroll 0 0;
+    color: #fff;
+    transition: all 0.6s ease 0s;
+}
+
+.product-content span.product-option {
+    background: #B2B2B2 none repeat scroll 0 0;
+    border-radius: 2px;
+    padding: 0 5px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.cart-form .cart-table td.cost {
+    text-align: right;
+}
+
+.cart-form .cart-table td.total-amount,
+.cart-form .cart-table td.total-text {
+    padding: 20px;
+    background-color: #F3F3F3;
+    text-align: right;
+    font-size: 16px;
+}
+
+.soldout {
+    color=blue;
+}
+
+.cutout {
+    color=red;
+}
+
+.buyer-info-padding {
+    padding: 5px 15px;
+}
+
+.bg-danger {
+    background-color: #E7543D;
+    color: #fff;
+    padding: 10px;
+}
+
+.order-detail tr,
+.order-detail th {
+    text-align: center;
+}
+
+.date-input {
+    margin-right: 20px;
+}
+
+.cart-item {
+    background: #BADA55;
+    /*border-radius: 50%;*/
+    color: #fff;
+    font-size: 1.3em;
+    height: 20px;
+    width: 20px;
+    padding: 10px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+}
