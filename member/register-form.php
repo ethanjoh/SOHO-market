@@ -19,7 +19,7 @@ $mode   = set_var($_GET['mode']);
 																				</span>
 																		</li>
 																		<li class="category3">
-																		<?php
+<?php
 
 if ("edit" == $mode) {
     echo '<strong>회원 정보수정</strong>';
@@ -71,7 +71,7 @@ if ("edit" == $mode) {
 Start Edit Form =============================================================
  -->
 
-						<?php
+<?php
 if ("edit" == $mode) {
     ?>
 
@@ -235,7 +235,7 @@ if ("edit" == $mode) {
 															<input class="form-control" type="text" name="o_zipcode1" id="o_zipcode1" value="<?php echo $o_zipno[0]; ?>" readonly />
 														</div>
 														<div class="col-xs-6 col-md-2">
-                               <button class="button2" type="button" onclick="openDaumPostcode()">우편번호 검색</button>
+                                                            <button class="button2" type="button" onclick="openDaumPostcode()">우편번호 검색</button>
 														</div>
 													</div>
 
@@ -833,7 +833,7 @@ Start Register Form ============================================================
 
 										<div class="row">
 											<div class="col-sm-12 text-center">
-												<button class="btn btn-success" type="submit" onclick="registerConfirm()">등 록</button> <a class="btn btn-primary" role="button" href="/" >취 소</a>
+											<button class="btn btn-success" type="submit" onclick="registerConfirm()">등 록</button> <a class="btn btn-primary" role="button" href="/" >취 소</a>
 											</div>
 										</div>
 

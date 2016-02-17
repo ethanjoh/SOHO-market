@@ -11,24 +11,12 @@ $p_sid  = set_var($_COOKIE['p_sid']);
 $p_id   = set_var($_SESSION['p_id']);
 $p_name = set_var($_SESSION['p_name']);
 
-// if (isset($p_id)) {
-//     $mqry = "SELECT * FROM member WHERE id = '$p_id' ";
-//     $mres = mysqli_query($connect, $mqry);
-//     $mrow = mysqli_fetch_array($mres);
-// }
-
-$info_query = "SELECT * FROM admin_setup";
-$info_res   = mysqli_query($connect, $info_query);
-$info       = mysqli_fetch_array($info_res);
+$com_info = get_company_info();
 
 //로그인 이전의 URL로 돌아가기
 $uri = $_SERVER["REQUEST_URI"];
 $uri = urlencode($uri);
 
-//메인설정 정보
-// $main_query = "SELECT * FROM main_setup";
-// $main_res   = mysqli_query($connect, $main_query);
-// $main       = mysqli_fetch_array($main_res);
 ?>
 
 <!doctype html>
@@ -36,58 +24,28 @@ $uri = urlencode($uri);
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title><?php echo $info['company_name']; ?></title>
-        <meta name="keyword" content="<?php echo $info['keywords']; ?>">
-        <meta name="description" content="<?php echo $info['description']; ?>">
+        <title><?php echo $com_info['company_name']; ?></title>
+        <meta name="keyword" content="<?php echo $com_info['keywords']; ?>">
+        <meta name="description" content="<?php echo $com_info['description']; ?>">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-		<!-- favicon
-		============================================ -->
         <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico">
-		<!-- Google Fonts
-		============================================ -->
         <link href='http://fonts.googleapis.com/earlyaccess/notosanskr.css' rel='stylesheet' type='text/css'>
-		<!-- Bootstrap CSS
-		============================================ -->
         <link rel="stylesheet" href="/css/bootstrap.min.css">
-        <!-- Jquery UI CSS
-        ============================================ -->
         <link rel="stylesheet" href="/css/jquery-ui.min.css" >
-		<!-- Font awesome CSS
-		============================================ -->
         <link rel="stylesheet" href="/css/font-awesome.min.css">
-		<!-- owl.carousel CSS
-		============================================ -->
         <link rel="stylesheet" href="/css/owl.carousel.css">
         <link rel="stylesheet" href="/css/owl.theme.css">
         <link rel="stylesheet" href="/css/owl.transitions.css">
-        <!-- nivo slider CSS
-		============================================ -->
         <link rel="stylesheet" href="/lib/css/nivo-slider.css" type="text/css" />
         <link rel="stylesheet" href="/lib/css/preview.css" type="text/css" media="screen" />
-		<!-- animate CSS
-		============================================ -->
         <link rel="stylesheet" href="/css/animate.css">
-		<!-- meanmenu CSS
-		============================================ -->
         <link rel="stylesheet" href="/css/meanmenu.min.css">
-        <!-- Image Zoom CSS
-		============================================ -->
         <link rel="stylesheet" href="/css/img-zoom/jquery.simpleLens.css">
-		<!-- normalize CSS
-		============================================ -->
         <link rel="stylesheet" href="/css/normalize.css">
-		<!-- main CSS
-		============================================ -->
         <link rel="stylesheet" href="/css/main.css">
-		<!-- style CSS
-		============================================ -->
         <link rel="stylesheet" href="/css/style.css">
         <link rel="stylesheet" href="/css/myshop.css">
-		<!-- responsive CSS
-		============================================ -->
         <link rel="stylesheet" href="/css/responsive.css">
-		<!-- modernizr JS
-		============================================ -->
         <script src="/js/vendor/modernizr-2.8.3.min.js"></script>
         <script src="/bbs/ckeditor/ckeditor.js" charset="utf-8"></script>
 
@@ -108,14 +66,14 @@ $uri = urlencode($uri);
                                 <a href="/index.php"><img src="/images/shinsoo-logo.svg" alt="신수상사 로고"></a>
                             </div>
                         </div>
-                        <div class="col-md-6 col-sm-6">
+<!--                         <div class="col-md-6 col-sm-6">
                             <div class="outlink">
                                 <ul>
                                     <li><a href="http://www.no1grip.co.kr/" target="_blank"><img src="/images/logo/no1grip-home.jpg" alt="no1grip"></a></li>
                                     <li><a href="http://www.superstroke.co.kr/" target="_blank"><img src="/images/logo/ss-home.jpg" alt="superstroke"></a></li>
                                 </ul>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

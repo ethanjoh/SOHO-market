@@ -26,7 +26,7 @@ $privacy_manager = set_var($_POST['privacy_manager']);
 $category1       = set_var($_POST['category1']);
 $category2       = set_var($_POST['category2']);
 $o_zipcode1      = set_var($_POST['o_zipcode1']);
-$o_zipcode2      = set_var($_POST['o_zipcode2']);
+// $o_zipcode2      = set_var($_POST['o_zipcode2']);
 $o_addr1         = set_var($_POST['o_addr1']);
 $o_addr2         = set_var($_POST['o_addr2']);
 $tel1            = set_var($_POST['tel1']);
@@ -47,9 +47,10 @@ $description = addslashes($description);
 $addr1       = addslashes($o_addr1);
 $addr2       = addslashes($o_addr2);
 
-$tel     = $tel1 . "-" . $tel2 . "-" . $tel3;
-$fax     = $fax1 . "-" . $fax2 . "-" . $fax3;
-$zipcode = $o_zipcode1 . "-" . $o_zipcode2;
+$tel = $tel1 . "-" . $tel2 . "-" . $tel3;
+$fax = $fax1 . "-" . $fax2 . "-" . $fax3;
+// $zipcode = $o_zipcode1 . "-" . $o_zipcode2;
+$zipcode = $o_zipcode1;
 
 if ($changePw) {
     $new_pass = sha1($admin_pass1);

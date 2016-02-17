@@ -213,7 +213,7 @@ HEREDOC;
                     ?>
                               <tr>
                                 <td><?php echo $rows2['main_no']; ?></td>
-                                <td><a href="../bbs/read.php?code=<?php echo $rows['code']; ?>&main_no=<?php echo $rows2['main_no']; ?>" target="_blank"><?php echo stripslashes($rows2['title']); ?></a>&nbsp;<span class="badge"><?php echo $rows2['depth']; ?></span></td>
+                                <td><a href="/bbs/read.php?code=<?php echo $rows['code']; ?>&main_no=<?php echo $rows2['main_no']; ?>" target="_blank"><?php echo stripslashes($rows2['title']); ?></a>&nbsp;<span class="badge"><?php echo $rows2['depth']; ?></span></td>
                                 <td><?php echo $post_date; ?></td>
                               </tr>
 <?php
@@ -222,7 +222,7 @@ HEREDOC;
                     ?>
                               <tr>
                                 <td><?php echo $j + 1; ?></td>
-                                <td><a href="../bbs/read.php?code=<?php echo $rows['code']; ?>&main_no=<?php echo $rows2['main_no']; ?>" target="_blank"><?php echo stripslashes($rows2['title']); ?></a></td>
+                                <td><a href="/bbs/read.php?code=<?php echo $rows['code']; ?>&main_no=<?php echo $rows2['main_no']; ?>" target="_blank"><?php echo stripslashes($rows2['title']); ?></a></td>
                                 <td><?php echo $post_date; ?></td>
                               </tr>
 <?php

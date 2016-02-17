@@ -1287,3 +1287,41 @@ function check_new_last_post($connect, $code, $day)
         echo "NO DATA";
     }
 }
+
+/**
+ * [get_company_info 회사정보 가져오기]
+ * @return [array] [배열로 반환]
+ */
+function get_company_info()
+{
+
+    global $host, $dbid, $dbpass, $dbname;
+    $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
+
+    $info_query = "SELECT * FROM admin_setup";
+    $info_res   = mysqli_query($connect, $info_query);
+    $info       = mysqli_fetch_array($info_res);
+
+    $com_info['site_name']      = $info['site_name'];
+    $com_info['keywords']       = $info['keywords'];
+    $com_info['description']    = $info['description'];
+    $com_info['company_name']   = $info['company_name'];
+    $com_info['homepage']       = $info['homepage'];
+    $com_info['email']          = $info['email'];
+    $com_info['name']           = $info['name'];
+    $com_info['info_name']      = $info['info_name'];
+    $com_info['license_no']     = $info['license_no'];
+    $com_info['online_license'] = $info['online_license'];
+    $com_info['ceo']            = $info['ceo'];
+    $com_info['category1']      = $info['category1'];
+    $com_info['category2']      = $info['category2'];
+    $com_info['tel']            = $info['tel'];
+    $com_info['fax']            = $info['fax'];
+    $com_info['zipcode']        = $info['zipcode'];
+    $com_info['addr1']          = $info['addr1'];
+    $com_info['addr2']          = $info['addr2'];
+    $com_info['bank']           = $info['bank'];
+
+    return $com_info;
+
+}

@@ -63,11 +63,13 @@
                                         </div>
                                         <div class="footer-static-content">
                                             <div class="footer-contact">
-                                                <p class="company">신수상사</p>
-                                                <p class="address">서울특별시 강동구 성내로 17길 66</p>
-                                                <p class="phone">TEL: 02-479-2142</p>
-                                                <p class="fax">FAX: 02-479-2141</p>
-                                                <p class="email">Email: griptech@hanmail.net</p>
+                                                <?php $com_info = get_company_info();?>
+                                                <p class="company"><?php echo $com_info['company_name']; ?><br>
+                                                (<?php echo $com_info['zipcode']; ?>) <?php echo $com_info['addr1']; ?> <?php echo $com_info['addr2']; ?></p>
+                                                <p class="phone">TEL: <?php echo $com_info['tel']; ?><br>
+                                                FAX: <?php echo $com_info['fax']; ?><br>
+                                                Email: <?php echo $com_info['email']; ?></p>
+                                                <p>대표: <?php echo $com_info['ceo']; ?> | 사업자등록번호: <?php echo $com_info['license_no']; ?></p>
                                             </div>
                                         </div>
                                     </div>
