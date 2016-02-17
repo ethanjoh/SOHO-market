@@ -14,23 +14,7 @@
                                                 <h3>피팅 가이드</h3>
                                             </div>
                                             <div class="footer-static-content">
-                                                <ul>
-                                                    <li>
-                                                        <a href="#">안녕하세요 신수상사입니다.</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">안녕하세요 신수상사입니다.</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">안녕하세요 신수상사입니다.</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">안녕하세요 신수상사입니다.</a>
-                                                    </li>
-                                                    <li class="last">
-                                                        <a href="#">안녕하세요 신수상사입니다.</a>
-                                                    </li>
-                                                </ul>
+                                                <?php echo get_bbs_title('fitting', 5); ?>
                                             </div>
                                         </div>
                                     </div>
@@ -48,10 +32,10 @@
                                                         <a href="#">1:1 문의</a>
                                                     </li>
                                                     <li>
-                                                        <a href="#">배송/반품 안내</a>
+                                                        <a href="/member/delivery-policy.php">배송/반품 안내</a>
                                                     </li>
                                                     <li>
-                                                        <a href="#">정보보호정책</a>
+                                                        <a href="/member/privacy-policy.php">정보보호정책</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -69,7 +53,8 @@
                                                 <p class="phone">TEL: <?php echo $com_info['tel']; ?><br>
                                                 FAX: <?php echo $com_info['fax']; ?><br>
                                                 Email: <?php echo $com_info['email']; ?></p>
-                                                <p>대표: <?php echo $com_info['ceo']; ?> | 사업자등록번호: <?php echo $com_info['license_no']; ?></p>
+                                                <p>대표: <?php echo $com_info['ceo']; ?> | 사업자등록번호: <?php echo $com_info['license_no']; ?><br>
+                                                통신판매업신고: <?php echo $com_info['online_license']; ?></p>
                                             </div>
                                         </div>
                                     </div>

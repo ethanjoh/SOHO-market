@@ -16,7 +16,7 @@
                                         </span>
                                     </li>
                                     <li class="category3">
-                                        <strong>회사 소개</strong>
+                                        <strong>배송/환불정책</strong>
                                     </li>
                                 </ul>
                             </div>
@@ -27,22 +27,22 @@
                             <div class="about-optima-text">
                                 <h1>
                                     About
-                                    <strong>신수상사</strong>
+                                    <strong>배송</strong>
                                 </h1>
-                                <p>안녕하세요! 신수상사를 방문해 주셔서 감사합니다.</p>
-                                <p>저희 신수상사는 골프그립을 전문 유통하는 회사로서, 양질의 제품생산과 합리적인 가격으로 골프그립 시장을 선도하며, 골프대중화에 기여하는 회사가 되도록 최선을 다 하겠습니다.</p>
-                                <p>앞으로 많은 성원과 관심 부탁드리며, 항상 여러분의 가정에 행복이 가득하길 기원합니다.</p>
-                                <p>- 신수상사 임직원일동 - </p>
-                                <ul>
-                                    <li>We love products that work perfectly and look beautiful.</li>
-                                    <li>We create base on a deeply analysis of your project.</li>
-                                    <li>We are create design with really high quality standards.</li>
-                                </ul>
+                                <p>배송정책 안내입니다.</p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt voluptatibus quisquam rerum sit ullam saepe, qui tenetur sunt in pariatur mollitia itaque, assumenda officia ut eos facere quasi error neque!</p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, at? Quos officia, minus totam tenetur optio odit, laudantium, aut qui nesciunt consequuntur iste. Enim soluta sapiente, dicta hic itaque, nam.</p>
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-12">
-                            <div class="about-optima-img">
-                                <img class="primary-image img-rounded" src="/images/about/about.jpg" alt="">
+                            <div class="about-optima-text">
+                                <h1>
+                                    About
+                                    <strong>반품/환불</strong>
+                                </h1>
+                                <p>반품정책 안내입니다.</p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta maxime dolorum tempora amet voluptatum sed autem esse voluptates aspernatur debitis, vel omnis? Dignissimos dicta ab officia, architecto voluptate asperiores placeat?</p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti fuga praesentium, quaerat quibusdam blanditiis quo. Saepe incidunt ea, placeat odit fugiat earum magnam accusantium commodi, sint ab cum quae quas.</p>
                             </div>
                         </div>
                     </div>

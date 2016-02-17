@@ -26,9 +26,15 @@ $brow = mysqli_fetch_array($bres);
 $readable = $brow['readable'];
 $writable = $brow['writable'];
 
+if ($code) {
+    $board = 'bbs_' . $code;
+} else {
+    $board = 'bbs_notice';
+}
+
 //조회수 증가
 if ('admin' != $p_id) {
-    $board = 'bbs_' . $code;
+
     mysqli_query($connect, "UPDATE $board SET count = count+1 WHERE main_no = '$main_no' ");
 }
 
@@ -158,13 +164,14 @@ if (isset($sql)) {
 <?php
 
     if ('admin' == $p_id) {
-        echo '<a class="btn btn-danger" href="admin_delete.php?code=' . $code . '&amp;main_no=' . $row['main_no'] . '&amp;from=read" return confirm(\'삭제하시겠습니까?\')"><i class="fa fa-trash-o"></i>삭 제<a>';
+        echo '<a class="btn btn-danger" href="admin_delete.php?code=' . $code . '&amp;main_no=' . $row['main_no'] . '&amp;from=read" return confirm(\'삭제하시겠습니까?\')"><i class="fa fa-trash-o"></i>삭 제</a>';
     } else {
         echo '<a class="btn btn-danger" href="delete.php?mode=parent&code=' . $code . '&amp;main_no=' . $row['main_no'] . '" return confirm(\'삭제하시겠습니까?\')"><i class="fa fa-trash-o"></i>삭 제</a>';
     }
     ?>
+
                     </div>
-                    <p><hr></p>
+                    <hr>
 
 <?php
 
@@ -208,7 +215,6 @@ if (isset($sql)) {
 
                       <!-- 댓글 -->
                         <form name="reply_form" method="post" action="//<?php echo $_SERVER['SERVER_NAME']; ?>:<?php echo $port; ?>/bbs/post_ok.php">
-                            <!-- <form name="reply_form" method="post" action="http://www.<?php echo $_SERVER['SERVER_NAME']; ?>/bbs/post_ok.php"> -->
                             <input type="hidden" name="mode" value="reply" />
                             <input type="hidden" name="main_no" value="<?php echo $main_no; ?>" />
                             <input type="hidden" name="reply_no" value="<?php echo $reply_no; ?>" />

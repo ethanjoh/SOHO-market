@@ -16,7 +16,7 @@
                                         </span>
                                     </li>
                                     <li class="category3">
-                                        <strong>제휴문의 </strong>
+                                        <strong>문의 </strong>
                                     </li>
                                 </ul>
                             </div>
@@ -39,30 +39,30 @@
                         <div class="form-and-info">
                             <div class="col-sm-5 col-md-4 npl">
                                 <div class="contactDetails contactHead">
+                                <?php $com_info = get_company_info();?>
                                     <h3>주소 및 연락처</h3>
                                     <p>
                                         <span class="iconContact">
                                             <i class="fa fa-map-marker"></i>
                                         </span>
-                                        (우) 05395
-                                        <br>
-                                        서울특별시 강동구 성내로 17길 66
+                                        (<?php echo $com_info['zipcode']; ?>)<br>
+                                        <?php echo $com_info['addr1']; ?> <?php echo $com_info['addr2']; ?>
                                     </p>
                                     <p>
                                         <span class="iconContact">
                                             <i class="fa fa-phone"></i>
                                         </span>
-                                        TEL: 02-479-2142
+                                        TEL: <?php echo $com_info['tel']; ?>
                                         <br>
-                                        FAX: 02-479-2141
+                                        FAX: <?php echo $com_info['fax']; ?>
                                     </p>
                                     <p>
                                         <span class="iconContact">
                                             <i class="fa fa-envelope-o"></i>
                                         </span>
-                                        이메일: riptech@hanmail.net
+                                        이메일: <?php echo $com_info['email']; ?>
                                         <br>
-                                        웹사이트: www.shinsoo.co.kr
+                                        웹사이트: <?php echo $com_info['homepage']; ?>
                                     </p>
                                 </div>
                                 <div class="social-area contactHead">
@@ -91,8 +91,8 @@
                                         <div class="col-md-6 contactemail npr">
                                             <input id="InputEmail" class="form-control" type="email" placeholder="연락처" required="">
                                         </div>
-                                        <div class="col-md-12 np">
-                                            <textarea class="form-control" rows="13" placeholder="내용" required=""></textarea>
+                                        <div class="col-md-12 margin-top-10">
+                                            <textarea class="form-control margin-top-10" rows="13" placeholder="내용" required=""></textarea>
                                         </div>
                                         <button class="btn btnContact" type="submit">보내기</button>
                                     </form>

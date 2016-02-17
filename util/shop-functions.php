@@ -1122,7 +1122,7 @@ function show_loginForm()
                                         <input class="form-control" type="text" name="id" placeholder="아이디">
                                     </li>
                                     <li>
-                                        <input  class="form-control" type="password" name="pwd" placeholder="비밀번호">
+                                        <input  class="form-control margin-top-10" type="password" name="pwd" placeholder="비밀번호">
                                     </li>
                                 </ul>
                             </div>

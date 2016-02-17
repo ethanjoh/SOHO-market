@@ -1325,3 +1325,112 @@ function get_company_info()
     return $com_info;
 
 }
+
+function get_bbs_title($code, $limit)
+{
+
+    global $host, $dbid, $dbpass, $dbname;
+    $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
+
+    $page = '';
+
+    if (isset($code)) {
+        $code = $code;
+    } else {
+        $code = "notice";
+    }
+
+    if ($code) {
+        $bqry1 = "SELECT * FROM code WHERE code='$code' ";
+        $bres1 = mysqli_query($connect, $bqry1);
+        $brow1 = mysqli_fetch_array($bres1);
+        $board = 'bbs_' . $code;
+
+        $sql    = "SELECT * FROM $board WHERE id='admin' ORDER BY main_no DESC LIMIT $limit ";
+        $result = mysqli_query($connect, $sql);
+        $total  = mysqli_num_rows($result);
+    } else {
+        err_msg('선택한 게시판이 없습니다.', 1);
+        exit;
+    }
+
+    mysqli_query($connect, 'set names utf8');
+
+    $scale = 10;
+
+    if ($page == '') {
+        $page = 1;
+    }
+
+    $cpage     = intval($page);
+    $totalpage = intval($total / $scale);
+
+    if ($totalpage * $scale != $total) {
+        $totalpage = $totalpage + 1;
+    }
+
+    if ($cpage == 1) {
+        $cline = 0;
+    } else {
+        $cline = ($cpage * $scale) - $scale;
+    }
+
+    $limit = $cline + $scale;
+
+    if ($limit >= $total) {
+        $limit = $total;
+    }
+
+    $scale1 = $limit - $cline;
+
+    echo <<<HEREDOC
+          <!-- 게시판 본문 -->
+          <section id="bbs-embed">
+            <div class="col-md-11">
+              <table class="table table-responsive">
+                <tbody>
+HEREDOC;
+
+// 만약 검색 결과가 없다면,
+    if ($total == 0) {
+        echo <<<HEREDOC
+                  <tr class="danger">
+                    <td colspan="2"><p>등록된 글이 없습니다.</p></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+HEREDOC;
+
+    } else {
+        $sql    = "SELECT * FROM $board WHERE id='admin' ORDER BY mod_date DESC LIMIT $cline,$scale1";
+        $result = mysqli_query($connect, $sql);
+
+        for ($i = 0; $row = mysqli_fetch_array($result); $i++) {
+            // $title = cut_string_utf8($row['title'], 20, '&#183;&#183;&#183;');
+            $title = get_short($row['title'], 36);
+            $title = stripslashes($title);
+            echo <<<HEREDOC
+                    <tr>
+                        <td class="text-left">
+                            <a href="/bbs/read.php?code={$code}&amp;main_no={$row['main_no']}&amp;flag=r" >{$title}</a>
+                        </td>
+HEREDOC;
+
+//날짜 형식을 바꾼다.
+            $post_date = substr($row['date'], 0, 11);
+            echo <<<HEREDOC
+                        <td class="text-center">{$post_date}</td>
+                    </tr>
+HEREDOC;
+        }
+
+        echo <<<HEREDOC
+                    </tbody>
+                  </table>
+                <hr>
+                </div>
+             </section>
+HEREDOC;
+    }
+}

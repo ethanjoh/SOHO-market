@@ -1,9 +1,8 @@
 <?php
 
-include "../util/config.php";
-// 각종 유틸함수
-include "../util/util.php";
-// MySQL 연결
+include_once "../util/config.php";
+include_once "../util/util.php";
+
 $connect = my_connect($host, $dbid, $dbpass, $dbname);
 
 $save_id  = set_var($_POST['save_id']);
@@ -19,6 +18,8 @@ $result = mysqli_query($connect, $query);
 $rows   = mysqli_fetch_array($result) or die(mysql_error());
 
 if ($rows['id'] == $admin_id && $rows['passwd'] == sha1($admin_pass)) {
+
+    session_start();
 
     //아이디 저장하기
     if ($save_id) {
