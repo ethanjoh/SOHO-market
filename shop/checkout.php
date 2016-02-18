@@ -47,7 +47,10 @@
                                             </a>
                                         </h4>
                                     </div>
-                                    <form name="purchase" method="post" action="//<?=$_SERVER['SERVER_NAME'];?>:<?=$port;?>/shop/checkout-ok.php">
+                                    <form name="purchase" method="post" action="//<?=$_SERVER['SERVER_NAME'];?>:<?=$port;?>/pay/payreq_crossplatform.php">
+                                    <input type="hidden" name="CSG_PLATFROM" value="test">
+                                    <input type="hidden" name="CST_MID" value="shinsoo">
+
                                     <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo" aria-expanded="false" style="height: 0px;">
                                         <div class="easy">
                                             <div class="billing-info">
@@ -220,7 +223,7 @@
                                                         <a class="o-back-to" href="cart.php"> 카트 편집</a>
 
                                                     </span>
-                                                    <input class="btn btn-success" type="submit" value="결제하기">
+                                                    <button class="button2 get" type="submit" >결제하기</button>
                                                 </div>
                                             </div>
                                         </div>

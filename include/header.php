@@ -2,7 +2,6 @@
 include_once "../util/config.php";
 include_once "../util/util.php";
 include_once "../util/shop-functions.php";
-
 $connect = my_connect($host, $dbid, $dbpass, $dbname);
 
 session_start();

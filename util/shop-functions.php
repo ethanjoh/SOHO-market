@@ -881,7 +881,7 @@ HEREDOC;
                                         <td class="text-center" colspan="4"><div class="alert alert-danger"><h4>카트가 비었습니다.</h4></div></td>
                                     </tr>
                                     <tr class="totals">
-                                        <td colspan="5" class="total-text">합계</td>
+                                        <td colspan="3" class="total-text">합계</td>
                                         <td class="total-amount cost"><i class="fa fa-krw"></i> {$show_total}</td>
                                     </tr>
                                 </table>
