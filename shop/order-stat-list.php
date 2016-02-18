@@ -1,7 +1,11 @@
 <?php include_once '../include/header.php';?>
 
 <?php
-$mode = set_var($_POST['get']);
+
+$mode  = set_var($_GET['mode']);
+$date1 = set_var($_GET['date1']);
+$date2 = set_var($_GET['date2']);
+
 ?>
     <!-- HOME -->
     <div class="overlay home medium-size">
@@ -58,7 +62,7 @@ $mode = set_var($_POST['get']);
                         <input type="text" class="form-control" name="date2" id="ed" value="" size="10" />
                     </div>
                     <div class="form-group">
-                        <button class="btn btn-primary btn-sm" onclick="document.form.submit()"><i class="fa fa-search"></i>검색</button>
+                        <button class="btn btn-primary btn-sm" onclick="submit()"><i class="fa fa-search"></i>검색</button>
                     </div>
                   </div>
 
@@ -68,10 +72,12 @@ $mode = set_var($_POST['get']);
             <!-- calendar end -->
 
 
-              <?php
+<?php
+
 $total = 0; //공급가합
 $sales = array();
-if ($mode == "date") {
+
+if ("date" == $mode) {
     $search_qry = " AND createdate BETWEEN '$date1' AND '$date2' ";
     $date       = "(" . $date1 . " ~ " . $date2 . ")";
 } else {
@@ -87,7 +93,7 @@ if ($mode == "date") {
                 <div id="graph1"></div>
               </div>
 
-              <table class="highchart" data-graph-container-before="1" data-graph-container="#graph1" data-graph-type="column" data-graph-margin-left="50" data-graph-margin-right="50" data-graph-subtitle-text="<?=$date;?>" style="display:none;">
+              <table class="highchart" data-graph-container-before="1" data-graph-container="#graph1" data-graph-type="column" data-graph-margin-left="50" data-graph-margin-right="50" data-graph-subtitle-text="<?php echo $date; ?>" style="display:none;">
                 <caption>구매 TOP 10 리스트  </caption>
                 <thead>
                   <tr>
@@ -99,13 +105,15 @@ if ($mode == "date") {
                   </tr>
                 </thead>
                 <tbody>
-                  <?php
+<?php
 
 $p_no = 0;
 
 //1. 전체 주문을 구한다.
 $sql = "SELECT * FROM mall_order WHERE cancel='N' AND status='8' AND user_id='$_SESSION[p_id]' $search_qry  ORDER BY num DESC";
 $res = mysqli_query($connect, $sql);
+
+$sales[] = array('num', 'createdate', 'sub_total');
 
 //2. 각 주문에서 제품코드를 구한다.
 for ($i = 0; $row = mysqli_fetch_array($res); $i++) {
@@ -115,7 +123,12 @@ for ($i = 0; $row = mysqli_fetch_array($res); $i++) {
     $option     = explode(",", $row['goods_kind']); //옵션정보
 
     //구매금액 집계를 위한 배열
-    $sales[] = array(num => $row['num'], createdate => $row['createdate'], sub_total => $row['last_amount']);
+    $sales[] = array(
+        'num'        => $row['num'],
+        'createdate' => $row['createdate'],
+        'sub_total'  => $row['last_amount'],
+    );
+
     $total += $row['last_amount'];
 
     //3. 해당 주문에서 해당 공급업체의 상품이 있는지 확인한다.
@@ -130,7 +143,14 @@ for ($i = 0; $row = mysqli_fetch_array($res); $i++) {
         $offer_price = $mod_price[$j];
         //$sub_total = $offer_price * $mod_volume[$j];
 
-        $goods[] = array(num => $p_row['num'], company => $p_row['company'], name => $p_row['name'], option => $option[$j], quantity => $mod_volume[$j], amount => $mod_price[$j] * $mod_volume[$j]);
+        $goods[] = array(
+            'num'      => $p_row['num'],
+            'company'  => $p_row['company'],
+            'name'     => $p_row['name'],
+            'option'   => $option[$j],
+            'quantity' => $mod_volume[$j],
+            'amount'   => $mod_price[$j] * $mod_volume[$j],
+        );
         //$total += $sub_total;
     } //for end
 } //for end
@@ -170,11 +190,11 @@ if ($p_no) {
     foreach ($new as $row) {
         ?>
                   <tr>
-                    <!-- <td><?=$i + 1;?></td> -->
-                    <td>[<?=$row['company'];?>] <?=$row['name'];?></td>
-                    <!-- <td><?=$row['option'];?></td> -->
-                    <td><?=$row['quantity'];?></td>
-                    <td><?=($row['amount'] / 10000) * 1.1;?></td>
+                    <!-- <td><?php echo $i + 1; ?></td> -->
+                    <td>[<?php echo $row['company']; ?>] <?php echo $row['name']; ?></td>
+                    <!-- <td><?php echo $row['option']; ?></td> -->
+                    <td><?php echo $row['quantity']; ?></td>
+                    <td><?php echo ($row['amount'] / 10000); ?></td>
                   </tr>
                   <?php
 if ($i != 0) {
@@ -201,7 +221,7 @@ if ($i != 0) {
               <div id="graph2"></div>
             </div>
 
-            <table class="highchart" data-graph-container-before="1" data-graph-container="#graph2" data-graph-type="line" data-graph-margin-left="50" data-graph-margin-right="50" data-graph-subtitle-text="<?=$date;?>" style="display:none;">
+            <table class="highchart" data-graph-container-before="1" data-graph-container="#graph2" data-graph-type="line" data-graph-margin-left="50" data-graph-margin-right="50" data-graph-subtitle-text="<?php echo $date; ?>" style="display:none;">
               <caption>구매금액 집계 </caption>
               <thead>
                 <tr>
@@ -211,8 +231,9 @@ if ($i != 0) {
                 </tr>
               </thead>
               <tbody>
-                <?php
-foreach ($sales as $key => $values) {
+<?php
+
+    foreach ($sales as $key => $values) {
         $sum[$values['createdate']] += $values['sub_total'];
     }
 
@@ -224,9 +245,9 @@ foreach ($sales as $key => $values) {
     foreach ($sum as $date => $sub_total) {
         ?>
                 <tr>
-                  <!-- <td><?=$i + 1;?></td> -->
-                  <td><?=$date;?> (<?=$day[date("w", strtotime($date))];?>)</td>
-                  <td><?=($sub_total / 10000) * 1.1;?></td>
+                  <!-- <td><?php echo $i + 1; ?></td> -->
+                  <td><?php echo $date; ?> (<?php echo $day[date("w", strtotime($date))]; ?>)</td>
+                  <td><?php echo ($sub_total / 10000); ?></td>
                 </tr>
                 <?php
 
@@ -248,12 +269,13 @@ foreach ($sales as $key => $values) {
           <table id="total">
               <tr>
                 <td colspan="2"><strong>총합:</strong></td>
-                <td><strong><?=number_format($total * 1.1);?> 원(VAT 포함)</strong></td>
+                <td><strong><?php echo number_format($total); ?> 원(VAT 포함)</strong></td>
               </tr>
           </table>
 
 
-          <?php
+<?php
+
 } else {
     ?>
           <tr>
@@ -261,7 +283,8 @@ foreach ($sales as $key => $values) {
           </tr>
         </tbody>
       </table>
-      <?php
+<?php
+
 }
 ?>
             </div>

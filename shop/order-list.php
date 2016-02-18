@@ -31,8 +31,8 @@
               <li><i class="fa fa-info-circle"></i> 그래프 하단의 수량과 금액을 각각 누를 때 마다 해당 통계를 온/오프할 수 있습니다.</li>
             </ul>
           </div>
+<?php
 
-          <?php
 $mode  = set_var($_GET['mode']);
 $cpage = set_var($_GET['page']);
 
@@ -51,7 +51,6 @@ $cpage         = $scale[2];
 $totalpage     = $scale[3];
 
 ?>
-
           <div class="row">
 
               <!-- calendar start -->
@@ -111,7 +110,7 @@ $totalpage     = $scale[3];
                     </tr>
                   </thead>
                   <tbody>
-                    <?php
+<?php
 
 //페이징을 위한 페이지수 구하기
 $ret   = get_page_result($mode, $key, $key_value, $date1, $date2, $cline, $last_page_num);
@@ -121,7 +120,6 @@ $res_4 = $ret[1];
 // 주문리스트 보여주기
 echo show_order_list($t_no, $res_4, $cpage);
 ?>
-
                   </tbody>
                 </form>
                 </table>
@@ -130,29 +128,24 @@ echo show_order_list($t_no, $res_4, $cpage);
 
               <div class="row text-center">
                   <div class="col-sm-12">
-                  <?php
+<?php
 
 $url = "order-list.php?mode=" . $mode . "&key=" . $key . "&key_value=" . $key_value . "&date1=" . $date1 . "&date2=" . $date2;
 page_nav($totalpage, $cpage, $url);
+
 ?>
                   </div>
               </div>
 
               <div class="row">
-                <form method="get" name="search" action="order-list.php">
-                  <div class="col-sm-2 col-sm-offset-3">
-                    <select name="key" data-width="100%">
+                <form method="get" class="form-inline" name="search" action="order-list.php">
+                  <div class="col-md-12 search-form">
+                    <select name="key" data-width="100%" class="form-control">
                       <option value="goods_name">상품명</option>
                       <option value="recipient_name">수령자</option>
                     </select>
-                  </div>
-
-                  <div class="col-sm-3">
-                    <input type="text" name="key_value" placeholder="검색어">
-                  </div>
-
-                  <div class="col-sm-3">
-                    <button class="btn btn-primary btn-sm" type="submit"><i class="fa fa-search"></i>검색</button>
+                    <input type="text" class="form-control" name="key_value" placeholder="검색어">
+                    <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i>검색</button>
                   </div>
                 </form>
               </div> <!-- end row -->

@@ -693,7 +693,7 @@ function show_cart_item()
                                         <th>삭제</th>
                                         <th>이미지</th>
                                         <th>제품명</th>
-                                        <th>공급가</th>
+                                        <th>단가</th>
                                         <th>수량</th>
                                         <th>소계</th>
                                     </tr>
@@ -729,9 +729,9 @@ HEREDOC;
         for ($i = 1; $rows = mysqli_fetch_array($result); $i++) {
             $s_tot       = (int) $rows['volume'] * (int) $rows['amount']; // 소계
             $tot_money   = $tot_money + $s_tot;
-            $show_stotal = number_format($s_tot);
-            $total       = $tot_money;
-            $show_total  = number_format($total);
+            $show_stotal = number_format($s_tot); //소계 천단위표시
+            // $total       = $tot_money;
+            $show_total = number_format($tot_money);
 
             $pnum          = $rows['num'];
             $category_l    = $rows['category_l'];
@@ -794,7 +794,7 @@ HEREDOC;
                                             <a href="detail.php?pnum={$pnum}&amp;lcode={$category_l}&smp;mcode={$category_m}&amp;scode={$category_s}"><img class="primary-image" alt="" src="{$s_image1_name}"></a>
                                         </td>
                                         <td class="sop-cart"><a href="detail.php?pnum={$pnum}&amp;lcode={$category_l}&amp;mcode={$category_m}&amp;scode={$category_s}">{$item_name}</a><br>[{$p_opt}]</td>
-                                        <td class="sop-cart cost"><i class="fa fa-krw"></i> {$dealer_price}</td>
+                                        <td class="sop-cart cost"> {$dealer_price}</td>
                                         <td>
                                             <form name="basket{$i}" method="post" action="cart-update.php">
                                             <input type="hidden" name="md" value="edit" />
@@ -806,7 +806,7 @@ HEREDOC;
                                             <button type="submit" class="btn btn-default btn-warning" />변경</button>
                                             </form>
                                         </td>
-                                        <td class="sop-cart cost"><i class="fa fa-krw"></i> {$show_stotal}</td>
+                                        <td class="sop-cart cost">{$show_stotal}</td>
                                     </tr>
 
 HEREDOC;
@@ -816,12 +816,12 @@ HEREDOC;
         echo <<<HEREDOC
                                     <tr class="totals">
                                         <td colspan="5" class="total-text">합계</td>
-                                        <td class="total-amount cost"><i class="fa fa-krw"></i> {$show_stotal}</td>
+                                        <td class="total-amount cost"><i class="fa fa-krw"></i> {$show_total}</td>
                                     </tr>
                                 </table>
 HEREDOC;
 
-        return $total;
+        return $tot_money;
 
     } // ./else
 
@@ -978,12 +978,13 @@ HEREDOC;
 
         } // ./ for ($i = 1; $rows = mysqli_fetch_array($result); $i++)
 
+        $show_delivery_fee = show_delivery_fee($tot_money);
         echo <<<HEREDOC
                                                         </tbody>
                                                         <tfoot>
                                                             <tr class="tr-f">
                                                                 <td colspan="3">배송비</td>
-                                                                <td colspan="1"></td>
+                                                                <td colspan="1">{$show_delivery_fee}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td colspan="3">총합</td>
