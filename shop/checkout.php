@@ -7,6 +7,7 @@
                         <div class="check">
                             <h1>결제하기</h1>
                         </div>
+                        <form name="purchase" id="LGD_PAYINFO" method="post" action="//<?=$_SERVER['SERVER_NAME'];?>:<?=$port;?>/pay/payreq_crossplatform.php">
                         <div class="faq-accordion">
                             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                                 <div class="panel panel-default">
@@ -14,7 +15,7 @@
                                         <h4 class="panel-title">
                                             <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                                                 <span class="number">1</span>
-                                                기본 배송지
+                                                주문자 정보
                                             </a>
                                         </h4>
                                     </div>
@@ -47,10 +48,6 @@
                                             </a>
                                         </h4>
                                     </div>
-                                    <form name="purchase" method="post" action="//<?=$_SERVER['SERVER_NAME'];?>:<?=$port;?>/pay/payreq_crossplatform.php">
-                                    <input type="hidden" name="CSG_PLATFROM" value="test">
-                                    <input type="hidden" name="CST_MID" value="shinsoo">
-
                                     <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo" aria-expanded="false" style="height: 0px;">
                                         <div class="easy">
                                             <div class="billing-info">
@@ -219,11 +216,23 @@
                                                 </div>
                                                 <div class="block-right">
                                                     <span>
-                                                        상품을 수정하시려면?
+                                                        <i class="fa fa-pencil-square"></i> 상품을 수정하시려면?
                                                         <a class="o-back-to" href="cart.php"> 카트 편집</a>
-
                                                     </span>
+                                                </div>
+                                                <div class="pay-method">
+                                                    <span><i class="fa fa-credit-card"></i> 결제방법 선택:</span>
+                                                    <select class="form-control" name="LGD_CUSTOM_USABLEPAY" id="LGD_CUSTOM_USABLEPAY">
+                                                        <option value="SC0010">신용카드</option>
+                                                        <option value="SC0030">계좌이체</option>
+                                                        <option value="SC0040">무통장입금</option>
+                                                    </select>
+                                                <!-- </div> -->
+
                                                     <button class="button2 get" type="submit" >결제하기</button>
+                                                    <input type="hidden" name="CST_MID"      id="CST_MID"      value="shinsoo">
+                                                    <input type="hidden" name="CST_PLATFORM" id="CST_PLATFORM" value="test">
+
                                                 </div>
                                             </div>
                                         </div>

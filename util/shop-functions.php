@@ -956,6 +956,7 @@ HEREDOC;
                                                                 <td>
                                                                     <div class="o-pro-dec">
                                                                         <p>{$item_name} [{$p_opt}]</p>
+                                                                        <input type="hidden" name="LGD_PRODUCTINFO[]"   value="{$item_name}">
                                                                     </div>
                                                                 </td>
                                                                 <td>
@@ -989,6 +990,7 @@ HEREDOC;
                                                             <tr>
                                                                 <td colspan="3">총합</td>
                                                                 <td colspan="1">{$show_total}</td>
+                                                                <input type="hidden" name="LGD_AMOUNT"   value="{$tot_money}">
                                                             </tr>
                                                         </tfoot>
                                                     </table>
@@ -1009,6 +1011,11 @@ function show_buyer_info()
 
     $p_id = set_var($_SESSION['p_id']);
 
+    // 중복되지 않는 주문번호 생성
+    $timestamp = date('YmdHms');
+    $rd        = "ABCDE";
+    $r_oid     = $p_id . "-" . $timestamp . "-" . str_shuffle($rd);
+
     if ($p_id) {
         $m_qry = "SELECT * FROM member WHERE id='$p_id' ";
         $m_res = mysqli_query($connect, $m_qry);
@@ -1018,6 +1025,7 @@ function show_buyer_info()
         $d_zipcode    = $row['d_zipcode'];
         $d_phone      = $row['d_phone'];
         $md_name      = $row['md_name'];
+        $md_email     = $row['md_email'];
         $md_hphone    = $row['md_hphone'];
         $d_addr1      = $row['d_addr1'];
         $d_addr2      = $row['d_addr2'];
@@ -1029,6 +1037,10 @@ function show_buyer_info()
                                                     <span>{$zipcode[0]}</span>
                                                     <span>{$d_addr1} {$d_addr2}</span>
                                                     <span><i class="fa fa-mobile"></i> {$md_hphone} / <i class="fa fa-phone"></i> {$d_phone}</span>
+                                                    <input type="hidden" name="LGD_BUYER"      id="LGD_BUYER"      value="{$company_name}"/>
+                                                    <input type="hidden" name="LGD_BUYEREMAIL" id="LGD_BUYEREMAIL" value="{$md_email}"/>
+                                                    <input type="hidden" name="LGD_OID"        id="LGD_OID"        value ="{$r_oid}">
+
 HEREDOC;
     }
 

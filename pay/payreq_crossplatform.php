@@ -16,7 +16,7 @@ $com_info = get_company_info();
 /*
 LG유플러스 결제 페이지 시작
  */
-session_start();
+// session_start();
 /*
  * [결제 인증요청 페이지(STEP2-1)]
  *
@@ -31,20 +31,28 @@ session_start();
 $CST_PLATFORM = $_POST["CST_PLATFORM"]; //LG유플러스 결제 서비스 선택(test:테스트, service:서비스)
 $CST_MID      = $_POST["CST_MID"]; //상점아이디(LG유플러스으로 부터 발급받으신 상점아이디를 입력하세요)
 //테스트 아이디는 't'를 반드시 제외하고 입력하세요.
-$LGD_MID                  = (("test" == $CST_PLATFORM) ? "t" : "") . $CST_MID; //상점아이디(자동생성)
-$LGD_OID                  = $_POST["LGD_OID"]; //주문번호(상점정의 유니크한 주문번호를 입력하세요)
-$LGD_AMOUNT               = $_POST["LGD_AMOUNT"]; //결제금액("," 를 제외한 결제금액을 입력하세요)
-$LGD_BUYER                = $_POST["LGD_BUYER"]; //구매자명
-$LGD_PRODUCTINFO          = $_POST["LGD_PRODUCTINFO"]; //상품명
+$LGD_MID         = (("test" == $CST_PLATFORM) ? "t" : "") . $CST_MID; //상점아이디(자동생성)
+$LGD_OID         = $_POST["LGD_OID"]; //주문번호(상점정의 유니크한 주문번호를 입력하세요)
+$LGD_AMOUNT      = $_POST["LGD_AMOUNT"]; //결제금액("," 를 제외한 결제금액을 입력하세요)
+$LGD_BUYER       = $_POST["LGD_BUYER"]; //구매자명
+$LGD_PRODUCTINFO = $_POST["LGD_PRODUCTINFO"]; //상품명
+
+// 제품명 표시
+if (count($LGD_PRODUCTINFO) > 1) {
+    $LGD_PRODUCTINFO = $LGD_PRODUCTINFO[0] . " 외 " . (count($LGD_PRODUCTINFO) - 1) . " 건";
+} else {
+    $LGD_PRODUCTINFO = $LGD_PRODUCTINFO[0];
+}
+
 $LGD_BUYEREMAIL           = $_POST["LGD_BUYEREMAIL"]; //구매자 이메일
 $LGD_CUSTOM_FIRSTPAY      = $_POST["LGD_CUSTOM_FIRSTPAY"]; //상점정의 초기결제수단
-$LGD_TIMESTAMP            = date(YmdHms); //타임스탬프
+$LGD_TIMESTAMP            = date('YmdHms'); //타임스탬프
 $LGD_CUSTOM_SKIN          = "red"; //상점정의 결제창 스킨
 $LGD_CUSTOM_USABLEPAY     = $_POST["LGD_CUSTOM_USABLEPAY"]; //디폴트 결제수단 (해당 필드를 보내지 않으면 결제수단 선택 UI 가 노출됩니다.)
 $LGD_WINDOW_VER           = "2.5"; //결제창 버젼정보
 $LGD_WINDOW_TYPE          = $_POST["LGD_WINDOW_TYPE"]; //결제창 호출방식 (수정불가)
 $LGD_CUSTOM_SWITCHINGTYPE = $_POST["LGD_CUSTOM_SWITCHINGTYPE"]; //신용카드 카드사 인증 페이지 연동 방식 (수정불가)
-$configPath               = "../../lgdacom/conf/lgdacom.conf"; //LG유플러스에서 제공한 환경파일("/conf/lgdacom.conf") 위치 지정.
+$configPath               = "../lgdacom/"; //LG유플러스에서 제공한 환경파일("/conf/lgdacom.conf") 위치 지정.
 $LGD_CUSTOM_PROCESSTYPE   = "TWOTR"; //수정불가
 /*
  * 가상계좌(무통장) 결제 연동을 하시는 경우 아래 LGD_CASNOTEURL 을 설정하여 주시기 바랍니다.
@@ -73,7 +81,7 @@ $LGD_RETURNURL = "http://" . $_SERVER['SERVER_NAME'] . "/pay/returnurl.php";
  * MD5 해쉬데이터 암호화 검증을 위해
  * LG유플러스에서 발급한 상점키(MertKey)를 환경설정 파일(lgdacom/conf/mall.conf)에 반드시 입력하여 주시기 바랍니다.
  */
-require_once "../../lgdacom/XPayClient.php";
+require_once "../lgdacom/XPayClient.php";
 $xpay = &new XPayClient($configPath, $LGD_PLATFORM);
 $xpay->Init_TX($LGD_MID);
 $LGD_HASHDATA = md5($LGD_MID . $LGD_OID . $LGD_AMOUNT . $LGD_TIMESTAMP . $xpay->config[$LGD_MID]);
@@ -127,6 +135,7 @@ $_SESSION['PAYREQ_MAP'] = $payReqMap;
         <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico">
         <link href='http://fonts.googleapis.com/earlyaccess/notosanskr.css' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="/css/font-awesome.min.css">
         <script language="javascript" src="http://xpay.uplus.co.kr/xpay/js/xpay_crossplatform.js" type="text/javascript"></script>
         <script type="text/javascript">
@@ -171,34 +180,31 @@ $_SESSION['PAYREQ_MAP'] = $payReqMap;
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                        <h4 class="modal-title" id="myModalLabel">결제정보 확인</h4>
+                        <h4 class="modal-title" id="myModalLabel"><i class="fa fa-credit-card"></i> 결제정보를 다시한번 확인해 주세요</h4>
                     </div>
                     <div class="modal-body">
                         <form method="post" name="LGD_PAYINFO" id="LGD_PAYINFO" action="payres.php">
                             <table>
                                 <tbody>
                                     <tr>
-                                        <td>구매자 이름 </td>
+                                        <td><i class="fa fa-check-square"></i> 구매자명: </td>
                                         <td><?=$LGD_BUYER;?></td>
                                     </tr>
                                     <tr>
-                                        <td>상품정보 </td>
+                                        <td><i class="fa fa-check-square"></i> 상품정보: </td>
                                         <td><?=$LGD_PRODUCTINFO;?></td>
                                     </tr>
                                     <tr>
-                                        <td>결제금액 </td>
-                                        <td><?=$LGD_AMOUNT;?></td>
+                                        <td><i class="fa fa-check-square"></i> 결제금액: </td>
+                                        <td><?=$LGD_AMOUNT;?> 원</td>
                                     </tr>
                                     <tr>
-                                        <td>구매자 이메일 </td>
+                                        <td><i class="fa fa-check-square"></i> 이 메 일: </td>
                                         <td><?=$LGD_BUYEREMAIL;?></td>
                                     </tr>
                                     <tr>
-                                        <td>주문번호 </td>
+                                        <td><i class="fa fa-check-square"></i> 주문번호: </td>
                                         <td><?=$LGD_OID;?></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2">* 추가 상세 결제요청 파라미터는 메뉴얼을 참조하시기 바랍니다.</td>
                                     </tr>
                                     <tr>
                                         <td colspan="2"></td>
@@ -219,9 +225,28 @@ $_SESSION['PAYREQ_MAP'] = $payReqMap;
 foreach ($payReqMap as $key => $value) {
     echo "<input type='hidden' name='$key' id='$key' value='$value'>";
 }
-var_dump($_SESSION);
+// 배열값 확인용
+; // echo '<pre>';; // var_dump($_SESSION);; // echo '</pre>';
 ?>
                 </form>
+
+        <script src="/js/vendor/jquery-2.2.0.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <script language="JavaScript" src="/js/shopping.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('#myModal').modal({
+                                show: true,
+                                backdrop: 'static',
+                                keyboard: false
+                            });
+
+                $( "#cancel" ).click(function() {
+                    window.location.replace("../shop/cart.php");
+                });
+            });
+        </script>
+
     </body>
 </html>
 

@@ -1,4 +1,4 @@
-<?php //include_once '../include/auth.php';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;?>
+<?php //include_once '../include/auth.php';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;?>
 
 <?php include_once '../include/header.php';?>
 
@@ -41,7 +41,7 @@
                                 <p class="grand-total">총  합: <span><i class="fa fa-krw"></i> <?php echo number_format($total); ?></span> (VAT 포함)</p>
                             </div>
                             <button class="button2 get" type="button" onclick="<?php echo go_purchase($total); ?>">
-                                <span>결제하기</span>
+                                <span><i class="fa fa-check-circle"></i> 주문하기</span>
                             </button>
                         </div>
                     </div>
