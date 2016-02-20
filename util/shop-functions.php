@@ -956,7 +956,6 @@ HEREDOC;
                                                                 <td>
                                                                     <div class="o-pro-dec">
                                                                         <p>{$item_name} [{$p_opt}]</p>
-                                                                        <input type="hidden" name="LGD_PRODUCTINFO[]"   value="{$item_name}">
                                                                     </div>
                                                                 </td>
                                                                 <td>
@@ -991,6 +990,7 @@ HEREDOC;
                                                                 <td colspan="3">총합</td>
                                                                 <td colspan="1">{$show_total}</td>
                                                                 <input type="hidden" name="LGD_AMOUNT"   value="{$tot_money}">
+                                                                <input type="hidden" name="LGD_PRODUCTINFO"   value="{$item_name}">
                                                             </tr>
                                                         </tfoot>
                                                     </table>
