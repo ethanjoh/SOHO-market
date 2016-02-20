@@ -28,11 +28,13 @@
 	$LGD_PRODUCTINFO = $_POST["LGD_PRODUCTINFO"]; //상품명
 
 	// 제품명 표시
-	// if (count($LGD_PRODUCTINFO) > 1) {
-	//     $LGD_PRODUCTINFO = $LGD_PRODUCTINFO[0] . " 외 " . (count($LGD_PRODUCTINFO) - 1) . " 건";
-	// } else {
-	//     $LGD_PRODUCTINFO = $LGD_PRODUCTINFO[0];
-	// }
+	if (count($LGD_PRODUCTINFO) > 1) {
+	    $LGD_PRODUCTINFO = $LGD_PRODUCTINFO[0] . " 외 " . (count($LGD_PRODUCTINFO) - 1) . " 건";
+	    // $LGD_PRODUCTINFO = iconv("EUC-KR", "UTF-8", $LGD_PRODUCTINFO);
+	} else {
+	    $LGD_PRODUCTINFO = $LGD_PRODUCTINFO[0];
+	    // $LGD_PRODUCTINFO = iconv("EUC-KR", "UTF-8", $LGD_PRODUCTINFO);
+	}
 
 	$LGD_BUYEREMAIL           = $_POST["LGD_BUYEREMAIL"]; //구매자 이메일
 	$LGD_CUSTOM_FIRSTPAY      = $_POST["LGD_CUSTOM_FIRSTPAY"]; //상점정의 초기결제수단
@@ -152,19 +154,18 @@
                                     </table>
                             </div>
                         </div>
-                            <div class="row payinfo-button" >
-                                <div class="col-md-12">
+                        <div class="row payinfo-button" >
+                            <div class="col-md-12">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal" id="cancel">취소</button>
                                 <button type="submit" class="btn btn-success" onclick="launchCrossPlatform();">결제하기</button>
                             </div>
-                            </div>
+                        </div>
 
 <?php
 
 	foreach ($payReqMap as $key => $value) {
-	    echo "<input type='hidden' name='$key' id='$key' value='$value'>";
-	}
-	; // echo '<pre>';; // var_dump($_SESSION);; // echo '</pre>';
+	    echo "                         <input type='hidden' name='" . $key . "' id='" . $key . "' value='" . $value . "''>\n";
+	} // echo '<pre>';; // var_dump($_SESSION);; // echo '</pre>';
 ?>
 
                         </form>

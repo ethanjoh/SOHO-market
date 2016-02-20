@@ -2,8 +2,9 @@
 /**
  * @version 1.0
  * @package aurasoft.co.kr
- * @copyright &copy; 2008 aurasoft.co.kr
+ *
  * @author Jae Hak Jung <jhjung@aurasoft.co.kr>
+ * @copyright &copy; 2008 aurasoft.co.kr
  */
 
 /**
@@ -65,8 +66,8 @@ class XPayClient
 
     /**
      * Curl_HTTP_Client constructor
-     * @param boolean debug
      * @access public
+     * @param boolean debug
      */
     public function XPayClient($home_dir, $mode = "real")
     {
@@ -78,7 +79,7 @@ class XPayClient
                 if ($assoc) {
                     $json = new Services_JSON(SERVICES_JSON_LOOSE_TYPE);
                 } else {
-                    $json = new Services_JSON;
+                    $json = new Services_JSON();
                 }
                 return $json->decode($content);
             }
@@ -632,9 +633,9 @@ class XPayClient
 
     /**
      * Set username/pass for basic http auth
+     * @access public
      * @param string user
      * @param string pass
-     * @access public
      */
     public function set_credentials($username, $password)
     {
@@ -643,8 +644,8 @@ class XPayClient
 
     /**
      * Set referrer
-     * @param string referrer url
      * @access public
+     * @param string referrer url
      */
     public function set_referrer($referrer_url)
     {
@@ -653,8 +654,8 @@ class XPayClient
 
     /**
      * Set client's useragent
-     * @param string user agent
      * @access public
+     * @param string user agent
      */
     public function set_user_agent($useragent)
     {
@@ -663,8 +664,8 @@ class XPayClient
 
     /**
      * Set to receive output headers in all output functions
-     * @param boolean true to include all response headers with output, false otherwise
      * @access public
+     * @param boolean true to include all response headers with output, false otherwise
      */
     public function include_response_headers($value)
     {
@@ -673,8 +674,8 @@ class XPayClient
 
     /**
      * Set proxy to use for each curl request
-     * @param string proxy
      * @access public
+     * @param string proxy
      */
     public function set_proxy($proxy)
     {
@@ -684,12 +685,12 @@ class XPayClient
     /**
      * Send post data to target URL
      * return data returned from url or false if error occured
-     * @param string url
-     * @param mixed post data (assoc array ie. $foo['post_var_name'] = $value or as string like var=val1&var2=val2)
-     * @param string ip address to bind (default null)
-     * @param int timeout in sec for complete curl operation (default 10)
-     * @return string data
      * @access public
+     * @param  string url
+     * @param  mixed  post    data (assoc array ie. $foo['post_var_name'] = $value or as string like var=val1&var2=val2)
+     * @param  string ip      address to bind (default null)
+     * @param  int    timeout in sec for complete curl operation (default 10)
+     * @return string data
      */
     public function send_post_data($url, $postdata, $ip = null, $timeout = 10)
     {
@@ -755,11 +756,11 @@ class XPayClient
     /**
      * fetch data from target URL
      * return data returned from url or false if error occured
-     * @param string url
-     * @param string ip address to bind (default null)
-     * @param int timeout in sec for complete curl operation (default 5)
-     * @return string data
      * @access public
+     * @param  string url
+     * @param  string ip      address to bind (default null)
+     * @param  int    timeout in sec for complete curl operation (default 5)
+     * @return string data
      */
     public function fetch_url($url, $ip = null, $timeout = 5)
     {
@@ -802,12 +803,12 @@ class XPayClient
     /**
      * Fetch data from target URL
      * and store it directly to file
-     * @param string url
-     * @param resource value stream resource(ie. fopen)
-     * @param string ip address to bind (default null)
-     * @param int timeout in sec for complete curl operation (default 5)
-     * @return boolean true on success false othervise
      * @access public
+     * @param  string   url
+     * @param  resource value   stream resource(ie. fopen)
+     * @param  string   ip      address to bind (default null)
+     * @param  int      timeout in sec for complete curl operation (default 5)
+     * @return boolean  true on success false othervise
      */
     public function fetch_into_file($url, $fp, $ip = null, $timeout = 5)
     {
@@ -849,12 +850,12 @@ class XPayClient
     /**
      * Send post data to target URL
      * return data returned from url or false if error occured
-     * @param string url
-     * @param mixed post data (assoc array ie. $foo['post_var_name'] = $value or as string like var=val1&var2=val2)
-     * @param string ip address to bind (default null)
-     * @param int timeout in sec for complete curl operation (default 10)
-     * @return string data
      * @access public
+     * @param  string url
+     * @param  mixed  post    data (assoc array ie. $foo['post_var_name'] = $value or as string like var=val1&var2=val2)
+     * @param  string ip      address to bind (default null)
+     * @param  int    timeout in sec for complete curl operation (default 10)
+     * @return string data
      */
     public function post_into_file($url, $postdata, $fp, $ip = null, $timeout = 10)
     {
@@ -920,13 +921,13 @@ class XPayClient
      * Send multipart post data to the target URL
      * return data returned from url or false if error occured
      * (contribution by vule nikolic, vule@dinke.net)
-     * @param string url
-     * @param array assoc post data array ie. $foo['post_var_name'] = $value
-     * @param array assoc $file_field_array, contains file_field name = value - path pairs
-     * @param string ip address to bind (default null)
-     * @param int timeout in sec for complete curl operation (default 30 sec)
-     * @return string data
      * @access public
+     * @param  string url
+     * @param  array  assoc   post data array ie. $foo['post_var_name'] = $value
+     * @param  array  assoc   $file_field_array, contains file_field name = value - path pairs
+     * @param  string ip      address to bind (default null)
+     * @param  int    timeout in sec for complete curl operation (default 30 sec)
+     * @return string data
      */
     public function send_multipart_post_data($url, $postdata, $file_field_array = array(), $ip = null, $timeout = 30)
     {
@@ -1014,8 +1015,8 @@ class XPayClient
 
     /**
      * Set file location where cookie data will be stored and send on each new request
-     * @param string absolute path to cookie file (must be in writable dir)
      * @access public
+     * @param string absolute path to cookie file (must be in writable dir)
      */
     public function store_cookies($cookie_file)
     {
@@ -1026,8 +1027,8 @@ class XPayClient
 
     /**
      * Set custom cookie
-     * @param string cookie
      * @access public
+     * @param string cookie
      */
     public function set_cookie($cookie)
     {
@@ -1057,8 +1058,8 @@ class XPayClient
 
     /**
      * Return last error message and error number
-     * @return string error msg
      * @access public
+     * @return string error msg
      */
     public function get_error_msg()
     {

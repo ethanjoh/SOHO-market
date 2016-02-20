@@ -4,7 +4,7 @@ include_once 'util.php';
 
 //구매 페이지에서 결제정보 보이기
 //function show_payment(거래형태, 업체명, 입금계좌)
-function showPayment($type, $company_name, $bank)
+function show_payment($type, $company_name, $bank)
 {
     if ($type != 1) {
         switch ($type) {
@@ -52,7 +52,7 @@ function showPayment($type, $company_name, $bank)
  * [show_login_menu description]
  * @return [type] [description]
  */
-function showLoginMenu()
+function show_login_menu()
 {
     $p_id   = set_var($_SESSION['p_id']);
     $p_name = set_var($_SESSION['p_name']);
@@ -94,7 +94,7 @@ HEREDOC;
 
 // 로그인
     } else {
-        $numberOfItems = getCartItem();
+        $numberOfItems = get_cart_item();
 
         echo <<<HEREDOC
                                 <div class="top-cart-wrapper">
@@ -140,7 +140,7 @@ HEREDOC;
  * [get_cart_item 카트에 담긴 상품수량 보여주기]
  * @return [type] [description]
  */
-function getCartItem()
+function get_cart_item()
 {
     global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
@@ -161,12 +161,12 @@ function getCartItem()
 
 }
 /**
- * [main_show_products 메인페이지에 표시]
+ * [show_main_products[ 메인페이지에 표시]
  * @param  [type] $main_flag      [best, new 구분]
  * @param  [type] $no_item        [표시할 개수]
  * @return [type] [description]
  */
-function showMainProducts($main_flag, $no_item)
+function show_main_products($main_flag, $no_item)
 {
     global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
@@ -209,7 +209,7 @@ function showMainProducts($main_flag, $no_item)
                                             <div class="price-box">
 HEREDOC;
 
-            echo showMePrice($pnum);
+            echo show_me_price($pnum);
             // $option = show_option($pnum);
 
             echo <<<HEREDOC
@@ -257,7 +257,7 @@ HEREDOC;
  * @param  [type] $tabid          [description]
  * @return [type] [description]
  */
-function showCatalogProducts($lcode, $mcode, $tabid)
+function show_catalog_products($lcode, $mcode, $tabid)
 {
     global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
@@ -287,7 +287,7 @@ function showCatalogProducts($lcode, $mcode, $tabid)
             $p_id         = set_var($_SESSION['p_id']);
             $offer_price  = calc_offer_price($rows['retail_price'], $p_id);
             $dealer_price = number_format($offer_price);
-            $price        = showMePrice($pnum);
+            $price        = show_me_price($pnum);
 
             $option = show_option($pnum);
 
@@ -401,7 +401,7 @@ HEREDOC;
  * @param  [type] $pnum           [제품번호]
  * @return [type] [description]
  */
-function showMePrice($pnum)
+function show_me_price($pnum)
 {
 
     global $host, $dbid, $dbpass, $dbname;
@@ -431,7 +431,7 @@ function showMePrice($pnum)
  * @param  [type] $lcode          [대 카테고리번호]
  * @return [type] [description]
  */
-function showBrandName($lcode)
+function show_brand_name($lcode)
 {
     global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
@@ -454,7 +454,7 @@ function showBrandName($lcode)
  * [show_brands 대카테고리를 보여줌]
  * @return [type] [description]
  */
-function showBrands()
+function show_brands()
 {
 
     global $host, $dbid, $dbpass, $dbname;
@@ -510,7 +510,7 @@ HEREDOC;
  * @param  [type] $lcode          [description]
  * @return [type] [description]
  */
-function showSubCategory($lcode)
+function show_sub_category($lcode)
 {
 
     global $host, $dbid, $dbpass, $dbname;
@@ -553,7 +553,7 @@ HEREDOC;
  * @param  [type] $mcode          [description]
  * @return [type] [description]
  */
-function showSubCategoryName($lcode, $mcode)
+function show_sub_category_name($lcode, $mcode)
 {
     global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
@@ -580,7 +580,7 @@ function showSubCategoryName($lcode, $mcode)
  * @param  [type] $pnum           [description]
  * @return [type] [description]
  */
-function showImage($size, $no, $pnum)
+function show_image($size, $no, $pnum)
 {
 
     global $host, $dbid, $dbpass, $dbname;
@@ -653,7 +653,7 @@ function showImage($size, $no, $pnum)
  * @param  [type] $policy         [배송 또는 반품정책 구분]
  * @return [type] [description]
  */
-function showPolicy($policy)
+function show_policy($policy)
 {
     global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
@@ -680,7 +680,7 @@ HEREDOC;
  * [show_cart_item 카트 내 아이템 출력]
  * @return [type] [총합]
  */
-function showCartItem()
+function show_cart_item()
 {
     global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
@@ -742,7 +742,7 @@ HEREDOC;
 
             $offer_price  = calc_offer_price($rows['retail_price'], $p_id); // 업체별 공급가 확인
             $dealer_price = number_format($offer_price); // 천단위 구분
-            $price        = showMePrice($p_id, $pnum);
+            $price        = show_me_price($p_id, $pnum);
             $qty          = $rows['volume'];
             $cart_id      = $rows['cart_id'];
 
@@ -832,7 +832,7 @@ HEREDOC;
  * @param  [type] $total     [총합]
  * @return [type] [링크]
  */
-function goPurchase($total)
+function go_purchase($total)
 {
     if (0 == $total) {
         return $ret = "alert('카트에 상품이 없습니다.')";
@@ -845,7 +845,7 @@ function goPurchase($total)
  * [show_checkout_item 결제페이지에서 주문상품 보여주기]
  * @return [type] [description]
  */
-function showCheckoutItem()
+function show_checkout_item()
 {
     global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
@@ -907,7 +907,7 @@ HEREDOC;
 
             $offer_price  = calc_offer_price($rows['retail_price'], $p_id); // 업체별 공급가 확인
             $dealer_price = number_format($offer_price); // 천단위 구분
-            $price        = showMePrice($p_id, $pnum);
+            $price        = show_me_price($p_id, $pnum);
             $qty          = $rows['volume'];
             $cart_id      = $rows['cart_id'];
 
@@ -956,6 +956,7 @@ HEREDOC;
                                                                 <td>
                                                                     <div class="o-pro-dec">
                                                                         <p>{$item_name} [{$p_opt}]</p>
+                                                                        <input type="hidden" name="LGD_PRODUCTINFO[]"   value="{$item_name}">
                                                                     </div>
                                                                 </td>
                                                                 <td>
@@ -990,7 +991,6 @@ HEREDOC;
                                                                 <td colspan="3">총합</td>
                                                                 <td colspan="1">{$show_total}</td>
                                                                 <input type="hidden" name="LGD_AMOUNT"   value="{$tot_money}">
-                                                                <input type="hidden" name="LGD_PRODUCTINFO"   value="{$item_name}">
                                                             </tr>
                                                         </tfoot>
                                                     </table>
@@ -1004,7 +1004,7 @@ HEREDOC;
  * [show_buyer_info 결제페이지에서 주문자 정보보여주기]
  * @return [type] [description]
  */
-function showBuyerInfo()
+function show_buyer_info()
 {
     global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
@@ -1050,7 +1050,7 @@ HEREDOC;
  * [check_unChk_order 미확인주문건수]
  * @return [type] [주문건수]
  */
-function checkUnchkOrder()
+function check_unChk_order()
 {
     global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
@@ -1071,7 +1071,7 @@ function checkUnchkOrder()
  * [check_today_order 금일 주문건수]
  * @return [type] [주문건수]
  */
-function checkTodayOrder()
+function check_today_order()
 {
     global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
@@ -1092,7 +1092,7 @@ function checkTodayOrder()
  * [check_readyToSend_order 발송준비 주문건수]
  * @return [type] [주문건수]
  */
-function checkReadytosendOrder()
+function check_readyToSend_order()
 {
     global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
@@ -1112,7 +1112,7 @@ function checkReadytosendOrder()
  * [show_loginForm 로그인폼 보여주기]
  * @return [type] [description]
  */
-function showLoginform()
+function show_loginForm()
 {
     global $port;
     $uri = set_var($_POST['uri']);
@@ -1175,7 +1175,7 @@ HEREDOC;
  * @return [type] $cpage [현재 페이지]
  * @return [type] $totalpage [전체 페이지수]
  */
-function getPageNum($mode, $key, $key_value, $date1, $date2, $cpage, $scale)
+function get_page_num($mode, $key, $key_value, $date1, $date2, $cpage, $scale)
 {
     global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
@@ -1260,7 +1260,7 @@ function getPageNum($mode, $key, $key_value, $date1, $date2, $cpage, $scale)
  * @return [type] $t_no [쿼리 결과 갯수]
  * @return [type] $res [쿼리 결과]
  */
-function getPageResult($mode, $key, $key_value, $date1, $date2, $cline, $last_page_num)
+function get_page_result($mode, $key, $key_value, $date1, $date2, $cline, $last_page_num)
 {
     global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
@@ -1340,7 +1340,7 @@ function getPageResult($mode, $key, $key_value, $date1, $date2, $cline, $last_pa
  * @param  [type] $cpage          [현재 페이지]
  * @return [type] [description]
  */
-function showOrderList($t_no, $result, $cpage)
+function show_order_list($t_no, $result, $cpage)
 {
     global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
@@ -1468,7 +1468,7 @@ HEREDOC;
  * @param  [type] $oid            [description]
  * @return [type] [description]
  */
-function showOrderItem($oid)
+function show_order_item($oid)
 {
 
     global $host, $dbid, $dbpass, $dbname;
@@ -1601,7 +1601,7 @@ HEREDOC;
  * @param  [type] $order_status   [description]
  * @return [type] [description]
  */
-function showOrderStatus($oid, $order_status)
+function show_order_status($oid, $order_status)
 {
     global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
@@ -1653,7 +1653,7 @@ function showOrderStatus($oid, $order_status)
  * @param  [type] $oid            [description]
  * @return [type] [description]
  */
-function showBuyerDetail($oid)
+function show_buyer_detail($oid)
 {
     global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
@@ -1703,7 +1703,7 @@ HEREDOC;
     }
 
     $show_org_amount  = number_format($row['amount']);
-    $status           = showOrderStatus($oid, $row['status']);
+    $status           = show_order_status($oid, $row['status']);
     $memo_to_delivery = nl2br($row['memo_to_delivery']);
     $memo_to_admin    = nl2br($row['memo_to_admin']);
     $memo_from_admin  = nl2br($row['supplement']);
@@ -1739,7 +1739,7 @@ HEREDOC;
  * @param  [type] $pnum           [상품번호]
  * @return [type] [description]
  */
-function showProductImage($pnum)
+function show_product_image($pnum)
 {
     global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
@@ -1754,10 +1754,10 @@ function showProductImage($pnum)
                                     <div class="tab-content">
 HEREDOC;
 
-    $b_image1 = showImage('b', 1, $pnum);
-    $b_image2 = showImage('b', 2, $pnum);
-    $b_image3 = showImage('b', 3, $pnum);
-    $b_image4 = showImage('b', 4, $pnum);
+    $b_image1 = show_image('b', 1, $pnum);
+    $b_image2 = show_image('b', 2, $pnum);
+    $b_image3 = show_image('b', 3, $pnum);
+    $b_image4 = show_image('b', 4, $pnum);
 
     if (isset($b_image1)) {
         echo <<<HEREDOC
@@ -1813,10 +1813,10 @@ HEREDOC;
                                         <ul class="tab-menu">
 HEREDOC;
 
-    $s_image1 = showImage('s', 1, $pnum);
-    $s_image2 = showImage('s', 2, $pnum);
-    $s_image3 = showImage('s', 3, $pnum);
-    $s_image4 = showImage('s', 4, $pnum);
+    $s_image1 = show_image('s', 1, $pnum);
+    $s_image2 = show_image('s', 2, $pnum);
+    $s_image3 = show_image('s', 3, $pnum);
+    $s_image4 = show_image('s', 4, $pnum);
 
     if (isset($s_image1)) {
         echo '                                           <li class="active"><a data-toggle="tab" href="#image1"><img alt="" src="' . $s_image1 . '"></a></li>';
@@ -1845,7 +1845,7 @@ HEREDOC;
  * @param  [type] $pnum           [상품번호]
  * @return [type] [description]
  */
-function showProductInfo($pnum)
+function show_product_info($pnum)
 {
 
     global $host, $dbid, $dbpass, $dbname;
@@ -1861,7 +1861,7 @@ function showProductInfo($pnum)
     $moq         = $rows['moq'];
     $short_desc  = $rows['short_desc'];
     $offer_price = calc_offer_price($rows['retail_price'], $p_id);
-    $price       = showMePrice($pnum);
+    $price       = show_me_price($pnum);
     $option      = show_option($pnum);
 
     echo <<<HEREDOC
@@ -1936,7 +1936,7 @@ HEREDOC;
  * @param  [type] $mcode          [중카테고리]
  * @return [type] [description]
  */
-function showRelativeItem($lcode, $mcode)
+function show_relative_item($lcode, $mcode)
 {
     global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);

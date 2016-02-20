@@ -1,20 +1,20 @@
 <?php
-include_once "../util/config.php";
-include_once "../util/util.php";
-include_once "../util/shop-functions.php";
-$connect = my_connect($host, $dbid, $dbpass, $dbname);
+	include_once "../util/config.php";
+	include_once "../util/util.php";
+	include_once "../util/shop-functions.php";
+	$connect = my_connect($host, $dbid, $dbpass, $dbname);
 
-session_start();
+	session_start();
 
-$p_sid  = set_var($_COOKIE['p_sid']);
-$p_id   = set_var($_SESSION['p_id']);
-$p_name = set_var($_SESSION['p_name']);
+	$p_sid  = set_var($_COOKIE['p_sid']);
+	$p_id   = set_var($_SESSION['p_id']);
+	$p_name = set_var($_SESSION['p_name']);
 
-$com_info = get_company_info();
+	$com_info = get_company_info();
 
-//로그인 이전의 URL로 돌아가기
-$uri = $_SERVER["REQUEST_URI"];
-$uri = urlencode($uri);
+	//로그인 이전의 URL로 돌아가기
+	$uri = $_SERVER["REQUEST_URI"];
+	$uri = urlencode($uri);
 
 ?>
 
@@ -97,7 +97,7 @@ $uri = urlencode($uri);
                         </div>
                         <div class="col-md-4 col-sm-4 col-xs-12">
                             <div class="header-wrapper">
-                                <?php show_login_menu();?>
+                                <?php echo show_login_menu(); ?>
                             </div> <!-- /.header-wrapper -->
                         </div> <!-- /.col-md-4 col-sm-4 col-xs-12 -->
 

@@ -234,7 +234,7 @@
                                                     <input type="hidden" name="CST_PLATFORM" id="CST_PLATFORM" value="test">
                                                     <input type="hidden" name="LGD_WINDOW_TYPE" id="LGD_WINDOW_TYPE" value="iframe">
                                                     <input type="hidden" name="LGD_CUSTOM_SWITCHINGTYPE" id="LGD_CUSTOM_SWITCHINGTYPE" value="iframe">
-
+                                                    <input type="hidden" name="LGD_CUSTOM_FIRSTPAY" id="LGD_CUSTOM_FIRSTPAY" value="SC0010">
                                                 </div>
                                             </div>
                                         </div>

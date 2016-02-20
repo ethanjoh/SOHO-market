@@ -6,8 +6,8 @@
 				<div id="ensign-nivoslider" class="slides">
 					<img src="/images/slider/main-01.jpg" alt="" title="#slider-direction-1"  />
 					<img src="/images/slider/main-02.jpg" alt="" title="#slider-direction-2"  />
-                    <img src="/images/slider/main-03.jpg" alt="" title="#slider-direction-3"  />
-                    <img src="/images/slider/main-04.jpg" alt="" title="#slider-direction-4"  />
+                                                                        <img src="/images/slider/main-03.jpg" alt="" title="#slider-direction-3"  />
+                                                                        <img src="/images/slider/main-04.jpg" alt="" title="#slider-direction-4"  />
 				</div>
 
 <!--                 <div id="slider-direction-1" class="slider-direction">
@@ -75,9 +75,8 @@
                         <div class="row">
                             <div class="features-carousel indicator-style">
 
-                                <?php
-show_main_products('best', 10);
-
+<?php
+	show_main_products('best', 10);
 ?>
 
                             </div>
@@ -115,9 +114,8 @@ show_main_products('best', 10);
                         </div>
                         <div class="row">
                             <div class="features-carousel indicator-style">
-                                 <?php
-show_main_products('new', 10);
-
+<?php
+	show_main_products('new', 10);
 ?>
                             </div>
                         </div>
