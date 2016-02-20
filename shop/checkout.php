@@ -7,7 +7,7 @@
                         <div class="check">
                             <h1>결제하기</h1>
                         </div>
-                        <form name="purchase" id="LGD_PAYINFO" method="post" action="//<?=$_SERVER['SERVER_NAME'];?>:<?=$port;?>/pay/payreq_crossplatform.php">
+                        <form name="LGD_PAYINFO" id="LGD_PAYINFO" method="post" action="//<?php echo $_SERVER['SERVER_NAME']; ?>:<?php echo $port; ?>/pay/payreq_crossplatform.php">
                         <div class="faq-accordion">
                             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                                 <div class="panel panel-default">
@@ -232,6 +232,8 @@
                                                     <button class="button2 get" type="submit" >결제하기</button>
                                                     <input type="hidden" name="CST_MID"      id="CST_MID"      value="shinsoo">
                                                     <input type="hidden" name="CST_PLATFORM" id="CST_PLATFORM" value="test">
+                                                    <input type="hidden" name="LGD_WINDOW_TYPE" id="LGD_WINDOW_TYPE" value="iframe">
+                                                    <input type="hidden" name="LGD_CUSTOM_SWITCHINGTYPE" id="LGD_CUSTOM_SWITCHINGTYPE" value="iframe">
 
                                                 </div>
                                             </div>

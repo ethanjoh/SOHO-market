@@ -115,9 +115,9 @@
         <section class="collapse_area">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-9 col-sm-9">
+                    <div class="col-md-12 col-sm-12">
                         <div class="check">
-                            <h1>결제하기</h1>
+                            <h1>최종확인</h1>
                         </div>
 
                         <div class="row" >
@@ -151,19 +151,19 @@
                                         </tbody>
                                     </table>
                             </div>
-                            <div >
+                        </div>
+                            <div class="row payinfo-button" >
+                                <div class="col-md-12">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal" id="cancel">취소</button>
                                 <button type="submit" class="btn btn-success" onclick="launchCrossPlatform();">결제하기</button>
                             </div>
-                        </div>
-
+                            </div>
 
 <?php
 
 	foreach ($payReqMap as $key => $value) {
 	    echo "<input type='hidden' name='$key' id='$key' value='$value'>";
 	}
-	// 배열값 확인용
 	; // echo '<pre>';; // var_dump($_SESSION);; // echo '</pre>';
 ?>
 
@@ -220,12 +220,6 @@
         <script language="JavaScript" src="/js/shopping.js"></script>
         <script>
             $(document).ready(function() {
-                $('#myModal').modal({
-                                show: true,
-                                backdrop: 'static',
-                                keyboard: false
-                            });
-
                 $( "#cancel" ).click(function() {
                     window.location.replace("../shop/cart.php");
                 });
