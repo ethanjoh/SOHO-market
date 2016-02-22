@@ -112,6 +112,23 @@
 	$payReqMap['LGD_PAYKEY']   = "";
 
 	$_SESSION['PAYREQ_MAP'] = $payReqMap;
+
+	/**
+	 * checkout.php에서 넘어온 값
+	 * payres.php에서 DB에 저장한다.
+	 */
+	//수령자가 다를 경우
+	$check_diff_addr     = set_var($_POST['check_diff_addr']);
+	$recipient_name      = set_var($_POST['recipient_name']);
+	$recipient_zipcode   = set_var($_POST['recipient_zipcode01']);
+	$recipient_address01 = set_var($_POST['recipient_address01']);
+	$recipient_address02 = set_var($_POST['recipient_address02']);
+	$recipient_phone     = set_var($_POST['recipient_phone']);
+	$recipient_hphone    = set_var($_POST['recipient_hphone']);
+
+	$memo_to_delivery = set_var($_POST['memo_to_delivery']);
+	$memo_to_admin    = set_var($_POST['memo_to_admin']);
+
 ?>
 
         <section class="collapse_area">
@@ -125,7 +142,17 @@
                         <div class="row" >
                             <div class="col-md-12 payinfo-form">
                                 <form method="post" name="LGD_PAYINFO" id="LGD_PAYINFO" action="payres.php">
-                                    <table class="table">
+                                <input type="hidden" name="check_diff_addr" value="<?php echo $check_diff_addr; ?>">
+                                <input type="hidden" name="recipient_name" value="<?php echo $recipient_name; ?>">
+                                <input type="hidden" name="recipient_zipcode" value="<?php echo $recipient_zipcode; ?>">
+                                <input type="hidden" name="recipient_address01" value="<?php echo $recipient_address01; ?>">
+                                <input type="hidden" name="recipient_address02" value="<?php echo $recipient_address02; ?>">
+                                <input type="hidden" name="recipient_phone" value="<?php echo $recipient_phone; ?>">
+                                <input type="hidden" name="recipient_hphone" value="<?php echo $recipient_hphone; ?>">
+                                <input type="hidden" name="memo_to_delivery" value="<?php echo $memo_to_delivery; ?>">
+                                <input type="hidden" name="memo_to_admin" value="<?php echo $memo_to_admin; ?>">
+
+                                    <table class="table table-striped">
                                         <tbody>
                                             <tr>
                                                 <td><i class="fa fa-check-square"></i> 구매자명: </td>
@@ -165,7 +192,10 @@
 
 	foreach ($payReqMap as $key => $value) {
 	    echo "                         <input type='hidden' name='" . $key . "' id='" . $key . "' value='" . $value . "''>\n";
-	} // echo '<pre>';; // var_dump($_SESSION);; // echo '</pre>';
+	}
+	// echo '<pre>';
+	// var_dump($_SESSION);
+	// echo '</pre>';
 ?>
 
                         </form>

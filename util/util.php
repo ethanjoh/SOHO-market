@@ -1,5 +1,5 @@
 <?php
-include_once 'config.php';
+require_once 'config.php';
 
 //메인에 팝업공지 띄우기
 function show_popup()
@@ -357,8 +357,8 @@ function send_sms($to, $msg_type, $name, $sdate, $connect)
 
 /**
  * [show_delivery_fee 택배비 보여주기]
- * @param  [type] $total [총합]
- * @return [type]        [문구]
+ * @param  [type] $total     [총합]
+ * @return [type] [문구]
  */
 function show_delivery_fee($total)
 {
@@ -380,8 +380,8 @@ function show_delivery_fee($total)
 
 /**
  * [calc_delivery_fee 택배비 계산]
- * @param  [type] $total [총합]
- * @return [type]        [택배요금 반환]
+ * @param  [type] $total        [총합]
+ * @return [type] [택배요금 반환]
  */
 function calc_delivery_fee($total)
 {
@@ -422,8 +422,8 @@ function show_logistics()
 
 /**
  * [show_track_no 운송장번호 보여주기]
- * @param  [type] $oid [주문번호]
- * @return [type]      [운송장번호]
+ * @param  [type] $oid                [주문번호]
+ * @return [type] [운송장번호]
  */
 function show_track_no($oid)
 {
@@ -528,8 +528,8 @@ function show_banner2($connect)
 
 /**
  * [show_option 옵션 보여주기]
- * @param  [type] $pnum [상품코드]
- * @return [type]       [description]
+ * @param  [type] $pnum           [상품코드]
+ * @return [type] [description]
  */
 function show_option($pnum)
 {
@@ -642,9 +642,9 @@ function show_restock(&$rows)
 
 /**
  * [calc_offer_price 공급가 계산]
- * @param  [type] $retail_price [description]
- * @param  [type] $id           [description]
- * @return [type]               [description]
+ * @param  [type] $retail_price   [description]
+ * @param  [type] $id             [description]
+ * @return [type] [description]
  */
 function calc_offer_price($retail_price, $id)
 {
@@ -1038,9 +1038,9 @@ function cut_string_utf8($str, $max_len, $suffix)
 
 /**
  * 타이틀 텍스트 줄이기
- * @param  string $tite
+ * @param  string  $tite
  * @param  integer $end
- * @return string $str
+ * @return string  $str
  */
 function get_short($title, $end)
 {

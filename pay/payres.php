@@ -9,6 +9,22 @@
                         </div>
 
 <?php
+	/**
+	 * payreq_crossplatform.php에서 넘어온 값
+	 */
+	//수령자가 다를 경우
+	$check_diff_addr     = set_var($_POST['check_diff_addr']);
+	$recipient_name      = set_var($_POST['recipient_name']);
+	$recipient_zipcode   = set_var($_POST['recipient_zipcode01']);
+	$recipient_address01 = set_var($_POST['recipient_address01']);
+	$recipient_address02 = set_var($_POST['recipient_address02']);
+	$recipient_phone     = set_var($_POST['recipient_phone']);
+	$recipient_hphone    = set_var($_POST['recipient_hphone']);
+	$recipient_address   = $recipient_address01 . ' ' . $recipient_address02;
+
+	$memo_to_delivery = set_var($_POST['memo_to_delivery']);
+	$memo_to_admin    = set_var($_POST['memo_to_admin']);
+
 	/*
 	 * [최종결제요청 페이지(STEP2-2)]
 	 *
@@ -53,27 +69,122 @@
 	 */
 	if ($xpay->TX()) {
 	    //1)결제결과 화면처리(성공,실패 결과 처리를 하시기 바랍니다.)
-	    echo "결제요청이 완료되었습니다.  <br>";
-	    echo "TX Response_code = " . $xpay->Response_Code() . "<br>";
-	    echo "TX Response_msg = " . $xpay->Response_Msg() . "<p>";
+	    $LGD_TID = $xpay->Response("LGD_TID", 0);
+	    $LGD_OID = $xpay->Response("LGD_OID", 0);
+	    // $LGD_BUYER          = $xpay->Response("LGD_BUYER", 0);
+	    // $LGD_BUYEREMAIL     = $xpay->Response("LGD_BUYEREMAIL", 0);
+	    // $LGD_PRODUCTINFO    = $xpay->Response("LGD_PRODUCTINFO", 0);
+	    // $LGD_AMOUNT         = $xpay->Response("LGD_AMOUNT", 0);
+	    // $LGD_PAYTYPE        = $xpay->Response("LGD_PAYTYPE", 0);
+	    // $LGD_PAYDATE        = $xpay->Response("LGD_PAYDATE", 0);
+	    // $LGD_FINANCECODE    = $xpay->Response("LGD_FINANCODE", 0);
+	    $LGD_FINANCENAME    = $xpay->Response("LGD_FINANCENAME", 0);
+	    $LGD_FINANCEAUTHNUM = $xpay->Response("LGD_FINANCEAUTHNUM", 0);
+	    $LGD_ACCOUNTNUM     = $xpay->Response("LGD_ACCOUNTNUM", 0);
+	    $LGD_RESPCODE       = $xpay->Response_Code();
+	    $LGD_RESPMSG        = $xpay->Response_Msg();
 
-	    echo "거래번호 : " . $xpay->Response("LGD_TID", 0) . "<br>";
-	    echo "상점아이디 : " . $xpay->Response("LGD_MID", 0) . "<br>";
-	    echo "상점주문번호 : " . $xpay->Response("LGD_OID", 0) . "<br>";
-	    echo "결제금액 : " . $xpay->Response("LGD_AMOUNT", 0) . "<br>";
-	    echo "결과코드 : " . $xpay->Response("LGD_RESPCODE", 0) . "<br>";
-	    echo "결과메세지 : " . $xpay->Response("LGD_RESPMSG", 0) . "<p>";
+	    // $amount = number_format($LGD_AMOUNT);
+	    // $paydate = date('Y-m-d h:i:s', $LGD_PAYDATE);
 
-	    $keys = $xpay->Response_Names();
-	    foreach ($keys as $name) {
-	        echo $name . " = " . $xpay->Response($name, 0) . "<br>";
+	    echo <<<HEREDOC
+
+                        <div class="alert alert-success" role="alert">주문완료! 결제에 성공하였습니다.</div>
+                        <table class="table table-striped">
+                            <tr>
+                                <th>거래번호 :</th>
+                                <td>{$LGD_TID}</td>
+                            </tr>
+                            <tr>
+                                <th>주문번호 :</th>
+                                <td>{$LGD_OID}</td>
+                            </tr>
+
+HEREDOC;
+
+	    if ("SC0010" == $LGD_PAYTYPE) {
+	        //신용카드 결제시
+	        echo <<<HEREDOC
+
+            			    <tr>
+                	          <th>카드사명 :</th>
+                	          <td>{$LGD_FINANCENAME}</td>
+                	        </tr>
+                	        <tr>
+                	          <th>승인번호 :</th>
+                	          <td>{$LGD_FINANCEAUTHNUM}</td>
+                	        </tr>
+
+HEREDOC;
+
+	    } else if ("SC0030" == $LGD_PAYTYPE) {
+	        //계좌이체 결제시
+	        echo <<<HEREDOC
+
+                	        <tr>
+                	          <th>결제은행 :</th>
+                	          <td>{$LGD_FINANCENAME}</td>
+                	        </tr>
+
+HEREDOC;
+
+	    } else if ("SC0040" == $LGD_PAYTYPE) {
+	        //가상계좌 결제시 (할당)
+	        echo <<<HEREDOC
+
+                	        <tr>
+                	          <th>입금은행 :</th>
+                	          <td>{$LGD_FINANCENAME}</td>
+                	        </tr>
+                	        <tr>
+                	          <th>입금계좌번호 :</th>
+                	          <td>{$LGD_ACCOUNTNUM}</td>
+                	        </tr>
+
+HEREDOC;
+
+	    } else {
+	        //기타 결제시
+	        echo <<<HEREDOC
+
+                	        <tr>
+                	          <th>결제사명 :</th>
+                	          <td>{$LGD_FINANCENAME}</td>
+                	        </tr>
+
+HEREDOC;
+
 	    }
+    ?>
+                            </table>
+                        </div>
+                      <div class="row payinfo-button" >
+                        <button type="button" class="btn btn-success" id="success">주문조회 가기</button>
+                      </div>
 
-	    echo "<p>";
+<?php
+
+	    // echo "결제요청이 완료되었습니다.  <br>";
+	    // echo "TX Response_code = " . $xpay->Response_Code() . "<br>";
+	    // echo "TX Response_msg = " . $xpay->Response_Msg() . "<p>";
+
+	    // echo "거래번호 : " . $xpay->Response("LGD_TID", 0) . "<br>";
+	    // echo "상점아이디 : " . $xpay->Response("LGD_MID", 0) . "<br>";
+	    // echo "상점주문번호 : " . $xpay->Response("LGD_OID", 0) . "<br>";
+	    // echo "결제금액 : " . $xpay->Response("LGD_AMOUNT", 0) . "<br>";
+	    // echo "결과코드 : " . $xpay->Response("LGD_RESPCODE", 0) . "<br>";
+	    // echo "결과메세지 : " . $xpay->Response("LGD_RESPMSG", 0) . "<p>";
+
+	    // $keys = $xpay->Response_Names();
+	    // foreach ($keys as $name) {
+	    //     echo $name . " = " . $xpay->Response($name, 0) . "<br>";
+	    // }
+
+	    // echo "<p>";
 
 	    if ("0000" == $xpay->Response_Code()) {
 	        //최종결제요청 결과 성공 DB처리
-	        echo "최종결제요청 결과 성공 DB처리하시기 바랍니다.<br>";
+	        require_once 'save_pginfo_to_db.php';
 
 	        //최종결제요청 결과 성공 DB처리 실패시 Rollback 처리
 	        $isDBOK = true; //DB처리 실패시 false로 변경해 주세요.
@@ -96,12 +207,32 @@
 	    }
 	} else {
 	    //2)API 요청실패 화면처리
-	    echo "결제요청이 실패하였습니다.  <br>";
-	    echo "TX Response_code = " . $xpay->Response_Code() . "<br>";
-	    echo "TX Response_msg = " . $xpay->Response_Msg() . "<p>";
+	    echo <<<HEREDOC
 
-	    //최종결제요청 결과 실패 DB처리
-	    echo "최종결제요청 결과 실패 DB처리하시기 바랍니다.<br>";
+                        <div class="alert alert-danger" role="alert">주문실패! 결제에 실패하였습니다.<p>관리자에게 문의하세요</p></div>
+                            <table class="table table-striped">
+                                <tr>
+                                    <th>결과코드 :</th>
+                                    <td>{$LGD_RESPCODE}</td>
+                                </tr>
+                                <tr>
+                                    <th>결과메세지 :</th>
+                                    <td>{$LGD_RESPMSG}</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="row payinfo-button" >
+                            <button type="button" class="btn btn-danger" data-dismiss="modal" id="cancel">카트로 돌아가기</button>
+                        </div>
+
+HEREDOC;
+
+	    // echo "결제요청이 실패하였습니다.  <br>";
+	    // echo "TX Response_code = " . $xpay->Response_Code() . "<br>";
+	    // echo "TX Response_msg = " . $xpay->Response_Msg() . "<p>";
+
+	    // //최종결제요청 결과 실패 DB처리
+	    // echo "최종결제요청 결과 실패 DB처리하시기 바랍니다.<br>";
 	}
 
 ?>
@@ -113,6 +244,19 @@
 <?php include_once '../include/brands.php';?>
 
 <?php include_once '../include/footer.php';?>
+
+        <script>
+            $(document).ready(function() {
+                $( "#cancel" ).click(function() {
+                    window.location.replace("/shop/cart.php");
+                });
+
+                $( "#success" ).click(function() {
+                    window.location.replace("/shop/order-list.php");
+                });
+
+            });
+        </script>
 
     </body>
 </html>
