@@ -38,10 +38,10 @@
                         <div class="totals">
                             <div class="subtotal">
                                 <p><i class="fa fa-truck"></i> 택배비: <span><?php echo show_delivery_fee($total); ?></span></p>
-                                <p class="grand-total">총  합: <span><i class="fa fa-krw"></i> <?php echo number_format($total); ?></span> (VAT 포함)</p>
+                                <p class="grand-total">총  합: <span><i class="fa fa-krw"></i>                                                                                                 <?php echo number_format($total); ?></span> (VAT 포함)</p>
                             </div>
                             <button class="button2 get" type="button" onclick="<?php echo go_purchase($total); ?>">
-                                <span><i class="fa fa-check-circle"></i> 주문하기</span>
+                                <span><i class="fa fa-check-circle"></i> 주문서 작성하기</span>
                             </button>
                         </div>
                     </div>

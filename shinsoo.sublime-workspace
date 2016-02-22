@@ -4,6 +4,34 @@
 		"selected_items":
 		[
 			[
+				"LGDPA",
+				"LGD_PAYDATE"
+			],
+			[
+				"LGD_RE",
+				"LGD_RESPMSG"
+			],
+			[
+				"LGD_FAI",
+				"LGD_FINANCEAUTHNUM"
+			],
+			[
+				"LGD_FI",
+				"LGD_FINANCEAUTHNUM"
+			],
+			[
+				"LGD_PAY",
+				"LGD_PAYDATE"
+			],
+			[
+				"LGD_BUYER",
+				"LGD_BUYEREMAIL"
+			],
+			[
+				"LGD_BUY",
+				"LGD_BUYEREMAIL"
+			],
+			[
 				"mar",
 				"margin-bottom"
 			],
@@ -399,6 +427,62 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "pay/payres.php",
+			"settings":
+			{
+				"buffer_size": 8779,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "pay/save_pginfo_to_db.php",
+			"settings":
+			{
+				"buffer_size": 8095,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/Joh/OneDrive/git_project/linktrading-co-kr/pay/note_url.php",
+			"settings":
+			{
+				"buffer_size": 20269,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/C/Users/Joh/OneDrive/git_project/linktrading-co-kr/pay/payreq.php",
+			"settings":
+			{
+				"buffer_size": 17405,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/C/Users/Joh/OneDrive/git_project/linktrading-co-kr/util/config.php",
+			"settings":
+			{
+				"buffer_size": 422,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "pay/payreq_crossplatform.php",
+			"settings":
+			{
+				"buffer_size": 11613,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "shop/checkout.php",
+			"settings":
+			{
+				"buffer_size": 20640,
+				"line_ending": "Windows"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -408,12 +492,28 @@
 	"command_palette":
 	{
 		"height": 354.0,
-		"last_filter": "package ",
+		"last_filter": "phpfm",
 		"selected_items":
 		[
 			[
-				"package ",
+				"phpfm",
+				"phpfmt: toggle PSR1 - Class and Methods names"
+			],
+			[
+				"phpfmt",
+				"phpfmt: enable/disable additional transformations"
+			],
+			[
+				"Package Control: ",
+				"Package Control: List Packages"
+			],
+			[
+				"p",
 				"Package Control: Install Package"
+			],
+			[
+				"package ",
+				"Package Control: Enable Package"
 			],
 			[
 				"remo",
@@ -462,10 +562,6 @@
 			[
 				"jscs",
 				"JSCS Formatter: Format this file"
-			],
-			[
-				"Package Control: ",
-				"Package Control: List Packages"
 			],
 			[
 				"pc",
@@ -530,14 +626,51 @@
 	"expanded_folders":
 	[
 		"/C/wamp/www/shinsoo",
-		"/C/wamp/www/shinsoo/images"
+		"/C/wamp/www/shinsoo/lgpay",
+		"/C/wamp/www/shinsoo/lgpay/conf",
+		"/C/wamp/www/shinsoo/shop"
 	],
 	"file_history":
 	[
+		"/C/wamp/www/shinsoo/util/util.php",
+		"/C/wamp/www/shinsoo/include/header.php",
+		"/C/wamp/www/shinsoo/lgpay/conf/lgdacom.conf",
+		"/C/wamp/www/shinsoo/lgpay/conf/mall.conf",
+		"/C/Users/Joh/OneDrive/git_project/linktrading-co-kr/pay/payres.php",
+		"/C/wamp/www/shinsoo/pay/cas_noteurl.php",
+		"/C/wamp/www/shinsoo/pay/Cancel.php",
+		"/C/wamp/www/shinsoo/pay/Cancel.html",
+		"/C/wamp/www/shinsoo/lgpay/ping.php",
+		"/C/wamp/www/shinsoo/lgpay/XPayClient.php",
+		"/C/wamp/www/shinsoo/lgpay/conf/ca-bundle.crt",
+		"/C/wamp/www/shinsoo/lgpay/XPayClient4DB.php",
+		"/C/wamp/www/shinsoo/lgpay/patch.php",
+		"/C/wamp/www/shinsoo/lgpay/JSON.php",
+		"/C/Users/Joh/Downloads/LGU+_XPay_Crossplatform/LGU+_XPay_Crossplatform_PHP/lgdacom/ping.php",
+		"/C/wamp/www/shinsoo/pay/payreq_crossplatform.php",
+		"/C/wamp/www/shinsoo/log/log_20160221.log",
+		"/C/wamp/www/shinsoo/util/shop-functions.php",
+		"/C/wamp/www/shinsoo/pay/sample_crossplatform.html",
+		"/C/wamp/www/shinsoo/shop/checkout.php",
+		"/C/wamp/www/shinsoo/pay/returnurl.php",
+		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/C/Users/Joh/OneDrive/git_project/wepartners/include/header.php",
+		"/C/Users/Joh/OneDrive/git_project/wepartners/include/functions.php",
+		"/C/Users/Joh/OneDrive/git_project/wepartners/.htaccess",
+		"/C/wamp/www/shinsoo/shop/index.php",
+		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/User/phpfmt.sublime-settings",
+		"/C/wamp/www/shinsoo/index.php",
+		"/C/wamp/www/shinsoo/util/config.php",
+		"/C/wamp/www/shinsoo/css/myshop.css",
+		"/C/wamp/www/shinsoo/css/style.css",
+		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/phpfmt/message",
+		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/phpfmt/Default.sublime-keymap",
+		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/User/Default.sublime-keymap",
+		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/phpfmt/phpfmt.sublime-settings",
+		"/C/wamp/www/shinsoo/shop/cart.php",
+		"/C/wamp/www/shinsoo/pay/payreq_crossplatform_modal.php",
 		"/C/wamp/bin/apache/apache2.4.9/conf/extra/httpd-vhosts.conf",
 		"/C/Users/Joh/Downloads/hosts",
-		"/C/wamp/www/shinsoo/index.php",
-		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
 		"/C/wamp/www/modoo/index.html",
 		"/C/wamp/www/modoo/css/wavex.css",
 		"/C/wamp/www/modoo/js/color-switcher.js",
@@ -626,52 +759,18 @@
 		"/C/wamp/www/seminar/admin/include/config.php",
 		"/C/wamp/www/seminar/include/config.php",
 		"/C/wamp/www/seminar/admin/css/timeline.css",
-		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
-		"/C/wamp/www/seminar/js/creative.js",
-		"/C/wamp/www/seminar/.gitignore",
-		"/C/wamp/www/seminar/seminar.php",
-		"/C/wamp/www/seminar/video.php",
-		"/C/wamp/www/seminar/js/jquery.scrollTo.min.js",
-		"/C/Users/Joh/Downloads/Practices/08/result/ghost.html",
-		"/C/wamp/www/seminar/session.php",
-		"/C/wamp/www/seminar/profile.php",
-		"/C/Users/Seonghyeon/Downloads/Flat-UI-master/index.html",
-		"/C/Users/Seonghyeon/Downloads/startbootstrap-creative-1.0.1/index.html",
-		"/C/wamp/www/osakabiz/js/jquery.backstretch.min.js",
-		"/C/wamp/www/osakabiz/js/custom/custom.js",
-		"/C/wamp/www/osakabiz/css/custom/custom.css",
-		"/C/wamp/www/osakabiz/js/vendor/jquery.scrollTo.min.js",
-		"/C/Users/Seonghyeon/Downloads/Flat-UI-master/dist/index.html",
-		"/C/wamp/www/osakabiz/js/vendor/backstretch.js",
-		"/C/wamp/www/osakabiz/custom.css",
-		"/C/Users/Seonghyeon/OneDrive/git_project/makecard/contents/account-contents.php",
-		"/C/Users/Seonghyeon/OneDrive/git_project/makecard/account.php",
-		"/C/Users/Seonghyeon/OneDrive/git_project/makecard/contents/index-contents.php",
-		"/C/Users/Seonghyeon/OneDrive/git_project/makecard/register.php",
-		"/C/wamp/www/colorway/index.php",
-		"/C/Users/Seonghyeon/OneDrive/git_project/makecard/include/functions.php",
-		"/C/Users/Seonghyeon/OneDrive/git_project/makecard/register-check.php",
-		"/C/Users/Seonghyeon/OneDrive/git_project/makecard/confirmation.php",
-		"/C/Users/Seonghyeon/OneDrive/git_project/makecard/checkout.php",
-		"/C/Users/Seonghyeon/OneDrive/git_project/makecard/catalog-card.php",
-		"/C/Users/Seonghyeon/OneDrive/git_project/makecard/cart.php",
-		"/C/Users/Seonghyeon/OneDrive/git_project/makecard/.gitignore",
-		"/C/Users/Seonghyeon/OneDrive/git_project/makecard/account-address.php",
-		"/C/Users/Seonghyeon/OneDrive/git_project/makecard/account-information.php",
-		"/C/Users/Seonghyeon/OneDrive/git_project/makecard/index.php",
-		"/C/Users/Seonghyeon/OneDrive/git_project/makecard/login.php",
-		"/C/Users/Seonghyeon/OneDrive/git_project/makecard/product-view.php",
-		"/C/Users/Seonghyeon/OneDrive/git_project/makecard/include/header.php"
+		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap"
 	],
 	"find":
 	{
-		"height": 30.0
+		"height": 70.0
 	},
 	"find_in_files":
 	{
 		"height": 203.0,
 		"where_history":
 		[
+			"C:\\wamp\\www\\shinsoo",
 			"C:\\wamp\\www\\modoo",
 			"C:\\Users\\Seonghyeon\\OneDrive\\git_project\\makecard",
 			"C:\\Users\\Seonghyeon\\OneDrive\\git_project\\akip",
@@ -691,6 +790,45 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"show_popup()",
+			"postcode.v2.js",
+			"query",
+			"$LGD_PAYTYPE",
+			"payment_type",
+			"recipient_name",
+			"check_diff_addr",
+			"response_msg",
+			"Response_Msg",
+			"response_msg",
+			"Response_Msg",
+			"response_msg",
+			"Response_Msg",
+			"response_msg",
+			"Response_Msg",
+			"response_msg",
+			"Response_Msg",
+			"response_msg",
+			"Response_Msg",
+			"response_msg",
+			"?>",
+			"<?php echo",
+			"LGD_RESPMSG",
+			"\\n\";",
+			"echo \"",
+			"\\n\";",
+			"echo \"",
+			"\\n\";",
+			"echo \"",
+			"\\n\";",
+			"echo \"",
+			"LGD_CUSTOM_FIRSTPAY",
+			"get",
+			"main_show_products",
+			"show_main_products",
+			"showImage",
+			"show_login_menu",
+			"LGD_WINDOW_TYPE",
+			"payment_return",
 			"shinsoo",
 			".change",
 			"counter",
@@ -779,46 +917,7 @@
 			"video-cover",
 			"img/preview/slide",
 			"seminar.3.5",
-			"admin_email",
-			"check_btn",
-			"rdate",
-			"btn",
-			" | ",
-			"my-video",
-			"/css/",
-			"/js/",
-			"/css/",
-			"js/",
-			"css/",
-			"js/",
-			"#f05f40",
-			"f39c12",
-			"#2980b9",
-			"category",
-			"Category",
-			"rel=\"stylesheet\"",
-			"mysql_real_escape_string",
-			"color-white",
-			"../dist/",
-			"callLocale()",
-			"callLocale();",
-			"getTitle",
-			"carouFredSel",
-			"lft",
-			"Searching",
-			"default-color",
-			"martelsans",
-			"map",
-			"mapwrapper",
-			"padding",
-			"map",
-			"$HTTP_ACCEPT_LANGUAGE",
-			"japanese",
-			"english",
-			"index.html",
-			"<?php echo",
-			"period",
-			"sales"
+			"admin_email"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -839,14 +938,245 @@
 	"groups":
 	[
 		{
+			"selected": 6,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "pay/payres.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8779,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6243,
+								6243
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": true,
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3106.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "pay/save_pginfo_to_db.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8095,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								8092,
+								8092
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": true,
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3980.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/C/Users/Joh/OneDrive/git_project/linktrading-co-kr/pay/note_url.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 20269,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								16511,
+								16421
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 7094.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/C/Users/Joh/OneDrive/git_project/linktrading-co-kr/pay/payreq.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 17405,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								12599,
+								12612
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 4940.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/C/Users/Joh/OneDrive/git_project/linktrading-co-kr/util/config.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 422,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								277,
+								283
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/PHP/PHP.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "pay/payreq_crossplatform.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 11613,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5236,
+								5236
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": true,
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"translate_tabs_to_spaces": true,
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 2161.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "shop/checkout.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 20640,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								287,
+								287
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": true,
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true,
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
 			]
 		}
 	],
 	"incremental_find":
 	{
-		"height": 30.0
+		"height": 70.0
 	},
 	"input":
 	{
@@ -891,7 +1221,7 @@
 	"project": "shinsoo.sublime-project",
 	"replace":
 	{
-		"height": 56.0
+		"height": 54.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -900,6 +1230,58 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"hea",
+				"include\\header.php"
+			],
+			[
+				"head",
+				"include\\header.php"
+			],
+			[
+				"util",
+				"util\\util.php"
+			],
+			[
+				"chec",
+				"shop\\checkout.php"
+			],
+			[
+				"pay",
+				"pay\\payreq_crossplatform.php"
+			],
+			[
+				"x",
+				"lgpay\\XPayClient.php"
+			],
+			[
+				"sam",
+				"pay\\sample_crossplatform.html"
+			],
+			[
+				"che",
+				"shop\\checkout.php"
+			],
+			[
+				"sho",
+				"util\\shop-functions.php"
+			],
+			[
+				"index",
+				"shop\\index.php"
+			],
+			[
+				"config",
+				"util\\config.php"
+			],
+			[
+				"my",
+				"css\\myshop.css"
+			],
+			[
+				"style",
+				"css\\style.css"
+			],
 			[
 				"add",
 				"admin\\add-user.php"
@@ -997,10 +1379,6 @@
 				"admin\\setting.php"
 			],
 			[
-				"head",
-				"include\\header.php"
-			],
-			[
 				"ses",
 				"session-1.php"
 			],
@@ -1037,10 +1415,6 @@
 				"css\\creative.css"
 			],
 			[
-				"hea",
-				"admin\\include\\header.php"
-			],
-			[
 				"cre",
 				"css\\creative.css"
 			],
@@ -1063,10 +1437,6 @@
 			[
 				"map",
 				"map.php"
-			],
-			[
-				"style",
-				"css\\style.css"
 			],
 			[
 				"sale",
@@ -1193,10 +1563,6 @@
 				"admin/order/or_view.php"
 			],
 			[
-				"che",
-				"shop/checkout-ok.php"
-			],
-			[
 				"top",
 				"admin/order/top_order_list.php"
 			],
@@ -1211,10 +1577,6 @@
 			[
 				"check",
 				"admin/check_login.php"
-			],
-			[
-				"chec",
-				"scm/check_login.php"
 			],
 			[
 				"admin.j",
@@ -1309,10 +1671,6 @@
 				"css/style.css"
 			],
 			[
-				"index",
-				"main/index.php"
-			],
-			[
 				"gree",
 				"about/greeting.php"
 			],
@@ -1353,10 +1711,6 @@
 				"admin/stats/tax_list.php"
 			],
 			[
-				"util",
-				"util/util.php"
-			],
-			[
 				"foote",
 				"include/footer.php"
 			],
@@ -1387,30 +1741,6 @@
 			[
 				"gloa",
 				"js/global.js"
-			],
-			[
-				"del",
-				"bbs/delete.php"
-			],
-			[
-				"edit_pro",
-				"admin/order/edit_pro.php"
-			],
-			[
-				"product",
-				"admin/member/product_list_ok.php"
-			],
-			[
-				"top_mem",
-				"admin/member/top_member_list.php"
-			],
-			[
-				"pro",
-				"admin/member/product_list.php"
-			],
-			[
-				"ut",
-				"util/util.php"
 			]
 		],
 		"width": 0.0

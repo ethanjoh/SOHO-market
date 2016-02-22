@@ -5,7 +5,7 @@
                 <div class="row">
                     <div class="col-md-9 col-sm-9">
                         <div class="check">
-                            <h1>결제하기</h1>
+                            <h1>주문하기</h1>
                         </div>
                         <form name="LGD_PAYINFO" id="LGD_PAYINFO" method="post" action="//<?php echo $_SERVER['SERVER_NAME']; ?>:<?php echo $port; ?>/pay/payreq_crossplatform.php">
                         <div class="faq-accordion">
@@ -224,8 +224,8 @@
                                                     <span><i class="fa fa-credit-card"></i> 결제방법 선택:</span>
                                                     <select class="form-control" name="LGD_CUSTOM_USABLEPAY" id="LGD_CUSTOM_USABLEPAY">
                                                         <option value="SC0010">신용카드</option>
-                                                        <option value="SC0030">계좌이체</option>
-                                                        <option value="SC0040">무통장입금</option>
+                                                        <option value="SC0030">실시간 계좌이체</option>
+                                                        <option value="SC0040">무통장입금(가상계좌 발급)</option>
                                                     </select>
                                                 <!-- </div> -->
 

@@ -1358,6 +1358,11 @@ function show_order_list($t_no, $result, $cpage)
             $pro_result = mysqli_query($connect, $pro_sql);
             $pro_row    = mysqli_fetch_array($pro_result);
 
+            // retrieve PG data
+            $pg_sql    = "SELECT * FROM pg_info WHERE LGD_OID='$row[orderid]' ";
+            $pg_result = mysqli_query($connect, $pg_sql);
+            $pg_row    = mysqli_fetch_array($pg_result);
+
             $order_date = $row['createdate'];
 
             if (count($a_goods_fk) > 1) {
@@ -1380,6 +1385,7 @@ function show_order_list($t_no, $result, $cpage)
                 $show_admin_memo = '';
             }
 
+            //취소 시
             if ($row['cancel'] == 'Y') {
                 $status_now = '<i class="fa fa-remove"></i> 주문취소';
                 $total -= $row['last_amount'];
@@ -1398,7 +1404,9 @@ HEREDOC;
 	                      </td>
 	                      <td>{$row['recipient_name']}</td>
 	                      <td> - <br /></td>
-	                      <td>{$status_now}</td>
+                          <td>{$pay_status}</td>
+                          <td>{$status_now}</td>
+                          <td>&nbsp;</td>
 	                      <td><a href="#" onclick="javascript:alert('이미 취소된 주문입니다.')"><i class="fa fa-remove"></i></a></td>
 HEREDOC;
 
@@ -1426,12 +1434,35 @@ HEREDOC;
                 echo $show_admin_memo;
 
                 $show_order_amount = number_format($row['amount']);
+                $pay_status        = get_pg_info2($row['orderid']);
+                $print_receipt     = '';
+
+                if ($row['status'] == '8') {
+
+                    $MERTKEY = 'e57352760ea5a2a1fce315c6ead11ece';
+
+                    $authdata = md5($pg_row['LGD_MID'] . $pg_row['LGD_TID'] . $MERTKEY);
+
+                    // 테스트에는 포트 7085 사용
+                    $print_receipt = '<script language="JavaScript" src="http://pgweb.uplus.co.kr:7085/WEB_SERVER/js/receipt_link.js"></script>';
+
+                    if ($pg_row['LGD_PAYTYPE'] == "SC0010") {
+                        //신용카드 결제일 때
+                        $print_receipt = '<a href="javascript:showReceiptByTID(\'' . $pg_row['LGD_MID'] . '\', \'' . $pg_row['LGD_TID'] . '\', \'' . $authdata . '\')"><i class="fa fa-print"></i></a>';
+                    } elseif ($pg_row['LGD_PAYTYPE'] == "SC0030" || $pg_row['LGD_PAYTYPE'] == "SC0040") {
+                        //계좌이체일 때
+                        $seqno         = "t/t"; //계좌이체는 임의의 정보 입력
+                        $print_receipt = '<a href="javascript:showCashReceipts(\'' . $pg_row['LGD_MID'] . '\',\'' . $pg_row['LGD_OID'] . '\',\'' . $seqno . '\',\'BANK\',\'service\')"><i class="fa fa-print"></i></a>';
+                    }
+                }
 
                 echo <<<HEREDOC
                       </td>
                       <td>{$recipient_name}</td>
                       <td>{$show_order_amount}</td>
+                      <td>{$pay_status}</td>
                       <td>{$status_now}</td>
+                      <td>{$print_receipt}</td>
                       <td><a href="order-delete.php?oid={$row['num']}&amp;page={$cpage}" onclick="return confirm('정말 주문을 취소하시겠습니까?')"><i class="fa fa-remove"></i></a></td>
                     </tr>
 HEREDOC;
@@ -1662,6 +1693,8 @@ function show_buyer_detail($oid)
     $res = mysqli_query($connect, $sql);
     $row = mysqli_fetch_array($res);
 
+    $pay_status = get_pg_info($row['orderid']);
+
     echo <<<HEREDOC
 
 	                    <div class="row">
@@ -1690,7 +1723,8 @@ function show_buyer_detail($oid)
                     <div class="row">
                         <div class="col-sm-3 buyer-info-padding">결제방법</div>
                         <div class="col-sm-9 buyer-info-padding">
-                            {pay_status}
+                            {$pay_status}
+
 HEREDOC;
 //무통장 입금시만 출력
     if ($row['payment_type'] == '3') {
@@ -1699,6 +1733,7 @@ HEREDOC;
                                   {$row['bank']}<br />
                                   (입금자: {$row['account']} / 입금예정일 : {$row['deposit_date']})
                                   </p>
+
 HEREDOC;
     }
 
@@ -1731,6 +1766,7 @@ HEREDOC;
                         <div class="col-sm-3 buyer-info-padding">※ 관리자 메모</div>
                         <div class="col-sm-9 buyer-info-padding">{$memo_from_admin}</div>
                     </div>
+
 HEREDOC;
 }
 
@@ -1985,4 +2021,177 @@ HEREDOC;
 
 HEREDOC;
     }
+}
+
+/**
+ * [get_pg_info 결제상태 보여주기]
+ * @param  [type] $orderid        [주문번호]
+ * @return [type] [description]
+ */
+function get_pg_info($orderid)
+{
+
+    global $host, $dbid, $dbpass, $dbname;
+    $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
+
+    // retrieve PG data
+    $pg_sql    = "SELECT * FROM pg_info WHERE LGD_OID='$orderid' ";
+    $pg_result = mysqli_query($connect, $pg_sql);
+    $pg_row    = mysqli_fetch_array($pg_result);
+
+    $pay_status = '';
+
+    switch ($pg_row['LGD_PAYTYPE']) {
+        case 'SC0040':
+            if ($pg_row['LGD_RESPCODE'] == "0000") {
+                if ($pg_row['LGD_CASFLAG'] == "R") {
+
+                    $pay_status = '<i class="fa fa-university"></i> 계좌할당 : <h4>입금계좌(가상계좌) - ' . $pg_row['LGD_ACCOUNTNUM'] . '</h4>';
+                    $pay_status .= '<p>1) 가상계좌는 일회성 계좌이므로 재사용시(다시 그 계좌로 입금하시는 경우) 타인의 계좌로 입금될 가능성이 있습니다.<br />';
+                    $pay_status .= '이 경우는 고객의 책임이므로 사용에 주의하시기 바랍니다. <br />';
+                    $pay_status .= '2) 가상계좌의 경우 CD기에서 현금입금 하실 수 없습니다.  CD기에서 이체는 가능합니다.</p>';
+
+                } elseif ($pg_row['LGD_CASFLAG'] == "I") {
+                    $pay_status = '<i class="fa fa-check-circle"></i> 입금완료';
+                } elseif ($pg_row['LGD_CASFLAG'] == "C") {
+                    $pay_status = '<i class="fa fa-times-circle"></i> 입금취소';
+                } else {
+                    $pay_status = '<i class="fa fa-exclamation-triangle"></i> 이체실패(' . $pg_row['LGD_RESPCODE'] . ')';
+                }
+            }
+
+            break;
+        case 'SC0030':
+            if ($pg_row['LGD_RESPCODE'] == "0000") {
+                $pay_status = '<i class="fa fa-check-circle"></i> 이체완료';
+            } else {
+                $pay_status = '<i class="fa fa-exclamation-triangle"></i> 이체실패(' . $pg_row['LGD_RESPCODE'] . ')';
+            }
+
+            break;
+
+        case 'SC0010': //SC0010 credit card
+            if ($pg_row['LGD_RESPCODE'] == "0000") {
+                $pay_status = '<i class="fa fa-credit-card"></i> 카드결제 완료';
+            } else {
+                $pay_status = '<i class="fa fa-exclamation-triangle"></i> 결제실패(' . $pg_row['LGD_RESPCODE'] . ')';
+            }
+
+            break;
+    }
+
+    return $pay_status;
+}
+
+/**
+ * [get_pg_info2 주문목록에서 결제상태 보여주기]
+ * @param  [type] $orderid        [주문번호]
+ * @return [type] [description]
+ */
+function get_pg_info2($orderid)
+{
+
+    global $host, $dbid, $dbpass, $dbname;
+    $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
+
+    // retrieve PG data
+    $pg_sql    = "SELECT * FROM pg_info WHERE LGD_OID='$orderid' ";
+    $pg_result = mysqli_query($connect, $pg_sql);
+    $pg_row    = mysqli_fetch_array($pg_result);
+
+    switch ($pg_row['LGD_PAYTYPE']) {
+        case 'SC0040':
+            if ($pg_row['LGD_RESPCODE'] == "0000") {
+                // 계좌할당: R
+                if ("R" == $pg_row['LGD_CASFLAG']) {
+
+                    $bank_finance = array(
+                        '003' => '기업은행',
+                        '005' => '외환은행',
+                        '004' => '국민은행',
+                        '011' => '농협은행',
+                        '020' => '우리은행',
+                        '088' => '신한은행',
+                        '023' => '제일은행',
+                        '027' => '씨티은행',
+                        '031' => '대구은행',
+                        '032' => '부산은행',
+                        '034' => '광주은행',
+                        '037' => '전북은행',
+                        '039' => '경남은행',
+                        '071' => '우체국',
+                        '081' => '하나은행',
+                        '048' => '신협',
+                        '045' => '새마을금고',
+                        '035' => '제주은행',
+                        '007' => '수협',
+                        '002' => '산업은행',
+                        '209' => '동양증권',
+                        '230' => '미래에셋',
+                        '278' => '신한금융투자',
+                        '240' => '삼성증권',
+                        '243' => '한국투자증권',
+                        '269' => '한화증권',
+                    );
+
+                    if ($pg_row['LGD_PAYTYPE'] == "SC0040") {
+                        foreach ($bank_finance as $key => $value) {
+                            if ($pg_row['LGD_FINANCECODE'] == $key) {
+                                $finance_name = $value;
+                            }
+
+                        }
+                    }
+
+                    $pay_status = '<i class="fa fa-university"></i> <button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#myModal">계좌확인</button>';
+                    $pay_status .= '  <div class="modal fade" id="myModal">';
+                    $pay_status .= '    <div class="modal-dialog">';
+                    $pay_status .= '      <div class="modal-content">';
+                    $pay_status .= '        <div class="modal-header">';
+                    $pay_status .= '          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>';
+                    $pay_status .= '          <h4 class="modal-title">계좌확인</h4>';
+                    $pay_status .= '        </div>';
+                    $pay_status .= '        <div class="modal-body">';
+                    $pay_status .= '          <h4 class="alert alert-danger rol="alert">입금하실 가상계좌 - ' . $finance_name . ': ' . $pg_row['LGD_ACCOUNTNUM'] . '</h4>';
+                    $pay_status .= '          <p>1) 가상계좌는 일회성 계좌이므로 재사용시(다시 그 계좌로 입금하시는 경우) 타인의 계좌로 입금될 가능성이 있습니다.<br />';
+                    $pay_status .= '             이 경우는 고객의 책임이므로 사용에 주의하시기 바랍니다. <br />';
+                    $pay_status .= '             2) 가상계좌의 경우 CD기에서 현금입금 하실 수 없습니다.  CD기에서 이체는 가능합니다.</p>';
+                    $pay_status .= '        </div>';
+                    $pay_status .= '        <div class="modal-footer">';
+                    $pay_status .= '          <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>';
+                    $pay_status .= '        </div>';
+                    $pay_status .= '      </div>'; //<!-- /.modal-content -->
+                    $pay_status .= '    </div>'; //<!-- /.modal-dialog -->
+                    $pay_status .= '  </div>'; //<!-- /.modal -->
+
+                } elseif ($pg_row['LGD_CASFLAG'] == "I") {
+                    $pay_status = '<i class="fa fa-check-circle"></i> 입금완료';
+                } elseif ($pg_row['LGD_CASFLAG'] == "C") {
+                    $pay_status = '<i class="fa fa-times-circle"></i> 입금취소';
+                } else {
+                    $pay_status = '<i class="fa fa-exclamation-triangle"></i> 이체실패(' . $pg_row['LGD_RESPCODE'] . ')';
+                }
+            }
+
+            break;
+        case 'SC0030':
+            if ($pg_row['LGD_RESPCODE'] == "0000") {
+                $pay_status = '<i class="fa fa-check-circle"></i> 이체완료';
+            } else {
+                $pay_status = '<i class="fa fa-exclamation-triangle"></i> 이체실패(' . $pg_row['LGD_RESPCODE'] . ')';
+            }
+
+            break;
+
+        default: //SC0010 credit card
+            if ($pg_row['LGD_RESPCODE'] == "0000") {
+                $pay_status = '<i class="fa fa-credit-card"></i> 카드결제 완료';
+            } else {
+                $pay_status = '<i class="fa fa-exclamation-triangle"></i> 결제실패(' . $pg_row['LGD_RESPCODE'] . ')';
+            }
+
+            break;
+    }
+
+    return $pay_status;
 }

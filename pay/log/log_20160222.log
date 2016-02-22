@@ -67,3 +67,42 @@
 2016-02-22 17:04:57 [FATAL] [tshinsoo-012016022217045708922ee53420cae819673ae24f68b62bf84471c3] TX failed: res code = 20101; msg = SSL error; cURL error code = 77 msg = error setting certificate verify locations:
   CAfile: ../lgpay//conf/ca-bundle.crt
   CApath: none
+2016-02-22 19:25:51 [INFO ] [] XPayClient initialize [../lgpay/] [test]
+2016-02-22 19:25:51 [DEBUG] [] Config [server_id] = [01]
+2016-02-22 19:25:51 [DEBUG] [] Config [timeout] = [60]
+2016-02-22 19:25:51 [DEBUG] [] Config [log_level] = [4]
+2016-02-22 19:25:51 [DEBUG] [] Config [verify_cert] = [1]
+2016-02-22 19:25:51 [DEBUG] [] Config [verify_host] = [1]
+2016-02-22 19:25:51 [DEBUG] [] Config [report_error] = [1]
+2016-02-22 19:25:51 [DEBUG] [] Config [output_UTF8] = [1]
+2016-02-22 19:25:51 [DEBUG] [] Config [auto_rollback] = [1]
+2016-02-22 19:25:51 [DEBUG] [] Config [log_dir] = [./log]
+2016-02-22 19:25:51 [DEBUG] [] Config [tshinsoo] = [e57352760ea5a2a1fce315c6ead11ece]
+2016-02-22 19:25:51 [DEBUG] [] Config [shinsoo] = [e57352760ea5a2a1fce315c6ead11ece]
+2016-02-22 19:25:51 [DEBUG] [] Config [url] = [https://xpayclient.lgdacom.net/xpay/Gateway.do]
+2016-02-22 19:25:51 [DEBUG] [] Config [test_url] = [https://xpayclient.lgdacom.net:7443/xpay/Gateway.do]
+2016-02-22 19:25:51 [DEBUG] [] Config [aux_url] = [http://xpayclient.lgdacom.net:7080/xpay/Gateway.do]
+2016-02-22 19:26:31 [INFO ] [] XPayClient initialize [../lgpay/] [test]
+2016-02-22 19:26:31 [DEBUG] [] Config [server_id] = [01]
+2016-02-22 19:26:31 [DEBUG] [] Config [timeout] = [60]
+2016-02-22 19:26:31 [DEBUG] [] Config [log_level] = [4]
+2016-02-22 19:26:31 [DEBUG] [] Config [verify_cert] = [1]
+2016-02-22 19:26:31 [DEBUG] [] Config [verify_host] = [1]
+2016-02-22 19:26:31 [DEBUG] [] Config [report_error] = [1]
+2016-02-22 19:26:31 [DEBUG] [] Config [output_UTF8] = [1]
+2016-02-22 19:26:31 [DEBUG] [] Config [auto_rollback] = [1]
+2016-02-22 19:26:31 [DEBUG] [] Config [log_dir] = [./log]
+2016-02-22 19:26:31 [DEBUG] [] Config [tshinsoo] = [e57352760ea5a2a1fce315c6ead11ece]
+2016-02-22 19:26:31 [DEBUG] [] Config [shinsoo] = [e57352760ea5a2a1fce315c6ead11ece]
+2016-02-22 19:26:31 [DEBUG] [] Config [url] = [https://xpayclient.lgdacom.net/xpay/Gateway.do]
+2016-02-22 19:26:31 [DEBUG] [] Config [test_url] = [https://xpayclient.lgdacom.net:7443/xpay/Gateway.do]
+2016-02-22 19:26:31 [DEBUG] [] Config [aux_url] = [http://xpayclient.lgdacom.net:7080/xpay/Gateway.do]
+2016-02-22 19:26:31 [DEBUG] [tshinsoo-012016022219263160648e6939424eedc3950a84e3343bbd9e4fd01f] Post [LGD_TXID] = [tshinsoo-012016022219263160648e6939424eedc3950a84e3343bbd9e4fd01f]
+2016-02-22 19:26:31 [DEBUG] [tshinsoo-012016022219263160648e6939424eedc3950a84e3343bbd9e4fd01f] Post [LGD_AUTHCODE] = [5f327dfec60c721311773decde8e7d0139ba9aed]
+2016-02-22 19:26:31 [DEBUG] [tshinsoo-012016022219263160648e6939424eedc3950a84e3343bbd9e4fd01f] Post [LGD_MID] = [tshinsoo]
+2016-02-22 19:26:31 [DEBUG] [tshinsoo-012016022219263160648e6939424eedc3950a84e3343bbd9e4fd01f] Post [LGD_TXNAME] = [PaymentByKey]
+2016-02-22 19:26:31 [DEBUG] [tshinsoo-012016022219263160648e6939424eedc3950a84e3343bbd9e4fd01f] Post [LGD_PAYKEY] = [201602221926256EB52CE93B3A647754E0181AD4268F12A892BA05]
+2016-02-22 19:26:31 [DEBUG] [tshinsoo-012016022219263160648e6939424eedc3950a84e3343bbd9e4fd01f] post_string = LGD_TXID=tshinsoo-012016022219263160648e6939424eedc3950a84e3343bbd9e4fd01f&LGD_AUTHCODE=5f327dfec60c721311773decde8e7d0139ba9aed&LGD_MID=tshinsoo&LGD_TXNAME=PaymentByKey&LGD_PAYKEY=201602221926256EB52CE93B3A647754E0181AD4268F12A892BA05
+2016-02-22 19:26:31 [FATAL] [tshinsoo-012016022219263160648e6939424eedc3950a84e3343bbd9e4fd01f] TX failed: res code = 20101; msg = SSL error; cURL error code = 77 msg = error setting certificate verify locations:
+  CAfile: ../lgpay//conf/ca-bundle.crt
+  CApath: none
