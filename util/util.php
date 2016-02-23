@@ -1464,29 +1464,29 @@ function get_pg_info($orderid)
                     $pay_status .= '2) 가상계좌의 경우 CD기에서 현금입금 하실 수 없습니다.  CD기에서 이체는 가능합니다.</p>';
 
                 } elseif ($pg_row['LGD_CASFLAG'] == "I") {
-                    $pay_status = '<i class="fa fa-check-circle"></i> 입금완료';
+                    $pay_status = '<i class="fa fa-check-circle pay-color"></i> 입금완료';
                 } elseif ($pg_row['LGD_CASFLAG'] == "C") {
                     $pay_status = '<i class="fa fa-times-circle"></i> 입금취소';
                 } else {
-                    $pay_status = '<i class="fa fa-exclamation-triangle"></i> 입금실패(' . $pg_row['LGD_RESPCODE'] . ')';
+                    $pay_status = '<i class="fa fa-exclamation-triangle fail-color"></i> 입금실패(' . $pg_row['LGD_RESPCODE'] . ')';
                 }
             }
 
             break;
         case 'SC0030':
             if ($pg_row['LGD_RESPCODE'] == "0000") {
-                $pay_status = '<i class="fa fa-check-circle"></i> 이체완료';
+                $pay_status = '<i class="fa fa-check-circle pay-color"></i> 이체완료';
             } else {
-                $pay_status = '<i class="fa fa-exclamation-triangle"></i> 이체실패(' . $pg_row['LGD_RESPCODE'] . ')';
+                $pay_status = '<i class="fa fa-exclamation-triangle fail-color"></i> 이체실패(' . $pg_row['LGD_RESPCODE'] . ')';
             }
 
             break;
 
         case 'SC0010': //SC0010 credit card
             if ($pg_row['LGD_RESPCODE'] == "0000") {
-                $pay_status = '<i class="fa fa-credit-card"></i> 카드결제 완료';
+                $pay_status = '<i class="fa fa-credit-card pay-color"></i> 카드결제 완료';
             } else {
-                $pay_status = '<i class="fa fa-exclamation-triangle"></i> 결제실패(' . $pg_row['LGD_RESPCODE'] . ')';
+                $pay_status = '<i class="fa fa-exclamation-triangle fail-color"></i> 결제실패(' . $pg_row['LGD_RESPCODE'] . ')';
             }
 
             break;
@@ -1575,15 +1575,15 @@ function get_pg_info2($orderid)
                     $pay_status .= '          <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>';
                     $pay_status .= '        </div>';
                     $pay_status .= '      </div>'; //<!-- /.modal-content -->
-                    $pay_status .= '    </div>';   //<!-- /.modal-dialog -->
-                    $pay_status .= '  </div>';     //<!-- /.modal -->
+                    $pay_status .= '    </div>'; //<!-- /.modal-dialog -->
+                    $pay_status .= '  </div>'; //<!-- /.modal -->
 
                 } elseif ($pg_row['LGD_CASFLAG'] == "I") {
-                    $pay_status = '<i class="fa fa-check-circle"></i> 입금완료';
+                    $pay_status = '<i class="fa fa-check-circle pay-color"></i> 입금완료';
                 } elseif ($pg_row['LGD_CASFLAG'] == "C") {
                     $pay_status = '<i class="fa fa-times-circle"></i> 입금취소';
                 } else {
-                    $pay_status = '<i class="fa fa-exclamation-triangle"></i> 이체실패(' . $pg_row['LGD_RESPCODE'] . ')';
+                    $pay_status = '<i class="fa fa-exclamation-triangle"></i> 입금실패(' . $pg_row['LGD_RESPCODE'] . ')';
                 }
             }
 
@@ -1614,9 +1614,9 @@ function get_pg_info2($orderid)
             }
 
             if ($pg_row['LGD_RESPCODE'] == "0000") {
-                $pay_status = '<i class="fa fa-check-circle"></i> 이체완료';
+                $pay_status = '<i class="fa fa-check-circle pay-color"></i> 이체완료';
             } else {
-                $pay_status = '<i class="fa fa-exclamation-triangle"></i> 이체실패(' . $pg_row['LGD_RESPCODE'] . ')';
+                $pay_status = '<i class="fa fa-exclamation-triangle fail-color"></i> 이체실패(' . $pg_row['LGD_RESPCODE'] . ')';
             }
 
             break;
@@ -1661,9 +1661,9 @@ function get_pg_info2($orderid)
             }
 
             if ($pg_row['LGD_RESPCODE'] == "0000") {
-                $pay_status = '<i class="fa fa-credit-card"></i> 카드결제 완료';
+                $pay_status = '<i class="fa fa-credit-card pay-color"></i> 카드결제 완료';
             } else {
-                $pay_status = '<i class="fa fa-exclamation-triangle"></i> 결제실패(' . $pg_row['LGD_RESPCODE'] . ')';
+                $pay_status = '<i class="fa fa-exclamation-triangle fail-color"></i> 결제실패(' . $pg_row['LGD_RESPCODE'] . ')';
             }
 
             break;
@@ -1674,8 +1674,8 @@ function get_pg_info2($orderid)
 
 /**
  * [show_pay_data 결제수단 데이터 보여주기]
- * @param  [type] $orderid [주문번호]
- * @return [type]          [description]
+ * @param  [type] $orderid        [주문번호]
+ * @return [type] [description]
  */
 function show_pay_data($orderid)
 {

@@ -136,3 +136,15 @@ custom style
 .pay-data {
     margin: 10px;
 }
+
+.fail-color {
+    color: #F44336;
+}
+
+.pay-color {
+    color: #4CAF50;
+}
+
+.memo-color {
+    color: #795548;
+}

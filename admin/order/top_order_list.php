@@ -351,7 +351,7 @@
 	        if ($row['cancel'] == 'Y') {
 	            $c_color    = '#EBEBEB';
 	            $status_now = "주문취소";
-	                                           //$o_total -= $row['amount'];
+	            //$o_total -= $row['amount'];
 	            $total -= $row['last_amount']; //취소에 따른 합계금액차감
             ?>
 					          <tr bgcolor="<?php echo $c_color; ?>">
@@ -367,7 +367,7 @@
 	            }
 
 	            if ($row['memo_to_admin']) {
-	                echo '<i class="fa fa-envelope pop" data-toggle="popover" data-container="body" title="담당자에게 요청사항" data-content="' . $row['memo_to_admin'] . '"></i>';
+	                echo ' <i class="fa fa-envelope pop memo-color" data-toggle="popover" data-container="body" title="담당자에게 요청사항" data-content="' . $row['memo_to_admin'] . '"></i>';
 	            }
             ?>
 								</td>
@@ -428,7 +428,7 @@
 	            }
 
 	            if ($row['memo_to_admin']) {
-	                echo '<i class="fa fa-envelope pop" data-toggle="popover" data-container="body" title="담당자에게 요청사항" data-content="' . $row['memo_to_admin'] . '"></i>';
+	                echo ' <i class="fa fa-envelope pop memo-color" data-toggle="popover" data-container="body" title="담당자에게 요청사항" data-content="' . $row['memo_to_admin'] . '"></i>';
 	            }
             ?>
 								</td>
@@ -477,8 +477,7 @@
 	            $o_total += $row['amount'];
 	            $total += $row['last_amount'];
 	        } // else end
-	    }
-	    ; // for loop end
+	    } // for loop end
     ?>
 					          <tr>
 					            <td colspan="4"><strong>총합:</strong></td>
