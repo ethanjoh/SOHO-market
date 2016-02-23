@@ -32,6 +32,7 @@ $info     = mysqli_fetch_array($info_res);
     <link href="/admin/css/style.css" rel="stylesheet">
     <link href="/admin/css/style-responsive.css" rel="stylesheet" />
     <link href="/admin/css/jquery-ui.min.css" rel="stylesheet">
+    <link href="/css/myshop.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
     <!--[if lt IE 9]>

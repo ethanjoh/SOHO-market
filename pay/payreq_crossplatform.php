@@ -18,14 +18,14 @@
 	 * 기본정보를 변경하여 주시기 바랍니다.(파라미터 전달시 POST를 사용하세요)
 	 */
 
-	$CST_PLATFORM = $_POST["CST_PLATFORM"]; //LG유플러스 결제 서비스 선택(test:테스트, service:서비스)
-	$CST_MID      = $_POST["CST_MID"]; //상점아이디(LG유플러스으로 부터 발급받으신 상점아이디를 입력하세요)
-	//테스트 아이디는 't'를 반드시 제외하고 입력하세요.
+	$CST_PLATFORM = $_POST["CST_PLATFORM"];                               //LG유플러스 결제 서비스 선택(test:테스트, service:서비스)
+	$CST_MID      = $_POST["CST_MID"];                                    //상점아이디(LG유플러스으로 부터 발급받으신 상점아이디를 입력하세요)
+	                                                                      //테스트 아이디는 't'를 반드시 제외하고 입력하세요.
 	$LGD_MID         = (("test" == $CST_PLATFORM) ? "t" : "") . $CST_MID; //상점아이디(자동생성)
-	$LGD_OID         = $_POST["LGD_OID"]; //주문번호(상점정의 유니크한 주문번호를 입력하세요)
-	$LGD_AMOUNT      = $_POST["LGD_AMOUNT"]; //결제금액("," 를 제외한 결제금액을 입력하세요)
-	$LGD_BUYER       = $_POST["LGD_BUYER"]; //구매자명
-	$LGD_PRODUCTINFO = $_POST["LGD_PRODUCTINFO"]; //상품명
+	$LGD_OID         = $_POST["LGD_OID"];                                 //주문번호(상점정의 유니크한 주문번호를 입력하세요)
+	$LGD_AMOUNT      = $_POST["LGD_AMOUNT"];                              //결제금액("," 를 제외한 결제금액을 입력하세요)
+	$LGD_BUYER       = $_POST["LGD_BUYER"];                               //구매자명
+	$LGD_PRODUCTINFO = $_POST["LGD_PRODUCTINFO"];                         //상품명
 
 	// 제품명 표시
 	if (count($LGD_PRODUCTINFO) > 1) {
@@ -36,16 +36,16 @@
 	    // $LGD_PRODUCTINFO = iconv("EUC-KR", "UTF-8", $LGD_PRODUCTINFO);
 	}
 
-	$LGD_BUYEREMAIL           = $_POST["LGD_BUYEREMAIL"]; //구매자 이메일
-	$LGD_CUSTOM_FIRSTPAY      = $_POST["LGD_CUSTOM_FIRSTPAY"]; //상점정의 초기결제수단
-	$LGD_TIMESTAMP            = date('YmdHms'); //타임스탬프
-	$LGD_CUSTOM_SKIN          = "red"; //상점정의 결제창 스킨
-	$LGD_CUSTOM_USABLEPAY     = $_POST["LGD_CUSTOM_USABLEPAY"]; //디폴트 결제수단 (해당 필드를 보내지 않으면 결제수단 선택 UI 가 노출됩니다.)
-	$LGD_WINDOW_VER           = "2.5"; //결제창 버젼정보
-	$LGD_WINDOW_TYPE          = $_POST["LGD_WINDOW_TYPE"]; //결제창 호출방식 (수정불가)
+	$LGD_BUYEREMAIL           = $_POST["LGD_BUYEREMAIL"];           //구매자 이메일
+	$LGD_CUSTOM_FIRSTPAY      = $_POST["LGD_CUSTOM_FIRSTPAY"];      //상점정의 초기결제수단
+	$LGD_TIMESTAMP            = date('YmdHms');                     //타임스탬프
+	$LGD_CUSTOM_SKIN          = "red";                              //상점정의 결제창 스킨
+	$LGD_CUSTOM_USABLEPAY     = $_POST["LGD_CUSTOM_USABLEPAY"];     //디폴트 결제수단 (해당 필드를 보내지 않으면 결제수단 선택 UI 가 노출됩니다.)
+	$LGD_WINDOW_VER           = "2.5";                              //결제창 버젼정보
+	$LGD_WINDOW_TYPE          = $_POST["LGD_WINDOW_TYPE"];          //결제창 호출방식 (수정불가)
 	$LGD_CUSTOM_SWITCHINGTYPE = $_POST["LGD_CUSTOM_SWITCHINGTYPE"]; //신용카드 카드사 인증 페이지 연동 방식 (수정불가)
-	$configPath               = "../lgpay/"; //LG유플러스에서 제공한 환경파일("/conf/lgdacom.conf") 위치 지정.
-	$LGD_CUSTOM_PROCESSTYPE   = "TWOTR"; //수정불가
+	$configPath               = "../lgpay";                         //LG유플러스에서 제공한 환경파일("/conf/lgdacom.conf") 위치 지정.
+	$LGD_CUSTOM_PROCESSTYPE   = "TWOTR";                            //수정불가
 	/*
 	 * 가상계좌(무통장) 결제 연동을 하시는 경우 아래 LGD_CASNOTEURL 을 설정하여 주시기 바랍니다.
 	 */
@@ -84,26 +84,26 @@
 	 *************************************************
 	 */
 
-	$payReqMap['CST_PLATFORM']             = $CST_PLATFORM; // 테스트, 서비스 구분
-	$payReqMap['LGD_WINDOW_TYPE']          = $LGD_WINDOW_TYPE; // 수정불가
-	$payReqMap['CST_MID']                  = $CST_MID; // 상점아이디
-	$payReqMap['LGD_MID']                  = $LGD_MID; // 상점아이디
-	$payReqMap['LGD_OID']                  = $LGD_OID; // 주문번호
-	$payReqMap['LGD_BUYER']                = $LGD_BUYER; // 구매자
-	$payReqMap['LGD_PRODUCTINFO']          = $LGD_PRODUCTINFO; // 상품정보
-	$payReqMap['LGD_AMOUNT']               = $LGD_AMOUNT; // 결제금액
-	$payReqMap['LGD_BUYEREMAIL']           = $LGD_BUYEREMAIL; // 구매자 이메일
-	$payReqMap['LGD_CUSTOM_SKIN']          = $LGD_CUSTOM_SKIN; // 결제창 SKIN
-	$payReqMap['LGD_CUSTOM_PROCESSTYPE']   = $LGD_CUSTOM_PROCESSTYPE; // 트랜잭션 처리방식
-	$payReqMap['LGD_TIMESTAMP']            = $LGD_TIMESTAMP; // 타임스탬프
-	$payReqMap['LGD_HASHDATA']             = $LGD_HASHDATA; // MD5 해쉬암호값
-	$payReqMap['LGD_RETURNURL']            = $LGD_RETURNURL; // 응답수신페이지
-	$payReqMap['LGD_VERSION']              = "PHP_2.5"; // 버전정보 (삭제하지 마세요)
-	$payReqMap['LGD_CUSTOM_USABLEPAY']     = $LGD_CUSTOM_USABLEPAY; // 디폴트 결제수단
+	$payReqMap['CST_PLATFORM']             = $CST_PLATFORM;             // 테스트, 서비스 구분
+	$payReqMap['LGD_WINDOW_TYPE']          = $LGD_WINDOW_TYPE;          // 수정불가
+	$payReqMap['CST_MID']                  = $CST_MID;                  // 상점아이디
+	$payReqMap['LGD_MID']                  = $LGD_MID;                  // 상점아이디
+	$payReqMap['LGD_OID']                  = $LGD_OID;                  // 주문번호
+	$payReqMap['LGD_BUYER']                = $LGD_BUYER;                // 구매자
+	$payReqMap['LGD_PRODUCTINFO']          = $LGD_PRODUCTINFO;          // 상품정보
+	$payReqMap['LGD_AMOUNT']               = $LGD_AMOUNT;               // 결제금액
+	$payReqMap['LGD_BUYEREMAIL']           = $LGD_BUYEREMAIL;           // 구매자 이메일
+	$payReqMap['LGD_CUSTOM_SKIN']          = $LGD_CUSTOM_SKIN;          // 결제창 SKIN
+	$payReqMap['LGD_CUSTOM_PROCESSTYPE']   = $LGD_CUSTOM_PROCESSTYPE;   // 트랜잭션 처리방식
+	$payReqMap['LGD_TIMESTAMP']            = $LGD_TIMESTAMP;            // 타임스탬프
+	$payReqMap['LGD_HASHDATA']             = $LGD_HASHDATA;             // MD5 해쉬암호값
+	$payReqMap['LGD_RETURNURL']            = $LGD_RETURNURL;            // 응답수신페이지
+	$payReqMap['LGD_VERSION']              = "PHP_2.5";                 // 버전정보 (삭제하지 마세요)
+	$payReqMap['LGD_CUSTOM_USABLEPAY']     = $LGD_CUSTOM_USABLEPAY;     // 디폴트 결제수단
 	$payReqMap['LGD_CUSTOM_SWITCHINGTYPE'] = $LGD_CUSTOM_SWITCHINGTYPE; // 신용카드 카드사 인증 페이지 연동 방식
 	$payReqMap['LGD_WINDOW_VER']           = $LGD_WINDOW_VER;
 
-	// 가상계좌(무통장) 결제연동을 하시는 경우  할당/입금 결과를 통보받기 위해 반드시 LGD_CASNOTEURL 정보를 LG 유플러스에 전송해야 합니다 .
+	                                                // 가상계좌(무통장) 결제연동을 하시는 경우  할당/입금 결과를 통보받기 위해 반드시 LGD_CASNOTEURL 정보를 LG 유플러스에 전송해야 합니다 .
 	$payReqMap['LGD_CASNOTEURL'] = $LGD_CASNOTEURL; // 가상계좌 NOTEURL
 
 	//Return URL에서 인증 결과 수신 시 셋팅될 파라미터 입니다.*/
@@ -193,9 +193,7 @@
 	foreach ($payReqMap as $key => $value) {
 	    echo "                         <input type='hidden' name='" . $key . "' id='" . $key . "' value='" . $value . "''>\n";
 	}
-	// echo '<pre>';
-	// var_dump($_SESSION);
-	// echo '</pre>';
+	; // echo '<pre>';; // var_dump($_SESSION);; // echo '</pre>';
 ?>
 
                         </form>

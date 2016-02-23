@@ -132,3 +132,7 @@ custom style
 .payinfo-button {
     text-align: center;
 }
+
+.pay-data {
+    margin: 10px;
+}

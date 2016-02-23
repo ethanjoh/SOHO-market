@@ -5,7 +5,7 @@
                 <div class="row">
                     <div class="col-md-9 col-sm-9">
                         <div class="check">
-                            <h1>주문하기</h1>
+                            <h1>주문서 작성</h1>
                         </div>
                         <form name="LGD_PAYINFO" id="LGD_PAYINFO" method="post" action="//<?php echo $_SERVER['SERVER_NAME']; ?>:<?php echo $port; ?>/pay/payreq_crossplatform.php">
                         <div class="faq-accordion">

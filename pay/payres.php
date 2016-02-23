@@ -31,7 +31,7 @@
 	 * LG유플러스으로 부터 내려받은 LGD_PAYKEY(인증Key)를 가지고 최종 결제요청.(파라미터 전달시 POST를 사용하세요)
 	 */
 
-	$configPath = "../lgpay/"; //LG유플러스에서 제공한 환경파일("/conf/lgdacom.conf,/conf/mall.conf") 위치 지정.
+	$configPath = "../lgpay"; //LG유플러스에서 제공한 환경파일("/conf/lgdacom.conf,/conf/mall.conf") 위치 지정.
 
 	/*
 	 *************************************************
@@ -206,7 +206,7 @@ HEREDOC;
 	        //최종결제요청 결과 성공 DB처리
 	        require_once 'save_pginfo_to_db.php';
 
-	        //최종결제요청 결과 성공 DB처리 실패시 Rollback 처리
+	                        //최종결제요청 결과 성공 DB처리 실패시 Rollback 처리
 	        $isDBOK = true; //DB처리 실패시 false로 변경해 주세요.
 	        if (!$isDBOK) {
 	            echo "<p>";
@@ -233,11 +233,11 @@ HEREDOC;
                             <table class="table table-striped">
                                 <tr>
                                     <th>결과코드 :</th>
-                                    <td>{$LGD_RESPCODE}</td>
+                                    <td>{$xpay->Response_Code()}</td>
                                 </tr>
                                 <tr>
                                     <th>결과메세지 :</th>
-                                    <td>{$LGD_RESPMSG}</td>
+                                    <td>{$xpay->Response_Msg()}</td>
                                 </tr>
                             </table>
                         </div>
