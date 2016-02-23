@@ -1486,7 +1486,7 @@ HEREDOC;
 
         echo <<<HEREDOC
                     <tr>
-                      <td class="text-center" colspan="6"><div class="alert alert-danger"><h3>해당 주문내역이 없습니다.</h3></div></td>
+                      <td class="text-center" colspan="8"><div class="alert alert-danger"><h3>해당 주문내역이 없습니다.</h3></div></td>
                     </tr>
 HEREDOC;
 

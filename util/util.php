@@ -1805,13 +1805,13 @@ function show_pay_data($orderid)
 
     echo <<<HEREDOC
                                  <ul class="pay-data">
-                                    <li>응답코드: {$pg_row['LGD_RESPCODE']}</li>
-                                    <li>응답메시지: {$pg_row['LGD_RESPMSG']}</li>
-                                    <li>거래일시: {$pg_row['LGD_PAYDATE']}</li>
-                                    <li>결제기관 코드: {$pg_row['LGD_FINANCECODE']} - {$finance_name}</li>
-                                    <li>결제기관 이름: {$pg_row['LGD_FINANCENAME']}</li>
-                                    <li>결제기관 승인번호: {$pg_row['LGD_FINANCEAUTHNUM']}</li>
-                                    <li>카드번호: {$pg_row['LGD_CARDNUM']}</li>
+                                    <li><i class="fa fa-angle-right"></i> 응답코드: {$pg_row['LGD_RESPCODE']}</li>
+                                    <li><i class="fa fa-angle-right"></i> 응답메시지: {$pg_row['LGD_RESPMSG']}</li>
+                                    <li><i class="fa fa-angle-right"></i> 거래일시: {$pg_row['LGD_PAYDATE']}</li>
+                                    <li><i class="fa fa-angle-right"></i> 결제기관 코드: {$pg_row['LGD_FINANCECODE']} - {$finance_name}</li>
+                                    <li><i class="fa fa-angle-right"></i> 결제기관 이름: {$pg_row['LGD_FINANCENAME']}</li>
+                                    <li><i class="fa fa-angle-right"></i> 결제기관 승인번호: {$pg_row['LGD_FINANCEAUTHNUM']}</li>
+                                    <li><i class="fa fa-angle-right"></i> 카드번호: {$pg_row['LGD_CARDNUM']}</li>
                                   </ul>
 HEREDOC;
 }
