@@ -885,6 +885,13 @@ function page_avg($totalpage, $cpage, $url)
     }
 }
 
+/**
+ * [page_nav 페이지 표시]
+ * @param  [type] $totalpage      [description]
+ * @param  [type] $cpage          [description]
+ * @param  [type] $url            [description]
+ * @return [type] [description]
+ */
 function page_nav($totalpage, $cpage, $url)
 {
     $pagenumber = null;

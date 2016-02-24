@@ -1,65 +1,66 @@
 <?php include_once '../include/header.php';?>
 
 <?php
-$mode     = set_var($_GET['mode']);
-$code     = set_var($_GET['code']);
-$page     = set_var($_GET['page']);
-$main_no  = set_var($_POST['main_no']);
-$reply_no = set_var($_POST['reply_no']);
 
-$p_id   = set_var($_SESSION['p_id']);
-$p_name = set_var($_SESSION['p_name']);
+	$mode     = set_var($_GET['mode']);
+	$code     = set_var($_GET['code']);
+	$page     = set_var($_GET['page']);
+	$main_no  = set_var($_POST['main_no']);
+	$reply_no = set_var($_POST['reply_no']);
 
-$s_sql = '';
+	$p_id   = set_var($_SESSION['p_id']);
+	$p_name = set_var($_SESSION['p_name']);
 
-if ("search" == $mode) {
-    switch ($key) {
-        case 'title':
-            $s_sql .= " AND title LIKE '%$keyword%' ";
-            break;
+	$s_sql = '';
 
-        case 'contents':
-            $s_sql .= " AND contents LIKE '%$keyword%' ";
-            break;
+	if ("search" == $mode) {
+	    switch ($key) {
+	        case 'title':
+	            $s_sql .= " AND title LIKE '%$keyword%' ";
+	            break;
 
-        case 'name':
-            $s_sql .= " AND name LIKE '%$keyword%' ";
-            break;
-    }
-}
+	        case 'contents':
+	            $s_sql .= " AND contents LIKE '%$keyword%' ";
+	            break;
 
-//게시판 코드값을 가져온다.
-if ($code) {
-    //게시판 코드에서 readable 속성 추출
-    $bqry = "SELECT * FROM code WHERE code='$code' ";
-    $bres = mysqli_query($connect, $bqry);
-    $brow = mysqli_fetch_array($bres);
+	        case 'name':
+	            $s_sql .= " AND name LIKE '%$keyword%' ";
+	            break;
+	    }
+	}
 
-    $board = 'bbs_' . $code;
+	//게시판 코드값을 가져온다.
+	if ($code) {
+	    //게시판 코드에서 readable 속성 추출
+	    $bqry = "SELECT * FROM code WHERE code='$code' ";
+	    $bres = mysqli_query($connect, $bqry);
+	    $brow = mysqli_fetch_array($bres);
 
-    $readable = $brow['readable'];
-    $writable = $brow['writable'];
+	    $board = 'bbs_' . $code;
 
-    //해당 아이디 사용자의 글만 추출
-    // if ($readable == 'E' && 'admin' != $p_id) {
-    //     $sql = "SELECT * FROM $board WHERE (id='$p_id' OR id='admin') $s_sql ORDER BY main_no DESC ";
-    // } else {
-    //     $sql = "SELECT * FROM $board WHERE 1 $s_sql ORDER BY main_no DESC";
-    // }
+	    $readable = $brow['readable'];
+	    $writable = $brow['writable'];
 
-    $sql    = "SELECT * FROM $board ORDER BY main_no DESC";
-    $result = mysqli_query($connect, $sql);
-    //테이블에 있는 총 갯수를 가져온다.
-    if ($result) {
-        $total = mysqli_num_rows($result);
-    } else {
-        $total = 0;
-    }
+	    //해당 아이디 사용자의 글만 추출
+	    // if ($readable == 'E' && 'admin' != $p_id) {
+	    //     $sql = "SELECT * FROM $board WHERE (id='$p_id' OR id='admin') $s_sql ORDER BY main_no DESC ";
+	    // } else {
+	    //     $sql = "SELECT * FROM $board WHERE 1 $s_sql ORDER BY main_no DESC";
+	    // }
 
-} else {
-    err_msg('선택한 게시판이 없습니다.', 1);
-    exit;
-}
+	    $sql    = "SELECT * FROM $board ORDER BY main_no DESC";
+	    $result = mysqli_query($connect, $sql);
+	    //테이블에 있는 총 갯수를 가져온다.
+	    if ($result) {
+	        $total = mysqli_num_rows($result);
+	    } else {
+	        $total = 0;
+	    }
+
+	} else {
+	    err_msg('선택한 게시판이 없습니다.', 1);
+	    exit;
+	}
 ?>
 
     <!-- HOME -->
@@ -73,34 +74,34 @@ if ($code) {
 
 <?php
 
-$scale = 20;
-if ($page == '') {
-    $page = 1;
-}
+	$scale = 20;
+	if ($page == '') {
+	    $page = 1;
+	}
 
-$cpage     = intval($page);
-$totalpage = intval($total / $scale);
+	$cpage     = intval($page);
+	$totalpage = intval($total / $scale);
 
-if ($totalpage * $scale != $total) {
-    $totalpage = $totalpage + 1;
-}
+	if ($totalpage * $scale != $total) {
+	    $totalpage = $totalpage + 1;
+	}
 
-if ($cpage == 1) {
-    $cline = 0;
-} else {
-    $cline = ($cpage * $scale) - $scale;
-}
+	if ($cpage == 1) {
+	    $cline = 0;
+	} else {
+	    $cline = ($cpage * $scale) - $scale;
+	}
 
-$limit = $cline + $scale;
+	$limit = $cline + $scale;
 
-if ($limit >= $total) {
-    $limit = $total;
-}
+	if ($limit >= $total) {
+	    $limit = $total;
+	}
 
-$scale1 = $limit - $cline;
+	$scale1 = $limit - $cline;
 
-// not logged in status
-// if (!$p_id) {
+	// not logged in status
+	// if (!$p_id) {
 ?>
 
         <!-- CONTAINER -->
@@ -114,8 +115,8 @@ $scale1 = $limit - $cline;
             <!-- row -->
 
 <?php
-// logged in status
-// } else {
+	// logged in status
+	// } else {
 
 ;?>
 
@@ -131,9 +132,9 @@ $scale1 = $limit - $cline;
                             <tr>
 <?php
 
-if ('admin' == $p_id) {
-    echo '<th>선택</th>';
-}
+	if ('admin' == $p_id) {
+	    echo '<th>선택</th>';
+	}
 ?>
                                 <th>번호</th>
                                 <th>제 목</th>
@@ -146,13 +147,13 @@ if ('admin' == $p_id) {
 
 <?php
 
-// 만약 검색 결과가 없다면,
-if ($total == 0) {
-    if ('admin' == $p_id) {
-        $num = 6;
-    } else {
-        $num = 5;
-    }
+	// 만약 검색 결과가 없다면,
+	if ($total == 0) {
+	    if ('admin' == $p_id) {
+	        $num = 6;
+	    } else {
+	        $num = 5;
+	    }
     ?>
 
                             <tr>
@@ -161,61 +162,61 @@ if ($total == 0) {
 
 <?php
 
-} else {
-    if ('admin' == $p_id) {
-        $num = 6;
-    } else {
-        $num = 5;
-    }
+	} else {
+	    if ('admin' == $p_id) {
+	        $num = 6;
+	    } else {
+	        $num = 5;
+	    }
 
-    if ($readable == 'N' && $p_id != 'admin') {
-        $sql = "SELECT * FROM $board WHERE (id='$_SESSION[p_id]' OR id='admin') $s_sql ORDER BY mod_date DESC LIMIT $cline,$scale1";
-    } else {
-        $sql = "SELECT * FROM $board WHERE 1 $s_sql ORDER BY mod_date DESC LIMIT $cline,$scale1";
-    }
+	    if ($readable == 'N' && $p_id != 'admin') {
+	        $sql = "SELECT * FROM $board WHERE (id='$_SESSION[p_id]' OR id='admin') $s_sql ORDER BY mod_date DESC LIMIT $cline,$scale1";
+	    } else {
+	        $sql = "SELECT * FROM $board WHERE 1 $s_sql ORDER BY mod_date DESC LIMIT $cline,$scale1";
+	    }
 
-    //쿼리 후 결과를 저장한다.
-    $result = mysqli_query($connect, $sql);
+	    //쿼리 후 결과를 저장한다.
+	    $result = mysqli_query($connect, $sql);
 
-    for ($i = 0; $row = mysqli_fetch_array($result); $i++) {
+	    for ($i = 0; $row = mysqli_fetch_array($result); $i++) {
 
-        echo "<tr>\n";
+	        echo "<tr>\n";
 
-        if ('admin' == $p_id) {
-            echo "<td><input type=\"checkbox\" name=\"chk[]\" value=\"" . $row['main_no'] . "\"></td>\n";
-        }
+	        if ('admin' == $p_id) {
+	            echo "<td><input type=\"checkbox\" name=\"chk[]\" value=\"" . $row['main_no'] . "\"></td>\n";
+	        }
         ?>
                               <td><?php echo $row['main_no']; ?></td>
                             <!-- 답변글이 있다면 -->
 <?php
 
-        //답변만 있는 경우
-        if ($row['depth'] > 0 && (!$row['filename'])) {
+	        //답변만 있는 경우
+	        if ($row['depth'] > 0 && (!$row['filename'])) {
             ?>
                                     <td><a href="read.php?code=<?php echo $code; ?>&amp;main_no=<?php echo $row['main_no']; ?>&amp;page=<?php echo $page; ?>"><?php echo stripslashes($row['title']); ?></a>&nbsp;<span class="badge"><?php echo $row['depth']; ?></span></td>
 <?php
 
-            //답변과 첨부파일이 다 있는 경우
-        } else if ($row['depth'] > 0 && ($row['filename'])) {
+	            //답변과 첨부파일이 다 있는 경우
+	        } else if ($row['depth'] > 0 && ($row['filename'])) {
             ?>
                                     <td><a href="read.php?code=<?php echo $code; ?>&amp;main_no=<?php echo $row['main_no']; ?>&amp;page=<?php echo $page; ?>"><?php echo stripslashes($row['title']); ?></a>&nbsp;<i class="fa fa-floppy-o"></i>&nbsp;<span class="badge"><?php echo $row['depth']; ?></span></td>
 <?php
 
-            //첨부파일만 있는 경우
-        } else if ($row['depth'] == 0 && ($row['filename'])) {
+	            //첨부파일만 있는 경우
+	        } else if ($row['depth'] == 0 && ($row['filename'])) {
             ?>
                                     <td><a href="read.php?code=<?php echo $code; ?>&amp;main_no=<?php echo $row['main_no']; ?>&amp;page=<?php echo $page; ?>"><?php echo stripslashes($row['title']); ?></a>&nbsp;<i class="fa fa-floppy-o"></i>&nbsp;</td>
 <?php
 
-        } else {
+	        } else {
 
             ?>
-                                    <td><a href="read.php?code=<?php echo $code; ?>&amp;main_no=<?php echo $row['main_no']; ?>&amp;page=<?php echo $page; ?>"><?php echo stripslashes($row['title']); ?></a> <?php echo check_new_post('notice', $row['main_no'], 3); ?></td>
+                                    <td><a href="read.php?code=<?php echo $code; ?>&amp;main_no=<?php echo $row['main_no']; ?>&amp;page=<?php echo $page; ?>"><?php echo stripslashes($row['title']); ?></a><?php echo check_new_post('notice', $row['main_no'], 3); ?></td>
 <?php
 
-        }
-        //날짜 형식을 바꾼다.
-        $post_date = substr($row['date'], 0, 11);
+	        }
+	        //날짜 형식을 바꾼다.
+	        $post_date = substr($row['date'], 0, 11);
         ?>
                               <td><?php echo $row['name']; ?></td>
                               <td><?php echo $post_date; ?></td>
@@ -224,8 +225,7 @@ if ($total == 0) {
 
 <?php
 
-    }
-    ; // end for loop
+	    } // end for loop
     ?>
                         </tbody>
                         <tfoot>
@@ -233,11 +233,10 @@ if ($total == 0) {
                               <td colspan="<?php echo $num; ?>" class="text-center">
 <?php
 
-    //쪽 수를 표시
-    $url = $_SERVER['PHP_SELF'] . "?code=" . $code;
-    page_nav($totalpage, $cpage, $url);
-}
-; // end else -->
+	    //쪽 수를 표시
+	    $url = $_SERVER['PHP_SELF'] . "?code=" . $code;
+	    page_nav($totalpage, $cpage, $url);
+	} // end else -->
 ?>
 <!--                               </td>
                             </tr>
@@ -248,13 +247,13 @@ if ($total == 0) {
 
 <?php
 
-$qry  = "SELECT * FROM code WHERE code='$code' ";
-$res  = mysqli_query($connect, $qry);
-$row1 = mysqli_fetch_array($res);
+	$qry  = "SELECT * FROM code WHERE code='$code' ";
+	$res  = mysqli_query($connect, $qry);
+	$row1 = mysqli_fetch_array($res);
 
-//관리자 전용쓰기 게시판 여부 확인
-// 읽기권한: 회원 및 관리자
-if ($row1['readable'] == 'M' && 'admin' == $p_id) {
+	//관리자 전용쓰기 게시판 여부 확인
+	// 읽기권한: 회원 및 관리자
+	if ($row1['readable'] == 'M' && 'admin' == $p_id) {
     ?>
             <div class="row">
               <p>
@@ -264,8 +263,8 @@ if ($row1['readable'] == 'M' && 'admin' == $p_id) {
             </div>
 <?php
 
-    // 비회원 읽기 가능
-} else if ($row1['readable'] == 'E' && 'admin' != $p_id) {
+	    // 비회원 읽기 가능
+	} else if ($row1['readable'] == 'E' && 'admin' != $p_id) {
     ?>
             <div class="row">
               <p>
@@ -277,30 +276,30 @@ if ($row1['readable'] == 'M' && 'admin' == $p_id) {
             </div>
 <?php
 
-    //회원 로그인 확인
-} else if ($row1['readable'] == 'E' && $p_id && 'admin' != $p_id) {
+	    //회원 로그인 확인
+	} else if ($row1['readable'] == 'E' && $p_id && 'admin' != $p_id) {
     ?>
             <div class="row">
               <p><a class="btn btn-success" href="post.php?code=<?php echo $code; ?>"><i class="fa fa-pencil-square-o"></i> 쓰 기</a><a class="a-login btn btn-xs btn-primary pull-right" href="" data-popup="login2"><i class="fa fa-cog"></i> ADMIN LOGIN</a></p>
             </div>
 <?php
 
-} else if ($row1['readable'] == 'E' && 'admin' == $p_id) {
+	} else if ($row1['readable'] == 'E' && 'admin' == $p_id) {
     ?>
             <div class="row">
               <p><a class="btn btn-success" href="post.php?code=<?php echo $code; ?>"><i class="fa fa-pencil-square-o"></i> 쓰 기</a> &nbsp; <a class="btn btn-danger" href="#" onClick="javascript:del_send();"><i class="fa fa-trash-o"></i> 삭 제</a></p>
             </div>
 <?php
 
-} else if ($row1['readable'] == 'E' && 'admin' != $p_id) {
-    ; //일반 게시판 & 일반회원
+	} else if ($row1['readable'] == 'E' && 'admin' != $p_id) {
+	    ; //일반 게시판 & 일반회원
     ?>
             <div class="row">
               <p><a class="a-login btn btn-xs btn-primary pull-right" href="" data-popup="login2"><i class="fa fa-cog"></i> ADMIN LOGIN</a></p>
             </div>
 <?php
 
-}
+	}
 ?>
         </form>
 
@@ -353,8 +352,8 @@ if ($row1['readable'] == 'M' && 'admin' == $p_id) {
 
 <?php
 
-//회원로그인 else end
-// }
+	//회원로그인 else end
+	// }
 ;?>
       </div> <!-- /.container -->
 

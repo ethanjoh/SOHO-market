@@ -218,18 +218,18 @@ HEREDOC;
                                             <div class="product-icon">
 HEREDOC;
 
-            if ($p_id) {
-                echo '                          <input type="text" name="products_count" id="products_count_' . $pnum . '" value="' . $moq . '" size="2">
-                                                <a href="#" id="' . $pnum . '" class="addCart_submit"><i class="fa fa-shopping-cart"></i></a>
-                                                <a href="/shop/cart.php"><i class="fa fa-check"></i></a>
-                                                <div id="loadplace' . $pnum . '"></div>
-                                                <input type="hidden" name="amount" id="amount_' . $pnum . '" value="' . $offer_price . '">
-                                                <input type="hidden" name="from" id="from" value="list">';
+            // if ($p_id) {
+            //     echo '                          <input type="text" name="products_count" id="products_count_' . $pnum . '" value="' . $moq . '" size="2">
+            //                                     <a href="#" id="' . $pnum . '" class="addCart_submit"><i class="fa fa-shopping-cart"></i></a>
+            //                                     <a href="/shop/cart.php"><i class="fa fa-check"></i></a>
+            //                                     <div id="loadplace' . $pnum . '"></div>
+            //                                     <input type="hidden" name="amount" id="amount_' . $pnum . '" value="' . $offer_price . '">
+            //                                     <input type="hidden" name="from" id="from" value="list">';
 
-            } else {
-                // echo '                          <a href="/member/login.php"><i class="fa fa-shopping-cart"></i></a>
-                //                                 <a href="/member/login.php"><i class="fa fa-check"></i></a>';
-            }
+            // } else {
+            //     // echo '                          <a href="/member/login.php"><i class="fa fa-shopping-cart"></i></a>
+            //     //                                 <a href="/member/login.php"><i class="fa fa-check"></i></a>';
+            // }
 
             echo <<<HEREDOC
                                             </div>
@@ -257,19 +257,20 @@ HEREDOC;
  * @param  [type] $tabid          [description]
  * @return [type] [description]
  */
-function show_catalog_products($lcode, $mcode, $tabid)
+// function show_catalog_products($lcode, $mcode, $tabid)
+function show_catalog_products($result, $tabid)
 {
     global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
 
-    if ($mcode) {
-        $code_qry = " AND category_l = '$lcode' AND category_m = '$mcode'";
-    } else {
-        $code_qry = " AND category_l = '$lcode'";
-    }
+    // if ($mcode) {
+    //     $code_qry = " AND category_l = '$lcode' AND category_m = '$mcode'";
+    // } else {
+    //     $code_qry = " AND category_l = '$lcode'";
+    // }
 
-    $query  = "SELECT * FROM products WHERE del_chk='N'" . $code_qry . " AND approved = 'Y' ORDER BY num DESC LIMIT 0, 12 ";
-    $result = mysqli_query($connect, $query);
+    // $query  = "SELECT * FROM products WHERE del_chk='N'" . $code_qry . " AND approved = 'Y' ORDER BY num DESC LIMIT 0, 12 ";
+    // $result = mysqli_query($connect, $query);
 
     if ($result) {
 
@@ -293,6 +294,7 @@ function show_catalog_products($lcode, $mcode, $tabid)
 
             if ('home' == $tabid) {
                 echo <<<HEREDOC
+
                                 <!-- single-product start -->
                                 <form name="form_{$pnum}" method="post" action="">
                                 <input type="hidden" name="pnum" id="pnum_{$pnum}" value="{$pnum}">
@@ -313,8 +315,59 @@ function show_catalog_products($lcode, $mcode, $tabid)
 HEREDOC;
 
                 if ($p_id) {
-                    echo '
-                                                <input type="text" name="products_count" id="products_count_' . $pnum . '" value="' . $moq . '" size="2">
+                    echo <<<HEREDOC
+                                                <input type="text" name="products_count" id="products_count_{$pnum}" value="{$moq}" size="2">
+                                                <a href="#" id="{$pnum}" class="addCart_submit"><i class="fa fa-shopping-cart"></i></a>
+                                                <div id="loadplace{$pnum}"></div>
+                                                <input type="hidden" name="amount" id="amount_{$pnum}" value="{$offer_price}">
+                                                <input type="hidden" name="from" id="from" value="list">
+HEREDOC;
+
+                } else {
+                    echo '                      <a href="/member/login.php"><i class="fa fa-shopping-cart"></i></a>';
+                }
+
+                echo <<<HEREDOC
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </form>
+                                <!-- single-product end -->
+
+HEREDOC;
+            } elseif ('profile' == $tabid) {
+                $option = show_option($pnum);
+
+                echo <<<HEREDOC
+                                <!-- single-product start -->
+                                <form name="form_{$pnum}" method="post" action="">
+                                <input type="hidden" name="pnum" id="pnum_{$pnum}" value="{$pnum}">
+                                <div class="li-item">
+                                    <div class="col-md-4 col-sm-4">
+                                        <div class="single-product">
+                                            <div class="product-img">
+                                                <a href="detail.php?pnum={$pnum}&lcode={$category_l}&mcode={$category_m}&scode={$category_s}">
+                                                    <img class="primary-image" src="{$rows['b_image1_name']}" alt="">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8 col-sm-8">
+                                        <div class="f-fix">
+                                            <h2 class="product-name">
+                                                <a href="detail.php?pnum={$pnum}&lcode={$category_l}&mcode={$category_m}&scode={$category_s}">{$item_name}</a>
+                                            </h2>
+                                            <p class="desc">[모델:] {$short_desc}<br>
+                                            <span class="spec">{$option}</span></p>
+                                            <div class="p-box">
+                                                {$price}
+                                            </div>
+                                            <div class="product-icon">
+HEREDOC;
+                if ($p_id) {
+                    echo '                      <input type="text" name="products_count" id="products_count_' . $pnum . '" value="' . $moq . '" size="2">
                                                 <a href="#" id="' . $pnum . '" class="addCart_submit"><i class="fa fa-shopping-cart"></i></a>
                                                 <div id="loadplace' . $pnum . '"></div>
                                                 <input type="hidden" name="amount" id="amount_' . $pnum . '" value="' . $offer_price . '">
@@ -330,57 +383,8 @@ HEREDOC;
                                     </div>
                                 </div>
                                 </form>
+                                <hr>
                                 <!-- single-product end -->
-
-HEREDOC;
-            } elseif ('profile' == $tabid) {
-                $option = show_option($pnum);
-
-                echo <<<HEREDOC
-                                                    <!-- single-product start -->
-                                                    <form name="form_{$pnum}" method="post" action="">
-                                                    <input type="hidden" name="pnum" id="pnum_{$pnum}" value="{$pnum}">
-                                                    <div class="li-item">
-                                                        <div class="col-md-4 col-sm-4">
-                                                            <div class="single-product">
-                                                                <div class="product-img">
-                                                                    <a href="detail.php?pnum={$pnum}&lcode={$category_l}&mcode={$category_m}&scode={$category_s}">
-                                                                        <img class="primary-image" src="{$rows['b_image1_name']}" alt="">
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-8 col-sm-8">
-                                                            <div class="f-fix">
-                                                                <h2 class="product-name">
-                                                                    <a href="detail.php?pnum={$pnum}&lcode={$category_l}&mcode={$category_m}&scode={$category_s}">{$item_name}</a>
-                                                                </h2>
-                                                                <p class="desc">[모델:] {$short_desc}<br>
-                                                                <span class="spec">{$option}</span></p>
-                                                                <div class="p-box">
-                                                                    {$price}
-                                                                </div>
-                                                                <div class="product-icon">
-HEREDOC;
-                if ($p_id) {
-                    echo '                      <input type="text" name="products_count" id="products_count_' . $pnum . '" value="' . $moq . '" size="2">
-                                                <a href="#" id="' . $pnum . '" class="addCart_submit"><i class="fa fa-shopping-cart"></i></a>
-                                                <div id="loadplace' . $pnum . '"></div>
-                                                <input type="hidden" name="amount" id="amount_' . $pnum . '" value="' . $offer_price . '">
-                                                <input type="hidden" name="from" id="from" value="list">';
-
-                } else {
-                    echo '                      <a href="/member/login.php"><i class="fa fa-shopping-cart"></i></a>';
-                }
-
-                echo <<<HEREDOC
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    </form>
-                                                    <hr>
-                                                    <!-- single-product end -->
 
 HEREDOC;
             }
@@ -1324,6 +1328,109 @@ function get_page_result($mode, $key, $key_value, $date1, $date2, $cline, $last_
             $qry = "SELECT * FROM mall_order
                               WHERE user_id = '$p_id'
                                 ORDER BY num DESC LIMIT $cline,$last_page_num ";
+    }
+
+    $res  = mysqli_query($connect, $qry);
+    $t_no = mysqli_num_rows($res);
+
+    return array($t_no, $res);
+
+}
+
+function get_list_page_num($mode, $key, $keyword, $cpage, $scale)
+{
+    global $host, $dbid, $dbpass, $dbname;
+    $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
+
+    // $p_id  = set_var($_SESSION['p_id']);
+    $lcode = set_var($_GET['lcode']);
+    $mcode = set_var($_GET['mcode']);
+
+    $code_qry = '';
+
+    //중분류 선택시
+    if ($mcode) {
+        $code_qry = " AND category_m = '$mcode'";
+    }
+
+    if ($mode == "search") {
+        $search_qry .= " AND (name LIKE '%$keyword%' OR prod_code LIKE '$keyword' OR company LIKE '%$keyword%') ";
+        $qry = "SELECT * FROM products WHERE approved='Y' AND del_chk != 'Y' $search_qry ORDER BY del_chk='N', num";
+
+    } else {
+        $qry = "SELECT * FROM products WHERE category_l='$lcode' AND del_chk != 'Y' AND approved='Y' $code_qry ORDER BY del_chk='N', num";
+    }
+
+// 자료 총수 구하기
+    $res   = mysqli_query($connect, $qry);
+    $total = mysqli_num_rows($res);
+
+    $scale = $scale;
+    $page  = '';
+
+    if ($page == '') {
+        $page = 1;
+    }
+
+    $cpage     = intval($page);
+    $totalpage = intval($total / $scale);
+
+    if ($totalpage * $scale != $total) {
+        $totalpage = $totalpage + 1;
+    }
+
+    if ($cpage == 1) {
+        $cline = 0;
+    } else {
+        $cline = ($cpage * $scale) - $scale;
+    }
+
+    $limit = $cline + $scale;
+
+    if ($limit >= $total) {
+        $limit = $total;
+    }
+
+    $last_page_num = $limit - $cline;
+
+    return array($cline, $last_page_num, $cpage, $totalpage);
+}
+
+function get_list_page_result($mode, $lcode, $mcode, $key, $keyword, $cline, $last_page_num)
+{
+    global $host, $dbid, $dbpass, $dbname;
+    $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
+
+    // if ($mode == "search") {
+    //     $search_qry .= " AND (name LIKE '%$keyword%' OR prod_code LIKE '$keyword' OR company LIKE '%$keyword%') ";
+    //     $query = "SELECT * FROM products WHERE approved='Y' AND del_chk != 'Y' $search_qry ORDER BY del_chk='N' DESC, created DESC LIMIT $cline,$last_page_num";
+    // } else {
+    //     $query = "SELECT * FROM products WHERE category_l='$lcode' $code_qry AND del_chk != 'Y' AND approved='Y' ORDER BY del_chk='N' DESC, created DESC LIMIT $cline, $last_page_num";
+    // }
+
+    $code_qry = '';
+
+    if (isset($mcode)) {
+        $code_qry = " AND category_m = '$mcode'";
+    }
+
+    switch ($mode) {
+        case 'search':
+            $qry = "SELECT * FROM products WHERE approved='Y'
+                                            AND del_chk != 'Y'
+                                            AND (name LIKE '%" . $keyword . "%'
+                                            OR prod_code LIKE '" . $keyword . "'
+                                            OR company LIKE '%" . $keyword . "%')
+                                            ORDER BY del_chk='N' DESC, created DESC LIMIT " . $cline . "," . $last_page_num . "";
+
+            break;
+        default:
+            $qry = "SELECT * FROM products WHERE category_l='$lcode' AND del_chk='N'" . $code_qry . " AND approved = 'Y' ORDER BY num DESC LIMIT " . $cline . ", 12";
+            // $qry = "SELECT * FROM products WHERE category_l='$lcode'
+            // AND del_chk != 'Y'
+            // AND approved='Y' $code_qry
+            // ORDER BY del_chk='N', num";
+
     }
 
     $res  = mysqli_query($connect, $qry);

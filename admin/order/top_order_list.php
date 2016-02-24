@@ -309,45 +309,9 @@
 	        $pay_status = '';
 	        $pay_status = get_pg_info2($row['orderid']);
 
-	        // retrieve PG data
-	        // $pg_sql    = "SELECT * FROM pg_info WHERE LGD_OID='$row[orderid]' ";
-	        // $pg_result = mysqli_query($connect, $pg_sql);
-	        // $pg_row    = mysqli_fetch_array($pg_result);
-
-	        // switch ($pg_row['LGD_PAYTYPE']) {
-	        //     case 'SC0040':
-	        //         if ($pg_row['LGD_RESPCODE'] == "0000") {
-	        //             if ($pg_row['LGD_CASFLAG'] == "R") {
-	        //                 $pay_status = '<i class="fa fa-university"></i> 가상계좌 발급';
-	        //             } elseif ($pg_row['LGD_CASFLAG'] == "I") {
-	        //                 $pay_status = '<i class="fa fa-check-circle"></i> 입금완료';
-	        //             } elseif ($pg_row['LGD_CASFLAG'] == "C") {
-	        //                 $pay_status = '<i class="fa fa-times-circle"></i> 입금취소';
-	        //             } else {
-	        //                 $pay_status = '<i class="fa fa-exclamation-triangle"></i> 가상계좌 이체실패(' . $pg_row['LGD_RESPCODE'] . ')';
-	        //             }
-	        //         }
-
-	        //         break;
-	        //     case 'SC0030':
-	        //         if ($pg_row['LGD_RESPCODE'] == "0000") {
-	        //             $pay_status = '<i class="fa fa-check-circle"></i> 이체완료';
-	        //         } else {
-	        //             $pay_status = '<i class="fa fa-exclamation-triangle"></i> 이체실패(' . $pg_row['LGD_RESPCODE'] . ')';
-	        //         }
-
-	        //         break;
-
-	        //     case 'SC0010': //SC0010 credit card
-	        //         if ($pg_row['LGD_RESPCODE'] == "0000") {
-	        //             $pay_status = '<i class="fa fa-credit-card"></i> 카드결제 완료';
-	        //         } else {
-	        //             $pay_status = '<i class="fa fa-exclamation-triangle"></i> 결제실패(' . $pg_row['LGD_RESPCODE'] . ')';
-	        //         }
-
-	        //         break;
-	        // }
-
+	        /**
+	         * 주문 취소
+	         */
 	        if ($row['cancel'] == 'Y') {
 	            $c_color    = '#EBEBEB';
 	            $status_now = "주문취소";
@@ -377,7 +341,11 @@
                                 <td>-</td>
 					            <td><a type="button" class="btn btn-danger" href="or_delete.php?mode=d&amp;oid=<?php echo $row['num']; ?>&amp;page=<?php echo $page; ?>" onclick="return confirm('취소된 주문입니다.\n삭제하시겠습니까?')"><i class="fa fa-trash-o"></i></a></td>
 <?php
-	} else {
+
+	            /**
+	             * 정상 주문처리
+	             */
+	        } else {
 	            if ($row['status'] == '1') {
 	                $c_color    = '#FFC8C8';
 	                $status_now = "미처리";
@@ -406,17 +374,9 @@
 	                $status_now = "⊙반품회수 중⊙";
 	            }
 
-	            //주문소스 추출
-	            $os = substr($row['orderid'], 0, 1);
-	            if ($os == "m") {
-	                $os_icon = "<img src=\"../images/smartphone.png\">";
-	            } else {
-	                $os_icon = "";
-	            }
-
             ?>
 					          <tr>
-					            <td><?php echo $os_icon; ?> <a href="or_view.php?mode=<?php echo $mode; ?>&amp;oid=<?php echo $row['num']; ?>&amp;key=<?php echo $key; ?>&amp;key_value=<?php echo $key_value; ?>&amp;page=<?php echo $page; ?>"><?php echo $row['createdate']; ?></a></td>
+					            <td><a href="or_view.php?mode=<?php echo $mode; ?>&amp;oid=<?php echo $row['num']; ?>&amp;key=<?php echo $key; ?>&amp;key_value=<?php echo $key_value; ?>&amp;page=<?php echo $page; ?>"><?php echo $row['createdate']; ?></a></td>
 					            <td><?php echo $row['user_id']; ?></td>
                                 <td>
 <?php
