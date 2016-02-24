@@ -76,6 +76,7 @@
 	$res   = mysqli_query($connect, $qry);
 	$total = mysqli_num_rows($res);
 
+	$total = 1000;
 	$scale = 12;
 	// $page  = '';
 
@@ -197,7 +198,7 @@ HEREDOC;
 
 	            if ($p_id) {
 	                echo <<<HEREDOC
-																																				                                                <input type="text" name="products_count" id="products_count_{$pnum}" value="{$moq}" size="2">
+																																					                                                <input type="text" name="products_count" id="products_count_{$pnum}" value="{$moq}" size="2">
                                                 <a href="#" id="{$pnum}" class="addCart_submit"><i class="fa fa-shopping-cart"></i></a>
                                                 <div id="loadplace{$pnum}"></div>
                                                 <input type="hidden" name="amount" id="amount_{$pnum}" value="{$offer_price}">
@@ -222,7 +223,7 @@ HEREDOC;
 	            $option = show_option($pnum);
 
 	            echo <<<HEREDOC
-																																				                                <!-- single-product start -->
+																																					                                <!-- single-product start -->
                                 <form name="form_{$pnum}" method="post" action="">
                                 <input type="hidden" name="pnum" id="pnum_{$pnum}" value="{$pnum}">
                                 <div class="li-item">
@@ -259,7 +260,7 @@ HEREDOC;
 	            }
 
 	            echo <<<HEREDOC
-																																				                                            </div>
+																																					                                            </div>
                                         </div>
                                     </div>
                                 </div>

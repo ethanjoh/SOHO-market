@@ -900,7 +900,7 @@ function page_nav($totalpage, $cpage, $url)
         $pagenumber = 10;
     }
 
-    echo '<ul class="pagination">';
+    echo '<ul class="pagination">' . "\r\n";
 
     $startpage = intval(($cpage - 1) / $pagenumber) * $pagenumber + 1;
     $endpage   = intVal(((($startpage - 1) + $pagenumber) / $pagenumber) * $pagenumber);
@@ -912,9 +912,9 @@ function page_nav($totalpage, $cpage, $url)
     if ($cpage > $pagenumber) {
 
         $curpage = intval($startpage - 1);
-        echo '			<li><a href="' . $url . '&page=' . $curpage . '"> < </a></li>';
+        echo '			<li><a href="' . $url . '&page=' . $curpage . '"> < </a></li>' . "\r\n";
     } else {
-        echo '				<li><a href="#"><i class="fa fa-chevron-left"></i></a></li>';
+        echo '				<li><a href="#"><i class="fa fa-chevron-left"></i></a></li>' . "\r\n";
     }
 
     $curpage = $startpage;
@@ -922,9 +922,9 @@ function page_nav($totalpage, $cpage, $url)
     while ($curpage <= $endpage) {
 
         if ($curpage == $cpage) {
-            echo '			<li class="active"><a href="#">' . $cpage . '<span class="sr-only">(current)</span></a></li>';
+            echo '			<li class="active"><a href="#">' . $cpage . '</a></li>' . "\r\n";
         } else {
-            echo '			<li><a href="' . $url . '&page=' . $curpage . '">' . $curpage . '</a></li>';
+            echo '			<li><a href="' . $url . '&page=' . $curpage . '">' . $curpage . '</a></li>' . "\r\n";
         }
         $curpage++;
 
@@ -932,12 +932,12 @@ function page_nav($totalpage, $cpage, $url)
 
     if ($totalpage > $endpage) {
         $curpage = intval($endpage + 1);
-        echo '			<li><a href="' . $url . '&page=' . $curpage . '"> ... > </a></li>';
+        echo '			<li><a href="' . $url . '&page=' . $curpage . '"> &middot;&middot;&middot; <i class="fa fa-chevron-right"></i> </a></li>' . "\r\n";
     } else {
-        echo '		    <li><a href="#"><i class="fa fa-chevron-right"></i></a></li>';
+        // echo '            <li><a href="#"><i class="fa fa-chevron-right"></i></a></li>';
     }
 
-    echo '		</ul>';
+    echo '		</ul>' . "\r\n";
 }
 
 // ��ۺ� ���
