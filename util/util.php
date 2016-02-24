@@ -912,9 +912,9 @@ function page_nav($totalpage, $cpage, $url)
     if ($cpage > $pagenumber) {
 
         $curpage = intval($startpage - 1);
-        echo '			<li><a href="' . $url . '&page=' . $curpage . '"> < </a></li>' . "\r\n";
+        echo '			<li><a href="' . $url . '&page=' . $curpage . '"> <i class="fa fa-chevron-left"></i> </a></li>' . "\r\n";
     } else {
-        echo '				<li><a href="#"><i class="fa fa-chevron-left"></i></a></li>' . "\r\n";
+        // echo '                <li><a href="#"><i class="fa fa-chevron-left"></i></a></li>' . "\r\n";
     }
 
     $curpage = $startpage;
