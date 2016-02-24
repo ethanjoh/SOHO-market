@@ -197,7 +197,7 @@ HEREDOC;
 
 	            if ($p_id) {
 	                echo <<<HEREDOC
-																																		                                                <input type="text" name="products_count" id="products_count_{$pnum}" value="{$moq}" size="2">
+																																				                                                <input type="text" name="products_count" id="products_count_{$pnum}" value="{$moq}" size="2">
                                                 <a href="#" id="{$pnum}" class="addCart_submit"><i class="fa fa-shopping-cart"></i></a>
                                                 <div id="loadplace{$pnum}"></div>
                                                 <input type="hidden" name="amount" id="amount_{$pnum}" value="{$offer_price}">
@@ -222,7 +222,7 @@ HEREDOC;
 	            $option = show_option($pnum);
 
 	            echo <<<HEREDOC
-																																		                                <!-- single-product start -->
+																																				                                <!-- single-product start -->
                                 <form name="form_{$pnum}" method="post" action="">
                                 <input type="hidden" name="pnum" id="pnum_{$pnum}" value="{$pnum}">
                                 <div class="li-item">
@@ -259,7 +259,7 @@ HEREDOC;
 	            }
 
 	            echo <<<HEREDOC
-																																		                                            </div>
+																																				                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -301,14 +301,6 @@ HEREDOC;
                                                     <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-align-justify"></i></a></li>
                                                 </ul>
                                                 <div class="shop5 page">
-<!--                                                     <p>Page:</p>
-                                                    <ul>
-                                                        <li>
-                                                            <a class="active" href="#">1</a>
-                                                            <a href="#">2</a>
-                                                            <a href="#"><i class="fa fa-arrow-right"></i></a>
-                                                        </li>
-                                                    </ul> -->
 <?php
 
 	$url = $_SERVER['PHP_SELF'] . "?mode=" . $mode . "&amp;lcode=" . $lcode . "&amp;mcode=" . $mcode . "&amp;key=" . $key . "&amp;keyword=" . $keyword;
