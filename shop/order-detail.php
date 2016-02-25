@@ -14,49 +14,9 @@
         <!-- CONTAINER: order list -->
         <div class="container">
 
-            <?php
-$oid  = set_var($_GET['oid']);
-$page = set_var($_GET['page']);
-
-// retrieve PG data
-// $pg_sql    = "SELECT * FROM pg_info WHERE LGD_OID='$row[lgd_oid]' ";
-// $pg_result = mysqli_query($connect, $pg_sql);
-// $pg_row    = mysqli_fetch_array($pg_result);
-
-// switch ($pg_row['LGD_PAYTYPE']) {
-//   case 'SC0040':
-//     if($pg_row['LGD_RESPCODE'] == "0000")
-//       if($pg_row['LGD_CASFLAG'] == "R") {
-
-//         $pay_status = "<img src='../images/bank--pencil.png' alt='가상계좌 할당' /> 계좌할당 : <h4>가상계좌 - ".$pg_row['LGD_ACCOUNTNUM']."</h4>\n";
-//         $pay_status .= "<p>1) 가상계좌는 일회성 계좌이므로 재사용시(다시 그 계좌로 입금하시는 경우) 타인의 계좌로 입금될 가능성이 있습니다.<br />\n";
-//         $pay_status .= "이 경우는 고객의 책임이므로 사용에 주의하시기 바랍니다. <br />\n";
-//         $pay_status .= "2) 가상계좌의 경우 CD기에서 현금입금 하실 수 없습니다.  CD기에서 이체는 가능합니다.</p>\n";
-
-//       }elseif($pg_row['LGD_CASFLAG'] == "I")
-//         $pay_status = "<img src='../images/bank--plus.png' alt='가상계좌 입금' /> 입금완료";
-//     elseif($pg_row['LGD_CASFLAG'] == "C")
-//         $pay_status = "<img src='../images/bank.png' alt='가상계좌 취소' /> 입금취소";
-//     else
-//       $pay_status = "<img src='../images/bank--exclamation.png' alt='계좌이체 실패' /> 이체실패(".$pg_row['LGD_RESPCODE'].")";
-
-//     break;
-//   case 'SC0030':
-//     if($pg_row['LGD_RESPCODE'] == "0000")
-//       $pay_status = "<img src='../images/bank.png' alt='계좌이체 완료' /> 이체완료";
-//     else
-//       $pay_status = "<img src='../images/bank--exclamation.png' alt='계좌이체 실패' /> 이체실패(".$pg_row['LGD_RESPCODE'].")";
-
-//     break;
-
-//   default: //SC0010 credit card
-//     if($pg_row['LGD_RESPCODE'] == "0000")
-//       $pay_status = "<img src='../images/credit-card-green.png' alt='카드결제 완료' /> 결제완료";
-//     else
-//       $pay_status = "<img src='../images/credit-card--exclamation.png' alt='카드결제 실패' /> 결제실패(".$pg_row['LGD_RESPCODE'].")";
-
-//     break;
-// }
+<?php
+	$oid  = set_var($_GET['oid']);
+	$page = set_var($_GET['page']);
 
 ?>
 

@@ -1,5 +1,7 @@
 <?php
-require_once 'config.php';
+
+$config = parse_ini_file('config.ini');
+// require_once 'config.php';
 
 //메인에 팝업공지 띄우기
 function show_popup()
@@ -156,7 +158,14 @@ function make_thumbnail($source_file, $_width, $_height, $object_file)
 function show_icon($pnum)
 {
 
-    global $host, $dbid, $dbpass, $dbname;
+    global $config;
+
+    $host   = $config['host'];
+    $dbid   = $config['dbid'];
+    $dbpass = $config['dbpass'];
+    $dbname = $config['dbname'];
+
+    // global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
 
     $qry  = "SELECT * FROM products WHERE num='$pnum'";
@@ -362,7 +371,14 @@ function send_sms($to, $msg_type, $name, $sdate, $connect)
  */
 function show_delivery_fee($total)
 {
-    global $host, $dbid, $dbpass, $dbname;
+    global $config;
+
+    $host   = $config['host'];
+    $dbid   = $config['dbid'];
+    $dbpass = $config['dbpass'];
+    $dbname = $config['dbname'];
+
+    // global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
 
     $query  = "SELECT * FROM misc_setup ";
@@ -386,7 +402,14 @@ function show_delivery_fee($total)
 function calc_delivery_fee($total)
 {
 
-    global $host, $dbid, $dbpass, $dbname;
+    global $config;
+
+    $host   = $config['host'];
+    $dbid   = $config['dbid'];
+    $dbpass = $config['dbpass'];
+    $dbname = $config['dbname'];
+
+    // global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
 
     $query  = "SELECT * FROM misc_setup ";
@@ -408,7 +431,14 @@ function calc_delivery_fee($total)
  */
 function show_logistics()
 {
-    global $host, $dbid, $dbpass, $dbname;
+    global $config;
+
+    $host   = $config['host'];
+    $dbid   = $config['dbid'];
+    $dbpass = $config['dbpass'];
+    $dbname = $config['dbname'];
+
+    // global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
 
     $log_sql    = "SELECT * FROM misc_setup";
@@ -427,7 +457,14 @@ function show_logistics()
  */
 function show_track_no($oid)
 {
-    global $host, $dbid, $dbpass, $dbname;
+    global $config;
+
+    $host   = $config['host'];
+    $dbid   = $config['dbid'];
+    $dbpass = $config['dbpass'];
+    $dbname = $config['dbname'];
+
+    // global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
 
     $sql = "SELECT * FROM mall_order WHERE num = '$oid' ";
@@ -533,7 +570,14 @@ function show_banner2($connect)
  */
 function show_option($pnum)
 {
-    global $host, $dbid, $dbpass, $dbname;
+    global $config;
+
+    $host   = $config['host'];
+    $dbid   = $config['dbid'];
+    $dbpass = $config['dbpass'];
+    $dbname = $config['dbname'];
+
+    // global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
 
     $query  = "SELECT * FROM products WHERE num='$pnum'";
@@ -648,7 +692,14 @@ function show_restock(&$rows)
  */
 function calc_offer_price($retail_price, $id)
 {
-    global $host, $dbid, $dbpass, $dbname;
+    global $config;
+
+    $host   = $config['host'];
+    $dbid   = $config['dbid'];
+    $dbpass = $config['dbpass'];
+    $dbname = $config['dbname'];
+
+    // global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
 
     $query  = "SELECT * FROM member WHERE id='$id'";
@@ -1247,7 +1298,14 @@ function show_sup_price($connect, $com_id, $pro_id)
  * 게시판 목록에서 사용하는 함수 */
 function check_new_post($code, $main_no, $day)
 {
-    global $host, $dbid, $dbpass, $dbname;
+    global $config;
+
+    $host   = $config['host'];
+    $dbid   = $config['dbid'];
+    $dbpass = $config['dbpass'];
+    $dbname = $config['dbname'];
+
+    // global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
 
     $bbs_name = "bbs_" . $code;
@@ -1302,7 +1360,14 @@ function check_new_last_post($connect, $code, $day)
 function get_company_info()
 {
 
-    global $host, $dbid, $dbpass, $dbname;
+    global $config;
+
+    $host   = $config['host'];
+    $dbid   = $config['dbid'];
+    $dbpass = $config['dbpass'];
+    $dbname = $config['dbname'];
+
+    // global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
 
     $info_query = "SELECT * FROM admin_setup";
@@ -1336,7 +1401,14 @@ function get_company_info()
 function get_bbs_title($code, $limit)
 {
 
-    global $host, $dbid, $dbpass, $dbname;
+    global $config;
+
+    $host   = $config['host'];
+    $dbid   = $config['dbid'];
+    $dbpass = $config['dbpass'];
+    $dbname = $config['dbname'];
+
+    // global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
 
     $page = '';
@@ -1450,7 +1522,14 @@ HEREDOC;
 function get_pg_info($orderid)
 {
 
-    global $host, $dbid, $dbpass, $dbname;
+    global $config;
+
+    $host   = $config['host'];
+    $dbid   = $config['dbid'];
+    $dbpass = $config['dbpass'];
+    $dbname = $config['dbname'];
+
+    // global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
 
     // retrieve PG data
@@ -1510,7 +1589,14 @@ function get_pg_info($orderid)
 function get_pg_info2($orderid)
 {
 
-    global $host, $dbid, $dbpass, $dbname;
+    global $config;
+
+    $host   = $config['host'];
+    $dbid   = $config['dbid'];
+    $dbpass = $config['dbpass'];
+    $dbname = $config['dbname'];
+
+    // global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
 
     // retrieve PG data
@@ -1687,7 +1773,14 @@ function get_pg_info2($orderid)
 function show_pay_data($orderid)
 {
 
-    global $host, $dbid, $dbpass, $dbname;
+    global $config;
+
+    $host   = $config['host'];
+    $dbid   = $config['dbid'];
+    $dbpass = $config['dbpass'];
+    $dbname = $config['dbname'];
+
+    // global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
 
     // retrieve PG data

@@ -1,5 +1,6 @@
 <?php
-include_once 'config.php';
+// include_once 'config.php';
+$config = parse_ini_file('config.ini');
 include_once 'util.php';
 
 //구매 페이지에서 결제정보 보이기
@@ -142,7 +143,14 @@ HEREDOC;
  */
 function get_cart_item()
 {
-    global $host, $dbid, $dbpass, $dbname;
+    global $config;
+    global $config;
+
+    $host   = $config['host'];
+    $dbid   = $config['dbid'];
+    $dbpass = $config['dbpass'];
+    $dbname = $config['dbname'];
+    // global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
 
     $p_id = set_var($_SESSION['p_id']);
@@ -168,7 +176,13 @@ function get_cart_item()
  */
 function show_main_products($main_flag, $no_item)
 {
-    global $host, $dbid, $dbpass, $dbname;
+    global $config;
+
+    $host   = $config['host'];
+    $dbid   = $config['dbid'];
+    $dbpass = $config['dbpass'];
+    $dbname = $config['dbname'];
+    // global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
 
     if ('best' == $main_flag) {
@@ -259,7 +273,13 @@ HEREDOC;
  */
 function show_catalog_products($result, $tabid)
 {
-    global $host, $dbid, $dbpass, $dbname;
+    global $config;
+
+    $host   = $config['host'];
+    $dbid   = $config['dbid'];
+    $dbpass = $config['dbpass'];
+    $dbname = $config['dbname'];
+    // global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
 
     if ($result) {
@@ -398,7 +418,13 @@ HEREDOC;
 function show_me_price($pnum)
 {
 
-    global $host, $dbid, $dbpass, $dbname;
+    global $config;
+
+    $host   = $config['host'];
+    $dbid   = $config['dbid'];
+    $dbpass = $config['dbpass'];
+    $dbname = $config['dbname'];
+    // global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
 
     $query  = "SELECT * FROM products WHERE num='$pnum'";
@@ -427,7 +453,13 @@ function show_me_price($pnum)
  */
 function show_brand_name($lcode)
 {
-    global $host, $dbid, $dbpass, $dbname;
+    global $config;
+
+    $host   = $config['host'];
+    $dbid   = $config['dbid'];
+    $dbpass = $config['dbpass'];
+    $dbname = $config['dbname'];
+    // global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
 
     $query  = "SELECT * FROM products_category1 WHERE code = '$lcode' ";
@@ -451,7 +483,13 @@ function show_brand_name($lcode)
 function show_brands()
 {
 
-    global $host, $dbid, $dbpass, $dbname;
+    global $config;
+
+    $host   = $config['host'];
+    $dbid   = $config['dbid'];
+    $dbpass = $config['dbpass'];
+    $dbname = $config['dbname'];
+    // global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
 
     // 쇼핑몰 대분류
@@ -507,7 +545,13 @@ HEREDOC;
 function show_sub_category($lcode)
 {
 
-    global $host, $dbid, $dbpass, $dbname;
+    global $config;
+
+    $host   = $config['host'];
+    $dbid   = $config['dbid'];
+    $dbpass = $config['dbpass'];
+    $dbname = $config['dbname'];
+    // global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
 
     $m_qry      = "SELECT * FROM products_category2 WHERE up_category = '$lcode' ORDER BY name";
@@ -549,7 +593,13 @@ HEREDOC;
  */
 function show_sub_category_name($lcode, $mcode)
 {
-    global $host, $dbid, $dbpass, $dbname;
+    global $config;
+
+    $host   = $config['host'];
+    $dbid   = $config['dbid'];
+    $dbpass = $config['dbpass'];
+    $dbname = $config['dbname'];
+    // global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
 
     $m_qry      = "SELECT * FROM products_category2 WHERE up_category = '$lcode' AND code = '$mcode'";
@@ -577,7 +627,13 @@ function show_sub_category_name($lcode, $mcode)
 function show_image($size, $no, $pnum)
 {
 
-    global $host, $dbid, $dbpass, $dbname;
+    global $config;
+
+    $host   = $config['host'];
+    $dbid   = $config['dbid'];
+    $dbpass = $config['dbpass'];
+    $dbname = $config['dbname'];
+    // global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
 
     $query  = "SELECT * FROM products WHERE num='$pnum'";
@@ -649,7 +705,13 @@ function show_image($size, $no, $pnum)
  */
 function show_policy($policy)
 {
-    global $host, $dbid, $dbpass, $dbname;
+    global $config;
+
+    $host   = $config['host'];
+    $dbid   = $config['dbid'];
+    $dbpass = $config['dbpass'];
+    $dbname = $config['dbname'];
+    // global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
 
     $query  = "SELECT * FROM misc_setup";
@@ -676,7 +738,13 @@ HEREDOC;
  */
 function show_cart_item()
 {
-    global $host, $dbid, $dbpass, $dbname;
+    global $config;
+
+    $host   = $config['host'];
+    $dbid   = $config['dbid'];
+    $dbpass = $config['dbpass'];
+    $dbname = $config['dbname'];
+    // global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
 
     $p_id = set_var($_SESSION['p_id']);
@@ -841,7 +909,13 @@ function go_purchase($total)
  */
 function show_checkout_item()
 {
-    global $host, $dbid, $dbpass, $dbname;
+    global $config;
+
+    $host   = $config['host'];
+    $dbid   = $config['dbid'];
+    $dbpass = $config['dbpass'];
+    $dbname = $config['dbname'];
+    // global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
 
     $p_id = set_var($_SESSION['p_id']);
@@ -1000,7 +1074,13 @@ HEREDOC;
  */
 function show_buyer_info()
 {
-    global $host, $dbid, $dbpass, $dbname;
+    global $config;
+
+    $host   = $config['host'];
+    $dbid   = $config['dbid'];
+    $dbpass = $config['dbpass'];
+    $dbname = $config['dbname'];
+    // global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
 
     $p_id = set_var($_SESSION['p_id']);
@@ -1046,7 +1126,13 @@ HEREDOC;
  */
 function check_unChk_order()
 {
-    global $host, $dbid, $dbpass, $dbname;
+    global $config;
+
+    $host   = $config['host'];
+    $dbid   = $config['dbid'];
+    $dbpass = $config['dbpass'];
+    $dbname = $config['dbname'];
+    // global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
 
     $p_id = set_var($_SESSION['p_id']);
@@ -1067,7 +1153,13 @@ function check_unChk_order()
  */
 function check_today_order()
 {
-    global $host, $dbid, $dbpass, $dbname;
+    global $config;
+
+    $host   = $config['host'];
+    $dbid   = $config['dbid'];
+    $dbpass = $config['dbpass'];
+    $dbname = $config['dbname'];
+    // global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
 
     $p_id  = set_var($_SESSION['p_id']);
@@ -1088,7 +1180,13 @@ function check_today_order()
  */
 function check_readyToSend_order()
 {
-    global $host, $dbid, $dbpass, $dbname;
+    global $config;
+
+    $host   = $config['host'];
+    $dbid   = $config['dbid'];
+    $dbpass = $config['dbpass'];
+    $dbname = $config['dbname'];
+    // global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
 
     $p_id = set_var($_SESSION['p_id']);
@@ -1171,7 +1269,13 @@ HEREDOC;
  */
 function get_page_num($mode, $key, $key_value, $date1, $date2, $cpage, $scale)
 {
-    global $host, $dbid, $dbpass, $dbname;
+    global $config;
+
+    $host   = $config['host'];
+    $dbid   = $config['dbid'];
+    $dbpass = $config['dbpass'];
+    $dbname = $config['dbname'];
+    // global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
 
     $p_id  = set_var($_SESSION['p_id']);
@@ -1256,7 +1360,13 @@ function get_page_num($mode, $key, $key_value, $date1, $date2, $cpage, $scale)
  */
 function get_page_result($mode, $key, $key_value, $date1, $date2, $cline, $last_page_num)
 {
-    global $host, $dbid, $dbpass, $dbname;
+    global $config;
+
+    $host   = $config['host'];
+    $dbid   = $config['dbid'];
+    $dbpass = $config['dbpass'];
+    $dbname = $config['dbname'];
+    // global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
 
     $p_id  = set_var($_SESSION['p_id']);
@@ -1341,7 +1451,13 @@ function get_page_result($mode, $key, $key_value, $date1, $date2, $cline, $last_
  */
 function get_list_page_num($mode, $lcode, $mcode, $key, $keyword, $page, $cpage, $scale)
 {
-    global $host, $dbid, $dbpass, $dbname;
+    global $config;
+
+    $host   = $config['host'];
+    $dbid   = $config['dbid'];
+    $dbpass = $config['dbpass'];
+    $dbname = $config['dbname'];
+    // global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
 
     $code_qry = '';
@@ -1407,7 +1523,13 @@ function get_list_page_num($mode, $lcode, $mcode, $key, $keyword, $page, $cpage,
  */
 function get_list_page_result($mode, $lcode, $mcode, $key, $keyword, $cline, $last_page_num)
 {
-    global $host, $dbid, $dbpass, $dbname;
+    global $config;
+
+    $host   = $config['host'];
+    $dbid   = $config['dbid'];
+    $dbpass = $config['dbpass'];
+    $dbname = $config['dbname'];
+    // global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
 
     $code_qry = '';
@@ -1439,7 +1561,13 @@ function get_list_page_result($mode, $lcode, $mcode, $key, $keyword, $cline, $la
  */
 function show_order_list($t_no, $result, $cpage)
 {
-    global $host, $dbid, $dbpass, $dbname;
+    global $config;
+
+    $host   = $config['host'];
+    $dbid   = $config['dbid'];
+    $dbpass = $config['dbpass'];
+    $dbname = $config['dbname'];
+    // global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
 
     $status_now = '';
@@ -1520,6 +1648,8 @@ HEREDOC;
                     $status_now = '<i class="fa fa-flag-checkered"></i> 발송대기';
                 } else if ($row['status'] == '8') {
                     $status_now = '<i class="fa fa-check-square-o"></i> 발송완료';
+                } else if ($row['status'] == '0') {
+                    $status_now = '<i class="fa fa-minus-square"></i> 발송지연';
                 }
 
                 echo <<<HEREDOC
@@ -1598,7 +1728,13 @@ HEREDOC;
 function show_order_item($oid)
 {
 
-    global $host, $dbid, $dbpass, $dbname;
+    global $config;
+
+    $host   = $config['host'];
+    $dbid   = $config['dbid'];
+    $dbpass = $config['dbpass'];
+    $dbname = $config['dbname'];
+    // global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
 
     $sql = "SELECT * FROM mall_order WHERE num = '$oid' ";
@@ -1730,7 +1866,13 @@ HEREDOC;
  */
 function show_order_status($oid, $order_status)
 {
-    global $host, $dbid, $dbpass, $dbname;
+    global $config;
+
+    $host   = $config['host'];
+    $dbid   = $config['dbid'];
+    $dbpass = $config['dbpass'];
+    $dbname = $config['dbname'];
+    // global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
 
     $sql = "SELECT * FROM mall_order WHERE num = '$oid' ";
@@ -1762,6 +1904,9 @@ function show_order_status($oid, $order_status)
         case '8':
             return $ret = '<i class="fa fa-check-square-o"></i> 상품을 발송했습니다. (운송장 번호: ' . show_logistics() . ' ' . show_track_no($oid) . ' )';
             break;
+        case '0':
+            return $ret = '<i class="fa fa-minus-square"></i> 발송이 지연됩니다.';
+            break;
         default:
             return $ret = '<i class="fa fa-pause"></i> 상품을 준비 중입니다.';
             break;
@@ -1782,7 +1927,13 @@ function show_order_status($oid, $order_status)
  */
 function show_buyer_detail($oid)
 {
-    global $host, $dbid, $dbpass, $dbname;
+    global $config;
+
+    $host   = $config['host'];
+    $dbid   = $config['dbid'];
+    $dbpass = $config['dbpass'];
+    $dbname = $config['dbname'];
+    // global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
 
     $sql = "SELECT * FROM mall_order WHERE num = '$oid' ";
@@ -1873,7 +2024,13 @@ HEREDOC;
  */
 function show_product_image($pnum)
 {
-    global $host, $dbid, $dbpass, $dbname;
+    global $config;
+
+    $host   = $config['host'];
+    $dbid   = $config['dbid'];
+    $dbpass = $config['dbpass'];
+    $dbname = $config['dbname'];
+    // global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
 
     // $query  = "SELECT * FROM products WHERE num='$pnum'";
@@ -1980,7 +2137,13 @@ HEREDOC;
 function show_product_info($pnum)
 {
 
-    global $host, $dbid, $dbpass, $dbname;
+    global $config;
+
+    $host   = $config['host'];
+    $dbid   = $config['dbid'];
+    $dbpass = $config['dbpass'];
+    $dbname = $config['dbname'];
+    // global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
 
     $qry  = "SELECT * FROM products WHERE del_chk='N' AND approved = 'Y' AND num='$pnum' ";
@@ -2070,7 +2233,13 @@ HEREDOC;
  */
 function show_relative_item($lcode, $mcode)
 {
-    global $host, $dbid, $dbpass, $dbname;
+    global $config;
+
+    $host   = $config['host'];
+    $dbid   = $config['dbid'];
+    $dbpass = $config['dbpass'];
+    $dbname = $config['dbname'];
+    // global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
 
     $qry = "SELECT * FROM products WHERE del_chk='N' AND category_l='$lcode' AND category_m='$mcode' AND approved = 'Y' ORDER BY rand() LIMIT 4 ";
