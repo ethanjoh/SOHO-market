@@ -2,40 +2,12 @@
 
 <?php
 
-$lcode = set_var($_GET['lcode']);
-$mcode = set_var($_GET['mcode']);
-$pnum  = set_var($_GET['pnum']);
-$p_id  = set_var($_SESSION['p_id']);
+	$lcode = set_var($_GET['lcode']);
+	$mcode = set_var($_GET['mcode']);
+	$pnum  = set_var($_GET['pnum']);
+	// $p_id  = set_var($_SESSION['p_id']);
 
-// if ($_GET) {
-//     $lcode = $_GET['lcode'];
-//     $mcode = $_GET['mcode'];
-//     $pnum  = $_GET['pnum'];
-// }
-
-$query  = "SELECT * FROM products WHERE num='$pnum'";
-$result = mysqli_query($connect, $query);
-$rows   = mysqli_fetch_array($result);
-mysqli_free_result($result);
-
-$pnum         = $rows['num'];
-$lcode        = $rows['category_l'];
-$product_name = $rows['name'];
-$short_desc   = $rows['short_desc'];
-$option       = $rows['opt'];
-// $b_image1_name = $rows['b_image1_name'];
-// $b_image2_name = $rows['b_image2_name'];
-// $b_image3_name = $rows['b_image3_name'];
-// $b_image4_name = $rows['b_image4_name'];
-// $s_image1_name = $rows['s_image1_name'];
-// $s_image2_name = $rows['s_image2_name'];
-// $s_image3_name = $rows['s_image3_name'];
-// $s_image4_name = $rows['s_image4_name'];
-$contents = $rows['contents'];
-
-$l_qry = "SELECT * FROM products_category1 WHERE code='$lcode'";
-$l_res = mysqli_query($connect, $l_qry);
-$l_row = mysqli_fetch_array($l_res);
+	$contents = get_contents($pnum);
 
 ?>
 
@@ -114,7 +86,7 @@ $l_row = mysqli_fetch_array($l_res);
                             </ul>
                             <!-- Tab panes -->
                             <div class="tab-content">
-                                <div role="tabpanel" class="tab-pane active" id="desc"> <?php echo $contents; ?></div>
+                                <div role="tabpanel" class="tab-pane active" id="desc">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           <?php echo $contents; ?></div>
                                 <div role="tabpanel" class="tab-pane" id="delivery">
                                     <div class="row">
                                         <div class="col-md-6 col-xs-12">
