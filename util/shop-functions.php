@@ -257,20 +257,10 @@ HEREDOC;
  * @param  [type] $tabid          [description]
  * @return [type] [description]
  */
-// function show_catalog_products($lcode, $mcode, $tabid)
 function show_catalog_products($result, $tabid)
 {
     global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
-
-    // if ($mcode) {
-    //     $code_qry = " AND category_l = '$lcode' AND category_m = '$mcode'";
-    // } else {
-    //     $code_qry = " AND category_l = '$lcode'";
-    // }
-
-    // $query  = "SELECT * FROM products WHERE del_chk='N'" . $code_qry . " AND approved = 'Y' ORDER BY num DESC LIMIT 0, 12 ";
-    // $result = mysqli_query($connect, $query);
 
     if ($result) {
 
@@ -1337,14 +1327,22 @@ function get_page_result($mode, $key, $key_value, $date1, $date2, $cline, $last_
 
 }
 
-function get_list_page_num($mode, $key, $keyword, $cpage, $scale)
+/**
+ * [get_list_page_num 상품목록에서 페이지 번호 구하기]
+ * @param  [type] $mode           [모드]
+ * @param  [type] $lcode          [대카테고리]
+ * @param  [type] $mcode          [중카테고리]
+ * @param  [type] $key            [검색 키]
+ * @param  [type] $keyword        [검색 키워드]
+ * @param  [type] $page           [페이지값]
+ * @param  [type] $cpage          [시작 페이지]
+ * @param  [type] $scale          [한 페이지에 보여지는 상품 수]
+ * @return [type] [description]
+ */
+function get_list_page_num($mode, $lcode, $mcode, $key, $keyword, $page, $cpage, $scale)
 {
     global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
-
-    // $p_id  = set_var($_SESSION['p_id']);
-    $lcode = set_var($_GET['lcode']);
-    $mcode = set_var($_GET['mcode']);
 
     $code_qry = '';
 
@@ -1353,20 +1351,20 @@ function get_list_page_num($mode, $key, $keyword, $cpage, $scale)
         $code_qry = " AND category_m = '$mcode'";
     }
 
-    if ($mode == "search") {
+    if ("search" == $mode) {
         $search_qry .= " AND (name LIKE '%$keyword%' OR prod_code LIKE '$keyword' OR company LIKE '%$keyword%') ";
-        $qry = "SELECT * FROM products WHERE approved='Y' AND del_chk != 'Y' $search_qry ORDER BY del_chk='N', num";
+        $qry = "SELECT * FROM products WHERE approved='Y' AND del_chk != 'Y' $search_qry ";
 
     } else {
-        $qry = "SELECT * FROM products WHERE category_l='$lcode' AND del_chk != 'Y' AND approved='Y' $code_qry ORDER BY del_chk='N', num";
+        $qry = "SELECT * FROM products WHERE category_l='$lcode' AND del_chk != 'Y' AND approved='Y' $code_qry";
     }
 
-// 자료 총수 구하기
+    // 자료 총수 구하기
     $res   = mysqli_query($connect, $qry);
     $total = mysqli_num_rows($res);
 
     $scale = $scale;
-    $page  = '';
+    $page  = $page;
 
     if ($page == '') {
         $page = 1;
@@ -1396,41 +1394,33 @@ function get_list_page_num($mode, $key, $keyword, $cpage, $scale)
     return array($cline, $last_page_num, $cpage, $totalpage);
 }
 
+/**
+ * [get_list_page_result 페이징 쿼리 결과]
+ * @param  [type] $mode           [description]
+ * @param  [type] $lcode          [description]
+ * @param  [type] $mcode          [description]
+ * @param  [type] $key            [description]
+ * @param  [type] $keyword        [description]
+ * @param  [type] $cline          [description]
+ * @param  [type] $last_page_num  [description]
+ * @return [type] [description]
+ */
 function get_list_page_result($mode, $lcode, $mcode, $key, $keyword, $cline, $last_page_num)
 {
     global $host, $dbid, $dbpass, $dbname;
     $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
 
-    // if ($mode == "search") {
-    //     $search_qry .= " AND (name LIKE '%$keyword%' OR prod_code LIKE '$keyword' OR company LIKE '%$keyword%') ";
-    //     $query = "SELECT * FROM products WHERE approved='Y' AND del_chk != 'Y' $search_qry ORDER BY del_chk='N' DESC, created DESC LIMIT $cline,$last_page_num";
-    // } else {
-    //     $query = "SELECT * FROM products WHERE category_l='$lcode' $code_qry AND del_chk != 'Y' AND approved='Y' ORDER BY del_chk='N' DESC, created DESC LIMIT $cline, $last_page_num";
-    // }
-
     $code_qry = '';
 
-    if (isset($mcode)) {
+    if ($mcode) {
         $code_qry = " AND category_m = '$mcode'";
     }
 
-    switch ($mode) {
-        case 'search':
-            $qry = "SELECT * FROM products WHERE approved='Y'
-                                            AND del_chk != 'Y'
-                                            AND (name LIKE '%" . $keyword . "%'
-                                            OR prod_code LIKE '" . $keyword . "'
-                                            OR company LIKE '%" . $keyword . "%')
-                                            ORDER BY del_chk='N' DESC, created DESC LIMIT " . $cline . "," . $last_page_num . "";
-
-            break;
-        default:
-            $qry = "SELECT * FROM products WHERE category_l='$lcode' AND del_chk='N'" . $code_qry . " AND approved = 'Y' ORDER BY num DESC LIMIT " . $cline . ", 12";
-            // $qry = "SELECT * FROM products WHERE category_l='$lcode'
-            // AND del_chk != 'Y'
-            // AND approved='Y' $code_qry
-            // ORDER BY del_chk='N', num";
-
+    if ("search" == $mode) {
+        $search_qry .= " AND (name LIKE '%" . $keyword . "%' OR prod_code LIKE '" . $keyword . "' OR company LIKE '%" . $keyword . "%') ";
+        $qry = "SELECT * FROM products WHERE approved='Y' AND del_chk != 'Y' " . $search_qry . " ORDER BY num DESC LIMIT " . $cline . ", " . $last_page_num . "";
+    } else {
+        $qry = "SELECT * FROM products WHERE del_chk='N'" . $code_qry . " AND approved = 'Y' ORDER BY num DESC LIMIT " . $cline . ", " . $last_page_num . "";
     }
 
     $res  = mysqli_query($connect, $qry);

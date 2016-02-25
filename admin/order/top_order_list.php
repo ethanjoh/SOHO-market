@@ -348,23 +348,23 @@
 	        } else {
 	            if ($row['status'] == '1') {
 	                $c_color    = '#FFC8C8';
-	                $status_now = "미처리";
+	                $status_now = '<i class="fa fa-pause"> 미처리';
 	            } else if ($row['status'] == '3') {
 	                $c_color    = '#FFC8C8';
-	                $status_now = "미처리";
+	                $status_now = '<i class="fa fa-pause"> 미처리';
 	            } else if ($row['status'] == '5') {
 	                $c_color    = '#f7e8aa';
-	                $status_now = "주문확인";
+	                $status_now = '<i class="fa fa-check"></i> 주문확인';
 	            } else if ($row['status'] == '7') {
 	                $c_color    = '#EFFCFC';
-	                $status_now = "발송대기";
+	                $status_now = '<i class="fa fa-flag-checkered"></i> 발송대기';
 	            } else if ($row['status'] == '8' && $row['pchk'] == "Y") {
 	                $c_color    = '#FFFFFF';
-	                $status_now = "발송완료";
+	                $status_now = '<i class="fa fa-check-square-o"></i> 발송완료';
 	                $status_now .= "</br>(" . $row['senddate'] . ")";
 	            } else if ($row['status'] == '0') {
 	                $c_color    = '#FFC995';
-	                $status_now = ">발송지연<";
+	                $status_now = '<i class="fa fa-minus-square"></i> 발송지연';
 	            } else if ($row['status'] == '-1') {
 	                $c_color    = '#FBAFFF';
 	                $status_now = "⊙반품회수⊙";
@@ -375,7 +375,7 @@
 	            }
 
             ?>
-					          <tr>
+					          <tr style="background-color:<?php echo $c_color ?>;">
 					            <td><a href="or_view.php?mode=<?php echo $mode; ?>&amp;oid=<?php echo $row['num']; ?>&amp;key=<?php echo $key; ?>&amp;key_value=<?php echo $key_value; ?>&amp;page=<?php echo $page; ?>"><?php echo $row['createdate']; ?></a></td>
 					            <td><?php echo $row['user_id']; ?></td>
                                 <td>
