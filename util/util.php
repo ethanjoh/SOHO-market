@@ -1564,7 +1564,7 @@ function get_pg_info2($orderid)
                             }
                         }
 
-                        $pay_status = '<i class="fa fa-university"></i> <button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#myModal">가상계좌확인</button>';
+                        $pay_status = '<i class="fa fa-university"></i> <button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#myModal">입금계좌확인</button>';
                         $pay_status .= '  <div class="modal fade" id="myModal">';
                         $pay_status .= '    <div class="modal-dialog">';
                         $pay_status .= '      <div class="modal-content">';

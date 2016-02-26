@@ -47,43 +47,40 @@ $xpay->Set("LGD_PAYKEY", $LGD_PAYKEY);
  *************************************************
  */
 
-$LGD_RESPCODE          = $xpay->Response_Code();
-$LGD_RESPMSG           = $xpay->Response_Msg();
-$LGD_TID               = $xpay->Response("LGD_TID", 0);
-$LGD_OID               = $xpay->Response("LGD_OID", 0);
-$LGD_BUYER             = $xpay->Response("LGD_BUYER", 0);
-$LGD_BUYEREMAIL        = $xpay->Response("LGD_BUYEREMAIL", 0);
-$LGD_PRODUCTINFO       = $xpay->Response("LGD_PRODUCTINFO", 0);
-$LGD_AMOUNT            = $xpay->Response("LGD_AMOUNT", 0);
-$LGD_PAYTYPE           = $xpay->Response("LGD_PAYTYPE", 0);
-$LGD_PAYDATE           = $xpay->Response("LGD_PAYDATE", 0);
-$LGD_FINANCECODE       = $xpay->Response("LGD_FINANCECODE", 0);
-$LGD_FINANCENAME       = $xpay->Response("LGD_FINANCENAME", 0);
-$LGD_FINANCEAUTHNUM    = $xpay->Response("LGD_FINANCEAUTHNUM", 0);
-$LGD_ACCOUNTNUM        = $xpay->Response("LGD_ACCOUNTNUM", 0);
-$LGD_HASHDATA          = $xpay->Response("LGD_HASHDATA", 0);
-$LGD_ESCROWYN          = $xpay->Response("LGD_ESCROWYN", 0);
-$LGD_TRANSAMOUNT       = $xpay->Response("LGD_TRANSAMOUNT", 0);
-$LGD_EXCHANGERATE      = $xpay->Response("LGD_EXCHANGERATE", 0);
-$LGD_CARDNUM           = $xpay->Response("LGD_CARDNUM", 0);
-$LGD_CARDINSTALLMONTH  = $xpay->Response("LGD_CARDINSTALLMONTH", 0);
-$LGD_CARDNOINTYN       = $xpay->Response("LGD_CARDNOINTYN", 0);
-$LGD_TIMESTAMP         = $xpay->Response("LGD_TIMESTAMP", 0);
-$LGD_PAYTELNUM         = $xpay->Response("LGD_PAYTELNUM", 0);
-$LGD_ACCOUNTNUM        = $xpay->Response("LGD_ACCOUNTNUM", 0);
-$LGD_CASTAMOUNT        = $xpay->Response("LGD_CASTAMOUNT", 0);
-$LGD_CASCAMOUNT        = $xpay->Response("LGD_CASCAMOUNT", 0);
-$LGD_CASFLAG           = $xpay->Response("LGD_CASFLAG", 0);
-$LGD_CASSEQNO          = $xpay->Response("LGD_CASSEQNO", 0);
-$LGD_CASHRECEIPTNUM    = $xpay->Response("LGD_CASHRECEIPTNUM", 0);
-$LGD_CASHRECEIPTSELFYN = $xpay->Response("LGD_CASHRECEIPTSELFYN", 0);
-$LGD_CASHRECEIPTKIND   = $xpay->Response("LGD_CASHRECEIPTKIND", 0);
-$LGD_OCBSAVEPOINT      = $xpay->Response("LGD_OCBSAVEPOINT", 0);
-$LGD_OCBTOTALPOINT     = $xpay->Response("LGD_OCBTOTALPOINT", 0);
-$LGD_OCBUSABLEPOINT    = $xpay->Response("LGD_OCBUSABLEPOINT", 0);
-
-// db에 저장하기 위한 변수 설정
-require_once 'variables_from_payreq.php';
+// $LGD_RESPCODE = $xpay->Response_Code();
+// $LGD_RESPMSG  = $xpay->Response_Msg();
+// $LGD_TID      = $xpay->Response("LGD_TID", 0);
+// $LGD_OID      = $xpay->Response("LGD_OID", 0);
+// $LGD_BUYER             = $xpay->Response("LGD_BUYER", 0);
+// $LGD_BUYEREMAIL        = $xpay->Response("LGD_BUYEREMAIL", 0);
+// $LGD_PRODUCTINFO       = $xpay->Response("LGD_PRODUCTINFO", 0);
+// $LGD_AMOUNT            = $xpay->Response("LGD_AMOUNT", 0);
+// $LGD_PAYTYPE           = $xpay->Response("LGD_PAYTYPE", 0);
+// $LGD_PAYDATE           = $xpay->Response("LGD_PAYDATE", 0);
+// $LGD_FINANCECODE       = $xpay->Response("LGD_FINANCECODE", 0);
+// $LGD_FINANCENAME       = $xpay->Response("LGD_FINANCENAME", 0);
+// $LGD_FINANCEAUTHNUM    = $xpay->Response("LGD_FINANCEAUTHNUM", 0);
+// $LGD_ACCOUNTNUM        = $xpay->Response("LGD_ACCOUNTNUM", 0);
+// $LGD_HASHDATA          = $xpay->Response("LGD_HASHDATA", 0);
+// $LGD_ESCROWYN          = $xpay->Response("LGD_ESCROWYN", 0);
+// $LGD_TRANSAMOUNT       = $xpay->Response("LGD_TRANSAMOUNT", 0);
+// $LGD_EXCHANGERATE      = $xpay->Response("LGD_EXCHANGERATE", 0);
+// $LGD_CARDNUM           = $xpay->Response("LGD_CARDNUM", 0);
+// $LGD_CARDINSTALLMONTH  = $xpay->Response("LGD_CARDINSTALLMONTH", 0);
+// $LGD_CARDNOINTYN       = $xpay->Response("LGD_CARDNOINTYN", 0);
+// $LGD_TIMESTAMP         = $xpay->Response("LGD_TIMESTAMP", 0);
+// $LGD_PAYTELNUM         = $xpay->Response("LGD_PAYTELNUM", 0);
+// $LGD_ACCOUNTNUM        = $xpay->Response("LGD_ACCOUNTNUM", 0);
+// $LGD_CASTAMOUNT        = $xpay->Response("LGD_CASTAMOUNT", 0);
+// $LGD_CASCAMOUNT        = $xpay->Response("LGD_CASCAMOUNT", 0);
+// $LGD_CASFLAG           = $xpay->Response("LGD_CASFLAG", 0);
+// $LGD_CASSEQNO          = $xpay->Response("LGD_CASSEQNO", 0);
+// $LGD_CASHRECEIPTNUM    = $xpay->Response("LGD_CASHRECEIPTNUM", 0);
+// $LGD_CASHRECEIPTSELFYN = $xpay->Response("LGD_CASHRECEIPTSELFYN", 0);
+// $LGD_CASHRECEIPTKIND   = $xpay->Response("LGD_CASHRECEIPTKIND", 0);
+// $LGD_OCBSAVEPOINT      = $xpay->Response("LGD_OCBSAVEPOINT", 0);
+// $LGD_OCBTOTALPOINT     = $xpay->Response("LGD_OCBTOTALPOINT", 0);
+// $LGD_OCBUSABLEPOINT    = $xpay->Response("LGD_OCBUSABLEPOINT", 0);
 
 /*
  * 2. 최종결제 요청 결과처리
@@ -92,13 +89,83 @@ require_once 'variables_from_payreq.php';
  */
 if ($xpay->TX()) {
     //1)결제결과 화면처리(성공,실패 결과 처리를 하시기 바랍니다.)
+    $LGD_RESPCODE = $xpay->Response_Code();
+    $LGD_RESPMSG  = $xpay->Response_Msg();
+    // $LGD_IFOS              = $xpay->Response("LGD_IFOS", 0);
+    /** 공통 */
+    $LGD_MID          = $xpay->Response("LGD_MID", 0);          //상점 아이디
+    $LGD_OID          = $xpay->Response("LGD_OID", 0);          //상점 주문번호
+    $LGD_AMOUNT       = $xpay->Response("LGD_AMOUNT", 0);       //결제금액
+    $LGD_TID          = $xpay->Response("LGD_TID", 0);          //유플러스 거래번호
+    $LGD_PAYTYPE      = $xpay->Response("LGD_PAYTYPE", 0);      //결제수단 코드
+    $LGD_PAYDATE      = $xpay->Response("LGD_PAYDATE", 0);      //결제일시
+    $LGD_HASHDATA     = $xpay->Response("LGD_HASHDATA", 0);     //해시데이터
+    $LGD_FINANCECODE  = $xpay->Response("LGD_FINANCECODE", 0);  //결제기관코드
+    $LGD_FINANCENAME  = $xpay->Response("LGD_FINANCENAME", 0);  // 결제기관명
+    $LGD_ESCROWYN     = $xpay->Response("LGD_ESCROWYN", 0);     //최종 에스크로 적용여부
+    $LGD_TRANSAMOUNT  = $xpay->Response("LGD_TRANSAMOUNT", 0);  //환율적용금액
+    $LGD_EXCHANGERATE = $xpay->Response("LGD_EXCHANGERATE", 0); //적용환율
+    $LGD_BUYER        = $xpay->Response("LGD_BUYER", 0);        //구매자명
+    $LGD_BUYERID      = $xpay->Response("LGD_BUYERID", 0);      //구매자아이디
+    $LGD_BUYERPHONE   = $xpay->Response("LGD_BUYERPHONE", 0);   //고객휴대폰번호
+    $LGD_BUYEREMAIL   = $xpay->Response("LGD_BUYEREMAIL", 0);   //구매자 이메일
+    $LGD_PRODUCTINFO  = $xpay->Response("LGD_PRODUCTINFO", 0);  //구매내역
 
-    // $amount = number_format($LGD_AMOUNT);
-    // $paydate = date('Y-m-d h:i:s', $LGD_PAYDATE);
+    /**
+     * 신용카드
+     */
+    $LGD_CARDNUM          = $xpay->Response("LGD_CARDNUM", 0);          //카드번호
+    $LGD_CARDINSTALLMONTH = $xpay->Response("LGD_CARDINSTALLMONTH", 0); //할부개월
+    $LGD_CARDNOINTYN      = $xpay->Response("LGD_CARDNOINTYN", 0);      //무이자여부
+    $LGD_FINANCEAUTHNUM   = $xpay->Response("LGD_FINANCEAUTHNUM", 0);   //결제기관승인번호
+
+    /**
+     * 계좌이체/무통장
+     */
+    $LGD_CASHRECEIPTNUM    = $xpay->Response("LGD_CASHRECEIPTNUM", 0);    //현금영수증 승인번호
+    $LGD_CASHRECEIPTSELFYN = $xpay->Response("LGD_CASHRECEIPTSELFYN", 0); //현금영수증 자진발급제유무
+    $LGD_CASHRECEIPTKIND   = $xpay->Response("LGD_CASHRECEIPTKIND", 0);   //현금영수증 종류
+
+    /**
+     * 무통장
+     */
+    $LGD_ACCOUNTNUM = $xpay->Response("LGD_ACCOUNTNUM", 0); //입금할 계좌번호
+    $LGD_CASTAMOUNT = $xpay->Response("LGD_CASTAMOUNT", 0); //입금누적금액
+    $LGD_CASCAMOUNT = $xpay->Response("LGD_CASCAMOUNT", 0); //현 입금금액
+    $LGD_CASFLAG    = $xpay->Response("LGD_CASFLAG", 0);    //거래종류(R:할당, I:입금, C:취소)
+    $LGD_CASSEQNO   = $xpay->Response("LGD_CASSEQNO", 0);   //가상계좌일련번호
+
+    // $LGD_DELIVERYINFO   = $xpay->Response("LGD_DELIVERYINFO", 0);
+    // $LGD_RECEIVERPHONE  = $xpay->Response("LGD_OID", 0);
+    // $LGD_2TR_FLAG       = $xpay->Response("LGD_2TR_FLAG", 0);
+    // $LGD_DEVICE         = $xpay->Response("LGD_DEVICE", 0);
+    // $LGD_TIMESTAMP      = $xpay->Response("LGD_TIMESTAMP", 0);
+    // $LGD_SAOWNER        = $xpay->Response("LGD_SAOWNER", 0);
+    // $LGD_BUYERSSN       = $xpay->Response("LGD_BUYERSSN", 0);
+    // $LGD_RESPMSG        = $xpay->Response("LGD_RESPMSG", 0);
+    // $LGD_PRODUCTCODE    = $xpay->Response("LGD_PRODUCTCODE", 0);
+    // $LGD_BUYERADDRESS   = $xpay->Response("LGD_BUYERADDRESS", 0);
+    // $LGD_RECEIVER       = $xpay->Response("LGD_RECEIVER", 0);
+    // $LGD_PAYER          = $xpay->Response("LGD_PAYER", 0);
+    // $LGD_PAYTELNUM      = $xpay->Response("LGD_PAYTELNUM", 0);
+    // $LGD_OCBSAVEPOINT   = $xpay->Response("LGD_OCBSAVEPOINT", 0);
+    // $LGD_OCBTOTALPOINT  = $xpay->Response("LGD_OCBTOTALPOINT", 0);
+    // $LGD_OCBUSABLEPOINT = $xpay->Response("LGD_OCBUSABLEPOINT", 0);
+
+    // $LGD_CARDACQUIRER      = $xpay->Response("LGD_CARDACQUIRER", 0);
+    // $LGD_CARDNOINTEREST_YN = $xpay->Response("LGD_CARDNOINTEREST_YN", 0);
+
+    // db에 저장하기 위한 변수 설정
+    require_once 'variables_from_payreq.php';
+
+    $keys = $xpay->Response_Names();
+    foreach ($keys as $name) {
+        echo $name . " = " . $xpay->Response($name, 0) . "<br>";
+    }
 
     echo <<<HEREDOC
 
-                        <div class="alert alert-success" role="alert">주문완료! 결제에 성공하였습니다.</div>
+                        <div class="alert alert-success" role="alert">주문완료! 주문조회에서 확인하세요.</div>
                         <table class="table table-striped">
                             <tr>
                                 <th>거래번호 :</th>
@@ -147,7 +214,7 @@ HEREDOC;
                 	        </tr>
                 	        <tr>
                 	          <th>입금계좌번호 :</th>
-                	          <td>{$LGD_ACCOUNTNUM}<br><i class="fa fa-info-circle"></i> 주문조회에서도 확인이 가능합니다.</td>
+                	          <td>{$LGD_ACCOUNTNUM} <i class="fa fa-info-circle"></i> 주문조회에서도 확인이 가능합니다.</td>
                 	        </tr>
 
 HEREDOC;
@@ -155,7 +222,6 @@ HEREDOC;
     } else {
         //기타 결제시
         echo <<<HEREDOC
-
                 	        <tr>
                 	          <th>결제사명 :</th>
                 	          <td>{$LGD_FINANCENAME}</td>
@@ -175,14 +241,14 @@ HEREDOC;
 
     if ("0000" == $xpay->Response_Code()) {
         //최종결제요청 결과 성공 DB처리
-        require_once 'save_pginfo_to_db.php';
-
         /**
          * 최종결제요청 결과 성공 DB처리 실패시 Rollback 처리
          * DB처리 실패시 false로 변경해 주세요.
          * save_pginfo_to_db.php 에서 처리
          * $isDBOK = true;
          */
+        require_once 'save_pginfo_to_db.php';
+
         if (!$isDBOK) {
             echo "<p>";
             $xpay->Rollback("상점 DB처리 실패로 인하여 Rollback 처리 [TID:" . $xpay->Response("LGD_TID", 0) . ",MID:" . $xpay->Response("LGD_MID", 0) . ",OID:" . $xpay->Response("LGD_OID", 0) . "]");

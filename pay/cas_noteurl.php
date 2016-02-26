@@ -1,4 +1,14 @@
 ﻿<?php
+$config  = parse_ini_file('../util/config.ini');
+$host    = $config['host'];
+$dbid    = $config['dbid'];
+$dbpass  = $config['dbpass'];
+$dbname  = $config['dbname'];
+$port    = $config['port'];
+$MERTKEY = $config['mertkey'];
+
+$connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
+
 /*
  * [상점 결제결과처리(DB) 페이지]
  *
@@ -43,8 +53,8 @@ $LGD_RECEIVER      = $HTTP_POST_VARS["LGD_RECEIVER"];      // 수취인
 $LGD_RECEIVERPHONE = $HTTP_POST_VARS["LGD_RECEIVERPHONE"]; // 수취인 전화번호
 $LGD_DELIVERYINFO  = $HTTP_POST_VARS["LGD_DELIVERYINFO"];  // 배송지
 
-$LGD_MERTKEY = "95160cce09854ef44d2edb2bfb05f9f3"; //LG유플러스에서 발급한 상점키로 변경해 주시기 바랍니다.
-
+// $LGD_MERTKEY = "e57352760ea5a2a1fce315c6ead11ece"; //LG유플러스에서 발급한 상점키로 변경해 주시기 바랍니다.
+$LGD_MERTKEY   = $MERTKEY;
 $LGD_HASHDATA2 = md5($LGD_MID . $LGD_OID . $LGD_AMOUNT . $LGD_RESPCODE . $LGD_TIMESTAMP . $LGD_MERTKEY);
 
 /*
@@ -57,6 +67,8 @@ $LGD_HASHDATA2 = md5($LGD_MID . $LGD_OID . $LGD_AMOUNT . $LGD_RESPCODE . $LGD_TI
  */
 $resultMSG = "결제결과 상점 DB처리(LGD_CASNOTEURL) 결과값을 입력해 주시기 바랍니다.";
 
+require_once 'variable_from_payreq.php';
+
 if ($LGD_HASHDATA2 == $LGD_HASHDATA) {
     //해쉬값 검증이 성공이면
     if ("0000" == $LGD_RESPCODE) {
@@ -67,21 +79,91 @@ if ($LGD_HASHDATA2 == $LGD_HASHDATA) {
              * 상점 결과 처리가 정상이면 "OK"
              */
             //if( 무통장 할당 성공 상점처리결과 성공 )
-            $resultMSG = "OK";
+            // $resultMSG = "OK";
+            $update = 'N';
+            require_once 'save_wireinfo_to_db.php';
+
         } else if ("I" == $LGD_CASFLAG) {
             /*
              * 무통장 입금 성공 결과 상점 처리(DB) 부분
              * 상점 결과 처리가 정상이면 "OK"
              */
             //if( 무통장 입금 성공 상점처리결과 성공 )
-            $resultMSG = "OK";
+            // $resultMSG = "OK";
+            // $update = 'I';
+            // require_once 'save_wireinfo_to_db.php';
+
+            $status = "3"; //주문진행 상태(주문 미처리)
+
+            $query  = "UPDATE mall_order SET status='$status' WHERE orderid = '$lgd_oid' ";
+            $result = mysqli_query($connect, $query);
+
+            $query2 = "UPDATE pg_info SET
+                                        LGD_RESPCODE            = '$LGD_RESPCODE',
+                                        LGD_RESPMSG             = '$LGD_RESPMSG',
+                                        LGD_PAYDATE             = '$LGD_PAYDATE',
+                                        LGD_ESCROWYN            = '$LGD_ESCROWYN',
+                                        LGD_TIMESTAMP           = '$LGD_TIMESTAMP',
+                                        LGD_CASTAMOUNT          = '$LGD_CASTAMOUNT',
+                                        LGD_CASCAMOUNT          = '$LGD_CASCAMOUNT',
+                                        LGD_CASFLAG             = '$LGD_CASFLAG',
+                                        LGD_CASSEQNO            = '$LGD_CASSEQNO',
+                                        LGD_CASHRECEIPTNUM      = '$LGD_CASHRECEIPTNUM',
+                                        LGD_CASHRECEIPTSELFYN   = '$LGD_CASHRECEIPTSELFYN',
+                                        LGD_CASHRECEIPTKIND     = '$LGD_CASHRECEIPTKIND'
+                                    WHERE LGD_OID = '$lgd_oid'";
+
+            $result2 = mysqli_query($connect, $query2);
+
+            if (!$result2) {
+                echo "Error occured while saving payment data.";
+                $resultMSG = "FAIL";
+            } else {
+                $resultMSG = "OK";
+            }
+
+            //주문상품 장바구니에서 삭제
+            // for ($i = 0; $i < sizeof($products_num); $i++) {
+            //     $qry2 = "DELETE FROM products_cart WHERE user_id = '$user_id' AND product_code='$products_num[$i]' ";
+            //     mysqli_query($connect, $qry2);
+            // }
+
+            if (!$result) {
+                err_msg('데이터베이스 에러가 났습니다.');
+            } else {
+                ######### SMS 발송처리 (회원 SMS 수신 Y, 관리자 SMS 사용여부 Y 에만)
+                ######### $sms: 회원 SMS 수신여부
+                $res     = mysqli_query($connect, "SELECT * FROM sms");
+                $sms_row = mysqli_fetch_array($res);
+
+                //관리페이지에서 SMS 사용여부 확인
+                if ($sms_row['sms'] == "Y") {
+                    //구매자에게 SMS 발송, 승인된 회원만 구매가능하므로 승인여부 제외
+                    if ($sms == "Y" && $sms_row['order_chk'] == "Y") {
+                        //send_sms(받는 사람 핸드폰번호, 메시지 타입, 날짜, db연결)
+                        //메시지 타입 3: 주문완료 처리, 날짜가 빈칸이면 즉시 발송
+                        send_sms($buyer_hphone, 3, $buyer_name, "", $connect);
+                    }
+
+                    //관리자에게 SMS 발송
+                    if ($sms_row['orderin_chk'] == "Y") {
+                        //send_sms(self->관리자에게, 메시지 타입, 날짜, db연결)
+                        //메시지 타입 2: 주문접수 처리
+                        send_sms("self", 2, $buyer_name, "", $connect);
+                    }
+
+                }
+                ####### SMS 발송 끝
+            }
         } else if ("C" == $LGD_CASFLAG) {
             /*
              * 무통장 입금취소 성공 결과 상점 처리(DB) 부분
              * 상점 결과 처리가 정상이면 "OK"
              */
             //if( 무통장 입금취소 성공 상점처리결과 성공 )
-            $resultMSG = "OK";
+            // $resultMSG = "OK";
+            $update = 'C';
+            require_once 'save_wireinfo_to_db.php';
         }
     } else {
         //결제가 실패이면
@@ -91,6 +173,7 @@ if ($LGD_HASHDATA2 == $LGD_HASHDATA) {
          */
         //if( 결제실패 상점처리결과 성공 )
         $resultMSG = "OK";
+
     }
 } else {
     //해쉬값이 검증이 실패이면

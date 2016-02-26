@@ -192,7 +192,7 @@ $memo_to_admin    = set_var($_POST['memo_to_admin']);
 <?php
 
 foreach ($payReqMap as $key => $value) {
-    echo "                         <input type='hidden' name='" . $key . "' id='" . $key . "' value='" . $value . "''>\n";
+    echo '                         <input type="hidden" name="' . $key . '" id="' . $key . '" value="' . $value . '">' . "\r\n";
 }
 ; // echo '<pre>';; // var_dump($_SESSION);; // echo '</pre>';
 ?>
