@@ -116,7 +116,7 @@ if ($LGD_HASHDATA2 == $LGD_HASHDATA) {
             $result2 = mysqli_query($connect, $query2);
 
             if (!$result2) {
-                echo "Error occured while saving payment data.";
+                // echo "Error occured while saving payment data.";
                 $resultMSG = "FAIL";
             } else {
                 $resultMSG = "OK";
