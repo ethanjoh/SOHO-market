@@ -6,6 +6,7 @@ $host   = $config['host'];
 $dbid   = $config['dbid'];
 $dbpass = $config['dbpass'];
 $dbname = $config['dbname'];
+$port   = $config['port'];
 
 // global $host, $dbid, $dbpass, $dbname;
 $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
@@ -1510,167 +1511,173 @@ function get_pg_info2($orderid)
 
     global $connect;
 
-    // retrieve PG data
-    $pg_sql    = "SELECT * FROM pg_info WHERE LGD_OID='$orderid' ";
-    $pg_result = mysqli_query($connect, $pg_sql);
-    $pg_row    = mysqli_fetch_array($pg_result);
+    if (isset($orderid)) {
 
-    $pay_status = '';
+        // retrieve PG data
+        $pg_sql    = "SELECT * FROM pg_info WHERE LGD_OID='$orderid' ";
+        $pg_result = mysqli_query($connect, $pg_sql);
+        $pg_row    = mysqli_fetch_array($pg_result);
 
-    switch ($pg_row['LGD_PAYTYPE']) {
-        case 'SC0040':
-            if ($pg_row['LGD_RESPCODE'] == "0000") {
-                // 계좌할당: R
-                if ("R" == $pg_row['LGD_CASFLAG']) {
+        $pay_status = '';
 
-                    $bank_finance = array(
-                        '003' => '기업은행',
-                        '005' => '외환은행',
-                        '004' => '국민은행',
-                        '011' => '농협은행',
-                        '020' => '우리은행',
-                        '088' => '신한은행',
-                        '023' => '제일은행',
-                        '027' => '씨티은행',
-                        '031' => '대구은행',
-                        '032' => '부산은행',
-                        '034' => '광주은행',
-                        '037' => '전북은행',
-                        '039' => '경남은행',
-                        '071' => '우체국',
-                        '081' => '하나은행',
-                        '048' => '신협',
-                        '045' => '새마을금고',
-                        '035' => '제주은행',
-                        '007' => '수협',
-                        '002' => '산업은행',
-                        '209' => '동양증권',
-                        '230' => '미래에셋',
-                        '278' => '신한금융투자',
-                        '240' => '삼성증권',
-                        '243' => '한국투자증권',
-                        '269' => '한화증권',
-                    );
+        switch ($pg_row['LGD_PAYTYPE']) {
+            case 'SC0040':
+                if ($pg_row['LGD_RESPCODE'] == "0000") {
+                    // 계좌할당: R
+                    if ("R" == $pg_row['LGD_CASFLAG']) {
 
-                    if ($pg_row['LGD_PAYTYPE'] == "SC0040") {
-                        foreach ($bank_finance as $key => $value) {
-                            if ($pg_row['LGD_FINANCECODE'] == $key) {
-                                $finance_name = $value;
+                        $bank_finance = array(
+                            '003' => '기업은행',
+                            '005' => '외환은행',
+                            '004' => '국민은행',
+                            '011' => '농협은행',
+                            '020' => '우리은행',
+                            '088' => '신한은행',
+                            '023' => '제일은행',
+                            '027' => '씨티은행',
+                            '031' => '대구은행',
+                            '032' => '부산은행',
+                            '034' => '광주은행',
+                            '037' => '전북은행',
+                            '039' => '경남은행',
+                            '071' => '우체국',
+                            '081' => '하나은행',
+                            '048' => '신협',
+                            '045' => '새마을금고',
+                            '035' => '제주은행',
+                            '007' => '수협',
+                            '002' => '산업은행',
+                            '209' => '동양증권',
+                            '230' => '미래에셋',
+                            '278' => '신한금융투자',
+                            '240' => '삼성증권',
+                            '243' => '한국투자증권',
+                            '269' => '한화증권',
+                        );
+
+                        if ($pg_row['LGD_PAYTYPE'] == "SC0040") {
+                            foreach ($bank_finance as $key => $value) {
+                                if ($pg_row['LGD_FINANCECODE'] == $key) {
+                                    $finance_name = $value;
+                                }
+
                             }
-
                         }
+
+                        $pay_status = '<i class="fa fa-university"></i> <button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#myModal">가상계좌확인</button>';
+                        $pay_status .= '  <div class="modal fade" id="myModal">';
+                        $pay_status .= '    <div class="modal-dialog">';
+                        $pay_status .= '      <div class="modal-content">';
+                        $pay_status .= '        <div class="modal-header">';
+                        $pay_status .= '          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>';
+                        $pay_status .= '          <h4 class="modal-title">가상계좌 확인</h4>';
+                        $pay_status .= '        </div>';
+                        $pay_status .= '        <div class="modal-body">';
+                        $pay_status .= '          <h4 class="alert alert-danger rol="alert">입금하실 가상계좌 - ' . $finance_name . ': ' . $pg_row['LGD_ACCOUNTNUM'] . '</h4>';
+                        $pay_status .= '          <p>1) 가상계좌는 일회성 계좌이므로 재사용시(다시 그 계좌로 입금하시는 경우) 타인의 계좌로 입금될 가능성이 있습니다.<br />';
+                        $pay_status .= '             이 경우는 고객의 책임이므로 사용에 주의하시기 바랍니다. <br />';
+                        $pay_status .= '             2) 가상계좌의 경우 CD기에서 현금입금 하실 수 없습니다.  CD기에서 이체는 가능합니다.</p>';
+                        $pay_status .= '        </div>';
+                        $pay_status .= '        <div class="modal-footer">';
+                        $pay_status .= '          <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>';
+                        $pay_status .= '        </div>';
+                        $pay_status .= '      </div>'; //<!-- /.modal-content -->
+                        $pay_status .= '    </div>';   //<!-- /.modal-dialog -->
+                        $pay_status .= '  </div>';     //<!-- /.modal -->
+
+                    } elseif ($pg_row['LGD_CASFLAG'] == "I") {
+                        $pay_status = '<i class="fa fa-check-circle pay-color"></i> 입금완료';
+                    } elseif ($pg_row['LGD_CASFLAG'] == "C") {
+                        $pay_status = '<i class="fa fa-times-circle"></i> 입금취소';
+                    } else {
+                        $pay_status = '<i class="fa fa-exclamation-triangle"></i> 입금실패(' . $pg_row['LGD_RESPCODE'] . ')';
                     }
-
-                    $pay_status = '<i class="fa fa-university"></i> <button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#myModal">가상계좌확인</button>';
-                    $pay_status .= '  <div class="modal fade" id="myModal">';
-                    $pay_status .= '    <div class="modal-dialog">';
-                    $pay_status .= '      <div class="modal-content">';
-                    $pay_status .= '        <div class="modal-header">';
-                    $pay_status .= '          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>';
-                    $pay_status .= '          <h4 class="modal-title">가상계좌 확인</h4>';
-                    $pay_status .= '        </div>';
-                    $pay_status .= '        <div class="modal-body">';
-                    $pay_status .= '          <h4 class="alert alert-danger rol="alert">입금하실 가상계좌 - ' . $finance_name . ': ' . $pg_row['LGD_ACCOUNTNUM'] . '</h4>';
-                    $pay_status .= '          <p>1) 가상계좌는 일회성 계좌이므로 재사용시(다시 그 계좌로 입금하시는 경우) 타인의 계좌로 입금될 가능성이 있습니다.<br />';
-                    $pay_status .= '             이 경우는 고객의 책임이므로 사용에 주의하시기 바랍니다. <br />';
-                    $pay_status .= '             2) 가상계좌의 경우 CD기에서 현금입금 하실 수 없습니다.  CD기에서 이체는 가능합니다.</p>';
-                    $pay_status .= '        </div>';
-                    $pay_status .= '        <div class="modal-footer">';
-                    $pay_status .= '          <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>';
-                    $pay_status .= '        </div>';
-                    $pay_status .= '      </div>'; //<!-- /.modal-content -->
-                    $pay_status .= '    </div>'; //<!-- /.modal-dialog -->
-                    $pay_status .= '  </div>'; //<!-- /.modal -->
-
-                } elseif ($pg_row['LGD_CASFLAG'] == "I") {
-                    $pay_status = '<i class="fa fa-check-circle pay-color"></i> 입금완료';
-                } elseif ($pg_row['LGD_CASFLAG'] == "C") {
-                    $pay_status = '<i class="fa fa-times-circle"></i> 입금취소';
                 } else {
                     $pay_status = '<i class="fa fa-exclamation-triangle"></i> 입금실패(' . $pg_row['LGD_RESPCODE'] . ')';
                 }
-            }
 
-            break;
-        case 'SC0030':
-            $wire_finance = array(
-                '003' => '기업은행',
-                '005' => '외환은행',
-                '004' => '국민은행',
-                '011' => '농협은행',
-                '081' => '하나은행',
-                '007' => '수협',
-                '020' => '우리',
-                '088' => '신한',
-                '039' => '경남',
-                '071' => '우체국',
-                '032' => '부산',
-                '031' => '대구',
-            );
+                break;
+            case 'SC0030':
+                $wire_finance = array(
+                    '003' => '기업은행',
+                    '005' => '외환은행',
+                    '004' => '국민은행',
+                    '011' => '농협은행',
+                    '081' => '하나은행',
+                    '007' => '수협',
+                    '020' => '우리',
+                    '088' => '신한',
+                    '039' => '경남',
+                    '071' => '우체국',
+                    '032' => '부산',
+                    '031' => '대구',
+                );
 
-            if ($pg_row['LGD_PAYTYPE'] == "SC0010") {
-                foreach ($wire_finance as $key => $value) {
-                    if ($pg_row['LGD_FINANCECODE'] == $key) {
-                        $finance_name = $value;
+                if ($pg_row['LGD_PAYTYPE'] == "SC0010") {
+                    foreach ($wire_finance as $key => $value) {
+                        if ($pg_row['LGD_FINANCECODE'] == $key) {
+                            $finance_name = $value;
+                        }
+
                     }
-
                 }
-            }
 
-            if ($pg_row['LGD_RESPCODE'] == "0000") {
-                $pay_status = '<i class="fa fa-check-circle pay-color"></i> 이체완료';
-            } else {
-                $pay_status = '<i class="fa fa-exclamation-triangle fail-color"></i> 이체실패(' . $pg_row['LGD_RESPCODE'] . ')';
-            }
+                if ($pg_row['LGD_RESPCODE'] == "0000") {
+                    $pay_status = '<i class="fa fa-check-circle pay-color"></i> 이체완료';
+                } else {
+                    $pay_status = '<i class="fa fa-exclamation-triangle fail-color"></i> 이체실패(' . $pg_row['LGD_RESPCODE'] . ')';
+                }
 
-            break;
+                break;
 
-        case 'SC0010': //SC0010 credit card
-            $card_finance = array(
-                '11' => '국민',
-                '21' => '외환',
-                '30' => 'KDB산업체크',
-                '31' => '비씨',
-                '32' => '하나',
-                '33' => '우리(구.평화VISA)',
-                '34' => '수협',
-                '35' => '전북',
-                '36' => '씨티',
-                '37' => '우체국체크',
-                '38' => 'MG새마을금고체크',
-                '39' => '저축은행체크',
-                '41' => '신한(구.LG카드 포함)',
-                '42' => '제주',
-                '46' => '광주',
-                '51' => '삼성',
-                '61' => '현대',
-                '62' => '신협체크',
-                '71' => '롯데',
-                '91' => 'NH',
-                '3C' => '중국은련',
-                '4J' => '해외JCB',
-                '4V' => '해외VISA',
-                '4M' => '해외MASTER',
-                '6D' => '해외DINERS',
-                '6I' => '해외DISCOVER',
-            );
+            case 'SC0010': //SC0010 credit card
+                $card_finance = array(
+                    '11' => '국민',
+                    '21' => '외환',
+                    '30' => 'KDB산업체크',
+                    '31' => '비씨',
+                    '32' => '하나',
+                    '33' => '우리(구.평화VISA)',
+                    '34' => '수협',
+                    '35' => '전북',
+                    '36' => '씨티',
+                    '37' => '우체국체크',
+                    '38' => 'MG새마을금고체크',
+                    '39' => '저축은행체크',
+                    '41' => '신한(구.LG카드 포함)',
+                    '42' => '제주',
+                    '46' => '광주',
+                    '51' => '삼성',
+                    '61' => '현대',
+                    '62' => '신협체크',
+                    '71' => '롯데',
+                    '91' => 'NH',
+                    '3C' => '중국은련',
+                    '4J' => '해외JCB',
+                    '4V' => '해외VISA',
+                    '4M' => '해외MASTER',
+                    '6D' => '해외DINERS',
+                    '6I' => '해외DISCOVER',
+                );
 
-            if ($pg_row['LGD_PAYTYPE'] == "SC0010") {
-                foreach ($card_finance as $key => $value) {
-                    if ($pg_row['LGD_FINANCECODE'] == $key) {
-                        $finance_name = $value;
+                if ($pg_row['LGD_PAYTYPE'] == "SC0010") {
+                    foreach ($card_finance as $key => $value) {
+                        if ($pg_row['LGD_FINANCECODE'] == $key) {
+                            $finance_name = $value;
+                        }
                     }
-
                 }
-            }
 
-            if ($pg_row['LGD_RESPCODE'] == "0000") {
-                $pay_status = '<i class="fa fa-credit-card pay-color"></i> 카드결제 완료';
-            } else {
-                $pay_status = '<i class="fa fa-exclamation-triangle fail-color"></i> 결제실패(' . $pg_row['LGD_RESPCODE'] . ')';
-            }
+                if ($pg_row['LGD_RESPCODE'] == "0000") {
+                    $pay_status = '<i class="fa fa-credit-card pay-color"></i> 카드결제 완료';
+                } else {
+                    $pay_status = '<i class="fa fa-exclamation-triangle fail-color"></i> 결제실패(' . $pg_row['LGD_RESPCODE'] . ')';
+                }
 
-            break;
+                break;
+        }
+    } else {
+        $pay_status = '<i class="fa fa-exclamation-triangle fail-color"></i> 결제실패(' . $pg_row['LGD_RESPCODE'] . ')';
     }
 
     return $pay_status;
@@ -1690,6 +1697,8 @@ function show_pay_data($orderid)
     $pg_sql    = "SELECT * FROM pg_info WHERE LGD_OID='$orderid' ";
     $pg_result = mysqli_query($connect, $pg_sql);
     $pg_row    = mysqli_fetch_array($pg_result);
+
+    $finance_name = '';
 
     switch ($pg_row['LGD_PAYTYPE']) {
         case 'SC0040':
