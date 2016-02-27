@@ -1572,10 +1572,10 @@ function get_pg_info2($orderid)
                         $pay_status .= '      <div class="modal-content">';
                         $pay_status .= '        <div class="modal-header">';
                         $pay_status .= '          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>';
-                        $pay_status .= '          <h4 class="modal-title">가상계좌 확인</h4>';
+                        $pay_status .= '          <h4 class="modal-title">입금계좌(가상계좌) 확인</h4>';
                         $pay_status .= '        </div>';
                         $pay_status .= '        <div class="modal-body">';
-                        $pay_status .= '          <h4 class="alert alert-danger rol="alert">입금하실 가상계좌 - ' . $finance_name . ': ' . $pg_row['LGD_ACCOUNTNUM'] . '</h4>';
+                        $pay_status .= '          <h4 class="alert alert-danger rol="alert">' . $finance_name . ': ' . $pg_row['LGD_ACCOUNTNUM'] . '</h4>';
                         $pay_status .= '          <p>1) 가상계좌는 일회성 계좌이므로 재사용시(다시 그 계좌로 입금하시는 경우) 타인의 계좌로 입금될 가능성이 있습니다.<br />';
                         $pay_status .= '             이 경우는 고객의 책임이므로 사용에 주의하시기 바랍니다. <br />';
                         $pay_status .= '             2) 가상계좌의 경우 CD기에서 현금입금 하실 수 없습니다.  CD기에서 이체는 가능합니다.</p>';
