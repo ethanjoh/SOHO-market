@@ -1,14 +1,5 @@
 <?php
 // include_once 'config.php';
-$config  = parse_ini_file('config.ini');
-$host    = $config['host'];
-$dbid    = $config['dbid'];
-$dbpass  = $config['dbpass'];
-$dbname  = $config['dbname'];
-$MERTKEY = $config['mertkey'];
-
-$connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
-
 include_once 'util.php';
 
 //구매 페이지에서 결제정보 보이기
@@ -1488,7 +1479,7 @@ HEREDOC;
 
 	                      </td>
 	                      <td>{$row['recipient_name']}</td>
-	                      <td> - <br /></td>
+	                      <td class="num-right"> - <br /></td>
                           <td>{$pay_status}</td>
                           <td>{$status_now}</td>
                           <td>&nbsp;</td>
@@ -1545,7 +1536,7 @@ HEREDOC;
                 echo <<<HEREDOC
                       </td>
                       <td>{$recipient_name}</td>
-                      <td>{$show_order_amount}</td>
+                      <td class="num-right">{$show_order_amount}</td>
                       <td>{$pay_status}</td>
                       <td>{$status_now}</td>
                       <td>{$print_receipt}</td>
@@ -1561,8 +1552,10 @@ HEREDOC;
 
         echo <<<HEREDOC
                     <tr>
-                      <td colspan="3"><strong>총합(VAT 포함):</strong></td>
-                      <td><strong>{$show_total_amount}</strong></td>
+                      <td colspan="3"><h5>총합(VAT 포함):</h5></td>
+                      <td class="num-right"><h5>{$show_total_amount}</h5></td>
+                      <td>&nbsp;</td>
+                      <td>&nbsp;</td>
                       <td>&nbsp;</td>
                       <td>&nbsp;</td>
                     </tr>

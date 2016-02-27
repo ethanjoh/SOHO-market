@@ -2,11 +2,12 @@
 
 $config = parse_ini_file('config.ini');
 // require_once 'config.php';
-$host   = $config['host'];
-$dbid   = $config['dbid'];
-$dbpass = $config['dbpass'];
-$dbname = $config['dbname'];
-$port   = $config['port'];
+$host    = $config['host'];
+$dbid    = $config['dbid'];
+$dbpass  = $config['dbpass'];
+$dbname  = $config['dbname'];
+$port    = $config['port'];
+$MERTKEY = $config['mertkey'];
 
 // global $host, $dbid, $dbpass, $dbname;
 $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
@@ -394,7 +395,7 @@ function show_delivery_fee($total)
 function calc_delivery_fee($total)
 {
 
-    global $connect;
+    // global $connect;
 
     $query  = "SELECT * FROM misc_setup ";
     $result = mysqli_query($connect, $query);

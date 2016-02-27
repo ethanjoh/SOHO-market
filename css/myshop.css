@@ -148,3 +148,7 @@ custom style
 .memo-color {
     color: #795548;
 }
+
+.num-right {
+    text-align: right;
+}

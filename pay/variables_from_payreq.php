@@ -44,14 +44,11 @@ $payment_type  = '';
 
 // 결제방식
 if ("SC0010" == $LGD_PAYTYPE) {
-    //카드결제
-    $payment_type = "2";
+    $payment_type = "2"; //카드결제
 } elseif ("SC0030" == $LGD_PAYTYPE) {
-    //실시간 계좌이체
-    $payment_type = "3";
+    $payment_type = "3"; //실시간 계좌이체
 } elseif ("SC0040" == $LGD_PAYTYPE) {
-    //무통장, 가상계좌
-    $payment_type = "1";
+    $payment_type = "1"; //무통장, 가상계좌
 }
 
 if ("option1" != $check_diff_addr) {
