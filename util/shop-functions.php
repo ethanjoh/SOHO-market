@@ -1146,14 +1146,14 @@ HEREDOC;
  * @param  [type] $key_value     [검색 키워드]
  * @param  [type] $date1         [검색 시작날짜]
  * @param  [type] $date2         [검색 종료날짜]
- * @param  [type] $cpage         [현재페이지]
+ * @param  [type] $page          [전달받은 페이지 번호]
  * @param  [type] $scale         [한 페이지에 보여질 페이지수]
  * @return [type] $cline [현재 라인수]
  * @return [type] $last_page_num [마지막 페이지수]
  * @return [type] $cpage [현재 페이지]
  * @return [type] $totalpage [전체 페이지수]
  */
-function get_page_num($mode, $key, $key_value, $date1, $date2, $cpage, $scale)
+function get_page_num($mode, $key, $keyword, $date1, $date2, $page, $scale)
 {
     global $connect;
 
@@ -1162,7 +1162,7 @@ function get_page_num($mode, $key, $key_value, $date1, $date2, $cpage, $scale)
 
     switch ($mode) {
         case 'search':
-            $qry = "SELECT num FROM mall_order WHERE user_id = '$p_id' AND $key LIKE '%$key_value%' ";
+            $qry = "SELECT num FROM mall_order WHERE user_id = '$p_id' AND $key LIKE '%$keyword%' ";
             break;
         case 'date':
             $qry = "SELECT num FROM mall_order WHERE user_id = '$p_id' AND createdate BETWEEN '$date1' AND '$date2' ";
@@ -1194,7 +1194,7 @@ function get_page_num($mode, $key, $key_value, $date1, $date2, $cpage, $scale)
     $total = mysqli_num_rows($res);
 
     $scale = $scale;
-    $page  = '';
+    $page  = $page;
 
     if ($page == '') {
         $page = 1;
@@ -1317,11 +1317,10 @@ function get_page_result($mode, $key, $key_value, $date1, $date2, $cline, $last_
  * @param  [type] $key            [검색 키]
  * @param  [type] $keyword        [검색 키워드]
  * @param  [type] $page           [페이지값]
- * @param  [type] $cpage          [시작 페이지]
  * @param  [type] $scale          [한 페이지에 보여지는 상품 수]
  * @return [type] [description]
  */
-function get_list_page_num($mode, $lcode, $mcode, $key, $keyword, $page, $cpage, $scale)
+function get_list_page_num($mode, $lcode, $mcode, $key, $keyword, $page, $scale)
 {
     global $connect;
 

@@ -51,7 +51,7 @@
 <?php
 
 	//상품 리스트 페이징을 위한 페이지수 구하기
-	$scale         = get_list_page_num($mode, $lcode, $mcode, $key, $keyword, $page, 1, 12);
+	$scale         = get_list_page_num($mode, $lcode, $mcode, $key, $keyword, $page, 12);
 	$cline         = $scale[0];
 	$last_page_num = $scale[1];
 	$cpage         = $scale[2];

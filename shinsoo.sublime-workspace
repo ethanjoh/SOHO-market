@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"bac",
+				"background-color"
+			],
+			[
 				"tot",
 				"totalpage"
 			],
@@ -146,10 +150,6 @@
 			[
 				"pa",
 				"padding"
-			],
-			[
-				"bac",
-				"background-color"
 			],
 			[
 				"ba",
@@ -444,34 +444,34 @@
 	"buffers":
 	[
 		{
-			"file": "shop/catalog-list.php",
+			"file": "pay/cas_noteurl.php",
 			"settings":
 			{
-				"buffer_size": 14446,
+				"buffer_size": 7827,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "util/util.php",
+			"file": "pay/payres.php",
 			"settings":
 			{
-				"buffer_size": 57375,
+				"buffer_size": 9460,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "css/style.css",
+			"file": "/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
 			"settings":
 			{
-				"buffer_size": 89291,
-				"line_ending": "Windows"
+				"buffer_size": 1925,
+				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "util/shop-functions.php",
+			"file": "pay/save_wireinfo_to_db.php",
 			"settings":
 			{
-				"buffer_size": 83574,
+				"buffer_size": 5020,
 				"line_ending": "Windows"
 			}
 		}
@@ -489,7 +489,7 @@
 		[
 			[
 				"phpfm",
-				"phpfmt: toggle PSR1 - Class and Methods names"
+				"phpfmt: enable/disable additional transformations"
 			],
 			[
 				"phpfmt",
@@ -618,29 +618,42 @@
 	"expanded_folders":
 	[
 		"/C/wamp/www/shinsoo",
-		"/C/wamp/www/shinsoo/bbs",
-		"/C/wamp/www/shinsoo/lgpay/conf",
-		"/C/wamp/www/shinsoo/shop"
+		"/C/wamp/www/shinsoo/pay",
+		"/C/wamp/www/shinsoo/util"
 	],
 	"file_history":
 	[
-		"/C/wamp/www/shinsoo/util/shop-functions.php",
-		"/C/wamp/www/shinsoo/util/util.php",
-		"/C/Users/Joh/OneDrive/git_project/linktrading-co-kr/shop/sub_list.php",
-		"/C/wamp/www/shinsoo/shop/order-list.php",
-		"/C/wamp/www/shinsoo/bbs/list.php",
-		"/C/wamp/www/shinsoo/admin/order/top_order_list.php",
-		"/C/wamp/www/shinsoo/shop/index.php",
-		"/C/wamp/www/shinsoo/css/myshop.css",
-		"/C/wamp/www/shinsoo/pay/payreq_crossplatform.php",
-		"/C/wamp/www/shinsoo/lgpay/conf/mall.conf",
-		"/C/wamp/www/shinsoo/pay/save_pginfo_to_db.php",
-		"/C/wamp/www/shinsoo/shop/checkout.php",
+		"/C/Users/Joh/Downloads/Preferences.sublime-settings",
+		"/C/Users/Joh/Downloads/LGU+_XPay_Crossplatform/LGU+_XPay_Crossplatform_PHP/payreq_crossplatform.php",
 		"/C/wamp/www/shinsoo/pay/payres.php",
-		"/C/Users/Joh/OneDrive/git_project/linktrading-co-kr/shop/order_list.php",
+		"/C/Users/Joh/OneDrive/git_project/linktrading-co-kr/pay/cas_noteurl.php",
+		"/C/wamp/www/shinsoo/lgpay/conf/mall.conf",
+		"/C/wamp/www/shinsoo/pay/payreq_crossplatform.php",
+		"/C/wamp/www/shinsoo/pay/variables_from_payreq.php",
+		"/C/wamp/www/shinsoo/lgpay/XPayClient.php",
+		"/C/wamp/www/shinsoo/pay/save_pginfo_to_db.php",
+		"/C/Users/Joh/Downloads/LGU+_XPay_Crossplatform/LGU+_XPay_Crossplatform_PHP/cas_noteurl.php",
+		"/C/wamp/www/shinsoo/util/shop-functions.php",
+		"/C/wamp/www/shinsoo/shop/index.php",
+		"/C/wamp/www/shinsoo/util/util.php",
+		"/C/wamp/www/shinsoo/util/scm_auth.php",
+		"/C/wamp/www/shinsoo/shop/detail.php",
+		"/C/wamp/www/shinsoo/include/header.php",
 		"/C/wamp/www/shinsoo/shop/order-detail.php",
-		"/C/Users/Joh/OneDrive/git_project/linktrading-co-kr/shop/order_detail.php",
+		"/C/wamp/www/shinsoo/shop/order-list.php",
+		"/C/wamp/www/shinsoo/admin/order/top_order_list.php",
 		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/C/wamp/www/shinsoo/admin/order/or_view.php",
+		"/C/wamp/www/shinsoo/util/config.ini",
+		"/C/wamp/www/shinsoo/css/myshop.css",
+		"/C/wamp/www/shinsoo/admin/css/admin_layout.css",
+		"/C/wamp/www/shinsoo/shop/catalog-list.php",
+		"/C/wamp/www/shinsoo/css/style.css",
+		"/C/Users/Joh/OneDrive/git_project/linktrading-co-kr/shop/sub_list.php",
+		"/C/wamp/www/shinsoo/bbs/list.php",
+		"/C/wamp/www/shinsoo/shop/checkout.php",
+		"/C/Users/Joh/OneDrive/git_project/linktrading-co-kr/shop/order_list.php",
+		"/C/Users/Joh/OneDrive/git_project/linktrading-co-kr/shop/order_detail.php",
 		"/C/Users/Joh/OneDrive/git_project/linktrading-co-kr/pay/payres.php",
 		"/C/Users/Joh/OneDrive/git_project/linktrading-co-kr/pay/payreq.php",
 		"/C/Users/Joh/OneDrive/git_project/linktrading-co-kr/pay/note_url.php",
@@ -648,13 +661,11 @@
 		"/C/Users/Joh/OneDrive/git_project/linktrading-co-kr/util/config.php",
 		"/C/wamp/www/shinsoo/pay/sample_crossplatform.html",
 		"/C/wamp/www/shinsoo/shop/cart.php",
-		"/C/wamp/www/shinsoo/include/header.php",
 		"/C/wamp/www/shinsoo/lgpay/conf/lgdacom.conf",
 		"/C/wamp/www/shinsoo/pay/cas_noteurl.php",
 		"/C/wamp/www/shinsoo/pay/Cancel.php",
 		"/C/wamp/www/shinsoo/pay/Cancel.html",
 		"/C/wamp/www/shinsoo/lgpay/ping.php",
-		"/C/wamp/www/shinsoo/lgpay/XPayClient.php",
 		"/C/wamp/www/shinsoo/lgpay/conf/ca-bundle.crt",
 		"/C/wamp/www/shinsoo/lgpay/XPayClient4DB.php",
 		"/C/wamp/www/shinsoo/lgpay/patch.php",
@@ -668,7 +679,6 @@
 		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/User/phpfmt.sublime-settings",
 		"/C/wamp/www/shinsoo/index.php",
 		"/C/wamp/www/shinsoo/util/config.php",
-		"/C/wamp/www/shinsoo/css/style.css",
 		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/phpfmt/message",
 		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/phpfmt/Default.sublime-keymap",
 		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/User/Default.sublime-keymap",
@@ -740,22 +750,11 @@
 		"/C/wamp/www/seminar/admin/save-profile.php",
 		"/C/wamp/www/seminar/admin/js/sb-admin-2.js",
 		"/C/wamp/www/seminar/admin/css/custom.css",
-		"/C/wamp/www/seminar/admin/index.php",
-		"/C/wamp/www/seminar/admin/include/footer.php",
-		"/C/wamp/www/seminar/admin/user.php",
-		"/C/wamp/www/seminar/admin/autosave.php",
-		"/C/wamp/www/seminar/admin/css/sb-admin-2.css",
-		"/C/wamp/www/seminar/admin/seminar.php",
-		"/C/wamp/www/seminar/sftp-config.json",
-		"/C/wamp/www/seminar/admin/login.php",
-		"/C/wamp/www/seminar/admin/setting.php",
-		"/C/wamp/www/seminar/test.php",
-		"/C/wamp/www/seminar/admin/logout.php",
-		"/C/wamp/www/seminar/logout.php"
+		"/C/wamp/www/seminar/admin/index.php"
 	],
 	"find":
 	{
-		"height": 70.0
+		"height": 193.0
 	},
 	"find_in_files":
 	{
@@ -782,6 +781,23 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"    $host   = $config['host'];\n    $dbid   = $config['dbid'];\n    $dbpass = $config['dbpass'];\n    $dbname = $config['dbname'];\n\n    // global $host, $dbid, $dbpass, $dbname;\n    $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);",
+			"global $config;",
+			"$short_desc",
+			"$pnum",
+			"$_SESSION['p_id']",
+			"$rows",
+			"$l_row",
+			"$lcode",
+			"$pnum",
+			"$connect",
+			"global $host, $dbid, $dbpass, $dbname;",
+			"foreach ($arr as $key => $value) {\n        echo \"Key: $key; Value: $value<br />\\n\";\n    }",
+			"$host   = $config['host'];",
+			"global $host, $dbid, $dbpass, $dbname;",
+			"$status_now",
+			"$lcode",
+			"$cpage",
 			"totalpage",
 			"$p_scale1",
 			"key_value",
@@ -892,24 +908,7 @@
 			"session-4-1-ed",
 			"session_2_5_1_ed",
 			"session-3-1-ed",
-			"session_2_5_1_ed",
-			"session-2-5-2-ed",
-			"session_2_1_ed",
-			"session-2-5-1-ed",
-			"session-2-4-ed",
-			"session-2-3-ed",
-			"session-2-2-ed",
-			"session-2-1-ed",
-			"보충설명:",
-			"session-1-3-ed",
-			"session-1-2-ed",
-			"load",
-			"type=\"submit\"",
-			"<hr>",
-			"session-2-2-ed",
-			"session-2-1-ed",
-			"session-1-1-ed",
-			"session-1-3-ed"
+			"session_2_5_1_ed"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -930,24 +929,24 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "shop/catalog-list.php",
+					"file": "pay/cas_noteurl.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 14446,
+						"buffer_size": 7827,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2662,
-								2662
+								3510,
+								3514
 							]
 						],
 						"settings":
@@ -960,27 +959,27 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1096.0,
+						"translation.y": 1728.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "util/util.php",
+					"file": "pay/payres.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 57375,
+						"buffer_size": 9460,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								27715,
-								27715
+								3103,
+								3103
 							]
 						],
 						"settings":
@@ -989,11 +988,10 @@
 							"remote_loading": false,
 							"synced": true,
 							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
-						"translation.x": 2.0,
-						"translation.y": 17088.0,
+						"translation.x": 0.0,
+						"translation.y": 1428.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
@@ -1001,58 +999,52 @@
 				},
 				{
 					"buffer": 2,
-					"file": "css/style.css",
+					"file": "/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 89291,
+						"buffer_size": 1925,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								49401,
-								49401
+								344,
+								355
 							]
 						],
 						"settings":
 						{
 							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": true,
-							"syntax": "Packages/CSS/CSS.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 53485.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
 					"buffer": 3,
-					"file": "util/shop-functions.php",
+					"file": "pay/save_wireinfo_to_db.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 83574,
+						"buffer_size": 5020,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								52180,
-								52180
+								3946,
+								3818
 							]
 						],
 						"settings":
 						{
-							"color_scheme": "Packages/Material Theme/schemes/Material-Theme.tmTheme",
-							"history_list_is_closing": true,
 							"incomplete_sync": null,
 							"remote_loading": false,
 							"synced": true,
@@ -1061,10 +1053,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 25087.0,
+						"translation.y": 1053.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 3,
 					"type": "text"
 				}
 			]
@@ -1127,20 +1119,52 @@
 		"selected_items":
 		[
 			[
-				"sty",
-				"css\\style.css"
-			],
-			[
-				"order",
-				"shop\\order-list.php"
-			],
-			[
 				"util",
 				"util\\util.php"
 			],
 			[
+				"index",
+				"shop\\index.php"
+			],
+			[
+				"detail",
+				"shop\\detail.php"
+			],
+			[
+				"config",
+				"util\\config.php"
+			],
+			[
+				"head",
+				"include\\header.php"
+			],
+			[
+				"mysh",
+				"css\\myshop.css"
+			],
+			[
+				"or_v",
+				"admin\\order\\or_view.php"
+			],
+			[
+				"order",
+				"shop\\order-detail.php"
+			],
+			[
+				"orde",
+				"shop\\order-list.php"
+			],
+			[
+				"admin",
+				"admin\\css\\admin_layout.css"
+			],
+			[
 				"top_or",
 				"admin\\order\\top_order_list.php"
+			],
+			[
+				"sty",
+				"css\\style.css"
 			],
 			[
 				"top_ord",
@@ -1179,10 +1203,6 @@
 				"include\\header.php"
 			],
 			[
-				"head",
-				"include\\header.php"
-			],
-			[
 				"chec",
 				"shop\\checkout.php"
 			],
@@ -1197,14 +1217,6 @@
 			[
 				"sho",
 				"util\\shop-functions.php"
-			],
-			[
-				"index",
-				"shop\\index.php"
-			],
-			[
-				"config",
-				"util\\config.php"
 			],
 			[
 				"style",
@@ -1471,10 +1483,6 @@
 				"admin/member/product_list_ok.php"
 			],
 			[
-				"or_v",
-				"admin/order/or_view.php"
-			],
-			[
 				"top",
 				"admin/order/top_order_list.php"
 			],
@@ -1621,22 +1629,6 @@
 			[
 				"admin.js",
 				"admin/js/admin.js"
-			],
-			[
-				"heade",
-				"include/header.php"
-			],
-			[
-				"his",
-				"about/history.php"
-			],
-			[
-				"ab",
-				"about/about-us.php"
-			],
-			[
-				"admin_de",
-				"bbs/admin_delete.php"
 			]
 		],
 		"width": 0.0
@@ -1671,7 +1663,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 50.0,
+	"side_bar_width": 214.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

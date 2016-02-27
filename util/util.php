@@ -1519,7 +1519,8 @@ function get_pg_info2($orderid)
         $pg_result = mysqli_query($connect, $pg_sql);
         $pg_row    = mysqli_fetch_array($pg_result);
 
-        $pay_status = '';
+        $pay_status   = '';
+        $finance_name = '';
 
         switch ($pg_row['LGD_PAYTYPE']) {
             case 'SC0040':
