@@ -1,6 +1,6 @@
 ﻿<?php
 
-$configPath = "../lgpay/"; //LG유플러스에서 제공한 환경파일("/conf/lgdacom.conf") 위치 지정.
+$configPath = "./"; //LG유플러스에서 제공한 환경파일("/conf/lgdacom.conf") 위치 지정.
 
 /*
  * [LG유플러스 연결 확인 페이지]

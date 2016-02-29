@@ -70,20 +70,64 @@ if ($LGD_HASHDATA2 == $LGD_HASHDATA) {
              * 무통장 할당 성공 결과 상점 처리(DB) 부분
              * 상점 결과 처리가 정상이면 "OK"
              */
+            // $update = 'N';
+            // require_once 'save_wireinfo_to_db.php';
             //if( 무통장 할당 성공 상점처리결과 성공 )
             // $resultMSG = "OK";
-            $update = 'N';
-            require_once 'save_wireinfo_to_db.php';
+
+            $status = "1"; //주문진행 상태(입금대기)
+
+            $query = "INSERT INTO mall_order(orderid,goods_fk,goods_price, mod_price,
+                                goods_name,goods_kind,goods_count,mod_count,
+                                user_id, amount, volume, trans_cost, createdate,
+                                buyer_name,buyer_zipcode,buyer_address,buyer_phone,
+                                buyer_hphone,buyer_email,
+                                recipient_name,recipient_zipcode,recipient_address,
+                                recipient_phone,recipient_hphone,payment_type,status,
+                                delivery_type, memo_to_delivery, memo_to_admin )
+         VALUES ('$trade_code','$temp_code','$temp_price', '$temp_price',
+                '$temp_name','$temp_kind', '$temp_count', '$temp_count',
+                '$user_id', '$tot_money', '$temp_count','$trans_cost', now(),
+                '$buyer_name','$buyer_zipcode', '$buyer_address', '$buyer_phone',
+                '$buyer_hphone', '$buyer_email',
+                '$recipient_name', '$recipient_zipcode','$recipient_address',
+                '$recipient_phone','$recipient_hphone', '$payment_type', '$status',
+                '$delivery_type', '$memo_to_delivery', '$memo_to_admin')";
+
+            $result = mysqli_query($connect, $query);
+
+// 결제정보 DB에 저장
+            $query2 = "INSERT INTO pg_info(LGD_RESPCODE, LGD_RESPMSG, LGD_MID, LGD_OID, LGD_AMOUNT, LGD_TID, LGD_PAYTYPE, LGD_PAYDATE,
+                                            LGD_HASHDATA, LGD_FINANCECODE, LGD_FINANCENAME, LGD_ESCROWYN, LGD_TIMESTAMP, LGD_FINANCEAUTHNUM,
+                                            LGD_CARDNUM, LGD_CARDINSTALLMONTH, LGD_CARDNOINTYN, LGD_TRANSAMOUNT, LGD_EXCHANGERATE, LGD_ACCOUNTNUM,
+                                            LGD_CASTAMOUNT, LGD_CASCAMOUNT, LGD_CASFLAG, LGD_CASSEQNO, LGD_CASHRECEIPTNUM, LGD_CASHRECEIPTSELFYN, LGD_CASHRECEIPTKIND)
+                                    VALUES ('$LGD_RESPCODE', '$LGD_RESPMSG', '$LGD_MID', '$LGD_OID', '$LGD_AMOUNT', '$LGD_TID', '$LGD_PAYTYPE', '$LGD_PAYDATE',
+                                            '$LGD_HASHDATA', '$LGD_FINANCECODE', '$LGD_FINANCENAME', '$LGD_ESCROWYN', '$LGD_TIMESTAMP', '$LGD_FINANCEAUTHNUM',
+                                            '$LGD_CARDNUM', '$LGD_CARDINSTALLMONTH', '$LGD_CARDNOINTYN', '$LGD_TRANSAMOUNT', '$LGD_EXCHANGERATE', '$LGD_ACCOUNTNUM',
+                                            '$LGD_CASTAMOUNT', '$LGD_CASCAMOUNT', '$LGD_CASFLAG', '$LGD_CASSEQNO', '$LGD_CASHRECEIPTNUM', '$LGD_CASHRECEIPTSELFYN', '$LGD_CASHRECEIPTKIND' )";
+
+            $result2 = mysqli_query($connect, $query2);
+
+            if ($result2) {
+                $resultMSG = "OK";
+            } else {
+                echo "Error occured while updating CASFLAG";
+            }
+            // debug
+            $txt  = print_r($LGD_CASFLAG, true);
+            $file = fopen("result_log.txt", "a+b");
+            fwrite($file, $txt);
+            fclose($file);
 
         } else if ("I" == $LGD_CASFLAG) {
             /*
              * 무통장 입금 성공 결과 상점 처리(DB) 부분
              * 상점 결과 처리가 정상이면 "OK"
              */
-            //if( 무통장 입금 성공 상점처리결과 성공 )
-            // $resultMSG = "OK";
             // $update = 'I';
             // require_once 'save_wireinfo_to_db.php';
+            //if( 무통장 입금 성공 상점처리결과 성공 )
+            // $resultMSG = "OK";
 
             $status = "3"; //주문진행 상태(주문 미처리)
 
@@ -107,46 +151,19 @@ if ($LGD_HASHDATA2 == $LGD_HASHDATA) {
 
             $result2 = mysqli_query($connect, $query2);
 
-            if (!$result2) {
-                // echo "Error occured while saving payment data.";
-                $resultMSG = "FAIL";
-            } else {
+            if ($result2) {
                 $resultMSG = "OK";
-            }
-
-            //주문상품 장바구니에서 삭제
-            // for ($i = 0; $i < sizeof($products_num); $i++) {
-            //     $qry2 = "DELETE FROM products_cart WHERE user_id = '$user_id' AND product_code='$products_num[$i]' ";
-            //     mysqli_query($connect, $qry2);
-            // }
-
-            if (!$result) {
-                err_msg('데이터베이스 에러가 났습니다.');
+                // $resultMSG = iconv("euc-kr", "utf-8", $resultMSG);
             } else {
-                ######### SMS 발송처리 (회원 SMS 수신 Y, 관리자 SMS 사용여부 Y 에만)
-                ######### $sms: 회원 SMS 수신여부
-                $res     = mysqli_query($connect, "SELECT * FROM sms");
-                $sms_row = mysqli_fetch_array($res);
-
-                //관리페이지에서 SMS 사용여부 확인
-                if ($sms_row['sms'] == "Y") {
-                    //구매자에게 SMS 발송, 승인된 회원만 구매가능하므로 승인여부 제외
-                    if ($sms == "Y" && $sms_row['order_chk'] == "Y") {
-                        //send_sms(받는 사람 핸드폰번호, 메시지 타입, 날짜, db연결)
-                        //메시지 타입 3: 주문완료 처리, 날짜가 빈칸이면 즉시 발송
-                        send_sms($buyer_hphone, 3, $buyer_name, "", $connect);
-                    }
-
-                    //관리자에게 SMS 발송
-                    if ($sms_row['orderin_chk'] == "Y") {
-                        //send_sms(self->관리자에게, 메시지 타입, 날짜, db연결)
-                        //메시지 타입 2: 주문접수 처리
-                        send_sms("self", 2, $buyer_name, "", $connect);
-                    }
-
-                }
-                ####### SMS 발송 끝
+                echo "Error occured while updating CASFLAG";
             }
+
+            // debug
+            $txt  = print_r($LGD_CASFLAG, true);
+            $file = fopen("result_log.txt", "a+b");
+            fwrite($file, $txt);
+            fclose($file);
+
         } else if ("C" == $LGD_CASFLAG) {
             /*
              * 무통장 입금취소 성공 결과 상점 처리(DB) 부분

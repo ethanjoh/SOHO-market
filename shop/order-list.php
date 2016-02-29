@@ -33,22 +33,22 @@
           </div>
 <?php
 
-	$mode = set_var($_GET['mode']);
-	$page = set_var($_GET['page']);
+$mode = set_var($_GET['mode']);
+$page = set_var($_GET['page']);
 
-	// $today = date("Y-m-d");
-	// $p_id      = set_var($_SESSION['p_id']);
-	$key     = set_var($_GET['key']);
-	$keyword = set_var($_GET['keyword']);
-	$date1   = set_var($_GET['date1']);
-	$date2   = set_var($_GET['date2']);
+// $today = date("Y-m-d");
+// $p_id      = set_var($_SESSION['p_id']);
+$key     = set_var($_GET['key']);
+$keyword = set_var($_GET['keyword']);
+$date1   = set_var($_GET['date1']);
+$date2   = set_var($_GET['date2']);
 
-	//페이징을 위한 페이지수 구하기
-	$scale         = get_page_num($mode, $key, $keyword, $date1, $date2, $page, 20);
-	$cline         = $scale[0];
-	$last_page_num = $scale[1];
-	$cpage         = $scale[2];
-	$totalpage     = $scale[3];
+//페이징을 위한 페이지수 구하기
+$scale         = get_page_num($mode, $key, $keyword, $date1, $date2, $page, 20);
+$cline         = $scale[0];
+$last_page_num = $scale[1];
+$cpage         = $scale[2];
+$totalpage     = $scale[3];
 
 ?>
           <div class="row">
@@ -96,7 +96,7 @@
 
                   </div>
 
-                <form action="order-list.php" name="f" method="post" >
+                <!-- <form action="order-list.php" name="f" method="post" > -->
                 <div class="table-responsive">
                 <table class="table table-striped">
                   <thead>
@@ -114,16 +114,16 @@
                   <tbody>
 <?php
 
-	//페이징을 위한 페이지수 구하기
-	$ret  = get_page_result($mode, $key, $keyword, $date1, $date2, $cline, $last_page_num);
-	$t_no = $ret[0];
-	$res  = $ret[1];
+//페이징을 위한 페이지수 구하기
+$ret  = get_page_result($mode, $key, $keyword, $date1, $date2, $cline, $last_page_num);
+$t_no = $ret[0];
+$res  = $ret[1];
 
-	// 주문리스트 보여주기
-	echo show_order_list($t_no, $res, $cpage);
+// 주문리스트 보여주기
+echo show_order_list($t_no, $res, $cpage);
 ?>
                   </tbody>
-                </form>
+                <!-- </form> -->
                 </table>
                 </div> <!-- end panel-body -->
               </div> <!-- end panel -->
@@ -132,8 +132,8 @@
                   <div class="col-sm-12">
 <?php
 
-	$url = "order-list.php?mode=" . $mode . "&key=" . $key . "&keyword=" . $keyword . "&date1=" . $date1 . "&date2=" . $date2;
-	page_nav($totalpage, $cpage, $url);
+$url = "order-list.php?mode=" . $mode . "&key=" . $key . "&keyword=" . $keyword . "&date1=" . $date1 . "&date2=" . $date2;
+page_nav($totalpage, $cpage, $url);
 
 ?>
                   </div>

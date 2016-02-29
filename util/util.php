@@ -2,12 +2,14 @@
 
 $config = parse_ini_file('config.ini');
 // require_once 'config.php';
-$host    = $config['host'];
-$dbid    = $config['dbid'];
-$dbpass  = $config['dbpass'];
-$dbname  = $config['dbname'];
-$port    = $config['port'];
-$MERTKEY = $config['mertkey'];
+$host         = $config['host'];
+$dbid         = $config['dbid'];
+$dbpass       = $config['dbpass'];
+$dbname       = $config['dbname'];
+$port         = $config['port'];
+$MERTKEY      = $config['mertkey'];
+$CST_MID      = $config['cst_mid'];
+$CST_PLATFORM = $config['cst_platform'];
 
 // global $host, $dbid, $dbpass, $dbname;
 $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
@@ -395,7 +397,7 @@ function show_delivery_fee($total)
 function calc_delivery_fee($total)
 {
 
-    // global $connect;
+    global $connect;
 
     $query  = "SELECT * FROM misc_setup ";
     $result = mysqli_query($connect, $query);
@@ -1566,8 +1568,8 @@ function get_pg_info2($orderid)
                             }
                         }
 
-                        $pay_status = '<i class="fa fa-university"></i> <button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#myModal">입금계좌확인</button>';
-                        $pay_status .= '  <div class="modal fade" id="myModal">';
+                        $pay_status = '<i class="fa fa-university"></i> <button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#myModal_' . $orderid . '">입금계좌확인</button>';
+                        $pay_status .= '  <div class="modal fade" id="myModal_' . $orderid . '">';
                         $pay_status .= '    <div class="modal-dialog">';
                         $pay_status .= '      <div class="modal-content">';
                         $pay_status .= '        <div class="modal-header">';
@@ -1592,10 +1594,27 @@ function get_pg_info2($orderid)
                     } elseif ($pg_row['LGD_CASFLAG'] == "C") {
                         $pay_status = '<i class="fa fa-times-circle"></i> 입금취소';
                     } else {
-                        $pay_status = '<i class="fa fa-exclamation-triangle"></i> 입금실패(' . $pg_row['LGD_RESPCODE'] . ')';
+                        $pay_status = '<i class="fa fa-exclamation-triangle fail-color"></i> 입금실패(' . $pg_row['LGD_RESPCODE'] . ')';
                     }
                 } else {
-                    $pay_status = '<i class="fa fa-exclamation-triangle"></i> 입금실패(' . $pg_row['LGD_RESPCODE'] . ')';
+                    $pay_status = '<i class="fa fa-exclamation-triangle fail-color"></i> <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal_' . $orderid . '">실패(' . $pg_row['LGD_RESPCODE'] . ')</button>';
+                    $pay_status .= '  <div class="modal fade" id="myModal_' . $orderid . '">';
+                    $pay_status .= '    <div class="modal-dialog">';
+                    $pay_status .= '      <div class="modal-content">';
+                    $pay_status .= '        <div class="modal-header">';
+                    $pay_status .= '          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>';
+                    $pay_status .= '          <h4 class="modal-title">입금취소 실패</h4>';
+                    $pay_status .= '        </div>';
+                    $pay_status .= '        <div class="modal-body">';
+                    $pay_status .= '          <h4 class="alert alert-danger rol="alert"> ' . $pg_row['LGD_RESPCODE'] . ': ' . $pg_row['LGD_RESPMSG'] . '</h4>';
+                    $pay_status .= '        </div>';
+                    $pay_status .= '        <div class="modal-footer">';
+                    $pay_status .= '          <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>';
+                    $pay_status .= '        </div>';
+                    $pay_status .= '      </div>'; //<!-- /.modal-content -->
+                    $pay_status .= '    </div>';   //<!-- /.modal-dialog -->
+                    $pay_status .= '  </div>';     //<!-- /.modal -->
+
                 }
 
                 break;
@@ -1627,7 +1646,24 @@ function get_pg_info2($orderid)
                 if ($pg_row['LGD_RESPCODE'] == "0000") {
                     $pay_status = '<i class="fa fa-check-circle pay-color"></i> 이체완료';
                 } else {
-                    $pay_status = '<i class="fa fa-exclamation-triangle fail-color"></i> 이체실패(' . $pg_row['LGD_RESPCODE'] . ')';
+                    $pay_status = '<i class="fa fa-exclamation-triangle fail-color"></i> <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal_' . $orderid . '">이체실패(' . $pg_row['LGD_RESPCODE'] . ')</button>';
+                    $pay_status .= '  <div class="modal fade" id="myModal_' . $orderid . '">';
+                    $pay_status .= '    <div class="modal-dialog">';
+                    $pay_status .= '      <div class="modal-content">';
+                    $pay_status .= '        <div class="modal-header">';
+                    $pay_status .= '          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>';
+                    $pay_status .= '          <h4 class="modal-title">입금취소 실패</h4>';
+                    $pay_status .= '        </div>';
+                    $pay_status .= '        <div class="modal-body">';
+                    $pay_status .= '          <h4 class="alert alert-danger rol="alert"> ' . $pg_row['LGD_RESPCODE'] . ': ' . $pg_row['LGD_RESPMSG'] . '</h4>';
+                    $pay_status .= '        </div>';
+                    $pay_status .= '        <div class="modal-footer">';
+                    $pay_status .= '          <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>';
+                    $pay_status .= '        </div>';
+                    $pay_status .= '      </div>'; //<!-- /.modal-content -->
+                    $pay_status .= '    </div>';   //<!-- /.modal-dialog -->
+                    $pay_status .= '  </div>';     //<!-- /.modal -->
+                                                   // $pay_status = '<i class="fa fa-exclamation-triangle fail-color"></i> 이체실패(' . $pg_row['LGD_RESPCODE'] . ')';
                 }
 
                 break;
@@ -1670,8 +1706,11 @@ function get_pg_info2($orderid)
                     }
                 }
 
-                if ($pg_row['LGD_RESPCODE'] == "0000") {
+                //카드결제가 취소성공해도 0000이 넘어오므로 다른 값으로 체크
+                if ("0000" == $pg_row['LGD_RESPCODE']) {
                     $pay_status = '<i class="fa fa-credit-card pay-color"></i> 카드결제 완료';
+                } elseif ("취소성공" == $pg_row['LGD_RESPMSG']) {
+                    $pay_status = '<i class="fa fa-exclamation-triangle fail-color"></i> 결제취소';
                 } else {
                     $pay_status = '<i class="fa fa-exclamation-triangle fail-color"></i> 결제실패(' . $pg_row['LGD_RESPCODE'] . ')';
                 }

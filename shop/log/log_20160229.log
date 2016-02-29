@@ -1,0 +1,83 @@
+2016-02-29 13:18:18 [INFO ] [] XPayClient initialize [../lgpay] [test]
+2016-02-29 13:18:18 [DEBUG] [] Config [server_id] = [01]
+2016-02-29 13:18:18 [DEBUG] [] Config [timeout] = [60]
+2016-02-29 13:18:18 [DEBUG] [] Config [log_level] = [4]
+2016-02-29 13:18:18 [DEBUG] [] Config [verify_cert] = [0]
+2016-02-29 13:18:18 [DEBUG] [] Config [verify_host] = [0]
+2016-02-29 13:18:18 [DEBUG] [] Config [report_error] = [1]
+2016-02-29 13:18:18 [DEBUG] [] Config [output_UTF8] = [1]
+2016-02-29 13:18:18 [DEBUG] [] Config [auto_rollback] = [1]
+2016-02-29 13:18:18 [DEBUG] [] Config [log_dir] = [./log]
+2016-02-29 13:18:18 [DEBUG] [] Config [tshinsoo] = [e57352760ea5a2a1fce315c6ead11ece]
+2016-02-29 13:18:18 [DEBUG] [] Config [shinsoo] = [e57352760ea5a2a1fce315c6ead11ece]
+2016-02-29 13:18:18 [DEBUG] [] Config [url] = [https://xpayclient.lgdacom.net/xpay/Gateway.do]
+2016-02-29 13:18:18 [DEBUG] [] Config [test_url] = [https://xpayclient.lgdacom.net:7443/xpay/Gateway.do]
+2016-02-29 13:18:18 [DEBUG] [] Config [aux_url] = [http://xpayclient.lgdacom.net:7080/xpay/Gateway.do]
+2016-02-29 13:18:18 [WARN ] [] Do not verify server Certificate
+2016-02-29 13:18:18 [WARN ] [] Do not verify host Domain
+2016-02-29 13:18:18 [DEBUG] [tshinsoo-0120160229131818f063837660624d862f8cb4f64efeb8b5068195f0] Post [LGD_TXID] = [tshinsoo-0120160229131818f063837660624d862f8cb4f64efeb8b5068195f0]
+2016-02-29 13:18:18 [DEBUG] [tshinsoo-0120160229131818f063837660624d862f8cb4f64efeb8b5068195f0] Post [LGD_AUTHCODE] = [a88025003a3fe2ed6b9df055c0c91020de404f55]
+2016-02-29 13:18:18 [DEBUG] [tshinsoo-0120160229131818f063837660624d862f8cb4f64efeb8b5068195f0] Post [LGD_MID] = [tshinsoo]
+2016-02-29 13:18:18 [DEBUG] [tshinsoo-0120160229131818f063837660624d862f8cb4f64efeb8b5068195f0] Post [LGD_TXNAME] = [Cancel]
+2016-02-29 13:18:18 [DEBUG] [tshinsoo-0120160229131818f063837660624d862f8cb4f64efeb8b5068195f0] Post [LGD_TID] = [tshin2016022911070457372]
+2016-02-29 13:18:18 [DEBUG] [tshinsoo-0120160229131818f063837660624d862f8cb4f64efeb8b5068195f0] post_string = LGD_TXID=tshinsoo-0120160229131818f063837660624d862f8cb4f64efeb8b5068195f0&LGD_AUTHCODE=a88025003a3fe2ed6b9df055c0c91020de404f55&LGD_MID=tshinsoo&LGD_TXNAME=Cancel&LGD_TID=tshin2016022911070457372
+2016-02-29 13:18:18 [DEBUG] [tshinsoo-0120160229131818f063837660624d862f8cb4f64efeb8b5068195f0] Result = [
+
+
+
+
+
+
+
+
+
+{"LGD_RESPCODE":"RF26","LGD_RESPMSG":"환불계좌 형식이 유효하지 않습니다","LGD_RESPONSE":[{"LGD_HASHDATA":"1a545080fef1d2a2bb736f9dfddde90e","LGD_RESPCODE":"RF26","LGD_TIMESTAMP":"20160229131803","LGD_CANREQDATE":"","LGD_RESPMSG":"환불계좌 형식이 유효하지 않습니다","LGD_CASSEQNO":null}]}
+]
+2016-02-29 13:18:18 [INFO ] [tshinsoo-0120160229131818f063837660624d862f8cb4f64efeb8b5068195f0] Response Code=[RF26], Msg=[ȯ�Ұ��� ������ ��ȿ���� �ʽ��ϴ�], Count=1
+2016-02-29 13:18:18 [DEBUG] [tshinsoo-0120160229131818f063837660624d862f8cb4f64efeb8b5068195f0] Response (LGD_HASHDATA, 0) = 1a545080fef1d2a2bb736f9dfddde90e
+2016-02-29 13:18:18 [DEBUG] [tshinsoo-0120160229131818f063837660624d862f8cb4f64efeb8b5068195f0] Response (LGD_RESPCODE, 0) = RF26
+2016-02-29 13:18:18 [DEBUG] [tshinsoo-0120160229131818f063837660624d862f8cb4f64efeb8b5068195f0] Response (LGD_TIMESTAMP, 0) = 20160229131803
+2016-02-29 13:18:18 [DEBUG] [tshinsoo-0120160229131818f063837660624d862f8cb4f64efeb8b5068195f0] Response (LGD_CANREQDATE, 0) = 
+2016-02-29 13:18:18 [DEBUG] [tshinsoo-0120160229131818f063837660624d862f8cb4f64efeb8b5068195f0] Response (LGD_RESPMSG, 0) = 환불계좌 형식이 유효하지 않습니다
+2016-02-29 13:18:18 [DEBUG] [tshinsoo-0120160229131818f063837660624d862f8cb4f64efeb8b5068195f0] Response (LGD_CASSEQNO, 0) = 
+2016-02-29 13:20:24 [INFO ] [] XPayClient initialize [../lgpay] [test]
+2016-02-29 13:20:24 [DEBUG] [] Config [server_id] = [01]
+2016-02-29 13:20:24 [DEBUG] [] Config [timeout] = [60]
+2016-02-29 13:20:24 [DEBUG] [] Config [log_level] = [4]
+2016-02-29 13:20:24 [DEBUG] [] Config [verify_cert] = [0]
+2016-02-29 13:20:24 [DEBUG] [] Config [verify_host] = [0]
+2016-02-29 13:20:24 [DEBUG] [] Config [report_error] = [1]
+2016-02-29 13:20:24 [DEBUG] [] Config [output_UTF8] = [1]
+2016-02-29 13:20:24 [DEBUG] [] Config [auto_rollback] = [1]
+2016-02-29 13:20:24 [DEBUG] [] Config [log_dir] = [./log]
+2016-02-29 13:20:24 [DEBUG] [] Config [tshinsoo] = [e57352760ea5a2a1fce315c6ead11ece]
+2016-02-29 13:20:24 [DEBUG] [] Config [shinsoo] = [e57352760ea5a2a1fce315c6ead11ece]
+2016-02-29 13:20:24 [DEBUG] [] Config [url] = [https://xpayclient.lgdacom.net/xpay/Gateway.do]
+2016-02-29 13:20:24 [DEBUG] [] Config [test_url] = [https://xpayclient.lgdacom.net:7443/xpay/Gateway.do]
+2016-02-29 13:20:24 [DEBUG] [] Config [aux_url] = [http://xpayclient.lgdacom.net:7080/xpay/Gateway.do]
+2016-02-29 13:20:24 [WARN ] [] Do not verify server Certificate
+2016-02-29 13:20:24 [WARN ] [] Do not verify host Domain
+2016-02-29 13:20:25 [DEBUG] [tshinsoo-0120160229132024a45cb05ae320e444436d405fbe29052efbaa5b0f] Post [LGD_TXID] = [tshinsoo-0120160229132024a45cb05ae320e444436d405fbe29052efbaa5b0f]
+2016-02-29 13:20:25 [DEBUG] [tshinsoo-0120160229132024a45cb05ae320e444436d405fbe29052efbaa5b0f] Post [LGD_AUTHCODE] = [b24f05b99fa8614f1c95ed5dd394d3ce51afccfa]
+2016-02-29 13:20:25 [DEBUG] [tshinsoo-0120160229132024a45cb05ae320e444436d405fbe29052efbaa5b0f] Post [LGD_MID] = [tshinsoo]
+2016-02-29 13:20:25 [DEBUG] [tshinsoo-0120160229132024a45cb05ae320e444436d405fbe29052efbaa5b0f] Post [LGD_TXNAME] = [Cancel]
+2016-02-29 13:20:25 [DEBUG] [tshinsoo-0120160229132024a45cb05ae320e444436d405fbe29052efbaa5b0f] Post [LGD_TID] = [tshin2016022709144854021]
+2016-02-29 13:20:25 [DEBUG] [tshinsoo-0120160229132024a45cb05ae320e444436d405fbe29052efbaa5b0f] post_string = LGD_TXID=tshinsoo-0120160229132024a45cb05ae320e444436d405fbe29052efbaa5b0f&LGD_AUTHCODE=b24f05b99fa8614f1c95ed5dd394d3ce51afccfa&LGD_MID=tshinsoo&LGD_TXNAME=Cancel&LGD_TID=tshin2016022709144854021
+2016-02-29 13:20:25 [DEBUG] [tshinsoo-0120160229132024a45cb05ae320e444436d405fbe29052efbaa5b0f] Result = [
+
+
+
+
+
+
+
+
+
+{"LGD_RESPCODE":"0000","LGD_RESPMSG":"취소성공","LGD_RESPONSE":[{"LGD_HASHDATA":"090117c9817b4bc835dbac66b317fe86","LGD_RESPCODE":"0000","LGD_TIMESTAMP":"20160229132010","LGD_CANREQDATE":"20160229132010","LGD_RESPMSG":"취소성공"}]}
+]
+2016-02-29 13:20:25 [INFO ] [tshinsoo-0120160229132024a45cb05ae320e444436d405fbe29052efbaa5b0f] Response Code=[0000], Msg=[��Ҽ���], Count=1
+2016-02-29 13:20:25 [DEBUG] [tshinsoo-0120160229132024a45cb05ae320e444436d405fbe29052efbaa5b0f] Response (LGD_HASHDATA, 0) = 090117c9817b4bc835dbac66b317fe86
+2016-02-29 13:20:25 [DEBUG] [tshinsoo-0120160229132024a45cb05ae320e444436d405fbe29052efbaa5b0f] Response (LGD_RESPCODE, 0) = 0000
+2016-02-29 13:20:25 [DEBUG] [tshinsoo-0120160229132024a45cb05ae320e444436d405fbe29052efbaa5b0f] Response (LGD_TIMESTAMP, 0) = 20160229132010
+2016-02-29 13:20:25 [DEBUG] [tshinsoo-0120160229132024a45cb05ae320e444436d405fbe29052efbaa5b0f] Response (LGD_CANREQDATE, 0) = 20160229132010
+2016-02-29 13:20:25 [DEBUG] [tshinsoo-0120160229132024a45cb05ae320e444436d405fbe29052efbaa5b0f] Response (LGD_RESPMSG, 0) = 취소성공
