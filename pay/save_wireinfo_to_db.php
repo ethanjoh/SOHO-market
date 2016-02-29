@@ -32,6 +32,12 @@ if ('N' == $update) {
                                             '$LGD_CASTAMOUNT', '$LGD_CASCAMOUNT', '$LGD_CASFLAG', '$LGD_CASSEQNO', '$LGD_CASHRECEIPTNUM', '$LGD_CASHRECEIPTSELFYN', '$LGD_CASHRECEIPTKIND' )";
 
     $result2 = mysqli_query($connect, $query2);
+
+    if ($result2) {
+        $resultMSG = "OK";
+    } else {
+        $resultMSG = "FAIL";
+    }
 } elseif ('I' == $update) {
     $status = "3"; //주문진행 상태(주문 미처리)
 
@@ -54,16 +60,21 @@ if ('N' == $update) {
                             WHERE LGD_OID = '$lgd_oid'";
 
     $result2 = mysqli_query($connect, $query2);
+
+    if ($result2) {
+        $resultMSG = "OK";
+    } else {
+        $resultMSG = "FAIL";
+    }
 } elseif ('C' == $update) {
     $query2  = "UPDATE pg_info SET LGD_CASFLAG = 'C' WHERE LGD_OID = '$lgd_oid'";
     $result2 = mysqli_query($connect, $query2);
-}
 
-if (!$result2) {
-    echo "Error occured while saving payment data.";
-    $resultMSG = "FAIL";
-} else {
-    $resultMSG = "OK";
+    if ($result2) {
+        $resultMSG = "OK";
+    } else {
+        $resultMSG = "FAIL";
+    }
 }
 
 //주문상품 장바구니에서 삭제
