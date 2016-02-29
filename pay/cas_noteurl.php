@@ -7,28 +7,28 @@ require_once '../util/util.php';
  * 1) 위변조 방지를 위한 hashdata값 검증은 반드시 적용하셔야 합니다.
  *
  */
-$LGD_RESPCODE          = isset($_POST["LGD_RESPCODE"]);          // 응답코드: 0000(성공) 그외 실패
-$LGD_RESPMSG           = isset($_POST["LGD_RESPMSG"]);           // 응답메세지
-$LGD_MID               = isset($_POST["LGD_MID"]);               // 상점아이디
-$LGD_OID               = isset($_POST["LGD_OID"]);               // 주문번호
-$LGD_AMOUNT            = isset($_POST["LGD_AMOUNT"]);            // 거래금액
-$LGD_TID               = isset($_POST["LGD_TID"]);               // LG유플러스에서 부여한 거래번호
-$LGD_PAYTYPE           = isset($_POST["LGD_PAYTYPE"]);           // 결제수단코드
-$LGD_PAYDATE           = isset($_POST["LGD_PAYDATE"]);           // 거래일시(승인일시/이체일시)
-$LGD_HASHDATA          = isset($_POST["LGD_HASHDATA"]);          // 해쉬값
-$LGD_FINANCECODE       = isset($_POST["LGD_FINANCECODE"]);       // 결제기관코드(은행코드)
-$LGD_FINANCENAME       = isset($_POST["LGD_FINANCENAME"]);       // 결제기관이름(은행이름)
-$LGD_ESCROWYN          = isset($_POST["LGD_ESCROWYN"]);          // 에스크로 적용여부
-$LGD_TIMESTAMP         = isset($_POST["LGD_TIMESTAMP"]);         // 타임스탬프
-$LGD_ACCOUNTNUM        = isset($_POST["LGD_ACCOUNTNUM"]);        // 계좌번호(무통장입금)
-$LGD_CASTAMOUNT        = isset($_POST["LGD_CASTAMOUNT"]);        // 입금총액(무통장입금)
-$LGD_CASCAMOUNT        = isset($_POST["LGD_CASCAMOUNT"]);        // 현입금액(무통장입금)
-$LGD_CASFLAG           = isset($_POST["LGD_CASFLAG"]);           // 무통장입금 플래그(무통장입금) - 'R':계좌할당, 'I':입금, 'C':입금취소
-$LGD_CASSEQNO          = isset($_POST["LGD_CASSEQNO"]);          // 입금순서(무통장입금)
-$LGD_CASHRECEIPTNUM    = isset($_POST["LGD_CASHRECEIPTNUM"]);    // 현금영수증 승인번호
-$LGD_CASHRECEIPTSELFYN = isset($_POST["LGD_CASHRECEIPTSELFYN"]); // 현금영수증자진발급제유무 Y: 자진발급제 적용, 그외 : 미적용
-$LGD_CASHRECEIPTKIND   = isset($_POST["LGD_CASHRECEIPTKIND"]);   // 현금영수증 종류 0: 소득공제용 , 1: 지출증빙용
-$LGD_PAYER             = isset($_POST["LGD_PAYER"]);             // 입금자명
+$LGD_RESPCODE          = $_POST['LGD_RESPCODE'];          // 응답코드: 0000(성공) 그외 실패
+$LGD_RESPMSG           = $_POST['LGD_RESPMSG'];           // 응답메세지
+$LGD_MID               = $_POST['LGD_MID'];               // 상점아이디
+$LGD_OID               = $_POST['LGD_OID'];               // 주문번호
+$LGD_AMOUNT            = $_POST['LGD_AMOUNT'];            // 거래금액
+$LGD_TID               = $_POST['LGD_TID'];               // LG유플러스에서 부여한 거래번호
+$LGD_PAYTYPE           = $_POST['LGD_PAYTYPE'];           // 결제수단코드
+$LGD_PAYDATE           = $_POST['LGD_PAYDATE'];           // 거래일시(승인일시/이체일시)
+$LGD_HASHDATA          = $_POST['LGD_HASHDATA'];          // 해쉬값
+$LGD_FINANCECODE       = $_POST['LGD_FINANCECODE'];       // 결제기관코드(은행코드)
+$LGD_FINANCENAME       = $_POST['LGD_FINANCENAME'];       // 결제기관이름(은행이름)
+$LGD_ESCROWYN          = $_POST['LGD_ESCROWYN'];          // 에스크로 적용여부
+$LGD_TIMESTAMP         = $_POST['LGD_TIMESTAMP'];         // 타임스탬프
+$LGD_ACCOUNTNUM        = $_POST['LGD_ACCOUNTNUM'];        // 계좌번호(무통장입금)
+$LGD_CASTAMOUNT        = $_POST['LGD_CASTAMOUNT'];        // 입금총액(무통장입금)
+$LGD_CASCAMOUNT        = $_POST['LGD_CASCAMOUNT'];        // 현입금액(무통장입금)
+$LGD_CASFLAG           = $_POST['LGD_CASFLAG'];           // 무통장입금 플래그(무통장입금) - 'R':계좌할당, 'I':입금, 'C':입금취소
+$LGD_CASSEQNO          = $_POST['LGD_CASSEQNO'];          // 입금순서(무통장입금)
+$LGD_CASHRECEIPTNUM    = $_POST['LGD_CASHRECEIPTNUM'];    // 현금영수증 승인번호
+$LGD_CASHRECEIPTSELFYN = $_POST['LGD_CASHRECEIPTSELFYN']; // 현금영수증자진발급제유무 Y: 자진발급제 적용, 그외 : 미적용
+$LGD_CASHRECEIPTKIND   = $_POST['LGD_CASHRECEIPTKIND'];   // 현금영수증 종류 0: 소득공제용 , 1: 지출증빙용
+$LGD_PAYER             = $_POST['LGD_PAYER'];             // 입금자명
 
 /*
  * 구매정보
@@ -114,8 +114,9 @@ if ($LGD_HASHDATA2 == $LGD_HASHDATA) {
                 echo "Error occured while updating CASFLAG";
             }
             // debug
-            $txt  = print_r($LGD_CASFLAG, true);
-            $file = fopen("result_log.txt", "a+b");
+            $re   = '$LGD_CASFLAG: ' . $LGD_CASFLAG . ' - $resultMSG: ' . $resultMSG . "\n";
+            $txt  = print_r($re, true);
+            $file = fopen("r_log.txt", "a+b");
             fwrite($file, $txt);
             fclose($file);
 
@@ -159,8 +160,9 @@ if ($LGD_HASHDATA2 == $LGD_HASHDATA) {
             }
 
             // debug
-            $txt  = print_r($LGD_CASFLAG, true);
-            $file = fopen("result_log.txt", "a+b");
+            $re   = '$LGD_CASFLAG: ' . $LGD_CASFLAG . ' - $resultMSG: ' . $resultMSG . "\n";
+            $txt  = print_r($re, true);
+            $file = fopen("i_log.txt", "a+b");
             fwrite($file, $txt);
             fclose($file);
 
