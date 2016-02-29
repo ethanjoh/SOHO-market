@@ -1,1 +1,0 @@
-$LGD_CASFLAG: I - $resultMSG: OK
