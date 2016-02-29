@@ -1418,7 +1418,7 @@ function get_list_page_result($mode, $lcode, $mcode, $key, $keyword, $cline, $la
  */
 function show_order_list($t_no, $result, $cpage)
 {
-    global $connect, $MERTKEY;
+    global $connect, $MERTKEY, $CST_MID, $CST_PLATFORM;
 
     $status_now = '';
 
@@ -1473,6 +1473,7 @@ function show_order_list($t_no, $result, $cpage)
 HEREDOC;
 
                 echo $show_admin_memo;
+                $pay_status = get_pg_info2($row['orderid']);
 
                 echo <<<HEREDOC
 
@@ -1482,7 +1483,7 @@ HEREDOC;
                           <td>{$pay_status}</td>
                           <td>{$status_now}</td>
                           <td>&nbsp;</td>
-	                      <td><a href="#" onclick="javascript:alert('이미 취소된 주문입니다.')"><i class="fa fa-remove"></i></a></td>
+	                      <td><a href="#" onclick="alert('이미 취소된 주문입니다.')"><i class="fa fa-ban"></i></a></td>
 HEREDOC;
 
             } else {
@@ -1539,7 +1540,16 @@ HEREDOC;
                       <td>{$pay_status}</td>
                       <td>{$status_now}</td>
                       <td>{$print_receipt}</td>
-                      <td><a href="order-delete.php?oid={$row['num']}&amp;page={$cpage}" onclick="return confirm('정말 주문을 취소하시겠습니까?')"><i class="fa fa-remove"></i></a></td>
+                      <td>
+                          <form name="or_delete_{$i}" method="post" id="LGD_PAYINFO" action="../shop/order-delete.php">
+                          <input type="hidden" name="oid" value="{$row['num']}">
+                          <input type="hidden" name="page" value="{$cpage}">
+                          <input type="hidden" name="CST_MID" value="{$CST_MID}">
+                          <input type="hidden" name="CST_PLATFORM" value="{$CST_PLATFORM}">
+                          <input type="hidden" name="LGD_TID" value="{$pg_row['LGD_TID']}">
+                          <button type="submit" class="btn btn-xs btn-danger" onclick="return confirm('정말 주문을 취소하시겠습니까?')"><i class="fa fa-remove"></i></button>
+                          </form>
+                      </td>
                     </tr>
 HEREDOC;
 

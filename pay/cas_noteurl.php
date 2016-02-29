@@ -70,24 +70,24 @@ if ($LGD_HASHDATA2 == $LGD_HASHDATA) {
              * 무통장 할당 성공 결과 상점 처리(DB) 부분
              * 상점 결과 처리가 정상이면 "OK"
              */
-            //if( 무통장 할당 성공 상점처리결과 성공 )
-            // $resultMSG = "OK";
             $update = 'N';
             require_once 'save_wireinfo_to_db.php';
+            //if( 무통장 할당 성공 상점처리결과 성공 )
+            // $resultMSG = "OK";
 
         } else if ("I" == $LGD_CASFLAG) {
             /*
              * 무통장 입금 성공 결과 상점 처리(DB) 부분
              * 상점 결과 처리가 정상이면 "OK"
              */
-            //if( 무통장 입금 성공 상점처리결과 성공 )
-            // $resultMSG = "OK";
             // $update = 'I';
             // require_once 'save_wireinfo_to_db.php';
+            //if( 무통장 입금 성공 상점처리결과 성공 )
+            // $resultMSG = "OK";
 
             $status = "3"; //주문진행 상태(주문 미처리)
 
-            $query  = "UPDATE mall_order SET status='$status' WHERE orderid = '$lgd_oid' ";
+            $query  = "UPDATE mall_order SET status='" . $status . "' WHERE orderid = '" . $lgd_oid . "' ";
             $result = mysqli_query($connect, $query);
 
             $query2 = "UPDATE pg_info SET
@@ -114,39 +114,6 @@ if ($LGD_HASHDATA2 == $LGD_HASHDATA) {
                 $resultMSG = "OK";
             }
 
-            //주문상품 장바구니에서 삭제
-            // for ($i = 0; $i < sizeof($products_num); $i++) {
-            //     $qry2 = "DELETE FROM products_cart WHERE user_id = '$user_id' AND product_code='$products_num[$i]' ";
-            //     mysqli_query($connect, $qry2);
-            // }
-
-            if (!$result) {
-                err_msg('데이터베이스 에러가 났습니다.');
-            } else {
-                ######### SMS 발송처리 (회원 SMS 수신 Y, 관리자 SMS 사용여부 Y 에만)
-                ######### $sms: 회원 SMS 수신여부
-                $res     = mysqli_query($connect, "SELECT * FROM sms");
-                $sms_row = mysqli_fetch_array($res);
-
-                //관리페이지에서 SMS 사용여부 확인
-                if ($sms_row['sms'] == "Y") {
-                    //구매자에게 SMS 발송, 승인된 회원만 구매가능하므로 승인여부 제외
-                    if ($sms == "Y" && $sms_row['order_chk'] == "Y") {
-                        //send_sms(받는 사람 핸드폰번호, 메시지 타입, 날짜, db연결)
-                        //메시지 타입 3: 주문완료 처리, 날짜가 빈칸이면 즉시 발송
-                        send_sms($buyer_hphone, 3, $buyer_name, "", $connect);
-                    }
-
-                    //관리자에게 SMS 발송
-                    if ($sms_row['orderin_chk'] == "Y") {
-                        //send_sms(self->관리자에게, 메시지 타입, 날짜, db연결)
-                        //메시지 타입 2: 주문접수 처리
-                        send_sms("self", 2, $buyer_name, "", $connect);
-                    }
-
-                }
-                ####### SMS 발송 끝
-            }
         } else if ("C" == $LGD_CASFLAG) {
             /*
              * 무통장 입금취소 성공 결과 상점 처리(DB) 부분

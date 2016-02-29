@@ -35,7 +35,7 @@ if ('N' == $update) {
 } elseif ('I' == $update) {
     $status = "3"; //주문진행 상태(주문 미처리)
 
-    $query  = "UPDATE mall_order SET status='$status' WHERE orderid = '$lgd_oid' ";
+    $query  = "UPDATE mall_order SET status='" . $status . "' WHERE orderid = '" . $lgd_oid . "' ";
     $result = mysqli_query($connect, $query);
 
     $query2 = "UPDATE pg_info SET
