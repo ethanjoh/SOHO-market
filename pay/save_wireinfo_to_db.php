@@ -2,24 +2,27 @@
 if ('N' == $update) {
     $status = "1"; //주문진행 상태(입금대기)
 
-    $query = "INSERT INTO mall_order(orderid,goods_fk,goods_price, mod_price,
-								goods_name,goods_kind,goods_count,mod_count,
-								user_id, amount, volume, trans_cost, createdate,
-								buyer_name,buyer_zipcode,buyer_address,buyer_phone,
-								buyer_hphone,buyer_email,
-								recipient_name,recipient_zipcode,recipient_address,
-								recipient_phone,recipient_hphone,payment_type,status,
-								delivery_type, memo_to_delivery, memo_to_admin )
-		 VALUES ('$trade_code','$temp_code','$temp_price', '$temp_price',
-				'$temp_name','$temp_kind', '$temp_count', '$temp_count',
-				'$user_id', '$tot_money', '$temp_count','$trans_cost', now(),
-				'$buyer_name','$buyer_zipcode', '$buyer_address', '$buyer_phone',
-				'$buyer_hphone', '$buyer_email',
-				'$recipient_name', '$recipient_zipcode','$recipient_address',
-				'$recipient_phone','$recipient_hphone', '$payment_type', '$status',
-				'$delivery_type', '$memo_to_delivery', '$memo_to_admin')";
-
+    $query  = "UPDATE mall_order SET status='" . $status . "' WHERE orderid = '" . $lgd_oid . "' ";
     $result = mysqli_query($connect, $query);
+
+    //  $query = "INSERT INTO mall_order(orderid,goods_fk,goods_price, mod_price,
+    //                     goods_name,goods_kind,goods_count,mod_count,
+    //                     user_id, amount, volume, trans_cost, createdate,
+    //                     buyer_name,buyer_zipcode,buyer_address,buyer_phone,
+    //                     buyer_hphone,buyer_email,
+    //                     recipient_name,recipient_zipcode,recipient_address,
+    //                     recipient_phone,recipient_hphone,payment_type,status,
+    //                     delivery_type, memo_to_delivery, memo_to_admin )
+    // VALUES ('$trade_code','$temp_code','$temp_price', '$temp_price',
+    //     '$temp_name','$temp_kind', '$temp_count', '$temp_count',
+    //     '$user_id', '$tot_money', '$temp_count','$trans_cost', now(),
+    //     '$buyer_name','$buyer_zipcode', '$buyer_address', '$buyer_phone',
+    //     '$buyer_hphone', '$buyer_email',
+    //     '$recipient_name', '$recipient_zipcode','$recipient_address',
+    //     '$recipient_phone','$recipient_hphone', '$payment_type', '$status',
+    //     '$delivery_type', '$memo_to_delivery', '$memo_to_admin')";
+
+    //  $result = mysqli_query($connect, $query);
 
 // 결제정보 DB에 저장
     $query2 = "INSERT INTO pg_info(LGD_RESPCODE, LGD_RESPMSG, LGD_MID, LGD_OID, LGD_AMOUNT, LGD_TID, LGD_PAYTYPE, LGD_PAYDATE,
