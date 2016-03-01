@@ -33,22 +33,22 @@
           </div>
 <?php
 
-$mode = set_var($_GET['mode']);
-$page = set_var($_GET['page']);
+	$mode = set_var($_GET['mode']);
+	$page = set_var($_GET['page']);
 
-// $today = date("Y-m-d");
-// $p_id      = set_var($_SESSION['p_id']);
-$key     = set_var($_GET['key']);
-$keyword = set_var($_GET['keyword']);
-$date1   = set_var($_GET['date1']);
-$date2   = set_var($_GET['date2']);
+	// $today = date("Y-m-d");
+	// $p_id      = set_var($_SESSION['p_id']);
+	$key     = set_var($_GET['key']);
+	$keyword = set_var($_GET['keyword']);
+	$date1   = set_var($_GET['date1']);
+	$date2   = set_var($_GET['date2']);
 
-//페이징을 위한 페이지수 구하기
-$scale         = get_page_num($mode, $key, $keyword, $date1, $date2, $page, 20);
-$cline         = $scale[0];
-$last_page_num = $scale[1];
-$cpage         = $scale[2];
-$totalpage     = $scale[3];
+	//페이징을 위한 페이지수 구하기
+	$scale         = get_page_num($mode, $key, $keyword, $date1, $date2, $page, 20);
+	$cline         = $scale[0];
+	$last_page_num = $scale[1];
+	$cpage         = $scale[2];
+	$totalpage     = $scale[3];
 
 ?>
           <div class="row">
@@ -86,10 +86,10 @@ $totalpage     = $scale[3];
 
                   <div class="row text-center">
 
-                    <a class="btn btn-default btn-sm" type="button" href="order-list.php?mode=today">금일 주문건 (                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       <?php echo check_today_order(); ?> )</a>
-                    <a class="btn btn-default btn-sm" type="button" href="order-list.php?mode=unchk">미처리 주문건 (                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     <?php echo check_unChk_order(); ?> )</a>
+                    <a class="btn btn-default btn-sm" type="button" href="order-list.php?mode=today">금일 주문건 (                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              <?php echo check_today_order(); ?> )</a>
+                    <a class="btn btn-default btn-sm" type="button" href="order-list.php?mode=unchk">미처리 주문건 (                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               <?php echo check_unChk_order(); ?> )</a>
                     <a class="btn btn-default btn-sm" type="button" href="order-list.php?mode=chk">주문확인건</a>
-                    <a class="btn btn-default btn-sm" type="button" href="order-list.php?mode=paid">발송대기건 (                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   <?php echo check_readyToSend_order(); ?> )</a>
+                    <a class="btn btn-default btn-sm" type="button" href="order-list.php?mode=paid">발송대기건 (                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <?php echo check_readyToSend_order(); ?> )</a>
                     <a class="btn btn-default btn-sm" type="button" href="order-list.php?mode=finish">발송완료건</a>
                     <a class="btn btn-default btn-sm" type="button" href="order-list.php?mode=cancel">주문취소건</a>
                     <a class="btn btn-primary btn-sm" type="button" href="order-list.php?mode=all">전체 주문</a>
@@ -114,13 +114,13 @@ $totalpage     = $scale[3];
                   <tbody>
 <?php
 
-//페이징을 위한 페이지수 구하기
-$ret  = get_page_result($mode, $key, $keyword, $date1, $date2, $cline, $last_page_num);
-$t_no = $ret[0];
-$res  = $ret[1];
+	//페이징을 위한 페이지수 구하기
+	$ret  = get_page_result($mode, $key, $keyword, $date1, $date2, $cline, $last_page_num);
+	$t_no = $ret[0];
+	$res  = $ret[1];
 
-// 주문리스트 보여주기
-echo show_order_list($t_no, $res, $cpage);
+	// 주문리스트 보여주기
+	echo show_order_list($t_no, $res, $cpage);
 ?>
                   </tbody>
                 <!-- </form> -->
@@ -132,8 +132,8 @@ echo show_order_list($t_no, $res, $cpage);
                   <div class="col-sm-12">
 <?php
 
-$url = "order-list.php?mode=" . $mode . "&key=" . $key . "&keyword=" . $keyword . "&date1=" . $date1 . "&date2=" . $date2;
-page_nav($totalpage, $cpage, $url);
+	$url = "order-list.php?mode=" . $mode . "&key=" . $key . "&keyword=" . $keyword . "&date1=" . $date1 . "&date2=" . $date2;
+	page_nav($totalpage, $cpage, $url);
 
 ?>
                   </div>
@@ -182,5 +182,6 @@ page_nav($totalpage, $cpage, $url);
 
           });
       </script>
+      <script language="JavaScript" src="http://pgweb.uplus.co.kr:7085/WEB_SERVER/js/receipt_link.js"></script>
     </body>
 </html>

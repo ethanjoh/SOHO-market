@@ -1518,16 +1518,16 @@ HEREDOC;
 
                     $authdata = md5($pg_row['LGD_MID'] . $pg_row['LGD_TID'] . $MERTKEY);
 
-                    // 테스트에는 포트 7085 사용
-                    $print_receipt = '<script language="JavaScript" src="http://pgweb.uplus.co.kr:7085/WEB_SERVER/js/receipt_link.js"></script>';
-
                     if ($pg_row['LGD_PAYTYPE'] == "SC0010") {
                         //신용카드 결제일 때
                         $print_receipt = '<a href="javascript:showReceiptByTID(\'' . $pg_row['LGD_MID'] . '\', \'' . $pg_row['LGD_TID'] . '\', \'' . $authdata . '\')"><i class="fa fa-print"></i></a>';
-                    } elseif ($pg_row['LGD_PAYTYPE'] == "SC0030" || $pg_row['LGD_PAYTYPE'] == "SC0040") {
+                    } elseif ("SC0030" == $pg_row['LGD_PAYTYPE']) {
                                                 //계좌이체일 때
                         $seqno         = "t/t"; //계좌이체는 임의의 정보 입력
-                        $print_receipt = '<a href="javascript:showCashReceipts(\'' . $pg_row['LGD_MID'] . '\',\'' . $pg_row['LGD_OID'] . '\',\'' . $seqno . '\',\'BANK\',\'service\')"><i class="fa fa-print"></i></a>';
+                        $print_receipt = '<a href="javascript:showCashReceipts(\'' . $pg_row['LGD_MID'] . '\',\'' . $pg_row['LGD_OID'] . '\',\'' . $seqno . '\',\'BANK\',\'' . $CST_PLATFORM . '\')"><i class="fa fa-print"></i></a>';
+                    } elseif ("SC0040" == $pg_row['LGD_PAYTYPE']) {
+                        $seqno         = $pg_row['LGD_CASSEQNO'];
+                        $print_receipt = '<a href="javascript:showCashReceipts(\'' . $pg_row['LGD_MID'] . '\',\'' . $pg_row['LGD_OID'] . '\',\'' . $seqno . '\',\'CAS\',\'' . $CST_PLATFORM . '\')"><i class="fa fa-print"></i></a>';
                     }
                 }
 
