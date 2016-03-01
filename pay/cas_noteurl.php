@@ -75,44 +75,6 @@ if ($LGD_HASHDATA2 == $LGD_HASHDATA) {
             //if( 무통장 할당 성공 상점처리결과 성공 )
             // $resultMSG = "OK";
 
-//             $status = "1"; //주문진행 상태(입금대기)
-
-//             $query = "INSERT INTO mall_order(orderid,goods_fk,goods_price, mod_price,
-            //                                 goods_name,goods_kind,goods_count,mod_count,
-            //                                 user_id, amount, volume, trans_cost, createdate,
-            //                                 buyer_name,buyer_zipcode,buyer_address,buyer_phone,
-            //                                 buyer_hphone,buyer_email,
-            //                                 recipient_name,recipient_zipcode,recipient_address,
-            //                                 recipient_phone,recipient_hphone,payment_type,status,
-            //                                 delivery_type, memo_to_delivery, memo_to_admin )
-            //          VALUES ('$trade_code','$temp_code','$temp_price', '$temp_price',
-            //                 '$temp_name','$temp_kind', '$temp_count', '$temp_count',
-            //                 '$user_id', '$tot_money', '$temp_count','$trans_cost', now(),
-            //                 '$buyer_name','$buyer_zipcode', '$buyer_address', '$buyer_phone',
-            //                 '$buyer_hphone', '$buyer_email',
-            //                 '$recipient_name', '$recipient_zipcode','$recipient_address',
-            //                 '$recipient_phone','$recipient_hphone', '$payment_type', '$status',
-            //                 '$delivery_type', '$memo_to_delivery', '$memo_to_admin')";
-
-//             $result = mysqli_query($connect, $query);
-
-// // 결제정보 DB에 저장
-            //             $query2 = "INSERT INTO pg_info(LGD_RESPCODE, LGD_RESPMSG, LGD_MID, LGD_OID, LGD_AMOUNT, LGD_TID, LGD_PAYTYPE, LGD_PAYDATE,
-            //                                             LGD_HASHDATA, LGD_FINANCECODE, LGD_FINANCENAME, LGD_ESCROWYN, LGD_TIMESTAMP, LGD_FINANCEAUTHNUM,
-            //                                             LGD_CARDNUM, LGD_CARDINSTALLMONTH, LGD_CARDNOINTYN, LGD_TRANSAMOUNT, LGD_EXCHANGERATE, LGD_ACCOUNTNUM,
-            //                                             LGD_CASTAMOUNT, LGD_CASCAMOUNT, LGD_CASFLAG, LGD_CASSEQNO, LGD_CASHRECEIPTNUM, LGD_CASHRECEIPTSELFYN, LGD_CASHRECEIPTKIND)
-            //                                     VALUES ('$LGD_RESPCODE', '$LGD_RESPMSG', '$LGD_MID', '$LGD_OID', '$LGD_AMOUNT', '$LGD_TID', '$LGD_PAYTYPE', '$LGD_PAYDATE',
-            //                                             '$LGD_HASHDATA', '$LGD_FINANCECODE', '$LGD_FINANCENAME', '$LGD_ESCROWYN', '$LGD_TIMESTAMP', '$LGD_FINANCEAUTHNUM',
-            //                                             '$LGD_CARDNUM', '$LGD_CARDINSTALLMONTH', '$LGD_CARDNOINTYN', '$LGD_TRANSAMOUNT', '$LGD_EXCHANGERATE', '$LGD_ACCOUNTNUM',
-            //                                             '$LGD_CASTAMOUNT', '$LGD_CASCAMOUNT', '$LGD_CASFLAG', '$LGD_CASSEQNO', '$LGD_CASHRECEIPTNUM', '$LGD_CASHRECEIPTSELFYN', '$LGD_CASHRECEIPTKIND' )";
-
-//             $result2 = mysqli_query($connect, $query2);
-
-//             if ($result2) {
-            //                 $resultMSG = "OK";
-            //             } else {
-            //                 echo "Error occured while updating CASFLAG";
-            //             }
             // debug
             // $re   = '$LGD_CASFLAG: ' . $LGD_CASFLAG . ' - $resultMSG: ' . $resultMSG . "\n";
             // $txt  = print_r($re, true);
@@ -129,42 +91,6 @@ if ($LGD_HASHDATA2 == $LGD_HASHDATA) {
             require_once 'save_wireinfo_to_db.php';
             //if( 무통장 입금 성공 상점처리결과 성공 )
             // $resultMSG = "OK";
-
-            // $status = "3"; //주문진행 상태(주문 미처리)
-
-            // $query  = "UPDATE mall_order SET status='$status' WHERE orderid = '$lgd_oid' ";
-            // $result = mysqli_query($connect, $query);
-
-            // $query2 = "UPDATE pg_info SET
-            //                             LGD_RESPCODE            = '$LGD_RESPCODE',
-            //                             LGD_RESPMSG             = '$LGD_RESPMSG',
-            //                             LGD_PAYDATE             = '$LGD_PAYDATE',
-            //                             LGD_ESCROWYN            = '$LGD_ESCROWYN',
-            //                             LGD_TIMESTAMP           = '$LGD_TIMESTAMP',
-            //                             LGD_CASTAMOUNT          = '$LGD_CASTAMOUNT',
-            //                             LGD_CASCAMOUNT          = '$LGD_CASCAMOUNT',
-            //                             LGD_CASFLAG             = '$LGD_CASFLAG',
-            //                             LGD_CASSEQNO            = '$LGD_CASSEQNO',
-            //                             LGD_CASHRECEIPTNUM      = '$LGD_CASHRECEIPTNUM',
-            //                             LGD_CASHRECEIPTSELFYN   = '$LGD_CASHRECEIPTSELFYN',
-            //                             LGD_CASHRECEIPTKIND     = '$LGD_CASHRECEIPTKIND'
-            //                         WHERE LGD_OID = '$lgd_oid'";
-
-            // $result2 = mysqli_query($connect, $query2);
-
-            // if ($result2) {
-            //     $resultMSG = "OK";
-            //     // $resultMSG = iconv("euc-kr", "utf-8", $resultMSG);
-            // } else {
-            //     echo "Error occured while updating CASFLAG";
-            // }
-
-            // debug
-            // $re   = '$LGD_CASFLAG: ' . $LGD_CASFLAG . ' - $resultMSG: ' . $resultMSG . "\n";
-            // $txt  = print_r($re, true);
-            // $file = fopen("i_log.txt", "a+b");
-            // fwrite($file, $txt);
-            // fclose($file);
 
         } else if ("C" == $LGD_CASFLAG) {
             /*

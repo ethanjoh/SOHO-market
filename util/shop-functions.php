@@ -1,5 +1,4 @@
 <?php
-// include_once 'config.php';
 include_once 'util.php';
 
 //구매 페이지에서 결제정보 보이기
@@ -1517,7 +1516,6 @@ HEREDOC;
 
                 if ($row['status'] == '8') {
 
-                    // $MERTKEY  = 'e57352760ea5a2a1fce315c6ead11ece';
                     $authdata = md5($pg_row['LGD_MID'] . $pg_row['LGD_TID'] . $MERTKEY);
 
                     // 테스트에는 포트 7085 사용
@@ -1541,7 +1539,7 @@ HEREDOC;
                       <td>{$status_now}</td>
                       <td>{$print_receipt}</td>
                       <td>
-                          <form name="or_delete_{$i}" method="post" id="LGD_PAYINFO" action="../shop/order-delete.php">
+                          <form name="or_delete_{$i}" method="post" action="../shop/order-delete.php">
                           <input type="hidden" name="oid" value="{$row['num']}">
                           <input type="hidden" name="page" value="{$cpage}">
                           <input type="hidden" name="CST_MID" value="{$CST_MID}">

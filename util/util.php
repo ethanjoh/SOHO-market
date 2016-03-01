@@ -1,7 +1,6 @@
 <?php
 
-$config = parse_ini_file('config.ini');
-// require_once 'config.php';
+$config       = parse_ini_file('config.ini');
 $host         = $config['host'];
 $dbid         = $config['dbid'];
 $dbpass       = $config['dbpass'];
@@ -11,7 +10,6 @@ $MERTKEY      = $config['mertkey'];
 $CST_MID      = $config['cst_mid'];
 $CST_PLATFORM = $config['cst_platform'];
 
-// global $host, $dbid, $dbpass, $dbname;
 $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
 
 //메인에 팝업공지 띄우기
@@ -1712,7 +1710,25 @@ function get_pg_info2($orderid)
                 } elseif ("취소성공" == $pg_row['LGD_RESPMSG']) {
                     $pay_status = '<i class="fa fa-exclamation-triangle fail-color"></i> 결제취소';
                 } else {
-                    $pay_status = '<i class="fa fa-exclamation-triangle fail-color"></i> 결제실패(' . $pg_row['LGD_RESPCODE'] . ')';
+                    $pay_status = '<i class="fa fa-exclamation-triangle fail-color"></i> <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal_' . $orderid . '">결제실패(' . $pg_row['LGD_RESPCODE'] . ')</button>';
+                    $pay_status .= '  <div class="modal fade" id="myModal_' . $orderid . '">';
+                    $pay_status .= '    <div class="modal-dialog">';
+                    $pay_status .= '      <div class="modal-content">';
+                    $pay_status .= '        <div class="modal-header">';
+                    $pay_status .= '          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>';
+                    $pay_status .= '          <h4 class="modal-title">카드결제 취소 실패</h4>';
+                    $pay_status .= '        </div>';
+                    $pay_status .= '        <div class="modal-body">';
+                    $pay_status .= '          <h4 class="alert alert-danger rol="alert"> ' . $pg_row['LGD_RESPCODE'] . ': ' . $pg_row['LGD_RESPMSG'] . '</h4>';
+                    $pay_status .= '        </div>';
+                    $pay_status .= '        <div class="modal-footer">';
+                    $pay_status .= '          <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>';
+                    $pay_status .= '        </div>';
+                    $pay_status .= '      </div>'; //<!-- /.modal-content -->
+                    $pay_status .= '    </div>';   //<!-- /.modal-dialog -->
+                    $pay_status .= '  </div>';     //<!-- /.modal -->
+
+                    // $pay_status = '<i class="fa fa-exclamation-triangle fail-color"></i> 결제실패(' . $pg_row['LGD_RESPCODE'] . ')';
                 }
 
                 break;

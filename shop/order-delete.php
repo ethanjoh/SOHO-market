@@ -12,15 +12,15 @@ $page = set_var($_POST['page']);
  * LG유플러스으로 부터 내려받은 거래번호(LGD_TID)를 가지고 취소 요청을 합니다.(파라미터 전달시 POST를 사용하세요)
  * (승인시 LG유플러스으로 부터 내려받은 PAYKEY와 혼동하지 마세요.)
  */
-$CST_PLATFORM = $_POST["CST_PLATFORM"];                       //LG유플러스 결제 서비스 선택(test:테스트, service:서비스)
-$CST_MID      = $_POST["CST_MID"];                            //상점아이디(LG유플러스으로 부터 발급받으신 상점아이디를 입력하세요)
+$CST_PLATFORM = $_POST['CST_PLATFORM'];                       //LG유플러스 결제 서비스 선택(test:테스트, service:서비스)
+$CST_MID      = $_POST['CST_MID'];                            //상점아이디(LG유플러스으로 부터 발급받으신 상점아이디를 입력하세요)
                                                               //테스트 아이디는 't'를 반드시 제외하고 입력하세요.
 $LGD_MID = (("test" == $CST_PLATFORM) ? "t" : "") . $CST_MID; //상점아이디(자동생성)
-$LGD_TID = $_POST["LGD_TID"];                                 //LG유플러스으로 부터 내려받은 거래번호(LGD_TID)
+$LGD_TID = $_POST['LGD_TID'];                                 //LG유플러스으로 부터 내려받은 거래번호(LGD_TID)
 
-$configPath = "../lgpay"; //LG유플러스에서 제공한 환경파일("/conf/lgdacom.conf") 위치 지정.
+$configPath = "/home/hosting_users/ssss01047271791/lgpay"; //LG유플러스에서 제공한 환경파일("/conf/lgdacom.conf") 위치 지정.
 
-require_once "../lgpay/XPayClient.php";
+require_once "/home/hosting_users/ssss01047271791/lgpay/XPayClient.php";
 $xpay = &new XPayClient($configPath, $CST_PLATFORM);
 $xpay->Init_TX($LGD_MID);
 
