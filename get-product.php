@@ -1,6 +1,6 @@
 <?php
 // 상품정보 업로드하기
-// get-product.php?f=[파일명]
+// get-product.php?f=[csv 파일명]
 // csv 파일은 upload 폴더에 위치
 // 상품 이미지는 img 폴더에 위치
 
@@ -45,7 +45,7 @@ while ($data = fgetcsv($fp)) {
     print_r($data);
     echo "</pre>";
 
-// data[1]: 상품코드, data[2]: 상품명, data[3]: 공급가, data[4]:이미지, data[5]:분류,
+    // data[1]: 상품코드, data[2]: 상품명, data[3]: 공급가, data[4]:이미지, data[5]:분류,
     // data[6]: 모델번호, data[7]: 브랜드, data[8]: 규격
 
     //상품코드

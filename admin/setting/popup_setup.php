@@ -13,9 +13,9 @@
     <!--main content start-->
     <section id="main-content">
       <section class="wrapper">
-      <?php
-$qry = "SELECT * FROM popup LIMIT 1";
+<?php
 
+$qry    = "SELECT * FROM popup LIMIT 1";
 $result = mysqli_query($connect, $qry);
 $row    = mysqli_fetch_array($result);
 mysqli_free_result($result);
@@ -51,15 +51,16 @@ mysqli_free_result($result);
                     <tbody>
                       <tr>
                         <td>
-                          <input type="checkbox" name="chk" value="<?=$row['chk'] == 'Y' ? "Y" : "N";?>" <?=$row['chk'] == 'Y' ? "checked" : "";?>  />
+                          <input type="checkbox" name="chk" value="<?php echo $row['chk'] == 'Y' ? "Y" : "N"; ?>" <?php echo $row['chk'] == 'Y' ? "checked" : ""; ?>  />
                           팝업 공지사항 보이기
                         </td>
                       </tr>
                       <tr>
                         <td>
-                          <textarea name="contents" id="contents" style="width:100%; height:300px">
-                          <?=stripslashes($row['contents']);?>
-                          </textarea>
+                          <textarea name="contents" class="form-control" id="contents"><?php echo stripslashes($row['contents']); ?></textarea>
+                          <script type="text/javascript">
+                              CKEDITOR.replace( 'contents' );
+                          </script>
                         </td>
                       </tr>
                     </tbody>
@@ -72,7 +73,7 @@ mysqli_free_result($result);
 
         <div class="row text-center">
           <div class="col-sm-12">
-            <button class="btn btn-success" onclick="send_popup('contents');">저장</button>
+            <button class="btn btn-success" onclick="send_popup();">저장</button>
             <a type="button" class="btn btn-default" href="../main/main.php">취소</a>
           </div>
         </div>
@@ -90,7 +91,7 @@ mysqli_free_result($result);
     <!-- js placed at the end of the document so the pages load faster -->
     <script src="/js/vendor/jquery-2.2.0.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
-    <script class="include" type="text/javascript" src="/admin/js/jquery.dcjqaccordion.2.7.js"></script>
+    <script src="/admin/js/jquery.dcjqaccordion.2.7.js"></script>
     <script src="/admin/js/jquery.scrollTo.min.js"></script>
     <script src="/admin/js/jquery.nicescroll.js" type="text/javascript"></script>
     <script src="/admin/js/respond.min.js" ></script>
@@ -101,15 +102,15 @@ mysqli_free_result($result);
     <!-- custom scripts -->
     <script src="/js/global.js" ></script>
     <script src="/admin/js/admin.js" ></script>
-    <script>
+<!--     <script>
       //custom select box
 
       $(function(){
         $('select.styled').customSelect();
       });
 
-    </script>
-    <script src="js/HuskyEZCreator.js" charset="utf-8"></script>
+    </script> -->
+<!--     <script src="js/HuskyEZCreator.js" charset="utf-8"></script>
     <script>
       var oEditors = [];
       nhn.husky.EZCreator.createInIFrame({
@@ -127,7 +128,7 @@ mysqli_free_result($result);
         },
         fCreator: "createSEditor2"
       });
-    </script>
+    </script> -->
   </body>
 </html>
 

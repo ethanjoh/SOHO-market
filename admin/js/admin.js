@@ -320,11 +320,17 @@ function send_post(id)
   form.submit();
 }
 
-function send_popup(id)
+function send_popup()
 {
-	var form = document.form1;
-  	oEditors.getById[id].exec("UPDATE_CONTENTS_FIELD", []);
-  	form.submit();
+    var editor_val = CKEDITOR.instances.contents.document.getBody().getChild(0).getText() ;
+
+    if (editor_val == '') {
+        alert('내용을 입력하세요');
+        return false;
+    }
+
+    document.form1.submit();
+
 }
 
 //주문상세 화면에서 품절 처리 시 호출

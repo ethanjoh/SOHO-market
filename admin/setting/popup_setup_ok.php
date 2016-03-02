@@ -1,11 +1,13 @@
 <?php
+
 include_once "../include/admin_auth.php";
-include_once "../../util/config.php";
+// include_once "../../util/config.php";
 include_once "../../util/util.php";
 
-$connect = my_connect($host, $dbid, $dbpass, $dbname);
+// $connect = my_connect($host, $dbid, $dbpass, $dbname);
 
-$chk = set_var($_POST['chk']);
+$chk      = set_var($_POST['chk']);
+$contents = set_var($_POST['contents']);
 
 if ($chk) {
     $flag = 'Y';
@@ -15,7 +17,7 @@ if ($chk) {
 
 $query  = "SELECT * FROM popup ";
 $result = mysqli_query($connect, $query);
-$row    = mysqli_fetch_array($result);
+// $row    = mysqli_fetch_array($result);
 
 if ($result) {
     //update
