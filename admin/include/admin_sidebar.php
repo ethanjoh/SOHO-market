@@ -23,7 +23,7 @@
 	                      </ul>
 	                  </li>
 	                  <li class="sub-menu">
-	                      <a href="javascript:;" >
+	                      <a href="javascript:;">
 	                          <i class="fa fa-sitemap"></i>
 	                          <span>브랜드 관리</span>
 	                      </a>
@@ -90,7 +90,7 @@
 	                      <ul class="sub">
 	                          <li><a  href="/admin/setting/delivery_setup.php">배송정보 설정</a></li>
 	                          <li><a  href="/admin/setting/popup_setup.php">팝업공지 설정</a></li>
-	                          <!-- <li><a  href="/admin/setting/banner_list.php">메인배너 설정</a></li> -->
+	                          <li><a  href="/admin/setting/banner_list.php">배너 설정</a></li>
 	                          <li><a  href="/admin/bbs/bbs_list.php">게시판 설정</a></li>
 	                          <li><a  href="/admin/setting/sms.php">SMS 설정</a></li>
 	                      </ul>

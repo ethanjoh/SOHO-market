@@ -1,20 +1,20 @@
 <?php
-	// include_once "../util/config.php";
-	include_once "../util/util.php";
-	include_once "../util/shop-functions.php";
-	// $connect = my_connect($host, $dbid, $dbpass, $dbname);
+// include_once "../util/config.php";
+include_once "../util/util.php";
+include_once "../util/shop-functions.php";
+// $connect = my_connect($host, $dbid, $dbpass, $dbname);
 
-	session_start();
+session_start();
 
-	$p_sid  = set_var($_COOKIE['p_sid']);
-	$p_id   = set_var($_SESSION['p_id']);
-	$p_name = set_var($_SESSION['p_name']);
+$p_sid  = set_var($_COOKIE['p_sid']);
+$p_id   = set_var($_SESSION['p_id']);
+$p_name = set_var($_SESSION['p_name']);
 
-	$com_info = get_company_info();
+$com_info = get_company_info();
 
-	//로그인 이전의 URL로 돌아가기
-	$uri = $_SERVER["REQUEST_URI"];
-	$uri = urlencode($uri);
+//로그인 이전의 URL로 돌아가기
+$uri = $_SERVER["REQUEST_URI"];
+$uri = urlencode($uri);
 
 ?>
 
@@ -28,7 +28,7 @@
         <meta name="description" content="<?php echo $com_info['description']; ?>">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico">
-        <link href='http://fonts.googleapis.com/earlyaccess/notosanskr.css' rel='stylesheet' type='text/css'>
+        <!-- <link href='http://fonts.googleapis.com/earlyaccess/notosanskr.css' rel='stylesheet' type='text/css'> -->
         <link rel="stylesheet" href="/css/bootstrap.min.css">
         <link rel="stylesheet" href="/css/jquery-ui.min.css" >
         <link rel="stylesheet" href="/css/font-awesome.min.css">

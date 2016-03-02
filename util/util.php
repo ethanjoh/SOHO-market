@@ -1942,3 +1942,13 @@ function show_pay_data($orderid)
                                   </ul>
 HEREDOC;
 }
+
+function check_active_class($page_name)
+{
+    $path = explode("/", $_SERVER['PHP_SELF']);
+    if ($page_name == $path[3]) {
+        return $active = 'class="active"';
+    } else {
+        return null;
+    }
+}

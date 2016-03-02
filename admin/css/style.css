@@ -7,16 +7,18 @@ Website: http://thevectorlab.net/
 
 /* Import fonts */
 @import url(/css/font-awesome.min.css);
-@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
+/*@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);*/
 /*@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic);*/
 
 body {
     color: #797979;
     background: #f1f2f7;
-    font-family: 'Nanum Gothic', serif;
+    /*font-family: 'Nanum Gothic', serif;*/
+    font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif';
     padding: 0px !important;
     margin: 0px !important;
-    font-size:13px;
+    font-size:14px;
     text-rendering:optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-font-smoothing: antialiased;
@@ -70,7 +72,7 @@ a, a:hover, a:focus {
     font-size: 18px;
     text-transform: uppercase;
     font-weight: 300;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Spoqa Han Sans', 'Spoqa Han Sans KR', 'Sans-serif';
 }
 
 .form-signin .checkbox {
@@ -80,7 +82,7 @@ a, a:hover, a:focus {
     font-weight: normal;
     color: #b6b6b6;
     font-weight: 300;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Spoqa Han Sans', 'Spoqa Han Sans KR', 'Sans-serif';
 }
 .form-signin .form-control {
     position: relative;
@@ -108,7 +110,7 @@ a, a:hover, a:focus {
     color: #fff;
     text-transform: uppercase;
     font-weight: 300;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Spoqa Han Sans', 'Spoqa Han Sans KR', 'Sans-serif';
     box-shadow: 0 4px #e56b60;
     margin-bottom: 20px;
 }
@@ -2202,12 +2204,12 @@ ul.inbox-pagination li {
 
 .modal-header h4.modal-title {
     font-weight: 300;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Spoqa Han Sans', 'Spoqa Han Sans KR', 'Sans-serif';
 }
 
 .modal-body label {
     font-weight: 400;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Spoqa Han Sans', 'Spoqa Han Sans KR', 'Sans-serif';
 }
 
 .heading-inbox h4{
@@ -3610,7 +3612,7 @@ table.sliders tr td {
 }
 
 .daterangepicker .calendar th, .daterangepicker .calendar td {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Spoqa Han Sans', 'Spoqa Han Sans KR', 'Sans-serif';
     font-weight: 300;
     text-align: center;
     white-space: nowrap;
@@ -4162,7 +4164,7 @@ span.customSelect.changed {
     margin: 0;
     overflow: hidden;
     font-weight: normal;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Spoqa Han Sans', 'Spoqa Han Sans KR', 'Sans-serif';
 }
 
 #headerLeft h2
@@ -4564,7 +4566,7 @@ tr.odd.gradeX td.sorting_1, tr.even.gradeX td.sorting_1, table.display tr.even.g
     margin-bottom: 80px;
     display: inline-block;
     text-align: center;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Spoqa Han Sans', 'Spoqa Han Sans KR', 'Sans-serif';
     font-weight: 300;
 }
 

@@ -16,6 +16,8 @@
 /*  1.  Theme default CSS
 /*----------------------------------------*/
 
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
+
 html,
 body {
     height: 100%;
@@ -105,7 +107,8 @@ ul {
 body {
 
     /*font-family: 'Open Sans', sans-serif;*/
-    font-family: 'Noto Sans KR', sans-serif;
+    /*font-family: 'Noto Sans KR', sans-serif;*/
+    font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif';
     margin: 0px;
     padding: 0px;
 }
