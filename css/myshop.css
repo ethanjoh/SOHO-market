@@ -152,3 +152,11 @@ custom style
 .num-right {
     text-align: right;
 }
+
+.wide-10 {
+    width: 10%;
+}
+
+.wide-15 {
+    width: 15%;
+}

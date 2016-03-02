@@ -15,17 +15,17 @@
       <section class="wrapper">
 <?php
 
-$mode = set_var($_GET['mode']);
-$num  = set_var($_GET['num']);
+	$mode = set_var($_GET['mode']);
+	$num  = set_var($_GET['num']);
 
-if ("update" == $mode) {
-    $query  = "SELECT * FROM banner WHERE num='$num' ";
-    $result = mysqli_query($connect, $query);
-    $row    = mysqli_fetch_array($result);
-    mysqli_free_result($result);
-} else {
-    $mode = "insert";
-}
+	if ("update" == $mode) {
+	    $query  = "SELECT * FROM banner WHERE num='$num' ";
+	    $result = mysqli_query($connect, $query);
+	    $row    = mysqli_fetch_array($result);
+	    mysqli_free_result($result);
+	} else {
+	    $mode = "insert";
+	}
 ?>
 
         <!-- setup start -->
@@ -43,16 +43,16 @@ if ("update" == $mode) {
                     <table class="table table-striped">
                       <tbody>
                         <tr>
-                          <th rowspan="2">배너 1 </th>
-                          <th><i class="fa fa-picture-o"></i> 이미지 1</th>
+                          <th rowspan="2" class="wide-10">배너 1 </th>
+                          <th class="wide-15"><i class="fa fa-picture-o"></i> 이미지 1</th>
                           <td>
 <?php
 
-if ($row['m_banner1'] == "Y") {
-    echo '<img src="' . $row['m_banner1_image'] . '" alt="main banner 1" width="25%">';
-} else {
-    echo "등록된 배너가 없습니다.";
-}
+	if ($row['m_banner1'] == "Y") {
+	    echo '<img src="' . $row['m_banner1_image'] . '" alt="main banner 1" width="25%">';
+	} else {
+	    echo "등록된 배너가 없습니다.";
+	}
 ?>
                             <p>
                               <input type="file" name="m_banner1_image" size="25" />
@@ -69,11 +69,11 @@ if ($row['m_banner1'] == "Y") {
                           <td>
 <?php
 
-if ($row['m_banner2'] == "Y") {
-    echo '<img src="' . $row['m_banner2_image'] . '" alt="main banner 2" width="25%">';
-} else {
-    echo "등록된 배너가 없습니다.";
-}
+	if ($row['m_banner2'] == "Y") {
+	    echo '<img src="' . $row['m_banner2_image'] . '" alt="main banner 2" width="25%">';
+	} else {
+	    echo "등록된 배너가 없습니다.";
+	}
 ?>
                             <p>
                               <input type="file" name="m_banner2_image" size="25" />
@@ -90,11 +90,11 @@ if ($row['m_banner2'] == "Y") {
                           <td>
 <?php
 
-if ($row['m_banner3'] == "Y") {
-    echo '<img src="' . $row['m_banner3_image'] . '" alt="main banner 3" width="25%">';
-} else {
-    echo "등록된 배너가 없습니다.";
-}
+	if ($row['m_banner3'] == "Y") {
+	    echo '<img src="' . $row['m_banner3_image'] . '" alt="main banner 3" width="25%">';
+	} else {
+	    echo "등록된 배너가 없습니다.";
+	}
 ?>
                             <p>
                               <input type="file" name="m_banner3_image" size="25" />
@@ -110,11 +110,11 @@ if ($row['m_banner3'] == "Y") {
                           <td>
 <?php
 
-if ($row['m_banner4'] == "Y") {
-    echo '<img src="' . $row['m_banner4_image'] . '" alt="main banner 4" width="25%">';
-} else {
-    echo "등록된 배너가 없습니다.";
-}
+	if ($row['m_banner4'] == "Y") {
+	    echo '<img src="' . $row['m_banner4_image'] . '" alt="main banner 4" width="25%">';
+	} else {
+	    echo "등록된 배너가 없습니다.";
+	}
 ?>
 
                             <p>
@@ -131,11 +131,11 @@ if ($row['m_banner4'] == "Y") {
                           <td>
 <?php
 
-if ($row['m_banner5'] == "Y") {
-    echo '<img src="' . $row['m_banner5_image'] . '" alt="main banner 5" width="25%">';
-} else {
-    echo "등록된 배너가 없습니다.";
-}
+	if ($row['m_banner5'] == "Y") {
+	    echo '<img src="' . $row['m_banner5_image'] . '" alt="main banner 5" width="25%">';
+	} else {
+	    echo "등록된 배너가 없습니다.";
+	}
 ?>
                             <p>
                               <input type="file" name="m_banner5_image" size="25" />
