@@ -2,20 +2,20 @@
 
 <?php
 
-	$sql_1       = "SELECT num FROM mall_order WHERE cancel='N' AND status='3' AND user_id <> 'guest' ";
-	$res_1       = mysqli_query($connect, $sql_1);
-	$unchk_total = mysqli_num_rows($res_1);
+$sql_1       = "SELECT num FROM mall_order WHERE cancel='N' AND status='3' AND user_id <> 'guest' ";
+$res_1       = mysqli_query($connect, $sql_1);
+$unchk_total = mysqli_num_rows($res_1);
 
-	$mode    = set_var($_GET['mode']);
-	$pmode   = set_var($_GET['pmode']);
-	$key     = set_var($_GET['key']);
-	$keyword = set_var($_GET['keyword']);
-	$page    = set_var($_GET['page']);
-	$date1   = set_var($_GET['date1']);
-	$date2   = set_var($_GET['date2']);
-	$lcode   = set_var($_GET['lcode']);
-	$mcode   = set_var($_GET['mcode']);
-	$scode   = set_var($_GET['scode']);
+$mode    = set_var($_GET['mode']);
+$pmode   = set_var($_GET['pmode']);
+$key     = set_var($_GET['key']);
+$keyword = set_var($_GET['keyword']);
+$page    = set_var($_GET['page']);
+$date1   = set_var($_GET['date1']);
+$date2   = set_var($_GET['date2']);
+$lcode   = set_var($_GET['lcode']);
+$mcode   = set_var($_GET['mcode']);
+$scode   = set_var($_GET['scode']);
 
 ?>
 
@@ -47,115 +47,115 @@
 
 <?php
 
-	$today = date("Y-m-d");
+$today = date("Y-m-d");
 
-	//미확인건
-	$unchk_sql   = "SELECT * FROM mall_order WHERE cancel='N' AND status='3' AND user_id <> 'guest' ";
-	$unchk_res   = mysqli_query($connect, $unchk_sql);
-	$unchk_total = mysqli_num_rows($unchk_res);
+//미확인건
+$unchk_sql   = "SELECT * FROM mall_order WHERE cancel='N' AND status='3' AND user_id <> 'guest' ";
+$unchk_res   = mysqli_query($connect, $unchk_sql);
+$unchk_total = mysqli_num_rows($unchk_res);
 
-	//금일주문건
-	$today_sql   = "SELECT * FROM mall_order WHERE cancel='N' AND date(createdate)='$today' AND user_id <> 'guest' ";
-	$today_res   = mysqli_query($connect, $today_sql);
-	$today_total = mysqli_num_rows($today_res);
+//금일주문건
+$today_sql   = "SELECT * FROM mall_order WHERE cancel='N' AND date(createdate)='$today' AND user_id <> 'guest' ";
+$today_res   = mysqli_query($connect, $today_sql);
+$today_total = mysqli_num_rows($today_res);
 
-	//발송대기건
-	$paid_sql   = "SELECT * FROM mall_order WHERE cancel='N' AND status='7' AND user_id <> 'guest' ";
-	$paid_res   = mysqli_query($connect, $paid_sql);
-	$paid_total = mysqli_num_rows($paid_res);
+//발송대기건
+$paid_sql   = "SELECT * FROM mall_order WHERE cancel='N' AND status='7' AND user_id <> 'guest' ";
+$paid_res   = mysqli_query($connect, $paid_sql);
+$paid_total = mysqli_num_rows($paid_res);
 
-	//미결제건
-	$nopaid_sql   = "SELECT * FROM mall_order WHERE cancel='N' AND pchk='N' AND user_id <> 'guest' ";
-	$nopaid_res   = mysqli_query($connect, $nopaid_sql);
-	$nopaid_total = mysqli_num_rows($nopaid_res);
+//미결제건
+$nopaid_sql   = "SELECT * FROM mall_order WHERE cancel='N' AND pchk='N' AND user_id <> 'guest' ";
+$nopaid_res   = mysqli_query($connect, $nopaid_sql);
+$nopaid_total = mysqli_num_rows($nopaid_res);
 
-	//발송지연건
-	$delay_sql   = "SELECT * FROM mall_order WHERE cancel='N' AND status='0' AND user_id <> 'guest' ";
-	$delay_res   = mysqli_query($connect, $delay_sql);
-	$delay_total = mysqli_num_rows($delay_res);
+//발송지연건
+$delay_sql   = "SELECT * FROM mall_order WHERE cancel='N' AND status='0' AND user_id <> 'guest' ";
+$delay_res   = mysqli_query($connect, $delay_sql);
+$delay_total = mysqli_num_rows($delay_res);
 
-	//쪽지
-	// $memo_sql  = "SELECT * FROM message_info WHERE receive_chk='N' AND receiveid_fk = 'admin'  ";
-	// $memo_res  = mysqli_query($connect, $memo_sql);
-	// $msg_total = mysqli_num_rows($memo_res);
+//쪽지
+// $memo_sql  = "SELECT * FROM message_info WHERE receive_chk='N' AND receiveid_fk = 'admin'  ";
+// $memo_res  = mysqli_query($connect, $memo_sql);
+// $msg_total = mysqli_num_rows($memo_res);
 
-	switch ($mode) {
-	    // case 'search' : $sql_2="SELECT orderid FROM mall_order
-	    //                         WHERE user_id <> 'guest' AND $key LIKE '%$key_value%' "; break;
-	    case 'search':$sql_2 = "SELECT * FROM mall_order
+switch ($mode) {
+    // case 'search' : $sql_2="SELECT orderid FROM mall_order
+    //                         WHERE user_id <> 'guest' AND $key LIKE '%$key_value%' "; break;
+    case 'search':$sql_2 = "SELECT * FROM mall_order
 					                          	  WHERE user_id <> 'guest' AND (buyer_name LIKE '%$key_value%' OR user_id LIKE '%$key_value%' OR recipient_name LIKE '%$key_value%' OR goods_name LIKE '%$key_value%')";
-	        break;
+        break;
 
-	    case 'date':$sql_2 = "SELECT orderid FROM mall_order
+    case 'date':$sql_2 = "SELECT orderid FROM mall_order
 						                          WHERE cancel = 'N' AND date(createdate) BETWEEN '$date1' AND '$date2' AND user_id = '$key_value' ";
-	        break;
-	    case 'today':$today = date("Y-m-d");
-	        $sql_2              = "SELECT orderid FROM mall_order
+        break;
+    case 'today':$today = date("Y-m-d");
+        $sql_2              = "SELECT orderid FROM mall_order
 						                          WHERE cancel = 'N' AND user_id <> 'guest' AND date(createdate) = '$today' ";
-	        break;
-	    case 'unchk':$sql_2 = "SELECT orderid FROM mall_order
+        break;
+    case 'unchk':$sql_2 = "SELECT orderid FROM mall_order
 						                          WHERE cancel = 'N' AND user_id <> 'guest' AND status = '3' ";
-	        break;
-	    case 'chk':$sql_2 = "SELECT orderid FROM mall_order
+        break;
+    case 'chk':$sql_2 = "SELECT orderid FROM mall_order
 						                          WHERE cancel = 'N' AND user_id <> 'guest' AND status = '5' ";
-	        break;
-	    case 'paid':$sql_2 = "SELECT orderid FROM mall_order
+        break;
+    case 'paid':$sql_2 = "SELECT orderid FROM mall_order
 						                          WHERE cancel = 'N' AND user_id <> 'guest' AND status = '7' ";
-	        break;
-	    case 'nopaid':$sql_2 = "SELECT orderid FROM mall_order
+        break;
+    case 'nopaid':$sql_2 = "SELECT orderid FROM mall_order
 						                          WHERE cancel = 'N' AND user_id <> 'guest' AND pchk = 'N' ";
-	        break;
-	    case 'delay':$sql_2 = "SELECT orderid FROM mall_order
+        break;
+    case 'delay':$sql_2 = "SELECT orderid FROM mall_order
 						                          WHERE cancel = 'N' AND user_id <> 'guest' AND status = '0' ";
-	        break;
-	    case 'finish':$sql_2 = "SELECT orderid FROM mall_order
+        break;
+    case 'finish':$sql_2 = "SELECT orderid FROM mall_order
 						                          WHERE cancel = 'N' AND user_id <> 'guest' AND status = '8' ";
-	        break;
-	    case 'cancel':$sql_2 = "SELECT orderid FROM mall_order
+        break;
+    case 'cancel':$sql_2 = "SELECT orderid FROM mall_order
 						                          WHERE cancel = 'Y' AND user_id <> 'guest' ";
-	        break;
-	    case 'return':$sql_2 = "SELECT * FROM mall_order
+        break;
+    case 'return':$sql_2 = "SELECT * FROM mall_order
 						                          WHERE cancel = 'N' AND user_id <> 'guest' AND status = '-1' ";
-	        break;
-	    default:$sql_2 = "SELECT orderid FROM mall_order
+        break;
+    default:$sql_2 = "SELECT orderid FROM mall_order
 						                          WHERE user_id <> 'guest' ";
-	}
+}
 
-	$res_2 = mysqli_query($connect, $sql_2);
-	$total = mysqli_num_rows($res_2);
+$res_2 = mysqli_query($connect, $sql_2);
+$total = mysqli_num_rows($res_2);
 
-	$scale = 30;
-	// $page  = '';
+$scale = 30;
+// $page  = '';
 
-	if ($page == '') {
-	    $page = 1;
-	}
+if ($page == '') {
+    $page = 1;
+}
 
-	$cpage     = intval($page);
-	$totalpage = intval($total / $scale);
+$cpage     = intval($page);
+$totalpage = intval($total / $scale);
 
-	if ($totalpage * $scale != $total) {
-	    $totalpage = $totalpage + 1;
-	}
+if ($totalpage * $scale != $total) {
+    $totalpage = $totalpage + 1;
+}
 
-	if ($cpage == 1) {
-	    $cline = 0;
-	} else {
-	    $cline = ($cpage * $scale) - $scale;
-	}
+if ($cpage == 1) {
+    $cline = 0;
+} else {
+    $cline = ($cpage * $scale) - $scale;
+}
 
-	$limit = $cline + $scale;
+$limit = $cline + $scale;
 
-	if ($limit >= $total) {
-	    $limit = $total;
-	}
+if ($limit >= $total) {
+    $limit = $total;
+}
 
-	$scale1 = $limit - $cline;
+$scale1 = $limit - $cline;
 ?>
 
 <?php
 
-	if ($mode == "search") {
+if ($mode == "search") {
     ?>
 						<!-- calendar start -->
 						<form name="form" method="get" action="top_order_list.php" class="form-inline form-group" role="form">
@@ -184,7 +184,7 @@
 						<!-- calendar end -->
 
 <?php
-	}
+}
 ?>
 					</div>
 				</div>
@@ -246,78 +246,78 @@
 					        	<tbody>
 <?php
 
-	switch ($mode) {
-	    // case 'search' : $sql_4 = "SELECT * FROM mall_order
-	    //                           WHERE $key LIKE '%$key_value%' AND user_id <> 'guest' ORDER BY num DESC LIMIT $cline,$scale1 "; break;
-	    case 'search':$sql_4 = "SELECT * FROM mall_order
+switch ($mode) {
+    // case 'search' : $sql_4 = "SELECT * FROM mall_order
+    //                           WHERE $key LIKE '%$key_value%' AND user_id <> 'guest' ORDER BY num DESC LIMIT $cline,$scale1 "; break;
+    case 'search':$sql_4 = "SELECT * FROM mall_order
 						                          WHERE user_id <> 'guest' AND (buyer_name LIKE '%$key_value%' OR user_id LIKE '%$key_value%' OR recipient_name LIKE '%$key_value%' OR goods_name LIKE '%$key_value%') ORDER BY num DESC LIMIT $cline,$scale1 ";
-	        break;
+        break;
 
-	    case 'date':$sql_4 = "SELECT * FROM mall_order
+    case 'date':$sql_4 = "SELECT * FROM mall_order
 						                          WHERE cancel = 'N' AND date(createdate) BETWEEN '$date1' AND '$date2' AND user_id = '$key_value' ORDER BY num DESC LIMIT $cline,$scale1 ";
-	        break;
-	    case 'today':$today = date("Y-m-d");
-	        $sql_4              = "SELECT * FROM mall_order
+        break;
+    case 'today':$today = date("Y-m-d");
+        $sql_4              = "SELECT * FROM mall_order
 						                          WHERE cancel = 'N' AND user_id <> 'guest' AND date(createdate) = '$today' ORDER BY num DESC LIMIT $cline,$scale1 ";
-	        break;
-	    case 'unchk':$sql_4 = "SELECT * FROM mall_order
+        break;
+    case 'unchk':$sql_4 = "SELECT * FROM mall_order
 						                          WHERE cancel = 'N' AND status = '3' AND user_id <> 'guest' ORDER BY num DESC LIMIT $cline,$scale1 ";
-	        break;
-	    case 'chk':$sql_4 = "SELECT * FROM mall_order
+        break;
+    case 'chk':$sql_4 = "SELECT * FROM mall_order
 						                          WHERE cancel = 'N' AND user_id <> 'guest' AND status = '5' ORDER BY num DESC LIMIT $cline,$scale1 ";
-	        break;
-	    case 'paid':$sql_4 = "SELECT * FROM mall_order
+        break;
+    case 'paid':$sql_4 = "SELECT * FROM mall_order
 						                          WHERE cancel = 'N' AND user_id <> 'guest' AND status = '7' ORDER BY num DESC LIMIT $cline,$scale1 ";
-	        break;
-	    case 'nopaid':$sql_4 = "SELECT * FROM mall_order
+        break;
+    case 'nopaid':$sql_4 = "SELECT * FROM mall_order
 						                          WHERE cancel = 'N' AND user_id <> 'guest' AND pchk = 'N' ORDER BY num DESC LIMIT $cline,$scale1 ";
-	        break;
-	    case 'delay':$sql_4 = "SELECT * FROM mall_order
+        break;
+    case 'delay':$sql_4 = "SELECT * FROM mall_order
 						                          WHERE cancel = 'N' AND user_id <> 'guest' AND status = '0' ORDER BY num DESC LIMIT $cline,$scale1 ";
-	        break;
-	    case 'finish':$sql_4 = "SELECT * FROM mall_order
+        break;
+    case 'finish':$sql_4 = "SELECT * FROM mall_order
 						                          WHERE cancel = 'N' AND user_id <> 'guest' AND status = '8' ORDER BY num DESC LIMIT $cline,$scale1 ";
-	        break;
-	    case 'cancel':$sql_4 = "SELECT * FROM mall_order
+        break;
+    case 'cancel':$sql_4 = "SELECT * FROM mall_order
 						                          WHERE cancel = 'Y' AND user_id <> 'guest' ORDER BY num DESC LIMIT $cline,$scale1 ";
-	        break;
-	    case 'return':$sql_4 = "SELECT * FROM mall_order
+        break;
+    case 'return':$sql_4 = "SELECT * FROM mall_order
 						                          WHERE cancel = 'N' AND user_id <> 'guest' AND status = '-1' ORDER BY num DESC LIMIT $cline,$scale1 ";
-	        break;
-	    default:$sql_4 = "SELECT * FROM mall_order
+        break;
+    default:$sql_4 = "SELECT * FROM mall_order
 						                          WHERE user_id <> 'guest' ORDER BY num DESC LIMIT $cline,$scale1 ";
-	}
+}
 
-	$a_pay_type['1'] = "무통장 입금";
-	$a_pay_type['2'] = "신용카드";
-	$a_pay_type['3'] = "휴대폰 결제";
+$a_pay_type['1'] = "무통장 입금";
+$a_pay_type['2'] = "신용카드";
+$a_pay_type['3'] = "휴대폰 결제";
 
-	$res_4 = mysqli_query($connect, $sql_4);
-	// $t_no = mysqli_num_rows($res_4);
+$res_4 = mysqli_query($connect, $sql_4);
+// $t_no = mysqli_num_rows($res_4);
 
-	if ($res_4) {
+if ($res_4) {
 
-	    $total   = 0; //금일주문총액
-	    $o_total = 0;
+    $total   = 0; //금일주문총액
+    $o_total = 0;
 
-	    for ($i = 0; $row = mysqli_fetch_array($res_4); $i++) {
+    for ($i = 0; $row = mysqli_fetch_array($res_4); $i++) {
 
-	        //회원정보
-	        $sql  = "SELECT * FROM member WHERE id='$row[user_id]' ";
-	        $res  = mysqli_query($connect, $sql);
-	        $trow = mysqli_fetch_array($res);
+        //회원정보
+        $sql  = "SELECT * FROM member WHERE id='$row[user_id]' ";
+        $res  = mysqli_query($connect, $sql);
+        $trow = mysqli_fetch_array($res);
 
-	        $pay_status = '';
-	        $pay_status = get_pg_info2($row['orderid']);
+        $pay_status = '';
+        $pay_status = get_pg_info2($row['orderid']);
 
-	        /**
-	         * 주문 취소
-	         */
-	        if ($row['cancel'] == 'Y') {
-	            $c_color    = '#EBEBEB';
-	            $status_now = "주문취소";
-	                                           //$o_total -= $row['amount'];
-	            $total -= $row['last_amount']; //취소에 따른 합계금액차감
+        /**
+         * 주문 취소
+         */
+        if ($row['cancel'] == 'Y') {
+            $c_color    = '#EBEBEB';
+            $status_now = "주문취소";
+                                           //$o_total -= $row['amount'];
+            $total -= $row['last_amount']; //취소에 따른 합계금액차감
             ?>
 					          <tr bgcolor="<?php echo $c_color; ?>">
 					            <td><a href="or_view.php?mode=<?php echo $mode; ?>&amp;oid=<?php echo $row['num']; ?>&amp;key=<?php echo $key; ?>&amp;key_value=<?php echo $key_value; ?>&amp;page=<?php echo $page; ?>"><?php echo $row['createdate']; ?></a></td>
@@ -325,15 +325,15 @@
 					            <td>
 <?php
 
-	            if ($row['recipient_name']) {
-	                echo '<a href="top_order_list.php?mode=search&amp;key=user_id&amp;key_value=' . $row['user_id'] . '">' . $row['buyer_name'] . '</a> <i class="fa fa-arrow-right"></i> (' . $row['recipient_name'] . ')';
-	            } else {
-	                echo '<a href="top_order_list.php?mode=search&amp;key=user_id&amp;key_value=' . $row['user_id'] . '">' . $row['buyer_name'] . '</a>';
-	            }
+            if ($row['recipient_name']) {
+                echo '<a href="top_order_list.php?mode=search&amp;key=user_id&amp;key_value=' . $row['user_id'] . '">' . $row['buyer_name'] . '</a> <i class="fa fa-arrow-right"></i> (' . $row['recipient_name'] . ')';
+            } else {
+                echo '<a href="top_order_list.php?mode=search&amp;key=user_id&amp;key_value=' . $row['user_id'] . '">' . $row['buyer_name'] . '</a>';
+            }
 
-	            if ($row['memo_to_admin']) {
-	                echo ' <i class="fa fa-envelope pop memo-color" data-toggle="popover" data-container="body" title="담당자에게 요청사항" data-content="' . $row['memo_to_admin'] . '"></i>';
-	            }
+            if ($row['memo_to_admin']) {
+                echo ' <i class="fa fa-envelope pop memo-color" data-toggle="popover" data-container="body" title="담당자에게 요청사항" data-content="' . $row['memo_to_admin'] . '"></i>';
+            }
             ?>
 								</td>
 					            <td><?php echo $trow['dc_rate']; ?> %</td>
@@ -343,37 +343,37 @@
 					            <td><a type="button" class="btn btn-xs btn-danger" href="or_delete.php?mode=d&amp;oid=<?php echo $row['num']; ?>&amp;page=<?php echo $page; ?>" onclick="return confirm('취소된 주문입니다.\n삭제하시겠습니까?')"><i class="fa fa-trash-o"></i></a></td>
 <?php
 
-	            /**
-	             * 정상 주문처리
-	             */
-	        } else {
-	            if ($row['status'] == '1') {
-	                $c_color    = '#FFC8C8';
-	                $status_now = '<i class="fa fa-pause"> 미처리';
-	            } else if ($row['status'] == '3') {
-	                $c_color    = '#FFC8C8';
-	                $status_now = '<i class="fa fa-pause"> 미처리';
-	            } else if ($row['status'] == '5') {
-	                $c_color    = '#f7e8aa';
-	                $status_now = '<i class="fa fa-check"></i> 주문확인';
-	            } else if ($row['status'] == '7') {
-	                $c_color    = '#EFFCFC';
-	                $status_now = '<i class="fa fa-flag-checkered"></i> 발송대기';
-	            } else if ($row['status'] == '8' && $row['pchk'] == "Y") {
-	                $c_color    = '#FFFFFF';
-	                $status_now = '<i class="fa fa-check-square-o"></i> 발송완료';
-	                $status_now .= "</br>(" . $row['senddate'] . ")";
-	            } else if ($row['status'] == '0') {
-	                $c_color    = '#FFC995';
-	                $status_now = '<i class="fa fa-minus-square"></i> 발송지연';
-	            } else if ($row['status'] == '-1') {
-	                $c_color    = '#FBAFFF';
-	                $status_now = "⊙반품회수⊙";
-	                $status_now .= "</br>(" . $row['returndate'] . ")";
-	            } else if ($row['status'] == '8' && $row['pchk'] == "R") {
-	                $c_color    = '#FBAFFF';
-	                $status_now = "⊙반품회수 중⊙";
-	            }
+            /**
+             * 정상 주문처리
+             */
+        } else {
+            if ($row['status'] == '1') {
+                $c_color    = '#FFC8C8';
+                $status_now = '<i class="fa fa-pause"> 미처리';
+            } else if ($row['status'] == '3') {
+                $c_color    = '#FFC8C8';
+                $status_now = '<i class="fa fa-pause"> 미처리';
+            } else if ($row['status'] == '5') {
+                $c_color    = '#f7e8aa';
+                $status_now = '<i class="fa fa-check"></i> 주문확인';
+            } else if ($row['status'] == '7') {
+                $c_color    = '#EFFCFC';
+                $status_now = '<i class="fa fa-flag-checkered"></i> 발송대기';
+            } else if ($row['status'] == '8' && $row['pchk'] == "Y") {
+                $c_color    = '#FFFFFF';
+                $status_now = '<i class="fa fa-check-square-o"></i> 발송완료';
+                $status_now .= "</br>(" . $row['senddate'] . ")";
+            } else if ($row['status'] == '0') {
+                $c_color    = '#FFC995';
+                $status_now = '<i class="fa fa-minus-square"></i> 발송지연';
+            } else if ($row['status'] == '-1') {
+                $c_color    = '#FBAFFF';
+                $status_now = "⊙반품회수⊙";
+                $status_now .= "</br>(" . $row['returndate'] . ")";
+            } else if ($row['status'] == '8' && $row['pchk'] == "R") {
+                $c_color    = '#FBAFFF';
+                $status_now = "⊙반품회수 중⊙";
+            }
 
             ?>
 					          <tr style="background-color:<?php echo $c_color; ?>;">
@@ -382,49 +382,49 @@
                                 <td>
 <?php
 
-	            if ($row['recipient_name']) {
-	                echo '<a href="top_order_list.php?mode=search&amp;key=user_id&amp;key_value=' . $row['user_id'] . '">' . $row['buyer_name'] . '</a> <i class="fa fa-arrow-right"></i> (' . $row['recipient_name'] . ')';
-	            } else {
-	                echo '<a href="top_order_list.php?mode=search&amp;key=user_id&amp;key_value=' . $row['user_id'] . '">' . $row['buyer_name'] . '</a>';
-	            }
+            if ($row['recipient_name']) {
+                echo '<a href="top_order_list.php?mode=search&amp;key=user_id&amp;key_value=' . $row['user_id'] . '">' . $row['buyer_name'] . '</a> <i class="fa fa-arrow-right"></i> (' . $row['recipient_name'] . ')';
+            } else {
+                echo '<a href="top_order_list.php?mode=search&amp;key=user_id&amp;key_value=' . $row['user_id'] . '">' . $row['buyer_name'] . '</a>';
+            }
 
-	            if ($row['memo_to_admin']) {
-	                echo ' <i class="fa fa-envelope pop memo-color" data-toggle="popover" data-container="body" title="담당자에게 요청사항" data-content="' . $row['memo_to_admin'] . '"></i>';
-	            }
+            if ($row['memo_to_admin']) {
+                echo ' <i class="fa fa-envelope pop memo-color" data-toggle="popover" data-container="body" title="담당자에게 요청사항" data-content="' . $row['memo_to_admin'] . '"></i>';
+            }
             ?>
 								</td>
 					            <td><?php echo $trow['dc_rate']; ?> %</td>
 					            <td>
 <?php
-	if ($row['last_amount'] == 0 && $row['status'] == "8") {
-	                echo " 0";
-	            } else if ($row['status'] == "0" || $row['status'] == "1" || $row['status'] == "3" || $row['status'] == "5") {
-	                echo "미확정";
-	            } else if ($row['amount'] != $row['last_amount']) {
-	                echo "<font color=\"#CC0066\">" . number_format($row['last_amount']) . "</font>";
-	            } else {
-	                echo number_format($row['last_amount']);
-	            }
+if ($row['last_amount'] == 0 && $row['status'] == "8") {
+                echo " 0";
+            } else if ($row['status'] == "0" || $row['status'] == "1" || $row['status'] == "3" || $row['status'] == "5") {
+                echo "미확정";
+            } else if ($row['amount'] != $row['last_amount']) {
+                echo "<font color=\"#CC0066\">" . number_format($row['last_amount']) . "</font>";
+            } else {
+                echo number_format($row['last_amount']);
+            }
 
             ?>
 								</td>
 								<!--
 					            <td>
 <?php
-	if ($row['delivery_type'] == 'L' || $row['delivery_type'] == 'L1') {
-	                if ($row['trans_cost'] == '0') {
-	                    echo "선불";
-	                } else if ($row['trans_cost'] > 0) {
-	                    echo "<font color=\"#FF0000\">착불</font>";
-	                } else if ($row['trans_cost'] == "-1") {
-	                    echo "(합포장)";
-	                }
+if ($row['delivery_type'] == 'L' || $row['delivery_type'] == 'L1') {
+                if ($row['trans_cost'] == '0') {
+                    echo "선불";
+                } else if ($row['trans_cost'] > 0) {
+                    echo "<font color=\"#FF0000\">착불</font>";
+                } else if ($row['trans_cost'] == "-1") {
+                    echo "(합포장)";
+                }
 
-	                //else if($row['trans_cost'] == "-2")
-	                //    echo "(반품    )";
-	            } else {
-	                echo "-";
-	            }
+                //else if($row['trans_cost'] == "-2")
+                //    echo "(반품    )";
+            } else {
+                echo "-";
+            }
 
             ?>
 								</td>
@@ -435,10 +435,11 @@
 					          </tr>
 <?php
 
-	            $o_total += $row['amount'];
-	            $total += $row['last_amount'];
-	        } // else end
-	    } // for loop end
+            $o_total += $row['amount'];
+            $total += $row['last_amount'];
+        } // else end
+    }
+    ; // for loop end
     ?>
 					          <tr>
 					            <td colspan="4"><strong>총합:</strong></td>
@@ -451,13 +452,13 @@
 					            <td></td>
 					          </tr>
 <?php
-	} else {
+} else {
     ?>
 					          <tr>
 					            <td colspan="8"><p>해당 주문내역이 없습니다.</p></td>
 					          </tr>
 <?php
-	}
+}
 ?>
 					        </tbody>
 					      </table>
@@ -477,8 +478,8 @@
 				            <tr>
 				              <td>
 <?php
-	$url = $_SERVER['PHP_SELF'] . "?mode=" . $mode . "&pmode=" . $pmode . "&lcode=" . $lcode . "&mcode=" . $mcode . "&scode=" . $scode . "&key=" . $key . "&keyword=" . $keyword;
-	page_nav($totalpage, $cpage, $url);
+$url = $_SERVER['PHP_SELF'] . "?mode=" . $mode . "&pmode=" . $pmode . "&lcode=" . $lcode . "&mcode=" . $mcode . "&scode=" . $scode . "&key=" . $key . "&keyword=" . $keyword;
+page_nav($totalpage, $cpage, $url);
 ?>
 				              </td>
 				            </tr>
@@ -508,28 +509,10 @@
       <!--main content end-->
 
       <!--footer start-->
-	  <?php include "../include/admin_footer.php";?>
+	  <?php include_once "../include/admin_footer.php";?>
       <!--footer end-->
-  </section>
 
-    <!-- js placed at the end of the document so the pages load faster -->
-    <script src="/js/vendor/jquery-2.2.0.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script class="include" type="text/javascript" src="/admin/js/jquery.dcjqaccordion.2.7.js"></script>
-    <script src="/admin/js/jquery.scrollTo.min.js"></script>
-    <script src="/admin/js/jquery.nicescroll.js" type="text/javascript"></script>
-    <script src="/admin/js/respond.min.js" ></script>
-
-    <!--common script for all pages-->
-    <script src="/admin/js/common-scripts.js"></script>
-
-    <!-- custom scripts -->
-    <script src="/js/global.js" ></script>
-    <script src="/admin/js/admin.js" ></script>
-    <script src="/admin/js/jquery-ui.min.js"></script>
-    <script src="/admin/js/jq_datepicker.js" ></script>
 	<script>
-
 		$(function() {
 
 		    $(".pop").popover({

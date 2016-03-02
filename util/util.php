@@ -13,43 +13,101 @@ $CST_PLATFORM = $config['cst_platform'];
 $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
 
 //메인에 팝업공지 띄우기
-function show_popup()
-{
-    echo "<script language=\"Javascript\">\n
-			if ( getCookie( \"Notice\" ) != \"done\" ) {
-	     		noticeWindow = window.open(\"../shop/popup.html\", \"notice\", \"width=400, height=500,resizable=no,status=no,scrollbars=yes,menubar=no\");
-				noticeWindow.opener = self;
-			}
-	   </script> \n";
-}
+// function show_popup()
+// {
+//     echo "<script language=\"Javascript\">\n
+//             if ( getCookie( \"Notice\" ) != \"done\" ) {
+//                  noticeWindow = window.open(\"../shop/popup.html\", \"notice\", \"width=400, height=500,resizable=no,status=no,scrollbars=yes,menubar=no\");
+//                 noticeWindow.opener = self;
+//             }
+//        </script> \n";
+// }
 
-function show_modal($connect)
+// function show_modal($connect)
+// {
+//     $query  = "SELECT * FROM popup where 1";
+//     $result = mysqli_query($connect, $query);
+//     $rows   = mysqli_fetch_array($result);
+
+//     if ($rows['chk'] == 'Y') {
+
+//         echo "<div id=\"notice\" class=\"reveal-modal\">\n";
+//         echo "    <h2>공지사항</h2>\n";
+//         echo "    <div id=\"popup\" title=\"notice\">\n";
+//         echo $rows['contents'];
+//         echo "        <form name=\"formpop\">\n";
+//         echo "      <table>\n";
+//         echo "          <tr>\n";
+//         echo "                <td align=\"center\">\n";
+//         echo "                    <input type=\"checkbox\" id=\"chkNotice\" name=\"chkNotice\">\n";
+//         echo "                    <span style=\"font-size:9pt;color:#000000\">오늘 이 창을 다시 열지 않음</span>\n";
+//         echo "                    <input type=\"button\" id=\"close\" onclick=\"closeWin()\" value=\"닫기\">\n";
+//         echo "                </td>\n";
+//         echo "            </tr>\n";
+//         echo "        </table>\n";
+//         echo "        </form>\n";
+//         echo "    </div>\n";
+//         echo "    <a class=\"close-reveal-modal\">&#215;</a>\n";
+//         echo "</div>\n";
+
+//     }
+
+// }
+
+/**
+ * [show_notice 팝업창 띄우기]
+ * @return [type] [description]
+ */
+function show_notice()
 {
+    global $connect;
+
     $query  = "SELECT * FROM popup where 1";
     $result = mysqli_query($connect, $query);
     $rows   = mysqli_fetch_array($result);
 
-    if ($rows['chk'] == 'Y') {
+    if ('Y' == $rows['chk']) {
 
-        echo "<div id=\"notice\" class=\"reveal-modal\">\n";
-        echo "	<h2>공지사항</h2>\n";
-        echo "	<div id=\"popup\" title=\"notice\">\n";
-        echo $rows['contents'];
-        echo "		<form name=\"formpop\">\n";
-        echo "  	<table>\n";
-        echo "  		<tr>\n";
-        echo "				<td align=\"center\">\n";
-        echo "					<input type=\"checkbox\" id=\"chkNotice\" name=\"chkNotice\">\n";
-        echo "					<span style=\"font-size:9pt;color:#000000\">오늘 이 창을 다시 열지 않음</span>\n";
-        echo "					<input type=\"button\" id=\"close\" onclick=\"closeWin()\" value=\"닫기\">\n";
-        echo "				</td>\n";
-        echo "			</tr>\n";
-        echo "		</table>\n";
-        echo "		</form>\n";
-        echo "	</div>\n";
-        echo "	<a class=\"close-reveal-modal\">&#215;</a>\n";
-        echo "</div>\n";
+        echo <<<HEREDOC
 
+        <div class="modal fade" id="notice">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title text-center">공지사항</h4>
+                    </div>
+                    <div id="popup" title="notice" class="modal-body">
+                        {$rows['contents']}
+                    </div>
+                    <div class="modal-footer">
+                        <form name="formpop">
+                        <input type="checkbox" id="chkNotice" name="chkNotice">
+                        <span style="font-size:9pt;color:#000000">오늘 이 창을 다시 열지 않음</span>
+                        <button type="button" class="btn btn-xs btn-default" onclick="closeWin();" data-dismiss="modal">닫기</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            $(window).load(function(){
+                if ( getCookie( "chkNotice" ) != "done" ) {
+                    $('#notice').modal('show');
+                }
+            });
+        </script>
+HEREDOC;
+
+    } else {
+        echo <<<HEREDOC
+
+        <script type="text/javascript">
+            $(window).load(function(){
+                $('#notice').modal('hide');
+            });
+        </script>
+HEREDOC;
     }
 
 }

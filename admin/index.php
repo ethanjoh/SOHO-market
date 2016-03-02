@@ -1,6 +1,5 @@
 <?php
-include "../util/config.php";
-include "../util/util.php";
+include_once "../util/util.php";
 
 $connect    = my_connect($host, $dbid, $dbpass, $dbname);
 $info_query = "SELECT * FROM admin_setup";
@@ -21,7 +20,7 @@ $save_cookie = (isset($_COOKIE['save_id']) ? 'checked' : '');
         <meta name="keyword" content="">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <link rel="shortcut icon" href="img/favicon.png">
-        <title><?=$info['site_name'];?> 관리자 홈</title>
+        <title><?php echo $info['site_name'];?> 관리자 홈</title>
         <!-- Bootstrap core CSS -->
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="css/bootstrap-reset.css" rel="stylesheet">
@@ -38,8 +37,8 @@ $save_cookie = (isset($_COOKIE['save_id']) ? 'checked' : '');
     </head>
     <body class="login-body">
         <div class="container">
-            <form role="form" class="form-signin" action="//<?=$_SERVER['SERVER_NAME'];?>:<?=$port;?>/admin/check_login.php" method="post" name="login" onsubmit="return chkLogin(this);">
-                <!-- <form role="form" class="form-signin" action="http://<?=$_SERVER['SERVER_NAME'];?>/admin/check_login.php" method="post" name="login" onsubmit="return chkLogin(this);"> -->
+            <form role="form" class="form-signin" action="//<?php echo $_SERVER['SERVER_NAME'];?>:<?php echo $port;?>/admin/check_login.php" method="post" name="login" onsubmit="return chkLogin(this);">
+                <!-- <form role="form" class="form-signin" action="http://<?php echo $_SERVER['SERVER_NAME'];?>/admin/check_login.php" method="post" name="login" onsubmit="return chkLogin(this);"> -->
                 <div class="form-signin-heading">
                     <img src="/images/shinsoo-logo.svg" class="admin-logo">
                 </div>

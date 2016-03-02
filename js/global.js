@@ -64,22 +64,35 @@ function onlyNumber1(form_name){
 }
 
 
-// popup 창에서 사용
+/**
+ * [setCookie 공지 팝업에서 호출]
+ * @param {[type]} name       [저장할 쿠키명]
+ * @param {[type]} value      [저장할 쿠키값]
+ * @param {[type]} expiredays [만료일]
+ */
 function setCookie( name, value, expiredays ) {
   var todayDate = new Date();
   todayDate.setDate( todayDate.getDate() + expiredays );
   document.cookie = name + "=" + escape( value ) + "; path=/; expires=" + todayDate.toGMTString() + ";"
 }
 
+/**
+ * [closeWin 공지창 닫으면서 체크되어 있는 경우 쿠키 설정]
+ * @return {[type]} [description]
+ */
 function closeWin() {
-  if ( document.getElementById("chkNotice").checked )
+  if ( document.getElementById("chkNotice").checked ) {
     setCookie( "chkNotice", "done" , 1); //1은 하루동안 쿠키보관, 테스트시 팝업을 새로 열려면 -5로 설정
+  }
 
-  $('#notice').trigger('reveal:close');
-  //self.close();
+  $('#notice').modal('hide');
 }
 
-
+/**
+ * [getCookie 저장한 쿠키값 불러옴]
+ * @param  {[type]} name [쿠키명]
+ * @return {[type]}      [description]
+ */
 function getCookie( name ) {
 	var nameOfCookie = name + "=";
 	var x = 0;

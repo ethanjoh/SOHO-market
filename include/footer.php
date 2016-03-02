@@ -100,6 +100,10 @@
         </div>
         <!-- end scrollUp
 		============================================ -->
+
+
+
+
 		<!-- jquery
 		============================================ -->
         <script src="/js/vendor/jquery-2.2.0.min.js"></script>
@@ -135,6 +139,6 @@
 
         <script src="/js/main.js"></script>
         <script src="/js/member.js"></script>
-        <script src="/js/global.js"></script>
         <script src="/js/addcart.js"></script>
         <script src="/js/shopping.js"></script>
+        <?php echo show_notice(); ?>
