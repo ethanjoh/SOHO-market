@@ -3,11 +3,11 @@
   <body>
     <section id="container" >
         <!--header start-->
-        <?php include "../include/admin_head.php";?>
+        <?php include_once "../include/admin_head.php";?>
         <!--header end-->
 
         <!--sidebar start-->
-        <?php include "../include/admin_sidebar.php";?>
+        <?php include_once "../include/admin_sidebar.php";?>
         <!--sidebar end-->
 
     <!--main content start-->
@@ -52,21 +52,21 @@ if ($total > 0) {
                 </header>
                 <div class="panel-body">
                   <form class="form-group" role="form" name="form1" action="delivery_setup_ok.php" method="post">
-                  <input type="hidden" name="admin_id" value="<?=$_COOKIE['ROOT_ID'];?>" />
-                  <input type="hidden" name="mode" value="<?=$mode;?>">
+                  <input type="hidden" name="admin_id" value="<?php echo $_COOKIE['ROOT_ID']; ?>" />
+                  <input type="hidden" name="mode" value="<?php echo $mode; ?>">
                   <div class="table-responsive">
                     <table class="table table-striped">
                       <tbody>
                         <tr>
                           <th>배송업체</th>
-                          <td><input type="text" class="form-control" name="logistics" id="logistics" size="5"  value="<?=$rows['logistics'];?>"/></td>
+                          <td><input type="text" class="form-control" name="logistics" id="logistics" size="5"  value="<?php echo $rows['logistics']; ?>"/></td>
                           <th>배송료</th>
-                          <td><input type="text" class="form-control" name="delivery_charge" id="delivery_charge" size="5"  value="<?=$rows['d_charge'];?>"/></td>
+                          <td><input type="text" class="form-control" name="delivery_charge" id="delivery_charge" size="5"  value="<?php echo $rows['d_charge']; ?>"/></td>
                         </tr>
                         <tr>
                           <th>배송정책 설정</th>
                           <td colspan="3">
-                            <textarea class="form-control" name="delivery_policy" rows="8" cols="100"><?=$rows['d_policy'];?></textarea>
+                            <textarea class="form-control" name="delivery_policy" rows="8" cols="100"><?php echo $rows['d_policy']; ?></textarea>
                             <p class="help-block">
                               - 총 구매액 10만원이상 구매시 배송비는 무료이며, 그 이하 구매시 배송비 2,500원이 별도 부과됩니다. <br />
                               - 결제확인 후 상품발송이 이뤄집니다.<br />
@@ -77,7 +77,7 @@ if ($total > 0) {
                         <tr>
                           <th>환불/반품정책 설정</th>
                           <td colspan="3">
-                            <textarea class="form-control" name="refund_policy" rows="8" cols="100"><?=$rows['r_policy'];?></textarea>
+                            <textarea class="form-control" name="refund_policy" rows="8" cols="100"><?php echo $rows['r_policy']; ?></textarea>
                             <p class="help-block">
                               - 배송 시 파손 등은 수령일로부터 7일 이내에 접수와 상품이 확인이 되어야, 교환/반품/환불이 가능합니다. <br />
                               - 판매자가 판매 후 소비자 과실에 의한 파손 또는 불량은 반품사유가 되지 않습니다.<br />
@@ -107,24 +107,8 @@ if ($total > 0) {
       <!--main content end-->
 
       <!--footer start-->
-    <?php include "../include/admin_footer.php";?>
+    <?php include_once "../include/admin_footer.php";?>
       <!--footer end-->
-  </section>
-
-    <!-- js placed at the end of the document so the pages load faster -->
-    <script src="/js/vendor/jquery-2.2.0.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script class="include" type="text/javascript" src="/admin/js/jquery.dcjqaccordion.2.7.js"></script>
-    <script src="/admin/js/jquery.scrollTo.min.js"></script>
-    <script src="/admin/js/jquery.nicescroll.js" type="text/javascript"></script>
-    <script src="/admin/js/respond.min.js" ></script>
-
-    <!--common script for all pages-->
-    <script src="/admin/js/common-scripts.js"></script>
-
-    <!-- custom scripts -->
-    <script src="/js/global.js" ></script>
-    <script src="/admin/js/admin.js" ></script>
 
   </body>
 </html>

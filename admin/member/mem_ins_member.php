@@ -3,11 +3,11 @@
   <body>
     <section id="container" >
         <!--header start-->
-        <?php include "../include/admin_head.php";?>
+        <?php include_once "../include/admin_head.php";?>
         <!--header end-->
 
         <!--sidebar start-->
-        <?php include "../include/admin_sidebar.php";?>
+        <?php include_once "../include/admin_sidebar.php";?>
         <!--sidebar end-->
 
 
@@ -15,7 +15,8 @@
         <section id="main-content">
           <section class="wrapper">
 
-            <?php
+<?php
+
 $num = set_var($_GET['num']);
 ?>
 
@@ -28,9 +29,9 @@ $num = set_var($_GET['num']);
                   </header>
                   <div class="panel-body">
 
-                  <!-- <form name='primary' method='post' action='https://www.<?=$_SERVER['SERVER_NAME'];?>:<?=$port;?>/admin/member/mem_ins_ok.php'> -->
-                  <form class="form-horizontal" role="form" name="primary" method="post" action="http://<?=$_SERVER['SERVER_NAME'];?>/admin/member/mem_ins_ok.php">
-                    <input type="hidden" name="num" value="<?=$num;?>">
+                  <!-- <form name='primary' method='post' action='https://www.<?php echo $_SERVER['SERVER_NAME']; ?>:<?php echo $port; ?>/admin/member/mem_ins_ok.php'> -->
+                  <form class="form-horizontal" role="form" name="primary" method="post" action="http://<?php echo $_SERVER['SERVER_NAME']; ?>/admin/member/mem_ins_ok.php">
+                    <input type="hidden" name="num" value="<?php echo $num; ?>">
                     <div class="form-group">
                         <label for="id" class="col-lg-2 col-sm-2 control-label">아이디 :</label>
                         <div class="col-sm-4">
@@ -95,56 +96,8 @@ $num = set_var($_GET['num']);
     <!--main content end-->
 
      <!--footer start-->
-    <?php include "../include/admin_footer.php";?>
+    <?php include_once "../include/admin_footer.php";?>
       <!--footer end-->
-  </section>
-
-    <!-- js placed at the end of the document so the pages load faster -->
-    <script src="/js/vendor/jquery-2.2.0.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/admin/js/jquery.dcjqaccordion.2.7.js" class="include" type="text/javascript" ></script>
-    <script src="/admin/js/jquery.scrollTo.min.js"></script>
-    <script src="/admin/js/jquery.nicescroll.js" type="text/javascript"></script>
-    <script src="/admin/js/jquery.sparkline.js" type="text/javascript"></script>
-    <!-- // <script src="jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script> -->
-    <script src="/admin/js/owl.carousel.js" ></script>
-    <script src="/admin/js/jquery.customSelect.min.js" ></script>
-    <script src="/admin/js/respond.min.js" ></script>
-
-    <!--common script for all pages-->
-    <script src="/admin/js/common-scripts.js"></script>
-
-    <!--script for this page-->
-    <script src="/admin/js/sparkline-chart.js"></script>
-    <!-- // <script src="js/easy-pie-chart.js"></script> -->
-    <script src="/admin/js/count.js"></script>
-
-    <!-- custom scripts -->
-    <script src="/js/global.js" ></script>
-    <script src="/admin/js/admin.js" ></script>
-
-  <script>
-
-      //owl carousel
-
-      $(document).ready(function() {
-          $("#owl-demo").owlCarousel({
-              navigation : true,
-              slideSpeed : 300,
-              paginationSpeed : 400,
-              singleItem : true,
-              autoPlay:true
-
-          });
-      });
-
-      //custom select box
-
-      $(function(){
-          $('select.styled').customSelect();
-      });
-
-  </script>
 
   </body>
 </html>

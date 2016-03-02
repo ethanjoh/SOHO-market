@@ -3,11 +3,11 @@
   <body>
     <section id="container" >
         <!--header start-->
-        <?php include "../include/admin_head.php";?>
+        <?php include_once "../include/admin_head.php";?>
         <!--header end-->
 
         <!--sidebar start-->
-        <?php include "../include/admin_sidebar.php";?>
+        <?php include_once "../include/admin_sidebar.php";?>
         <!--sidebar end-->
 
     <!--main content start-->
@@ -16,17 +16,17 @@
 
         <!-- info start-->
         <div class="row">
-              <div class="col-sm-12">
-            <section class="panel">
-              <header class="panel-heading">
-                사용방법
-              </header>
-              <ul class="info-body">
-                <li><i class="fa fa-info-circle"></i> 택배 시스템에서 다운받은 운송장 파일을 콤마(,)로 분리된 <i class="fa fa-file-excel-o"></i> 파일명.csv 파일로 저장합니다.</li>
-                <li><i class="fa fa-info-circle"></i> csv 파일의 첫 번째 줄부터 처리하므로 불필요한 열은 삭제 후 저장하시기 바랍니다.</li>
-                <li><i class="fa fa-info-circle"></i> *.csv 파일을 업로드합니다.</li>
-              </ul>
-            </section>
+          <div class="col-sm-12">
+                <section class="panel">
+                  <header class="panel-heading">
+                    사용방법
+                  </header>
+                  <ul class="info-body">
+                    <li><i class="fa fa-info-circle"></i> 택배 시스템에서 다운받은 운송장 파일을 콤마(,)로 분리된 <i class="fa fa-file-excel-o"></i> 파일명.csv 파일로 저장합니다.</li>
+                    <li><i class="fa fa-info-circle"></i> csv 파일의 첫 번째 줄부터 처리하므로 불필요한 열은 삭제 후 저장하시기 바랍니다.</li>
+                    <li><i class="fa fa-info-circle"></i> *.csv 파일을 업로드합니다.</li>
+                  </ul>
+                </section>
           </div>
         </div>
         <!-- info end -->
@@ -67,24 +67,8 @@
   <!--main content end-->
 
       <!--footer start-->
-    <?php include "../include/admin_footer.php";?>
+    <?php include_once "../include/admin_footer.php";?>
       <!--footer end-->
-  </section>
-
-    <!-- js placed at the end of the document so the pages load faster -->
-    <script src="/js/vendor/jquery-2.2.0.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script class="include" type="text/javascript" src="/admin/js/jquery.dcjqaccordion.2.7.js"></script>
-    <script src="/admin/js/jquery.scrollTo.min.js"></script>
-    <script src="/admin/js/jquery.nicescroll.js" type="text/javascript"></script>
-    <script src="/admin/js/respond.min.js" ></script>
-
-    <!--common script for all pages-->
-    <script src="/admin/js/common-scripts.js"></script>
-
-    <!-- custom scripts -->
-    <script src="/js/global.js" ></script>
-    <script src="/admin/js/admin.js" ></script>
 
     <script>
     $(document).ready(function() {

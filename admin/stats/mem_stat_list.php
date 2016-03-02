@@ -3,11 +3,11 @@
   <body>
     <section id="container" >
         <!--header start-->
-        <?php include "../include/admin_head.php";?>
+        <?php include_once "../include/admin_head.php";?>
         <!--header end-->
 
         <!--sidebar start-->
-        <?php include "../include/admin_sidebar.php";?>
+        <?php include_once "../include/admin_sidebar.php";?>
         <!--sidebar end-->
 
     <!--main content start-->
@@ -15,7 +15,8 @@
       <section class="wrapper">
 
 
-      <?php
+<?php
+
 switch ($mode) {
     case 'date':
         $query = "SELECT * FROM member, mall_order
@@ -83,7 +84,7 @@ $scale1 = $limit - $cline;
         <!-- calendar start -->
         <form name="form" method="get" action="mem_stat_list.php" class="form-inline form-group" role="form">
         <input type="hidden" name="mode" value="date" />
-        <input type="hidden" name="id" value="<?=$id;?>" />
+        <input type="hidden" name="id" value="<?php echo $id; ?>" />
         <div class="panel panel-info">
           <div class="panel-heading">날짜 검색</div>
             <div class="panel-body text-center">
@@ -112,12 +113,12 @@ $scale1 = $limit - $cline;
               <div class="col-sm-12">
                 <section class="panel">
                   <header class="panel-heading table-head">
-                      개별업체 정산리스트 ( <?=number_format($total);?> 건 )
+                      개별업체 정산리스트 ( <?php echo number_format($total); ?> 건 )
                     </header>
                     <div class="panel-body">
                       <div class="table-responsive">
                       <form class="form-inline" role="form" name="reg" method="post" action="reg_tax.php">
-                      <input type="hidden" name="id" value="<?=$id;?>" />
+                      <input type="hidden" name="id" value="<?php echo $id; ?>" />
                         <table class="table table-stiped">
                           <thead>
                             <tr>
@@ -131,7 +132,8 @@ $scale1 = $limit - $cline;
                             </tr>
                           </thead>
                           <tbody>
-                        <?php
+<?php
+
 switch ($mode) {
     case 'date':
         $sql_2 = "SELECT * FROM member, mall_order WHERE (mall_order.cancel = 'N') AND (member.id='$id') AND (mall_order.user_id='$id') AND (mall_order.status = '8' OR mall_order.status = '-1' ) AND mall_order.createdate BETWEEN  '$date1' AND '$date2' ORDER BY mall_order.num DESC ";
@@ -148,7 +150,8 @@ if ($total_2 == 0) {
                             <tr>
                               <td colspan="7"><p>정산할 내역이 없습니다.</p></td>
                             </tr>
-                                      <?php
+<?php
+
 } else {
 
     for ($i = 0; $list = mysqli_fetch_array($result_2); $i++) {
@@ -185,32 +188,35 @@ if ($total_2 == 0) {
         }
         ?>
 
-                              <td><?=$bunho;?></td>
-                              <td><?=$list['createdate'];?></td>
-                              <td><?=$list['company_name'] . " (" . $list['buyer_name'] . ")";?></td>
-                              <td><?=$goods_name;?> (외)</td>
-                              <td><?=number_format($list['amount']);?></td>
+                              <td><?php echo $bunho; ?></td>
+                              <td><?php echo $list['createdate']; ?></td>
+                              <td><?php echo $list['company_name'] . " (" . $list['buyer_name'] . ")"; ?></td>
+                              <td><?php echo $goods_name; ?> (외)</td>
+                              <td><?php echo number_format($list['amount']); ?></td>
                               <td>
-                            <?php
-$tax_amount = $list['last_amount'];
+<?php
+
+        $tax_amount = $list['last_amount'];
         echo number_format($tax_amount);
         ?>
                               </td>
-                              <td><a href='../order/or_view.php?oid=<?=$list['num'];?>&amp;page=<?=$page;?>&from=stats&id=<?=$id;?>'> <i class="fa fa-search-plus"></i> </a></td>
+                              <td><a href='../order/or_view.php?oid=<?php echo $list['num']; ?>&amp;page=<?php echo $page; ?>&from=stats&id=<?php echo $id; ?>'> <i class="fa fa-search-plus"></i> </a></td>
                             </tr>
-                          <?php
-$goods_name = $goods_name . " (외)";
+<?php
+
+        $goods_name = $goods_name . " (외)";
         $tot_amount = $tot_amount + (int) $tax_amount;
     }
     mysqli_free_result($result_2);
     ?>
                             <tr>
                               <td colspan="5"><strong>실정산액 합계:</strong></td>
-                              <td><?=number_format($tot_amount);?> (<?=number_format($tot_amount * 0.1);?>)<br>
-                              (inc. VAT) <strong><?=number_format($tot_amount * 1.1);?></strong></td>
+                              <td><?php echo number_format($tot_amount); ?> (<?php echo number_format($tot_amount * 0.1); ?>)<br>
+                              (inc. VAT) <strong><?php echo number_format($tot_amount * 1.1); ?></strong></td>
                               <td></td>
                             </tr>
-                              <?php
+<?php
+
 }
 ?>
                           </tbody>
@@ -225,8 +231,8 @@ $goods_name = $goods_name . " (외)";
                             <label for="paid">결제여부 :</label>
                             <input type="radio" name="paid" value="Y" checked /> 영수
                             <input type="radio" name="paid" value="N" /> 청구
-                            <input type="hidden" name="sum" value="<?=$tot_amount;?>" />
-                            <input type="hidden" name="goods_name" value="<?=$goods_name;?>" />
+                            <input type="hidden" name="sum" value="<?php echo $tot_amount; ?>" />
+                            <input type="hidden" name="goods_name" value="<?php echo $goods_name; ?>" />
                             <button class="btn btn-success" href="" onclick="javascript:document.reg.submit()">발행</button>
                           </div>
                         </div>
@@ -251,27 +257,9 @@ $goods_name = $goods_name . " (외)";
       <!--main content end-->
 
       <!--footer start-->
-    <?php include "../include/admin_footer.php";?>
+    <?php include_once '../include/admin_footer.php';?>
       <!--footer end-->
-  </section>
 
-    <!-- js placed at the end of the document so the pages load faster -->
-    <script src="/js/vendor/jquery-2.2.0.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script class="include" type="text/javascript" src="/admin/js/jquery.dcjqaccordion.2.7.js"></script>
-    <script src="/admin/js/jquery.scrollTo.min.js"></script>
-    <script src="/admin/js/jquery.nicescroll.js" type="text/javascript"></script>
-    <script src="/admin/js/respond.min.js" ></script>
-
-    <!--right slidebar-->
-    <script src="/admin/js/slidebars.min.js"></script>
-
-    <!--common script for all pages-->
-    <script src="/admin/js/common-scripts.js"></script>
-
-    <!-- custom scripts -->
-    <script src="/js/global.js" ></script>
-    <script src="/admin/js/admin.js" ></script>
     <script src="/admin/js/jquery-ui.min.js"></script>
     <script src="/admin/js/jq_datepicker.js" ></script>
 

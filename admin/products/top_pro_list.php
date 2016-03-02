@@ -3,11 +3,11 @@
   <body>
     <section id="container" >
         <!--header start-->
-        <?php include "../include/admin_head.php";?>
+        <?php include_once "../include/admin_head.php";?>
         <!--header end-->
 
         <!--sidebar start-->
-        <?php include "../include/admin_sidebar.php";?>
+        <?php include_once "../include/admin_sidebar.php";?>
         <!--sidebar end-->
 
     <!--main content start-->
@@ -50,7 +50,8 @@
                           <td>
                               <select class="form-control" name="lcode" onchange="show_msub();">
                                 <option>--- 카테고리 ---</option>
-                                <?php
+<?php
+
 $lcode   = set_var($_GET['lcode']);
 $mcode   = set_var($_GET['mcode']);
 $pmode   = set_var($_GET['pmode']);
@@ -78,7 +79,8 @@ mysqli_free_result($result2);
                           <td>
                             <select class="form-control" name="mcode" onchange="show_ssub('<?php echo $lcode; ?>');">
                               <option>--- 중분류 ---</option>
-                              <?php
+<?php
+
 if ($lcode) {
     $query  = "SELECT * FROM products_category2 WHERE up_category='$lcode' ORDER BY code";
     $result = mysqli_query($connect, $query);
@@ -108,7 +110,8 @@ if ($lcode) {
           </div>
           <!-- category list start -->
 
-            <?php
+<?php
+
 if ($lcode != "" && $pmode != "end") {
     $qry_char = "del_chk <> 'Y' AND category_l ='$lcode' ";
 } else if ($lcode == "" && $pmode == "end") {
@@ -173,7 +176,8 @@ if ($result) {
             <section class="panel">
               <header class="panel-heading table-head">
                   상품 리스트 (총 등록상품 수: <?php echo $total; ?> 개)
-                  <?php
+<?php
+
 if ($lcode) {
     echo '<a href="pro_list.php?lcode=' . $lcode . '"><i class="fa fa-file-excel-o"></i> 엑셀로 상품목록 다운로드</a>';
 }
@@ -197,6 +201,7 @@ if ($lcode) {
                   </thead>
                   <tbody>
 <?php
+
 $scale = 20;
 
 if ($page == "") {
@@ -244,15 +249,19 @@ if ($result1) {
                       </a>&nbsp;<a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/shop/detail.php?pnum=<?php echo $prow['num']; ?>&amp;lcode=<?php echo $prow['category_l']; ?>&amp;mcode=<?php echo $prow['category_m']; ?>" target="_blank"> <i class="fa fa-external-link"></i> </a>
                     </td>
                     <td>
-                    <?php
-if ($prow['opt']) {
+<?php
+
+        if ($prow['opt']) {
             show_option($prow['num']);
         }
 
         ?>
                     </td>
                     <td class="text-right" ><?php echo number_format(trim($prow['retail_price'])); ?> 원</td>
-                    <td class="text-center"><?php if ('Y' == $prow['main_new']) {
+                    <td class="text-center">
+<?php
+
+        if ('Y' == $prow['main_new']) {
             // echo '<a type="button" class="btn btn-round btn-success" href="pro_opt.php?p_num=' . $prow['num'] . '&mode=del&lcode=' . $prow['category_l'] . '&mcode=' . $prow['category_m'] . '&scode=' . $prow['category_s'] . '&ck=main_new&page=' . $page . '"><i class="fa fa-times"></i> ON</a><p class="help-text">신상품</p>';
             echo '<a type="button" class="btn btn-round btn-success" href="pro_opt.php?p_num=' . $prow['num'] . '&mode=del&ck=main_new&page=' . $page . '"><i class="fa fa-times"></i> ON</a><p class="help-text">신상품</p>';
         } else {
@@ -262,14 +271,20 @@ if ($prow['opt']) {
         }
         ?>
                     </td>
-                    <td class="text-center"><?php if ('Y' == $prow['main_special']) {
+                    <td class="text-center">
+<?php
+
+        if ('Y' == $prow['main_special']) {
             echo '<a type="button" class="btn btn-round btn-success" href="pro_opt.php?p_num=' . $prow['num'] . '&mode=del&lcode=' . $prow['category_l'] . '&mcode=' . $prow['category_m'] . '&scode=' . $prow['category_s'] . '&ck=main_special&page=' . $page . '"><i class="fa fa-times"></i> ON</a><p class="help-text">기획상품</p>';
         } else {
             echo '<a type="button" class="btn btn-round btn-default" href="pro_opt.php?p_num=' . $prow['num'] . '&mode=insert&lcode=' . $prow['category_l'] . '&mcode=' . $prow['category_m'] . '&scode=' . $prow['category_s'] . '&ck=main_special&page=' . $page . '"><i class="fa fa-check"></i> OFF</a><p class="help-text">기획상품</p>';
         }
         ?>
                     </td>
-                    <td class="text-center"><?php if ('Y' == $prow['main_best']) {
+                    <td class="text-center">
+<?php
+
+        if ('Y' == $prow['main_best']) {
             echo '<a type="button" class="btn btn-round btn-success" href="pro_opt.php?p_num=' . $prow['num'] . '&mode=del&lcode=' . $prow['category_l'] . '&mcode=' . $prow['category_m'] . '&scode=' . $prow['category_s'] . '&ck=main_best&page=' . $page . '"><i class="fa fa-times"></i> ON</a><p class="help-text">인기상품</p>';
         } else {
             echo '<a type="button" class="btn btn-round btn-default" href="pro_opt.php?p_num=' . $prow['num'] . '&mode=insert&lcode=' . $prow['category_l'] . '&mcode=' . $prow['category_m'] . '&scode=' . $prow['category_s'] . '&ck=main_best&page=' . $page . '"><i class="fa fa-check"></i> OFF</a><p class="help-text">인기상품</p>';
@@ -285,20 +300,20 @@ if ($prow['opt']) {
                     </td>
                       </form>
                   </tr>
-                  <?php
-} // end of for loop
+<?php
+
+    } // end of for loop
 
 }
 ; //if($result1)
 
-?>
-          <?php
 if ($total == 0) {
     ?>
                   <tr>
                     <td colspan="9"><p>등록된 상품이 없습니다.</p></td>
                   </tr>
-                  <?php
+<?php
+
 }
 ?>
                 </tbody>
@@ -314,7 +329,8 @@ if ($total == 0) {
 
         <!-- page navigation start -->
         <div class="pull-left">
-          <?php
+<?php
+
 $url = $_SERVER['PHP_SELF'] . "?mode=" . $mode . "&pmode=" . $pmode . "&lcode=" . $lcode . "&mcode=" . $mcode . "&key=" . $key . "&keyword=" . $keyword;
 page_nav($totalpage, $cpage, $url);
 ?>
@@ -356,24 +372,8 @@ page_nav($totalpage, $cpage, $url);
 
 
      <!--footer start-->
-    <?php include "../include/admin_footer.php";?>
+    <?php include_once "../include/admin_footer.php";?>
       <!--footer end-->
-  </section>
-
-    <!-- js placed at the end of the document so the pages load faster -->
-    <script src="/js/vendor/jquery-2.2.0.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/admin/js/jquery.dcjqaccordion.2.7.js"></script>
-    <script src="/admin/js/jquery.scrollTo.min.js"></script>
-    <script src="/admin/js/jquery.nicescroll.js"></script>
-    <script src="/admin/js/respond.min.js" ></script>
-
-    <!--common script for all pages-->
-    <script src="/admin/js/common-scripts.js"></script>
-
-    <!-- custom scripts -->
-    <script src="/js/global.js" ></script>
-    <script src="/admin/js/admin.js" ></script>
 
   </body>
 </html>

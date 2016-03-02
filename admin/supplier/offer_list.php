@@ -1,57 +1,13 @@
-<?php
-
-include_once "../include/admin_auth.php";
-include_once "../../util/config.php";
-include_once "../../util/util.php";
-
-$connect = my_connect($host, $dbid, $dbpass, $dbname);
-
-//메타정보
-$info_query = "SELECT * FROM admin_setup";
-$info_res   = mysqli_query($connect, $info_query);
-$info       = mysqli_fetch_array($info_res);
-
-?>
-<!DOCTYPE html>
-<html lang="ko">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta name="keyword" content="">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <link rel="shortcut icon" href="/favicon.ico">
-
-    <title><?=$info['company_name'];?> :: 운영업체 관리자 홈</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="/css/bootstrap.css" rel="stylesheet">
-    <link href="/admin/css/bootstrap-reset.css" rel="stylesheet">
-    <!--external css-->
-    <link href="/css/font-awesome.min.css" rel="stylesheet" />
-
-    <!-- Custom styles for this template -->
-    <link href="/admin/css/style.css" rel="stylesheet">
-    <link href="/admin/css/style-responsive.css" rel="stylesheet" />
-    <link href="/admin/css/jquery-ui.min.css" rel="stylesheet">
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
-    <!--[if lt IE 9]>
-      <script src="js/html5shiv.js"></script>
-      <script src="js/respond.min.js"></script>
-    <![endif]-->
-
-  </head>
+<?php include_once '../include/header.php';?>
 
   <body>
     <section id="container" >
         <!--header start-->
-        <?php include "../include/admin_head.php";?>
+        <?php include_once "../include/admin_head.php";?>
         <!--header end-->
 
         <!--sidebar start-->
-        <?php include "../include/admin_sidebar.php";?>
+        <?php include_once "../include/admin_sidebar.php";?>
         <!--sidebar end-->
 
 
@@ -86,7 +42,8 @@ $info       = mysqli_fetch_array($info_res);
               <div class="panel-body">
 
                 <form action="offer_list.php" class="form-inline" role="form" name="f" method="post" >
-                <?php
+<?php
+
 switch ($mode) {
     case 'search':
         $nres = mysqli_query($connect, "SELECT id FROM supplier WHERE $key LIKE '%$key_value%' ");
@@ -108,7 +65,8 @@ switch ($mode) {
                   <div class="col-sm-4 col-lg-8">
                     <select name="id" class="form-control" onchange="change();">
                       <option>업체명 - 아이디</option>
-                    <?php
+<?php
+
 $mqry = "SELECT * FROM supplier ORDER BY company_name ";
 $mres = mysqli_query($connect, $mqry);
 
@@ -120,8 +78,8 @@ for ($i = 0; $mrow = mysqli_fetch_array($mres); $i++) {
                   </div>
                 </form>
 
+<?php
 
-            <?php
 $result = mysqli_query($connect, $sql);
 $total  = mysqli_num_rows($result);
 
@@ -161,13 +119,14 @@ $scale1 = $limit - $cline;
         </div>
         <!-- list end -->
 
-        <?php
+<?php
+
 if ($mode == "search") {
     ?>
         <!-- calendar start -->
         <form method="get" action="offer_list.php" class="form-inline form-group" role="form">
         <input type="hidden" name="mode" value="date" />
-        <input type="hidden" name="id" value="<?=$key_value;?>" />
+        <input type="hidden" name="id" value="<?php echo $key_value; ?>" />
         <!-- <div class="col-sm-12"> -->
           <div class="panel panel-info">
             <div class="panel-heading">날짜 검색</div>
@@ -191,7 +150,8 @@ if ($mode == "search") {
         </form>
         <!-- calendar end -->
 
-        <?php
+<?php
+
 }
 ; // end of if($mode == "search")
 ?>
@@ -219,7 +179,8 @@ if ($mode == "search") {
                   </tr>
                 </thead>
                 <tbody>
-                  <?php
+<?php
+
 $nres1 = mysqli_query($connect, "SELECT id FROM supplier WHERE $key LIKE '%$key_value%' ");
 
 if ($nres1 && $mode == "search") {
@@ -249,22 +210,24 @@ if ($total2 == 0) {
         ?>
                   <tr>
                     <td>
-                      <a href="view_offer.php?oid=<?=$row['num'];?>"><?=$row['createdate'];?></a>
+                      <a href="view_offer.php?oid=<?php echo $row['num']; ?>"><?php echo $row['createdate']; ?></a>
                     </td>
                     <td>
-                      <?="<a href=\"offer_list.php?mode=search&amp;key=id&amp;key_value=" . $row['id'] . "\">" . $row3['company_name'] . "</a>";?> (<?=$row['id'];?>)</td>
+                      <?php echo "<a href=\"offer_list.php?mode=search&amp;key=id&amp;key_value=" . $row['id'] . "\">" . $row3['company_name'] . "</a>"; ?> (<?php echo $row['id']; ?>)</td>
                     <td>
-                      <?php
-$name = explode(',', $row['goods_name']);
+<?php
+
+        $name = explode(',', $row['goods_name']);
         echo $name[0];
         ?>
                       (외)
                     </td>
-                    <td><?=number_format($row['amount']);?></td>
-                    <td><?=number_format($row['last_amount']);?></td>
+                    <td><?php echo number_format($row['amount']); ?></td>
+                    <td><?php echo number_format($row['last_amount']); ?></td>
                     <td>
-                    <?php
-switch ($row['status']) {
+<?php
+
+        switch ($row['status']) {
             case "1":
                 echo "미입고";
                 break;
@@ -281,11 +244,12 @@ switch ($row['status']) {
         ?>
                     </td>
                     <td>
-                      <a type="button" class="btn btn-danger" href="update_cart.php?mode=del&amp;from=list&amp;oid=<?=$row['num'];?>" onclick="return confirm('발주를 삭제하시겠습니까?');"><i class="fa fa-trash-o"></i></a>
+                      <a type="button" class="btn btn-danger" href="update_cart.php?mode=del&amp;from=list&amp;oid=<?php echo $row['num']; ?>" onclick="return confirm('발주를 삭제하시겠습니까?');"><i class="fa fa-trash-o"></i></a>
                     </td>
                   </tr>
-            <?php
-$o_total += $row['amount'];
+<?php
+
+        $o_total += $row['amount'];
         $in_total += $row['last_amount'];
     } // for end
 }
@@ -296,10 +260,10 @@ $o_total += $row['amount'];
                       <strong>총합(NET):</strong>
                     </td>
                     <td>
-                      <strong><?=number_format($o_total);?></strong>
+                      <strong><?php echo number_format($o_total); ?></strong>
                     </td>
                     <td>
-                      <strong><?=number_format($in_total);?></strong>
+                      <strong><?php echo number_format($in_total); ?></strong>
                     </td>
                     <td></td>
                     <td></td>
@@ -321,8 +285,9 @@ $o_total += $row['amount'];
                   <tbody>
                     <tr>
                       <td>
-                        <?php
-$url = $PHP_SELF . "?mode=" . $mode . "&amp;key=" . $key . "&amp;key_value=" . $key_value;
+<?php
+
+$url = $_SERVER['PHP_SELF'] . "?mode=" . $mode . "&amp;key=" . $key . "&amp;key_value=" . $key_value;
 page_nav($totalpage, $cpage, $url);
 ?>
                       </td>
@@ -357,24 +322,9 @@ page_nav($totalpage, $cpage, $url);
     <!--main content end-->
 
     <!--footer start-->
-    <?php include "../include/admin_footer.php";?>
+    <?php include_once '../include/admin_footer.php';?>
       <!--footer end-->
-  </section>
 
-    <!-- js placed at the end of the document so the pages load faster -->
-    <script src="/js/vendor/jquery-2.2.0.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script class="include" type="text/javascript" src="/admin/js/jquery.dcjqaccordion.2.7.js"></script>
-    <script src="/admin/js/jquery.scrollTo.min.js"></script>
-    <script src="/admin/js/jquery.nicescroll.js" type="text/javascript"></script>
-    <script src="/admin/js/respond.min.js" ></script>
-
-    <!--common script for all pages-->
-    <script src="/admin/js/common-scripts.js"></script>
-
-    <!-- custom scripts -->
-    <script src="/js/global.js" ></script>
-    <script src="/admin/js/admin.js" ></script>
     <script src="/admin/js/jquery-ui.min.js"></script>
     <script src="../js/jq_datepicker.js"></script>
 

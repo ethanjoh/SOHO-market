@@ -4,11 +4,11 @@
   <body>
     <section id="container" >
         <!--header start-->
-        <?php include "../include/admin_head.php";?>
+        <?php include_once "../include/admin_head.php";?>
         <!--header end-->
 
         <!--sidebar start-->
-        <?php include "../include/admin_sidebar.php";?>
+        <?php include_once "../include/admin_sidebar.php";?>
         <!--sidebar end-->
 
 
@@ -67,13 +67,13 @@ $total  = mysqli_num_rows($result);
                       <div class="form-group">
                           <label for="id" class="col-lg-2 col-sm-2 control-label">아이디:</label>
                           <div class="col-sm-3">
-                              <input type="text" class="form-control" name="id" value="<?=$id;?>">
+                              <input type="text" class="form-control" name="id" value="<?php echo $id; ?>">
                           </div>
                       </div>
                       <div class="form-group">
                           <label for="company_name" class="col-lg-2 col-sm-2 control-label">업체명:</label>
                           <div class="col-sm-3">
-                              <input type="text" class="form-control" name="company_name" value="<?=$company_name;?>">
+                              <input type="text" class="form-control" name="company_name" value="<?php echo $company_name; ?>">
                           </div>
                       </div>
                       <div class="form-group row">
@@ -92,7 +92,7 @@ $total  = mysqli_num_rows($result);
             <div class="col-sm-12">
               <section class="panel">
                 <header class="panel-heading table-head">
-                    전체 회원업체 메일보내기 (총 업체 수: <?=number_format($total);?> 건 )
+                    전체 회원업체 메일보내기 (총 업체 수: <?php echo number_format($total); ?> 건 )
                 </header>
 
                 <table class="table">
@@ -153,18 +153,18 @@ for ($i = 1; $list = mysqli_fetch_array($result_2); $i++) {
 
     $bunho = $total - ($i + $cline) + 1;
     ?>
-                      <td><?=$bunho;?></td>
+                      <td><?php echo $bunho; ?></td>
                       <td>
-                        <a href="" onclick="javascript:open_win('mem_view_member.php?num=<?=$list['seq_num'];?>&amp;from=mail','nwin','scrollbars=yes,resizable=yes, width=650,height=650');"><?=$list['id'];?></a>
+                        <a href="" onclick="javascript:open_win('mem_view_member.php?num=<?php echo $list['seq_num']; ?>&amp;from=mail','nwin','scrollbars=yes,resizable=yes, width=650,height=650');"><?php echo $list['id']; ?></a>
                       </td>
-                      <td><?=$list['company_name'];?></td>
-                      <td><?=$list['md_name'];?></td>
-                      <td><?=$list['md_email'];?></td>
-                      <td><?=$list['reg_date'];?></td>
+                      <td><?php echo $list['company_name']; ?></td>
+                      <td><?php echo $list['md_name']; ?></td>
+                      <td><?php echo $list['md_email']; ?></td>
+                      <td><?php echo $list['reg_date']; ?></td>
                       <td>
                         <div class="checkbox">
                           <label>
-                            <input type="checkbox" name="num[]" value="<?=$list['seq_num'];?>">
+                            <input type="checkbox" name="num[]" value="<?php echo $list['seq_num']; ?>">
                           </label>
                         </div>
                       </td>
@@ -199,7 +199,7 @@ page_nav($totalpage, $cpage, $url);
                     <td>
                       <div class="checkbox pull-right">
                         <label>
-                          <input type="checkbox" name="page_scale" value="all" <?=$checked;?> onClick="document.form1.submit();">
+                          <input type="checkbox" name="page_scale" value="all" <?php echo $checked; ?> onClick="document.form1.submit();">
                           한 화면으로 보기
                         </label>
                       </div>
@@ -217,26 +217,8 @@ page_nav($totalpage, $cpage, $url);
     <!--main content end-->
 
      <!--footer start-->
-    <?php include "../include/admin_footer.php";?>
+    <?php include_once "../include/admin_footer.php";?>
       <!--footer end-->
-  </section>
-
-    <!-- js placed at the end of the document so the pages load faster -->
-    <script src="/js/vendor/jquery-2.2.0.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/admin/js/jquery.dcjqaccordion.2.7.js" class="include" type="text/javascript" ></script>
-    <script src="/admin/js/jquery.scrollTo.min.js"></script>
-    <script src="/admin/js/jquery.nicescroll.js" type="text/javascript"></script>
-    <script src="/admin/js/jquery.customSelect.min.js" ></script>
-    <script src="/admin/js/respond.min.js" ></script>
-
-    <!--common script for all pages-->
-    <script src="/admin/js/common-scripts.js"></script>
-
-    <!-- custom scripts -->
-    <script src="/js/global.js" ></script>
-    <script src="/admin/js/admin.js" ></script>
-
 
   </body>
 </html>

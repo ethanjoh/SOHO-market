@@ -4,11 +4,11 @@
   <body>
     <section id="container" >
         <!--header start-->
-        <?php include "../include/admin_head.php";?>
+        <?php include_once "../include/admin_head.php";?>
         <!--header end-->
 
         <!--sidebar start-->
-        <?php include "../include/admin_sidebar.php";?>
+        <?php include_once "../include/admin_sidebar.php";?>
         <!--sidebar end-->
 
     <!--main content start-->
@@ -55,17 +55,17 @@ $zipcode = explode("-", $rows['zipcode']);
                   <h4>관리자 정보 설정</h4>
                 </header>
                 <div class="panel-body">
-                  <form class="form-inline" role="form" name="form1" action="//<?=$_SERVER['SERVER_NAME'];?>:<?=$port;?>/admin/setting/admin_setup_ok.php" method="post" enctype="multipart/form-data">
+                  <form class="form-inline" role="form" name="form1" action="//<?php echo $_SERVER['SERVER_NAME']; ?>:<?php echo $port; ?>/admin/setting/admin_setup_ok.php" method="post" enctype="multipart/form-data">
                   <input type="hidden" name="type" value="1" />
-                  <input type="hidden" name="admin_id" value="<?=$rows['id'];?>">
+                  <input type="hidden" name="admin_id" value="<?php echo $rows['id']; ?>">
                   <div class="table-responsive">
                     <table class="table table-striped">
                       <tbody>
                         <tr>
                           <th>관리자 아이디</th>
-                          <td><?=$rows['id'];?></td>
+                          <td><?php echo $rows['id']; ?></td>
                           <th>관리자 성명</th>
-                          <td><input type="text" class="form-control" name="admin_name" value="<?=$rows['name'];?>"></td>
+                          <td><input type="text" class="form-control" name="admin_name" value="<?php echo $rows['name']; ?>"></td>
                         </tr>
                         <tr>
                           <th>비밀번호 변경</th>
@@ -81,40 +81,40 @@ $zipcode = explode("-", $rows['zipcode']);
                         </tr>
                         <tr>
                           <th>사이트명</th>
-                          <td><input type="text" class="form-control" name="site_name" value="<?=$rows['site_name'];?>" size="50"></td>
+                          <td><input type="text" class="form-control" name="site_name" value="<?php echo $rows['site_name']; ?>" size="50"></td>
                           <th></th>
                           <td></td>
                         </tr>
                         <tr>
                           <th>사이트 키워드</th>
                           <td colspan="3">
-                            <input type="text" class="form-control width-100" name="keywords" style="width:100%" value="<?=$rows['keywords'];?>" size="100">
+                            <input type="text" class="form-control width-100" name="keywords" style="width:100%" value="<?php echo $rows['keywords']; ?>" size="100">
                             <p class="help-block">(, 구분)</p>
                           </td>
                         </tr>
                         <tr>
                           <th>사이트 설명</th>
                           <td colspan="3">
-                            <textarea class="form-control" name="description" style="width:100%; height:100px"><?=$rows['description'];?></textarea>
+                            <textarea class="form-control" name="description" style="width:100%; height:100px"><?php echo $rows['description']; ?></textarea>
                             <p class="help-block">(200자 이내)</p>
                           </td>
                         </tr>
                         <tr>
                           <th>업체명</th>
-                          <td><input type="text" class="form-control" name="company_name" value="<?=$rows['company_name'];?>" size="50"></td>
+                          <td><input type="text" class="form-control" name="company_name" value="<?php echo $rows['company_name']; ?>" size="50"></td>
                           <th></th>
                           <td></td>
                         </tr>
                         <tr>
                           <th>대표자명 </th>
-                          <td><input type="text" class="form-control" name="ceo" value="<?=$rows['ceo'];?>"></td>
+                          <td><input type="text" class="form-control" name="ceo" value="<?php echo $rows['ceo']; ?>"></td>
                           <th></th>
                           <td></td>
                         </tr>
                         <tr>
                           <th>회사 홈페이지</th>
                           <td>
-                            <input type="text" class="form-control" name="homepage" value="<?=$rows['homepage'];?>" size="50">
+                            <input type="text" class="form-control" name="homepage" value="<?php echo $rows['homepage']; ?>" size="50">
                             <p class="help-block">http:// 제외</p>
                           </td>
                           <th></th>
@@ -122,13 +122,13 @@ $zipcode = explode("-", $rows['zipcode']);
                         </tr>
                         <tr>
                           <th>관리자 이메일 </th>
-                          <td><input type="text" class="form-control" name="admin_email" value="<?=$rows['email'];?>" size="50"></td>
+                          <td><input type="text" class="form-control" name="admin_email" value="<?php echo $rows['email']; ?>" size="50"></td>
                           <th></th>
                           <td></td>
                         </tr>
                         <tr>
                           <th>개인정보 관리책임자 </th>
-                          <td><input type="text" class="form-control" name="privacy_manager" value="<?=$rows['privacy_manager'];?>" ></td>
+                          <td><input type="text" class="form-control" name="privacy_manager" value="<?php echo $rows['privacy_manager']; ?>" ></td>
                           <th></th>
                           <td></td>
                         </tr>
@@ -138,37 +138,37 @@ $zipcode = explode("-", $rows['zipcode']);
                         <tr>
                           <th>사업자등록번호</th>
                           <td>
-                            <input type="text" class="form-control" size=3 value="<?=$license_no[0];?>" name="license_no1"> -
-                            <input type="text" class="form-control" size=2 value="<?=$license_no[1];?>" name="license_no2"> -
-                            <input type="text" class="form-control" size=5 value="<?=$license_no[2];?>" name="license_no3" >
+                            <input type="text" class="form-control" size=3 value="<?php echo $license_no[0]; ?>" name="license_no1"> -
+                            <input type="text" class="form-control" size=2 value="<?php echo $license_no[1]; ?>" name="license_no2"> -
+                            <input type="text" class="form-control" size=5 value="<?php echo $license_no[2]; ?>" name="license_no3" >
                           </td>
                           <th>통신판매업 신고</th>
-                          <td><input type="text" class="form-control" name="online_license" value="<?=$rows['online_license'];?>" ></td>
+                          <td><input type="text" class="form-control" name="online_license" value="<?php echo $rows['online_license']; ?>" ></td>
                         </tr>
                         <tr>
                           <th>대표전화</th>
                           <td>
-                            <input type="text" class="form-control" size=3 value="<?=$tel[0];?>" name="tel1"> -
-                            <input type="text" class="form-control" size=4 value="<?=$tel[1];?>" name="tel2"> -
-                            <input type="text" class="form-control" size=4 value="<?=$tel[2];?>" name="tel3">
+                            <input type="text" class="form-control" size=3 value="<?php echo $tel[0]; ?>" name="tel1"> -
+                            <input type="text" class="form-control" size=4 value="<?php echo $tel[1]; ?>" name="tel2"> -
+                            <input type="text" class="form-control" size=4 value="<?php echo $tel[2]; ?>" name="tel3">
                           </td>
                           <th>팩스번호</th>
                           <td>
-                            <input type="text" class="form-control" size=3 value="<?=$fax[0];?>" name="fax1"> -
-                            <input type="text" class="form-control" size=4 value="<?=$fax[1];?>" name="fax2"> -
-                            <input type="text" class="form-control" size=4 value="<?=$fax[2];?>" name="fax3">
+                            <input type="text" class="form-control" size=3 value="<?php echo $fax[0]; ?>" name="fax1"> -
+                            <input type="text" class="form-control" size=4 value="<?php echo $fax[1]; ?>" name="fax2"> -
+                            <input type="text" class="form-control" size=4 value="<?php echo $fax[2]; ?>" name="fax3">
                           </td>
                         </tr>
                         <tr>
                           <th>업태</th>
-                          <td><input type="text" class="form-control" name="category1" value="<?=$rows['category1'];?>" size="50"></td>
+                          <td><input type="text" class="form-control" name="category1" value="<?php echo $rows['category1']; ?>" size="50"></td>
                           <th>업종</th>
-                          <td><input type="text" class="form-control" name="category2" value="<?=$rows['category2'];?>" size="50"></td>
+                          <td><input type="text" class="form-control" name="category2" value="<?php echo $rows['category2']; ?>" size="50"></td>
                         </tr>
                         <tr>
                           <th>우편번호</th>
                           <td>
-                            <input type="text" class="form-control" size="5" value="<?=$zipcode[0];?>" name="o_zipcode1" id="o_zipcode1" readonly />
+                            <input type="text" class="form-control" size="5" value="<?php echo $zipcode[0]; ?>" name="o_zipcode1" id="o_zipcode1" readonly />
                             <input type="button" class="form-control" onclick="openDaumPostcode()" value="우편번호 찾기"><br />
                           <!-- postcode searching function -->
                           <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -231,11 +231,11 @@ $zipcode = explode("-", $rows['zipcode']);
                         </tr>
                         <tr>
                           <th>사업장 주소</th>
-                          <td colspan="3"><input type="text" class="form-control" value="<?=$rows['addr1'];?>" name="o_addr1" id="o_addr1" readonly size="100"></td>
+                          <td colspan="3"><input type="text" class="form-control" value="<?php echo $rows['addr1']; ?>" name="o_addr1" id="o_addr1" readonly size="100"></td>
                         </tr>
                         <tr>
                           <th></th>
-                          <td colspan="3"><input type="text" class="form-control" value="<?=$rows['addr2'];?>" name="o_addr2" id="o_addr2" size="100"></td>
+                          <td colspan="3"><input type="text" class="form-control" value="<?php echo $rows['addr2']; ?>" name="o_addr2" id="o_addr2" size="100"></td>
                         </tr>
                         <tr>
                           <th>인감 이미지
@@ -273,7 +273,7 @@ $zipcode = explode("-", $rows['zipcode']);
       <!--main content end-->
 
       <!--footer start-->
-    <?php include "../include/admin_footer.php";?>
+    <?php include_once "../include/admin_footer.php";?>
       <!--footer end-->
   </section>
 

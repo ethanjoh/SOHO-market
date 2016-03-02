@@ -3,11 +3,11 @@
   <body>
     <section id="container" >
         <!--header start-->
-        <?php include "../include/admin_head.php";?>
+        <?php include_once "../include/admin_head.php";?>
         <!--header end-->
 
         <!--sidebar start-->
-        <?php include "../include/admin_sidebar.php";?>
+        <?php include_once "../include/admin_sidebar.php";?>
         <!--sidebar end-->
 
 
@@ -77,13 +77,13 @@ $row2    = mysqli_fetch_array($result2);
                             <th>SMS 아이디:</th>
                             <td>
                               <div class="col-sm-6">
-                                <input type="text" class="form-control" name="sms_id" value="<?=$row['id'];?>" />
+                                <input type="text" class="form-control" name="sms_id" value="<?php echo $row['id']; ?>" />
                               </div>
                             </td>
                             <th>SMS 비밀번호:</th>
                             <td>
                               <div class="col-sm-6">
-                                <input type="text" class="form-control" name="sms_passwd" value="<?=$row['passwd'];?>" />
+                                <input type="text" class="form-control" name="sms_passwd" value="<?php echo $row['passwd']; ?>" />
                               </div>
                             </td>
                           </tr>
@@ -91,7 +91,7 @@ $row2    = mysqli_fetch_array($result2);
                             <th>발신자 연락처:</th>
                             <td colspan="3">
                               <div class="col-sm-3">
-                                <input type="text" class="form-control" name="from_phone" value="<?=$row['from_phone'];?>" />
+                                <input type="text" class="form-control" name="from_phone" value="<?php echo $row['from_phone']; ?>" />
                                 <p class="help-block">(예: 010-111-1234 또는 02-111-1234)</p>
                               </div>
                             </td>
@@ -100,7 +100,7 @@ $row2    = mysqli_fetch_array($result2);
                             <th>수신 연락처:</th>
                             <td colspan="3">
                               <div class="col-sm-3">
-                                <input type="text" class="form-control" name="to_phone" size="13" value="<?=$row['to_phone'];?>" />
+                                <input type="text" class="form-control" name="to_phone" size="13" value="<?php echo $row['to_phone']; ?>" />
                                 <p class="help-block">(예: 010-111-1234 또는 02-111-1234)</p>(예: 010-111-1234) * 주문 접수 시에 사용됩니다.</p>
                               </div>
                             </td>
@@ -113,7 +113,7 @@ $row2    = mysqli_fetch_array($result2);
 ?> />회원승인
                             </th>
                             <td>
-                              <textarea class="form-control" name="reg_msg" cols="25" rows="5"><?=$row['reg_msg'];?></textarea>
+                              <textarea class="form-control" name="reg_msg" cols="25" rows="5"><?php echo $row['reg_msg']; ?></textarea>
                             </td>
                             <th>
                               <input type="checkbox" name="orderin_chk" value="Y" <?php if ($row['orderin_chk'] == "Y") {
@@ -122,7 +122,7 @@ $row2    = mysqli_fetch_array($result2);
 ?> />주문접수
                             </th>
                             <td>
-                              <textarea class="form-control" name="orderin_msg" cols="25" rows="5"><?=$row['orderin_msg'];?></textarea>
+                              <textarea class="form-control" name="orderin_msg" cols="25" rows="5"><?php echo $row['orderin_msg']; ?></textarea>
                             </td>
                           </tr>
                           <tr>
@@ -133,7 +133,7 @@ $row2    = mysqli_fetch_array($result2);
 ?> />구매완료
                             </th>
                             <td>
-                              <textarea class="form-control" name="order_msg" cols="25" rows="5"><?=$row['order_msg'];?></textarea>
+                              <textarea class="form-control" name="order_msg" cols="25" rows="5"><?php echo $row['order_msg']; ?></textarea>
                             </td>
                             <th>
                               <input type="checkbox" name="orderout_chk" value="Y" <?php if ($row['orderout_chk'] == "Y") {
@@ -142,7 +142,7 @@ $row2    = mysqli_fetch_array($result2);
 ?> />상품발송
                             </th>
                             <td>
-                              <textarea class="form-control" name="orderout_msg" cols="25" rows="5"><?=$row['orderout_msg'];?></textarea>
+                              <textarea class="form-control" name="orderout_msg" cols="25" rows="5"><?php echo $row['orderout_msg']; ?></textarea>
                             </td>
                           </tr>
                           <tr>
@@ -153,7 +153,7 @@ $row2    = mysqli_fetch_array($result2);
 ?> />세금계산서 발행
                             </th>
                             <td>
-                              <textarea class="form-control" name="tax_msg" cols="25" rows="5"><?=$row['tax_msg'];?></textarea>
+                              <textarea class="form-control" name="tax_msg" cols="25" rows="5"><?php echo $row['tax_msg']; ?></textarea>
                             </td>
                             <th>
                               <input type="checkbox" name="offer_chk" value="Y" <?php if ($row['offer_chk'] == "Y") {
@@ -162,7 +162,7 @@ $row2    = mysqli_fetch_array($result2);
 ?> />발주서 발송
                             </th>
                             <td>
-                              <textarea class="form-control" name="offer_msg" cols="25" rows="5"><?=$row['offer_msg'];?></textarea>
+                              <textarea class="form-control" name="offer_msg" cols="25" rows="5"><?php echo $row['offer_msg']; ?></textarea>
                             </td>
                           </tr>
                         </tbody>
@@ -187,12 +187,12 @@ $row2    = mysqli_fetch_array($result2);
       <table summary="stats">
         <thead>
           <tr>
-            <th>SMS 통계(<?=check_remain_sms($connect);?>)</th>
+            <th>SMS 통계(<?php echo check_remain_sms($connect); ?>)</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><?=sms_stats($connect);?></td>
+            <td><?php echo sms_stats($connect); ?></td>
           </tr>
         </tbody>
       </table>
@@ -203,24 +203,8 @@ $row2    = mysqli_fetch_array($result2);
       <!--main content end-->
 
       <!--footer start-->
-    <?php include "../include/admin_footer.php";?>
+    <?php include_once "../include/admin_footer.php";?>
       <!--footer end-->
-  </section>
-
-    <!-- js placed at the end of the document so the pages load faster -->
-    <script src="/js/vendor/jquery-2.2.0.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script class="include" type="text/javascript" src="/admin/js/jquery.dcjqaccordion.2.7.js"></script>
-    <script src="/admin/js/jquery.scrollTo.min.js"></script>
-    <script src="/admin/js/jquery.nicescroll.js" type="text/javascript"></script>
-    <script src="/admin/js/respond.min.js" ></script>
-
-    <!--common script for all pages-->
-    <script src="/admin/js/common-scripts.js"></script>
-
-    <!-- custom scripts -->
-    <script src="/js/global.js" ></script>
-    <script src="/admin/js/admin.js" ></script>
 
   </body>
 </html>

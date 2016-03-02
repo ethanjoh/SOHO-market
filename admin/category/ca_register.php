@@ -3,11 +3,11 @@
   <body>
     <section id="container" >
         <!--header start-->
-        <?php include "../include/admin_head.php";?>
+        <?php include_once "../include/admin_head.php";?>
         <!--header end-->
 
         <!--sidebar start-->
-        <?php include "../include/admin_sidebar.php";?>
+        <?php include_once "../include/admin_sidebar.php";?>
         <!--sidebar end-->
 
 
@@ -33,7 +33,8 @@
             <!-- info end -->
 
 
-            <?php
+<?php
+
 $mode = $_GET['mode'];
 $num  = $_GET['num'];
 
@@ -66,13 +67,13 @@ if ("update" == $mode) {
                   <div class="panel-body">
 
                     <form name="f" method="post" action="ca_insert.php" class="form-horizontal" role="form">
-                      <input type="hidden" name="mode" value="<?=$mode;?>">
-                      <input type="hidden" name="num" value="<?=$num;?>">
+                      <input type="hidden" name="mode" value="<?php echo $mode; ?>">
+                      <input type="hidden" name="num" value="<?php echo $num; ?>">
 
                       <div class="form-group">
                           <label for="ca_name" class="col-lg-2 col-sm-2 control-label">카테고리명 :</label>
                           <div class="col-sm-3">
-                            <input type="text" class="form-control" name="ca_name" value="<?=$row['name'];?>" size="20" maxlength="20" />
+                            <input type="text" class="form-control" name="ca_name" value="<?php echo $row['name']; ?>" size="20" maxlength="20" />
                           </div>
                       </div>
                       <div class="form-group">
@@ -80,7 +81,8 @@ if ("update" == $mode) {
                           <div class="col-sm-3">
                             <select name="id" id="id" class="form-control" onchange="sel();">
                               <option>업체명</option>
-                          <?php
+<?php
+
 $mqry = "SELECT * FROM supplier ORDER BY company_name ";
 $mres = mysqli_query($connect, $mqry);
 
@@ -90,13 +92,13 @@ for ($i = 0; $mrow = mysqli_fetch_array($mres); $i++) {
 
 ?>
                               </select>
-                              <input type="text" class="form-control" name="val" value="<?=$mrow['id'];?>" readonly />
+                              <input type="text" class="form-control" name="val" value="<?php echo $mrow['id']; ?>" readonly />
                           </div>
                       </div>
                       <div class="form-group">
                           <label for="code" class="col-lg-2 col-sm-2 control-label">카테고리 코드 :</label>
                           <div class="col-sm-3">
-                              <input type="text" class="form-control" name="code" value="<?=($mode == "insert") ? $max_code : $row['code'];?>" readonly />
+                              <input type="text" class="form-control" name="code" value="<?php echo ($mode == "insert") ? $max_code : $row['code']; ?>" readonly />
                               <p class="help-block">*자동입력(수정불가)</p>
                           </div>
                       </div>
@@ -120,36 +122,9 @@ for ($i = 0; $mrow = mysqli_fetch_array($mres); $i++) {
       <!--main content end-->
 
        <!--footer start-->
-    <?php include "../include/admin_footer.php";?>
+    <?php include_once "../include/admin_footer.php";?>
       <!--footer end-->
-  </section>
 
-    <!-- js placed at the end of the document so the pages load faster -->
-    <script src="/js/vendor/jquery-2.2.0.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script class="include" type="text/javascript" src="/admin/js/jquery.dcjqaccordion.2.7.js"></script>
-    <script src="/admin/js/jquery.scrollTo.min.js"></script>
-    <script src="/admin/js/jquery.nicescroll.js" type="text/javascript"></script>
-    <script src="/admin/js/jquery.sparkline.js" type="text/javascript"></script>
-    <!-- // <script src="jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script> -->
-    <script src="/admin/js/owl.carousel.js" ></script>
-    <script src="/admin/js/jquery.customSelect.min.js" ></script>
-    <script src="/admin/js/respond.min.js" ></script>
-
-    <!--right slidebar-->
-    <script src="/admin/js/slidebars.min.js"></script>
-
-    <!--common script for all pages-->
-    <script src="/admin/js/common-scripts.js"></script>
-
-    <!--script for this page-->
-    <script src="/admin/js/sparkline-chart.js"></script>
-    <!-- // <script src="js/easy-pie-chart.js"></script> -->
-    <script src="/admin/js/count.js"></script>
-
-    <!-- custom scripts -->
-    <script src="/js/global.js" ></script>
-    <script src="/admin/js/admin.js" ></script>
 
   </body>
 </html>

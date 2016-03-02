@@ -1,55 +1,13 @@
-<?php
-
-include_once "../include/admin_auth.php";
-include_once "../../util/config.php";
-include_once "../../util/util.php";
-
-$connect = my_connect($host, $dbid, $dbpass, $dbname);
-
-//메타정보
-$info_query = "SELECT * FROM admin_setup";
-$info_res   = mysqli_query($connect, $info_query);
-$info       = mysqli_fetch_array($info_res);
-
-?>
-<!DOCTYPE html>
-<html lang="ko">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta name="keyword" content="">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <link rel="shortcut icon" href="/favicon.ico">
-
-    <title><?=$info['company_name'];?> :: 운영업체 관리자 홈</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="/css/bootstrap.css" rel="stylesheet">
-    <link href="/admin/css/bootstrap-reset.css" rel="stylesheet">
-    <!--external css-->
-    <link href="/css/font-awesome.min.css" rel="stylesheet" />
-
-    <!-- Custom styles for this template -->
-    <link href="/admin/css/style.css" rel="stylesheet">
-    <link href="/admin/css/style-responsive.css" rel="stylesheet" />
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
-    <!--[if lt IE 9]>
-      <script src="js/html5shiv.js"></script>
-      <script src="js/respond.min.js"></script>
-    <![endif]-->
-  </head>
+<?php include_once '../include/header.php';?>
 
   <body>
     <section id="container" >
         <!--header start-->
-        <?php include "../include/admin_head.php";?>
+        <?php include_once "../include/admin_head.php";?>
         <!--header end-->
 
         <!--sidebar start-->
-        <?php include "../include/admin_sidebar.php";?>
+        <?php include_once "../include/admin_sidebar.php";?>
         <!--sidebar end-->
 
     <!--main content start-->
@@ -87,9 +45,9 @@ $info       = mysqli_fetch_array($info_res);
                   <option value="company">제조사</option>
                 </select>
                 <input type="hidden" name="mode" value="search" />
-                <input type="hidden" name="lcode" value="<?=$lcode;?>" />
-                <input type="hidden" name="mcode" value="<?=$mcode;?>" />
-                <input type="hidden" name="scode" value="<?=$scode;?>" />
+                <input type="hidden" name="lcode" value="<?php echo $lcode; ?>" />
+                <input type="hidden" name="mcode" value="<?php echo $mcode; ?>" />
+                <input type="hidden" name="scode" value="<?php echo $scode; ?>" />
                 <div class="ui-widget form-group">
                   <input type="text" class="form-control" name="keyword" size="16" />
                   <button class="btn btn-primary" onclick="search.submit()"><i class="fa fa-search"></i>검 색</button>
@@ -101,7 +59,8 @@ $info       = mysqli_fetch_array($info_res);
         </div>
         <!-- search end -->
 
-            <?php
+<?php
+
 if ($lcode != "" && $pmode != "end") {
     $qry_char = "del_chk <> 'Y' AND category_l ='$lcode' ";
 } else if ($lcode == "" && $pmode == "end") {
@@ -148,12 +107,12 @@ if ($result) {
           <div class="col-sm-12">
             <section class="panel">
               <header class="panel-heading table-head">
-                  상품 리스트 (총 등록상품 수: <?=$total;?> 개)
+                  상품 리스트 (총 등록상품 수: <?php echo $total; ?> 개)
               </header>
               <div class="panel-body">
               <div class="table-responsive">
                 <form name="form1" class="form-inline" role="form" method="post" action="javascript:buy_save();">
-                <input type="hidden" name="com_id" value="<?=$id;?>">
+                <input type="hidden" name="com_id" value="<?php echo $id; ?>">
                 <table class="table table-striped">
                   <thead>
                     <tr>
@@ -167,7 +126,8 @@ if ($result) {
                     </tr>
                   </thead>
                   <tbody>
-                    <?php
+<?php
+
 $scale = 10;
 
 if ($page == "") {
@@ -217,27 +177,29 @@ if ($result1) {
 
         ?>
                   <tr>
-                    <td><?=$list_num;?></td>
-                    <td><img src="<?=$prow['s_image_name'];?>" width="50" height="50" alt="small image" /></td>
-                    <td><?=show_icon($prow);?><?=stripslashes($prow['name']);?>
-                      &nbsp;<a href="http://<?=$_SERVER['HTTP_HOST'];?>/shop/detail.php?pnum=<?=$prow['num'];?>&amp;lcode=<?=$prow['category_l'];?>&amp;mcode=<?=$prow['category_m'];?>&amp;scode=<?=$prow['category_s'];?>" target="_blank"><img src="../images/browser_explorer.png" alt="상품보기" /></a>
+                    <td><?php echo $list_num; ?></td>
+                    <td><img src="<?php echo $prow['s_image_name']; ?>" width="50" height="50" alt="small image" /></td>
+                    <td><?php echo show_icon($prow); ?><?php echo stripslashes($prow['name']); ?>
+                      &nbsp;<a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/shop/detail.php?pnum=<?php echo $prow['num']; ?>&amp;lcode=<?php echo $prow['category_l']; ?>&amp;mcode=<?php echo $prow['category_m']; ?>&amp;scode=<?php echo $prow['category_s']; ?>" target="_blank"><img src="../images/browser_explorer.png" alt="상품보기" /></a>
                     </td>
                     <td>
-                    <?php
-if ($prow['opt']) {
+<?php
+
+        if ($prow['opt']) {
             show_option($prow);
         }
 
         ?>
                     </td>
-                    <td><input type="text" name="price[]" class="form-control" value="<?=trim($price[$i]);?>"> 원</td>
+                    <td><input type="text" name="price[]" class="form-control" value="<?php echo trim($price[$i]); ?>"> 원</td>
                     <td>
-                      <input type="checkbox" name="num[]" value="<?=$i;?>" <?=$available[$i] == "Y" ? "checked" : "";?> >
-                      <input type="hidden" name="pro_id[]" value="<?=$prow['prod_code'];?>">
+                      <input type="checkbox" name="num[]" value="<?php echo $i; ?>" <?php echo $available[$i] == "Y" ? "checked" : ""; ?> >
+                      <input type="hidden" name="pro_id[]" value="<?php echo $prow['prod_code']; ?>">
                     </td>
                   </tr>
-                  <?php
-// $count += $i;
+<?php
+
+          // $count += $i;
     } // end of for loop
 
 } //if($result1)
@@ -252,8 +214,8 @@ if ($total == 0) {
 ?>
                 </tbody>
               </table>
-              <input type="hidden" name="flag" value="<?=$flag;?>">
-              <input type="hidden" name="count" value="<?=$i;?>">
+              <input type="hidden" name="flag" value="<?php echo $flag; ?>">
+              <input type="hidden" name="count" value="<?php echo $i; ?>">
 
               </div>
             </div>
@@ -266,8 +228,9 @@ if ($total == 0) {
 
         <!-- page navigation start -->
         <div class="pull-left">
-          <?php
-$url = $PHP_SELF . "?mode=" . $mode . "&pmode=" . $pmode . "&lcode=" . $lcode . "&mcode=" . $mcode . "&scode=" . $scode . "&key=" . $key . "&keyword=" . $keyword;
+<?php
+
+$url = $_SERVER['PHP_SELF'] . "?mode=" . $mode . "&pmode=" . $pmode . "&lcode=" . $lcode . "&mcode=" . $mcode . "&scode=" . $scode . "&key=" . $key . "&keyword=" . $keyword;
 page_nav($totalpage, $cpage, $url);
 ?>
         </div>
@@ -289,38 +252,8 @@ page_nav($totalpage, $cpage, $url);
 
 
      <!--footer start-->
-    <?php include "../include/admin_footer.php";?>
+    <?php include_once "../include/admin_footer.php";?>
       <!--footer end-->
-  </section>
 
-    <!-- js placed at the end of the document so the pages load faster -->
-    <script src="/js/vendor/jquery-2.2.0.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script class="include" type="text/javascript" src="/admin/js/jquery.dcjqaccordion.2.7.js"></script>
-    <script src="/admin/js/jquery.scrollTo.min.js"></script>
-    <script src="/admin/js/jquery.nicescroll.js" type="text/javascript"></script>
-    <script src="/admin/js/respond.min.js" ></script>
-
-    <!--common script for all pages-->
-    <script src="/admin/js/common-scripts.js"></script>
-
-    <!-- custom scripts -->
-    <script src="/js/global.js" ></script>
-    <script src="/admin/js/admin.js" ></script>
-<!--
-    <script>
-      $(document).ready(function(){
-          $("input:checkbox[name='num[]']").change(function(){
-              if($(this).prop('checked') === true){
-                  $(this).attr("value", 'Y');
-                 $('#show').text($(this).attr('value'));
-              }else{
-                  $(this).attr("value", 'N');
-                   $('#show').text($(this).attr('value'));
-              }
-          });
-      });
-    </script>
-    -->
   </body>
 </html>

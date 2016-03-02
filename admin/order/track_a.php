@@ -3,11 +3,11 @@
   <body>
     <section id="container" >
         <!--header start-->
-        <?php include "../include/admin_head.php";?>
+        <?php include_once "../include/admin_head.php";?>
         <!--header end-->
 
         <!--sidebar start-->
-        <?php include "../include/admin_sidebar.php";?>
+        <?php include_once "../include/admin_sidebar.php";?>
         <!--sidebar end-->
 
     <!--main content start-->
@@ -32,7 +32,8 @@
         </div>
         <!-- info end -->
 
-      <?php
+<?php
+
 $mode  = set_var($_GET['mode']);
 $page  = set_var($_GET['page']);
 $date1 = set_var($_GET['date1']);
@@ -126,7 +127,7 @@ $scale1 = $limit - $cline;
         <div class="col-sm-12">
           <section class="panel">
             <header class="panel-heading table-head">
-                주문 목록 ( <?=$date1;?>  ~ <?=$date2;?>  기간 내 총 <?=$total;?> 건) <i class="fa fa-file-excel-o"></i> <a href="tracktoexcel_a.php?date1=<?=$date1;?>&amp;date2=<?=$date2;?>">엑셀로 다운로드</a>
+                주문 목록 ( <?php echo $date1; ?>  ~ <?php echo $date2; ?>  기간 내 총 <?php echo $total; ?> 건) <i class="fa fa-file-excel-o"></i> <a href="tracktoexcel_a.php?date1=<?php echo $date1; ?>&amp;date2=<?php echo $date2; ?>">엑셀로 다운로드</a>
             </header>
               <div class="panel-body">
                 <div class="table-responsive">
@@ -152,7 +153,8 @@ $scale1 = $limit - $cline;
                       </tr>
                     </thead>
                     <tbody>
-                  <?php
+<?php
+
 switch ($mode) {
     case 'search':
         $sql_4 = "SELECT * FROM mall_order
@@ -184,10 +186,11 @@ if ($t_no > 0) {
     for ($i = 0; $row = mysqli_fetch_array($res_4); $i++) {
         ?>
                       <tr>
-                        <td><?=$row['orderid'];?></td>
-                        <td><?=$row['createdate'];?></td>
-                        <td><?=$row['recipient_name'] ? $row['recipient_name'] : $row['buyer_name'];?></td>
-                  <?php
+                        <td><?php echo $row['orderid']; ?></td>
+                        <td><?php echo $row['createdate']; ?></td>
+                        <td><?php echo $row['recipient_name'] ? $row['recipient_name'] : $row['buyer_name']; ?></td>
+<?php
+
 //상품명 가져옴
         $a_goods_fk = explode(",", $row['goods_fk']);
 
@@ -216,38 +219,39 @@ if ($t_no > 0) {
             $t_cost = "2500";
         }
         ?>
-                        <td><?=$goods_name;?></td>
+                        <td><?php echo $goods_name; ?></td>
                         <td>1</td>
-                        <td><?=$row['recipient_name'] ? $row['recipient_zipno'] : $row['buyer_zipno'];?></td>
-                        <td><?=$row['recipient_name'] ? $row['recipient_address'] : $row['buyer_address'];?></td>
-                        <td><?=$row['recipient_name'] ? $row['recipient_phone'] : $row['buyer_phone'];?></td>
-                        <td><?=$row['recipient_name'] ? $row['recipient_hphone'] : $row['buyer_hphone'];?></td>
-                        <td><?=$str;?></td>
-                        <td><?=$t_cost;?></td>
+                        <td><?php echo $row['recipient_name'] ? $row['recipient_zipno'] : $row['buyer_zipno']; ?></td>
+                        <td><?php echo $row['recipient_name'] ? $row['recipient_address'] : $row['buyer_address']; ?></td>
+                        <td><?php echo $row['recipient_name'] ? $row['recipient_phone'] : $row['buyer_phone']; ?></td>
+                        <td><?php echo $row['recipient_name'] ? $row['recipient_hphone'] : $row['buyer_hphone']; ?></td>
+                        <td><?php echo $str; ?></td>
+                        <td><?php echo $t_cost; ?></td>
                         <td>
-                        <?php
-if ($row['memo']) {
+<?php
+
+        if ($row['memo']) {
             echo $row['memo'];
         }
 
         ?>
                         </td>
                       <!--
-                      <td><?=$row['recipient_name'] ? $row['buyer_name'] : "";?></td>
-                      <td><?=$row['recipient_name'] ? $row['buyer_phone'] : "";?></td>
+                      <td><?php echo $row['recipient_name'] ? $row['buyer_name'] : ""; ?></td>
+                      <td><?php echo $row['recipient_name'] ? $row['buyer_phone'] : ""; ?></td>
                       -->
                       </tr>
-                  <?php
-}
+<?php
+
+    }
     ; // for loop end
-    ?>
-                  <?php
 } else {
     ?>
                       <tr>
                         <td colspan="12"><p class="text-center">해당 주문내역이 없습니다.</p></td>
                       </tr>
-                  <?php
+<?php
+
 }
 ?>
                     </tbody>
@@ -264,32 +268,9 @@ if ($row['memo']) {
   <!--main content end-->
 
       <!--footer start-->
-    <?php include "../include/admin_footer.php";?>
+    <?php include_once "../include/admin_footer.php";?>
       <!--footer end-->
-  </section>
 
-    <!-- js placed at the end of the document so the pages load faster -->
-    <script src="/js/vendor/jquery-2.2.0.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script class="include" type="text/javascript" src="/admin/js/jquery.dcjqaccordion.2.7.js"></script>
-    <script src="/admin/js/jquery.scrollTo.min.js"></script>
-    <script src="/admin/js/jquery.nicescroll.js" type="text/javascript"></script>
-    <script src="/admin/js/respond.min.js" ></script>
-
-    <!--right slidebar-->
-    <script src="/admin/js/slidebars.min.js"></script>
-
-    <!--common script for all pages-->
-    <script src="/admin/js/common-scripts.js"></script>
-
-    <!--script for this page-->
-    <script src="/admin/js/sparkline-chart.js"></script>
-    <!-- // <script src="js/easy-pie-chart.js"></script> -->
-    <script src="/admin/js/count.js"></script>
-
-    <!-- custom scripts -->
-    <script src="/js/global.js" ></script>
-    <script src="/admin/js/admin.js" ></script>
     <script src="/admin/js/jquery-ui.min.js"></script>
     <script src="/admin/js/jq_datepicker.js" ></script>
   </body>

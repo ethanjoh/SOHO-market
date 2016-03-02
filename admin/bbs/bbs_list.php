@@ -3,11 +3,11 @@
   <body>
     <section id="container" >
         <!--header start-->
-        <?php include "../include/admin_head.php";?>
+        <?php include_once "../include/admin_head.php";?>
         <!--header end-->
 
         <!--sidebar start-->
-        <?php include "../include/admin_sidebar.php";?>
+        <?php include_once "../include/admin_sidebar.php";?>
         <!--sidebar end-->
 
     <!--main content start-->
@@ -348,48 +348,8 @@ if ("edit" == $mode) {
       <!--main content end-->
 
       <!--footer start-->
-    <?php include "../include/admin_footer.php";?>
+    <?php include_once "../include/admin_footer.php";?>
       <!--footer end-->
-  </section>
-
-    <!-- js placed at the end of the document so the pages load faster -->
-    <script src="/js/vendor/jquery-2.2.0.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script class="include" type="text/javascript" src="/admin/js/jquery.dcjqaccordion.2.7.js"></script>
-    <script src="/admin/js/jquery.scrollTo.min.js"></script>
-    <script src="/admin/js/jquery.nicescroll.js" type="text/javascript"></script>
-    <script src="/admin/js/jquery.sparkline.js" type="text/javascript"></script>
-    <!-- // <script src="jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script> -->
-    <script src="/admin/js/owl.carousel.js" ></script>
-    <script src="/admin/js/jquery.customSelect.min.js" ></script>
-    <script src="/admin/js/respond.min.js" ></script>
-
-    <!--right slidebar-->
-    <script src="/admin/js/slidebars.min.js"></script>
-
-    <!--common script for all pages-->
-    <script src="/admin/js/common-scripts.js"></script>
-
-    <!--script for this page-->
-    <script src="/admin/js/sparkline-chart.js"></script>
-    <!-- // <script src="js/easy-pie-chart.js"></script> -->
-    <script src="/admin/js/count.js"></script>
-
-    <!-- custom scripts -->
-    <script src="/js/global.js" ></script>
-    <script src="/admin/js/admin.js" ></script>
-    <script src="/admin/js/jquery-ui.min.js"></script>
-    <script src="/admin/js/jq_datepicker.js" ></script>
-
-    <script>
-
-      //custom select box
-
-      $(function(){
-        $('select.styled').customSelect();
-      });
-
-    </script>
 
   </body>
 </html>

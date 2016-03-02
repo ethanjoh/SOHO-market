@@ -3,11 +3,11 @@
   <body>
     <section id="container" >
         <!--header start-->
-        <?php include "../include/admin_head.php";?>
+        <?php include_once "../include/admin_head.php";?>
         <!--header end-->
 
         <!--sidebar start-->
-        <?php include "../include/admin_sidebar.php";?>
+        <?php include_once "../include/admin_sidebar.php";?>
         <!--sidebar end-->
 
 
@@ -69,21 +69,21 @@ if ($mode == "update") {
                   <div class="panel-body">
 
                     <form name="form1" method="post" class="form-horizontal" action="ca_msub_insert.php">
-                      <input type="hidden" name="mode" value="<?=$mode;?>">
-                      <input type="hidden" name="id" value="<?=$id;?>">
-                      <input type='hidden' name='lcode' value="<?=$lcode;?>">
+                      <input type="hidden" name="mode" value="<?php echo $mode; ?>">
+                      <input type="hidden" name="id" value="<?php echo $id; ?>">
+                      <input type='hidden' name='lcode' value="<?php echo $lcode; ?>">
 
                       <div class="form-group">
                           <label for="up_category" class="col-lg-2 col-sm-2 control-label">상위분류:</label>
                           <div class="col-sm-3">
-                            <input type="text" class="form-control" name="up_category" value="<?=$ca_m['name'];?>" readonly />
+                            <input type="text" class="form-control" name="up_category" value="<?php echo $ca_m['name']; ?>" readonly />
                           </div>
                       </div>
 
                       <div class="form-group">
                           <label for="code" class="col-lg-2 col-sm-2 control-label">코드:</label>
                           <div class="col-sm-3">
-                            <input type="text" class="form-control" name="code" value="<?=($mode == "insert") ? $max_code : $row['code'];?>" readonly />
+                            <input type="text" class="form-control" name="code" value="<?php echo ($mode == "insert") ? $max_code : $row['code']; ?>" readonly />
                             <p class="help">*자동입력(변경불가)</p>
                           </div>
                       </div>
@@ -91,7 +91,7 @@ if ($mode == "update") {
                       <div class="form-group">
                           <label for="ca_mname" class="col-lg-2 col-sm-2 control-label">중분류명:</label>
                           <div class="col-sm-3">
-                            <input type="text" class="form-control" name="ca_mname" value="<?=$row['name'];?>" />
+                            <input type="text" class="form-control" name="ca_mname" value="<?php echo $row['name']; ?>" />
                           </div>
                       </div>
 
@@ -114,36 +114,8 @@ if ($mode == "update") {
       <!--main content end-->
 
        <!--footer start-->
-    <?php include "../include/admin_footer.php";?>
+    <?php include_once "../include/admin_footer.php";?>
       <!--footer end-->
-  </section>
-
-    <!-- js placed at the end of the document so the pages load faster -->
-    <script src="/js/vendor/jquery-2.2.0.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script class="include" type="text/javascript" src="/admin/js/jquery.dcjqaccordion.2.7.js"></script>
-    <script src="/admin/js/jquery.scrollTo.min.js"></script>
-    <script src="/admin/js/jquery.nicescroll.js" type="text/javascript"></script>
-    <script src="/admin/js/jquery.sparkline.js" type="text/javascript"></script>
-    <!-- // <script src="jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script> -->
-    <script src="/admin/js/owl.carousel.js" ></script>
-    <script src="/admin/js/jquery.customSelect.min.js" ></script>
-    <script src="/admin/js/respond.min.js" ></script>
-
-    <!--right slidebar-->
-    <script src="/admin/js/slidebars.min.js"></script>
-
-    <!--common script for all pages-->
-    <script src="/admin/js/common-scripts.js"></script>
-
-    <!--script for this page-->
-    <script src="/admin/js/sparkline-chart.js"></script>
-    <!-- // <script src="js/easy-pie-chart.js"></script> -->
-    <script src="/admin/js/count.js"></script>
-
-    <!-- custom scripts -->
-    <script src="/js/global.js" ></script>
-    <script src="/admin/js/admin.js" ></script>
 
   </body>
 </html>

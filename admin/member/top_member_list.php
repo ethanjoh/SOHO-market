@@ -3,11 +3,11 @@
   <body>
     <section id="container" >
         <!--header start-->
-        <?php include "../include/admin_head.php";?>
+        <?php include_once "../include/admin_head.php";?>
         <!--header end-->
 
         <!--sidebar start-->
-        <?php include "../include/admin_sidebar.php";?>
+        <?php include_once "../include/admin_sidebar.php";?>
         <!--sidebar end-->
 
 
@@ -15,8 +15,11 @@
         <section id="main-content">
           <section class="wrapper">
 
-          <?php
-$mode           = set_var($_GET['mode']);
+<?php
+
+$mode = set_var($_GET['mode']);
+$page = set_var($_GET['page']);
+
 $search_keyword = '';
 $id             = '';
 $company_name   = '';
@@ -141,7 +144,8 @@ $total  = mysqli_num_rows($result);
                       </tr>
                     </thead>
                     <tbody>
-                  <?php
+<?php
+
 $scale = 20;
 $page  = (isset($_GET['page']) ? $_GET['page'] : '');
 
@@ -186,8 +190,9 @@ if ($total_2) {
                           <a href="javascript:open_win('mem_view_member.php?num=<?php echo $list['seq_num']; ?>&amp;page=<?php echo $page; ?>','nwin','scrollbars=yes,resizable=yes, width=800,height=650');"><?php echo $list['id']; ?></a>
                         </td>
                         <td>
-                            <?php
-if ($license_no[0] == "000") {
+<?php
+
+        if ($license_no[0] == "000") {
             echo '<img src="../images/user-medium-silhouette.png">';
         }
         ?>
@@ -200,8 +205,9 @@ if ($license_no[0] == "000") {
                         </td>
                         -->
                         <td><?php echo $list['dc_rate']; ?> % DC
-                          <?php
-switch ($list['tax']) {
+<?php
+
+        switch ($list['tax']) {
             case "E":echo " (VAT 별도)";
                 break;
             case "I":echo " (VAT 포함)";
@@ -212,13 +218,11 @@ switch ($list['tax']) {
                         <td><?php echo $list['o_phone']; ?></td>
                         <td><?php echo $list['md_name']; ?> ( <?php echo $list['job_title']; ?> )</td>
                         <td><?php echo $list['md_hphone']; ?></td>
+                        <td><?php echo $reg_date = substr($list['reg_date'], 0, 10); ?></td>
                         <td>
-                          <?php
-echo $reg_date = substr($list['reg_date'], 0, 10); ?>
-                        </td>
-                        <td>
-                          <?php
-if ($list['approved'] == "Y") {
+<?php
+
+        if ($list['approved'] == "Y") {
             echo '<i class="fa fa-check"></i> OK';
         } else {
             echo '<i class="fa fa-pause"></i> PAUSE';
@@ -230,8 +234,9 @@ if ($list['approved'] == "Y") {
                           <a type="button" class="btn btn-danger" href="mem_delete_member.php?m_num=<?php echo $list['seq_num']; ?>&amp;page=<?php echo $page; ?>" onclick="return confirm('이 회원의 모든 정보가 즉시 삭제되며 복구할 수 없습니다. \n삭제하시겠습니까?')"><i class="fa fa-trash-o"></i></a>
                         </td>
                       </tr>
-                      <?php
-} // end of for loop
+<?php
+
+    } // end of for loop
 
     mysqli_free_result($result_2);
 } else {
@@ -239,7 +244,8 @@ if ($list['approved'] == "Y") {
                       <tr>
                         <td colspan="11"><p>등록된 업체가 없습니다.</p></td>
                       </tr>
-                      <?php
+<?php
+
 }
 ?>
                       </tbody>
@@ -260,7 +266,8 @@ if ($list['approved'] == "Y") {
                       <tbody>
                         <tr>
                           <td>
-                            <?php
+<?php
+
 $md_email   = '';
 $o_phone    = '';
 $md_hphone  = '';
@@ -285,59 +292,8 @@ page_nav($totalpage, $cpage, $url);
       <!--main content end-->
 
     <!--footer start-->
-    <?php include "../include/admin_footer.php";?>
+    <?php include_once "../include/admin_footer.php";?>
       <!--footer end-->
-  </section>
-
-    <!-- js placed at the end of the document so the pages load faster -->
-    <script src="/js/vendor/jquery-2.2.0.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script class="include" type="text/javascript" src="/admin/js/jquery.dcjqaccordion.2.7.js"></script>
-    <script src="/admin/js/jquery.scrollTo.min.js"></script>
-    <script src="/admin/js/jquery.nicescroll.js" type="text/javascript"></script>
-    <script src="/admin/js/jquery.sparkline.js" type="text/javascript"></script>
-    <!-- // <script src="jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script> -->
-    <script src="/admin/js/owl.carousel.js" ></script>
-    <script src="/admin/js/jquery.customSelect.min.js" ></script>
-    <script src="/admin/js/respond.min.js" ></script>
-
-    <!--right slidebar-->
-    <script src="/admin/js/slidebars.min.js"></script>
-
-    <!--common script for all pages-->
-    <script src="/admin/js/common-scripts.js"></script>
-
-    <!--script for this page-->
-    <script src="/admin/js/sparkline-chart.js"></script>
-    <!-- // <script src="js/easy-pie-chart.js"></script> -->
-    <script src="/admin/js/count.js"></script>
-
-    <!-- custom scripts -->
-    <script src="/js/global.js" ></script>
-    <script src="/admin/js/admin.js" ></script>
-
-  <script>
-
-      //owl carousel
-
-      $(document).ready(function() {
-          $("#owl-demo").owlCarousel({
-              navigation : true,
-              slideSpeed : 300,
-              paginationSpeed : 400,
-              singleItem : true,
-              autoPlay:true
-
-          });
-      });
-
-      //custom select box
-
-      $(function(){
-          $('select.styled').customSelect();
-      });
-
-  </script>
 
   </body>
 </html>

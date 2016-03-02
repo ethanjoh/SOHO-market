@@ -1,83 +1,4 @@
-<?php
-
-include_once "../include/admin_auth.php";
-include_once "../../util/config.php";
-include_once "../../util/util.php";
-
-$connect = my_connect($host, $dbid, $dbpass, $dbname);
-
-//메타정보
-$info_query = "SELECT * FROM admin_setup";
-$info_res   = mysqli_query($connect, $info_query);
-$info       = mysqli_fetch_array($info_res);
-
-?>
-<!DOCTYPE html>
-<html lang="ko">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta name="keyword" content="">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <link rel="shortcut icon" href="/favicon.ico">
-
-    <title><?=$info['company_name'];?> :: 운영업체 관리자 홈</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="/css/bootstrap.css" rel="stylesheet">
-    <link href="/admin/css/bootstrap-reset.css" rel="stylesheet">
-    <!--external css-->
-    <link href="/css/font-awesome.min.css" rel="stylesheet" />
-
-    <!-- Custom styles for this template -->
-    <link href="/admin/css/style.css" rel="stylesheet">
-    <link href="/admin/css/style-responsive.css" rel="stylesheet" />
-    <link href="css/default.css" rel="stylesheet" type="text/css" />
-
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
-    <!--[if lt IE 9]>
-      <script src="js/html5shiv.js"></script>
-      <script src="js/respond.min.js"></script>
-    <![endif]-->
-
-    <script language="JavaScript">
-    <!--
-    function form_check() {
-      var form = document.mail;
-      if(!form.sender.value){
-        alert('보내는 사람 이름을 입력하지 않았습니다.');
-        form.sender.focus();
-        return;
-      }
-
-      if(!form.sender_email.value){
-        alert('보내는 사람 이메일을 입력하지 않았습니다.');
-        form.sender_email.focus();
-        return;
-      }
-
-      if(!form.subject.value){
-        alert('메일 제목을 입력하지 않았습니다.');
-        form.subject.focus();
-        return;
-      }
-
-    /*
-      if(!form.contents.value){
-        alert('발송 내용을 입력하지 않았습니다.');
-        form.contents.focus();
-        return;
-      }
-    */
-      oEditors.getById["contents"].exec("UPDATE_IR_FIELD", []);
-      form.submit();
-    }
-    //-->
-    </script>
-  </head>
+<?php include_once '../include/header.php';?>
 
   <body>
     <section id="container" >
@@ -112,13 +33,14 @@ $info       = mysqli_fetch_array($info_res);
           <!-- info end -->
 
           <form class="form-horizontal" role="form" method="post" name="mail" action="mem_sendmail_ok.php"  enctype="multipart/form-data">
-            <?php
+<?php
+
 $tot_cnt = sizeof($num);
 
 for ($i = 0; $i < sizeof($num); $i++) {
-    ?>
-            <input type=hidden name='num[]' value='<?=$num[$i];?>'>
-            <?php
+
+    echo '<input type=hidden name="num[]" value="' . $num[$i] . '">' . "\r\n";
+
 }
 ?>
             <!-- send mail start-->
@@ -126,7 +48,7 @@ for ($i = 0; $i < sizeof($num); $i++) {
               <div class="col-sm-12">
                 <section class="panel">
                   <header class="panel-heading table-head">
-                      메일 발송 (발송할 회원 수 : <?=$tot_cnt;?>)
+                      메일 발송 (발송할 회원 수 : <?php echo $tot_cnt; ?>)
                   </header>
                   <div class="panel-body">
                   <div class="table-responsive">
@@ -135,7 +57,7 @@ for ($i = 0; $i < sizeof($num); $i++) {
                       <tbody>
                         <tr>
                           <th>보내는 사람</th>
-                          <td><input type='text' size='100' name="sender" value="<?=$info['company_name'];?>">
+                          <td><input type='text' size='100' name="sender" value="<?php echo $info['company_name']; ?>">
                           </td>
                         </tr>
                         <tr>
@@ -155,8 +77,10 @@ for ($i = 0; $i < sizeof($num); $i++) {
                         <tr>
                           <th>발송 내용</th>
                           <td>
-                            <textarea name="contents" id="contents" style="width:100%; height:350px"></textarea>
-                            <!--<textarea name="contents" cols="60" rows="8" ></textarea>-->
+                            <textarea name="contents" class="form-control" id="contents"><?php echo stripslashes($row['contents']); ?></textarea>
+                            <script type="text/javascript">
+                                CKEDITOR.replace( 'contents' );
+                            </script>
                           </td>
                         </tr>
                       </tbody>
@@ -195,26 +119,10 @@ for ($i = 0; $i < sizeof($num); $i++) {
     <!--main content end-->
 
      <!--footer start-->
-    <?php include "../include/admin_footer.php";?>
+    <?php include_once "../include/admin_footer.php";?>
       <!--footer end-->
-  </section>
 
-    <!-- js placed at the end of the document so the pages load faster -->
-    <script src="/js/vendor/jquery-2.2.0.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/admin/js/jquery.dcjqaccordion.2.7.js" class="include" type="text/javascript" ></script>
-    <script src="/admin/js/jquery.scrollTo.min.js"></script>
-    <script src="/admin/js/jquery.nicescroll.js" type="text/javascript"></script>
-    <script src="/admin/js/jquery.customSelect.min.js" ></script>
-    <script src="/admin/js/respond.min.js" ></script>
-
-    <!--common script for all pages-->
-    <script src="/admin/js/common-scripts.js"></script>
-
-    <!-- custom scripts -->
-    <script src="/js/global.js" ></script>
-    <script src="/admin/js/admin.js" ></script>
-    <script src="js/HuskyEZCreator.js" charset="utf-8"></script>
+<!--     <script src="js/HuskyEZCreator.js" charset="utf-8"></script>
 
     <script>
     var oEditors = [];
@@ -227,7 +135,40 @@ for ($i = 0; $i < sizeof($num); $i++) {
       sSkinURI: "SEditorSkin.html",
       fCreator: "createSEditorInIFrame"
     });
-    </script>
+    </script> -->
+    <script language="JavaScript">
+    <!--
+    function form_check() {
+      var form = document.mail;
+      if(!form.sender.value){
+        alert('보내는 사람 이름을 입력하지 않았습니다.');
+        form.sender.focus();
+        return;
+      }
 
+      if(!form.sender_email.value){
+        alert('보내는 사람 이메일을 입력하지 않았습니다.');
+        form.sender_email.focus();
+        return;
+      }
+
+      if(!form.subject.value){
+        alert('메일 제목을 입력하지 않았습니다.');
+        form.subject.focus();
+        return;
+      }
+
+    /*
+      if(!form.contents.value){
+        alert('발송 내용을 입력하지 않았습니다.');
+        form.contents.focus();
+        return;
+      }
+    */
+      // oEditors.getById["contents"].exec("UPDATE_IR_FIELD", []);
+      form.submit();
+    }
+    //-->
+    </script>
   </body>
 </html>

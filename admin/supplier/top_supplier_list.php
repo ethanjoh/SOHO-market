@@ -1,68 +1,20 @@
-<?php
-
-include_once "../include/admin_auth.php";
-include_once "../../util/config.php";
-include_once "../../util/util.php";
-
-$connect = my_connect($host, $dbid, $dbpass, $dbname);
-
-//메타정보
-$info_query = "SELECT * FROM admin_setup";
-$info_res   = mysqli_query($connect, $info_query);
-$info       = mysqli_fetch_array($info_res);
-
-?>
-<!DOCTYPE html>
-<html lang="ko">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta name="keyword" content="">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <link rel="shortcut icon" href="/favicon.ico">
-
-    <title><?=$info['company_name'];?> :: 운영업체 관리자 홈</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="/css/bootstrap.css" rel="stylesheet">
-    <link href="/admin/css/bootstrap-reset.css" rel="stylesheet">
-    <!--external css-->
-    <link href="/css/font-awesome.min.css" rel="stylesheet" />
-    <link href="/admin/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css" media="screen"/>
-    <link rel="stylesheet" href="/admin/css/owl.carousel.css" type="text/css">
-
-    <!--right slidebar-->
-    <link href="/admin/css/slidebars.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-
-    <link href="/admin/css/style.css" rel="stylesheet">
-    <link href="/admin/css/style-responsive.css" rel="stylesheet" />
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
-    <!--[if lt IE 9]>
-      <script src="js/html5shiv.js"></script>
-      <script src="js/respond.min.js"></script>
-    <![endif]-->
-  </head>
+<?php include_once '../include/header.php';?>
 
   <body>
     <section id="container" >
         <!--header start-->
-        <?php include "../include/admin_head.php";?>
+        <?php include_once "../include/admin_head.php";?>
         <!--header end-->
 
         <!--sidebar start-->
-        <?php include "../include/admin_sidebar.php";?>
+        <?php include_once "../include/admin_sidebar.php";?>
         <!--sidebar end-->
 
 
         <!--main content start-->
         <section id="main-content">
           <section class="wrapper">
-          <?php
+<?php
 
 if ($mode == "search") {
 
@@ -101,19 +53,19 @@ if ($result) {
                         <div class="form-group">
                             <label for="id" class="col-lg-2 col-sm-2 control-label">아이디:</label>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" name="id" value="<?=$id;?>">
+                                <input type="text" class="form-control" name="id" value="<?php echo $id; ?>">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="company_name" class="col-lg-2 col-sm-2 control-label">업체명:</label>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" name="company_name" value="<?=$company_name;?>">
+                                <input type="text" class="form-control" name="company_name" value="<?php echo $company_name; ?>">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="phone" class="col-lg-2 col-sm-2 control-label">연락처:</label>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" name="phone" value="<?=$phone;?>" >
+                                <input type="text" class="form-control" name="phone" value="<?php echo $phone; ?>" >
                                 <p class="help-block">(예 : 02-123-4567 또는 010-1234-5678)</p>
                             </div>
                         </div>
@@ -134,7 +86,7 @@ if ($result) {
               <div class="col-sm-12">
                 <section class="panel">
                   <header class="panel-heading table-head">
-                      공급업체 리스트 ( <?=number_format($total);?> 개 ) <a href="supplier2excel.php"><i class="fa fa-file-excel-o"></i> 엑셀로 저장하기</a>
+                      공급업체 리스트 ( <?php echo number_format($total); ?> 개 ) <a href="supplier2excel.php"><i class="fa fa-file-excel-o"></i> 엑셀로 저장하기</a>
                   </header>
                   <div class="panel-body">
                   <div class="table-responsive">
@@ -153,7 +105,8 @@ if ($result) {
                       </tr>
                     </thead>
                     <tbody>
-                      <?php
+<?php
+
 $scale = 30;
 
 if ($page == '') {
@@ -194,17 +147,18 @@ if ($total_2) {
         $bunho = $total - ($i + $cline) + 1;
         ?>
                       <tr>
-                        <th><?=$bunho;?></th>
+                        <th><?php echo $bunho; ?></th>
                         <td >
-                          <a href="javascript:open_win('view_supplier.php?num=<?=$list['seq_num'];?>&amp;page=<?=$page;?>','nwin','scrollbars=yes,resizable=yes, width=850,height=650');"><?=$list[id];?></a>
+                          <a href="javascript:open_win('view_supplier.php?num=<?php echo $list['seq_num']; ?>&amp;page=<?php echo $page; ?>','nwin','scrollbars=yes,resizable=yes, width=850,height=650');"><?php echo $list[id]; ?></a>
                         </td>
                         <td>
-                          <?=$list['company_name'];?><?=$list['homepage'] ? "&nbsp;&nbsp;<a href=\"http://$list[homepage]\" target=\"_blank\"><img src=\"../images/browser_explorer.png\" alt=\"홈페이지 가기\" /></a>" : "";?>
+                          <?php echo $list['company_name']; ?><?php echo $list['homepage'] ? "&nbsp;&nbsp;<a href=\"http://$list[homepage]\" target=\"_blank\"><img src=\"../images/browser_explorer.png\" alt=\"홈페이지 가기\" /></a>" : ""; ?>
                         </td>
                         <td>
-                          <?=$list['margin'];?> %
-                          <?php
-switch ($list['tax']) {
+                          <?php echo $list['margin']; ?> %
+<?php
+
+        switch ($list['tax']) {
             case "E":
                 echo " (VAT 별도)";
                 break;
@@ -214,16 +168,17 @@ switch ($list['tax']) {
         }
         ?>
                         </td>
-                        <td><?=$list['o_phone'];?></td>
-                        <td><?=$list['md_name'];?></td>
-                        <td><?=$list['md_hphone'];?></td>
-                        <td><?=$list['reg_date'];?></td>
+                        <td><?php echo $list['o_phone']; ?></td>
+                        <td><?php echo $list['md_name']; ?></td>
+                        <td><?php echo $list['md_hphone']; ?></td>
+                        <td><?php echo $list['reg_date']; ?></td>
                         <td>
-                          <a type="button" class="btn btn-danger" href="delete_supplier.php?m_num=<?=$list['seq_num'];?>&amp;page=<?=$page;?>" onclick="return confirm('이 회원의 모든 정보가 즉시 삭제되며 복구할 수 없습니다 \n삭제하시겠습니까?')"><i class="fa fa-trash-o"></i></a>
+                          <a type="button" class="btn btn-danger" href="delete_supplier.php?m_num=<?php echo $list['seq_num']; ?>&amp;page=<?php echo $page; ?>" onclick="return confirm('이 회원의 모든 정보가 즉시 삭제되며 복구할 수 없습니다 \n삭제하시겠습니까?')"><i class="fa fa-trash-o"></i></a>
                         </td>
                       </tr>
-                      <?php
-} // end of for loop
+<?php
+
+    } // end of for loop
 
     mysqli_free_result($result_2);
 } else {
@@ -231,7 +186,8 @@ switch ($list['tax']) {
                       <tr>
                         <td colspan="9"><p>등록된 공급업체가 없습니다.</p></td>
                       </tr>
-                      <?php
+<?php
+
 }
 ?>
                     </tbody>
@@ -251,8 +207,9 @@ switch ($list['tax']) {
                       <tbody>
                         <tr>
                           <td>
-                            <?php
-$url = $PHP_SELF . "?id=" . $id . "&mode=" . $mode . "&license_no=" . $license_no . "&md_email=" . $md_email . "&o_phone=" . $o_phone . "&company_name=" . $company_name . "&md_hphone=" . $md_hphone;
+<?php
+
+$url = $_SERVER['PHP_SELF'] . "?id=" . $id . "&mode=" . $mode . "&license_no=" . $license_no . "&md_email=" . $md_email . "&o_phone=" . $o_phone . "&company_name=" . $company_name . "&md_hphone=" . $md_hphone;
 page_nav($totalpage, $cpage, $url);
 ?>
                           </td>
@@ -269,59 +226,8 @@ page_nav($totalpage, $cpage, $url);
       <!--main content end-->
 
     <!--footer start-->
-    <?php include "../include/admin_footer.php";?>
+    <?php include_once "../include/admin_footer.php";?>
       <!--footer end-->
-  </section>
-
-    <!-- js placed at the end of the document so the pages load faster -->
-    <script src="/js/vendor/jquery-2.2.0.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script class="include" type="text/javascript" src="/admin/js/jquery.dcjqaccordion.2.7.js"></script>
-    <script src="/admin/js/jquery.scrollTo.min.js"></script>
-    <script src="/admin/js/jquery.nicescroll.js" type="text/javascript"></script>
-    <script src="/admin/js/jquery.sparkline.js" type="text/javascript"></script>
-    <!-- // <script src="jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script> -->
-    <script src="/admin/js/owl.carousel.js" ></script>
-    <script src="/admin/js/jquery.customSelect.min.js" ></script>
-    <script src="/admin/js/respond.min.js" ></script>
-
-    <!--right slidebar-->
-    <script src="/admin/js/slidebars.min.js"></script>
-
-    <!--common script for all pages-->
-    <script src="/admin/js/common-scripts.js"></script>
-
-    <!--script for this page-->
-    <script src="/admin/js/sparkline-chart.js"></script>
-    <!-- // <script src="js/easy-pie-chart.js"></script> -->
-    <script src="/admin/js/count.js"></script>
-
-    <!-- custom scripts -->
-    <script src="/js/global.js" ></script>
-    <script src="/admin/js/admin.js" ></script>
-
-  <script>
-
-      //owl carousel
-
-      $(document).ready(function() {
-          $("#owl-demo").owlCarousel({
-              navigation : true,
-              slideSpeed : 300,
-              paginationSpeed : 400,
-              singleItem : true,
-              autoPlay:true
-
-          });
-      });
-
-      //custom select box
-
-      $(function(){
-          $('select.styled').customSelect();
-      });
-
-  </script>
 
   </body>
 </html>

@@ -3,11 +3,11 @@
   <body>
     <section id="container" >
         <!--header start-->
-        <?php include "../include/admin_head.php";?>
+        <?php include_once "../include/admin_head.php";?>
         <!--header end-->
 
         <!--sidebar start-->
-        <?php include "../include/admin_sidebar.php";?>
+        <?php include_once "../include/admin_sidebar.php";?>
         <!--sidebar end-->
 
     <!--main content start-->
@@ -33,8 +33,8 @@
         <!-- calendar start -->
         <form name="form" method="get" action="tax_list.php" class="form-inline form-group" role="form">
         <input type="hidden" name="mode" value="date" />
-        <input type="hidden" name="key" value="<?=$key;?>" />
-        <input type="hidden" name="key_value" value="<?=$key_value;?>" />
+        <input type="hidden" name="key" value="<?php echo $key; ?>" />
+        <input type="hidden" name="key_value" value="<?php echo $key_value; ?>" />
         <div class="panel panel-info">
           <div class="panel-heading">날짜 검색</div>
             <div class="panel-body text-center">
@@ -58,8 +58,8 @@
         </form>
         <!-- calendar end -->
 
+<?php
 
-            <?php
 $total = 0; //공급가합
 $sales = array();
 
@@ -75,7 +75,7 @@ if ($mode == "date") {
               <div class="col-sm-12">
                 <section class="panel">
                   <header class="panel-heading table-head">
-                      기간별 정산 리스트 ( <?=$date1;?> ~ <?=$date2;?> )
+                      기간별 정산 리스트 ( <?php echo $date1; ?> ~ <?php echo $date2; ?> )
                     </header>
                     <div class="panel-body">
                       <div class="table-responsive">
@@ -91,7 +91,7 @@ if ($mode == "date") {
                           </tr>
                         </thead>
                         <tbody>
-                        <?php
+<?php
 
     //1. 기간별 주문을 구한다.
     $sql = "SELECT * FROM mall_order
@@ -118,10 +118,11 @@ if ($mode == "date") {
     foreach ($sum as $id => $sub_total) {
         ?>
                           <tr>
-                            <td><?=$i + 1;?></td>
+                            <td><?php echo $i + 1; ?></td>
                             <td>
-                              <?php
-$c_sql    = "SELECT * FROM member WHERE id='$id' ";
+<?php
+
+        $c_sql    = "SELECT * FROM member WHERE id='$id' ";
         $c_result = mysqli_query($connect, $c_sql);
         $c_row    = mysqli_fetch_array($c_result);
 
@@ -129,17 +130,18 @@ $c_sql    = "SELECT * FROM member WHERE id='$id' ";
         ?>
                             </td>
                             <td>의료기기</td>
-                            <td><?=$c_row['seller'] == '2' ? "위탁" : "";?></td>
-                            <td><?=number_format($sub_total);?> (<?=number_format($sub_total * 0.1);?>)<br><strong><?=number_format($sub_total * 1.1);?></strong></td>
+                            <td><?php echo $c_row['seller'] == '2' ? "위탁" : ""; ?></td>
+                            <td><?php echo number_format($sub_total); ?> (<?php echo number_format($sub_total * 0.1); ?>)<br><strong><?php echo number_format($sub_total * 1.1); ?></strong></td>
                             <td>
 <!--
-                              <form name="reg<?=$i;?>" class="form-inline" role="form" method="post" action="reg_tax.php?m=date">
+                              <form name="reg<?php echo $i; ?>" class="form-inline" role="form" method="post" action="reg_tax.php?m=date">
                               <div class="form-group">
                                 <label for="reg_date"><i class="fa fa-calendar"></i>발행일 :</label>
-                                <input type="text" class="form-control reg_date" name="reg_date" id="reg_date<?=$i;?>"  value="" >
+                                <input type="text" class="form-control reg_date" name="reg_date" id="reg_date<?php echo $i; ?>"  value="" >
                               </div>
-                                <?php
-if ($c_row['payment_day'] == "1") {
+<?php
+
+        if ($c_row['payment_day'] == "1") {
             echo "<input type=\"radio\" name=\"paid\" value=\"Y\" checked />영수\n
                                         <input type=\"radio\" name=\"paid\" value=\"N\" />청구\n";
         } else {
@@ -147,16 +149,17 @@ if ($c_row['payment_day'] == "1") {
                                         <input type=\"radio\" name=\"paid\" value=\"N\" checked />청구\n";
         }
         ?>
-                                <input type="hidden" name="id" value="<?=$id;?>" />
-                                <input type="hidden" name="sum" value="<?=$sub_total;?>" />
+                                <input type="hidden" name="id" value="<?php echo $id; ?>" />
+                                <input type="hidden" name="sum" value="<?php echo $sub_total; ?>" />
                                 <input type="hidden" name="goods_name" value="의료기기" />
-                                <input type="hidden" name="date1" value="<?=$date1;?>" />
-                                <input type="hidden" name="date2" value="<?=$date2;?>" />
-                                <button class="btn btn-success" href="" onclick="javascript:document.reg<?=$i;?>.submit()">발행</button>
+                                <input type="hidden" name="date1" value="<?php echo $date1; ?>" />
+                                <input type="hidden" name="date2" value="<?php echo $date2; ?>" />
+                                <button class="btn btn-success" href="" onclick="javascript:document.reg<?php echo $i; ?>.submit()">발행</button>
                               </form>
                                -->
-                                <?php
-if ($c_row['payment_day'] == "1") {
+<?php
+
+        if ($c_row['payment_day'] == "1") {
             echo "<input type=\"radio\" name=\"paid[<?=$i?>]\" value=\"Y\" checked />영수\n
                                         <input type=\"radio\" name=\"paid[<?=$i?>]\" value=\"N\" />청구\n";
         } else {
@@ -164,19 +167,20 @@ if ($c_row['payment_day'] == "1") {
                                         <input type=\"radio\" name=\"paid[<?=$i?>]\" value=\"N\" checked />청구\n";
         }
         ?>
-<!--                                <input type="radio" name="paid[<?=$i;?>]" value="Y">영수
-                               <input type="radio" name="paid[<?=$i;?>]" value="N" checked>청구 -->
+<!--                                <input type="radio" name="paid[<?php echo $i; ?>]" value="Y">영수
+                               <input type="radio" name="paid[<?php echo $i; ?>]" value="N" checked>청구 -->
                             </td>
                           </tr>
-                          <?php
+<?php
+
 /*
-        if($i!=0) {
-        $temp_createdate .= ",";
-        $temp_total .= ",";
-        }
-        $temp_createdate .= $date;
-        $temp_total .= $sub_total;
-         */
+if($i!=0) {
+$temp_createdate .= ",";
+$temp_total .= ",";
+}
+$temp_createdate .= $date;
+$temp_total .= $sub_total;
+ */
         $i++;
     }
 
@@ -184,7 +188,7 @@ if ($c_row['payment_day'] == "1") {
                           </tr>
                           <tr>
                             <td colspan="4"><strong>매출액 총합(VAT 포함):</strong></td>
-                            <td><?=number_format($total);?> (<?=number_format($total * 0.1);?>)<br><strong><?=number_format($total * 1.1);?></strong></td>
+                            <td><?php echo number_format($total); ?> (<?php echo number_format($total * 0.1); ?>)<br><strong><?php echo number_format($total * 1.1); ?></strong></td>
                             <td>&nbsp;</td>
                           </tr>
                         </tbody>
@@ -202,11 +206,12 @@ if ($c_row['payment_day'] == "1") {
                     <button class="btn btn-success" onclick="excel_f.submit();"><i class="fa fa-file-excel-o"></i> 홈택스 업로드용 엑셀로 저장하기</button>
                   </form> -->
 
-                  <a type="button" class="btn btn-success" href="hometax_excel.php?date1=<?=$date1;?>&date2=<?=$date2;?>"><i class="fa fa-file-excel-o"></i> 홈택스 업로드용 엑셀로 저장하기</a>
+                  <a type="button" class="btn btn-success" href="hometax_excel.php?date1=<?php echo $date1; ?>&date2=<?php echo $date2; ?>"><i class="fa fa-file-excel-o"></i> 홈택스 업로드용 엑셀로 저장하기</a>
                 </div>
               </div>
 
-              <?php
+<?php
+
 } else {
     ?>
 
@@ -217,7 +222,8 @@ if ($c_row['payment_day'] == "1") {
                 </div>
               </div>
 
-            <?php
+<?php
+
 }
 ; // end of else
 ?>
@@ -226,24 +232,9 @@ if ($c_row['payment_day'] == "1") {
       <!--main content end-->
 
       <!--footer start-->
-    <?php include "../include/admin_footer.php";?>
+    <?php include_once '../include/admin_footer.php';?>
       <!--footer end-->
-  </section>
 
-    <!-- js placed at the end of the document so the pages load faster -->
-    <script src="/js/vendor/jquery-2.2.0.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script class="include" type="text/javascript" src="/admin/js/jquery.dcjqaccordion.2.7.js"></script>
-    <script src="/admin/js/jquery.scrollTo.min.js"></script>
-    <script src="/admin/js/jquery.nicescroll.js" type="text/javascript"></script>
-    <script src="/admin/js/respond.min.js" ></script>
-
-    <!--common script for all pages-->
-    <script src="/admin/js/common-scripts.js"></script>
-
-    <!-- custom scripts -->
-    <script src="/js/global.js" ></script>
-    <script src="/admin/js/admin.js" ></script>
     <script src="/admin/js/jquery-ui.min.js"></script>
     <script src="/admin/js/jq_datepicker.js" ></script>
 

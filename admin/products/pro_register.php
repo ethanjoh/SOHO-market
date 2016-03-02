@@ -3,10 +3,10 @@
 	<body>
 		<section id="container" >
 			<!--header start-->
-			<?php include "../include/admin_head.php";?>
+			<?php include_once "../include/admin_head.php";?>
 			<!--header end-->
 			<!--sidebar start-->
-			<?php include "../include/admin_sidebar.php";?>
+			<?php include_once "../include/admin_sidebar.php";?>
 			<!--sidebar end-->
 			<!--main content start-->
 			<section id="main-content">
@@ -127,7 +127,7 @@ if ("update" == $mode) {
 													<tr >
 														<th><img src="../images/icn_04.gif" width="24" height="14" alt="필수" /> 분류</th>
 														<td>
-															<!-- <select class="form-control" name="lcode" onChange="change_lcode(<?=$p_num;?>, <?=$lcode;?>)"> -->
+															<!-- <select class="form-control" name="lcode" onChange="change_lcode(<?php echo $p_num; ?>, <?php echo $lcode; ?>)"> -->
 															<select class="form-control" name="lcode">
 
 																<option value="">선택하세요</option>
@@ -158,7 +158,7 @@ if ("update" == $mode) {
 															</select>
 
 															<select class="form-control" name="mcode">
-															<!-- <select class="form-control" name="mcode" onChange="change_mcode(<?=$p_num;?>, <?=$lcode;?>, <?=$mcode;?>)"> -->
+															<!-- <select class="form-control" name="mcode" onChange="change_mcode(<?php echo $p_num; ?>, <?php echo $lcode; ?>, <?php echo $mcode; ?>)"> -->
 
 																<option value="">선택하세요</option>
 <?php
@@ -856,38 +856,10 @@ if ($update_row['restock_date'] == "1111-00-00") {
 		</section>
 	</section>
 	<!--main content end-->
-	</section>
-	<!-- js placed at the end of the document so the pages load faster -->
-	<script src="/js/vendor/jquery-2.2.0.min.js"></script>
-	<script src="/js/bootstrap.min.js"></script>
-	<script src="/admin/js/jquery.dcjqaccordion.2.7.js" class="include" type="text/javascript" ></script>
-	<script src="/admin/js/jquery.scrollTo.min.js"></script>
-	<script src="/admin/js/jquery.nicescroll.js" type="text/javascript"></script>
-	<script src="/admin/js/respond.min.js" ></script>
-	<!--common script for all pages-->
-	<script src="/admin/js/common-scripts.js"></script>
-	<!-- custom scripts -->
-	<script src="/js/global.js" ></script>
-	<script src="/admin/js/admin.js" ></script>
-	<script src="js/HuskyEZCreator.js" charset="utf-8"></script>
 
-<!-- 	<script>
-		var oEditors = [];
-		nhn.husky.EZCreator.createInIFrame({
-			oAppRef: oEditors,
-			elPlaceHolder: "contents",
-			sSkinURI: "SmartEditor2Skin.html",
-			htParams : {bUseToolbar : true,
-			fOnBeforeUnload : function(){
-			//alert("아싸!");
-			}
-			}, //boolean
-			fOnAppLoad : function(){
-			//예제 코드
-			//oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
-			},
-			fCreator: "createSEditor2"
-		});
-	</script> -->
+     <!--footer start-->
+    <?php include_once "../include/admin_footer.php";?>
+      <!--footer end-->
+
 	</body>
 </html>

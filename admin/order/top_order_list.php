@@ -512,6 +512,8 @@ page_nav($totalpage, $cpage, $url);
 	  <?php include_once "../include/admin_footer.php";?>
       <!--footer end-->
 
+    <script src="/admin/js/jquery-ui.min.js"></script>
+    <script src="/admin/js/jq_datepicker.js" ></script>
 	<script>
 		$(function() {
 

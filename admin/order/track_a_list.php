@@ -3,11 +3,11 @@
   <body>
     <section id="container" >
         <!--header start-->
-        <?php include "../include/admin_head.php";?>
+        <?php include_once "../include/admin_head.php";?>
         <!--header end-->
 
         <!--sidebar start-->
-        <?php include "../include/admin_sidebar.php";?>
+        <?php include_once "../include/admin_sidebar.php";?>
         <!--sidebar end-->
 
     <!--main content start-->
@@ -16,7 +16,8 @@
 
       <form action="track_a_list.php" class="form-inline" role="form" name="f" method="post" >
 
-      <?php
+<?php
+
 $mode      = set_var($_GET['mode']);
 $page      = set_var($_GET['page']);
 $date1     = set_var($_GET['date1']);
@@ -107,7 +108,7 @@ $scale1 = $limit - $cline;
         <div class="col-sm-12">
           <section class="panel">
             <header class="panel-heading table-head">
-                운송장번호 입력 (총 <?=number_format($total);?> 건)
+                운송장번호 입력 (총 <?php echo number_format($total); ?> 건)
             </header>
               <div class="panel-body">
                 <div class="table-responsive">
@@ -121,7 +122,8 @@ $scale1 = $limit - $cline;
                     </tr>
                   </thead>
                   <tbody>
-                  <?php
+<?php
+
 switch ($mode) {
     case 'search':
         $sql_4 = "SELECT * FROM mall_order
@@ -152,25 +154,26 @@ if ($t_no > 0) {
         ?>
                     <tr>
                       <td>
-                        <a href="or_view.php?mode=<?=$mode;?>&amp;oid=<?=$row['num'];?>&amp;key=<?=$key;?>&amp;key_value=<?=$key_value;?>&amp;page=<?=$page;?>">
-                        <?=$row['orderid'];?></a>
+                        <a href="or_view.php?mode=<?php echo $mode; ?>&amp;oid=<?php echo $row['num']; ?>&amp;key=<?php echo $key; ?>&amp;key_value=<?php echo $key_value; ?>&amp;page=<?php echo $page; ?>">
+                        <?php echo $row['orderid']; ?></a>
                       </td>
-                      <td><?=$row['createdate'];?></td>
-                      <td><?=$row['recipient_name'] ? $row['recipient_name'] : $row['buyer_name'];?></td>
+                      <td><?php echo $row['createdate']; ?></td>
+                      <td><?php echo $row['recipient_name'] ? $row['recipient_name'] : $row['buyer_name']; ?></td>
                       <td>
                         <form name="form1" class="form-inline" role="form" method="get" action="or_changed.php">
                           <input type="hidden" name="mode" value="a" />
-                          <input type="hidden" name="oid" value="<?=$row['num'];?>" />
-                          <input type="hidden" name="last_amount" value="<?=$row['last_amount'];?>" />
-                          <input type="hidden" name="senddate" value="<?=$today;?>" />
-                          <input type="text" class="form-control" name="track_no" value="<?=$row['track_no'];?>" size="80" />
+                          <input type="hidden" name="oid" value="<?php echo $row['num']; ?>" />
+                          <input type="hidden" name="last_amount" value="<?php echo $row['last_amount']; ?>" />
+                          <input type="hidden" name="senddate" value="<?php echo $today; ?>" />
+                          <input type="text" class="form-control" name="track_no" value="<?php echo $row['track_no']; ?>" size="80" />
                           &nbsp;
                           <button class="btn btn-success" type="submit" onclick="form1.submit()"><i class="fa fa-paper-plane"></i> 발 송</button>
                         </form>
                       </td>
                     </tr>
-                    <?php
-} // for loop end
+<?php
+
+    } // for loop end
 
 } else {
 
@@ -178,7 +181,8 @@ if ($t_no > 0) {
                     <tr>
                       <td colspan="4"><p class="text-center">송장입력이 완료되었거나 해당 주문내역이 없습니다.</p></td>
                     </tr>
-                    <?php
+<?php
+
 }
 ?>
                   </tbody>
@@ -199,7 +203,8 @@ if ($t_no > 0) {
                       <tbody>
                         <tr>
                           <td>
-                            <?php
+<?php
+
 $url = $_SERVER['PHP_SELF'] . '?mode=' . $mode . '&key=' . $key . '&key_value=' . $key_value;
 page_nav($totalpage, $cpage, $url);
 ?>
@@ -235,24 +240,9 @@ page_nav($totalpage, $cpage, $url);
       <!--main content end-->
 
       <!--footer start-->
-    <?php include "../include/admin_footer.php";?>
+    <?php include_once "../include/admin_footer.php";?>
       <!--footer end-->
-  </section>
 
-    <!-- js placed at the end of the document so the pages load faster -->
-    <script src="/js/vendor/jquery-2.2.0.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script class="include" type="text/javascript" src="/admin/js/jquery.dcjqaccordion.2.7.js"></script>
-    <script src="/admin/js/jquery.scrollTo.min.js"></script>
-    <script src="/admin/js/jquery.nicescroll.js" type="text/javascript"></script>
-    <script src="/admin/js/respond.min.js" ></script>
-
-    <!--common script for all pages-->
-    <script src="/admin/js/common-scripts.js"></script>
-
-    <!-- custom scripts -->
-    <script src="/js/global.js" ></script>
-    <script src="/admin/js/admin.js" ></script>
     <script src="/admin/js/jquery-ui.min.js"></script>
     <script src="/admin/js/jq_datepicker.js" ></script>
 

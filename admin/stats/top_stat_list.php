@@ -4,17 +4,20 @@
   <body>
     <section id="container" >
         <!--header start-->
-        <?php include "../include/admin_head.php";?>
+        <?php include_once "../include/admin_head.php";?>
         <!--header end-->
 
         <!--sidebar start-->
-        <?php include "../include/admin_sidebar.php";?>
+        <?php include_once "../include/admin_sidebar.php";?>
         <!--sidebar end-->
 
     <!--main content start-->
     <section id="main-content">
       <section class="wrapper">
-      <?php
+
+<?php
+
+$page = set_var($_GET['page']);
 
 if ($mode == 'search') {
     if ($id) {
@@ -49,13 +52,13 @@ $total  = mysqli_num_rows($result);
                   <div class="form-group">
                       <label for="id" class="col-lg-2 col-sm-2 control-label">아이디:</label>
                       <div class="col-sm-3">
-                          <input type="text" class="form-control" name="id" value="<?=$id;?>">
+                          <input type="text" class="form-control" name="id" value="<?php echo $id; ?>">
                       </div>
                   </div>
                   <div class="form-group">
                       <label for="company_name" class="col-lg-2 col-sm-2 control-label">업체명:</label>
                       <div class="col-sm-3">
-                          <input type="text" class="form-control" name="company_name" value="<?=$company_name;?>">
+                          <input type="text" class="form-control" name="company_name" value="<?php echo $company_name; ?>">
                       </div>
                   </div>
                   <div class="form-group row">
@@ -76,7 +79,7 @@ $total  = mysqli_num_rows($result);
           <div class="col-sm-12">
             <section class="panel">
               <header class="panel-heading table-head">
-                  업체 목록 ( <?=number_format($total);?> 개 )<p>(정산할 업체를 선택하세요.)
+                  업체 목록 ( <?php echo number_format($total); ?> 개 )<p>(정산할 업체를 선택하세요.)
                 </header>
                 <div class="panel-body">
                   <div class="table-responsive">
@@ -92,7 +95,8 @@ $total  = mysqli_num_rows($result);
                       </tr>
                     </thead>
                     <tbody>
-                    <?php
+<?php
+
 $scale = 30;
 if ($page == '') {
     $page = 1;
@@ -130,14 +134,15 @@ for ($i = 1; $list = mysqli_fetch_array($result_2); $i++) {
 
     ?>
                       <tr>
-                        <td><?=$bunho;?></td>
-                          <td><a href="mem_stat_list.php?id=<?=$list['id'];?>"><?=$list['id'];?></a></td>
-                          <td><?=$list['company_name'];?></td>
-                          <td><?=$list['license_no'];?></td>
-                          <td><?=$list['o_phone'];?></td>
-                          <td><?=$list['md_name'];?></td>
+                        <td><?php echo $bunho; ?></td>
+                          <td><a href="mem_stat_list.php?id=<?php echo $list['id']; ?>"><?php echo $list['id']; ?></a></td>
+                          <td><?php echo $list['company_name']; ?></td>
+                          <td><?php echo $list['license_no']; ?></td>
+                          <td><?php echo $list['o_phone']; ?></td>
+                          <td><?php echo $list['md_name']; ?></td>
                       </tr>
-                      <?php
+<?php
+
 }
 mysqli_free_result($result_2);
 ?>
@@ -158,7 +163,8 @@ mysqli_free_result($result_2);
                   <tbody>
                     <tr>
                       <td>
-                        <?php
+<?php
+
 $url = "top_stat_list.php?id=" . $id . "&mode=" . $mode . "&license_no=" . $license_no . "&company_name=" . $company_name;
 page_nav($totalpage, $cpage, $url);
 ?>
@@ -176,27 +182,8 @@ page_nav($totalpage, $cpage, $url);
       <!--main content end-->
 
       <!--footer start-->
-    <?php include "../include/admin_footer.php";?>
+    <?php include_once '../include/admin_footer.php';?>
       <!--footer end-->
-  </section>
-
-    <!-- js placed at the end of the document so the pages load faster -->
-    <script src="/js/vendor/jquery-2.2.0.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script class="include" type="text/javascript" src="/admin/js/jquery.dcjqaccordion.2.7.js"></script>
-    <script src="/admin/js/jquery.scrollTo.min.js"></script>
-    <script src="/admin/js/jquery.nicescroll.js" type="text/javascript"></script>
-    <script src="/admin/js/respond.min.js" ></script>
-
-    <!--common script for all pages-->
-    <script src="/admin/js/common-scripts.js"></script>
-
-    <!-- custom scripts -->
-    <script src="/js/global.js" ></script>
-    <script src="/admin/js/admin.js" ></script>
-
-  </body>
-</html>
 
 </body>
 </html>

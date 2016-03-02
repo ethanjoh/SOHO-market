@@ -3,11 +3,11 @@
   <body>
     <section id="container" >
         <!--header start-->
-        <?php include "../include/admin_head.php";?>
+        <?php include_once "../include/admin_head.php";?>
         <!--header end-->
 
         <!--sidebar start-->
-        <?php include "../include/admin_sidebar.php";?>
+        <?php include_once "../include/admin_sidebar.php";?>
         <!--sidebar end-->
 
 
@@ -15,7 +15,8 @@
         <section id="main-content">
           <section class="wrapper">
 
-            <?php
+<?php
+
 // 상위카테고리 코드값으로 부터 현 카테고리 값을 구함
 $query       = "SELECT * FROM products_category1 ORDER BY code";
 $result      = mysqli_query($connect, $query);
@@ -64,7 +65,8 @@ $total_count = mysqli_num_rows($result);
                           </tr>
                         </thead>
                         <tbody>
-                          <?php
+<?php
+
 for ($i = 0; $row = mysqli_fetch_array($result); $i++) {
 
     $query     = "SELECT * FROM products_category2 WHERE up_category='$row[code]'";
@@ -86,8 +88,9 @@ for ($i = 0; $row = mysqli_fetch_array($result); $i++) {
                             <td><?php echo $sub_count; ?></td>
                             <td><?php echo $products_count; ?> 개</td>
                             <td>
-                              <?php
-if ($row['hide'] == "Y") {
+<?php
+
+    if ($row['hide'] == "Y") {
         echo "<a type=\"button\" class=\"btn btn-round btn-success\" href='ca_hide.php?code=" . $row['code'] . "&amp;chk=Y'><i class=\"fa fa-times\"></i> ON</a>";
     } else {
         echo "<a type=\"button\" class=\"btn btn-round btn-default\" href='ca_hide.php?code=" . $row['code'] . "&amp;chk=N'><i class=\"fa fa-check\"></i> OFF</a>";
@@ -99,7 +102,8 @@ if ($row['hide'] == "Y") {
                               <a type="button" class="btn btn-danger" href="ca_delete.php?num=<?php echo $row['num']; ?>" onclick="return confirm('정말 삭제하시겠습니까?')"><i class="fa fa-trash-o"></i></a>
                             </td>
                           </tr>
-                              <?php
+<?php
+
 } // end of for loop
 
 mysqli_free_result($result);
@@ -135,33 +139,8 @@ if ($total_count == 0) {
       <!--main content end-->
 
       <!--footer start-->
-    <?php include "../include/admin_footer.php";?>
+    <?php include_once "../include/admin_footer.php";?>
       <!--footer end-->
-  </section>
-
-    <!-- js placed at the end of the document so the pages load faster -->
-    <script src="/js/vendor/jquery-2.2.0.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script class="include" type="text/javascript" src="/admin/js/jquery.dcjqaccordion.2.7.js"></script>
-    <script src="/admin/js/jquery.scrollTo.min.js"></script>
-    <script src="/admin/js/jquery.nicescroll.js" type="text/javascript"></script>
-    <script src="/admin/js/jquery.customSelect.min.js" ></script>
-    <script src="/admin/js/respond.min.js" ></script>
-
-    <!--common script for all pages-->
-    <script src="/admin/js/common-scripts.js"></script>
-
-    <!-- custom scripts -->
-    <script src="/js/global.js" ></script>
-    <script src="/admin/js/admin.js" ></script>
-
-    <script>
-        //custom select box
-        $(function(){
-            $('select.styled').customSelect();
-        });
-
-    </script>
 
   </body>
 </html>

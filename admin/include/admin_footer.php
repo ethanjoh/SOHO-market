@@ -20,5 +20,3 @@
     <!-- custom scripts -->
     <script src="/js/shopping.js" ></script>
     <script src="/admin/js/admin.js" ></script>
-    <script src="/admin/js/jquery-ui.min.js"></script>
-    <script src="/admin/js/jq_datepicker.js" ></script>

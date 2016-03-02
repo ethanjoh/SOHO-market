@@ -11,11 +11,11 @@ $id    = set_var($_GET['id']);
   <body>
     <section id="container" >
         <!--header start-->
-        <?php include "../include/admin_head.php";?>
+        <?php include_once "../include/admin_head.php";?>
         <!--header end-->
 
         <!--sidebar start-->
-        <?php include "../include/admin_sidebar.php";?>
+        <?php include_once "../include/admin_sidebar.php";?>
         <!--sidebar end-->
 
     <!--main content start-->
@@ -79,7 +79,7 @@ if ($mode == "date") {
 
               <div class="row text-center">
                 <div class="form-group">
-                    <select name="id" class="form-control" onchange="show_sales('<?=$date1;?>','<?=$date2;?>');">
+                    <select name="id" class="form-control" onchange="show_sales('<?php echo $date1; ?>','<?php echo $date2; ?>');">
                       <option>업체명 - 아이디</option>
                     <?php
 $mqry = "SELECT * FROM member ORDER BY company_name ";
@@ -126,7 +126,7 @@ if ($mode == "date") {
             <div id="graph1"></div>
           </div>
 
-          <table class="highchart" data-graph-container-before="1" data-graph-container="#graph1" data-graph-type="column" data-graph-margin-left="150" data-graph-margin-right="150" data-graph-subtitle-text="<?=$date;?>" style="display:none;">
+          <table class="highchart" data-graph-container-before="1" data-graph-container="#graph1" data-graph-type="column" data-graph-margin-left="150" data-graph-margin-right="150" data-graph-subtitle-text="<?php echo $date; ?>" style="display:none;">
             <caption>판매 TOP 10 리스트</caption>
             <thead>
               <tr>
@@ -147,8 +147,8 @@ $p_no = 0;
 //2. 각 주문에서 제품코드를 구한다.
 for ($i = 0; $row = mysqli_fetch_array($res); $i++) {
     $a_goods_fk = explode(",", $row['goods_fk']);
-    $mod_volume = explode(",", $row['mod_count']); //변경된 수량
-    $mod_price  = explode(",", $row['mod_price']); //변경된 수량
+    $mod_volume = explode(",", $row['mod_count']);  //변경된 수량
+    $mod_price  = explode(",", $row['mod_price']);  //변경된 수량
     $option     = explode(",", $row['goods_kind']); //옵션정보
 
     //판매금액 집계를 위한 배열
@@ -183,7 +183,7 @@ for ($i = 0; $row = mysqli_fetch_array($res); $i++) {
             'quantity' => $mod_volume[$j],
             'amount'   => $mod_price[$j] * $mod_volume[$j],
         );
-        //$total += $sub_total;
+          //$total += $sub_total;
     } //for end
 } //for end
 
@@ -227,9 +227,9 @@ if ($p_no) {
     foreach ($new as $row) {
         ?>
               <tr>
-                <td>[<?=$row['company'];?>] <?=$row['name'];?></td>
-                <td><?=$row['quantity'];?></td>
-                <td><?=$row['amount'] / 10000;?></td>
+                <td>[<?php echo $row['company']; ?>] <?php echo $row['name']; ?></td>
+                <td><?php echo $row['quantity']; ?></td>
+                <td><?php echo $row['amount'] / 10000; ?></td>
               </tr>
               <?php
 if ($i != 0) {
@@ -256,7 +256,7 @@ if ($i != 0) {
           <div id="graph2"></div>
         </div>
 
-        <table class="highchart" data-graph-container-before="1" data-graph-container="#graph2" data-graph-type="line" data-graph-margin-left="150" data-graph-margin-right="150" data-graph-subtitle-text="<?=$date;?>" style="display:none;">
+        <table class="highchart" data-graph-container-before="1" data-graph-container="#graph2" data-graph-type="line" data-graph-margin-left="150" data-graph-margin-right="150" data-graph-subtitle-text="<?php echo $date; ?>" style="display:none;">
           <caption>일별 판매금액 집계 </caption>
           <thead>
             <tr>
@@ -278,8 +278,8 @@ foreach ($sales as $key => $values) {
     foreach ($sum as $date => $sub_total) {
         ?>
             <tr>
-              <td><?=$date;?> (<?=$day[date("w", strtotime($date))];?>)</td>
-              <td><?=$sub_total / 10000;?></td>
+              <td><?php echo $date; ?> (<?php echo $day[date("w", strtotime($date))]; ?>)</td>
+              <td><?php echo $sub_total / 10000; ?></td>
             </tr>
             <?php
 
@@ -301,7 +301,7 @@ foreach ($sales as $key => $values) {
       <table id="total">
           <tr>
             <td colspan="2"><strong>확정금액 총합:</strong></td>
-            <td><strong><?=number_format($total);?></strong></td>
+            <td><strong><?php echo number_format($total); ?></strong></td>
           </tr>
       </table>
 
@@ -321,25 +321,8 @@ foreach ($sales as $key => $values) {
       <!--main content end-->
 
       <!--footer start-->
-    <?php include "../include/admin_footer.php";?>
+    <?php include_once "../include/admin_footer.php";?>
       <!--footer end-->
-  </section>
-
-    <!-- js placed at the end of the document so the pages load faster -->
-    <script src="/js/vendor/jquery-2.2.0.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/admin/js/jquery-ui-1.9.2.custom.min.js"></script>
-    <script src="/admin/js/jquery.dcjqaccordion.2.7.js"></script>
-    <script src="/admin/js/jquery.scrollTo.min.js"></script>
-    <script src="/admin/js/jquery.nicescroll.js" type="text/javascript"></script>
-    <script src="/admin/js/respond.min.js" ></script>
-
-    <!--common script for all pages-->
-    <script src="/admin/js/common-scripts.js"></script>
-
-    <!-- custom scripts -->
-    <script src="/js/global.js" ></script>
-    <script src="/admin/js/admin.js" ></script>
 
     <script src="/admin/js/jq_datepicker.js" ></script>
     <script src="/admin/js/highcharts.js"></script>
