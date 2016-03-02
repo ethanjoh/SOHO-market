@@ -102,33 +102,7 @@ mysqli_free_result($result);
     <!-- custom scripts -->
     <script src="/js/global.js" ></script>
     <script src="/admin/js/admin.js" ></script>
-<!--     <script>
-      //custom select box
 
-      $(function(){
-        $('select.styled').customSelect();
-      });
-
-    </script> -->
-<!--     <script src="js/HuskyEZCreator.js" charset="utf-8"></script>
-    <script>
-      var oEditors = [];
-      nhn.husky.EZCreator.createInIFrame({
-        oAppRef: oEditors,
-        elPlaceHolder: "contents",
-        sSkinURI: "SmartEditor2Skin.html",
-        htParams : {bUseToolbar : true,
-          fOnBeforeUnload : function(){
-              //alert("아싸!");
-          }
-        }, //boolean
-        fOnAppLoad : function(){
-          //예제 코드
-          //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
-        },
-        fCreator: "createSEditor2"
-      });
-    </script> -->
   </body>
 </html>
 
