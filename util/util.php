@@ -815,13 +815,17 @@ function err_msg($msg, $bool = "1")
     }
 }
 
+/**
+ * [msg 메시지 창 띄우기]
+ * @param  [type] $msg [description]
+ * @return [type]      [description]
+ */
 function msg($msg)
 {
-    echo ("  <meta http-equiv='content-type' content='text/html; charset=UTF-8' />
-        <script>
-	    window.alert('$msg')
-	    </script>
-	    ");
+    echo '<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script>
+	    window.alert(\'' . $msg . '\');
+    </script>';
 }
 
 function err_close($msg)

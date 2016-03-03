@@ -15,17 +15,17 @@
       <section class="wrapper">
 <?php
 
-	$mode = set_var($_GET['mode']);
-	$num  = set_var($_GET['num']);
+$mode = set_var($_GET['mode']);
+$num  = set_var($_GET['num']);
 
-	if ("update" == $mode) {
-	    $query  = "SELECT * FROM banner WHERE num='$num' ";
-	    $result = mysqli_query($connect, $query);
-	    $row    = mysqli_fetch_array($result);
-	    mysqli_free_result($result);
-	} else {
-	    $mode = "insert";
-	}
+if ("update" == $mode) {
+    $query  = "SELECT * FROM main_banner WHERE num='$num' ";
+    $result = mysqli_query($connect, $query);
+    $row    = mysqli_fetch_array($result);
+    mysqli_free_result($result);
+} else {
+    $mode = "insert";
+}
 ?>
 
         <!-- setup start -->
@@ -48,20 +48,20 @@
                           <td>
 <?php
 
-	if ($row['m_banner1'] == "Y") {
-	    echo '<img src="' . $row['m_banner1_image'] . '" alt="main banner 1" width="25%">';
-	} else {
-	    echo "등록된 배너가 없습니다.";
-	}
+if ("Y" == $row['m_banner1']) {
+    echo '<img src="' . $row['m_banner1_image'] . '" alt="main banner 1" width="25%">';
+} else {
+    echo "등록된 배너가 없습니다.";
+}
 ?>
                             <p>
-                              <input type="file" name="m_banner1_image" size="25" />
+                              <input type="file" name="uploadfile[]" size="25" />
                             </p>
                           </td>
                         </tr>
                         <tr>
                           <th><i class="fa fa-link"></i> 링크 1</th>
-                          <td><input type="text" class="form-control" name="m_link1" value="<?php echo $row['m_link1']; ?>" id="m_link1" size="150" /></td>
+                          <td><input type="text" class="form-control" name="link[]" value="<?php echo $row['m_link1']; ?>" id="m_link1" size="150" /></td>
                         </tr>
                         <tr>
                           <th rowspan="2">배너 2</th>
@@ -69,20 +69,20 @@
                           <td>
 <?php
 
-	if ($row['m_banner2'] == "Y") {
-	    echo '<img src="' . $row['m_banner2_image'] . '" alt="main banner 2" width="25%">';
-	} else {
-	    echo "등록된 배너가 없습니다.";
-	}
+if ($row['m_banner2'] == "Y") {
+    echo '<img src="' . $row['m_banner2_image'] . '" alt="main banner 2" width="25%">';
+} else {
+    echo "등록된 배너가 없습니다.";
+}
 ?>
                             <p>
-                              <input type="file" name="m_banner2_image" size="25" />
+                              <input type="file" name="uploadfile[]" size="25" />
                             </p>
                           </td>
                         </tr>
                         <tr>
                           <th><i class="fa fa-link"></i> 링크 2</th>
-                          <td><input type="text" class="form-control" name="m_link2" id="m_link2" value="<?php echo $row['m_link2']; ?>" size="150" /></td>
+                          <td><input type="text" class="form-control" name="link[]" id="m_link2" value="<?php echo $row['m_link2']; ?>" size="150" /></td>
                         </tr>
                         <tr>
                           <th rowspan="2">배너 3</th>
@@ -90,19 +90,19 @@
                           <td>
 <?php
 
-	if ($row['m_banner3'] == "Y") {
-	    echo '<img src="' . $row['m_banner3_image'] . '" alt="main banner 3" width="25%">';
-	} else {
-	    echo "등록된 배너가 없습니다.";
-	}
+if ($row['m_banner3'] == "Y") {
+    echo '<img src="' . $row['m_banner3_image'] . '" alt="main banner 3" width="25%">';
+} else {
+    echo "등록된 배너가 없습니다.";
+}
 ?>
                             <p>
-                              <input type="file" name="m_banner3_image" size="25" />
+                              <input type="file" name="uploadfile[]" size="25" />
                             </p></td>
                         </tr>
                         <tr>
                           <th><i class="fa fa-link"></i> 링크 3</th>
-                          <td><input type="text" class="form-control" name="m_link3" id="m_link3" value="<?php echo $row['m_link3']; ?>" size="150" /></td>
+                          <td><input type="text" class="form-control" name="link[]" id="m_link3" value="<?php echo $row['m_link3']; ?>" size="150" /></td>
                         </tr>
                         <tr>
                           <th rowspan="2">배너 4</th>
@@ -110,20 +110,20 @@
                           <td>
 <?php
 
-	if ($row['m_banner4'] == "Y") {
-	    echo '<img src="' . $row['m_banner4_image'] . '" alt="main banner 4" width="25%">';
-	} else {
-	    echo "등록된 배너가 없습니다.";
-	}
+if ($row['m_banner4'] == "Y") {
+    echo '<img src="' . $row['m_banner4_image'] . '" alt="main banner 4" width="25%">';
+} else {
+    echo "등록된 배너가 없습니다.";
+}
 ?>
 
                             <p>
-                              <input type="file" name="m_banner4_image" size="25" />
+                              <input type="file" name="uploadfile[]" size="25" />
                             </p></td>
                         </tr>
                         <tr>
                           <th><i class="fa fa-link"></i> 링크 4</th>
-                          <td><input type="text" class="form-control" name="m_link4" id="m_link4" value="<?php echo $row['m_link4']; ?>" size="150" /></td>
+                          <td><input type="text" class="form-control" name="link[]" id="m_link4" value="<?php echo $row['m_link4']; ?>" size="150" /></td>
                         </tr>
                         <tr>
                           <th rowspan="2">배너 5</th>
@@ -131,19 +131,19 @@
                           <td>
 <?php
 
-	if ($row['m_banner5'] == "Y") {
-	    echo '<img src="' . $row['m_banner5_image'] . '" alt="main banner 5" width="25%">';
-	} else {
-	    echo "등록된 배너가 없습니다.";
-	}
+if ($row['m_banner5'] == "Y") {
+    echo '<img src="' . $row['m_banner5_image'] . '" alt="main banner 5" width="25%">';
+} else {
+    echo "등록된 배너가 없습니다.";
+}
 ?>
                             <p>
-                              <input type="file" name="m_banner5_image" size="25" />
+                              <input type="file" name="uploadfile[]" size="25" />
                             </p></td>
                         </tr>
                         <tr>
                           <th><i class="fa fa-link"></i> 링크 5</th>
-                          <td><input type="text" class="form-control" name="m_link5" id="m_link5" value="<?php echo $row['m_link5']; ?>" size="150" /></td>
+                          <td><input type="text" class="form-control" name="link[]" id="m_link5" value="<?php echo $row['m_link5']; ?>" size="150" /></td>
                         </tr>
                       </tbody>
                     </table>
@@ -156,7 +156,7 @@
 
           <div class="row text-center">
             <div class="col-sm-12">
-              <button class="btn btn-success" onclick="javascript:document.banner.submit();">등록하기</button>
+              <button class="btn btn-success" type="submit" >등록하기</button>
               <a type="button" class="btn btn-default" href="banner_list.php">취소</a>
             </div>
           </div>

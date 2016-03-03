@@ -15,16 +15,16 @@ if ($_GET) {
 
 $uploaddir = "upload/" . $filename . ".csv";
 
-//hosting information
-$host = "localhost";
-$dbid = "ssss01047271791";
-$dbpw = "Shinsoo19931008";
-$db   = "ssss01047271791";
+// //hosting information
+// $host = "localhost";
+// $dbid = "ssss01047271791";
+// $dbpw = "Shinsoo19931008";
+// $db   = "ssss01047271791";
 
-//connect local db
-$connect = mysqli_connect($host, $dbid, $dbpw);
-mysqli_select_db($connect, $db);
-// mysqli_query($connect, "TRUNCATE TABLE products");
+// //connect local db
+// $connect = mysqli_connect($host, $dbid, $dbpw);
+// mysqli_select_db($connect, $db);
+// // mysqli_query($connect, "TRUNCATE TABLE products");
 
 $tempCSV = file_get_contents($uploaddir);
 $tempCSV = mb_convert_encoding($tempCSV, 'UTF-8', 'EUC-KR');

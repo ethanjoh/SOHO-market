@@ -1,9 +1,6 @@
 <?php
 include_once "../include/admin_auth.php";
-include_once "../../util/config.php";
 include_once "../../util/util.php";
-
-$connect = my_connect($host, $dbid, $dbpass, $dbname);
 
 $mode  = set_var($_POST['mode']);
 $num   = set_var($_POST['num']);
@@ -83,7 +80,7 @@ if ($mode == 'insert') {
     $row    = mysqli_fetch_array($result);
     mysqli_free_result($result);
 
-    $savedir = "../../gallery";
+    $savedir = "../../images/banner";
 
     if ($_FILES['m_banner1_image']['name']) {
         $file1 = $savedir . "/m/" . substr(md5(uniqid($g4[server_time])), 0, 8) . "_" . $_FILES['m_banner1_image']['name'];
@@ -161,7 +158,7 @@ if ($mode == 'insert') {
     $row    = mysqli_fetch_array($result);
     mysqli_free_result($result);
 
-    $savedir = "../../gallery";
+    $savedir = "../../images/banner";
 
     if ($_FILES['m_banner1_image']['name']) {
         $temp1 = $savedir . "/m/" . substr(md5(uniqid($g4[server_time])), 0, 8) . "_" . $_FILES['m_banner1_image']['name'];
