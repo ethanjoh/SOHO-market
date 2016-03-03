@@ -204,6 +204,7 @@ function show_main_products($main_flag, $no_item)
                                         </div>
                                         <div class="product-content">
                                             <div class="price-box">
+
 HEREDOC;
 
             echo show_me_price($pnum);
@@ -407,9 +408,9 @@ function show_me_price($pnum)
     $shop_price   = number_format($rows['shop_price']);
 
     if ($p_id) {
-        $ret = '                                <span class="special-price"><i class="fa fa-krw"></i> ' . $dealer_price . '</span>';
+        $ret = '                                <span class="special-price"><i class="fa fa-krw"></i> ' . $dealer_price . '</span>' . "\r\n";
     } else {
-        $ret = '                                <span class="shop-price"><i class="fa fa-krw"></i> ' . $shop_price . '</span>';
+        $ret = '                                <span class="shop-price"><i class="fa fa-krw"></i> ' . $shop_price . '</span>' . "\r\n";
     }
 
     return $ret;
@@ -2106,6 +2107,11 @@ HEREDOC;
     }
 }
 
+/**
+ * [get_contents 상세설명 가져오기]
+ * @param  [type] $pnum [상품번호]
+ * @return [type]       [description]
+ */
 function get_contents($pnum)
 {
     global $connect;
@@ -2115,4 +2121,156 @@ function get_contents($pnum)
     $rows   = mysqli_fetch_array($result);
 
     return $rows['contents'];
+}
+
+function show_main_banner()
+{
+    global $connect;
+
+    $qry = "SELECT * FROM banner WHERE pos='top' ORDER BY num DESC LIMIT 1";
+    $res = mysqli_query($connect, $qry);
+    $row = mysqli_fetch_array($res);
+
+    for ($i = 1; $i <= 3; $i++) {
+
+        $file = 'm_banner' . $i . '_image';
+        $flag = 'm_banner' . $i;
+        $link = 'mlink' . $i;
+
+        if ("Y" == $row[$flag]) {
+            echo <<<HEREDOC
+
+                        <div class="product col-md-4 col-sm-4 col-xs-12">
+                            <a href="{$row[$link]}"><img src="{$row[$file]}" alt=""></a>
+                        </div>
+
+HEREDOC;
+        } else {
+            echo <<<HEREDOC
+
+                        <div class="product col-md-4 col-sm-4 col-xs-12">
+                            <a href="#"></a>
+                        </div>
+
+HEREDOC;
+        }
+    }
+}
+
+/**
+ * [show_top_banner 상단배너 보여주기]
+ * @return [type] [description]
+ */
+function show_top_banner()
+{
+    global $connect;
+
+    $qry = "SELECT * FROM banner WHERE pos='top' ORDER BY num DESC LIMIT 1";
+    $res = mysqli_query($connect, $qry);
+    $row = mysqli_fetch_array($res);
+
+    for ($i = 1; $i <= 3; $i++) {
+
+        $file = 'm_banner' . $i . '_image';
+        $flag = 'm_banner' . $i;
+        $link = 'mlink' . $i;
+
+        if ("Y" == $row[$flag]) {
+            echo <<<HEREDOC
+
+                        <div class="product col-md-4 col-sm-4 col-xs-12">
+                            <a href="{$row[$link]}"><img src="{$row[$file]}" alt=""></a>
+                        </div>
+
+HEREDOC;
+        } else {
+            echo <<<HEREDOC
+
+                        <div class="product col-md-4 col-sm-4 col-xs-12">
+                            <a href="#"></a>
+                        </div>
+
+HEREDOC;
+        }
+    }
+}
+
+/**
+ * [show_middle_banner 중간배너 보여주기]
+ * @return [type] [description]
+ */
+function show_middle_banner()
+{
+    global $connect;
+
+    $qry = "SELECT * FROM banner WHERE pos='middle' ORDER BY num DESC LIMIT 1";
+    $res = mysqli_query($connect, $qry);
+    $row = mysqli_fetch_array($res);
+
+    for ($i = 1; $i <= 2; $i++) {
+
+        $file = 'm_banner' . $i . '_image';
+        $flag = 'm_banner' . $i;
+        $link = 'mlink' . $i;
+
+        if ("Y" == $row[$flag]) {
+            echo <<<HEREDOC
+
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="mid-banner">
+                            <a href="{$row[$link]}"><img src="{$row[$file]}" alt=""></a>
+                        </div>
+                    </div>
+
+HEREDOC;
+        } else {
+            echo <<<HEREDOC
+
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="mid-banner">
+                            <a href="#"></a>
+                        </div>
+                    </div>
+
+HEREDOC;
+        }
+    }
+}
+
+/**
+ * [show_bottom_banner 하단배너 보여주기]
+ * @return [type] [description]
+ */
+function show_bottom_banner()
+{
+    global $connect;
+
+    $qry = "SELECT * FROM banner WHERE pos='bottom' ORDER BY num DESC LIMIT 1";
+    $res = mysqli_query($connect, $qry);
+    $row = mysqli_fetch_array($res);
+
+    for ($i = 1; $i <= 1; $i++) {
+
+        $file = 'm_banner' . $i . '_image';
+        $flag = 'm_banner' . $i;
+        $link = 'mlink' . $i;
+
+        if ("Y" == $row[$flag]) {
+            echo <<<HEREDOC
+
+                        <div class="banner">
+                            <a href="{$row[$link]}"><img src="{$row[$file]}" alt=""></a>
+                        </div>
+
+HEREDOC;
+        } else {
+            echo <<<HEREDOC
+
+                        <div class="banner">
+                            <a href="#"></a>
+                        </div>
+
+HEREDOC;
+        }
+    }
 }

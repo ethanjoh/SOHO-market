@@ -13,6 +13,22 @@
     <!--main content start-->
     <section id="main-content">
       <section class="wrapper">
+
+        <!-- info start-->
+        <div class="row">
+            <div class="col-sm-12">
+                <section class="panel">
+                    <header class="panel-heading">
+                    사용방법
+                    </header>
+                    <ul class="info-body">
+                        <li><i class="fa fa-info-circle"></i> 각 배너별로 최근에 등록한 배너가 쇼핑몰에 표시됩니다.</li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+        <!-- info end -->
+
         <!-- 메인배너 start -->
 <?php
 
@@ -21,7 +37,7 @@ $result      = mysqli_query($connect, $query);
 $total_count = mysqli_num_rows($result);
 ?>
         <div class="row">
-          <div class="col-sm-12">
+          <div class="col-sm-6">
             <section class="panel">
               <header class="panel-heading table-head">
                   <h4>메인 배너 관리</h4>
@@ -73,7 +89,7 @@ if ($total_count == 0) {
                 </div>
               </section>
             </div>
-          </div>
+          <!-- </div> -->
           <!-- setup end -->
 
         <!-- 상단 배너 start -->
@@ -83,8 +99,8 @@ $tqry    = "SELECT * FROM banner WHERE pos = 'top' ORDER BY num DESC";
 $tres    = mysqli_query($connect, $tqry);
 $t_count = mysqli_num_rows($tres);
 ?>
-        <div class="row margin-top-30">
-          <div class="col-sm-12">
+<!--         <div class="row margin-top-30"> -->
+          <div class="col-sm-6">
             <section class="panel">
               <header class="panel-heading table-head">
                   <h4>상단 배너 관리</h4>
@@ -148,7 +164,7 @@ $mres    = mysqli_query($connect, $mqry);
 $m_count = mysqli_num_rows($mres);
 ?>
         <div class="row margin-top-30">
-          <div class="col-sm-12">
+          <div class="col-sm-6">
             <section class="panel">
               <header class="panel-heading table-head">
                   <h4>중간 배너 관리</h4>
@@ -173,7 +189,7 @@ for ($i = 0; $mrow = mysqli_fetch_array($mres); $i++) {
                           <td><?php echo $mrow['created']; ?></td>
                           <td>
                             <a class="btn btn-info" type="button" href="banner_setting.php?mode=update&amp;pos=middle&amp;num=<?php echo $mrow['num']; ?>" ><i class="fa fa-pencil-square-o"></i></a>
-                            <a class="btn btn-danger" type="button" href="banner_delete.php?mode=mid&amp;num=<?php echo $mrow['num']; ?>" onclick="return confirm('정말 삭제하시겠습니까?')"><i class="fa fa-trash-o"></i></a></td>
+                            <a class="btn btn-danger" type="button" href="banner_delete.php?mode=middle&amp;num=<?php echo $mrow['num']; ?>" onclick="return confirm('정말 삭제하시겠습니까?')"><i class="fa fa-trash-o"></i></a></td>
                         </tr>
 <?php
 
@@ -200,7 +216,7 @@ if ($m_count == 0) {
                 </div>
               </section>
             </div>
-          </div>
+          <!-- </div> -->
           <!-- setup end -->
 
         <!-- 하단 배너 start -->
@@ -211,8 +227,8 @@ $bres    = mysqli_query($connect, $bqry);
 $b_count = mysqli_num_rows($bres);
 ?>
 
-        <div class="row margin-top-30">
-          <div class="col-sm-12">
+        <!-- <div class="row margin-top-30"> -->
+          <div class="col-sm-6">
             <section class="panel">
               <header class="panel-heading table-head">
                   <h4>하단 배너 관리</h4>

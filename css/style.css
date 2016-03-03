@@ -2054,18 +2054,18 @@ address {
     padding-bottom: 10px;
 }
 
-.home-1 .lenovo {
+.home-1 .mid-banner {
     margin-top: 47px;
     position: relative;
     width: 100%;
     margin-bottom: 30px;
 }
 
-.home-1 .lenovo a {
+.home-1 .mid-banner a {
     display: block;
 }
 
-.home-1 .lenovo a::before,
+.home-1 .mid-banner a::before,
 .home-3 .galaxy a::before,
 .home-4 .galaxy a::before {
     animation-duration: 0.5s;
@@ -2082,7 +2082,7 @@ address {
     width: 0;
 }
 
-.home-1 .lenovo a:hover::before,
+.home-1 .mid-banner a:hover::before,
 .home-3 .galaxy a:hover::before,
 .home-4 .galaxy a:hover::before {
     left: 0;

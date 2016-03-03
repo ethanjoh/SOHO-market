@@ -406,7 +406,7 @@
     .banner > a {
         display: none;
     }
-    .home-1 .lenovo {
+    .home-1 .mid-banner {
         margin-top: 0px;
     }
     .banner_area {
@@ -468,7 +468,7 @@
     .laptop {
         width: 100%;
     }
-    .lenovo{
+    .mid-banner{
         margin-bottom: 20px;
     }
     .laptop > a {
