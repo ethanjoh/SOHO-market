@@ -33,13 +33,13 @@ if ('main' == $pos) {
     $title = '메인배너 업로드 (1920x650px)';
 } elseif ('top' == $pos) {
     $j     = 3;
-    $title = '상단배너 업로드 (1920x650px)';
+    $title = '상단배너 업로드 (370x243px)';
 } elseif ('middle' == $pos) {
     $j     = 2;
-    $title = '중간배너 업로드 (1920x650px)';
+    $title = '중간배너 업로드 (570x298px)';
 } elseif ('bottom' == $pos) {
     $j     = 1;
-    $title = '하단배너 업로드 (1920x650px)';
+    $title = '하단배너 업로드 (1168x90px)';
 }
 ?>
 
