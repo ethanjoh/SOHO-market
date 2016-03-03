@@ -16,7 +16,7 @@
         <!-- 메인배너 start -->
 <?php
 
-$query       = "SELECT * FROM main_banner ORDER BY num DESC";
+$query       = "SELECT * FROM banner WHERE pos = 'main' ORDER BY num DESC";
 $result      = mysqli_query($connect, $query);
 $total_count = mysqli_num_rows($result);
 ?>
@@ -45,7 +45,7 @@ for ($i = 0; $row = mysqli_fetch_array($result); $i++) {
                           <td><?php echo $row['num']; ?></td>
                           <td><?php echo $row['created']; ?></td>
                           <td>
-                            <a class="btn btn-info" type="button" href="main_banner_setting.php?mode=update&amp;num=<?php echo $row['num']; ?>" ><i class="fa fa-pencil-square-o"></i></a>
+                            <a class="btn btn-info" type="button" href="banner_setting.php?mode=update&amp;pos=main&amp;num=<?php echo $row['num']; ?>" ><i class="fa fa-pencil-square-o"></i></a>
                             <a class="btn btn-danger" type="button" href="banner_delete.php?mode=main&amp;num=<?php echo $row['num']; ?>" onclick="return confirm('정말 삭제하시겠습니까?')"><i class="fa fa-trash-o"></i></a></td>
                         </tr>
 <?php
@@ -66,7 +66,7 @@ if ($total_count == 0) {
                     </table>
 
                     <form method="post" action="banner_list.php">
-                        <a class="btn btn-success" href="main_banner_setting.php">새 배너 등록하기</a>
+                        <a class="btn btn-success" href="banner_setting.php?pos=main">새 배너 등록하기</a>
                     </form>
 
                   </div>
@@ -79,7 +79,7 @@ if ($total_count == 0) {
         <!-- 상단 배너 start -->
 <?php
 
-$tqry    = "SELECT * FROM top_banner ORDER BY created DESC";
+$tqry    = "SELECT * FROM banner WHERE pos = 'top' ORDER BY num DESC";
 $tres    = mysqli_query($connect, $tqry);
 $t_count = mysqli_num_rows($tres);
 ?>
@@ -108,7 +108,7 @@ for ($i = 0; $trow = mysqli_fetch_array($tres); $i++) {
                           <td><?php echo $trow['num']; ?></td>
                           <td><?php echo $trow['created']; ?></td>
                           <td>
-                            <a class="btn btn-info" type="button" href="top_banner_setting.php?mode=update&amp;num=<?php echo $trow['num']; ?>" ><i class="fa fa-pencil-square-o"></i></a>
+                            <a class="btn btn-info" type="button" href="banner_setting.php?mode=update&amp;pos=top&amp;num=<?php echo $trow['num']; ?>" ><i class="fa fa-pencil-square-o"></i></a>
                             <a class="btn btn-danger" type="button" href="banner_delete.php?mode=top&amp;num=<?php echo $trow['num']; ?>" onclick="return confirm('정말 삭제하시겠습니까?')"><i class="fa fa-trash-o"></i></a></td>
                         </tr>
 <?php
@@ -129,7 +129,7 @@ if ($t_count == 0) {
                     </table>
 
                     <form method="post" action="banner_list.php">
-                        <a class="btn btn-success" href="top_banner_setting.php">새 배너 등록하기</a>
+                        <a class="btn btn-success" href="banner_setting.php?pos=top">새 배너 등록하기</a>
                     </form>
 
                   </div>
@@ -143,7 +143,7 @@ if ($t_count == 0) {
         <!-- 중간 배너 start -->
 <?php
 
-$mqry    = "SELECT * FROM middle_banner ORDER BY created DESC";
+$mqry    = "SELECT * FROM banner WHERE pos = 'middle' ORDER BY num DESC";
 $mres    = mysqli_query($connect, $mqry);
 $m_count = mysqli_num_rows($mres);
 ?>
@@ -172,7 +172,7 @@ for ($i = 0; $mrow = mysqli_fetch_array($mres); $i++) {
                           <td><?php echo $mrow['num']; ?></td>
                           <td><?php echo $mrow['created']; ?></td>
                           <td>
-                            <a class="btn btn-info" type="button" href="middle_banner_setting.php?mode=update&amp;num=<?php echo $mrow['num']; ?>" ><i class="fa fa-pencil-square-o"></i></a>
+                            <a class="btn btn-info" type="button" href="banner_setting.php?mode=update&amp;pos=middle&amp;num=<?php echo $mrow['num']; ?>" ><i class="fa fa-pencil-square-o"></i></a>
                             <a class="btn btn-danger" type="button" href="banner_delete.php?mode=mid&amp;num=<?php echo $mrow['num']; ?>" onclick="return confirm('정말 삭제하시겠습니까?')"><i class="fa fa-trash-o"></i></a></td>
                         </tr>
 <?php
@@ -193,7 +193,7 @@ if ($m_count == 0) {
                     </table>
 
                     <form method="post" action="banner_list.php">
-                        <a class="btn btn-success" href="middle_banner_setting.php">새 배너 등록하기</a>
+                        <a class="btn btn-success" href="banner_setting.php?pos=middle">새 배너 등록하기</a>
                     </form>
 
                   </div>
@@ -206,7 +206,7 @@ if ($m_count == 0) {
         <!-- 하단 배너 start -->
 <?php
 
-$bqry    = "SELECT * FROM bottom_banner ORDER BY created DESC";
+$bqry    = "SELECT * FROM banner WHERE pos = 'bottom' ORDER BY num DESC";
 $bres    = mysqli_query($connect, $bqry);
 $b_count = mysqli_num_rows($bres);
 ?>
@@ -236,7 +236,7 @@ for ($i = 0; $brow = mysqli_fetch_array($bres); $i++) {
                           <td><?php echo $brow['num']; ?></td>
                           <td><?php echo $brow['created']; ?></td>
                           <td>
-                            <a class="btn btn-info" type="button" href="bottom_banner_setting.php?mode=update&amp;num=<?php echo $brow['num']; ?>" ><i class="fa fa-pencil-square-o"></i></a>
+                            <a class="btn btn-info" type="button" href="banner_setting.php?mode=update&amp;pos=bottom&amp;num=<?php echo $brow['num']; ?>" ><i class="fa fa-pencil-square-o"></i></a>
                             <a class="btn btn-danger" type="button" href="banner_delete.php?mode=bottom&amp;num=<?php echo $brow['num']; ?>" onclick="return confirm('정말 삭제하시겠습니까?')"><i class="fa fa-trash-o"></i></a></td>
                         </tr>
 <?php
@@ -257,7 +257,7 @@ if ($b_count == 0) {
                     </table>
 
                     <form method="post" action="banner_list.php">
-                        <a class="btn btn-success" href="bottom_banner_setting.php">새 배너 등록하기</a>
+                        <a class="btn btn-success" href="banner_setting.php?pos=bottom">새 배너 등록하기</a>
                     </form>
 
                   </div>
