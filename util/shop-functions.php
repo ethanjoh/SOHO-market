@@ -2109,8 +2109,8 @@ HEREDOC;
 
 /**
  * [get_contents 상세설명 가져오기]
- * @param  [type] $pnum [상품번호]
- * @return [type]       [description]
+ * @param  [type] $pnum           [상품번호]
+ * @return [type] [description]
  */
 function get_contents($pnum)
 {
@@ -2123,38 +2123,68 @@ function get_contents($pnum)
     return $rows['contents'];
 }
 
+/**
+ * [show_main_banner 메인 배너 보여주기]
+ * @return [type] [description]
+ */
 function show_main_banner()
 {
     global $connect;
 
-    $qry = "SELECT * FROM banner WHERE pos='top' ORDER BY num DESC LIMIT 1";
+    $qry = "SELECT * FROM banner WHERE pos='main' ORDER BY num DESC LIMIT 1";
     $res = mysqli_query($connect, $qry);
     $row = mysqli_fetch_array($res);
 
-    for ($i = 1; $i <= 3; $i++) {
+    echo <<<HEREDOC
 
+        <section class="slider-area">
+            <div class="bend niceties preview-2">
+                <div id="ensign-nivoslider" class="slides">
+
+HEREDOC;
+
+    for ($i = 1; $i <= 5; $i++) {
         $file = 'm_banner' . $i . '_image';
         $flag = 'm_banner' . $i;
-        $link = 'mlink' . $i;
 
         if ("Y" == $row[$flag]) {
             echo <<<HEREDOC
-
-                        <div class="product col-md-4 col-sm-4 col-xs-12">
-                            <a href="{$row[$link]}"><img src="{$row[$file]}" alt=""></a>
-                        </div>
-
-HEREDOC;
-        } else {
-            echo <<<HEREDOC
-
-                        <div class="product col-md-4 col-sm-4 col-xs-12">
-                            <a href="#"></a>
-                        </div>
+                    <img src="{$row[$file]}" alt="" title="#slider-direction-{$i}">
 
 HEREDOC;
         }
     }
+
+    echo '              </div>' . "\r\n";
+
+    for ($j = 1; $j <= 5; $j++) {
+        $flag = 'm_banner' . $j;
+        $link = 'mlink' . $j;
+
+        if ("Y" == $row[$flag]) {
+            echo <<<HEREDOC
+
+                    <div id="slider-direction-{$j}" class="slider-direction">
+                        <div class="slider-content t-lfr s-tb slider-2">
+                            <div class="title-container s-tb-c">
+                                <div class="s-title">
+                                    <a href="{$row[$link]}">자세히 보기</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+HEREDOC;
+        }
+    }
+
+    echo <<<HEREDOC
+
+            </div>
+        </section>
+
+HEREDOC;
+
 }
 
 /**

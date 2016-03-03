@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"glo",
+				"global"
+			],
+			[
+				"confi",
+				"configPath"
+			],
+			[
+				"result",
+				"resultMSG"
+			],
+			[
 				"bac",
 				"background-color"
 			],
@@ -444,35 +456,22 @@
 	"buffers":
 	[
 		{
-			"file": "shop/order-list.php",
+			"file": "shop/index.php",
 			"settings":
 			{
-				"buffer_size": 10479,
+				"buffer_size": 4133,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "util/util.php",
+			"contents": "Package Control Messages\n========================\n\nMaterial Theme - Appbar\n-----------------------\n\n  \n  Material Theme - Appbar Addon\n  https://github.com/equinusocio/material-theme-appbar\n  \n  \n  👉 Version 1.1.0 👈\n  ********************************************************************************\n  \n    ➼ Fix sidebar heading color when using purple and yellow accent\n  \n    !! IMPORTANT NOTE !!\n    🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶\n  \n    From this update the appbar doesn't get anymore the color from the material theme accent preferences.\n    So, if yuou want indigo tint, you have to set the color separately by add:\n  \n    {\n      ...\n      \"material_theme_appbar_indigo: true\"\n      ...\n    }\n  \n    By this way you can combine two colors. Check the full preferences in the readme file of the repository.\n  \n    🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶\n",
 			"settings":
 			{
-				"buffer_size": 57535,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "util/shop-functions.php",
-			"settings":
-			{
-				"buffer_size": 81370,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "shop/catalog-list.php",
-			"settings":
-			{
-				"buffer_size": 5904,
-				"line_ending": "Windows"
+				"buffer_size": 859,
+				"line_ending": "Windows",
+				"name": "Package Control Messages",
+				"read_only": true,
+				"scratch": true
 			}
 		}
 	],
@@ -619,43 +618,59 @@
 	[
 		"/C/wamp/www/shinsoo",
 		"/C/wamp/www/shinsoo/pay",
+		"/C/wamp/www/shinsoo/shop",
 		"/C/wamp/www/shinsoo/util"
 	],
 	"file_history":
 	[
-		"/C/wamp/www/shinsoo/pay/save_wireinfo_to_db.php",
-		"/C/wamp/www/shinsoo/pay/payres.php",
+		"/C/wamp/www/shinsoo/admin/setting/banner_list.php",
+		"/C/wamp/www/shinsoo/admin/setting/main_banner_setting.php",
+		"/C/wamp/www/shinsoo/css/myshop.css",
+		"/C/wamp/www/shinsoo/util/util.php",
+		"/C/wamp/www/shinsoo/shop/order-list.php",
+		"/C/wamp/www/shinsoo/util/shop-functions.php",
 		"/C/wamp/www/shinsoo/pay/cas_noteurl.php",
+		"/C/wamp/www/shinsoo/pay/save_wireinfo_to_db.php",
+		"/C/Users/Joh/Downloads/ssss01047271791.sql",
+		"/C/Users/Joh/OneDrive/git_project/linktrading-co-kr/shop/order_list.php",
+		"/C/wamp/www/shinsoo/pay/payreq_crossplatform.php",
+		"/C/wamp/www/shinsoo/shop/order-delete.php",
+		"/C/wamp/www/shinsoo/pay/Cancel.php",
+		"/C/wamp/www/shinsoo/pay/Cancel.html",
+		"/C/wamp/www/shinsoo/admin/order/top_order_list.php",
+		"/C/wamp/www/shinsoo/util/config.ini",
+		"/C/wamp/www/shinsoo/lgpay/conf/mall.conf",
+		"/C/wamp/www/shinsoo/pay/CashReceipt.php",
+		"/C/wamp/www/shinsoo/shop/catalog-list.php",
+		"/C/wamp/www/shinsoo/shop/checkout.php",
+		"/C/wamp/www/shinsoo/pay/payres.php",
+		"/C/wamp/www/shinsoo/lgpay/ping.php",
+		"/C/wamp/www/shinsoo/lgpay/patch.php",
+		"/C/wamp/www/shinsoo/lgpay/dir.php",
+		"/C/wamp/www/shinsoo/pay/returnurl.php",
+		"/C/wamp/www/shinsoo/lgpay/conf/lgdacom.conf",
 		"/C/Users/Joh/Downloads/my.ini",
+		"/C/Users/Joh/Downloads/LGU+_XPay_Crossplatform/LGU+_XPay_Crossplatform_PHP/cas_noteurl.php",
+		"/C/wamp/www/shinsoo/pay/i_log.txt",
+		"/C/wamp/www/shinsoo/pay/r_log.txt",
+		"/C/wamp/www/shinsoo/pay/result_log.txt",
 		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
 		"/C/Users/Joh/Downloads/Preferences.sublime-settings",
 		"/C/Users/Joh/Downloads/LGU+_XPay_Crossplatform/LGU+_XPay_Crossplatform_PHP/payreq_crossplatform.php",
 		"/C/Users/Joh/OneDrive/git_project/linktrading-co-kr/pay/cas_noteurl.php",
-		"/C/wamp/www/shinsoo/lgpay/conf/mall.conf",
-		"/C/wamp/www/shinsoo/pay/payreq_crossplatform.php",
 		"/C/wamp/www/shinsoo/pay/variables_from_payreq.php",
 		"/C/wamp/www/shinsoo/lgpay/XPayClient.php",
 		"/C/wamp/www/shinsoo/pay/save_pginfo_to_db.php",
-		"/C/Users/Joh/Downloads/LGU+_XPay_Crossplatform/LGU+_XPay_Crossplatform_PHP/cas_noteurl.php",
-		"/C/wamp/www/shinsoo/util/shop-functions.php",
 		"/C/wamp/www/shinsoo/shop/index.php",
-		"/C/wamp/www/shinsoo/util/util.php",
 		"/C/wamp/www/shinsoo/util/scm_auth.php",
 		"/C/wamp/www/shinsoo/shop/detail.php",
 		"/C/wamp/www/shinsoo/include/header.php",
 		"/C/wamp/www/shinsoo/shop/order-detail.php",
-		"/C/wamp/www/shinsoo/shop/order-list.php",
-		"/C/wamp/www/shinsoo/admin/order/top_order_list.php",
 		"/C/wamp/www/shinsoo/admin/order/or_view.php",
-		"/C/wamp/www/shinsoo/util/config.ini",
-		"/C/wamp/www/shinsoo/css/myshop.css",
 		"/C/wamp/www/shinsoo/admin/css/admin_layout.css",
-		"/C/wamp/www/shinsoo/shop/catalog-list.php",
 		"/C/wamp/www/shinsoo/css/style.css",
 		"/C/Users/Joh/OneDrive/git_project/linktrading-co-kr/shop/sub_list.php",
 		"/C/wamp/www/shinsoo/bbs/list.php",
-		"/C/wamp/www/shinsoo/shop/checkout.php",
-		"/C/Users/Joh/OneDrive/git_project/linktrading-co-kr/shop/order_list.php",
 		"/C/Users/Joh/OneDrive/git_project/linktrading-co-kr/shop/order_detail.php",
 		"/C/Users/Joh/OneDrive/git_project/linktrading-co-kr/pay/payres.php",
 		"/C/Users/Joh/OneDrive/git_project/linktrading-co-kr/pay/payreq.php",
@@ -664,17 +679,11 @@
 		"/C/Users/Joh/OneDrive/git_project/linktrading-co-kr/util/config.php",
 		"/C/wamp/www/shinsoo/pay/sample_crossplatform.html",
 		"/C/wamp/www/shinsoo/shop/cart.php",
-		"/C/wamp/www/shinsoo/lgpay/conf/lgdacom.conf",
-		"/C/wamp/www/shinsoo/pay/Cancel.php",
-		"/C/wamp/www/shinsoo/pay/Cancel.html",
-		"/C/wamp/www/shinsoo/lgpay/ping.php",
 		"/C/wamp/www/shinsoo/lgpay/conf/ca-bundle.crt",
 		"/C/wamp/www/shinsoo/lgpay/XPayClient4DB.php",
-		"/C/wamp/www/shinsoo/lgpay/patch.php",
 		"/C/wamp/www/shinsoo/lgpay/JSON.php",
 		"/C/Users/Joh/Downloads/LGU+_XPay_Crossplatform/LGU+_XPay_Crossplatform_PHP/lgdacom/ping.php",
 		"/C/wamp/www/shinsoo/log/log_20160221.log",
-		"/C/wamp/www/shinsoo/pay/returnurl.php",
 		"/C/Users/Joh/OneDrive/git_project/wepartners/include/header.php",
 		"/C/Users/Joh/OneDrive/git_project/wepartners/include/functions.php",
 		"/C/Users/Joh/OneDrive/git_project/wepartners/.htaccess",
@@ -741,20 +750,11 @@
 		"/C/wamp/www/seminar/session-2.php",
 		"/C/wamp/www/seminar/js/custom.js",
 		"/C/wamp/www/seminar/admin/save.php",
-		"/C/wamp/www/seminar/include/session.php",
-		"/C/wamp/www/seminar/admin/include/function.php",
-		"/C/wamp/www/seminar/admin/main.php",
-		"/C/wamp/www/seminar/include/function.php",
-		"/C/Users/Seonghyeon/Downloads/일본 소호무역 온라인 세미나.html",
-		"/C/wamp/www/seminar/admin/js/custom.js",
-		"/C/wamp/www/seminar/login.php",
-		"/C/wamp/www/seminar/expire.php",
-		"/C/wamp/www/seminar/admin/save-profile.php",
-		"/C/wamp/www/seminar/admin/js/sb-admin-2.js"
+		"/C/wamp/www/seminar/include/session.php"
 	],
 	"find":
 	{
-		"height": 193.0
+		"height": 70.0
 	},
 	"find_in_files":
 	{
@@ -781,6 +781,20 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"LGD_CASSEQNO",
+			"$CST_MID",
+			"$connect",
+			"CST_MID",
+			"$CST_MID",
+			"CST_PLATFORM",
+			"LGD_CASFLAG",
+			"$LGD_MID",
+			";",
+			"isset",
+			"\"",
+			");",
+			"isset(",
+			"LGD_CASFLAG",
 			"cpage",
 			"key_value",
 			"    $host   = $config['host'];\n    $dbid   = $config['dbid'];\n    $dbpass = $config['dbpass'];\n    $dbname = $config['dbname'];\n\n    // global $host, $dbid, $dbpass, $dbname;\n    $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);",
@@ -894,21 +908,7 @@
 			";\n",
 			"*/\n",
 			"s-2-index-save",
-			"session_2_index",
-			"s-2-index-save",
-			"session_2_index",
-			"s-1-index-save",
-			"session_1_index",
-			"png",
-			"s-1-1-save",
-			"s-2-3-save",
-			"s-2-2-save",
-			"s-1-1-save",
-			"session_4_1_ed",
-			"session-4-2-ed",
-			"session_2_5_1_ed",
-			"session-4-1-ed",
-			"session_2_5_1_ed"
+			"session_2_index"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -929,127 +929,24 @@
 	"groups":
 	[
 		{
-			"selected": 3,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "shop/order-list.php",
+					"file": "shop/index.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 10479,
+						"buffer_size": 4133,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1547,
-								1552
-							],
-							[
-								8517,
-								8522
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": true,
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 2634.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "util/util.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 57535,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								47583,
-								47583
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": true,
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 37406.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "util/shop-functions.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 81370,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								44865,
-								44865
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": true,
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 28818.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "shop/catalog-list.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 5904,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2010,
-								2010
+								0,
+								0
 							]
 						],
 						"settings":
@@ -1063,6 +960,38 @@
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 859,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								687,
+								651
+							]
+						],
+						"settings":
+						{
+							"auto_indent": false,
+							"default_dir": "C:\\wamp\\www\\shinsoo",
+							"incomplete_sync": null,
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_width": 2,
+							"word_wrap": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 72.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -1128,6 +1057,34 @@
 		"selected_items":
 		[
 			[
+				"index",
+				"shop\\index.php"
+			],
+			[
+				"bann",
+				"admin\\setting\\banner_list.php"
+			],
+			[
+				"my",
+				"css\\myshop.css"
+			],
+			[
+				"main_ba",
+				"admin\\setting\\main_banner_setting.php"
+			],
+			[
+				"cas",
+				"pay\\cas_noteurl.php"
+			],
+			[
+				"top_",
+				"admin\\order\\top_order_list.php"
+			],
+			[
+				"con",
+				"util\\config.ini"
+			],
+			[
 				"util",
 				"util\\util.php"
 			],
@@ -1138,10 +1095,6 @@
 			[
 				"orde",
 				"shop\\order-list.php"
-			],
-			[
-				"index",
-				"shop\\index.php"
 			],
 			[
 				"detail",
@@ -1190,10 +1143,6 @@
 			[
 				"shop",
 				"util\\shop-functions.php"
-			],
-			[
-				"my",
-				"css\\myshop.css"
 			],
 			[
 				"che",
@@ -1618,26 +1567,6 @@
 			[
 				"uti",
 				"util/util.php"
-			],
-			[
-				"home",
-				"admin/stats/hometax_excel.php"
-			],
-			[
-				"tax",
-				"admin/stats/tax_list.php"
-			],
-			[
-				"foote",
-				"include/footer.php"
-			],
-			[
-				"hed",
-				"include/header.php"
-			],
-			[
-				"admin.js",
-				"admin/js/admin.js"
 			]
 		],
 		"width": 0.0
