@@ -160,3 +160,39 @@ custom style
 .wide-15 {
     width: 15%;
 }
+
+.footer-payment img {
+    float: right;
+}
+
+.footer-escrow {
+    /*float: right;*/
+    width: 240px;
+    /*height: 143px;*/
+    padding: 0;
+}
+
+.escrow-logo {
+    float: left;
+}
+
+.escrow-check {
+    float: right;
+    margin: 15px 19px 0 0;
+}
+
+.escrowWrap {
+    clear: both;
+    width: 233px;
+    height: 73px;
+    margin: 0 10px 0 0;
+    border: 1px solid #ddd;
+    background: #f4f4f4;
+}
+
+.escrowWrap .text {
+    clear: both;
+    margin: 0px 0 0 10px;
+    font-size: 11px;
+    color: #2e0f0b;
+}

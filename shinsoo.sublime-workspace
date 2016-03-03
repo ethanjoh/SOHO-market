@@ -459,19 +459,40 @@
 			"file": "shop/index.php",
 			"settings":
 			{
-				"buffer_size": 4133,
+				"buffer_size": 1962,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"contents": "Package Control Messages\n========================\n\nMaterial Theme - Appbar\n-----------------------\n\n  \n  Material Theme - Appbar Addon\n  https://github.com/equinusocio/material-theme-appbar\n  \n  \n  👉 Version 1.1.0 👈\n  ********************************************************************************\n  \n    ➼ Fix sidebar heading color when using purple and yellow accent\n  \n    !! IMPORTANT NOTE !!\n    🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶\n  \n    From this update the appbar doesn't get anymore the color from the material theme accent preferences.\n    So, if yuou want indigo tint, you have to set the color separately by add:\n  \n    {\n      ...\n      \"material_theme_appbar_indigo: true\"\n      ...\n    }\n  \n    By this way you can combine two colors. Check the full preferences in the readme file of the repository.\n  \n    🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶🔶\n",
+			"file": "util/shop-functions.php",
 			"settings":
 			{
-				"buffer_size": 859,
-				"line_ending": "Windows",
-				"name": "Package Control Messages",
-				"read_only": true,
-				"scratch": true
+				"buffer_size": 86578,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "include/footer.php",
+			"settings":
+			{
+				"buffer_size": 13762,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "util/config.ini",
+			"settings":
+			{
+				"buffer_size": 212,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "css/myshop.css",
+			"settings":
+			{
+				"buffer_size": 2745,
+				"line_ending": "Windows"
 			}
 		}
 	],
@@ -617,12 +638,14 @@
 	"expanded_folders":
 	[
 		"/C/wamp/www/shinsoo",
-		"/C/wamp/www/shinsoo/pay",
-		"/C/wamp/www/shinsoo/shop",
+		"/C/wamp/www/shinsoo/images",
+		"/C/wamp/www/shinsoo/images/footer",
 		"/C/wamp/www/shinsoo/util"
 	],
 	"file_history":
 	[
+		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/User/SFTP.errors.log",
+		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
 		"/C/wamp/www/shinsoo/admin/setting/banner_list.php",
 		"/C/wamp/www/shinsoo/admin/setting/main_banner_setting.php",
 		"/C/wamp/www/shinsoo/css/myshop.css",
@@ -654,7 +677,6 @@
 		"/C/wamp/www/shinsoo/pay/i_log.txt",
 		"/C/wamp/www/shinsoo/pay/r_log.txt",
 		"/C/wamp/www/shinsoo/pay/result_log.txt",
-		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
 		"/C/Users/Joh/Downloads/Preferences.sublime-settings",
 		"/C/Users/Joh/Downloads/LGU+_XPay_Crossplatform/LGU+_XPay_Crossplatform_PHP/payreq_crossplatform.php",
 		"/C/Users/Joh/OneDrive/git_project/linktrading-co-kr/pay/cas_noteurl.php",
@@ -749,8 +771,7 @@
 		"/C/wamp/www/seminar/session-4.php",
 		"/C/wamp/www/seminar/session-2.php",
 		"/C/wamp/www/seminar/js/custom.js",
-		"/C/wamp/www/seminar/admin/save.php",
-		"/C/wamp/www/seminar/include/session.php"
+		"/C/wamp/www/seminar/admin/save.php"
 	],
 	"find":
 	{
@@ -781,6 +802,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"$i",
 			"LGD_CASSEQNO",
 			"$CST_MID",
 			"$connect",
@@ -907,8 +929,7 @@
 			"[",
 			";\n",
 			"*/\n",
-			"s-2-index-save",
-			"session_2_index"
+			"s-2-index-save"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -929,7 +950,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 5,
 			"sheets":
 			[
 				{
@@ -938,15 +959,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4133,
+						"buffer_size": 1962,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								134,
+								134
 							]
 						],
 						"settings":
@@ -962,36 +983,140 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
+					"file": "util/shop-functions.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 859,
+						"buffer_size": 86578,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								687,
-								651
+								83501,
+								83501
 							]
 						],
 						"settings":
 						{
-							"auto_indent": false,
-							"default_dir": "C:\\wamp\\www\\shinsoo",
 							"incomplete_sync": null,
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"tab_width": 2,
-							"word_wrap": true
+							"remote_loading": false,
+							"synced": true,
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 72.0,
+						"translation.y": 50772.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "include/footer.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 13762,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								11232,
+								11232
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": true,
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 396.0,
+						"translation.y": 1980.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "util/config.ini",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 212,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								40,
+								55
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": true,
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"file": "images/footer/PG-logo.png",
+					"semi_transient": true,
+					"stack_index": 3,
+					"type": "image"
+				},
+				{
+					"buffer": 4,
+					"file": "css/myshop.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2745,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2743,
+								2743
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": true,
+							"syntax": "Packages/CSS/CSS.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3972.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -1057,16 +1182,28 @@
 		"selected_items":
 		[
 			[
+				"con",
+				"util\\config.ini"
+			],
+			[
+				"my",
+				"css\\myshop.css"
+			],
+			[
+				"foot",
+				"include\\footer.php"
+			],
+			[
+				"shop",
+				"util\\shop-functions.php"
+			],
+			[
 				"index",
 				"shop\\index.php"
 			],
 			[
 				"bann",
 				"admin\\setting\\banner_list.php"
-			],
-			[
-				"my",
-				"css\\myshop.css"
 			],
 			[
 				"main_ba",
@@ -1079,10 +1216,6 @@
 			[
 				"top_",
 				"admin\\order\\top_order_list.php"
-			],
-			[
-				"con",
-				"util\\config.ini"
 			],
 			[
 				"util",
@@ -1139,10 +1272,6 @@
 			[
 				"ind",
 				"shop\\index.php"
-			],
-			[
-				"shop",
-				"util\\shop-functions.php"
 			],
 			[
 				"che",
@@ -1291,10 +1420,6 @@
 			[
 				"crea",
 				"css\\creative.css"
-			],
-			[
-				"foot",
-				"include\\footer.php"
 			],
 			[
 				"inde",
