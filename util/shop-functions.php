@@ -258,6 +258,7 @@ HEREDOC;
 function show_catalog_products($result, $tabid)
 {
     global $connect;
+    $icon_tag = '';
 
     if ($result) {
 
@@ -279,6 +280,12 @@ function show_catalog_products($result, $tabid)
 
             $option = show_option($pnum);
 
+            if ("Y" == $rows['main_best']) {
+                $icon_tag = '<span class="best-text">Best</span>';
+            } elseif ("Y" == $rows['main_new']) {
+                $icon_tag = '<span class="sale-text">Sale</span>';
+            }
+
             if ('home' == $tabid) {
                 echo <<<HEREDOC
 
@@ -287,6 +294,7 @@ function show_catalog_products($result, $tabid)
                                 <input type="hidden" name="pnum" id="pnum_{$pnum}" value="{$pnum}">
                                 <div class="col-md-3">
                                     <div class="single-product">
+                                        {$icon_tag}
                                         <div class="product-img">
                                             <a href="detail.php?pnum={$pnum}&lcode={$category_l}&mcode={$category_m}&scode={$category_s}">
                                                 <img class="primary-image" src="{$rows['b_image1_name']}" alt="" />
@@ -2133,9 +2141,11 @@ function show_main_banner()
 
     $qry = "SELECT * FROM banner WHERE pos='main' ORDER BY num DESC LIMIT 1";
     $res = mysqli_query($connect, $qry);
-    $row = mysqli_fetch_array($res);
 
-    echo <<<HEREDOC
+    if ($res) {
+        $row = mysqli_fetch_array($res);
+
+        echo <<<HEREDOC
 
         <section class="slider-area">
             <div class="bend niceties preview-2">
@@ -2143,48 +2153,68 @@ function show_main_banner()
 
 HEREDOC;
 
-    for ($i = 1; $i <= 5; $i++) {
-        $file = 'm_banner' . $i . '_image';
-        $flag = 'm_banner' . $i;
+        for ($i = 1; $i <= 5; $i++) {
+            $file = 'm_banner' . $i . '_image';
+            $flag = 'm_banner' . $i;
 
-        if ("Y" == $row[$flag]) {
-            echo <<<HEREDOC
+            if ("Y" == $row[$flag]) {
+                echo <<<HEREDOC
                     <img src="{$row[$file]}" alt="" title="#slider-direction-{$i}">
 
 HEREDOC;
+            }
         }
-    }
 
-    echo '              </div>' . "\r\n";
+        echo '              </div>' . "\r\n";
 
-    for ($j = 1; $j <= 5; $j++) {
-        $flag = 'm_banner' . $j;
-        $link = 'mlink' . $j;
+        for ($j = 1; $j <= 5; $j++) {
+            $flag = 'm_banner' . $j;
+            $link = 'mlink' . $j;
 
-        if ("Y" == $row[$flag]) {
-            echo <<<HEREDOC
+            if ("Y" == $row[$flag]) {
+                echo <<<HEREDOC
 
-                    <div id="slider-direction-{$j}" class="slider-direction">
-                        <div class="slider-content t-lfr s-tb slider-2">
-                            <div class="title-container s-tb-c">
-                                <div class="s-title">
-                                    <a href="{$row[$link]}">자세히 보기</a>
-                                </div>
+                <div id="slider-direction-{$j}" class="slider-direction">
+                    <div class="slider-content t-lfr s-tb slider-2">
+                        <div class="title-container s-tb-c">
+                            <div class="s-title">
+                                <a href="{$row[$link]}">자세히 보기</a>
                             </div>
                         </div>
                     </div>
-
+                </div>
 HEREDOC;
+            }
         }
-    }
 
-    echo <<<HEREDOC
+        echo <<<HEREDOC
 
             </div>
         </section>
 
 HEREDOC;
+    } else {
 
+        echo <<<HEREDOC
+
+        <section class="slider-area">
+            <div class="bend niceties preview-2">
+                <div id="ensign-nivoslider" class="slides">
+                    <img src="http://placehold.it/1920x650" alt="" title="#slider-direction-1">
+                </div>
+                <div id="slider-direction-1" class="slider-direction">
+                    <div class="slider-content t-lfr s-tb slider-2">
+                        <div class="title-container s-tb-c">
+                            <div class="s-title">
+                                <a href="#">자세히 보기</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+HEREDOC;
+    }
 }
 
 /**
@@ -2197,29 +2227,41 @@ function show_top_banner()
 
     $qry = "SELECT * FROM banner WHERE pos='top' ORDER BY num DESC LIMIT 1";
     $res = mysqli_query($connect, $qry);
-    $row = mysqli_fetch_array($res);
 
-    for ($i = 1; $i <= 3; $i++) {
+    if ($res) {
+        $row = mysqli_fetch_array($res);
 
-        $file = 'm_banner' . $i . '_image';
-        $flag = 'm_banner' . $i;
-        $link = 'mlink' . $i;
+        for ($i = 1; $i <= 3; $i++) {
 
-        if ("Y" == $row[$flag]) {
-            echo <<<HEREDOC
+            $file = 'm_banner' . $i . '_image';
+            $flag = 'm_banner' . $i;
+            $link = 'mlink' . $i;
+
+            if ("Y" == $row[$flag]) {
+                echo <<<HEREDOC
 
                         <div class="product col-md-4 col-sm-4 col-xs-12">
                             <a href="{$row[$link]}"><img src="{$row[$file]}" alt=""></a>
                         </div>
 
 HEREDOC;
-        } else {
-            echo <<<HEREDOC
+            } else {
+                echo <<<HEREDOC
 
                         <div class="product col-md-4 col-sm-4 col-xs-12">
                             <a href="#"></a>
                         </div>
 
+HEREDOC;
+            }
+        }
+    } else {
+        for ($i = 1; $i <= 3; $i++) {
+            echo <<<HEREDOC
+
+                        <div class="product col-md-4 col-sm-4 col-xs-12">
+                            <a href="#"><img src="http://placehold.it/370x243" alt=""></a>
+                        </div>
 HEREDOC;
         }
     }
@@ -2235,16 +2277,18 @@ function show_middle_banner()
 
     $qry = "SELECT * FROM banner WHERE pos='middle' ORDER BY num DESC LIMIT 1";
     $res = mysqli_query($connect, $qry);
-    $row = mysqli_fetch_array($res);
 
-    for ($i = 1; $i <= 2; $i++) {
+    if ($res) {
+        $row = mysqli_fetch_array($res);
 
-        $file = 'm_banner' . $i . '_image';
-        $flag = 'm_banner' . $i;
-        $link = 'mlink' . $i;
+        for ($i = 1; $i <= 2; $i++) {
 
-        if ("Y" == $row[$flag]) {
-            echo <<<HEREDOC
+            $file = 'm_banner' . $i . '_image';
+            $flag = 'm_banner' . $i;
+            $link = 'mlink' . $i;
+
+            if ("Y" == $row[$flag]) {
+                echo <<<HEREDOC
 
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="mid-banner">
@@ -2253,8 +2297,8 @@ function show_middle_banner()
                     </div>
 
 HEREDOC;
-        } else {
-            echo <<<HEREDOC
+            } else {
+                echo <<<HEREDOC
 
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="mid-banner">
@@ -2262,6 +2306,18 @@ HEREDOC;
                         </div>
                     </div>
 
+HEREDOC;
+            }
+        }
+    } else {
+        for ($i = 1; $i <= 2; $i++) {
+            echo <<<HEREDOC
+
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="mid-banner">
+                            <a href="#"><img src="http://placehold.it/570x298" alt=""></a>
+                        </div>
+                    </div>
 HEREDOC;
         }
     }
@@ -2277,30 +2333,40 @@ function show_bottom_banner()
 
     $qry = "SELECT * FROM banner WHERE pos='bottom' ORDER BY num DESC LIMIT 1";
     $res = mysqli_query($connect, $qry);
-    $row = mysqli_fetch_array($res);
 
-    for ($i = 1; $i <= 1; $i++) {
+    if ($res) {
+        $row = mysqli_fetch_array($res);
 
-        $file = 'm_banner' . $i . '_image';
-        $flag = 'm_banner' . $i;
-        $link = 'mlink' . $i;
+        for ($i = 1; $i <= 1; $i++) {
 
-        if ("Y" == $row[$flag]) {
-            echo <<<HEREDOC
+            $file = 'm_banner' . $i . '_image';
+            $flag = 'm_banner' . $i;
+            $link = 'mlink' . $i;
+
+            if ("Y" == $row[$flag]) {
+                echo <<<HEREDOC
 
                         <div class="banner">
                             <a href="{$row[$link]}"><img src="{$row[$file]}" alt=""></a>
                         </div>
 
 HEREDOC;
-        } else {
-            echo <<<HEREDOC
+            } else {
+                echo <<<HEREDOC
 
                         <div class="banner">
                             <a href="#"></a>
                         </div>
 
 HEREDOC;
+            }
         }
+    } else {
+        echo <<<HEREDOC
+
+                        <div class="banner">
+                            <a href="#"><img src="http://placehold.it/1168x90" alt=""></a>
+                        </div>
+HEREDOC;
     }
 }

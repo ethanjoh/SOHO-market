@@ -1162,15 +1162,15 @@ select.select option {
 .single-product span.sale-text,
 .bit span.sale-text {
     background: #f4a137 none repeat scroll 0 0;
-    border-radius: 100%;
+    border-radius: 10%;
     box-shadow: 0 3px 0 0 #d58117;
     color: #fff;
     display: block;    /*font-family: Lato;*/
     font-size: 16px;
     font-weight: 700;
-    height: 56px;
+    height: 36px;
     left: 20px;
-    line-height: 56px;
+    line-height: 36px;
     position: absolute;
     text-align: center;
     text-transform: capitalize;
@@ -1185,6 +1185,36 @@ select.select option {
 }
 
 .bit span.sale-text {
+    left: 25px;
+    top: 52%;
+}
+
+.single-product span.best-text,
+.bit span.best-text {
+    background: #2F7FCF none repeat scroll 0 0;
+    border-radius: 10%;
+    box-shadow: 0 3px 0 0 #195CE5;
+    color: #fff;
+    display: block;    /*font-family: Lato;*/
+    font-size: 16px;
+    font-weight: 700;
+    height: 36px;
+    left: 20px;
+    line-height: 36px;
+    position: absolute;
+    text-align: center;
+    text-transform: capitalize;
+    top: 10px;
+    width: 56px;
+    z-index: 1;
+    position: absolute;
+}
+
+.bit {
+    margin-top: 35px;
+}
+
+.bit span.best-text {
     left: 25px;
     top: 52%;
 }
