@@ -416,12 +416,12 @@ function show_me_price($pnum)
     $shop_price   = number_format($rows['shop_price']);
 
     if ($p_id) {
-        $ret = '                                <span class="special-price"><i class="fa fa-krw"></i> ' . $dealer_price . '</span>' . "\r\n";
+        $return_price = '                                <span class="special-price"><i class="fa fa-krw"></i> ' . $dealer_price . '</span>' . "\r\n";
     } else {
-        $ret = '                                <span class="shop-price"><i class="fa fa-krw"></i> ' . $shop_price . '</span>' . "\r\n";
+        $return_price = '                                <span class="shop-price"><i class="fa fa-krw"></i> ' . $shop_price . '</span>' . "\r\n";
     }
 
-    return $ret;
+    return $return_price;
 }
 
 /**
@@ -1047,11 +1047,11 @@ function check_unChk_order()
     $p_id = mysqli_escape_string($connect, $p_id);
 
 //미확인건
-    $unchk_sql   = "SELECT * FROM mall_order WHERE cancel='N' AND status='3' AND user_id = '$p_id' ";
-    $unchk_res   = mysqli_query($connect, $unchk_sql);
-    $unchk_total = mysqli_num_rows($unchk_res);
+    $unchk_sql           = "SELECT * FROM mall_order WHERE cancel='N' AND status='3' AND user_id = '$p_id' ";
+    $unchk_res           = mysqli_query($connect, $unchk_sql);
+    $unchked_order_total = mysqli_num_rows($unchk_res);
 
-    return $unchk_total;
+    return $unchked_order_total;
 
 }
 
@@ -1067,11 +1067,11 @@ function check_today_order()
     $today = date("Y-m-d");
 
 //금일주문건
-    $today_sql   = "SELECT * FROM mall_order WHERE cancel='N' AND createdate='$today' AND user_id = '$p_id' ";
-    $today_res   = mysqli_query($connect, $today_sql);
-    $today_total = mysqli_num_rows($today_res);
+    $today_sql         = "SELECT * FROM mall_order WHERE cancel='N' AND createdate='$today' AND user_id = '$p_id' ";
+    $today_res         = mysqli_query($connect, $today_sql);
+    $today_order_total = mysqli_num_rows($today_res);
 
-    return $today_total;
+    return $today_order_total;
 
 }
 
@@ -1086,11 +1086,11 @@ function check_readyToSend_order()
     $p_id = set_var($_SESSION['p_id']);
 
 //발송대기건
-    $paid_sql   = "SELECT * FROM mall_order WHERE cancel='N' AND status='7' AND user_id = '$p_id' ";
-    $paid_res   = mysqli_query($connect, $paid_sql);
-    $paid_total = mysqli_num_rows($paid_res);
+    $paid_sql                = "SELECT * FROM mall_order WHERE cancel='N' AND status='7' AND user_id = '$p_id' ";
+    $paid_res                = mysqli_query($connect, $paid_sql);
+    $readyToSend_order_total = mysqli_num_rows($paid_res);
 
-    return $paid_total;
+    return $readyToSend_order_total;
 
 }
 
@@ -1151,9 +1151,9 @@ HEREDOC;
  * [get_page_num 페이지 수를 구하기 위한 함수]
  * @param  [type] $mode          [검색모드]
  * @param  [type] $key           [검색 키]
- * @param  [type] $key_value     [검색 키워드]
- * @param  [type] $date1         [검색 시작날짜]
- * @param  [type] $date2         [검색 종료날짜]
+ * @param  [type] $keyword       [검색 키워드]
+ * @param  [type] $start_date    [검색 시작날짜]
+ * @param  [type] $end_date      [검색 종료날짜]
  * @param  [type] $page          [전달받은 페이지 번호]
  * @param  [type] $scale         [한 페이지에 보여질 페이지수]
  * @return [type] $cline [현재 라인수]
@@ -1161,7 +1161,7 @@ HEREDOC;
  * @return [type] $cpage [현재 페이지]
  * @return [type] $totalpage [전체 페이지수]
  */
-function get_page_num($mode, $key, $keyword, $date1, $date2, $page, $scale)
+function get_page_num($mode, $key, $keyword, $start_date, $end_date, $page, $scale)
 {
     global $connect;
 
@@ -1173,7 +1173,7 @@ function get_page_num($mode, $key, $keyword, $date1, $date2, $page, $scale)
             $qry = "SELECT num FROM mall_order WHERE user_id = '$p_id' AND $key LIKE '%$keyword%' ";
             break;
         case 'date':
-            $qry = "SELECT num FROM mall_order WHERE user_id = '$p_id' AND createdate BETWEEN '$date1' AND '$date2' ";
+            $qry = "SELECT num FROM mall_order WHERE user_id = '$p_id' AND createdate BETWEEN '$start_date' AND '$end_date' ";
             break;
         case 'today':
             $qry = "SELECT num FROM mall_order WHERE cancel = 'N' AND user_id = '$p_id' AND createdate = '$today' ";
@@ -1237,15 +1237,15 @@ function get_page_num($mode, $key, $keyword, $date1, $date2, $page, $scale)
  * [get_page_result 검색결과]
  * @param  [type] $mode          [검색모드]
  * @param  [type] $key           [검색 키]
- * @param  [type] $key_value     [검색 키워드]
- * @param  [type] $date1         [검색 시작날짜]
- * @param  [type] $date2         [검색 종료날짜]
+ * @param  [type] $keyword       [검색 키워드]
+ * @param  [type] $start_date    [검색 시작날짜]
+ * @param  [type] $end_date      [검색 종료날짜]
  * @param  [type] $cline         [현재 라인수]
  * @param  [type] $last_page_num [마지막 페이지수]
- * @return [type] $t_no [쿼리 결과 갯수]
+ * @return [type] $num_of_rows [쿼리 결과 갯수]
  * @return [type] $res [쿼리 결과]
  */
-function get_page_result($mode, $key, $key_value, $date1, $date2, $cline, $last_page_num)
+function get_page_result($mode, $key, $keyword, $start_date, $end_date, $cline, $last_page_num)
 {
     global $connect;
 
@@ -1254,12 +1254,12 @@ function get_page_result($mode, $key, $key_value, $date1, $date2, $cline, $last_
 
     switch ($mode) {
         case 'search':
-            $qry = "SELECT * FROM mall_order WHERE $key LIKE '%$key_value%'
+            $qry = "SELECT * FROM mall_order WHERE $key LIKE '%$keyword%'
                         AND user_id = '$p_id'
                         ORDER BY num DESC LIMIT $cline,$last_page_num ";
             break;
         case 'date':
-            $qry = "SELECT * FROM mall_order WHERE createdate BETWEEN '$date1' AND '$date2'
+            $qry = "SELECT * FROM mall_order WHERE createdate BETWEEN '$start_date' AND '$end_date'
                           AND user_id = '$p_id'
                           ORDER BY num DESC LIMIT $cline,$last_page_num ";
             break;
@@ -1310,10 +1310,10 @@ function get_page_result($mode, $key, $key_value, $date1, $date2, $cline, $last_
                                 ORDER BY num DESC LIMIT $cline,$last_page_num ";
     }
 
-    $res  = mysqli_query($connect, $qry);
-    $t_no = mysqli_num_rows($res);
+    $res         = mysqli_query($connect, $qry);
+    $num_of_rows = mysqli_num_rows($res);
 
-    return array($t_no, $res);
+    return array($num_of_rows, $res);
 
 }
 
@@ -1332,11 +1332,11 @@ function get_list_page_num($mode, $lcode, $mcode, $key, $keyword, $page, $scale)
 {
     global $connect;
 
-    $code_qry = '';
+    $added_qry = '';
 
     //중분류 선택시
     if ($mcode) {
-        $code_qry = " AND category_m = '$mcode'";
+        $added_qry = " AND category_m = '$mcode'";
     }
 
     if ("search" == $mode) {
@@ -1344,7 +1344,7 @@ function get_list_page_num($mode, $lcode, $mcode, $key, $keyword, $page, $scale)
         $qry = "SELECT * FROM products WHERE approved='Y' AND del_chk != 'Y' $search_qry ";
 
     } else {
-        $qry = "SELECT * FROM products WHERE category_l='$lcode' AND del_chk != 'Y' AND approved='Y' $code_qry";
+        $qry = "SELECT * FROM products WHERE category_l='$lcode' AND del_chk != 'Y' AND approved='Y' $added_qry";
     }
 
     // 자료 총수 구하기
@@ -1397,42 +1397,42 @@ function get_list_page_result($mode, $lcode, $mcode, $key, $keyword, $cline, $la
 {
     global $connect;
 
-    $code_qry = '';
+    $added_qry = '';
 
     if ($mcode) {
-        $code_qry = " AND category_m = '$mcode'";
+        $added_qry = " AND category_m = '$mcode'";
     }
 
     if ("search" == $mode) {
         $search_qry .= " AND (name LIKE '%" . $keyword . "%' OR prod_code LIKE '" . $keyword . "' OR company LIKE '%" . $keyword . "%') ";
         $qry = "SELECT * FROM products WHERE approved='Y' AND del_chk != 'Y' " . $search_qry . " ORDER BY num DESC LIMIT " . $cline . ", " . $last_page_num . "";
     } else {
-        $qry = "SELECT * FROM products WHERE del_chk='N'" . $code_qry . " AND approved = 'Y' ORDER BY num DESC LIMIT " . $cline . ", " . $last_page_num . "";
+        $qry = "SELECT * FROM products WHERE del_chk='N'" . $added_qry . " AND approved = 'Y' ORDER BY num DESC LIMIT " . $cline . ", " . $last_page_num . "";
     }
 
-    $res  = mysqli_query($connect, $qry);
-    $t_no = mysqli_num_rows($res);
+    $res         = mysqli_query($connect, $qry);
+    $num_of_rows = mysqli_num_rows($res);
 
-    return array($t_no, $res);
+    return array($num_of_rows, $res);
 
 }
 
 /**
  * [show_order_list 주문목록 보여주기]
- * @param  [type] $t_no           [쿼리결과 갯수]
+ * @param  [type] $num_of_rows    [쿼리결과 갯수]
  * @param  [type] $result         [쿼리결과]
  * @param  [type] $cpage          [현재 페이지]
  * @return [type] [description]
  */
-function show_order_list($t_no, $result, $cpage)
+function show_order_list($num_of_rows, $result, $cpage)
 {
     global $connect, $MERTKEY, $CST_MID, $CST_PLATFORM;
 
     $status_now = '';
 
-    if ($t_no > 0) {
+    if ($num_of_rows > 0) {
 
-        $total = 0; //금일주문총액
+        $today_order_sum = 0; //금일주문총액
 
         for ($i = 0; $row = mysqli_fetch_array($result); $i++) {
             $a_goods_fk = explode(",", $row['goods_fk']);
@@ -1471,7 +1471,7 @@ function show_order_list($t_no, $result, $cpage)
             //취소 시
             if ($row['cancel'] == 'Y') {
                 $status_now = '<i class="fa fa-remove"></i> 주문취소';
-                $total -= $row['last_amount'];
+                $today_order_sum -= $row['last_amount'];
 
                 echo <<<HEREDOC
 	                    <tr>
@@ -1560,11 +1560,11 @@ HEREDOC;
                     </tr>
 HEREDOC;
 
-                $total += ($row['amount']);
+                $today_order_sum += ($row['amount']);
             } // ./ if-else end
         } // ./for ($i = 0; $row = mysqli_fetch_array($result); $i++)
 
-        $show_total_amount = number_format($total);
+        $show_total_amount = number_format($today_order_sum);
 
         echo <<<HEREDOC
                     <tr>
@@ -1603,17 +1603,18 @@ function show_order_item($oid)
     $res = mysqli_query($connect, $sql);
     $row = mysqli_fetch_array($res);
 
-    $a_goods_fk = explode(",", $row['goods_fk']);
-    $org_price  = explode(",", $row['goods_price']);
-    $mod_price  = explode(",", $row['mod_price']);
-    $org_volume = explode(",", $row['goods_count']);
-    $mod_volume = explode(",", $row['mod_count']);
-    $option     = explode(",", $row['goods_kind']);
-    $tot_amount = 0;
-    $org_amount = 0;
-    $t_count    = 0;
-    $mt_count   = 0;
-    $pay_status = '';
+    $a_goods_fk          = explode(",", $row['goods_fk']);
+    $unit_price          = explode(",", $row['goods_price']);
+    $modified_unit_price = explode(",", $row['mod_price']);
+    $ordered_item_num    = explode(",", $row['goods_count']);
+    $modified_item_num   = explode(",", $row['mod_count']);
+    $option              = explode(",", $row['goods_kind']);
+
+    $final_order_sum         = 0;
+    $original_order_sum      = 0;
+    $total_order_item_num    = 0;
+    $modified_total_item_num = 0;
+    $pay_status              = '';
 
     //주문 상품 정보를 불러옵니다.
     for ($i = 0; $i < sizeof($a_goods_fk); $i++) {
@@ -1671,36 +1672,36 @@ HEREDOC;
 
         echo <<<HEREDOC
                                     </td>
-                                    <td>{$org_volume[$i]}</td>
+                                    <td>{$ordered_item_num[$i]}</td>
 HEREDOC;
 
         if ($fixed_price) {
-            echo '                          <td><i class="fa fa-lock"></i>' . number_format($org_price[$i]) . '</td>';
+            echo '                          <td><i class="fa fa-lock"></i>' . number_format($unit_price[$i]) . '</td>';
         } else {
-            echo '                          <td>' . number_format($org_price[$i]) . '</td>';
+            echo '                          <td>' . number_format($unit_price[$i]) . '</td>';
         }
 
-        $sub_amount      = (int) $mod_volume[$i] * (int) $mod_price[$i];
+        $sub_amount      = (int) $modified_item_num[$i] * (int) $modified_unit_price[$i];
         $show_sub_amount = number_format($sub_amount);
         echo <<<HEREDOC
                                     <td>{$show_sub_amount}</td>
                                 </tr>
 HEREDOC;
 
-        $tot_amount = $tot_amount + ((int) $mod_price[$i] * (int) $mod_volume[$i]);
-        $org_amount = $org_amount + ((int) $org_price[$i] * (int) $org_volume[$i]);
-        $t_count    = $t_count + (int) $org_volume[$i];
-        $mt_count   = $mt_count + (int) $mod_volume[$i];
+        $final_order_sum         = $final_order_sum + ((int) $modified_unit_price[$i] * (int) $modified_item_num[$i]);
+        $original_order_sum      = $original_order_sum + ((int) $unit_price[$i] * (int) $ordered_item_num[$i]);
+        $total_order_item_num    = $total_order_item_num + (int) $ordered_item_num[$i];
+        $modified_total_item_num = $modified_total_item_num + (int) $modified_item_num[$i];
     } // ./ for ($i = 0; $i < sizeof($a_goods_fk); $i++)
 
-    $last_cost         = $tot_amount;
+    $last_cost         = $final_order_sum;
     $show_delivery_fee = show_delivery_fee($last_cost);
     $show_last_cost    = number_format($last_cost);
 
     echo <<<HEREDOC
                                 <tr>
                                     <td colspan="3">총 수량 :</td>
-                                    <td>{$t_count} 개</td>
+                                    <td>{$total_order_item_num} 개</td>
                                     <td></td>
                                     <td colspan="2"></td>
                                 </tr>
@@ -1748,22 +1749,22 @@ function show_order_status($oid, $order_status)
 
     switch ($order_status) {
         case '3':
-            return $ret = '<i class="fa fa-pause"></i> 상품을 준비 중입니다.';
+            return $return_status = '<i class="fa fa-pause"></i> 상품을 준비 중입니다.';
             break;
         case '5':
-            return $ret = '<i class="fa fa-check"></i> 주문확인 후 포장 중입니다.';
+            return $return_status = '<i class="fa fa-check"></i> 주문확인 후 포장 중입니다.';
             break;
         case '7':
-            return $ret = '<i class="fa fa-flag-checkered"></i> 포장완료 후 발송 준비 중입니다.';
+            return $return_status = '<i class="fa fa-flag-checkered"></i> 포장완료 후 발송 준비 중입니다.';
             break;
         case '8':
-            return $ret = '<i class="fa fa-check-square-o"></i> 상품을 발송했습니다. (운송장 번호: ' . show_logistics() . ' ' . show_track_no($oid) . ' )';
+            return $return_status = '<i class="fa fa-check-square-o"></i> 상품을 발송했습니다. (운송장 번호: ' . show_logistics() . ' ' . show_track_no($oid) . ' )';
             break;
         case '0':
-            return $ret = '<i class="fa fa-minus-square"></i> 발송이 지연됩니다.';
+            return $return_status = '<i class="fa fa-minus-square"></i> 발송이 지연됩니다.';
             break;
         default:
-            return $ret = '<i class="fa fa-pause"></i> 상품을 준비 중입니다.';
+            return $return_status = '<i class="fa fa-pause"></i> 상품을 준비 중입니다.';
             break;
     }
 
