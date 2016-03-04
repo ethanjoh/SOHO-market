@@ -2,10 +2,11 @@
 
 <?php
 
-$mode    = set_var($_GET['mode']);
-$p_id    = set_var($_SESSION['p_id']);
-$main_no = set_var($_GET['main_no']);
-$code    = set_var($_GET['code']);
+$mode     = set_var($_GET['mode']);
+$p_id     = set_var($_SESSION['p_id']);
+$main_no  = set_var($_GET['main_no']);
+$code     = set_var($_GET['code']);
+$bbs_name = '';
 
 if ('edit' == $mode) {
     $board  = 'bbs_' . $code;
@@ -26,16 +27,24 @@ if ('edit' == $mode) {
         $chk_name = explode('_', $row['filename']);
         $old_file = $chk_name[sizeof($chk_name) - 1];
     }
+
+    $bbs_name = $row['title'];
+
 } else if ('reply' == $mode) {
     $board = 'bbs_' . $code;
     $sql   = "SELECT * FROM $board WHERE main_no='$main_no' ";
 
     $result = mysqli_query($connect, $sql);
     $row    = mysqli_fetch_array($result);
+
+    $bbs_name = $row['title'];
+
 } else {
     $bqry1 = "SELECT * FROM code WHERE code='$code' ";
     $bres1 = mysqli_query($connect, $bqry1);
     $brow1 = mysqli_fetch_array($bres1);
+
+    $bbs_name = $brow1['title'];
 }
 
 ?>
@@ -43,7 +52,7 @@ if ('edit' == $mode) {
     <!-- HOME -->
     <div class="container">
         <div class="row text-center">
-            <h1><?php echo $brow1['bbs_name']; ?></h1>
+            <h1><?php echo $bbs_name; ?></h1>
         </div>
     </div>
     <!-- /.home -->
@@ -84,8 +93,9 @@ if ('edit' == $mode) {
 ?>
                         </tr>
                         <tr>
-                          <td>내 용</td>
-                          <td><?php
+                          <td colspan="2">
+<?php
+
 if ($mode == 'edit') {
     $contents = stripslashes($row['contents']);
     echo <<<HEREDOC
@@ -93,27 +103,24 @@ if ($mode == 'edit') {
                             <script type="text/javascript">
                                 CKEDITOR.replace( 'contents' );
                             </script>
-                            <i class="fa fa-paperclip"></i>파일 첨부 (20MB 이하)
-                            <input type="file" name="uploadedfile" size="30"><br/>
+                            <div class="margin-top-30">
+                                <i class="fa fa-paperclip"></i>파일 첨부 (20MB 이하)
+                                <input type="file" name="uploadedfile" size="30">
+                            </div>
+
 HEREDOC;
 
-    // echo "<div><textarea name=\"contents\" id=\"contents\" style=\"width:100%; height:300px\">$row[contents]</textarea></div>\n
-    //                             <i class=\"fa fa-paperclip\"></i>파일 첨부 (20MB 이하)
-    //                             <input type=\"file\" name=\"uploadedfile\" size=\"30\"><br/>\n
-    //                             ";
 } else {
     echo <<<HEREDOC
                             <textarea name="contents" class="form-control" id="contents"></textarea>
                             <script type="text/javascript">
                                 CKEDITOR.replace( 'contents' );
                             </script>
-                            <i class="fa fa-paperclip"></i>파일 첨부 (20MB 이하)
-                            <input type="file" name="uploadedfile" size="30"><br/>
+                            <div class="margin-top-30">
+                                <i class="fa fa-paperclip"></i>파일 첨부 (20MB 이하)
+                                <input type="file" name="uploadedfile" size="30">
+                            </div>
 HEREDOC;
-
-    // echo "<div><textarea name=\"contents\" id=\"contents\" style=\"width:100%; height:300px\"></textarea></div>\n
-    //                             <i class=\"fa fa-paperclip\"></i>파일 첨부 (20MB 이하)
-    //                             <input type=\"file\" name=\"uploadedfile\" size=\"30\"><br/>\n";
 }
 ?></td>
                         </tr>
@@ -122,7 +129,7 @@ HEREDOC;
 
                     <!-- 글쓰기 버튼 -->
                     <div class="row text-center">
-                        <a class="btn btn-success" href="#" onClick="javascript:send('contents');">작성하기</a> &nbsp;
+                        <a class="btn btn-success" href="#" onClick="send('contents');">작성하기</a> &nbsp;
                         <a class="btn btn-primary" href="list.php?code=<?php echo $code; ?>">목 록</a>
                     </div>
 

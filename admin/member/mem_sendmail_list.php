@@ -16,6 +16,16 @@
       <section id="main-content">
         <section class="wrapper">
 
+<?php
+
+$mode         = set_var($_POST['mode']);
+$page         = set_var($_POST['page']);
+$checked      = set_var($_POST['checked']);
+$id           = set_var($_POST['id']);
+$company_name = set_var($_POST['company_name']);
+$page_scale   = set_var($_POST['page_scale']);
+
+?>
 
         <!-- info start-->
         <div class="row">
@@ -35,19 +45,21 @@
 
 <?php
 
-if ($mode == 'search') {
+$search_query = '';
+
+if ('search' == $mode) {
     if ($id) {
-        $search_keyword .= " and id = '$id' ";
+        $search_query .= " and id = '$id' ";
     }
 
     if ($company_name) {
-        $search_keyword .= " AND company_name LIKE '%$company_name%' ";
+        $search_query .= " AND company_name LIKE '%$company_name%' ";
     }
 
 }
 
 //회원 테이블의 리스트를 불러옵니다.
-$query  = "SELECT * FROM member WHERE md_email <> '' AND optin='Y' $search_keyword ";
+$query  = "SELECT * FROM member WHERE optin='Y' AND md_email <> '' $search_query ";
 $result = mysqli_query($connect, $query);
 $total  = mysqli_num_rows($result);
 
@@ -67,18 +79,18 @@ $total  = mysqli_num_rows($result);
                       <div class="form-group">
                           <label for="id" class="col-lg-2 col-sm-2 control-label">아이디:</label>
                           <div class="col-sm-3">
-                              <input type="text" class="form-control" name="id" value="<?php echo $id; ?>">
+                              <input type="text" class="form-control" name="id" value="">
                           </div>
                       </div>
                       <div class="form-group">
                           <label for="company_name" class="col-lg-2 col-sm-2 control-label">업체명:</label>
                           <div class="col-sm-3">
-                              <input type="text" class="form-control" name="company_name" value="<?php echo $company_name; ?>">
+                              <input type="text" class="form-control" name="company_name" value="">
                           </div>
                       </div>
                       <div class="form-group row">
                           <div class="col-sm-12 text-center">
-                            <button class="btn btn-primary" onclick="form1.submit()"><i class="fa fa-search"></i>검색</button>
+                            <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i>검색</button>
                           </div>
                       </div>
                   </div>
@@ -146,7 +158,7 @@ if ($limit >= $total) {
 
 $scale1 = $limit - $cline;
 
-$sql_2    = "SELECT * FROM member WHERE md_email <> '' $search_keyword ORDER BY seq_num DESC LIMIT $cline,$scale1 ";
+$sql_2    = "SELECT * FROM member WHERE md_email <> '' $search_query ORDER BY seq_num DESC LIMIT $cline,$scale1 ";
 $result_2 = mysqli_query($connect, $sql_2);
 
 for ($i = 1; $list = mysqli_fetch_array($result_2); $i++) {
@@ -191,9 +203,14 @@ mysqli_free_result($result_2);
                       <a type="button" class="btn btn-success" href="#" onclick="javascript:mail_send();">메일 보내기</a>
                     </td>
                     <td>
-                      <?php
-$url = $PHP_SELF . "?id=" . $id . "&mode=" . $mode . "&license_no=" . $license_no . "&md_email=" . $md_email . "&o_phone=" . $o_phone . "&company_name=" . $company_name . "&page_scale=" . $page_scale;
+<?php
+
+$url = $_SERVER['PHP_SELF'] . "?mode=" . $mode . "&amp;page_scale=" . $page_scale;
 page_nav($totalpage, $cpage, $url);
+
+if (isset($page_scale)) {
+    $checked = 'checked';
+}
 ?>
                     </td>
                     <td>

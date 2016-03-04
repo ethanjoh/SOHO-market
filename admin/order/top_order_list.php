@@ -81,13 +81,13 @@ $delay_total = mysqli_num_rows($delay_res);
 
 switch ($mode) {
     // case 'search' : $sql_2="SELECT orderid FROM mall_order
-    //                         WHERE user_id <> 'guest' AND $key LIKE '%$key_value%' "; break;
+    //                         WHERE user_id <> 'guest' AND $key LIKE '%$keyword%' "; break;
     case 'search':$sql_2 = "SELECT * FROM mall_order
-					                          	  WHERE user_id <> 'guest' AND (buyer_name LIKE '%$key_value%' OR user_id LIKE '%$key_value%' OR recipient_name LIKE '%$key_value%' OR goods_name LIKE '%$key_value%')";
+					                          	  WHERE user_id <> 'guest' AND (buyer_name LIKE '%$keyword%' OR user_id LIKE '%$keyword%' OR recipient_name LIKE '%$keyword%' OR goods_name LIKE '%$keyword%')";
         break;
 
     case 'date':$sql_2 = "SELECT orderid FROM mall_order
-						                          WHERE cancel = 'N' AND date(createdate) BETWEEN '$date1' AND '$date2' AND user_id = '$key_value' ";
+						                          WHERE cancel = 'N' AND date(createdate) BETWEEN '$date1' AND '$date2' AND user_id = '$keyword' ";
         break;
     case 'today':$today = date("Y-m-d");
         $sql_2              = "SELECT orderid FROM mall_order
@@ -161,7 +161,7 @@ if ($mode == "search") {
 						<form name="form" method="get" action="top_order_list.php" class="form-inline form-group" role="form">
 						<input type="hidden" name="mode" value="date" />
 						<input type="hidden" name="key" value="<?php echo $key; ?>" />
-						<input type="hidden" name="key_value" value="<?php echo $key_value; ?>" />
+						<input type="hidden" name="keyword" value="<?php echo $keyword; ?>" />
 						<div class="panel panel-info">
 						  <div class="panel-heading">날짜 검색</div>
 							  <div class="panel-body text-center">
@@ -248,13 +248,13 @@ if ($mode == "search") {
 
 switch ($mode) {
     // case 'search' : $sql_4 = "SELECT * FROM mall_order
-    //                           WHERE $key LIKE '%$key_value%' AND user_id <> 'guest' ORDER BY num DESC LIMIT $cline,$scale1 "; break;
+    //                           WHERE $key LIKE '%$keyword%' AND user_id <> 'guest' ORDER BY num DESC LIMIT $cline,$scale1 "; break;
     case 'search':$sql_4 = "SELECT * FROM mall_order
-						                          WHERE user_id <> 'guest' AND (buyer_name LIKE '%$key_value%' OR user_id LIKE '%$key_value%' OR recipient_name LIKE '%$key_value%' OR goods_name LIKE '%$key_value%') ORDER BY num DESC LIMIT $cline,$scale1 ";
+						                          WHERE user_id <> 'guest' AND (buyer_name LIKE '%$keyword%' OR user_id LIKE '%$keyword%' OR recipient_name LIKE '%$keyword%' OR goods_name LIKE '%$keyword%') ORDER BY num DESC LIMIT $cline,$scale1 ";
         break;
 
     case 'date':$sql_4 = "SELECT * FROM mall_order
-						                          WHERE cancel = 'N' AND date(createdate) BETWEEN '$date1' AND '$date2' AND user_id = '$key_value' ORDER BY num DESC LIMIT $cline,$scale1 ";
+						                          WHERE cancel = 'N' AND date(createdate) BETWEEN '$date1' AND '$date2' AND user_id = '$keyword' ORDER BY num DESC LIMIT $cline,$scale1 ";
         break;
     case 'today':$today = date("Y-m-d");
         $sql_4              = "SELECT * FROM mall_order
@@ -320,15 +320,15 @@ if ($res_4) {
             $total -= $row['last_amount']; //취소에 따른 합계금액차감
             ?>
 					          <tr bgcolor="<?php echo $c_color; ?>">
-					            <td><a href="or_view.php?mode=<?php echo $mode; ?>&amp;oid=<?php echo $row['num']; ?>&amp;key=<?php echo $key; ?>&amp;key_value=<?php echo $key_value; ?>&amp;page=<?php echo $page; ?>"><?php echo $row['createdate']; ?></a></td>
+					            <td><a href="or_view.php?mode=<?php echo $mode; ?>&amp;oid=<?php echo $row['num']; ?>&amp;key=<?php echo $key; ?>&amp;keyword=<?php echo $keyword; ?>&amp;page=<?php echo $page; ?>"><?php echo $row['createdate']; ?></a></td>
 					            <td><?php echo $row['user_id']; ?></td>
 					            <td>
 <?php
 
             if ($row['recipient_name']) {
-                echo '<a href="top_order_list.php?mode=search&amp;key=user_id&amp;key_value=' . $row['user_id'] . '">' . $row['buyer_name'] . '</a> <i class="fa fa-arrow-right"></i> (' . $row['recipient_name'] . ')';
+                echo '<a href="top_order_list.php?mode=search&amp;key=user_id&amp;keyword=' . $row['user_id'] . '">' . $row['buyer_name'] . '</a> <i class="fa fa-arrow-right"></i> (' . $row['recipient_name'] . ')';
             } else {
-                echo '<a href="top_order_list.php?mode=search&amp;key=user_id&amp;key_value=' . $row['user_id'] . '">' . $row['buyer_name'] . '</a>';
+                echo '<a href="top_order_list.php?mode=search&amp;key=user_id&amp;keyword=' . $row['user_id'] . '">' . $row['buyer_name'] . '</a>';
             }
 
             if ($row['memo_to_admin']) {
@@ -377,15 +377,15 @@ if ($res_4) {
 
             ?>
 					          <tr style="background-color:<?php echo $c_color; ?>;">
-					            <td><a href="or_view.php?mode=<?php echo $mode; ?>&amp;oid=<?php echo $row['num']; ?>&amp;key=<?php echo $key; ?>&amp;key_value=<?php echo $key_value; ?>&amp;page=<?php echo $page; ?>"><?php echo $row['createdate']; ?></a></td>
+					            <td><a href="or_view.php?mode=<?php echo $mode; ?>&amp;oid=<?php echo $row['num']; ?>&amp;key=<?php echo $key; ?>&amp;keyword=<?php echo $keyword; ?>&amp;page=<?php echo $page; ?>"><?php echo $row['createdate']; ?></a></td>
 					            <td><?php echo $row['user_id']; ?></td>
                                 <td>
 <?php
 
             if ($row['recipient_name']) {
-                echo '<a href="top_order_list.php?mode=search&amp;key=user_id&amp;key_value=' . $row['user_id'] . '">' . $row['buyer_name'] . '</a> <i class="fa fa-arrow-right"></i> (' . $row['recipient_name'] . ')';
+                echo '<a href="top_order_list.php?mode=search&amp;key=user_id&amp;keyword=' . $row['user_id'] . '">' . $row['buyer_name'] . '</a> <i class="fa fa-arrow-right"></i> (' . $row['recipient_name'] . ')';
             } else {
-                echo '<a href="top_order_list.php?mode=search&amp;key=user_id&amp;key_value=' . $row['user_id'] . '">' . $row['buyer_name'] . '</a>';
+                echo '<a href="top_order_list.php?mode=search&amp;key=user_id&amp;keyword=' . $row['user_id'] . '">' . $row['buyer_name'] . '</a>';
             }
 
             if ($row['memo_to_admin']) {
@@ -496,7 +496,7 @@ page_nav($totalpage, $cpage, $url);
 				    	<form class="form-inline" role="form" method="get" name="search" action="top_order_list.php">
 				        <input type="hidden" name="mode" value="search">
 				        <div class="ui-widget form-group">
-				            <input type="text" class="form-control" name="key_value" id="key_value" placeholder="수령인,업체명,아이디,상품명 입력" autocomplete="off">
+				            <input type="text" class="form-control" name="keyword" id="keyword" placeholder="수령인,업체명,아이디,상품명 입력" autocomplete="off">
 				            <button class="btn btn-primary" onclick="search.submit()"><i class="fa fa-search"></i>검 색</button>
 				        </div>
 				      </form>
