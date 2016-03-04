@@ -1,13 +1,13 @@
 <?php
 
-include_once '../include/admin_auth.php';
-include_once '../../util/util.php';
+	include_once '../include/admin_auth.php';
+	include_once '../../util/util.php';
 
-$info_query = "SELECT * FROM admin_setup";
-mysqli_query($connect, 'set names utf8');
+	$info_query = "SELECT * FROM admin_setup";
+	mysqli_query($connect, 'set names utf8');
 
-$info_res = mysqli_query($connect, $info_query);
-$info     = mysqli_fetch_array($info_res);
+	$info_res = mysqli_query($connect, $info_query);
+	$info     = mysqli_fetch_array($info_res);
 
 ?>
 <!DOCTYPE html>
@@ -27,11 +27,12 @@ $info     = mysqli_fetch_array($info_res);
     <!--external css-->
     <link href="/css/font-awesome.min.css" rel="stylesheet" />
     <link href="/admin/assets/morris.js-0.4.3/morris.css" rel="stylesheet" />
+    <link href="/css/jquery-ui.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="/admin/css/style.css" rel="stylesheet">
     <link href="/admin/css/style-responsive.css" rel="stylesheet" />
-    <link href="/admin/css/jquery-ui.min.css" rel="stylesheet">
     <link href="/css/myshop.css" rel="stylesheet">
+
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
     <!--[if lt IE 9]>

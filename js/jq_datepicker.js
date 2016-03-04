@@ -12,10 +12,5 @@
     	yearSuffix: '년'
   	});
 
-  	// $( "#sd, #ed" ).datepicker({
-   //      changeMonth: true,
-   //      changeYear: true
-   //    });
-
-    $( "#sd, #ed" ).datepicker();    
+    $( "#sd, #ed" ).datepicker();
   });
