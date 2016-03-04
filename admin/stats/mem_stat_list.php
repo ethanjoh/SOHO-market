@@ -17,6 +17,12 @@
 
 <?php
 
+$mode  = set_var($_GET['mode']);
+$id    = set_var($_GET['id']);
+$date1 = set_var($_GET['date1']);
+$date2 = set_var($_GET['date2']);
+$page  = set_var($_GET['page']);
+
 switch ($mode) {
     case 'date':
         $query = "SELECT * FROM member, mall_order
@@ -39,32 +45,33 @@ switch ($mode) {
 $result = mysqli_query($connect, $query);
 $total  = mysqli_num_rows($result);
 
-/*
-$scale=30;
+$scale = 30;
 
-if ($page == ''){
-$page=1;
+if ($page == '') {
+    $page = 1;
 }
 
-$cpage = intval($page);
-$totalpage = intval($total/$scale);
+$cpage     = intval($page);
+$totalpage = intval($total / $scale);
 
-if ($totalpage*$scale != $total)
-$totalpage = $totalpage + 1;
+if ($totalpage * $scale != $total) {
+    $totalpage = $totalpage + 1;
+}
 
-if ($cpage ==1) {
-$cline = 0 ;
+if ($cpage == 1) {
+    $cline = 0;
 } else {
-$cline = ($cpage*$scale) - $scale ;
+    $cline = ($cpage * $scale) - $scale;
 }
 
-$limit=$cline+$scale;
+$limit = $cline + $scale;
 
-if ($limit >= $total)
-$limit=$total;
+if ($limit >= $total) {
+    $limit = $total;
+}
 
 $scale1 = $limit - $cline;
- */
+
 ?>
 
         <!-- info start-->
@@ -126,8 +133,8 @@ $scale1 = $limit - $cline;
                               <th>주문일</th>
                               <th>업체명(구매자명)</th>
                               <th>품목</th>
-                              <th>주문액<br />(NET)</th>
-                              <th>실정산액<br />(NET)</th>
+                              <th>주문액</th>
+                              <th>실정산액</th>
                               <th>상세내용</th>
                             </tr>
                           </thead>
@@ -154,6 +161,8 @@ if ($total_2 == 0) {
 
 } else {
 
+    $tot_amount = 0;
+
     for ($i = 0; $list = mysqli_fetch_array($result_2); $i++) {
 
         $or_sql = "SELECT * FROM mall_order WHERE num = '$list[num]' ";
@@ -173,16 +182,16 @@ if ($total_2 == 0) {
 
         if ($i % 2 == 0) {
             if ($or_row['status'] == "-1") {
-                echo "<tr bgcolor=\"#FBAFFF\">\n";
+                echo '<tr bgcolor="#FBAFFF">' . "\r\n";
             } else {
-                echo "<tr>\n";
+                echo '<tr>' . "\r\n";
             }
 
         } else {
             if ($or_row['status'] == "-1") {
-                echo "<tr bgcolor=\"#FBAFFF\">\n";
+                echo '<tr bgcolor="#FBAFFF">' . "\r\n";
             } else {
-                echo "<tr>\n";
+                echo '<tr>' . "\r\n";
             }
 
         }
@@ -200,7 +209,7 @@ if ($total_2 == 0) {
         echo number_format($tax_amount);
         ?>
                               </td>
-                              <td><a href='../order/or_view.php?oid=<?php echo $list['num']; ?>&amp;page=<?php echo $page; ?>&from=stats&id=<?php echo $id; ?>'> <i class="fa fa-search-plus"></i> </a></td>
+                              <td><a href='../order/or_view.php?oid=<?php echo $list['num']; ?>&amp;page=<?php echo $page; ?>&amp;from=stats&amp;id=<?php echo $id; ?>'> <i class="fa fa-search-plus"></i> </a></td>
                             </tr>
 <?php
 
@@ -210,9 +219,8 @@ if ($total_2 == 0) {
     mysqli_free_result($result_2);
     ?>
                             <tr>
-                              <td colspan="5"><strong>실정산액 합계:</strong></td>
-                              <td><?php echo number_format($tot_amount); ?> (<?php echo number_format($tot_amount * 0.1); ?>)<br>
-                              (inc. VAT) <strong><?php echo number_format($tot_amount * 1.1); ?></strong></td>
+                              <td colspan="5"><h4>실정산액 합계:</h4></td>
+                              <td><h4><?php echo number_format($tot_amount); ?> </h4>(inc. VAT)</td>
                               <td></td>
                             </tr>
 <?php

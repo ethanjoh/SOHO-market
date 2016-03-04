@@ -1,6 +1,8 @@
 <?php
 
-$config       = parse_ini_file('/home/hosting_users/ssss01047271791/config/config.ini');
+// $config       = parse_ini_file('/home/hosting_users/ssss01047271791/config/config.ini');
+$config = parse_ini_file('config.ini');
+
 $host         = $config['host'];
 $dbid         = $config['dbid'];
 $dbpass       = $config['dbpass'];
@@ -771,7 +773,12 @@ function set_var(&$ary)
 
 }
 
-//function show_msg(string, string)
+/**
+ * [show_msg alert창 보여주고 url로 이동하기]
+ * @param  [type] $msg [description]
+ * @param  [type] $url [description]
+ * @return [type]      [description]
+ */
 function show_msg($msg, $url)
 {
     echo "<meta HTTP-EQUIV='CONTENT-TYPE' content='text/html;charset=UTF-8'>

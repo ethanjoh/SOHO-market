@@ -14,6 +14,15 @@
     <section id="main-content">
       <section class="wrapper">
 
+<?php
+
+$mode    = set_var($_GET['mode']);
+$key     = set_var($_GET['key']);
+$keyword = set_var($_GET['keyword']);
+$date1   = set_var($_GET['date1']);
+$date2   = set_var($_GET['date2']);
+?>
+
         <!-- info start-->
         <div class="row">
               <div class="col-sm-12">
@@ -34,7 +43,7 @@
         <form name="form" method="get" action="tax_list.php" class="form-inline form-group" role="form">
         <input type="hidden" name="mode" value="date" />
         <input type="hidden" name="key" value="<?php echo $key; ?>" />
-        <input type="hidden" name="key_value" value="<?php echo $key_value; ?>" />
+        <input type="hidden" name="keyword" value="<?php echo $keyword; ?>" />
         <div class="panel panel-info">
           <div class="panel-heading">날짜 검색</div>
             <div class="panel-body text-center">
@@ -102,10 +111,11 @@ if ($mode == "date") {
     //2. 각 주문에서 제품코드를 구한다.
     for ($i = 0; $row = mysqli_fetch_array($res); $i++) {
         //판매금액 집계를 위한 배열
-        $sales[] = array(num => $row['num'], id => $row['user_id'], sub_total => $row['last_amount']);
+        $sales[] = array('num' => $row['num'], 'id' => $row['user_id'], 'sub_total' => $row['last_amount']);
         $total += $row['last_amount'];
     } //for end
 
+    $sum = array();
     foreach ($sales as $key => $values) {
         //$sum[$values['company_name']] += $values['sub_total'];
         $sum[$values['id']] += $values['sub_total'];
@@ -129,9 +139,9 @@ if ($mode == "date") {
         echo "<a href=\"mem_stat_list.php?mode=date&id=" . $id . "&amp;date1=" . $date1 . "&amp;date2=" . $date2 . "\" target=\"_blank\">" . $c_row['company_name'] . " (" . $id . ")</a>";
         ?>
                             </td>
-                            <td>의료기기</td>
+                            <td>골프그립</td>
                             <td><?php echo $c_row['seller'] == '2' ? "위탁" : ""; ?></td>
-                            <td><?php echo number_format($sub_total); ?> (<?php echo number_format($sub_total * 0.1); ?>)<br><strong><?php echo number_format($sub_total * 1.1); ?></strong></td>
+                            <td><?php echo number_format($sub_total); ?></td>
                             <td>
 <!--
                               <form name="reg<?php echo $i; ?>" class="form-inline" role="form" method="post" action="reg_tax.php?m=date">
@@ -142,11 +152,17 @@ if ($mode == "date") {
 <?php
 
         if ($c_row['payment_day'] == "1") {
-            echo "<input type=\"radio\" name=\"paid\" value=\"Y\" checked />영수\n
-                                        <input type=\"radio\" name=\"paid\" value=\"N\" />청구\n";
+            echo <<<HEREDOC
+
+                        <input type="radio" name="paid" value="Y" checked />영수
+                        <input type="radio" name="paid" value="N" />청구
+HEREDOC;
         } else {
-            echo "<input type=\"radio\" name=\"paid\" value=\"Y\" />영수\n
-                                        <input type=\"radio\" name=\"paid\" value=\"N\" checked />청구\n";
+            echo <<<HEREDOC
+
+                         <input type="radio" name="paid" value="Y" />영수
+                         <input type="radio" name="paid" value="N" checked />청구
+HEREDOC;
         }
         ?>
                                 <input type="hidden" name="id" value="<?php echo $id; ?>" />
@@ -160,11 +176,17 @@ if ($mode == "date") {
 <?php
 
         if ($c_row['payment_day'] == "1") {
-            echo "<input type=\"radio\" name=\"paid[<?=$i?>]\" value=\"Y\" checked />영수\n
-                                        <input type=\"radio\" name=\"paid[<?=$i?>]\" value=\"N\" />청구\n";
+            echo <<<HEREDOC
+
+                        <input type="radio" name="paid[{$i}]" value="Y" checked />영수
+                        <input type="radio" name="paid[{$i}]" value="N" />청구
+HEREDOC;
         } else {
-            echo "<input type=\"radio\" name=\"paid[<?=$i?>]\" value=\"Y\" />영수\n
-                                        <input type=\"radio\" name=\"paid[<?=$i?>]\" value=\"N\" checked />청구\n";
+            echo <<<HEREDOC
+
+                         <input type="radio" name="paid[{$i}]" value="Y" />영수
+                         <input type="radio" name="paid[{$i}]" value="N" checked />청구
+HEREDOC;
         }
         ?>
 <!--                                <input type="radio" name="paid[<?php echo $i; ?>]" value="Y">영수
@@ -188,7 +210,7 @@ $temp_total .= $sub_total;
                           </tr>
                           <tr>
                             <td colspan="4"><strong>매출액 총합(VAT 포함):</strong></td>
-                            <td><?php echo number_format($total); ?> (<?php echo number_format($total * 0.1); ?>)<br><strong><?php echo number_format($total * 1.1); ?></strong></td>
+                            <td><h4><?php echo number_format($total); ?></h4></td>
                             <td>&nbsp;</td>
                           </tr>
                         </tbody>

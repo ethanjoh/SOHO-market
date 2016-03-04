@@ -16,22 +16,25 @@
       <section class="wrapper">
 
 <?php
-
-$page = set_var($_GET['page']);
+$mode         = set_var($_GET['mode']);
+$id           = set_var($_GET['id']);
+$company_name = set_var($_GET['company_name']);
+$page         = set_var($_GET['page']);
+$search_query = '';
 
 if ($mode == 'search') {
     if ($id) {
-        $search_keyword .= " AND id = '$id' ";
+        $search_query .= " AND id = '$id' ";
     }
 
     if ($company_name) {
-        $search_keyword .= " AND company_name LIKE '%$company_name%' ";
+        $search_query .= " AND company_name LIKE '%$company_name%' ";
     }
 
 }
 
 //회원 테이블의 리스트를 불러옵니다.
-$query  = "SELECT * FROM member WHERE 1 $search_keyword ";
+$query  = "SELECT * FROM member WHERE 1 $search_query ";
 $result = mysqli_query($connect, $query);
 $total  = mysqli_num_rows($result);
 
@@ -123,7 +126,7 @@ if ($limit >= $total) {
 $scale1 = $limit - $cline;
 
 $sql_2 = "SELECT * FROM member
-                  					WHERE 1 $search_keyword
+                  					WHERE 1 $search_query
                   					ORDER BY seq_num DESC LIMIT $cline,$scale1 ";
 
 $result_2 = mysqli_query($connect, $sql_2);
