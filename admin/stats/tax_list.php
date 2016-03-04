@@ -118,7 +118,7 @@ if ($mode == "date") {
     $sum = array();
     foreach ($sales as $key => $values) {
         //$sum[$values['company_name']] += $values['sub_total'];
-        $sum[$values['id']] += $values['sub_total'];
+        @$sum[$values['id']] += $values['sub_total'];
     }
 
     reset($sum);
@@ -136,73 +136,34 @@ if ($mode == "date") {
         $c_result = mysqli_query($connect, $c_sql);
         $c_row    = mysqli_fetch_array($c_result);
 
-        echo "<a href=\"mem_stat_list.php?mode=date&id=" . $id . "&amp;date1=" . $date1 . "&amp;date2=" . $date2 . "\" target=\"_blank\">" . $c_row['company_name'] . " (" . $id . ")</a>";
+        echo '<a href="mem_stat_list.php?mode=date&id=' . $id . '&amp;date1=' . $date1 . '&amp;date2=' . $date2 . '" target="_blank">' . $c_row['company_name'] . ' (' . $id . ')</a>' . "\r\n";
         ?>
                             </td>
                             <td>골프그립</td>
                             <td><?php echo $c_row['seller'] == '2' ? "위탁" : ""; ?></td>
                             <td><?php echo number_format($sub_total); ?></td>
                             <td>
-<!--
-                              <form name="reg<?php echo $i; ?>" class="form-inline" role="form" method="post" action="reg_tax.php?m=date">
-                              <div class="form-group">
-                                <label for="reg_date"><i class="fa fa-calendar"></i>발행일 :</label>
-                                <input type="text" class="form-control reg_date" name="reg_date" id="reg_date<?php echo $i; ?>"  value="" >
-                              </div>
+
 <?php
 
         if ($c_row['payment_day'] == "1") {
             echo <<<HEREDOC
 
-                        <input type="radio" name="paid" value="Y" checked />영수
-                        <input type="radio" name="paid" value="N" />청구
+                            <input type="radio" name="paid[{$i}]" value="Y" checked />영수
+                            <input type="radio" name="paid[{$i}]" value="N" />청구
 HEREDOC;
         } else {
             echo <<<HEREDOC
 
-                         <input type="radio" name="paid" value="Y" />영수
-                         <input type="radio" name="paid" value="N" checked />청구
+                             <input type="radio" name="paid[{$i}]" value="Y" />영수
+                             <input type="radio" name="paid[{$i}]" value="N" checked />청구
 HEREDOC;
         }
         ?>
-                                <input type="hidden" name="id" value="<?php echo $id; ?>" />
-                                <input type="hidden" name="sum" value="<?php echo $sub_total; ?>" />
-                                <input type="hidden" name="goods_name" value="의료기기" />
-                                <input type="hidden" name="date1" value="<?php echo $date1; ?>" />
-                                <input type="hidden" name="date2" value="<?php echo $date2; ?>" />
-                                <button class="btn btn-success" href="" onclick="javascript:document.reg<?php echo $i; ?>.submit()">발행</button>
-                              </form>
-                               -->
-<?php
-
-        if ($c_row['payment_day'] == "1") {
-            echo <<<HEREDOC
-
-                        <input type="radio" name="paid[{$i}]" value="Y" checked />영수
-                        <input type="radio" name="paid[{$i}]" value="N" />청구
-HEREDOC;
-        } else {
-            echo <<<HEREDOC
-
-                         <input type="radio" name="paid[{$i}]" value="Y" />영수
-                         <input type="radio" name="paid[{$i}]" value="N" checked />청구
-HEREDOC;
-        }
-        ?>
-<!--                                <input type="radio" name="paid[<?php echo $i; ?>]" value="Y">영수
-                               <input type="radio" name="paid[<?php echo $i; ?>]" value="N" checked>청구 -->
                             </td>
                           </tr>
 <?php
 
-/*
-if($i!=0) {
-$temp_createdate .= ",";
-$temp_total .= ",";
-}
-$temp_createdate .= $date;
-$temp_total .= $sub_total;
- */
         $i++;
     }
 
@@ -224,10 +185,6 @@ $temp_total .= $sub_total;
 
               <div class="row text-center">
                 <div class="col-sm-12">
-<!--                   <form name="excel_f" method="post" action="hometax_excel.php">
-                    <button class="btn btn-success" onclick="excel_f.submit();"><i class="fa fa-file-excel-o"></i> 홈택스 업로드용 엑셀로 저장하기</button>
-                  </form> -->
-
                   <a type="button" class="btn btn-success" href="hometax_excel.php?date1=<?php echo $date1; ?>&date2=<?php echo $date2; ?>"><i class="fa fa-file-excel-o"></i> 홈택스 업로드용 엑셀로 저장하기</a>
                 </div>
               </div>

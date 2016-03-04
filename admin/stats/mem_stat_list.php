@@ -201,8 +201,8 @@ if ($total_2 == 0) {
                               <td><?php echo $list['createdate']; ?></td>
                               <td><?php echo $list['company_name'] . " (" . $list['buyer_name'] . ")"; ?></td>
                               <td><?php echo $goods_name; ?> (외)</td>
-                              <td><?php echo number_format($list['amount']); ?></td>
-                              <td>
+                              <td class="num-right"><?php echo number_format($list['amount']); ?></td>
+                              <td class="num-right">
 <?php
 
         $tax_amount = $list['last_amount'];
@@ -220,7 +220,7 @@ if ($total_2 == 0) {
     ?>
                             <tr>
                               <td colspan="5"><h4>실정산액 합계:</h4></td>
-                              <td><h4><?php echo number_format($tot_amount); ?> </h4>(inc. VAT)</td>
+                              <td class="num-right"><h4><?php echo number_format($tot_amount); ?> </h4>(inc. VAT)</td>
                               <td></td>
                             </tr>
 <?php
