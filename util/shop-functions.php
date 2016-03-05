@@ -69,6 +69,16 @@ function show_login_menu()
                                     </div>
                                 </div>
 
+                                <div class="top-login">
+                                    <div class=" block-compare">
+                                        <div class="compare">
+                                            <a href="/member/login.php"><i class="fa fa-key"></i> 로그인 </a>
+                                        </div>
+                                        <div class="home" id="right">
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="top-register">
                                     <div class=" block-compare">
                                         <div class="compare">
@@ -79,16 +89,7 @@ function show_login_menu()
                                     </div>
                                 </div>
 
-                                <div class="top-login">
-                                    <div class=" block-compare">
-                                        <div class="compare">
-                                            <a href="/member/login.php"><i class="fa fa-key"></i> 로그인 </a>
-                                        </div>
-                                        <div class="home" id="right">
 
-                                        </div>
-                                    </div>
-                                </div>
 HEREDOC;
 
 // 로그인
@@ -107,10 +108,18 @@ HEREDOC;
                                     </div>
                                 </div>
 
+                                <div class="top-login">
+                                    <div class=" block-compare">
+                                        <div>
+                                            <a href="/member/logout.php"><i class="fa fa-unlock"></i> 로그아웃 </a>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="top-register">
                                     <div class=" block-compare">
                                         <div class="compare">
-                                            <a href="#"><i class="fa fa-cog"></i> 마이페이지 </a>
+                                            <a href="#"><i class="fa fa-cog"></i> 내 정보 </a>
                                         </div>
                                         <div class="home" id="right">
                                             <ul>
@@ -122,13 +131,7 @@ HEREDOC;
                                     </div>
                                 </div>
 
-                                <div class="top-login">
-                                    <div class=" block-compare">
-                                        <div>
-                                            <a href="/member/logout.php"><i class="fa fa-unlock"></i> 로그아웃 </a>
-                                        </div>
-                                    </div>
-                                </div>
+
 
 HEREDOC;
     }

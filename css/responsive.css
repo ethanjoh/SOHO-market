@@ -1,7 +1,7 @@
 /* Large desktop : 1200px */
 @media (min-width: 1200px){
     .top-login {
-        float: right;
+        float: left;
         margin-right: 10px;
     }
 
@@ -331,7 +331,7 @@
     .col-md-6.npl {
         padding-right: 0;
     }
-  .contact-text {
+    .contact-text {
         padding: 100px 0px;
     }
     .about-optima-text h1, .about-sec-head h2, h2.creative-member, .contact-content-area h2 {
@@ -473,6 +473,12 @@
     }
     .laptop > a {
         display: inherit;
+    }
+    .login-form {
+        width: 100%;
+    }
+    .search-form button {
+        margin-top: 10px
     }
 }
 /* Large Mobile :480px. */

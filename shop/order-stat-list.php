@@ -27,12 +27,10 @@
 
           <!-- order/stat section -->
           <div class="row text-center">
-            <div class="col-sm-3 col-sm-offset-3">
+            <div class="col-md-12 col-sm-12">
               <a href="order-list.php" type="button" class="btn btn-primary"><i class="fa fa-check-square-o"></i>주문 조회가기</a>
             </div>
-            <div class="col-sm-3">
-              <a href="#" type="button" class="btn btn-default">통계 조회</a>
-            </div>
+
           </div>
           <!-- end order/stat section -->
 
