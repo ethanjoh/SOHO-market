@@ -7,7 +7,7 @@ $host         = $config['host'];
 $dbid         = $config['dbid'];
 $dbpass       = $config['dbpass'];
 $dbname       = $config['dbname'];
-$port         = $config['port'];
+$sslPort      = $config['port'];
 $MERTKEY      = $config['mertkey'];
 $CST_MID      = $config['cst_mid'];
 $CST_PLATFORM = $config['cst_platform'];
@@ -439,20 +439,20 @@ function show_delivery_fee($total)
     $row    = mysqli_fetch_array($result);
 
     if ($row['min_sum'] > $total) {
-        return $ret = "5만원 미만 착불";
+        return $reMsg = "5만원 미만 착불";
     } elseif (0 == $total) {
-        return $ret = "-";
+        return $reMsg = "-";
     } elseif ($total >= $row['min_sum']) {
-        return $ret = "무료배송";
+        return $reMsg = "무료배송";
     }
 }
 
 /**
  * [calc_delivery_fee 택배비 계산]
- * @param  [type] $total        [총합]
- * @return [type] [택배요금 반환]
+ * @param  [type] $orderSum       [주문액]
+ * @return [type] [description]
  */
-function calc_delivery_fee($total)
+function calc_delivery_fee($orderSum)
 {
 
     global $connect;
@@ -461,13 +461,13 @@ function calc_delivery_fee($total)
     $result = mysqli_query($connect, $query);
     $row    = mysqli_fetch_array($result);
 
-    if ($row['min_sum'] > $total) {
-        $cost = $row['d_charge'];
+    if ($row['min_sum'] > $orderSum) {
+        $reDeliveryFee = $row['d_charge'];
     } else {
-        $cost = 0;
+        $reDeliveryFee = 0;
     }
 
-    return $cost;
+    return $reDeliveryFee;
 }
 
 /**
@@ -775,9 +775,9 @@ function set_var(&$ary)
 
 /**
  * [show_msg alert창 보여주고 url로 이동하기]
- * @param  [type] $msg [description]
- * @param  [type] $url [description]
- * @return [type]      [description]
+ * @param  [type] $msg            [description]
+ * @param  [type] $url            [description]
+ * @return [type] [description]
  */
 function show_msg($msg, $url)
 {
@@ -824,8 +824,8 @@ function err_msg($msg, $bool = "1")
 
 /**
  * [msg 메시지 창 띄우기]
- * @param  [type] $msg [description]
- * @return [type]      [description]
+ * @param  [type] $msg            [description]
+ * @return [type] [description]
  */
 function msg($msg)
 {
@@ -1167,7 +1167,7 @@ function getBbsMenu($connect)
 
 }
 
-function getLoginWindow($i, $port)
+function getLoginWindow($i, $sslPort)
 {
 
     if (!$_SESSION['p_id']) {
@@ -1179,7 +1179,7 @@ function getLoginWindow($i, $port)
         echo "        <h5 class=\"modal-title\">로그인</h5>\n";
         echo "      </div>\n";
         echo "      <div class=\"modal-body\">\n";
-        echo "        <form name=\"guestLoginform" . $i, "\" class=\"form-group\" role=\"form\" action=\"https://www." . $_SERVER['SERVER_NAME'] . ":" . $port . "/member/login_ok.php\" method=\"post\">\n";
+        echo "        <form name=\"guestLoginform" . $i, "\" class=\"form-group\" role=\"form\" action=\"https://www." . $_SERVER['SERVER_NAME'] . ":" . $sslPort . "/member/login_ok.php\" method=\"post\">\n";
         echo "        <label for=\"id\">아이디: </label>\n";
         echo "        <input class=\"form-control\" type=\"text\" name=\"id\" />\n";
         echo "        <label for=\"pwd\">비밀번호: </label>\n";

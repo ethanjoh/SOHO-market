@@ -53,11 +53,11 @@ function show_payment($type, $company_name, $bank)
  */
 function show_login_menu()
 {
-    $p_id   = set_var($_SESSION['p_id']);
-    $p_name = set_var($_SESSION['p_name']);
+    $sessionId   = set_var($_SESSION['p_id']);
+    $sessionName = set_var($_SESSION['p_name']);
 
 // 미로그인
-    if (!$p_id || !$p_name) {
+    if (!$sessionId || !$sessionName) {
         echo <<<HEREDOC
                                 <div class="top-cart-wrapper">
                                     <div class="top-cart-contain">
@@ -93,7 +93,7 @@ HEREDOC;
 
 // 로그인
     } else {
-        $numberOfItems = get_cart_item();
+        $numberOfItems = count_items_in_cart();
 
         echo <<<HEREDOC
                                 <div class="top-cart-wrapper">
@@ -136,16 +136,16 @@ HEREDOC;
 }
 
 /**
- * [get_cart_item 카트에 담긴 상품수량 보여주기]
+ * [count_items_in_cart 카트에 담긴 상품수량 보여주기]
  * @return [type] [description]
  */
-function get_cart_item()
+function count_items_in_cart()
 {
     global $connect;
 
-    $p_id = set_var($_SESSION['p_id']);
+    $sessionId = set_var($_SESSION['p_id']);
 
-    $qry = "SELECT sum(volume) AS numberOfItems FROM products_cart WHERE user_id = '$p_id'";
+    $qry = "SELECT sum(volume) AS numberOfItems FROM products_cart WHERE user_id = '$sessionId'";
     $res = mysqli_query($connect, $qry);
     $row = mysqli_fetch_array($res);
 
@@ -159,39 +159,39 @@ function get_cart_item()
 
 }
 /**
- * [show_main_products[ 메인페이지에 표시]
- * @param  [type] $main_flag      [best, new 구분]
- * @param  [type] $no_item        [표시할 개수]
+ * [show_items_on_main[ 메인페이지에 표시]
+ * @param  [type] $newOrBest      [best, new 구분]
+ * @param  [type] $howManyItems   [표시할 개수]
  * @return [type] [description]
  */
-function show_main_products($main_flag, $no_item)
+function show_items_on_main($newOrBest, $howManyItems)
 {
     global $connect;
 
-    if ('best' == $main_flag) {
-        $flag = "main_best='Y'";
-    } elseif ('new' == $main_flag) {
-        $flag = "main_new='Y'";
+    if ('best' == $newOrBest) {
+        $isYes = "main_best='Y'";
+    } elseif ('new' == $newOrBest) {
+        $isYes = "main_new='Y'";
     }
 
-    $query  = "SELECT * FROM products WHERE del_chk='N' AND $flag AND approved = 'Y' ORDER BY rand() DESC LIMIT 0,$no_item ";
+    $query  = "SELECT * FROM products WHERE del_chk='N' AND $isYes AND approved = 'Y' ORDER BY rand() DESC LIMIT 0,$howManyItems ";
     $result = mysqli_query($connect, $query);
 
     if ($result) {
 
         for ($i = 0; $rows = mysqli_fetch_array($result); $i++) {
 
-            // $dealer_price = number_format($rows['retail_price']);
-            $item_name  = stripslashes($rows['name']);
+            // $commaWholesalePrice = number_format($rows['retail_price']);
+            $itemName   = stripslashes($rows['name']);
             $pnum       = $rows['num'];
             $category_l = $rows['category_l'];
             $category_m = $rows['category_m'];
             // $category_s   = $rows['category_s'];
-            $option       = $rows['opt'];
-            $moq          = $rows['moq'];
-            $p_id         = set_var($_SESSION['p_id']);
-            $offer_price  = calc_offer_price($rows['retail_price'], $p_id);
-            $dealer_price = number_format($offer_price);
+            $option              = $rows['opt'];
+            $moq                 = $rows['moq'];
+            $sessionId           = set_var($_SESSION['p_id']);
+            $calcWholesalePrice  = calc_offer_price($rows['retail_price'], $sessionId);
+            $commaWholesalePrice = number_format($calcWholesalePrice);
 
             echo <<<HEREDOC
                                 <!-- single-product start -->
@@ -207,21 +207,21 @@ function show_main_products($main_flag, $no_item)
 
 HEREDOC;
 
-            echo show_me_price($pnum);
+            echo show_me_wholesale_price($pnum);
             // $option = show_option($pnum);
 
             echo <<<HEREDOC
                                             </div>
-                                            <h2 class="product-name"><a href="detail.php?pnum={$pnum}&lcode={$category_l}&mcode={$category_m}">{$item_name}</a> <span class="product-option">[{$option}]</span></h2>
+                                            <h2 class="product-name"><a href="detail.php?pnum={$pnum}&lcode={$category_l}&mcode={$category_m}">{$itemName}</a> <span class="product-option">[{$option}]</span></h2>
                                             <div class="product-icon">
 HEREDOC;
 
-            // if ($p_id) {
+            // if ($sessionId) {
             //     echo '                          <input type="text" name="products_count" id="products_count_' . $pnum . '" value="' . $moq . '" size="2">
             //                                     <a href="#" id="' . $pnum . '" class="addCart_submit"><i class="fa fa-shopping-cart"></i></a>
             //                                     <a href="/shop/cart.php"><i class="fa fa-check"></i></a>
             //                                     <div id="loadplace' . $pnum . '"></div>
-            //                                     <input type="hidden" name="amount" id="amount_' . $pnum . '" value="' . $offer_price . '">
+            //                                     <input type="hidden" name="amount" id="amount_' . $pnum . '" value="' . $calcWholesalePrice . '">
             //                                     <input type="hidden" name="from" id="from" value="list">';
 
             // } else {
@@ -249,41 +249,40 @@ HEREDOC;
 }
 
 /**
- * [show_catalog_products 카달로그 리스트에서 표시]
- * @param  [type] $lcode          [description]
- * @param  [type] $mcode          [description]
- * @param  [type] $tabid          [description]
+ * [show_items_on_catalog 카탈로그 리스트에서 상품표시]
+ * @param  [type] $result         [페이징 결과]
+ * @param  [type] $tabid          [표시방법 탭]
  * @return [type] [description]
  */
-function show_catalog_products($result, $tabid)
+function show_items_on_catalog($result, $tabid)
 {
     global $connect;
-    $icon_tag = '';
+    $saleNewTag = '';
 
     if ($result) {
 
         for ($i = 0; $rows = mysqli_fetch_array($result); $i++) {
 
-            // $dealer_price = number_format($rows['retail_price']);
-            $item_name  = stripslashes($rows['name']);
+            // $commaWholesalePrice = number_format($rows['retail_price']);
+            $itemName   = stripslashes($rows['name']);
             $pnum       = $rows['num'];
             $category_l = $rows['category_l'];
             $category_m = $rows['category_m'];
             $category_s = $rows['category_s'];
             $moq        = $rows['moq'];
-            $short_desc = $rows['short_desc'];
+            $shortDesc  = $rows['short_desc'];
             // $option       = $rows['opt'];
-            $p_id         = set_var($_SESSION['p_id']);
-            $offer_price  = calc_offer_price($rows['retail_price'], $p_id);
-            $dealer_price = number_format($offer_price);
-            $price        = show_me_price($pnum);
+            $sessionId           = set_var($_SESSION['p_id']);
+            $calcWholesalePrice  = calc_offer_price($rows['retail_price'], $sessionId);
+            $commaWholesalePrice = number_format($calcWholesalePrice);
+            $price               = show_me_wholesale_price($pnum);
 
             $option = show_option($pnum);
 
             if ("Y" == $rows['main_best']) {
-                $icon_tag = '<span class="best-text">Best</span>';
+                $saleNewTag = '<span class="best-text">Best</span>';
             } elseif ("Y" == $rows['main_new']) {
-                $icon_tag = '<span class="sale-text">Sale</span>';
+                $saleNewTag = '<span class="sale-text">Sale</span>';
             }
 
             if ('home' == $tabid) {
@@ -294,7 +293,7 @@ function show_catalog_products($result, $tabid)
                                 <input type="hidden" name="pnum" id="pnum_{$pnum}" value="{$pnum}">
                                 <div class="col-md-3">
                                     <div class="single-product">
-                                        {$icon_tag}
+                                        {$saleNewTag}
                                         <div class="product-img">
                                             <a href="detail.php?pnum={$pnum}&lcode={$category_l}&mcode={$category_m}&scode={$category_s}">
                                                 <img class="primary-image" src="{$rows['b_image1_name']}" alt="" />
@@ -304,17 +303,17 @@ function show_catalog_products($result, $tabid)
                                             <div class="price-box">
                                                 {$price}
                                             </div>
-                                            <h2 class="product-name"><a href="detail.php?pnum={$pnum}&lcode={$category_l}&mcode={$category_m}&scode={$category_s}">{$item_name}</a></h2>
+                                            <h2 class="product-name"><a href="detail.php?pnum={$pnum}&lcode={$category_l}&mcode={$category_m}&scode={$category_s}">{$itemName}</a></h2>
                                             <span class="desc">{$option}</span>
                                             <div class="product-icon">
 HEREDOC;
 
-                if ($p_id) {
+                if ($sessionId) {
                     echo <<<HEREDOC
                                                 <input type="text" name="products_count" id="products_count_{$pnum}" value="{$moq}" size="2">
                                                 <a href="#" id="{$pnum}" class="addCart_submit"><i class="fa fa-shopping-cart"></i></a>
                                                 <div id="loadplace{$pnum}"></div>
-                                                <input type="hidden" name="amount" id="amount_{$pnum}" value="{$offer_price}">
+                                                <input type="hidden" name="amount" id="amount_{$pnum}" value="{$calcWholesalePrice}">
                                                 <input type="hidden" name="from" id="from" value="list">
 HEREDOC;
 
@@ -352,20 +351,20 @@ HEREDOC;
                                     <div class="col-md-8 col-sm-8">
                                         <div class="f-fix">
                                             <h2 class="product-name">
-                                                <a href="detail.php?pnum={$pnum}&lcode={$category_l}&mcode={$category_m}&scode={$category_s}">{$item_name}</a>
+                                                <a href="detail.php?pnum={$pnum}&lcode={$category_l}&mcode={$category_m}&scode={$category_s}">{$itemName}</a>
                                             </h2>
-                                            <p class="desc">[모델:] {$short_desc}<br>
+                                            <p class="desc">[모델:] {$shortDesc}<br>
                                             <span class="spec">{$option}</span></p>
                                             <div class="p-box">
                                                 {$price}
                                             </div>
                                             <div class="product-icon">
 HEREDOC;
-                if ($p_id) {
+                if ($sessionId) {
                     echo '                      <input type="text" name="products_count" id="products_count_' . $pnum . '" value="' . $moq . '" size="2">
                                                 <a href="#" id="' . $pnum . '" class="addCart_submit"><i class="fa fa-shopping-cart"></i></a>
                                                 <div id="loadplace' . $pnum . '"></div>
-                                                <input type="hidden" name="amount" id="amount_' . $pnum . '" value="' . $offer_price . '">
+                                                <input type="hidden" name="amount" id="amount_' . $pnum . '" value="' . $calcWholesalePrice . '">
                                                 <input type="hidden" name="from" id="from" value="list">';
 
                 } else {
@@ -395,12 +394,12 @@ HEREDOC;
 }
 
 /**
- * [show_me_price 웹페이지에 공급가 보여주기]
+ * [show_me_wholesale_price 웹페이지에 공급가 보여주기]
  * @param  [type] $session_id     [세션 아이디]
  * @param  [type] $pnum           [제품번호]
  * @return [type] [description]
  */
-function show_me_price($pnum)
+function show_me_wholesale_price($pnum)
 {
 
     global $connect;
@@ -409,19 +408,19 @@ function show_me_price($pnum)
     $result = mysqli_query($connect, $query);
     $rows   = mysqli_fetch_array($result);
 
-    $p_id = set_var($_SESSION['p_id']);
+    $sessionId = set_var($_SESSION['p_id']);
 
-    $offer_price  = calc_offer_price($rows['retail_price'], $p_id);
-    $dealer_price = number_format($offer_price);
-    $shop_price   = number_format($rows['shop_price']);
+    $calcWholesalePrice  = calc_offer_price($rows['retail_price'], $sessionId);
+    $commaWholesalePrice = number_format($calcWholesalePrice);
+    $commaCustomerPrice  = number_format($rows['shop_price']);
 
-    if ($p_id) {
-        $return_price = '                                <span class="special-price"><i class="fa fa-krw"></i> ' . $dealer_price . '</span>' . "\r\n";
+    if ($sessionId) {
+        $reWholesalePrice = '                                <span class="special-price"><i class="fa fa-krw"></i> ' . $commaWholesalePrice . '</span>' . "\r\n";
     } else {
-        $return_price = '                                <span class="shop-price"><i class="fa fa-krw"></i> ' . $shop_price . '</span>' . "\r\n";
+        $reWholesalePrice = '                                <span class="shop-price"><i class="fa fa-krw"></i> ' . $commaCustomerPrice . '</span>' . "\r\n";
     }
 
-    return $return_price;
+    return $reWholesalePrice;
 }
 
 /**
@@ -473,12 +472,12 @@ function show_brands()
             // $newrow = mysqli_fetch_array($newr);
 
             // if ($newrow['main_new'] == 'Y' && $newrow['del_chk'] != "Y") {
-            //     $cat_name = $l_rows['name'] . ' <span class="label label-success">NEW</span>';
+            //     $categoryName = $l_rows['name'] . ' <span class="label label-success">NEW</span>';
             // } else {
-            //     $cat_name = $l_rows['name'];
+            //     $categoryName = $l_rows['name'];
             // }
 
-            $cat_name = $l_rows['name'];
+            $categoryName = $l_rows['name'];
 
             echo <<<HEREDOC
                                             <li>
@@ -486,7 +485,7 @@ function show_brands()
                                                     <span class="cat-thumb">
                                                         <i class="fa fa-hashtag"></i>
                                                     </span>
-                                                    {$cat_name}
+                                                    {$categoryName}
                                                 </a>
                                             </li>
 
@@ -511,23 +510,23 @@ function show_sub_category($lcode)
 
     global $connect;
 
-    $m_qry      = "SELECT * FROM products_category2 WHERE up_category = '$lcode' ORDER BY name";
-    $m_res      = mysqli_query($connect, $m_qry);
-    $msub_total = mysqli_num_rows($m_res);
+    $m_qry     = "SELECT * FROM products_category2 WHERE up_category = '$lcode' ORDER BY name";
+    $m_res     = mysqli_query($connect, $m_qry);
+    $numOfRows = mysqli_num_rows($m_res);
 
     echo '<ul>';
 
-    if ($msub_total > 0) {
+    if ($numOfRows > 0) {
 
         // 중분류 표시
         for ($i = 0; $m_rows = mysqli_fetch_array($m_res); $i++) {
 
-            $cat_name = $m_rows['name'];
+            $categoryName = $m_rows['name'];
 
             echo <<<HEREDOC
                                             <li>
                                                 <a href="catalog-list.php?lcode={$lcode}&mcode={$m_rows['code']}">
-                                                    {$cat_name}
+                                                    {$categoryName}
                                                 </a>
                                             </li>
 
@@ -544,19 +543,19 @@ HEREDOC;
 
 /**
  * [show_sub_category_name 상단 breadcomb에서 이름 보여주기]
- * @param  [type] $lcode          [description]
- * @param  [type] $mcode          [description]
+ * @param  [type] $lcode          [top category code]
+ * @param  [type] $mcode          [middle category code]
  * @return [type] [description]
  */
 function show_sub_category_name($lcode, $mcode)
 {
     global $connect;
 
-    $m_qry      = "SELECT * FROM products_category2 WHERE up_category = '$lcode' AND code = '$mcode'";
-    $m_res      = mysqli_query($connect, $m_qry);
-    $msub_total = mysqli_num_rows($m_res);
+    $m_qry     = "SELECT * FROM products_category2 WHERE up_category = '$lcode' AND code = '$mcode'";
+    $m_res     = mysqli_query($connect, $m_qry);
+    $numOfRows = mysqli_num_rows($m_res);
 
-    if ($msub_total) {
+    if ($numOfRows) {
 
         $rows = mysqli_fetch_array($m_res);
         echo '<a href="category-list.php?lcode=' . $lcode . '&amp;mcode=' . $mcode . '">' . stripslashes($rows['name']) . '</a>';
@@ -568,13 +567,13 @@ function show_sub_category_name($lcode, $mcode)
 }
 
 /**
- * [show_image 제품사진 보여주기]
- * @param  [type] $size           [빅사이즈, 스몰사이즈 'b', 's']
- * @param  [type] $no             [description]
- * @param  [type] $pnum           [description]
+ * [get_item_image 제품사진 보여주기]
+ * @param  [type] $size           ['빅사이즈, 스몰사이즈' 'b' or 's']
+ * @param  [type] $imageOrderNo   [이미지 순서번호]
+ * @param  [type] $pnum           [제품번호]
  * @return [type] [description]
  */
-function show_image($size, $no, $pnum)
+function get_item_image($size, $imageOrderNo, $pnum)
 {
 
     global $connect;
@@ -585,55 +584,55 @@ function show_image($size, $no, $pnum)
     mysqli_free_result($result);
 
     if ('b' == $size) {
-        switch ($no) {
+        switch ($imageOrderNo) {
             case '2':
                 if ('Y' == $rows['b_image2']) {
-                    $b_image2 = $rows['b_image2_name'];
-                    return $b_image2;
+                    $bImagePath2 = $rows['b_image2_name'];
+                    return $bImagePath2;
                 }
                 break;
             case '3':
                 if ('Y' == $rows['b_image3']) {
-                    $b_image3 = $rows['b_image3_name'];
+                    $bImagePath3 = $rows['b_image3_name'];
                 }
                 break;
             case '4':
                 if ('Y' == $rows['b_image4']) {
-                    $b_image4 = $rows['b_image4_name'];
+                    $bImagePath4 = $rows['b_image4_name'];
                 }
                 break;
             default:
                 if ('Y' == $rows['b_image1']) {
-                    $b_image1 = $rows['b_image1_name'];
-                    return $b_image1;
+                    $bImagePath1 = $rows['b_image1_name'];
+                    return $bImagePath1;
                 }
                 break;
         }
 
     } elseif ('s' == $size) {
-        switch ($no) {
+        switch ($imageOrderNo) {
             case '2':
                 if ('Y' == $rows['s_image2']) {
-                    $s_image2 = $rows['s_image2_name'];
-                    return $s_image2;
+                    $sImagePath2 = $rows['s_image2_name'];
+                    return $sImagePath2;
                 }
                 break;
             case '3':
                 if ('Y' == $rows['s_image3']) {
-                    $s_image3 = $rows['s_image3_name'];
-                    return $s_image3;
+                    $sImagePath3 = $rows['s_image3_name'];
+                    return $sImagePath3;
                 }
                 break;
             case '4':
                 if ('Y' == $rows['s_image4']) {
-                    $s_image4 = $rows['s_image4_name'];
-                    return $s_image4;
+                    $sImagePath4 = $rows['s_image4_name'];
+                    return $sImagePath4;
                 }
                 break;
             default:
                 if ('Y' == $rows['s_image1']) {
-                    $s_image1 = $rows['s_image1_name'];
-                    return $s_image1;
+                    $sImagePath1 = $rows['s_image1_name'];
+                    return $sImagePath1;
                 }
                 break;
         }
@@ -656,15 +655,15 @@ function show_policy($policy)
     mysqli_free_result($result);
 
     if ('d' == $policy) {
-        $d_policy = nl2br($rows['d_policy']);
+        $deliveryPolicy = nl2br($rows['d_policy']);
         echo <<<HEREDOC
             <p><i class="fa fa-check-circle"></i> 택배사: {$rows['logistics']} </p>
-            <p> {$d_policy} </p>
+            <p> {$deliveryPolicy} </p>
 HEREDOC;
     } elseif ('r' == $policy) {
-        $r_policy = nl2br($rows['r_policy']);
+        $returnPolicy = nl2br($rows['r_policy']);
 
-        echo '<p> ' . $r_policy . ' </p>';
+        echo '<p> ' . $returnPolicy . ' </p>';
     }
 }
 
@@ -676,7 +675,7 @@ function show_cart_item()
 {
     global $connect;
 
-    $p_id = set_var($_SESSION['p_id']);
+    $sessionId = set_var($_SESSION['p_id']);
 
     echo <<<HEREDOC
                                 <table id="shopping-cart-table" class="data-table cart-table">
@@ -693,11 +692,11 @@ HEREDOC;
 
     //JOIN문을 사용해 장바구니와 제품정보에서 데이터를 가져옴
     // 카테고리와 등록 순서로 정렬
-    $query       = "SELECT * FROM products p, products_cart c WHERE c.user_id='$p_id' AND p.num=c.product_code ORDER BY p.category_l ASC, num DESC ";
-    $result      = mysqli_query($connect, $query);
-    $total_count = mysqli_num_rows($result);
+    $query     = "SELECT * FROM products p, products_cart c WHERE c.user_id='$sessionId' AND p.num=c.product_code ORDER BY p.category_l ASC, num DESC ";
+    $result    = mysqli_query($connect, $query);
+    $numOfRows = mysqli_num_rows($result);
 
-    if (!$total_count) {
+    if (!$numOfRows) {
         $total = 0;
 
         echo <<<HEREDOC
@@ -729,13 +728,13 @@ HEREDOC;
             $category_m    = $rows['category_m'];
             $category_s    = $rows['category_s'];
             $s_image1_name = $rows['s_image1_name'];
-            $item_name     = stripslashes($rows['name']);
+            $itemName      = stripslashes($rows['name']);
 
-            $offer_price  = calc_offer_price($rows['retail_price'], $p_id); // 업체별 공급가 확인
-            $dealer_price = number_format($offer_price);                    // 천단위 구분
-            $price        = show_me_price($p_id, $pnum);
-            $qty          = $rows['volume'];
-            $cart_id      = $rows['cart_id'];
+            $calcWholesalePrice  = calc_offer_price($rows['retail_price'], $sessionId); // 업체별 공급가 확인
+            $commaWholesalePrice = number_format($calcWholesalePrice);                  // 천단위 구분
+            $price               = show_me_wholesale_price($sessionId, $pnum);
+            $qty                 = $rows['volume'];
+            $cart_id             = $rows['cart_id'];
 
             $pflag = '';
             $oflag = '';
@@ -784,8 +783,8 @@ HEREDOC;
                                         <td class="sop-cart">
                                             <a href="detail.php?pnum={$pnum}&amp;lcode={$category_l}&smp;mcode={$category_m}&amp;scode={$category_s}"><img class="primary-image" alt="" src="{$s_image1_name}"></a>
                                         </td>
-                                        <td class="sop-cart"><a href="detail.php?pnum={$pnum}&amp;lcode={$category_l}&amp;mcode={$category_m}&amp;scode={$category_s}">{$item_name}</a><br>[{$p_opt}]</td>
-                                        <td class="sop-cart cost"> {$dealer_price}</td>
+                                        <td class="sop-cart"><a href="detail.php?pnum={$pnum}&amp;lcode={$category_l}&amp;mcode={$category_m}&amp;scode={$category_s}">{$itemName}</a><br>[{$p_opt}]</td>
+                                        <td class="sop-cart cost"> {$commaWholesalePrice}</td>
                                         <td>
                                             <form name="basket{$i}" method="post" action="cart-update.php">
                                             <input type="hidden" name="md" value="edit" />
@@ -840,7 +839,7 @@ function show_checkout_item()
 {
     global $connect;
 
-    $p_id = set_var($_SESSION['p_id']);
+    $sessionId = set_var($_SESSION['p_id']);
     // $show_total = '';
 
     echo <<<HEREDOC
@@ -859,11 +858,11 @@ HEREDOC;
 
     //JOIN문을 사용해 장바구니와 제품정보에서 데이터를 가져옴
     // 카테고리와 등록 순서로 정렬
-    $query       = "SELECT * FROM products p, products_cart c WHERE c.user_id='$p_id' AND p.num=c.product_code ORDER BY p.category_l ASC, num DESC ";
-    $result      = mysqli_query($connect, $query);
-    $total_count = mysqli_num_rows($result);
+    $query     = "SELECT * FROM products p, products_cart c WHERE c.user_id='$sessionId' AND p.num=c.product_code ORDER BY p.category_l ASC, num DESC ";
+    $result    = mysqli_query($connect, $query);
+    $numOfRows = mysqli_num_rows($result);
 
-    if (!$total_count) {
+    if (!$numOfRows) {
         $show_total = 0;
 
         echo <<<HEREDOC
@@ -893,13 +892,13 @@ HEREDOC;
             $category_m    = $rows['category_m'];
             $category_s    = $rows['category_s'];
             $s_image1_name = $rows['s_image1_name'];
-            $item_name     = stripslashes($rows['name']);
+            $itemName      = stripslashes($rows['name']);
 
-            $offer_price  = calc_offer_price($rows['retail_price'], $p_id); // 업체별 공급가 확인
-            $dealer_price = number_format($offer_price);                    // 천단위 구분
-            $price        = show_me_price($p_id, $pnum);
-            $qty          = $rows['volume'];
-            $cart_id      = $rows['cart_id'];
+            $calcWholesalePrice  = calc_offer_price($rows['retail_price'], $sessionId); // 업체별 공급가 확인
+            $commaWholesalePrice = number_format($calcWholesalePrice);                  // 천단위 구분
+            $price               = show_me_wholesale_price($sessionId, $pnum);
+            $qty                 = $rows['volume'];
+            $cart_id             = $rows['cart_id'];
 
             $pflag = '';
             $oflag = '';
@@ -945,13 +944,13 @@ HEREDOC;
                                                             <tr>
                                                                 <td>
                                                                     <div class="o-pro-dec">
-                                                                        <p>{$item_name} [{$p_opt}]</p>
-                                                                        <input type="hidden" name="LGD_PRODUCTINFO[]"   value="{$item_name}">
+                                                                        <p>{$itemName} [{$p_opt}]</p>
+                                                                        <input type="hidden" name="LGD_PRODUCTINFO[]"   value="{$itemName}">
                                                                     </div>
                                                                 </td>
                                                                 <td>
                                                                     <div class="o-pro-price">
-                                                                        <p>{$dealer_price}</p>
+                                                                        <p>{$commaWholesalePrice}</p>
                                                                     </div>
                                                                 </td>
                                                                 <td>
@@ -998,15 +997,15 @@ function show_buyer_info()
 {
     global $connect;
 
-    $p_id = set_var($_SESSION['p_id']);
+    $sessionId = set_var($_SESSION['p_id']);
 
     // 중복되지 않는 주문번호 생성
     $timestamp = date('YmdHms');
     $rd        = "ABCDE";
-    $r_oid     = $p_id . "-" . $timestamp . "-" . str_shuffle($rd);
+    $r_oid     = $sessionId . "-" . $timestamp . "-" . str_shuffle($rd);
 
-    if ($p_id) {
-        $m_qry = "SELECT * FROM member WHERE id='$p_id' ";
+    if ($sessionId) {
+        $m_qry = "SELECT * FROM member WHERE id='$sessionId' ";
         $m_res = mysqli_query($connect, $m_qry);
         $row   = mysqli_fetch_array($m_res);
 
@@ -1043,15 +1042,15 @@ function check_unChk_order()
 {
     global $connect;
 
-    $p_id = set_var($_SESSION['p_id']);
-    $p_id = mysqli_escape_string($connect, $p_id);
+    $sessionId = set_var($_SESSION['p_id']);
+    $sessionId = mysqli_escape_string($connect, $sessionId);
 
 //미확인건
-    $unchk_sql           = "SELECT * FROM mall_order WHERE cancel='N' AND status='3' AND user_id = '$p_id' ";
-    $unchk_res           = mysqli_query($connect, $unchk_sql);
-    $unchked_order_total = mysqli_num_rows($unchk_res);
+    $unchk_sql = "SELECT * FROM mall_order WHERE cancel='N' AND status='3' AND user_id = '$sessionId' ";
+    $unchk_res = mysqli_query($connect, $unchk_sql);
+    $numOfRows = mysqli_num_rows($unchk_res);
 
-    return $unchked_order_total;
+    return $numOfRows;
 
 }
 
@@ -1063,15 +1062,15 @@ function check_today_order()
 {
     global $connect;
 
-    $p_id  = set_var($_SESSION['p_id']);
-    $today = date("Y-m-d");
+    $sessionId = set_var($_SESSION['p_id']);
+    $today     = date("Y-m-d");
 
 //금일주문건
-    $today_sql         = "SELECT * FROM mall_order WHERE cancel='N' AND createdate='$today' AND user_id = '$p_id' ";
-    $today_res         = mysqli_query($connect, $today_sql);
-    $today_order_total = mysqli_num_rows($today_res);
+    $today_sql = "SELECT * FROM mall_order WHERE cancel='N' AND createdate='$today' AND user_id = '$sessionId' ";
+    $today_res = mysqli_query($connect, $today_sql);
+    $numOfRows = mysqli_num_rows($today_res);
 
-    return $today_order_total;
+    return $numOfRows;
 
 }
 
@@ -1083,24 +1082,24 @@ function check_readyToSend_order()
 {
     global $connect;
 
-    $p_id = set_var($_SESSION['p_id']);
+    $sessionId = set_var($_SESSION['p_id']);
 
 //발송대기건
-    $paid_sql                = "SELECT * FROM mall_order WHERE cancel='N' AND status='7' AND user_id = '$p_id' ";
-    $paid_res                = mysqli_query($connect, $paid_sql);
-    $readyToSend_order_total = mysqli_num_rows($paid_res);
+    $paid_sql  = "SELECT * FROM mall_order WHERE cancel='N' AND status='7' AND user_id = '$sessionId' ";
+    $paid_res  = mysqli_query($connect, $paid_sql);
+    $numOfRows = mysqli_num_rows($paid_res);
 
-    return $readyToSend_order_total;
+    return $numOfRows;
 
 }
 
 /**
- * [show_loginForm 로그인폼 보여주기]
+ * [show_login_form 로그인폼 보여주기]
  * @return [type] [description]
  */
-function show_loginForm()
+function show_login_form()
 {
-    global $port;
+    global $sslPort;
     $uri = set_var($_POST['uri']);
 
     echo <<<HEREDOC
@@ -1112,7 +1111,7 @@ function show_loginForm()
                     <div class="col-md-12 client-say">
                         <div class="login-form-head">
                             <h2>로그인</h2>
-                            <form method="post" name="login" action="//{$_SERVER['SERVER_NAME']}:{$port}/member/login-ok.php" onsubmit="return(login_check());">
+                            <form method="post" name="login" action="//{$_SERVER['SERVER_NAME']}:{$sslPort}/member/login-ok.php" onsubmit="return(login_check());">
                             <input type="hidden" name="uri" value="{$uri}">
 
                             <div class="login-form">
@@ -1157,44 +1156,44 @@ HEREDOC;
  * @param  [type] $page          [전달받은 페이지 번호]
  * @param  [type] $scale         [한 페이지에 보여질 페이지수]
  * @return [type] $cline [현재 라인수]
- * @return [type] $last_page_num [마지막 페이지수]
+ * @return [type] $numOfLastPage [마지막 페이지수]
  * @return [type] $cpage [현재 페이지]
- * @return [type] $totalpage [전체 페이지수]
+ * @return [type] $totalPage [전체 페이지수]
  */
 function get_page_num($mode, $key, $keyword, $start_date, $end_date, $page, $scale)
 {
     global $connect;
 
-    $p_id  = set_var($_SESSION['p_id']);
-    $today = date("Y-m-d");
+    $sessionId = set_var($_SESSION['p_id']);
+    $today     = date("Y-m-d");
 
     switch ($mode) {
         case 'search':
-            $qry = "SELECT num FROM mall_order WHERE user_id = '$p_id' AND $key LIKE '%$keyword%' ";
+            $qry = "SELECT num FROM mall_order WHERE user_id = '$sessionId' AND $key LIKE '%$keyword%' ";
             break;
         case 'date':
-            $qry = "SELECT num FROM mall_order WHERE user_id = '$p_id' AND createdate BETWEEN '$start_date' AND '$end_date' ";
+            $qry = "SELECT num FROM mall_order WHERE user_id = '$sessionId' AND createdate BETWEEN '$start_date' AND '$end_date' ";
             break;
         case 'today':
-            $qry = "SELECT num FROM mall_order WHERE cancel = 'N' AND user_id = '$p_id' AND createdate = '$today' ";
+            $qry = "SELECT num FROM mall_order WHERE cancel = 'N' AND user_id = '$sessionId' AND createdate = '$today' ";
             break;
         case 'unchk':
-            $qry = "SELECT num FROM mall_order WHERE cancel = 'N' AND user_id = '$p_id' AND status = '3' ";
+            $qry = "SELECT num FROM mall_order WHERE cancel = 'N' AND user_id = '$sessionId' AND status = '3' ";
             break;
         case 'chk':
-            $qry = "SELECT num FROM mall_order WHERE cancel = 'N' AND user_id = '$p_id' AND status = '5' ";
+            $qry = "SELECT num FROM mall_order WHERE cancel = 'N' AND user_id = '$sessionId' AND status = '5' ";
             break;
         case 'paid':
-            $qry = "SELECT num FROM mall_order WHERE cancel = 'N' AND user_id = '$p_id' AND status = '7' ";
+            $qry = "SELECT num FROM mall_order WHERE cancel = 'N' AND user_id = '$sessionId' AND status = '7' ";
             break;
         case 'finish':
-            $qry = "SELECT num FROM mall_order WHERE cancel = 'N' AND user_id = '$p_id' AND status = '8' ";
+            $qry = "SELECT num FROM mall_order WHERE cancel = 'N' AND user_id = '$sessionId' AND status = '8' ";
             break;
         case 'cancel':
-            $qry = "SELECT num FROM mall_order WHERE cancel = 'Y' AND user_id = '$p_id' ";
+            $qry = "SELECT num FROM mall_order WHERE cancel = 'Y' AND user_id = '$sessionId' ";
             break;
         default:
-            $qry = "SELECT num FROM mall_order WHERE user_id = '$p_id' ";
+            $qry = "SELECT num FROM mall_order WHERE user_id = '$sessionId' ";
     }
 
 // 자료 총수 구하기
@@ -1209,10 +1208,10 @@ function get_page_num($mode, $key, $keyword, $start_date, $end_date, $page, $sca
     }
 
     $cpage     = intval($page);
-    $totalpage = intval($total / $scale);
+    $totalPage = intval($total / $scale);
 
-    if ($totalpage * $scale != $total) {
-        $totalpage = $totalpage + 1;
+    if ($totalPage * $scale != $total) {
+        $totalPage = $totalPage + 1;
     }
 
     if ($cpage == 1) {
@@ -1227,9 +1226,9 @@ function get_page_num($mode, $key, $keyword, $start_date, $end_date, $page, $sca
         $limit = $total;
     }
 
-    $last_page_num = $limit - $cline;
+    $numOfLastPage = $limit - $cline;
 
-    return array($cline, $last_page_num, $cpage, $totalpage);
+    return array($cline, $numOfLastPage, $cpage, $totalPage);
 
 }
 
@@ -1241,79 +1240,79 @@ function get_page_num($mode, $key, $keyword, $start_date, $end_date, $page, $sca
  * @param  [type] $start_date    [검색 시작날짜]
  * @param  [type] $end_date      [검색 종료날짜]
  * @param  [type] $cline         [현재 라인수]
- * @param  [type] $last_page_num [마지막 페이지수]
- * @return [type] $num_of_rows [쿼리 결과 갯수]
+ * @param  [type] $numOfLastPage [마지막 페이지수]
+ * @return [type] $numOfRows [쿼리 결과 갯수]
  * @return [type] $res [쿼리 결과]
  */
-function get_page_result($mode, $key, $keyword, $start_date, $end_date, $cline, $last_page_num)
+function get_page_result($mode, $key, $keyword, $start_date, $end_date, $cline, $numOfLastPage)
 {
     global $connect;
 
-    $p_id  = set_var($_SESSION['p_id']);
-    $today = date("Y-m-d");
+    $sessionId = set_var($_SESSION['p_id']);
+    $today     = date("Y-m-d");
 
     switch ($mode) {
         case 'search':
             $qry = "SELECT * FROM mall_order WHERE $key LIKE '%$keyword%'
-                        AND user_id = '$p_id'
-                        ORDER BY num DESC LIMIT $cline,$last_page_num ";
+                        AND user_id = '$sessionId'
+                        ORDER BY num DESC LIMIT $cline,$numOfLastPage ";
             break;
         case 'date':
             $qry = "SELECT * FROM mall_order WHERE createdate BETWEEN '$start_date' AND '$end_date'
-                          AND user_id = '$p_id'
-                          ORDER BY num DESC LIMIT $cline,$last_page_num ";
+                          AND user_id = '$sessionId'
+                          ORDER BY num DESC LIMIT $cline,$numOfLastPage ";
             break;
         case 'today':
             $qry = "SELECT * FROM mall_order
                               WHERE cancel = 'N'
-                          AND user_id = '$p_id'
+                          AND user_id = '$sessionId'
                           AND createdate = '$today'
-                          ORDER BY num DESC LIMIT $cline,$last_page_num ";
+                          ORDER BY num DESC LIMIT $cline,$numOfLastPage ";
             break;
         case 'unchk':
             $qry = "SELECT * FROM mall_order
                               WHERE cancel = 'N'
                           AND status = '3'
-                          AND user_id = '$p_id'
-                          ORDER BY num DESC LIMIT $cline,$last_page_num ";
+                          AND user_id = '$sessionId'
+                          ORDER BY num DESC LIMIT $cline,$numOfLastPage ";
             break;
         case 'chk':
             $qry = "SELECT * FROM mall_order
                               WHERE cancel = 'N'
-                          AND user_id = '$p_id'
+                          AND user_id = '$sessionId'
                           AND status = '5'
-                          ORDER BY num DESC LIMIT $cline,$last_page_num ";
+                          ORDER BY num DESC LIMIT $cline,$numOfLastPage ";
             break;
         case 'paid':
             $qry = "SELECT * FROM mall_order
                               WHERE cancel = 'N'
-                          AND user_id = '$p_id'
+                          AND user_id = '$sessionId'
                           AND status = '7'
-                          ORDER BY num DESC LIMIT $cline,$last_page_num ";
+                          ORDER BY num DESC LIMIT $cline,$numOfLastPage ";
             break;
         case 'finish':
             $qry = "SELECT * FROM mall_order
                               WHERE cancel = 'N'
-                          AND user_id = '$p_id'
+                          AND user_id = '$sessionId'
                           AND status = '8'
-                          ORDER BY num DESC LIMIT $cline,$last_page_num ";
+                          ORDER BY num DESC LIMIT $cline,$numOfLastPage ";
             break;
         case 'cancel':
             $qry = "SELECT * FROM mall_order
                               WHERE cancel = 'Y'
-                          AND user_id = '$p_id'
-                          ORDER BY num DESC LIMIT $cline,$last_page_num ";
+                          AND user_id = '$sessionId'
+                          ORDER BY num DESC LIMIT $cline,$numOfLastPage ";
             break;
         default:
             $qry = "SELECT * FROM mall_order
-                              WHERE user_id = '$p_id'
-                                ORDER BY num DESC LIMIT $cline,$last_page_num ";
+                              WHERE user_id = '$sessionId'
+                                ORDER BY num DESC LIMIT $cline,$numOfLastPage ";
     }
 
-    $res         = mysqli_query($connect, $qry);
-    $num_of_rows = mysqli_num_rows($res);
+    $res       = mysqli_query($connect, $qry);
+    $numOfRows = mysqli_num_rows($res);
 
-    return array($num_of_rows, $res);
+    return array($numOfRows, $res);
 
 }
 
@@ -1359,10 +1358,10 @@ function get_list_page_num($mode, $lcode, $mcode, $key, $keyword, $page, $scale)
     }
 
     $cpage     = intval($page);
-    $totalpage = intval($total / $scale);
+    $totalPage = intval($total / $scale);
 
-    if ($totalpage * $scale != $total) {
-        $totalpage = $totalpage + 1;
+    if ($totalPage * $scale != $total) {
+        $totalPage = $totalPage + 1;
     }
 
     if ($cpage == 1) {
@@ -1377,9 +1376,9 @@ function get_list_page_num($mode, $lcode, $mcode, $key, $keyword, $page, $scale)
         $limit = $total;
     }
 
-    $last_page_num = $limit - $cline;
+    $numOfLastPage = $limit - $cline;
 
-    return array($cline, $last_page_num, $cpage, $totalpage);
+    return array($cline, $numOfLastPage, $cpage, $totalPage);
 }
 
 /**
@@ -1390,10 +1389,10 @@ function get_list_page_num($mode, $lcode, $mcode, $key, $keyword, $page, $scale)
  * @param  [type] $key            [description]
  * @param  [type] $keyword        [description]
  * @param  [type] $cline          [description]
- * @param  [type] $last_page_num  [description]
+ * @param  [type] $noumfLastPage  [description]
  * @return [type] [description]
  */
-function get_list_page_result($mode, $lcode, $mcode, $key, $keyword, $cline, $last_page_num)
+function get_list_page_result($mode, $lcode, $mcode, $key, $keyword, $cline, $numOfLastPage)
 {
     global $connect;
 
@@ -1405,34 +1404,34 @@ function get_list_page_result($mode, $lcode, $mcode, $key, $keyword, $cline, $la
 
     if ("search" == $mode) {
         $search_qry .= " AND (name LIKE '%" . $keyword . "%' OR prod_code LIKE '" . $keyword . "' OR company LIKE '%" . $keyword . "%') ";
-        $qry = "SELECT * FROM products WHERE approved='Y' AND del_chk != 'Y' " . $search_qry . " ORDER BY num DESC LIMIT " . $cline . ", " . $last_page_num . "";
+        $qry = "SELECT * FROM products WHERE approved='Y' AND del_chk != 'Y' " . $search_qry . " ORDER BY num DESC LIMIT " . $cline . ", " . $numOfLastPage . "";
     } else {
-        $qry = "SELECT * FROM products WHERE del_chk='N'" . $added_qry . " AND approved = 'Y' ORDER BY num DESC LIMIT " . $cline . ", " . $last_page_num . "";
+        $qry = "SELECT * FROM products WHERE del_chk='N'" . $added_qry . " AND approved = 'Y' ORDER BY num DESC LIMIT " . $cline . ", " . $numOfLastPage . "";
     }
 
-    $res         = mysqli_query($connect, $qry);
-    $num_of_rows = mysqli_num_rows($res);
+    $res       = mysqli_query($connect, $qry);
+    $numOfRows = mysqli_num_rows($res);
 
-    return array($num_of_rows, $res);
+    return array($numOfRows, $res);
 
 }
 
 /**
  * [show_order_list 주문목록 보여주기]
- * @param  [type] $num_of_rows    [쿼리결과 갯수]
+ * @param  [type] $numOfRows      [쿼리결과 갯수]
  * @param  [type] $result         [쿼리결과]
  * @param  [type] $cpage          [현재 페이지]
  * @return [type] [description]
  */
-function show_order_list($num_of_rows, $result, $cpage)
+function show_order_list($numOfRows, $result, $cpage)
 {
     global $connect, $MERTKEY, $CST_MID, $CST_PLATFORM;
 
-    $status_now = '';
+    $orderStatus = '';
 
-    if ($num_of_rows > 0) {
+    if ($numOfRows > 0) {
 
-        $today_order_sum = 0; //금일주문총액
+        $todayOrderSum = 0; //금일주문총액
 
         for ($i = 0; $row = mysqli_fetch_array($result); $i++) {
             $a_goods_fk = explode(",", $row['goods_fk']);
@@ -1470,8 +1469,8 @@ function show_order_list($num_of_rows, $result, $cpage)
 
             //취소 시
             if ($row['cancel'] == 'Y') {
-                $status_now = '<i class="fa fa-remove"></i> 주문취소';
-                $today_order_sum -= $row['last_amount'];
+                $orderStatus = '<i class="fa fa-remove"></i> 주문취소';
+                $todayOrderSum -= $row['last_amount'];
 
                 echo <<<HEREDOC
 	                    <tr>
@@ -1481,15 +1480,15 @@ function show_order_list($num_of_rows, $result, $cpage)
 HEREDOC;
 
                 echo $show_admin_memo;
-                $pay_status = get_pg_info2($row['orderid']);
+                $payStatus = get_pg_info2($row['orderid']);
 
                 echo <<<HEREDOC
 
 	                      </td>
 	                      <td>{$row['recipient_name']}</td>
 	                      <td class="num-right"> - <br /></td>
-                          <td>{$pay_status}</td>
-                          <td>{$status_now}</td>
+                          <td>{$payStatus}</td>
+                          <td>{$orderStatus}</td>
                           <td>&nbsp;</td>
 	                      <td><a href="#" onclick="alert('이미 취소된 주문입니다.')"><i class="fa fa-ban"></i></a></td>
 HEREDOC;
@@ -1498,17 +1497,17 @@ HEREDOC;
                 //end cancel
 
                 if ($row['status'] == '1') {
-                    $status_now = '<i class="fa fa-pause"></i> 입금대기';
+                    $orderStatus = '<i class="fa fa-pause"></i> 입금대기';
                 } else if ($row['status'] == '3') {
-                    $status_now = '<i class="fa fa-pause"></i> 대기';
+                    $orderStatus = '<i class="fa fa-pause"></i> 대기';
                 } else if ($row['status'] == '5') {
-                    $status_now = '<i class="fa fa-check"></i> 주문확인';
+                    $orderStatus = '<i class="fa fa-check"></i> 주문확인';
                 } else if ($row['status'] == '7') {
-                    $status_now = '<i class="fa fa-flag-checkered"></i> 발송대기';
+                    $orderStatus = '<i class="fa fa-flag-checkered"></i> 발송대기';
                 } else if ($row['status'] == '8') {
-                    $status_now = '<i class="fa fa-check-square-o"></i> 발송완료';
+                    $orderStatus = '<i class="fa fa-check-square-o"></i> 발송완료';
                 } else if ($row['status'] == '0') {
-                    $status_now = '<i class="fa fa-minus-square"></i> 발송지연';
+                    $orderStatus = '<i class="fa fa-minus-square"></i> 발송지연';
                 }
 
                 echo <<<HEREDOC
@@ -1520,7 +1519,7 @@ HEREDOC;
                 echo $show_admin_memo;
 
                 $show_order_amount = number_format($row['amount']);
-                $pay_status        = get_pg_info2($row['orderid']);
+                $payStatus         = get_pg_info2($row['orderid']);
                 $print_receipt     = '';
 
                 if ($row['status'] == '8') {
@@ -1544,8 +1543,8 @@ HEREDOC;
                       </td>
                       <td>{$recipient_name}</td>
                       <td class="num-right">{$show_order_amount}</td>
-                      <td>{$pay_status}</td>
-                      <td>{$status_now}</td>
+                      <td>{$payStatus}</td>
+                      <td>{$orderStatus}</td>
                       <td>{$print_receipt}</td>
                       <td>
                           <form name="or_delete_{$i}" method="post" action="../shop/order-delete.php">
@@ -1560,11 +1559,11 @@ HEREDOC;
                     </tr>
 HEREDOC;
 
-                $today_order_sum += ($row['amount']);
+                $todayOrderSum += ($row['amount']);
             } // ./ if-else end
         } // ./for ($i = 0; $row = mysqli_fetch_array($result); $i++)
 
-        $show_total_amount = number_format($today_order_sum);
+        $show_total_amount = number_format($todayOrderSum);
 
         echo <<<HEREDOC
                     <tr>
@@ -1614,7 +1613,7 @@ function show_order_item($oid)
     $original_order_sum      = 0;
     $total_order_item_num    = 0;
     $modified_total_item_num = 0;
-    $pay_status              = '';
+    $payStatus               = '';
 
     //주문 상품 정보를 불러옵니다.
     for ($i = 0; $i < sizeof($a_goods_fk); $i++) {
@@ -1768,12 +1767,6 @@ function show_order_status($oid, $order_status)
             break;
     }
 
-    // $a_status['3'] = '<i class="fa fa-pause"></i> 상품을 준비 중입니다.';
-    // $a_status['5'] = '<i class="fa fa-check"></i> 주문확인 후 포장 중입니다.';
-    // $a_status['7'] = '<i class="fa fa-flag-checkered"></i> 포장완료 후 발송 준비 중입니다.';
-    // $a_status['8'] = '<i class="fa fa-check-square-o"></i> 상품을 발송했습니다. (운송장 번호: ' . show_logistics() . ' ' . show_track_no($oid) . ' )';
-
-    // return $a_status;
 }
 
 /**
@@ -1789,7 +1782,7 @@ function show_buyer_detail($oid)
     $res = mysqli_query($connect, $sql);
     $row = mysqli_fetch_array($res);
 
-    $pay_status = get_pg_info($row['orderid']);
+    $payStatus = get_pg_info($row['orderid']);
 
     echo <<<HEREDOC
 
@@ -1819,7 +1812,7 @@ function show_buyer_detail($oid)
                     <div class="row">
                         <div class="col-sm-3 buyer-info-padding">결제방법</div>
                         <div class="col-sm-9 buyer-info-padding">
-                            {$pay_status}
+                            {$payStatus}
 
 HEREDOC;
 //무통장 입금시만 출력
@@ -1833,62 +1826,57 @@ HEREDOC;
 HEREDOC;
     }
 
-    $show_org_amount  = number_format($row['amount']);
-    $status           = show_order_status($oid, $row['status']);
-    $memo_to_delivery = nl2br($row['memo_to_delivery']);
-    $memo_to_admin    = nl2br($row['memo_to_admin']);
-    $memo_from_admin  = nl2br($row['supplement']);
+    $orderSum        = number_format($row['amount']);
+    $orderStatus     = show_order_status($oid, $row['status']);
+    $memoForDelivery = nl2br($row['memo_to_delivery']);
+    $memoForAdmin    = nl2br($row['memo_to_admin']);
+    $memoFromAdmin   = nl2br($row['supplement']);
 
     echo <<<HEREDOC
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-3 buyer-info-padding">주문금액</div>
-                        <div class="col-sm-9 buyer-info-padding">{$show_org_amount} 원 (VAT 포함)</div>
+                        <div class="col-sm-9 buyer-info-padding">{$orderSum} 원 (VAT 포함)</div>
                     </div>
                     <div class="row">
                         <div class="col-sm-3 buyer-info-padding">처리상태</div>
-                        <div class="col-sm-9 buyer-info-padding">{$status}</div>
+                        <div class="col-sm-9 buyer-info-padding">{$orderStatus}</div>
                     </div>
                     <div class="row">
                         <div class="col-sm-3 buyer-info-padding">배송 시 요청사항</div>
-                        <div class="col-sm-9 buyer-info-padding">{$memo_to_delivery}</div>
+                        <div class="col-sm-9 buyer-info-padding">{$memoForDelivery}</div>
                     </div>
                     <div class="row">
                         <div class="col-sm-3 buyer-info-padding">담당자에게 요청사항</div>
-                        <div class="col-sm-9 buyer-info-padding">{$memo_to_admin}</div>
+                        <div class="col-sm-9 buyer-info-padding">{$memoForAdmin}</div>
                     </div>
                     <div class="row bg-danger">
                         <div class="col-sm-3 buyer-info-padding">※ 관리자 메모</div>
-                        <div class="col-sm-9 buyer-info-padding">{$memo_from_admin}</div>
+                        <div class="col-sm-9 buyer-info-padding">{$memoFromAdmin}</div>
                     </div>
 
 HEREDOC;
 }
 
 /**
- * [show_product_image 상세페이지 상품이미지 보여주기]
+ * [show_item_images 상세페이지 상품이미지 보여주기]
  * @param  [type] $pnum           [상품번호]
  * @return [type] [description]
  */
-function show_product_image($pnum)
+function show_item_images($pnum)
 {
     global $connect;
-
-    // $query  = "SELECT * FROM products WHERE num='$pnum'";
-    // $result = mysqli_query($connect, $query);
-    // isset($b_image1)fetch_array($result);
-    // mysqli_free_result($result);
 
     echo <<<HEREDOC
                                   <!-- Tab panes -->
                                     <div class="tab-content">
 HEREDOC;
 
-    $b_image1 = show_image('b', 1, $pnum);
-    $b_image2 = show_image('b', 2, $pnum);
-    $b_image3 = show_image('b', 3, $pnum);
-    $b_image4 = show_image('b', 4, $pnum);
+    $b_image1 = get_item_image('b', 1, $pnum);
+    $b_image2 = get_item_image('b', 2, $pnum);
+    $b_image3 = get_item_image('b', 3, $pnum);
+    $b_image4 = get_item_image('b', 4, $pnum);
 
     if (isset($b_image1)) {
         echo <<<HEREDOC
@@ -1944,10 +1932,10 @@ HEREDOC;
                                         <ul class="tab-menu">
 HEREDOC;
 
-    $s_image1 = show_image('s', 1, $pnum);
-    $s_image2 = show_image('s', 2, $pnum);
-    $s_image3 = show_image('s', 3, $pnum);
-    $s_image4 = show_image('s', 4, $pnum);
+    $s_image1 = get_item_image('s', 1, $pnum);
+    $s_image2 = get_item_image('s', 2, $pnum);
+    $s_image3 = get_item_image('s', 3, $pnum);
+    $s_image4 = get_item_image('s', 4, $pnum);
 
     if (isset($s_image1)) {
         echo '                                           <li class="active"><a data-toggle="tab" href="#image1"><img alt="" src="' . $s_image1 . '"></a></li>';
@@ -1972,11 +1960,11 @@ HEREDOC;
 }
 
 /**
- * [show_product_info 상세페이지 상품 정보보여주기]
+ * [show_item_info 상세페이지 상품 정보보여주기]
  * @param  [type] $pnum           [상품번호]
  * @return [type] [description]
  */
-function show_product_info($pnum)
+function show_item_info($pnum)
 {
 
     global $connect;
@@ -1985,14 +1973,14 @@ function show_product_info($pnum)
     $res  = mysqli_query($connect, $qry);
     $rows = mysqli_fetch_array($res);
 
-    $p_id = set_var($_SESSION['p_id']);
+    $sessionId = set_var($_SESSION['p_id']);
 
-    $item_name   = stripslashes($rows['name']);
-    $moq         = $rows['moq'];
-    $short_desc  = $rows['short_desc'];
-    $offer_price = calc_offer_price($rows['retail_price'], $p_id);
-    $price       = show_me_price($pnum);
-    $option      = show_option($pnum);
+    $itemName           = stripslashes($rows['name']);
+    $moq                = $rows['moq'];
+    $shortDesc          = $rows['short_desc'];
+    $calcWholesalePrice = calc_offer_price($rows['retail_price'], $sessionId);
+    $price              = show_me_wholesale_price($pnum);
+    $option             = show_option($pnum);
 
     echo <<<HEREDOC
                             <!-- show product info -->
@@ -2001,10 +1989,10 @@ function show_product_info($pnum)
 
                             <div class="cras">
                                 <div class="product-name">
-                                    <h1>{$item_name}</h1>
+                                    <h1>{$itemName}</h1>
                                 </div>
                                 <div class="pro-rating">
-                                    모델명: {$short_desc}
+                                    모델명: {$shortDesc}
                                 </div>
                                 <p class="availability in-stock">
                                     재고:
@@ -2021,7 +2009,7 @@ function show_product_info($pnum)
                                         <div class="add-to-cart">
 HEREDOC;
 
-    if ($p_id) {
+    if ($sessionId) {
         echo <<<HEREDOC
                                             <div class="product-icon">
                                                 <div class="input-content">
@@ -2033,7 +2021,7 @@ HEREDOC;
                                                 </button>
                                                 <div id="loadplace{$pnum}"></div>
                                                 <input type="hidden" name="from" id="from" value="detail">
-                                                <input type="hidden" name="amount" id="amount_{$pnum}" value="{$offer_price}">
+                                                <input type="hidden" name="amount" id="amount_{$pnum}" value="{$calcWholesalePrice}">
                                             </div>
 HEREDOC;
     } else {
@@ -2066,7 +2054,7 @@ HEREDOC;
  * @param  [type] $mcode          [중카테고리]
  * @return [type] [description]
  */
-function show_relative_item($lcode, $mcode)
+function show_relative_items($lcode, $mcode)
 {
     global $connect;
 
@@ -2074,37 +2062,37 @@ function show_relative_item($lcode, $mcode)
     $res = mysqli_query($connect, $qry);
 
     for ($i = 0; $i < $rows = mysqli_fetch_array($res); $i++) {
-        $p_id = set_var($_SESSION['p_id']);
+        $sessionId = set_var($_SESSION['p_id']);
 
-        $small_image  = $rows['s_image1_name'];
-        $product_name = $rows['name'];
-        $short_desc   = get_short($rows['short_desc'], 25);
-        $shop_price   = number_format($rows['shop_price']);
-        $offer_price  = calc_offer_price($rows['retail_price'], $p_id);
-        $dealer_price = number_format($offer_price);
+        $firstThumbnail      = $rows['s_image1_name'];
+        $itemName            = $rows['name'];
+        $shortDesc           = get_short($rows['short_desc'], 25);
+        $commaCustomerPrice  = number_format($rows['shop_price']);
+        $calcWholesalePrice  = calc_offer_price($rows['retail_price'], $sessionId);
+        $commaWholesalePrice = number_format($calcWholesalePrice);
 
         echo <<<HEREDOC
 
                                         <div class="ma-box-content">
                                             <div class="product-img-right">
                                                 <a href="#">
-                                                    <img class="primary-image" alt="" src="{$small_image}">
+                                                    <img class="primary-image" alt="" src="{$firstThumbnail}">
                                                 </a>
                                             </div>
                                             <div class="product-content">
                                                 <h2 class="product-name">
-                                                    <a href="#">{$product_name}</a>
+                                                    <a href="#">{$itemName}</a>
                                                 </h2>
                                                 <div class="pro-rating">
-                                                    {$short_desc}
+                                                    {$shortDesc}
                                                 </div>
                                                 <div class="price-box">
 HEREDOC;
 
-        if ($p_id) {
-            echo '                                                <span class="special"><i class="fa fa-krw"></i> ' . $dealer_price . '</span>';
+        if ($sessionId) {
+            echo '                                                <span class="special"><i class="fa fa-krw"></i> ' . $commaWholesalePrice . '</span>';
         } else {
-            echo '                                                <span class="shop"><i class="fa fa-krw"></i> ' . $shop_price . '</span>';
+            echo '                                                <span class="shop"><i class="fa fa-krw"></i> ' . $commaCustomerPrice . '</span>';
         }
 
         echo <<<HEREDOC
@@ -2121,7 +2109,7 @@ HEREDOC;
  * @param  [type] $pnum           [상품번호]
  * @return [type] [description]
  */
-function get_contents($pnum)
+function get_item_contents($pnum)
 {
     global $connect;
 
@@ -2155,12 +2143,12 @@ function show_main_banner()
 HEREDOC;
 
         for ($i = 1; $i <= 5; $i++) {
-            $file = 'm_banner' . $i . '_image';
-            $flag = 'm_banner' . $i;
+            $imagePath = 'm_banner' . $i . '_image';
+            $isYes     = 'm_banner' . $i;
 
-            if ("Y" == $row[$flag]) {
+            if ("Y" == $row[$isYes]) {
                 echo <<<HEREDOC
-                    <img src="{$row[$file]}" alt="" title="#slider-direction-{$i}">
+                    <img src="{$row[$imagePath]}" alt="" title="#slider-direction-{$i}">
 
 HEREDOC;
             }
@@ -2169,10 +2157,10 @@ HEREDOC;
         echo '              </div>' . "\r\n";
 
         for ($j = 1; $j <= 5; $j++) {
-            $flag = 'm_banner' . $j;
-            $link = 'mlink' . $j;
+            $isYes = 'm_banner' . $j;
+            $link  = 'mlink' . $j;
 
-            if ("Y" == $row[$flag]) {
+            if ("Y" == $row[$isYes]) {
                 echo <<<HEREDOC
 
                 <div id="slider-direction-{$j}" class="slider-direction">
@@ -2234,15 +2222,15 @@ function show_top_banner()
 
         for ($i = 1; $i <= 3; $i++) {
 
-            $file = 'm_banner' . $i . '_image';
-            $flag = 'm_banner' . $i;
-            $link = 'mlink' . $i;
+            $imagePath = 'm_banner' . $i . '_image';
+            $isYes     = 'm_banner' . $i;
+            $link      = 'mlink' . $i;
 
-            if ("Y" == $row[$flag]) {
+            if ("Y" == $row[$isYes]) {
                 echo <<<HEREDOC
 
                         <div class="product col-md-4 col-sm-4 col-xs-12">
-                            <a href="{$row[$link]}"><img src="{$row[$file]}" alt=""></a>
+                            <a href="{$row[$link]}"><img src="{$row[$imagePath]}" alt=""></a>
                         </div>
 
 HEREDOC;
@@ -2284,16 +2272,16 @@ function show_middle_banner()
 
         for ($i = 1; $i <= 2; $i++) {
 
-            $file = 'm_banner' . $i . '_image';
-            $flag = 'm_banner' . $i;
-            $link = 'mlink' . $i;
+            $imagePath = 'm_banner' . $i . '_image';
+            $isYes     = 'm_banner' . $i;
+            $link      = 'mlink' . $i;
 
-            if ("Y" == $row[$flag]) {
+            if ("Y" == $row[$isYes]) {
                 echo <<<HEREDOC
 
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="mid-banner">
-                            <a href="{$row[$link]}"><img src="{$row[$file]}" alt=""></a>
+                            <a href="{$row[$link]}"><img src="{$row[$imagePath]}" alt=""></a>
                         </div>
                     </div>
 
@@ -2340,15 +2328,15 @@ function show_bottom_banner()
 
         for ($i = 1; $i <= 1; $i++) {
 
-            $file = 'm_banner' . $i . '_image';
-            $flag = 'm_banner' . $i;
-            $link = 'mlink' . $i;
+            $imagePath = 'm_banner' . $i . '_image';
+            $isYes     = 'm_banner' . $i;
+            $link      = 'mlink' . $i;
 
-            if ("Y" == $row[$flag]) {
+            if ("Y" == $row[$isYes]) {
                 echo <<<HEREDOC
 
                         <div class="banner">
-                            <a href="{$row[$link]}"><img src="{$row[$file]}" alt=""></a>
+                            <a href="{$row[$link]}"><img src="{$row[$imagePath]}" alt=""></a>
                         </div>
 
 HEREDOC;

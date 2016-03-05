@@ -1,6 +1,6 @@
 <?php include_once '../include/header.php';?>
 
-<?php show_loginForm();?>
+<?php show_login_form();?>
 
 <?php include_once '../include/brands.php';?>
 

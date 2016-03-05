@@ -17,7 +17,7 @@
                         </div>
                         <div class="row">
                             <div class="features-carousel indicator-style">
-<?php show_main_products('best', 10);?>
+<?php show_items_on_main('best', 10);?>
                             </div>
                         </div>
                     </div>
@@ -41,7 +41,7 @@
                         <div class="row">
                             <div class="features-carousel indicator-style">
 <?php
-	show_main_products('new', 10);
+	show_items_on_main('new', 10);
 ?>
                             </div>
                         </div>

@@ -7,7 +7,7 @@
 	$pnum  = set_var($_GET['pnum']);
 	// $p_id  = set_var($_SESSION['p_id']);
 
-	$contents = get_contents($pnum);
+	$contents = get_item_contents($pnum);
 
 ?>
 
@@ -45,12 +45,12 @@
                         <div class="col-md-4 col-sm-6 hidden-xs">
                             <div class="s_big">
                                 <div>
-                                    <?php echo show_product_image($pnum); ?>
+                                    <?php echo show_item_images($pnum); ?>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-5 col-sm-6 col-xs-12">
-                            <?php echo show_product_info($pnum); ?>
+                            <?php echo show_item_info($pnum); ?>
                         </div>
                         <div class="col-md-3 col-sm-12 col-xs-12">
                             <div class="ma-title">
@@ -59,7 +59,7 @@
                             <div class="all">
                                 <div class=" content_top content_all indicator-style">
                                     <div class="ma-box-content-all">
-                                        <?php echo show_relative_item($lcode, $mcode); ?>
+                                        <?php echo show_relative_items($lcode, $mcode); ?>
                                     </div>
                                 </div>
                             </div>
@@ -86,7 +86,7 @@
                             </ul>
                             <!-- Tab panes -->
                             <div class="tab-content">
-                                <div role="tabpanel" class="tab-pane active" id="desc">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           <?php echo $contents; ?></div>
+                                <div role="tabpanel" class="tab-pane active" id="desc">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     <?php echo $contents; ?></div>
                                 <div role="tabpanel" class="tab-pane" id="delivery">
                                     <div class="row">
                                         <div class="col-md-6 col-xs-12">

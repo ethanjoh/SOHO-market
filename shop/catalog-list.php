@@ -84,7 +84,7 @@
 	$t_no   = $ret[0];
 	$result = $ret[1];
 
-	show_catalog_products($result, 'home');
+	show_items_on_catalog($result, 'home');
 
 ?>
                                                     </div>
@@ -98,7 +98,7 @@
 	$t_no   = $ret[0];
 	$result = $ret[1];
 
-	show_catalog_products($result, 'profile');
+	show_items_on_catalog($result, 'profile');
 ?>
                                                 </div>
                                             </div>
