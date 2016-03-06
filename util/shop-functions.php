@@ -119,7 +119,7 @@ HEREDOC;
                                 <div class="top-register">
                                     <div class=" block-compare">
                                         <div class="compare">
-                                            <a href="#"><i class="fa fa-cog"></i> 내 정보 </a>
+                                            <a href="#"><i class="fa fa-cog"></i> 마이메뉴 </a>
                                         </div>
                                         <div class="home" id="right">
                                             <ul>
