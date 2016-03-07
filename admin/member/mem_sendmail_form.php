@@ -34,6 +34,7 @@
 
           <form class="form-horizontal" role="form" method="post" name="mail" action="mem_sendmail_ok.php"  enctype="multipart/form-data">
 <?php
+$num = set_var($_POST['num']);
 
 $tot_cnt = sizeof($num);
 
@@ -62,7 +63,7 @@ for ($i = 0; $i < sizeof($num); $i++) {
                         </tr>
                         <tr>
                           <th>보내는 Email</th>
-                          <td><input type='text' size='100' name="sender_email" value="sales@smedics.co.kr">
+                          <td><input type='text' size='100' name="sender_email" value="<?php echo $info['email']; ?>">
                           </td>
                         </tr>
                         <tr>
@@ -77,7 +78,7 @@ for ($i = 0; $i < sizeof($num); $i++) {
                         <tr>
                           <th>발송 내용</th>
                           <td>
-                            <textarea name="contents" class="form-control" id="contents"><?php echo stripslashes($row['contents']); ?></textarea>
+                            <textarea name="contents" class="form-control" id="contents"></textarea>
                             <script type="text/javascript">
                                 CKEDITOR.replace( 'contents' );
                             </script>

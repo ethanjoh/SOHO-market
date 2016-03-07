@@ -74,13 +74,15 @@ HEREDOC;
     $file = 'm_banner' . $i . '_image';
     $flag = 'm_banner' . $i;
 
-    if ("Y" == $row[$flag]) {
-        echo '<img src="' . $row[$file] . '" alt="main banner ' . $i . '" width="25%">';
+    if ("update" == $mode) {
+        if ("Y" == $row[$flag]) {
+            echo '<img src="' . $row[$file] . '" alt="main banner ' . $i . '" width="25%">';
+            $link = $row[$link];
+        }
     } else {
         echo "등록된 배너가 없습니다.";
+        $link = '';
     }
-
-    $link = 'm_link' . $i;
 
     echo <<<HEREDOC
 
@@ -91,7 +93,7 @@ HEREDOC;
                         </tr>
                         <tr>
                           <th><i class="fa fa-link"></i> 링크 {$i}</th>
-                          <td><input type="text" class="form-control" name="link[]" value="{$row[$link]}" id="m_link{$i}" size="150" /></td>
+                          <td><input type="text" class="form-control" name="link[]" value="{$link}" id="m_link{$i}" size="150" /></td>
                         </tr>
 
 HEREDOC;

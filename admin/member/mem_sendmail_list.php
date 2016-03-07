@@ -200,7 +200,7 @@ mysqli_free_result($result_2);
                 <tbody>
                   <tr>
                     <td>
-                      <a type="button" class="btn btn-success" href="#" onclick="javascript:mail_send();">메일 보내기</a>
+                      <a type="button" class="btn btn-success" href="#" onclick="mail_send();">메일 보내기</a>
                     </td>
                     <td>
 <?php
