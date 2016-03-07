@@ -171,9 +171,9 @@ function show_items_on_main($newOrBest, $howManyItems)
 {
     global $connect;
 
-    if ('best' == $newOrBest) {
+    if ($newOrBest == 'best') {
         $isYes = "main_best='Y'";
-    } elseif ('new' == $newOrBest) {
+    } elseif ($newOrBest == 'new') {
         $isYes = "main_new='Y'";
     }
 
@@ -282,13 +282,15 @@ function show_items_on_catalog($result, $tabid)
 
             $option = show_option($pnum);
 
-            if ("Y" == $rows['main_best']) {
+            if ($rows['main_best'] == "Y") {
                 $saleNewTag = '<span class="best-text">Best</span>';
-            } elseif ("Y" == $rows['main_new']) {
+            } elseif ($rows['main_new'] == "Y") {
+                $saleNewTag = '<span class="new-text">New</span>';
+            } elseif ($rows['main_special'] == "Y") {
                 $saleNewTag = '<span class="sale-text">Sale</span>';
             }
 
-            if ('home' == $tabid) {
+            if ($tabid == 'home') {
                 echo <<<HEREDOC
 
                                 <!-- single-product start -->
@@ -334,7 +336,7 @@ HEREDOC;
                                 <!-- single-product end -->
 
 HEREDOC;
-            } elseif ('profile' == $tabid) {
+            } elseif ($tabid == 'profile') {
                 $option = show_option($pnum);
 
                 echo <<<HEREDOC
@@ -344,6 +346,7 @@ HEREDOC;
                                 <div class="li-item">
                                     <div class="col-md-4 col-sm-4">
                                         <div class="single-product">
+                                            {$saleNewTag}
                                             <div class="product-img">
                                                 <a href="detail.php?pnum={$pnum}&lcode={$category_l}&mcode={$category_m}&scode={$category_s}">
                                                     <img class="primary-image" src="{$rows['b_image1_name']}" alt="">
@@ -586,54 +589,54 @@ function get_item_image($size, $imageOrderNo, $pnum)
     $rows   = mysqli_fetch_array($result);
     mysqli_free_result($result);
 
-    if ('b' == $size) {
+    if ($size == 'b') {
         switch ($imageOrderNo) {
             case '2':
-                if ('Y' == $rows['b_image2']) {
+                if ($rows['b_image2'] == 'Y') {
                     $bImagePath2 = $rows['b_image2_name'];
                     return $bImagePath2;
                 }
                 break;
             case '3':
-                if ('Y' == $rows['b_image3']) {
+                if ($rows['b_image3'] == 'Y') {
                     $bImagePath3 = $rows['b_image3_name'];
                 }
                 break;
             case '4':
-                if ('Y' == $rows['b_image4']) {
+                if ($rows['b_image4'] == 'Y') {
                     $bImagePath4 = $rows['b_image4_name'];
                 }
                 break;
             default:
-                if ('Y' == $rows['b_image1']) {
+                if ($rows['b_image1'] == 'Y') {
                     $bImagePath1 = $rows['b_image1_name'];
                     return $bImagePath1;
                 }
                 break;
         }
 
-    } elseif ('s' == $size) {
+    } elseif ($size == 's') {
         switch ($imageOrderNo) {
             case '2':
-                if ('Y' == $rows['s_image2']) {
+                if ($rows['s_image2'] == 'Y') {
                     $sImagePath2 = $rows['s_image2_name'];
                     return $sImagePath2;
                 }
                 break;
             case '3':
-                if ('Y' == $rows['s_image3']) {
+                if ($rows['s_image3'] == 'Y') {
                     $sImagePath3 = $rows['s_image3_name'];
                     return $sImagePath3;
                 }
                 break;
             case '4':
-                if ('Y' == $rows['s_image4']) {
+                if ($rows['s_image4'] == 'Y') {
                     $sImagePath4 = $rows['s_image4_name'];
                     return $sImagePath4;
                 }
                 break;
             default:
-                if ('Y' == $rows['s_image1']) {
+                if ($rows['s_image1'] == 'Y') {
                     $sImagePath1 = $rows['s_image1_name'];
                     return $sImagePath1;
                 }
@@ -657,13 +660,13 @@ function show_policy($policy)
     $rows   = mysqli_fetch_array($result);
     mysqli_free_result($result);
 
-    if ('d' == $policy) {
+    if ($policy == 'd') {
         $deliveryPolicy = nl2br($rows['d_policy']);
         echo <<<HEREDOC
             <p><i class="fa fa-check-circle"></i> 택배사: {$rows['logistics']} </p>
             <p> {$deliveryPolicy} </p>
 HEREDOC;
-    } elseif ('r' == $policy) {
+    } elseif ($policy == 'r') {
         $returnPolicy = nl2br($rows['r_policy']);
 
         echo '<p> ' . $returnPolicy . ' </p>';
@@ -827,7 +830,7 @@ HEREDOC;
  */
 function go_purchase($total)
 {
-    if (0 == $total) {
+    if ($total == 0) {
         return $ret = "alert('카트에 상품이 없습니다.')";
     } else {
         return $ret = "location.href='checkout.php?where=cart&amp;delivery=L'";
@@ -1341,7 +1344,7 @@ function get_list_page_num($mode, $lcode, $mcode, $key, $keyword, $page, $scale)
         $added_qry = " AND category_m = '$mcode'";
     }
 
-    if ("search" == $mode) {
+    if ($mode == "search") {
         $search_qry .= " AND (name LIKE '%$keyword%' OR prod_code LIKE '$keyword' OR company LIKE '%$keyword%') ";
         $qry = "SELECT * FROM products WHERE approved='Y' AND del_chk != 'Y' $search_qry ";
 
@@ -1405,7 +1408,7 @@ function get_list_page_result($mode, $lcode, $mcode, $key, $keyword, $cline, $nu
         $added_qry = " AND category_m = '$mcode'";
     }
 
-    if ("search" == $mode) {
+    if ($mode == "search") {
         $search_qry .= " AND (name LIKE '%" . $keyword . "%' OR prod_code LIKE '" . $keyword . "' OR company LIKE '%" . $keyword . "%') ";
         $qry = "SELECT * FROM products WHERE approved='Y' AND del_chk != 'Y' " . $search_qry . " ORDER BY num DESC LIMIT " . $cline . ", " . $numOfLastPage . "";
     } else {

@@ -1,27 +1,24 @@
 <?php
 
 include_once "../include/admin_auth.php";
-include_once "../../util/config.php";
 include_once "../../util/util.php";
 
-$connect = my_connect($host, $dbid, $dbpass, $dbname);
+$mode  = set_var($_GET['mode']);
+$p_num = set_var($_GET['p_num']);
+$page  = set_var($_GET['page']);
+$ck    = set_var($_GET['ck']);
 
-$mode  = $_GET['mode'];
-$p_num = $_GET['p_num'];
-$page  = $_GET['page'];
-$ck    = $_GET['ck'];
+$lcode = set_var($_GET['lcode']);
+$mcode = set_var($_GET['mcode']);
+$scode = set_var($_GET['scode']);
 
-$lcode = $_GET['lcode'];
-$mcode = $_GET['mcode'];
-$scode = $_GET['scode'];
-
-if ('del' == $mode) {
+if ($mode == 'del') {
     // 해당데이타 검색
-    if ("main_new" == $ck) {
+    if ($ck == "main_new") {
         $add = "option1_chk = 'N', main_new = 'N' ";
-    } else if ("main_special" == $ck) {
+    } else if ($ck == "main_special") {
         $add = "option2_chk = 'N', , main_special = 'N' ";
-    } else if ("main_best" == $ck) {
+    } else if ($ck == "main_best") {
         $add = "option3_chk = 'N', main_best = 'N' ";
     }
     $update = "UPDATE products SET $add WHERE num = '$p_num' ";
@@ -35,7 +32,7 @@ if ('del' == $mode) {
     }
 }
 
-if ('insert' == $mode) {
+if ($mode == 'insert') {
     if ("main_new" == $ck) {
         $add = "option1_chk = 'Y', main_new = 'Y' ";
     } else if ("main_special" == $ck) {

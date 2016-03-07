@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"mar",
+				"margin"
+			],
+			[
 				"glo",
 				"global"
 			],
@@ -62,10 +66,6 @@
 			[
 				"LGD_BUY",
 				"LGD_BUYEREMAIL"
-			],
-			[
-				"mar",
-				"margin-bottom"
 			],
 			[
 				"lin",
@@ -456,34 +456,10 @@
 	"buffers":
 	[
 		{
-			"file": "shop/index.php",
-			"settings":
-			{
-				"buffer_size": 1962,
-				"line_ending": "Windows"
-			}
-		},
-		{
 			"file": "util/shop-functions.php",
 			"settings":
 			{
-				"buffer_size": 86578,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "include/footer.php",
-			"settings":
-			{
-				"buffer_size": 13762,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "util/config.ini",
-			"settings":
-			{
-				"buffer_size": 212,
+				"buffer_size": 89634,
 				"line_ending": "Windows"
 			}
 		},
@@ -491,7 +467,55 @@
 			"file": "css/myshop.css",
 			"settings":
 			{
-				"buffer_size": 2745,
+				"buffer_size": 2871,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "shop/order-list.php",
+			"settings":
+			{
+				"buffer_size": 12284,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "shop/order-stat-list.php",
+			"settings":
+			{
+				"buffer_size": 9687,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "css/style.css",
+			"settings":
+			{
+				"buffer_size": 90017,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "css/responsive.css",
+			"settings":
+			{
+				"buffer_size": 10566,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "util/util.php",
+			"settings":
+			{
+				"buffer_size": 65237,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "include/header.php",
+			"settings":
+			{
+				"buffer_size": 7787,
 				"line_ending": "Windows"
 			}
 		}
@@ -638,20 +662,52 @@
 	"expanded_folders":
 	[
 		"/C/wamp/www/shinsoo",
-		"/C/wamp/www/shinsoo/images",
+		"/C/wamp/www/shinsoo/admin",
+		"/C/wamp/www/shinsoo/admin/js",
+		"/C/wamp/www/shinsoo/css",
 		"/C/wamp/www/shinsoo/images/footer",
 		"/C/wamp/www/shinsoo/util"
 	],
 	"file_history":
 	[
+		"/C/wamp/www/shinsoo/css/style.css",
+		"/C/wamp/www/shinsoo/admin/css/style.css",
+		"/C/wamp/www/shinsoo/member/login.php",
+		"/C/wamp/www/shinsoo/shop/catalog-list.php",
+		"/C/wamp/www/shinsoo/util/shop-functions.php",
+		"/C/wamp/www/shinsoo/shop/index.php",
+		"/C/wamp/www/shinsoo/shop/detail.php",
+		"/C/wamp/www/shinsoo/bbs/login_ok.php",
+		"/C/wamp/www/shinsoo/include/header.php",
+		"/C/wamp/www/shinsoo/admin/include/header.php",
+		"/C/wamp/www/shinsoo/shop/order-stat-list.php",
+		"/C/wamp/www/shinsoo/include/footer.php",
+		"/C/wamp/www/shinsoo/admin/order/sale_list.php",
+		"/C/wamp/www/shinsoo/admin/css/jquery-ui.css",
+		"/C/wamp/www/shinsoo/admin/include/admin_footer.php",
+		"/C/wamp/www/shinsoo/admin/js/datepicker.js",
+		"/C/wamp/www/shinsoo/css/jquery-ui.css",
+		"/C/wamp/www/shinsoo/admin/js/jq_datepicker.js",
+		"/C/wamp/www/shinsoo/css/nigran.datepicker.css",
+		"/C/Users/Joh/Downloads/source/index.html",
+		"/C/wamp/www/shinsoo/js/jq_datepicker.js",
+		"/C/wamp/www/shinsoo/css/jquery-bootstrap-datepicker.css",
+		"/C/wamp/www/shinsoo/css/vigo.datepicker.css",
+		"/C/Users/Joh/Downloads/jquery-ui-1.11.4.custom/jquery-ui.css",
+		"/C/Users/Joh/Downloads/jquery-ui-1.11.4.custom/index.html",
+		"/C/wamp/www/shinsoo/css/jquery-ui.min.css",
+		"/C/Users/Joh/Downloads/source/css/datepicker.css",
+		"/C/wamp/www/shinsoo/js/main.js",
+		"/C/wamp/www/shinsoo/js/shopping.js",
+		"/C/wamp/www/shinsoo/css/myshop.css",
+		"/C/wamp/www/shinsoo/util/config.ini",
+		"/C/wamp/www/shinsoo/sftp-config.json",
 		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/User/SFTP.errors.log",
 		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
 		"/C/wamp/www/shinsoo/admin/setting/banner_list.php",
 		"/C/wamp/www/shinsoo/admin/setting/main_banner_setting.php",
-		"/C/wamp/www/shinsoo/css/myshop.css",
 		"/C/wamp/www/shinsoo/util/util.php",
 		"/C/wamp/www/shinsoo/shop/order-list.php",
-		"/C/wamp/www/shinsoo/util/shop-functions.php",
 		"/C/wamp/www/shinsoo/pay/cas_noteurl.php",
 		"/C/wamp/www/shinsoo/pay/save_wireinfo_to_db.php",
 		"/C/Users/Joh/Downloads/ssss01047271791.sql",
@@ -661,10 +717,8 @@
 		"/C/wamp/www/shinsoo/pay/Cancel.php",
 		"/C/wamp/www/shinsoo/pay/Cancel.html",
 		"/C/wamp/www/shinsoo/admin/order/top_order_list.php",
-		"/C/wamp/www/shinsoo/util/config.ini",
 		"/C/wamp/www/shinsoo/lgpay/conf/mall.conf",
 		"/C/wamp/www/shinsoo/pay/CashReceipt.php",
-		"/C/wamp/www/shinsoo/shop/catalog-list.php",
 		"/C/wamp/www/shinsoo/shop/checkout.php",
 		"/C/wamp/www/shinsoo/pay/payres.php",
 		"/C/wamp/www/shinsoo/lgpay/ping.php",
@@ -683,14 +737,10 @@
 		"/C/wamp/www/shinsoo/pay/variables_from_payreq.php",
 		"/C/wamp/www/shinsoo/lgpay/XPayClient.php",
 		"/C/wamp/www/shinsoo/pay/save_pginfo_to_db.php",
-		"/C/wamp/www/shinsoo/shop/index.php",
 		"/C/wamp/www/shinsoo/util/scm_auth.php",
-		"/C/wamp/www/shinsoo/shop/detail.php",
-		"/C/wamp/www/shinsoo/include/header.php",
 		"/C/wamp/www/shinsoo/shop/order-detail.php",
 		"/C/wamp/www/shinsoo/admin/order/or_view.php",
 		"/C/wamp/www/shinsoo/admin/css/admin_layout.css",
-		"/C/wamp/www/shinsoo/css/style.css",
 		"/C/Users/Joh/OneDrive/git_project/linktrading-co-kr/shop/sub_list.php",
 		"/C/wamp/www/shinsoo/bbs/list.php",
 		"/C/Users/Joh/OneDrive/git_project/linktrading-co-kr/shop/order_detail.php",
@@ -747,31 +797,7 @@
 		"/C/Users/Seonghyeon/Downloads/ex02/myscript.js",
 		"/C/Users/Seonghyeon/Downloads/ex01/ex01.html",
 		"/C/Users/Seonghyeon/OneDrive/git_project/seminar/index.php",
-		"/C/Users/Seonghyeon/OneDrive/git_project/seminar/css/custom.css",
-		"/C/Users/Seonghyeon/OneDrive/git_project/seminar/include/header.php",
-		"/C/Users/Seonghyeon/Desktop/.htaccess",
-		"/C/Users/Seonghyeon/OneDrive/git_project/seminar/session-1.php",
-		"/C/Users/Seonghyeon/OneDrive/git_project/seminar/include/footer.php",
-		"/C/wamp/www/seminar/admin/include/navigation.php",
-		"/C/wamp/www/seminar/admin/include/header.php",
-		"/C/wamp/www/seminar/session-1.php",
-		"/C/wamp/www/seminar/index.php",
-		"/C/wamp/www/seminar/admin/add-user.php",
-		"/C/wamp/www/seminar/include/header.php",
-		"/C/wamp/www/seminar/welcome.php",
-		"/C/wamp/www/seminar/include/footer.php",
-		"/C/wamp/www/seminar/include/check-list.php",
-		"/C/wamp/www/seminar/css/custom.css",
-		"/C/wamp/www/seminar/admin/ckeditor/ckeditor.js",
-		"/C/wamp/www/seminar/session-3.php",
-		"/C/wamp/www/seminar/admin/session-4-comment.php",
-		"/C/wamp/www/seminar/admin/session-3-comment.php",
-		"/C/wamp/www/seminar/admin/session-1-comment.php",
-		"/C/wamp/www/seminar/admin/session-2-comment.php",
-		"/C/wamp/www/seminar/session-4.php",
-		"/C/wamp/www/seminar/session-2.php",
-		"/C/wamp/www/seminar/js/custom.js",
-		"/C/wamp/www/seminar/admin/save.php"
+		"/C/Users/Seonghyeon/OneDrive/git_project/seminar/css/custom.css"
 	],
 	"find":
 	{
@@ -802,6 +828,89 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"$total",
+			"$cost",
+			"$ret",
+			"$return_price",
+			"$cat_name",
+			"$msub_total",
+			"$s_image",
+			"$b_image",
+			"$last_page_num",
+			"$totalpage",
+			"$unchked_order_total",
+			"$today_order_total",
+			"$readyToSend_order_total",
+			"$port",
+			"show_loginForm",
+			"show_me_price",
+			"$icon_tag",
+			"show_catalog_products",
+			"$flag",
+			"$file",
+			"$product_name",
+			"$small_image",
+			"$shop_price",
+			"$dealer_price",
+			"$offer_price",
+			"$short_desc",
+			"$item_name",
+			"$no_item",
+			"$main_flag",
+			"show_main_products",
+			"get_cart_item",
+			"$p_name",
+			"$p_id",
+			"$status",
+			"$show_org_amount",
+			"$memo_from_admin",
+			"$memo_to_admin",
+			"$memo_to_delivery",
+			"$pay_status",
+			"$status_now",
+			"$today_order_sum",
+			"$num_of_rows",
+			"totalRowsCount",
+			"$show_total",
+			"$total_count",
+			"$r_policy",
+			"$d_policy",
+			"b_image",
+			"image_order_no",
+			"$no",
+			"show_image",
+			"show_product_image",
+			"show_product_info",
+			"show_relative_item",
+			"get_contents",
+			"$ret",
+			"$mod_price",
+			"unit_price",
+			"$org_price",
+			"$total_item_num",
+			"$last_cost",
+			"$mt_count",
+			"$t_count",
+			"$org_amount",
+			"$tot_amount",
+			"mod_volume",
+			"$org_volume",
+			"$t_count",
+			"$total",
+			"total",
+			"$code_qry",
+			"$t_no",
+			"$key_value",
+			"$date2",
+			"date1",
+			"unchk_total_order_num",
+			"today_total_order_num",
+			"paid_total",
+			"unchk_total_num",
+			"today_total",
+			"unchk_total",
+			"ret",
+			".ll-skin-nigran",
 			"$i",
 			"LGD_CASSEQNO",
 			"$CST_MID",
@@ -846,90 +955,7 @@
 			"$trow",
 			"LGD_FINANCENAME",
 			"LGD_FINANCECODE",
-			"LGD_FINANCENAME",
-			"LGD_FINANCECODE",
-			"LGD_RESPCODE",
-			"LGD_FINANCECODE",
-			"LGD_MERTKEY",
-			"pay_status",
-			"finance_name",
-			"$MERTKEY",
-			"$oid",
-			"LGD_RESPCODE",
-			"pay_status",
-			"LGD_BUYER",
-			"];",
-			"$HTTP_POST_VARS[",
-			"show_popup()",
-			"postcode.v2.js",
-			"query",
-			"$LGD_PAYTYPE",
-			"payment_type",
-			"recipient_name",
-			"check_diff_addr",
-			"response_msg",
-			"Response_Msg",
-			"response_msg",
-			"Response_Msg",
-			"response_msg",
-			"Response_Msg",
-			"response_msg",
-			"Response_Msg",
-			"response_msg",
-			"Response_Msg",
-			"response_msg",
-			"Response_Msg",
-			"response_msg",
-			"?>",
-			"<?php echo",
-			"LGD_RESPMSG",
-			"\\n\";",
-			"echo \"",
-			"\\n\";",
-			"echo \"",
-			"\\n\";",
-			"echo \"",
-			"\\n\";",
-			"echo \"",
-			"LGD_CUSTOM_FIRSTPAY",
-			"get",
-			"main_show_products",
-			"show_main_products",
-			"showImage",
-			"show_login_menu",
-			"LGD_WINDOW_TYPE",
-			"payment_return",
-			"shinsoo",
-			".change",
-			"counter",
-			".counter",
-			".counters .counter",
-			"who",
-			"s1",
-			"animate fadeIn",
-			"intro",
-			"#intro\n",
-			";\n",
-			"#intro\n",
-			";\n",
-			"#intro",
-			"{\n",
-			"#intro",
-			"url(\"../images/countdown.jpg\")",
-			"experties",
-			"font-family: 'Raleway', sans-serif;",
-			"Rale",
-			"bootstrap",
-			".adress",
-			"adress",
-			"shop_area",
-			".shop_area",
-			"shop_area",
-			"content_cards_title",
-			"[",
-			";\n",
-			"*/\n",
-			"s-2-index-save"
+			"LGD_FINANCENAME"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -955,52 +981,19 @@
 			[
 				{
 					"buffer": 0,
-					"file": "shop/index.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1962,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								134,
-								134
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": true,
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
 					"file": "util/shop-functions.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 86578,
+						"buffer_size": 89634,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								83501,
-								83501
+								4708,
+								4708
 							]
 						],
 						"settings":
@@ -1013,97 +1006,27 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 50772.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "include/footer.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 13762,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								11232,
-								11232
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": true,
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 396.0,
-						"translation.y": 1980.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "util/config.ini",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 212,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								40,
-								55
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": true,
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 2490.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"file": "images/footer/PG-logo.png",
-					"semi_transient": true,
-					"stack_index": 3,
-					"type": "image"
-				},
-				{
-					"buffer": 4,
+					"buffer": 1,
 					"file": "css/myshop.css",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2745,
+						"buffer_size": 2871,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2743,
-								2743
+								2050,
+								2050
 							]
 						],
 						"settings":
@@ -1116,10 +1039,208 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 3972.0,
+						"translation.y": 2592.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "shop/order-list.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 12284,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								446,
+								446
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": true,
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 168.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "shop/order-stat-list.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 9687,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								801,
+								801
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": true,
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 432.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "css/style.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 90017,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								7108,
+								7108
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": true,
+							"syntax": "Packages/CSS/CSS.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 8947.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "css/responsive.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 10566,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3912,
+								3912
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": true,
+							"syntax": "Packages/CSS/CSS.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 4071.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "util/util.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 65237,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								15230,
+								15230
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": true,
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 11309.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "include/header.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7787,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4882,
+								4882
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": true,
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1944.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
 					"type": "text"
 				}
 			]
@@ -1182,20 +1303,80 @@
 		"selected_items":
 		[
 			[
-				"con",
-				"util\\config.ini"
+				"order-st",
+				"shop\\order-stat-list.php"
+			],
+			[
+				"order",
+				"shop\\order-list.php"
 			],
 			[
 				"my",
 				"css\\myshop.css"
 			],
 			[
-				"foot",
-				"include\\footer.php"
+				"styl",
+				"css\\style.css"
+			],
+			[
+				"res",
+				"css\\responsive.css"
+			],
+			[
+				"sty",
+				"css\\style.css"
+			],
+			[
+				"hea",
+				"include\\header.php"
+			],
+			[
+				"util",
+				"util\\util.php"
 			],
 			[
 				"shop",
 				"util\\shop-functions.php"
+			],
+			[
+				"style",
+				"admin\\css\\style.css"
+			],
+			[
+				"he",
+				"include\\header.php"
+			],
+			[
+				"head",
+				"admin\\include\\header.php"
+			],
+			[
+				"foo",
+				"include\\footer.php"
+			],
+			[
+				"admin_f",
+				"admin\\include\\admin_footer.php"
+			],
+			[
+				"sal",
+				"admin\\order\\sale_list.php"
+			],
+			[
+				"login",
+				"bbs\\login_ok.php"
+			],
+			[
+				"confi",
+				"util\\config.ini"
+			],
+			[
+				"con",
+				"util\\config.ini"
+			],
+			[
+				"foot",
+				"include\\footer.php"
 			],
 			[
 				"index",
@@ -1218,10 +1399,6 @@
 				"admin\\order\\top_order_list.php"
 			],
 			[
-				"util",
-				"util\\util.php"
-			],
-			[
 				"catalo",
 				"shop\\catalog-list.php"
 			],
@@ -1238,10 +1415,6 @@
 				"util\\config.php"
 			],
 			[
-				"head",
-				"include\\header.php"
-			],
-			[
 				"mysh",
 				"css\\myshop.css"
 			],
@@ -1250,20 +1423,12 @@
 				"admin\\order\\or_view.php"
 			],
 			[
-				"order",
-				"shop\\order-detail.php"
-			],
-			[
 				"admin",
 				"admin\\css\\admin_layout.css"
 			],
 			[
 				"top_or",
 				"admin\\order\\top_order_list.php"
-			],
-			[
-				"sty",
-				"css\\style.css"
 			],
 			[
 				"top_ord",
@@ -1290,10 +1455,6 @@
 				"shop\\cart.php"
 			],
 			[
-				"hea",
-				"include\\header.php"
-			],
-			[
 				"chec",
 				"shop\\checkout.php"
 			],
@@ -1310,10 +1471,6 @@
 				"util\\shop-functions.php"
 			],
 			[
-				"style",
-				"css\\style.css"
-			],
-			[
 				"add",
 				"admin\\add-user.php"
 			],
@@ -1322,20 +1479,12 @@
 				"welcome.php"
 			],
 			[
-				"foo",
-				"include\\footer.php"
-			],
-			[
 				"s",
 				"session-3.php"
 			],
 			[
 				"se",
 				"admin\\session-3-comment.php"
-			],
-			[
-				"he",
-				"include\\header.php"
 			],
 			[
 				"in",
@@ -1364,10 +1513,6 @@
 			[
 				"we",
 				"welcome.php"
-			],
-			[
-				"login",
-				"login.php"
 			],
 			[
 				"welc",
@@ -1668,30 +1813,6 @@
 			[
 				"cont",
 				"about/contact-us.php"
-			],
-			[
-				"greet",
-				"about/greeting.php"
-			],
-			[
-				"email",
-				"about/php/email.php"
-			],
-			[
-				"conta",
-				"about/contact-us.php"
-			],
-			[
-				"cate",
-				"admin/order/calendar_test.php"
-			],
-			[
-				"hi",
-				"about/history.php"
-			],
-			[
-				"uti",
-				"util/util.php"
 			]
 		],
 		"width": 0.0
@@ -1726,7 +1847,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 214.0,
+	"side_bar_width": 289.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

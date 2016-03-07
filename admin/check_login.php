@@ -1,9 +1,6 @@
 <?php
 
-include_once "../util/config.php";
 include_once "../util/util.php";
-
-$connect = my_connect($host, $dbid, $dbpass, $dbname);
 
 $save_id  = set_var($_POST['save_id']);
 $save_all = set_var($_POST['save_all']);

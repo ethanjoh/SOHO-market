@@ -1189,11 +1189,41 @@ select.select option {
     top: 52%;
 }
 
-.single-product span.best-text,
-.bit span.best-text {
+.single-product span.new-text,
+.bit span.new-text {
     background: #2F7FCF none repeat scroll 0 0;
     border-radius: 10%;
     box-shadow: 0 3px 0 0 #195CE5;
+    color: #fff;
+    display: block;    /*font-family: Lato;*/
+    font-size: 16px;
+    font-weight: 700;
+    height: 36px;
+    left: 20px;
+    line-height: 36px;
+    position: absolute;
+    text-align: center;
+    text-transform: capitalize;
+    top: 10px;
+    width: 56px;
+    z-index: 1;
+    position: absolute;
+}
+
+.bit {
+    margin-top: 35px;
+}
+
+.bit span.new-text {
+    left: 25px;
+    top: 52%;
+}
+
+.single-product span.best-text,
+.bit span.best-text {
+    background: #8BC34A none repeat scroll 0 0;
+    border-radius: 10%;
+    box-shadow: 0 3px 0 0 #3E5435;
     color: #fff;
     display: block;    /*font-family: Lato;*/
     font-size: 16px;
