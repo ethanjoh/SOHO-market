@@ -1,8 +1,8 @@
 <?php
 // 상품정보 업로드하기
-// get-product.php?f=[csv 파일명]
-// csv 파일은 upload 폴더에 위치
-// 상품 이미지는 img 폴더에 위치
+// get-product.php?f=[csv 파일명(확장자 제외)]
+// csv 파일은 /upload 폴더에 위치
+// 원본상품 이미지는 /img 폴더에 위치
 
 include "util/util.php";
 

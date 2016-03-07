@@ -6,10 +6,8 @@ header("Content-Disposition: attachment; filename=$file_name.xls");
 header("Content-Description: PHP4 Generated Data");
 
 include_once "../include/admin_auth.php";
-include_once "../../util/config.php";
 include_once "../../util/util.php";
 
-$connect = my_connect($host, $dbid, $dbpass, $dbname);
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
@@ -194,34 +192,34 @@ foreach ($sum as $id => $sub_total) {
     ?>
     <tr>
       <td class="ess" style="mso-number-format:\@">01</td>
-      <td class="ess" style="mso-number-format:mm\/dd"><?=$makedate;?></td>
-      <td class="ess" style="mso-number-format:\@"><?=$info['license_no'];?></td>
+      <td class="ess" style="mso-number-format:mm\/dd"><?php echo $makedate;?></td>
+      <td class="ess" style="mso-number-format:\@"><?php echo $info['license_no'];?></td>
       <td class="txt"></td>
-      <td class="ess"><?=$info['company_name'];?></td>
-      <td class="ess"><?=$info['ceo'];?></td>
-      <td class="txt"><?=$info['addr1'];?> <?=$info['addr2'];?></td>
-      <td class="txt"><?=$info['category1'];?></td>
-      <td class="txt"><?=$info['category2'];?></td>
-      <td class="txt"><?=$info['email'];?></td>
-      <td class="ess" style="mso-number-format:\@"><?=$c_row['license_no'];?></td>
+      <td class="ess"><?php echo $info['company_name'];?></td>
+      <td class="ess"><?php echo $info['ceo'];?></td>
+      <td class="txt"><?php echo $info['addr1'];?> <?php echo $info['addr2'];?></td>
+      <td class="txt"><?php echo $info['category1'];?></td>
+      <td class="txt"><?php echo $info['category2'];?></td>
+      <td class="txt"><?php echo $info['email'];?></td>
+      <td class="ess" style="mso-number-format:\@"><?php echo $c_row['license_no'];?></td>
       <td class="txt"></td>
-      <td class="ess"><?=$c_row['company_name'];?></td>
-      <td class="ess"><?=$c_row['ceo'];?></td>
-      <td class="txt"><?=$c_row['addr1'];?> <?=$c_row['addr2'];?></td>
-      <td class="txt"><?=$c_row['category1'];?></td>
-      <td class="txt"><?=$c_row['category2'];?></td>
-      <td class="txt"><?=$c_row['md_email'];?></td>
+      <td class="ess"><?php echo $c_row['company_name'];?></td>
+      <td class="ess"><?php echo $c_row['ceo'];?></td>
+      <td class="txt"><?php echo $c_row['addr1'];?> <?php echo $c_row['addr2'];?></td>
+      <td class="txt"><?php echo $c_row['category1'];?></td>
+      <td class="txt"><?php echo $c_row['category2'];?></td>
+      <td class="txt"><?php echo $c_row['md_email'];?></td>
       <td class="txt"></td>
-      <td class="ess"><?=number_format($sub_total);?></td>
-      <td class="ess"><?=number_format($sub_total * .1);?></td>
+      <td class="ess"><?php echo number_format($sub_total);?></td>
+      <td class="ess"><?php echo number_format($sub_total * .1);?></td>
       <td class="txt"></td>
-      <td class="ess" style="mso-number-format:\@"><?=$makedate2;?></td>
-      <td class="txt"></td>
-      <td class="txt"></td>
+      <td class="ess" style="mso-number-format:\@"><?php echo $makedate2;?></td>
       <td class="txt"></td>
       <td class="txt"></td>
-      <td class="ess"><?=number_format($sub_total);?></td>
-      <td class="ess"><?=number_format($sub_total * .1);?></td>
+      <td class="txt"></td>
+      <td class="txt"></td>
+      <td class="ess"><?php echo number_format($sub_total);?></td>
+      <td class="ess"><?php echo number_format($sub_total * .1);?></td>
       <td class="txt"></td>
       <td class="txt"></td>
       <td class="txt"></td>

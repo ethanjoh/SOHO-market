@@ -30,12 +30,6 @@
         <!-- info end -->
 
         <!-- 메인배너 start -->
-<?php
-
-$query       = "SELECT * FROM banner WHERE pos = 'main' ORDER BY num DESC";
-$result      = mysqli_query($connect, $query);
-$total_count = mysqli_num_rows($result);
-?>
         <div class="row">
           <div class="col-sm-6">
             <section class="panel">
@@ -55,8 +49,14 @@ $total_count = mysqli_num_rows($result);
                       <tbody>
 <?php
 
-for ($i = 0; $row = mysqli_fetch_array($result); $i++) {
-    ?>
+$query  = "SELECT * FROM banner WHERE pos = 'main' ORDER BY num DESC";
+$result = mysqli_query($connect, $query);
+
+if ($result) {
+    $total_count = mysqli_num_rows($result);
+
+    for ($i = 0; $row = mysqli_fetch_array($result); $i++) {
+        ?>
                         <tr>
                           <td><?php echo $row['num']; ?></td>
                           <td><?php echo $row['created']; ?></td>
@@ -66,10 +66,10 @@ for ($i = 0; $row = mysqli_fetch_array($result); $i++) {
                         </tr>
 <?php
 
-} // end of for loop
-mysqli_free_result($result);
+    } // end of for loop
+    mysqli_free_result($result);
 
-if ($total_count == 0) {
+} else {
     ?>
                         <tr class="text-center">
                           <td colspan="6">등록된 배너가 없습니다.</td>
@@ -93,12 +93,6 @@ if ($total_count == 0) {
           <!-- setup end -->
 
         <!-- 상단 배너 start -->
-<?php
-
-$tqry    = "SELECT * FROM banner WHERE pos = 'top' ORDER BY num DESC";
-$tres    = mysqli_query($connect, $tqry);
-$t_count = mysqli_num_rows($tres);
-?>
 <!--         <div class="row margin-top-30"> -->
           <div class="col-sm-6">
             <section class="panel">
@@ -118,8 +112,14 @@ $t_count = mysqli_num_rows($tres);
                       <tbody>
 <?php
 
-for ($i = 0; $trow = mysqli_fetch_array($tres); $i++) {
-    ?>
+$tqry = "SELECT * FROM banner WHERE pos = 'top' ORDER BY num DESC";
+$tres = mysqli_query($connect, $tqry);
+
+if ($tres) {
+    $t_count = mysqli_num_rows($tres);
+
+    for ($i = 0; $trow = mysqli_fetch_array($tres); $i++) {
+        ?>
                         <tr>
                           <td><?php echo $trow['num']; ?></td>
                           <td><?php echo $trow['created']; ?></td>
@@ -129,10 +129,10 @@ for ($i = 0; $trow = mysqli_fetch_array($tres); $i++) {
                         </tr>
 <?php
 
-} // end of for loop
-mysqli_free_result($tres);
+    } // end of for loop
+    mysqli_free_result($tres);
 
-if ($t_count == 0) {
+} else {
     ?>
                         <tr class="text-center">
                           <td colspan="6">등록된 배너가 없습니다.</td>
@@ -157,12 +157,6 @@ if ($t_count == 0) {
 
 
         <!-- 중간 배너 start -->
-<?php
-
-$mqry    = "SELECT * FROM banner WHERE pos = 'middle' ORDER BY num DESC";
-$mres    = mysqli_query($connect, $mqry);
-$m_count = mysqli_num_rows($mres);
-?>
         <div class="row margin-top-30">
           <div class="col-sm-6">
             <section class="panel">
@@ -182,8 +176,14 @@ $m_count = mysqli_num_rows($mres);
                       <tbody>
 <?php
 
-for ($i = 0; $mrow = mysqli_fetch_array($mres); $i++) {
-    ?>
+$mqry = "SELECT * FROM banner WHERE pos = 'middle' ORDER BY num DESC";
+$mres = mysqli_query($connect, $mqry);
+
+if ($mres) {
+    $m_count = mysqli_num_rows($mres);
+
+    for ($i = 0; $mrow = mysqli_fetch_array($mres); $i++) {
+        ?>
                         <tr>
                           <td><?php echo $mrow['num']; ?></td>
                           <td><?php echo $mrow['created']; ?></td>
@@ -193,10 +193,10 @@ for ($i = 0; $mrow = mysqli_fetch_array($mres); $i++) {
                         </tr>
 <?php
 
-} // end of for loop
-mysqli_free_result($mres);
+    } // end of for loop
+    mysqli_free_result($mres);
 
-if ($m_count == 0) {
+} else {
     ?>
                         <tr class="text-center">
                           <td colspan="6">등록된 배너가 없습니다.</td>
@@ -220,13 +220,6 @@ if ($m_count == 0) {
           <!-- setup end -->
 
         <!-- 하단 배너 start -->
-<?php
-
-$bqry    = "SELECT * FROM banner WHERE pos = 'bottom' ORDER BY num DESC";
-$bres    = mysqli_query($connect, $bqry);
-$b_count = mysqli_num_rows($bres);
-?>
-
         <!-- <div class="row margin-top-30"> -->
           <div class="col-sm-6">
             <section class="panel">
@@ -246,8 +239,14 @@ $b_count = mysqli_num_rows($bres);
                       <tbody>
 <?php
 
-for ($i = 0; $brow = mysqli_fetch_array($bres); $i++) {
-    ?>
+$bqry = "SELECT * FROM banner WHERE pos = 'bottom' ORDER BY num DESC";
+$bres = mysqli_query($connect, $bqry);
+
+if ($bres) {
+    $b_count = mysqli_num_rows($bres);
+
+    for ($i = 0; $brow = mysqli_fetch_array($bres); $i++) {
+        ?>
                         <tr>
                           <td><?php echo $brow['num']; ?></td>
                           <td><?php echo $brow['created']; ?></td>
@@ -257,10 +256,10 @@ for ($i = 0; $brow = mysqli_fetch_array($bres); $i++) {
                         </tr>
 <?php
 
-} // end of for loop
-mysqli_free_result($bres);
+    } // end of for loop
+    mysqli_free_result($bres);
 
-if ($b_count == 0) {
+} else {
     ?>
                         <tr class="text-center">
                           <td colspan="6">등록된 배너가 없습니다.</td>

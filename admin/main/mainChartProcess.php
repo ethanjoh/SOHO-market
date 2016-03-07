@@ -1,10 +1,7 @@
 <?php
 
 include "../include/admin_auth.php";
-include "../../util/config.php";
 include "../../util/util.php";
-
-$connect = my_connect($host, $dbid, $dbpass, $dbname);
 
 $start_date = date("Y-m-01");
 $today      = date("Y-m-d");
@@ -33,7 +30,7 @@ for ($i = 0; $row = mysqli_fetch_array($res); $i++) {
             'quantity' => $mod_volume[$j],
         );
 
-        //$total += $sub_total;
+          //$total += $sub_total;
     } // inner for end
 } // outer for end
 

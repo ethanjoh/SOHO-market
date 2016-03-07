@@ -43,14 +43,14 @@ $.ajax({
             barColors: ['#6883a3']
         });
 
-      Morris.Line({
-        element: 'hero-graph',
-        data: arr2,
-        xkey: 'period',
-        ykeys: ['amount'],
-        labels: ['Amount'],
-        lineColors:['#8075c4']
-      });
+        Morris.Line({
+            element: 'hero-graph',
+            data: arr2,
+            xkey: 'period',
+            ykeys: ['amount'],
+            labels: ['Amount'],
+            lineColors:['#8075c4']
+        });
 
     },
     error : function (xmlHttpRequest, textStatus, errorThrown) {
