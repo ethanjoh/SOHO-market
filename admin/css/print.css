@@ -1,34 +1,27 @@
 /* Layout Stylesheet */
-
-
 body {
-	font:10pt Verdana, Arial, Helvetica, sans-serif;
-	text-align:center;
-	padding:0;
+	font: 10pt Verdana, Arial, Helvetica, sans-serif;
+	text-align: center;
+	padding: 0;
 }
 table {
-	width:100%;
-	padding:0;
-	margin:0;
-	border-top: 1px solid #3399FF;
-	border-left: 1px solid #3399FF;
-	border-collapse:collapse;
-	vertical-align:top;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+	border: 1px solid #3399FF;
+	border-collapse: collapse;
+	vertical-align: top;
 }
-
 table tr:odd {
 	background-color: #DDDDDD;
 }
-
 table tr td {
-	margin:0;
-	padding:3px;
-	text-align:center;
-	border-right: 1px solid #3399FF;
-	border-bottom: 1px solid #3399FF;
-	border-collapse:collapse;
+	margin: 0;
+	padding: 3px;
+	text-align: center;
+	border: 1px solid #3399FF;
+	border-collapse: collapse;
 }
-
 .customer-title {
 	border: none;
 }
@@ -36,27 +29,25 @@ table tr td {
 	border-style: none;
 }
 .won {
-	text-align:right;
-	font-size:10pt;
+	text-align: right;
+	font-size: 10pt;
 }
 .name {
-	text-align:left;
-	font-size:10pt;
+	text-align: left;
+	font-size: 10pt;
 }
 .num {
 	font-size: 10pt;
 }
 .left {
-	text-align:left;
+	text-align: left;
 }
 #print {
-	display:none;
+	display: none;
 }
 #content {
-	border:none;
+	border: none;
 }
-
 fnt12 {
 	font-size: 1.2em;
 }
-
