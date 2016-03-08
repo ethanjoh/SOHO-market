@@ -57,10 +57,9 @@ $numPerPage        = $returnVal[1];
 $currentPageNum    = $returnVal[2];
 $totalPageNum      = $returnVal[3];
 
-echo "<pre>";
-print_r($returnVal);
-echo "</pre>";
-
+// echo "<pre>";
+// print_r($returnVal);
+// echo "</pre>";
 ?>
 
                         <div class="col-md-9 col-sm-9 col-xs-12">
@@ -83,13 +82,10 @@ echo "</pre>";
                                                 <div class="row">
                                                     <div class="shop-tab">
 <?php
+
 //페이징을 위한 페이지수 구하기
-$ret    = get_list_page_result($mode, $lcode, $mcode, $key, $keyword, $scaleTimesPageNum, $numPerPage);
-$t_no   = $ret[0];
-$result = $ret[1];
-
+$result = get_list_page_result($mode, $lcode, $mcode, $key, $keyword, $scaleTimesPageNum, $numPerPage);
 show_items_on_catalog($result, 'home');
-
 ?>
                                                     </div>
                                                 </div>
@@ -97,11 +93,9 @@ show_items_on_catalog($result, 'home');
                                             <div role="tabpanel" class="tab-pane" id="profile">
                                                 <div class="row">
 <?php
-//페이징을 위한 페이지수 구하기
-$$ret   = get_list_page_result($mode, $lcode, $mcode, $key, $keyword, $scaleTimesPageNum, $numPerPage);
-$t_no   = $ret[0];
-$result = $ret[1];
 
+//페이징을 위한 페이지수 구하기
+$result = get_list_page_result($mode, $lcode, $mcode, $key, $keyword, $scaleTimesPageNum, $numPerPage);
 show_items_on_catalog($result, 'profile');
 ?>
                                                 </div>
@@ -118,7 +112,6 @@ show_items_on_catalog($result, 'profile');
 
 $url = $_SERVER['PHP_SELF'] . "?mode=" . $mode . "&amp;lcode=" . $lcode . "&amp;mcode=" . $mcode . "&amp;key=" . $key . "&amp;keyword=" . $keyword;
 page_nav($totalPageNum, $currentPageNum, $url);
-
 ?>
                                                 </div>
                                             </div>

@@ -1421,7 +1421,8 @@ function get_list_page_result($mode, $lcode, $mcode, $key, $keyword, $scaleTimes
     $res       = mysqli_query($connect, $qry);
     $numOfRows = mysqli_num_rows($res);
 
-    return array($numOfRows, $res);
+    // return array($numOfRows, $res);
+    return $res;
 
 }
 

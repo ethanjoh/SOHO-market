@@ -34,14 +34,12 @@
 
           <form class="form-horizontal" role="form" method="post" name="mail" action="mem_sendmail_ok.php"  enctype="multipart/form-data">
 <?php
-$num = set_var($_POST['num']);
 
+$num     = set_var($_POST['num']);
 $tot_cnt = sizeof($num);
 
 for ($i = 0; $i < sizeof($num); $i++) {
-
     echo '<input type=hidden name="num[]" value="' . $num[$i] . '">' . "\r\n";
-
 }
 ?>
             <!-- send mail start-->
@@ -96,8 +94,8 @@ for ($i = 0; $i < sizeof($num); $i++) {
                           <tbody>
                             <tr>
                               <td class="text-center">
-                                  <a class="btn btn-success" href="#" onclick="javascript:form_check();">메일 발송</a>
-                                  <a class="btn btn-default" href="#" onclick="javascript:document.post.reset();">다시 작성</a>
+                                  <a class="btn btn-success" href="#" onclick="form_check();">메일 발송</a>
+                                  <a class="btn btn-default" href="#" onclick="document.post.reset();">다시 작성</a>
                                   <a class="btn btn-primary" href="top_member_list.php">전체 목록</a>
                               </td>
                             </tr>

@@ -1,9 +1,6 @@
 <?php
 include_once "../include/admin_auth.php";
-include_once "../../util/config.php";
 include_once "../../util/util.php";
-
-$connect = my_connect($host, $dbid, $dbpass, $dbname);
 
 // $sender = set_var($_POST['sender']);
 $sender       = "=?EUC-KR?B?" . base64_encode(iconv("UTF-8", "EUC-KR", $_POST['sender'])) . "?=\r\n";
