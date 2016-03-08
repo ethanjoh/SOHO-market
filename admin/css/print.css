@@ -1,4 +1,4 @@
-/* Layout Stylesheet */ 
+/* Layout Stylesheet */
 
 
 body {
@@ -16,13 +16,24 @@ table {
 	vertical-align:top;
 }
 
-td {
+table tr:odd {
+	background-color: #DDDDDD;
+}
+
+table tr td {
 	margin:0;
 	padding:3px;
 	text-align:center;
 	border-right: 1px solid #3399FF;
 	border-bottom: 1px solid #3399FF;
 	border-collapse:collapse;
+}
+
+.customer-title {
+	border: none;
+}
+.supplier-table {
+	border-style: none;
 }
 .won {
 	text-align:right;

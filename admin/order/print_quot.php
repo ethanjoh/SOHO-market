@@ -33,7 +33,7 @@ $address = $row['addr1'] . " " . $row['addr2'];
             <tr>
               <td colspan="2">
 
-                    <table border="0">
+                    <table class="customer-title">
 <?php
 
 //주문정보
@@ -41,13 +41,13 @@ $or_qry = "SELECT * FROM mall_order WHERE num = '$oid' ";
 $or_res = mysqli_query($connect, $or_qry);
 $or_row = mysqli_fetch_array($or_res);
 ?>
-                    <tr>
-                      <td height="34" ><u>
-                        <?php echo $or_row['createdate']; ?>
-                      </u></td>
+                    <tr class="customer-title">
+                        <td height="34" class="customer-title">
+                            <u>주문일: <?php echo $or_row['createdate']; ?></u>
+                        </td>
                     </tr>
-                    <tr>
-                      <td height="30"><u>
+                    <tr class="customer-title">
+                      <td height="30" class="customer-title"><u>
 <?php
 
 $a_goods_fk = explode(",", $or_row['goods_fk']);
@@ -70,48 +70,50 @@ if ($or_row['recipient_name']) {
 
 ?>
                   </tr>
-                  <tr>
-                    <td><p>
+                  <tr class="customer-title">
+                    <td class="customer-title"><p>
                       <u>아래와 같이 계산합니다.</u>
                     </p></td>
                   </tr>
                 </table>
 
             </td>
-            <td colspan="6"><table width="100%" height="100%">
-              <tr>
-                <td height="24" colspan="5">공&nbsp;&nbsp;급&nbsp;&nbsp;자</font></td>
-              </tr>
-              <tr>
-                <td width="66">등 록<br>
-                번 호</td>
-                <td colspan="4"><div align="center">
-                  <strong>
-                  <?php echo $row['license_no']; ?>
-                </strong></td>
-              </tr>
-              <tr>
-                <td>상 호</td>
-                <td width="100"><?php echo $row['company_name']; ?></td>
-                <td>성 명</td>
-                <td colspan="2">
-                  <div style="position: relative; background: url(../images/sign/stamp.gif) no-repeat; background-position: 20px 0px; height: 60px; width: auto;">
-                    <div style="position: absolute; bottom: 25px; margin:auto;"><?php echo $row['ceo']; ?> (인)</div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>사 업 장<br>
-                주 소 </td>
-                <td colspan="4"><?php echo $address; ?></td>
-              </tr>
-              <tr>
-                <td>업 태</td>
-                <td><?php echo $row['category1']; ?></td>
-                <td>종 목</td>
-                <td colspan="2"><?php echo $row['category2']; ?></td>
-              </tr>
-            </table></td>
+            <td colspan="6">
+                <table class="supplier-table">
+                  <tr>
+                    <td height="24" colspan="5">공&nbsp;&nbsp;급&nbsp;&nbsp;자</font></td>
+                  </tr>
+                  <tr>
+                    <td width="66">등 록<br>
+                    번 호</td>
+                    <td colspan="4"><div align="center">
+                      <strong>
+                      <?php echo $row['license_no']; ?>
+                    </strong></td>
+                  </tr>
+                  <tr>
+                    <td>상 호</td>
+                    <td width="100"><?php echo $row['company_name']; ?></td>
+                    <td>성 명</td>
+                    <td colspan="2">
+                      <div style="position: relative; background: url(../images/sign/stamp.gif) no-repeat; background-position: 20px 0px; height: 60px; width: auto;">
+                        <div style="position: absolute; bottom: 25px; margin:auto;"><?php echo $row['ceo']; ?> (인)</div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>사 업 장<br>
+                    주 소 </td>
+                    <td colspan="4"><?php echo $address; ?></td>
+                  </tr>
+                  <tr>
+                    <td>업 태</td>
+                    <td><?php echo $row['category1']; ?></td>
+                    <td>종 목</td>
+                    <td colspan="2"><?php echo $row['category2']; ?></td>
+                  </tr>
+                </table>
+            </td>
           </tr>
           <tr>
             <td>상 품 명</td>
