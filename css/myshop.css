@@ -201,3 +201,11 @@ custom style
     font-size: 11px;
     color: #2e0f0b;
 }
+
+.total-qty-color {
+    color: #2476DA;
+}
+
+.strong-text-400 {
+    font-weight: 400;
+}
