@@ -191,9 +191,11 @@ function make_thumbnail($source_file, $_width, $_height, $object_file)
     } else {
         $img_dest = imagecreatetruecolor($width, $height);
         imagecopyresampled($img_dest, $img_sour, 0, 0, 0, 0, $width, $height, $img_width, $img_height);
+
         $img_last = imagecreatetruecolor($_width, $_height);
         imagecopy($img_last, $img_dest, 0, 0, $x_last, $y_last, $width, $height);
         imagedestroy($img_dest);
+
     }
     if ($object_file) {
         if ($type == 1) {
@@ -201,7 +203,11 @@ function make_thumbnail($source_file, $_width, $_height, $object_file)
         } else if ($type == 2) {
             imagejpeg($img_last, $object_file, 100);
         } else if ($type == 3) {
-            imagepng($img_last, $object_file, 100);
+            //png가 32비트 일 때만 투명 백그라운드 지원
+            imagealphablending($img_last, false);
+            imagesavealpha($img_last, true);
+
+            imagepng($img_last, $object_file, 0);
         } else if ($type == 15) {
             imagebmp($img_last, $object_file, 100);
         }
@@ -212,6 +218,8 @@ function make_thumbnail($source_file, $_width, $_height, $object_file)
         } else if ($type == 2) {
             imagejpeg($img_last);
         } else if ($type == 3) {
+            imagealphablending($img_last, false);
+            imagesavealpha($img_last, true);
             imagepng($img_last);
         } else if ($type == 15) {
             imagebmp($img_last);
@@ -970,7 +978,7 @@ function page_nav($totalpage, $cpage, $url)
     $pagenumber = null;
 
     if (!$pagenumber) {
-        $pagenumber = 10;
+        $pagenumber = 5;
     }
 
     echo '<ul class="pagination">' . "\r\n";

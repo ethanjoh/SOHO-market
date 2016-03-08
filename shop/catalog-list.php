@@ -17,14 +17,14 @@
                                 <strong>
 <?php
 
-	$mode    = set_var($_GET['mode']);
-	$lcode   = set_var($_GET['lcode']);
-	$mcode   = set_var($_GET['mcode']);
-	$key     = set_var($_GET['key']);
-	$keyword = set_var($_GET['keyword']);
-	$page    = set_var($_GET['page']);
+$mode    = set_var($_GET['mode']);
+$lcode   = set_var($_GET['lcode']);
+$mcode   = set_var($_GET['mcode']);
+$key     = set_var($_GET['key']);
+$keyword = set_var($_GET['keyword']);
+$page    = set_var($_GET['page']);
 
-	show_brand_name($lcode);
+show_brand_name($lcode);
 ?>
                                 </strong>
                             </li>
@@ -50,12 +50,16 @@
                         </div>
 <?php
 
-	//상품 리스트 페이징을 위한 페이지수 구하기
-	$scale         = get_list_page_num($mode, $lcode, $mcode, $key, $keyword, $page, 12);
-	$cline         = $scale[0];
-	$last_page_num = $scale[1];
-	$cpage         = $scale[2];
-	$totalpage     = $scale[3];
+//상품 리스트 페이징을 위한 페이지수 구하기
+$returnVal         = get_list_page_num($mode, $lcode, $mcode, $key, $keyword, $page, 12);
+$scaleTimesPageNum = $returnVal[0];
+$numPerPage        = $returnVal[1];
+$currentPageNum    = $returnVal[2];
+$totalPageNum      = $returnVal[3];
+
+echo "<pre>";
+print_r($returnVal);
+echo "</pre>";
 
 ?>
 
@@ -79,12 +83,12 @@
                                                 <div class="row">
                                                     <div class="shop-tab">
 <?php
-	//페이징을 위한 페이지수 구하기
-	$ret    = get_list_page_result($mode, $lcode, $mcode, $key, $keyword, $cline, $last_page_num);
-	$t_no   = $ret[0];
-	$result = $ret[1];
+//페이징을 위한 페이지수 구하기
+$ret    = get_list_page_result($mode, $lcode, $mcode, $key, $keyword, $scaleTimesPageNum, $numPerPage);
+$t_no   = $ret[0];
+$result = $ret[1];
 
-	show_items_on_catalog($result, 'home');
+show_items_on_catalog($result, 'home');
 
 ?>
                                                     </div>
@@ -93,12 +97,12 @@
                                             <div role="tabpanel" class="tab-pane" id="profile">
                                                 <div class="row">
 <?php
-	//페이징을 위한 페이지수 구하기
-	$ret    = get_list_page_result($mode, $lcode, $mcode, $key, $keyword, $cline, $last_page_num);
-	$t_no   = $ret[0];
-	$result = $ret[1];
+//페이징을 위한 페이지수 구하기
+$$ret   = get_list_page_result($mode, $lcode, $mcode, $key, $keyword, $scaleTimesPageNum, $numPerPage);
+$t_no   = $ret[0];
+$result = $ret[1];
 
-	show_items_on_catalog($result, 'profile');
+show_items_on_catalog($result, 'profile');
 ?>
                                                 </div>
                                             </div>
@@ -112,8 +116,8 @@
                                                 <div class="shop5 page">
 <?php
 
-	$url = $_SERVER['PHP_SELF'] . "?mode=" . $mode . "&amp;lcode=" . $lcode . "&amp;mcode=" . $mcode . "&amp;key=" . $key . "&amp;keyword=" . $keyword;
-	page_nav($totalpage, $cpage, $url);
+$url = $_SERVER['PHP_SELF'] . "?mode=" . $mode . "&amp;lcode=" . $lcode . "&amp;mcode=" . $mcode . "&amp;key=" . $key . "&amp;keyword=" . $keyword;
+page_nav($totalPageNum, $currentPageNum, $url);
 
 ?>
                                                 </div>

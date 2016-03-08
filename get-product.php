@@ -72,6 +72,7 @@ while ($data = fgetcsv($fp)) {
 
         //썸네일 자동생성
         $smallImg1Path = "upload/p_image/" . $data['6'] . "/s/";
+
         if (is_dir($smallImg1Path)) {
             echo "<p>directory " . $smallImg1Path . " is already exists.</p>\n";
         } else {
@@ -84,6 +85,7 @@ while ($data = fgetcsv($fp)) {
         $simg1_chk     = "Y";
         $smallImg1File = $saveDir . $data['6'] . "/s/" . $data['4'];
         make_thumbnail($bigImg1Path . $data['4'], 100, 100, $smallImg1Path . $data['4']);
+        // 썸네일 생성 끝
 
     } elseif (trim($data['5']) == '퍼터그립') {
         $mcode       = "2";
@@ -106,6 +108,7 @@ while ($data = fgetcsv($fp)) {
 
         //썸네일 자동생성
         $smallImg1Path = "upload/p_image/" . $data['6'] . "/s/";
+
         if (is_dir($smallImg1Path)) {
             echo "<p>directory " . $smallImg1Path . " is already exists.</p>\n";
         } else {
@@ -118,6 +121,7 @@ while ($data = fgetcsv($fp)) {
         $simg1_chk     = "Y";
         $smallImg1File = $saveDir . $data['6'] . "/s/" . $data['4'];
         make_thumbnail($bigImg1Path . $data['4'], 100, 100, $smallImg1Path . $data['4']);
+        // 썸네일 생성 끝
     } else {
         $bImg1_chk   = "N";
         $bigImg1File = "";
@@ -130,7 +134,7 @@ while ($data = fgetcsv($fp)) {
     //content
     // $contents = htmlspecialchars($data['16'], ENT_QUOTES);
 
-    //spcode
+    //메인표시 플래그
     $main_new     = "N";
     $main_special = "N";
     $main_best    = "N";
@@ -147,7 +151,7 @@ while ($data = fgetcsv($fp)) {
 
     $event = "0";
 
-    //approval status
+    // 상품승인 플래그
     $approved = "Y";
 
     $moq = "1";

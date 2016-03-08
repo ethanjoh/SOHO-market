@@ -1363,28 +1363,31 @@ function get_list_page_num($mode, $lcode, $mcode, $key, $keyword, $page, $scale)
         $page = 1;
     }
 
-    $cpage     = intval($page);
-    $totalPage = intval($total / $scale);
+    $currentPageNum = intval($page);
+    $totalPageNum   = intval($total / $scale);
 
-    if ($totalPage * $scale != $total) {
-        $totalPage = $totalPage + 1;
+    if ($totalPageNum * $scale != $total) {
+        $totalPageNum = $totalPageNum + 1;
     }
 
-    if ($cpage == 1) {
-        $cline = 0;
+    if ($currentPageNum == 1) {
+        $scaleTimesPageNum = 0;
     } else {
-        $cline = ($cpage * $scale) - $scale;
+        $scaleTimesPageNum = ($currentPageNum * $scale) - $scale;
     }
 
-    $limit = $cline + $scale;
+    $limit = $scaleTimesPageNum + $scale;
 
     if ($limit >= $total) {
         $limit = $total;
     }
 
-    $numOfLastPage = $limit - $cline;
+    $numPerPage = $limit - $scaleTimesPageNum;
 
-    return array($cline, $numOfLastPage, $cpage, $totalPage);
+    // $scaleTimesPageNum: 아이템수 x 페이지번호(1페이지는 0)
+    // $numPerPage: 페이지당 아이템수
+    // $currentPageNum: 현재 페이지번호
+    return array($scaleTimesPageNum, $numPerPage, $currentPageNum, $totalPageNum);
 }
 
 /**
@@ -1398,7 +1401,7 @@ function get_list_page_num($mode, $lcode, $mcode, $key, $keyword, $page, $scale)
  * @param  [type] $noumfLastPage  [description]
  * @return [type] [description]
  */
-function get_list_page_result($mode, $lcode, $mcode, $key, $keyword, $cline, $numOfLastPage)
+function get_list_page_result($mode, $lcode, $mcode, $key, $keyword, $scaleTimesPageNum, $numOfLastPage)
 {
     global $connect;
 
@@ -1410,9 +1413,9 @@ function get_list_page_result($mode, $lcode, $mcode, $key, $keyword, $cline, $nu
 
     if ($mode == "search") {
         $search_qry .= " AND (name LIKE '%" . $keyword . "%' OR prod_code LIKE '" . $keyword . "' OR company LIKE '%" . $keyword . "%') ";
-        $qry = "SELECT * FROM products WHERE approved='Y' AND del_chk != 'Y' " . $search_qry . " ORDER BY num DESC LIMIT " . $cline . ", " . $numOfLastPage . "";
+        $qry = "SELECT * FROM products WHERE approved='Y' AND del_chk != 'Y' " . $search_qry . " ORDER BY num DESC LIMIT " . $scaleTimesPageNum . ", " . $numOfLastPage . "";
     } else {
-        $qry = "SELECT * FROM products WHERE del_chk='N'" . $added_qry . " AND approved = 'Y' ORDER BY num DESC LIMIT " . $cline . ", " . $numOfLastPage . "";
+        $qry = "SELECT * FROM products WHERE del_chk='N'" . $added_qry . " AND approved = 'Y' ORDER BY num DESC LIMIT " . $scaleTimesPageNum . ", " . $numOfLastPage . "";
     }
 
     $res       = mysqli_query($connect, $qry);
