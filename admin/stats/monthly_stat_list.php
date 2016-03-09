@@ -1,10 +1,8 @@
 <?php
 
 include_once "../include/admin_auth.php";
-include_once "../../util/config.php";
 include_once "../../util/util.php";
 
-$connect = my_connect($host, $dbid, $dbpass, $dbname);
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
@@ -52,7 +50,7 @@ include "../include/admin_top.php";
       <form name="stat" method="get" action="monthly_stat_list.php">
         <input type="hidden" name="mode" value="search" />
         <input type="hidden" name="key" value="company_name" />
-        <!-- <input type="hidden" name="key_value" value="<?=$key_value;?>" />           -->
+        <!-- <input type="hidden" name="key_value" value="<?php echo $key_value;?>" />           -->
         <fieldset>
           <legend>날짜 검색</legend>
           <p>
@@ -65,7 +63,7 @@ include "../include/admin_top.php";
           </p>
           <p>
             <label for="company_name">업체명:</label>
-            <input type="text" name="key_value" value='<?=$company_name;?>' size="20" >
+            <input type="text" name="key_value" value='<?php echo $company_name;?>' size="20" >
           </p>
           <input type="image" src="../images/search_btn.gif" style="background-color:#FFFFFF; border:none;vertical-align: middle; " />
         </fieldset>
@@ -201,11 +199,11 @@ if ($total == 0) {
         }
 
         ?>
-          <td><?=$bunho;?></td>
-            <td><?=$list['title'];?></td>
-            <td><?=$list['reg_date'];?></td>
-            <td class="left"><?=$list['company_name'];?></td>
-            <td class="left"><?=$list['goods_name'];?></td>
+          <td><?php echo $bunho;?></td>
+            <td><?php echo $list['title'];?></td>
+            <td><?php echo $list['reg_date'];?></td>
+            <td class="left"><?php echo $list['company_name'];?></td>
+            <td class="left"><?php echo $list['goods_name'];?></td>
             <?php
 if ($list['approved'] == "Y" && $list['cancel'] == "N") {
             echo "<td class=\"won\">" . number_format($list['sum']) . "</td>\n";
@@ -231,11 +229,11 @@ if ($list['approved'] == "Y" && $list['cancel'] == "N") {
 
         if ($list['cancel'] == "Y") {
             ?>
-            <td><a href="delete_tax.php?mode=del&num=<?=$list['num'];?>"><img src="../images/delete.gif" /></a></td>
+            <td><a href="delete_tax.php?mode=del&num=<?php echo $list['num'];?>"><img src="../images/delete.gif" /></a></td>
       <?php
 } else {
             ?>
-            <td><a href="delete_tax.php?mode=cancel&num=<?=$list['num'];?>"><img src="../images/delete.gif" /></a></td>
+            <td><a href="delete_tax.php?mode=cancel&num=<?php echo $list['num'];?>"><img src="../images/delete.gif" /></a></td>
       <?php
 
         }
@@ -250,7 +248,7 @@ if ($list['approved'] == "Y" && $list['cancel'] == "N") {
           <tr>
             <td colspan="5"><strong>발행금액 합계:</strong></td>
             <td class="won"><strong>
-              <?=number_format($tot_amount);?>
+              <?php echo number_format($tot_amount);?>
               </strong></td>
             <td colspan="2"></td>
           </tr>

@@ -1,10 +1,7 @@
 <?php
 
 include_once "../include/admin_auth.php";
-include_once "../../util/config.php";
 include_once "../../util/util.php";
-
-$connect = my_connect($host, $dbid, $dbpass, $dbname);
 
 $mode = set_var($_GET['mode']);
 $oid  = set_var($_GET['oid']);
@@ -15,7 +12,7 @@ $sql = "SELECT * FROM mall_order WHERE num = '$oid' ";
 $res = mysqli_query($connect, $sql);
 $row = mysqli_fetch_array($res);
 
-$a_goods_fk = explode(",", $row['goods_fk']); //상품 코드
+$a_goods_fk = explode(",", $row['goods_fk']);  //상품 코드
 $mod_volume = explode(",", $row['mod_count']); //변경된 수량
 
 for ($i = 0; $i < sizeof($a_goods_fk); $i++) {

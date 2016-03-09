@@ -1,7 +1,6 @@
 <?php
 // 최종적으로 배포하기 전에는 보안을 위해 반드시 이 파일은 삭제
 // 어드민 비밀번호 임시변경용임
-include "../util/config.php";
 include "../util/util.php";
 $connect    = my_connect($host, $dbid, $dbpass, $dbname);
 $info_query = "SELECT * FROM admin_setup";
@@ -40,7 +39,7 @@ if ($_POST) {
         <meta name="keyword" content="">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <link rel="shortcut icon" href="img/favicon.png">
-        <title><?=$info['site_name'];?> 관리자 셋업</title>
+        <title><?php echo $info['site_name'];?> 관리자 셋업</title>
         <!-- Bootstrap core CSS -->
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="css/bootstrap-reset.css" rel="stylesheet">

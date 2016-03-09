@@ -6,10 +6,8 @@ header("Content-Disposition: attachment; filename=$file_name.xls");
 header("Content-Description: PHP4 Generated Data");
 
 include_once "../include/admin_auth.php";
-include_once "../../util/config.php";
 include_once "../../util/util.php";
 
-$connect = my_connect($host, $dbid, $dbpass, $dbname);
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
@@ -56,8 +54,8 @@ if ($t_no > 0) {
     for ($i = 0; $row = mysqli_fetch_array($res); $i++) {
         ?>
     <tr>
-      <td><?=$row['orderid'];?></td>
-      <td><?=$row['recipient_name'] ? $row['recipient_name'] : $row['buyer_name'];?></td>
+      <td><?php echo $row['orderid'];?></td>
+      <td><?php echo $row['recipient_name'] ? $row['recipient_name'] : $row['buyer_name'];?></td>
       <?php
 //상품명 가져옴
         $a_goods_fk = explode(",", $row['goods_fk']);
@@ -87,14 +85,14 @@ if ($t_no > 0) {
             $t_cost = "2500";
         }
         ?>
-      <td><?=$goods_name;?></td>
+      <td><?php echo $goods_name;?></td>
       <td>1</td>
-      <td><?=$row['recipient_name'] ? $row['recipient_zipno'] : $row['buyer_zipno'];?></td>
-      <td><?=$row['recipient_name'] ? $row['recipient_address'] : $row['buyer_address'];?></td>
-      <td><?=$row['recipient_name'] ? $row['recipient_phone'] : $row['buyer_phone'];?></td>
-      <td><?=$row['recipient_name'] ? $row['recipient_hphone'] : $row['buyer_hphone'];?></td>
-      <td><?=$str;?></td>
-      <td><?=$t_cost;?></td>
+      <td><?php echo $row['recipient_name'] ? $row['recipient_zipno'] : $row['buyer_zipno'];?></td>
+      <td><?php echo $row['recipient_name'] ? $row['recipient_address'] : $row['buyer_address'];?></td>
+      <td><?php echo $row['recipient_name'] ? $row['recipient_phone'] : $row['buyer_phone'];?></td>
+      <td><?php echo $row['recipient_name'] ? $row['recipient_hphone'] : $row['buyer_hphone'];?></td>
+      <td><?php echo $str;?></td>
+      <td><?php echo $t_cost;?></td>
       <td><?php
 
         if ($row['memo']) {
@@ -102,8 +100,8 @@ if ($t_no > 0) {
         }
 
         ?></td>
-      <td><?=$row['recipient_name'] ? $row['buyer_name'] : "";?></td>
-      <td><?=$row['recipient_name'] ? $row['buyer_phone'] : "";?></td>
+      <td><?php echo $row['recipient_name'] ? $row['buyer_name'] : "";?></td>
+      <td><?php echo $row['recipient_name'] ? $row['buyer_phone'] : "";?></td>
     </tr>
     <?php
 

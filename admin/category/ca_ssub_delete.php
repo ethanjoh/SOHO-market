@@ -1,10 +1,7 @@
 <?php
 
 include_once "../include/admin_auth.php";
-include_once "../../util/config.php";
 include_once "../../util/util.php";
-
-$connect = my_connect($host, $dbid, $dbpass, $dbname);
 
 // 삭제하고자 하는 카테고리의 코드값을 구함
 $query  = "select * from products_category3 where id=$id";

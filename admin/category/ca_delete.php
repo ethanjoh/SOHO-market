@@ -1,10 +1,7 @@
 <?php
 
 include_once "../include/admin_auth.php";
-include_once "../../util/config.php";
 include_once "../../util/util.php";
-
-$connect = my_connect($host, $dbid, $dbpass, $dbname);
 
 // »иБ¦ЗП°нАЪ ЗПґВ Д«ЕЧ°нё®АЗ ДЪµе°ЄА» ±ёЗФ
 $query  = "select * from products_category1 where id='$num' ";

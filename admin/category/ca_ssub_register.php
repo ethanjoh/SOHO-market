@@ -1,10 +1,8 @@
 <?php
 
 include_once "../include/admin_auth.php";
-include_once "../../util/config.php";
 include_once "../../util/util.php";
 
-$connect = my_connect($host, $dbid, $dbpass, $dbname);
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
@@ -60,23 +58,23 @@ if ($mode == "update") {
 }
 ?>
       <form name="form1" method="post" action="ca_ssub_insert.php">
-        <input type="hidden" name="mode" value="<?=$mode;?>">
-        <input type="hidden" name="id" value="<?=$id;?>">
-        <input type='hidden' name='lcode' value="<?=$lcode;?>">
-        <input type='hidden' name='mcode' value="<?=$mcode;?>">
+        <input type="hidden" name="mode" value="<?php echo $mode;?>">
+        <input type="hidden" name="id" value="<?php echo $id;?>">
+        <input type='hidden' name='lcode' value="<?php echo $lcode;?>">
+        <input type='hidden' name='mcode' value="<?php echo $mcode;?>">
         <fieldset class="member">
         <legend>소분류 등록</legend>
         <p>
           <label for="up_category">상위 중분류:</label>
-          <input type="text" name="up_category" value="<?=$ca_m['name'];?>" "readonly" />
+          <input type="text" name="up_category" value="<?php echo $ca_m['name'];?>" "readonly" />
         </p>
         <p>
           <label for="code">코드:</label>
-          <input type="text" name="code" value="<?=($mode == "insert") ? $max_code : $row['code'];?>" "readonly" size="20" maxlength="5">
+          <input type="text" name="code" value="<?php echo ($mode == "insert") ? $max_code : $row['code'];?>" "readonly" size="20" maxlength="5">
           *자동입력(변경불가)</p>
         <p>
           <label for="ca_sname">소분류명:</label>
-          <input type="text" name="ca_sname" value="<?=$row['name'];?>" size="20" maxlength="20">
+          <input type="text" name="ca_sname" value="<?php echo $row['name'];?>" size="20" maxlength="20">
         </p>
         <p>
         <div class="clear"><a class="button" href="#" onclick="this.blur();javascript:sform_send();"><span>등록</span></a><a class="button" href="#" onclick="this.blur();history.back();"><span>취소</span></a></div>

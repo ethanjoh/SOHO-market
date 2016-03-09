@@ -1,10 +1,5 @@
 <?php
-// 데이타베이스 연결정보 및 기타설정
-include "../../util/config.php";
-// 각종 유틸함수
 include "../../util/util.php";
-// MySQL 연결
-$connect = my_connect($host, $dbid, $dbpass, $dbname);
 
 $mod_volume = set_var($_POST['mod_volume']);
 $mod_price  = set_var($_POST['mod_price']);

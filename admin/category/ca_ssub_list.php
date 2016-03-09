@@ -1,10 +1,8 @@
 <?php
 
 include_once "../include/admin_auth.php";
-include_once "../../util/config.php";
 include_once "../../util/util.php";
 
-$connect = my_connect($host, $dbid, $dbpass, $dbname);
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
@@ -43,7 +41,7 @@ $total_count = mysqli_num_rows($result);
       <form method="post" action="ca_ssub_list.php">
         <table summary="view category list">
           <caption>
-          소분류 목록 (총 <?=$total_count;?>개)
+          소분류 목록 (총 <?php echo $total_count;?>개)
           </caption>
           <thead>
             <tr class="odd">
@@ -66,10 +64,10 @@ for ($i = 0; $row = mysqli_fetch_array($result); $i++) {
     }
 
     ?>
-            <td><?=$row['code'];?></td>
-            <td><?=$row['name'];?></td>
-            <td><?=$products_count;?></td>
-            <td><a href='ca_ssub_register.php?mode=update&amp;id=<?=$row['id'];?>&amp;lcode=<?=$lcode;?>&amp;mcode=<?=$row['up_category'];?>'><img src="../images/edit.gif" alt="수정" /></a>&nbsp; <a href='ca_ssub_delete.php?id=<?=$row['id'];?>&amp;lcode=<?=$lcode;?>&amp;mcode=<?=$row['up_category'];?>' onClick="return confirm('정말 삭제하시겠습니까?')"><img src="../images/delete.gif" alt="삭제" /></a> </td>
+            <td><?php echo $row['code'];?></td>
+            <td><?php echo $row['name'];?></td>
+            <td><?php echo $products_count;?></td>
+            <td><a href='ca_ssub_register.php?mode=update&amp;id=<?php echo $row['id'];?>&amp;lcode=<?php echo $lcode;?>&amp;mcode=<?php echo $row['up_category'];?>'><img src="../images/edit.gif" alt="수정" /></a>&nbsp; <a href='ca_ssub_delete.php?id=<?php echo $row['id'];?>&amp;lcode=<?php echo $lcode;?>&amp;mcode=<?php echo $row['up_category'];?>' onClick="return confirm('정말 삭제하시겠습니까?')"><img src="../images/delete.gif" alt="삭제" /></a> </td>
           </tr>
           <?php
 }
@@ -88,7 +86,7 @@ if ($total_count == 0) {
         <table>
         <tbody>
           <tr>
-            <td align="center"><div class="full"><a class="button" href="ca_ssub_register.php?lcode=<?=$lcode;?>&amp;mcode=<?=$mcode;?>" onclick="this.blur();"><span>소분류 등록하기</span></a><a class="button" href="ca_msub_list.php?lcode=<?=$lcode;?>&amp;mcode=<?=$mcode;?>" onclick="this.blur();"><span>중분류로 가기</span></a><a class="button" href="top_ca_list.php" onclick="this.blur();"><span>대분류로 가기</span></a></div></td>
+            <td align="center"><div class="full"><a class="button" href="ca_ssub_register.php?lcode=<?php echo $lcode;?>&amp;mcode=<?php echo $mcode;?>" onclick="this.blur();"><span>소분류 등록하기</span></a><a class="button" href="ca_msub_list.php?lcode=<?php echo $lcode;?>&amp;mcode=<?php echo $mcode;?>" onclick="this.blur();"><span>중분류로 가기</span></a><a class="button" href="top_ca_list.php" onclick="this.blur();"><span>대분류로 가기</span></a></div></td>
           </tr>
           </tbody>
         </table>

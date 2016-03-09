@@ -1,10 +1,7 @@
 <?php
 
 include_once "../include/admin_auth.php";
-include_once "../../util/config.php";
 include_once "../../util/util.php";
-
-$connect = my_connect($host, $dbid, $dbpass, $dbname);
 
 $num  = set_var($_POST['num']);
 $page = set_var($_POST['page']);

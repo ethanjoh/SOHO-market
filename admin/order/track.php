@@ -1,10 +1,8 @@
 <?php
 
 include_once "../include/admin_auth.php";
-include_once "../../util/config.php";
 include_once "../../util/util.php";
 
-$connect = my_connect($host, $dbid, $dbpass, $dbname);
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
@@ -120,18 +118,18 @@ $scale1 = $limit - $cline;
       <table summary="functions">
         <tbody>
           <tr>
-            <td><img src="../images/excel_icon.gif" width="16" height="16" alt="excel" /><a href="tracktoexcel.php?date1=<?=$date1;?>&amp;date2=<?=$date2;?>">엑셀로 다운로드</a></td>
+            <td><img src="../images/excel_icon.gif" width="16" height="16" alt="excel" /><a href="tracktoexcel.php?date1=<?php echo $date1;?>&amp;date2=<?php echo $date2;?>">엑셀로 다운로드</a></td>
           </tr>
         </tbody>
       </table>
       <table summary="view the total order list">
         <caption>
         주문 목록 (
-        <?=$date1;?>
+        <?php echo $date1;?>
         ~
-        <?=$date2;?>
+        <?php echo $date2;?>
         기간 내 총
-        <?=$total;?>
+        <?php echo $total;?>
         건)
         </caption>
         <thead>
@@ -190,9 +188,9 @@ if ($t_no > 0) {
     for ($i = 0; $row = mysqli_fetch_array($res_4); $i++) {
         ?>
           <tr>
-            <td><?=$row['orderid'];?></td>
-            <td><?=$row['createdate'];?></td>
-            <td><?=$row['recipient_name'] ? $row['recipient_name'] : $row['buyer_name'];?></td>
+            <td><?php echo $row['orderid'];?></td>
+            <td><?php echo $row['createdate'];?></td>
+            <td><?php echo $row['recipient_name'] ? $row['recipient_name'] : $row['buyer_name'];?></td>
             <?php
 //상품명 가져옴
         $a_goods_fk = explode(",", $row['goods_fk']);
@@ -222,14 +220,14 @@ if ($t_no > 0) {
             $t_cost = "2500";
         }
         ?>
-            <td><?=$goods_name;?></td>
+            <td><?php echo $goods_name;?></td>
             <td>1</td>
-            <td><?=$row['recipient_name'] ? $row['recipient_zipno'] : $row['buyer_zipno'];?></td>
-            <td><?=$row['recipient_name'] ? $row['recipient_address'] : $row['buyer_address'];?></td>
-            <td><?=$row['recipient_name'] ? $row['recipient_phone'] : $row['buyer_phone'];?></td>
-            <td><?=$row['recipient_name'] ? $row['recipient_hphone'] : $row['buyer_hphone'];?></td>
-            <td><?=$str;?></td>
-            <td><?=$t_cost;?></td>
+            <td><?php echo $row['recipient_name'] ? $row['recipient_zipno'] : $row['buyer_zipno'];?></td>
+            <td><?php echo $row['recipient_name'] ? $row['recipient_address'] : $row['buyer_address'];?></td>
+            <td><?php echo $row['recipient_name'] ? $row['recipient_phone'] : $row['buyer_phone'];?></td>
+            <td><?php echo $row['recipient_name'] ? $row['recipient_hphone'] : $row['buyer_hphone'];?></td>
+            <td><?php echo $str;?></td>
+            <td><?php echo $t_cost;?></td>
             <td><?php
 if ($row['memo']) {
             echo $row['memo'];
@@ -237,8 +235,8 @@ if ($row['memo']) {
 
         ?></td>
             <!--
-            <td><?=$row['recipient_name'] ? $row['buyer_name'] : "";?></td>
-            <td><?=$row['recipient_name'] ? $row['buyer_phone'] : "";?></td>
+            <td><?php echo $row['recipient_name'] ? $row['buyer_name'] : "";?></td>
+            <td><?php echo $row['recipient_name'] ? $row['buyer_phone'] : "";?></td>
             -->
           </tr>
           <?php

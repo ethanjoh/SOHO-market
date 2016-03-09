@@ -1,10 +1,7 @@
 <?php
 /* 아미지 디렉토리 문제로 basic.php보다 상위 디렉토리에 위치시킨다. */
 include_once "../include/admin_auth.php";
-include_once "../../util/config.php";
 include_once "../../util/util.php";
-
-$connect = my_connect($host, $dbid, $dbpass, $dbname);
 
 $admin_id = set_var($_POST['admin_id']);
 // $admin_pass         = set_var($_POST['admin_pass']);

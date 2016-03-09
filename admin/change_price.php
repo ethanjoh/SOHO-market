@@ -1,10 +1,7 @@
 <!-- set diff_num and diff_price from retail_price -->
 <?php
 include_once "../include/admin_auth.php";
-include_once "../../util/config.php";
 include_once "../../util/util.php";
-
-$connect = my_connect($host, $dbid, $dbpass, $dbname);
 
 echo "<p>While changing price all of products...please wait</p>";
 

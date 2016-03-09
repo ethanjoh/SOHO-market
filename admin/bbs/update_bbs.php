@@ -1,8 +1,5 @@
 <?php
-include_once "../../util/config.php";
 include_once "../../util/util.php";
-
-$connect = my_connect($host, $dbid, $dbpass, $dbname);
 
 $mode     = set_var($_POST['mode']);
 $num      = set_var($_POST['num']);
