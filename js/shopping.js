@@ -586,6 +586,51 @@ function getCookie( name ) {
     return "";
 }
 
+function adminAddMember() {
+
+    var id = document.getElementById('id').value;
+    var passwd = document.getElementById('passwd').value;
+    var license_no1 = document.getElementById('license_no1').value;
+    var license_no2 = document.getElementById('license_no2').value;
+    var license_no3 = document.getElementById('license_no3').value;
+
+    if(id == '') {
+        alert('ID를 입력하세요.');
+        return false;
+    }else if(passwd == ''){
+        alert('비밀번호를 입력하세요.');
+        return false;
+    }else if(license_no1 == '' || license_no2 == '' || license_no3 == ''){
+        alert('사업자등록번호를 입력하세요.');
+        return false;
+    }else{
+        bizID = license_no1 + license_no2 + license_no3;
+
+        // bizID는 숫자만 10자리로 해서 문자열로 넘긴다.
+        var checkID = new Array(1, 3, 7, 1, 3, 7, 1, 3, 5, 1);
+        var tmpBizID, i, chkSum = 0, c2, remander;
+
+        bizID = bizID.replace(/-/gi, '');
+
+        for (i = 0; i <= 7; i++) {
+            chkSum += checkID[i] * bizID.charAt(i);
+        }
+
+        c2 = "0" + (checkID[8] * bizID.charAt(8));
+        c2 = c2.substring(c2.length - 2, c2.length);
+        chkSum += Math.floor(c2.charAt(0)) + Math.floor(c2.charAt(1));
+        remander = (10 - (chkSum % 10)) % 10;
+
+        if (Math.floor(bizID.charAt(9)) == remander) {
+            return true; // OK!
+        }else{
+            alert('사업자등록번호가 유효하지 않습니다.');
+            return false;
+        }
+    }
+    // return false;
+
+}
 
 
 //-->
