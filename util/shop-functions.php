@@ -437,17 +437,23 @@ function show_me_wholesale_price($pnum)
 function show_brand_name($lcode)
 {
     global $connect;
+    $mode = set_var($_GET['mode']);
 
-    $query  = "SELECT * FROM products_category1 WHERE code = '$lcode' ";
-    $result = mysqli_query($connect, $query);
+    if ($mode == "search") {
+        echo '검색결과';
+    } else {
 
-    if ($result) {
+        $query  = "SELECT * FROM products_category1 WHERE code = '$lcode' ";
+        $result = mysqli_query($connect, $query);
 
-        $rows = mysqli_fetch_array($result);
-        echo '<a href="catalog-list.php?lcode=' . $lcode . '">' . stripslashes($rows['name']) . '</a>';
+        if ($result) {
 
-        mysqli_free_result($result);
+            $rows = mysqli_fetch_array($result);
+            echo '<a href="catalog-list.php?lcode=' . $lcode . '">' . stripslashes($rows['name']) . '</a>';
 
+            mysqli_free_result($result);
+
+        }
     }
 
 }
@@ -515,6 +521,7 @@ function show_sub_category($lcode)
 {
 
     global $connect;
+    $mode = set_var($_GET['mode']);
 
     $m_qry     = "SELECT * FROM products_category2 WHERE up_category = '$lcode' ORDER BY name";
     $m_res     = mysqli_query($connect, $m_qry);
@@ -539,6 +546,8 @@ function show_sub_category($lcode)
 HEREDOC;
 
         }
+    } elseif ($mode = "search") {
+        echo '<li></li>';
     } else {
         echo '<li>서브 카테고리를 등록해주세요</li>';
     }
@@ -1337,7 +1346,8 @@ function get_list_page_num($mode, $lcode, $mcode, $key, $keyword, $page, $scale)
 {
     global $connect;
 
-    $added_qry = '';
+    $added_qry  = '';
+    $search_qry = '';
 
     //중분류 선택시
     if ($mcode) {
@@ -1405,7 +1415,8 @@ function get_list_page_result($mode, $lcode, $mcode, $key, $keyword, $scaleTimes
 {
     global $connect;
 
-    $added_qry = '';
+    $added_qry  = '';
+    $search_qry = '';
 
     if ($mcode) {
         $added_qry = " AND category_m = '$mcode'";

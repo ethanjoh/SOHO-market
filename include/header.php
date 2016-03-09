@@ -1,20 +1,19 @@
 <?php
-	// include_once "../util/config.php";
-	include_once "../util/util.php";
-	include_once "../util/shop-functions.php";
-	// $connect = my_connect($host, $dbid, $dbpass, $dbname);
 
-	session_start();
+include_once "../util/util.php";
+include_once "../util/shop-functions.php";
 
-	$p_sid  = set_var($_COOKIE['p_sid']);
-	$p_id   = set_var($_SESSION['p_id']);
-	$p_name = set_var($_SESSION['p_name']);
+session_start();
 
-	$com_info = get_company_info();
+$p_sid  = set_var($_COOKIE['p_sid']);
+$p_id   = set_var($_SESSION['p_id']);
+$p_name = set_var($_SESSION['p_name']);
 
-	//로그인 이전의 URL로 돌아가기
-	$uri = $_SERVER["REQUEST_URI"];
-	$uri = urlencode($uri);
+$com_info = get_company_info();
+
+//로그인 이전의 URL로 돌아가기
+$uri = $_SERVER["REQUEST_URI"];
+$uri = urlencode($uri);
 
 ?>
 
@@ -79,15 +78,16 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-8 col-sm-8 col-xs-12">
-                            <form action="#" id="search_mini_form">
+                            <form action="/shop/catalog-list.php" method="get" id="search_mini_form">
+                            <input type="hidden" name="mode" value="search" />
                                 <div class="form-search s-same" >
-                                    <div class="select-wrapper">
-                                        <select class="select">
-                                            <option value="">상품명</option>
-                                            <option value="">모델명</option>
+<!--                                     <div class="select-wrapper">
+                                        <select name="key" class="select">
+                                            <option value="itemName">상품명</option>
+                                            <option value="modelNo">모델명</option>
                                         </select>
-                                    </div>
-                                    <input class="input-text" type="text" placeholder="검색하기">
+                                    </div> -->
+                                    <input class="input-text" type="text" name="keyword" placeholder="검색하기">
                                     <button class="button" title="Search" type="submit">
                                         <i class="fa fa-search"></i>
                                     </button>
