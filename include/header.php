@@ -81,12 +81,6 @@ $uri = urlencode($uri);
                             <form action="/shop/catalog-list.php" method="get" id="search_mini_form">
                             <input type="hidden" name="mode" value="search" />
                                 <div class="form-search s-same" >
-<!--                                     <div class="select-wrapper">
-                                        <select name="key" class="select">
-                                            <option value="itemName">상품명</option>
-                                            <option value="modelNo">모델명</option>
-                                        </select>
-                                    </div> -->
                                     <input class="input-text" type="text" name="keyword" placeholder="검색하기">
                                     <button class="button" title="Search" type="submit">
                                         <i class="fa fa-search"></i>

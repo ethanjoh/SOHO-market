@@ -1,15 +1,15 @@
 <?php
-	include_once "../include/admin_auth.php";
-	include_once "../../util/util.php";
+include_once "../include/admin_auth.php";
+include_once "../../util/util.php";
 
-	$oid   = set_var($_GET['oid']);
-	$today = date("Y-m-d");
+$oid   = set_var($_GET['oid']);
+$today = date("Y-m-d");
 
-	//공급자 정보
-	$query   = "SELECT * FROM admin_setup WHERE type='1'";
-	$result  = mysqli_query($connect, $query);
-	$row     = mysqli_fetch_array($result);
-	$address = $row['addr1'] . " " . $row['addr2'];
+//공급자 정보
+$query   = "SELECT * FROM admin_setup WHERE type='1'";
+$result  = mysqli_query($connect, $query);
+$row     = mysqli_fetch_array($result);
+$address = $row['addr1'] . " " . $row['addr2'];
 
 ?>
 <!DOCTYPE html>
@@ -19,6 +19,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" type="text/css" media="print" href="../css/print.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="../css/screen.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/myshop.css" />
   </head>
   <body onLoad="window.print()">
     <!-- wrapper -->
@@ -36,10 +37,10 @@
                     <table class="customer-title">
 <?php
 
-	//주문정보
-	$or_qry = "SELECT * FROM mall_order WHERE num = '$oid' ";
-	$or_res = mysqli_query($connect, $or_qry);
-	$or_row = mysqli_fetch_array($or_res);
+//주문정보
+$or_qry = "SELECT * FROM mall_order WHERE num = '$oid' ";
+$or_res = mysqli_query($connect, $or_qry);
+$or_row = mysqli_fetch_array($or_res);
 ?>
                     <tr class="customer-title">
                         <td height="34" class="customer-title">
@@ -50,23 +51,23 @@
                       <td height="30" class="customer-title"><u>
 <?php
 
-	$a_goods_fk = explode(",", $or_row['goods_fk']);
-	$mod_price  = explode(",", $or_row['mod_price']); //변경된 공급가
-	$org_volume = explode(",", $or_row['goods_count']);
-	$mod_volume = explode(",", $or_row['mod_count']);  //변경된 수량
-	$option     = explode(",", $or_row['goods_kind']); //옵션
+$a_goods_fk = explode(",", $or_row['goods_fk']);
+$mod_price  = explode(",", $or_row['mod_price']); //변경된 공급가
+$org_volume = explode(",", $or_row['goods_count']);
+$mod_volume = explode(",", $or_row['mod_count']);  //변경된 수량
+$option     = explode(",", $or_row['goods_kind']); //옵션
 
-	$buyer_qry = "SELECT * FROM member WHERE id='$or_row[user_id]'";
-	$buyer_res = mysqli_query($connect, $buyer_qry);
-	$buyer_row = mysqli_fetch_array($buyer_res);
+$buyer_qry = "SELECT * FROM member WHERE id='$or_row[user_id]'";
+$buyer_res = mysqli_query($connect, $buyer_qry);
+$buyer_row = mysqli_fetch_array($buyer_res);
 
-	$address2 = $buyer_row['o_addr1'] . " " . $buyer_row['o_addr2'];
+$address2 = $buyer_row['o_addr1'] . " " . $buyer_row['o_addr2'];
 
-	if ($or_row['recipient_name']) {
-	    echo $buyer_row['company_name'] . "&nbsp;-> " . $or_row['recipient_name'] . "&nbsp;&nbsp;귀 하</u></font></td>";
-	} else {
-	    echo $buyer_row['company_name'] . "&nbsp;&nbsp;&nbsp;귀 하</u></font></td>";
-	}
+if ($or_row['recipient_name']) {
+    echo $buyer_row['company_name'] . "&nbsp;-> " . $or_row['recipient_name'] . "&nbsp;&nbsp;귀 하</u></font></td>";
+} else {
+    echo $buyer_row['company_name'] . "&nbsp;&nbsp;&nbsp;귀 하</u></font></td>";
+}
 
 ?>
                   </tr>
@@ -127,46 +128,46 @@
           </tr>
 <?php
 
-	$totalSum   = 0;
-	$t_count    = 0;
-	$mt_count   = 0;
-	$last_cost2 = 0;
+$totalSum   = 0;
+$t_count    = 0;
+$mt_count   = 0;
+$last_cost2 = 0;
 
-	//주문상품 정보를 불러옵니다.
-	for ($i = 0; $i < sizeof($a_goods_fk); $i++) {
-	    $pro_sql    = "SELECT * FROM products WHERE num='$a_goods_fk[$i]'";
-	    $pro_result = mysqli_query($connect, $pro_sql);
-	    $pro_row    = mysqli_fetch_array($pro_result);
+//주문상품 정보를 불러옵니다.
+for ($i = 0; $i < sizeof($a_goods_fk); $i++) {
+    $pro_sql    = "SELECT * FROM products WHERE num='$a_goods_fk[$i]'";
+    $pro_result = mysqli_query($connect, $pro_sql);
+    $pro_row    = mysqli_fetch_array($pro_result);
 
-	    $goods_name = show_icon($pro_row['num']) . "[" . $pro_row['company'] . "] " . $pro_row['name'];
-	    //상품옵션 품절표시
-	    //상품 옵션이 있는지 확인 후 진행
-	    if ($option[$i] != "") {
-	                                                            //장바구니의 옵션과 제품정보를 비교하여 품절옵션이 있는지 확인
-	        $t_opt       = explode(",", $pro_row['opt']);       //제품의 옵션명을 배열로 만들어준다
-	        $t_opt_stock = explode(",", $pro_row['opt_stock']); //제품의 옵션재고를 배열로 만들어준다
+    $goods_name = show_icon($pro_row['num']) . "[" . $pro_row['company'] . "] " . $pro_row['name'];
+    //상품옵션 품절표시
+    //상품 옵션이 있는지 확인 후 진행
+    if ($option[$i] != "") {
+                                                            //장바구니의 옵션과 제품정보를 비교하여 품절옵션이 있는지 확인
+        $t_opt       = explode(",", $pro_row['opt']);       //제품의 옵션명을 배열로 만들어준다
+        $t_opt_stock = explode(",", $pro_row['opt_stock']); //제품의 옵션재고를 배열로 만들어준다
 
-	        //옵션의 문자열 비교
-	        for ($j = 0; $j < count($t_opt); $j++) {
-	            $str = strcmp($t_opt[$j], $option[$i]);
+        //옵션의 문자열 비교
+        for ($j = 0; $j < count($t_opt); $j++) {
+            $str = strcmp($t_opt[$j], $option[$i]);
 
-	            if (!$str) {
-	                //문자열이 같다면 문자열 대체
-	                if ($t_opt_stock[$j] == "0") {
-	                    $option[$i] .= " (품절)";
-	                } elseif ($t_opt_stock[$j] == "-1") {
-	                    $option[$i] .= " (단종)";
-	                } else {
-	                    $option[$i] = $t_opt[$j];
-	                }
+            if (!$str) {
+                //문자열이 같다면 문자열 대체
+                if ($t_opt_stock[$j] == "0") {
+                    $option[$i] .= " (품절)";
+                } elseif ($t_opt_stock[$j] == "-1") {
+                    $option[$i] .= " (단종)";
+                } else {
+                    $option[$i] = $t_opt[$j];
+                }
 
-	            }
+            }
 
-	        } //end of for loop
-	    } //end of if clause
+        } //end of for loop
+    } //end of if clause
 
-	    $itemName = stripslashes($goods_name);
-	    echo <<<HEREDOC
+    $itemName = stripslashes($goods_name);
+    echo <<<HEREDOC
 				                    <tr>
                       <td class="name">{$itemName}</td>
                       <td>{$option[$i]}</td>
@@ -174,16 +175,16 @@
                       <td class="num">{$mod_volume[$i]}</td>
 HEREDOC;
 
-	    if ($pro_row['sale_price']) {
-	        echo '<td class="num-right"><s>' . number_format($pro_row['shop_price']) . '</s><br/>' . number_format($pro_row['sale_price']) . "\r\n";
-	    } else {
-	        echo '<td class="num-right">' . number_format($pro_row['shop_price']) . "\r\n";
-	    }
+    if ($pro_row['sale_price']) {
+        echo '<td class="num-right"><s>' . number_format($pro_row['shop_price']) . '</s><br/>' . number_format($pro_row['sale_price']) . "\r\n";
+    } else {
+        echo '<td class="num-right">' . number_format($pro_row['shop_price']) . "\r\n";
+    }
 
-	    $commaModifiedPrice = number_format($mod_price[$i]);
-	    $commaModifiedSum   = number_format($mod_price[$i] * $mod_volume[$i]);
+    $commaModifiedPrice = number_format($mod_price[$i]);
+    $commaModifiedSum   = number_format($mod_price[$i] * $mod_volume[$i]);
 
-	    echo <<<HEREDOC
+    echo <<<HEREDOC
 
                       <td class="num-right">{$commaModifiedPrice}</td>
                       <td class="num-right">{$commaModifiedSum}</td>
@@ -191,16 +192,16 @@ HEREDOC;
                     </tr>
 HEREDOC;
 
-	    $totalSum = $totalSum + (int) $mod_price[$i] * (int) $mod_volume[$i];
-	    //$vatSum = $vatSum+(int)($mod_price[$i]*$mod_volume[$i])*0.1;
-	    $t_count  = $t_count + (int) $org_volume[$i];
-	    $mt_count = $mt_count + (int) $mod_volume[$i];
+    $totalSum = $totalSum + (int) $mod_price[$i] * (int) $mod_volume[$i];
+    //$vatSum = $vatSum+(int)($mod_price[$i]*$mod_volume[$i])*0.1;
+    $t_count  = $t_count + (int) $org_volume[$i];
+    $mt_count = $mt_count + (int) $mod_volume[$i];
 
-	}
+}
 
-	$commaTotalSum = number_format($totalSum);
+$commaTotalSum = number_format($totalSum);
 
-	echo <<<HEREDOC
+echo <<<HEREDOC
 
                     <tr>
                         <td class="left">▶ SUB TOTAL </td>
@@ -214,10 +215,10 @@ HEREDOC;
                     </tr>
 HEREDOC;
 
-	$final      = $totalSum + $last_cost2;
-	$commaFinal = number_format($final * 1.1);
+$final      = $totalSum + $last_cost2;
+$commaFinal = number_format($final);
 
-	echo <<<HEREDOC
+echo <<<HEREDOC
 
                     <tr>
                         <td colspan="6" class="left"><strong>▶ TOTAL(inc.VAT) : </strong></td>
@@ -229,7 +230,8 @@ HEREDOC;
                     </tr>
 HEREDOC;
 ?>
-              </table></td>
+              </table>
+              </td>
             </tr>
           </table>
           <br/>
