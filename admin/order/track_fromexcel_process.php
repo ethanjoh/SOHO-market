@@ -1,10 +1,7 @@
 <?php
 //택배 운송장 업로드 처리 파일
 include_once "../include/admin_auth.php";
-include_once "../../util/config.php";
 include_once "../../util/util.php";
-
-$connect = my_connect($host, $dbid, $dbpass, $dbname);
 
 // $sql = "SELECT orderid, status, track_no, last_amount, senddate FROM mall_order
 //                          WHERE delivery_type = 'L'

@@ -221,7 +221,7 @@ if ($t_no > 0) {
         ?>
                         <td><?php echo $goods_name; ?></td>
                         <td>1</td>
-                        <td><?php echo $row['recipient_name'] ? $row['recipient_zipno'] : $row['buyer_zipno']; ?></td>
+                        <td><?php echo $row['recipient_name'] ? $row['recipient_zipcode'] : $row['buyer_zipcode']; ?></td>
                         <td><?php echo $row['recipient_name'] ? $row['recipient_address'] : $row['buyer_address']; ?></td>
                         <td><?php echo $row['recipient_name'] ? $row['recipient_phone'] : $row['buyer_phone']; ?></td>
                         <td><?php echo $row['recipient_name'] ? $row['recipient_hphone'] : $row['buyer_hphone']; ?></td>
@@ -230,8 +230,8 @@ if ($t_no > 0) {
                         <td>
 <?php
 
-        if ($row['memo']) {
-            echo $row['memo'];
+        if ($row['memo_to_delivery']) {
+            echo $row['memo_to_delivery'];
         }
 
         ?>
