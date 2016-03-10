@@ -20,6 +20,26 @@ function useSameAddr() {
     }
 }
 
+function usePmemberSameAddr() {
+    var form = document.form1;
+
+    if (form.same_info.checked == true) {
+        form.d_zipcode1.value = form.o_zipcode1.value;
+        // form.d_zipcode2.value = form.o_zipcode2.value;
+        form.d_addr1.value = form.o_addr1.value;
+        form.d_addr2.value = form.o_addr2.value;
+        form.d_phone.value = form.o_phone.value;
+        form.d_hphone.value = form.hphone.value;
+    } else {
+        form.d_zipcode1.value = "";
+        // form.d_zipcode2.value = "";
+        form.d_addr1.value = "";
+        form.d_addr2.value = "";
+        form.d_phone.value = "";
+        form.d_hphone.value = "";
+    }
+}
+
 function checkRegister() {
     var form = document.form1;
 
@@ -806,6 +826,21 @@ function login_check() {
     }
 }
 
+function p_login_check() {
+    var form = document.p_login;
+
+    if (!form.id.value) {
+        alert("아이디를 입력하세요");
+        form.id.focus();
+        return false;
+    }
+
+    if (!form.pwd.value) {
+        alert("비밀번호를 입력하세요");
+        form.pwd.focus();
+        return false;
+    }
+}
 
 function admin_login_check() {
     var form = document.login;

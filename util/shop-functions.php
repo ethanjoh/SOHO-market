@@ -1123,9 +1123,9 @@ function show_login_form()
         <section class="main_shop_area">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-12 client-say">
+                    <div class="col-md-6 client-say">
                         <div class="login-form-head">
-                            <h2>로그인</h2>
+                            <h2>기업회원 로그인</h2>
                             <form method="post" name="login" action="//{$_SERVER['SERVER_NAME']}:{$sslPort}/member/login-ok.php" onsubmit="return(login_check());">
                             <input type="hidden" name="uri" value="{$uri}">
 
@@ -1138,17 +1138,43 @@ function show_login_form()
                                         <input  class="form-control margin-top-10" type="password" name="pwd" placeholder="비밀번호">
                                     </li>
                                 </ul>
-                            </div>
+                            </div> <!-- //.login-form -->
                             <div class="form-bottom-line about-optima-text">
                                 <button class="button2 elit" type="submit"><strong>로그인</strong></button>
                             </div>
                             </form>
+                        </div> <!-- //.login-form-head -->
+                    </div> <!-- //.col-md-6 client-say -->
+                    <div class="col-md-6 client-say">
+                        <div class="login-form-head">
+                            <h2>개인회원 로그인</h2>
+                            <form method="post" name="p_login" action="//{$_SERVER['SERVER_NAME']}:{$sslPort}/member/login-ok.php" onsubmit="return(p_login_check());">
+                            <input type="hidden" name="uri" value="{$uri}">
 
-                            <div class="login-form-element">
-                                <a class="btn btn-default" type="button" href="/member/register.php">가입하기</a>
-                                <a class="btn btn-default" type="button" href="/member/find-id.php">아이디 찾기</a>
-                                <a class="btn btn-default" type="button" href="/member/find-pass.php">비밀번호 찾기</a>
+                            <div class="login-form">
+                                <ul>
+                                    <li>
+                                        <input class="form-control" type="text" name="id" placeholder="아이디">
+                                    </li>
+                                    <li>
+                                        <input  class="form-control margin-top-10" type="password" name="pwd" placeholder="비밀번호">
+                                    </li>
+                                </ul>
+                            </div> <!-- //.login-form -->
+                            <div class="form-bottom-line about-optima-text">
+                                <button class="button2 elit" type="submit"><strong>로그인</strong></button>
                             </div>
+                            </form>
+                        </div> <!-- //.login-form-head -->
+                    </div> <!-- //.col-md-6 client-say -->
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <div class="login-form-element">
+                            <a class="btn btn-default" type="button" href="/member/register.php">가입하기</a>
+                            <a class="btn btn-default" type="button" href="/member/find-id.php">아이디 찾기</a>
+                            <a class="btn btn-default" type="button" href="/member/find-pass.php">비밀번호 찾기</a>
                         </div>
                     </div>
                 </div>

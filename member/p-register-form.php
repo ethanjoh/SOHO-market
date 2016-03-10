@@ -1,6 +1,7 @@
 <?php include_once '../include/header.php';?>
 
 <?php
+
 $p_id   = set_var($_SESSION['p_id']);
 $p_name = set_var($_SESSION['p_name']);
 $mode   = set_var($_GET['mode']);
@@ -21,10 +22,10 @@ $mode   = set_var($_GET['mode']);
 																		<li class="category3">
 <?php
 
-if ("edit" == $mode) {
-    echo '<strong>회원 정보수정</strong>';
+if ($mode == "edit") {
+    echo '<strong>개인회원 정보수정</strong>';
 } else {
-    echo '<strong>회원 가입폼 작성</strong>';
+    echo '<strong>개인회원 가입폼 작성</strong>';
 }
 ?>
 																		</li>
@@ -37,7 +38,7 @@ if ("edit" == $mode) {
 
 
 <?php
-if ("edit" == $mode) {
+if ($mode == "edit") {
 
     // 이름과 아이디에 해당되는 세션이 존재하는지 확인
     if (!isset($p_id) || !isset($p_name)) {
@@ -72,7 +73,8 @@ Start Edit Form =============================================================
  -->
 
 <?php
-if ("edit" == $mode) {
+
+if ($mode == "edit") {
     ?>
 
 										<div class="panel panel-danger">
@@ -122,7 +124,7 @@ if ("edit" == $mode) {
 											<div class="panel-body">
 
 												<div class="row">
-													<div class="col-xs-12 col-md-3 register-font">업체 아이디</div>
+													<div class="col-xs-12 col-md-3 register-font">아이디</div>
 													<div class="col-xs-12 col-md-3">
 															<label class="sr-only" for="userid">ID</label>
 															<input class="form-control" name="userid" type="text" id="userid" value="<?php echo $rows['id']; ?>" readonly />
@@ -152,7 +154,7 @@ if ("edit" == $mode) {
 												</div>
 
 												<div class="row">
-													<div class="col-xs-12 col-md-3 register-font">담당자 성명 및 직함</div>
+													<div class="col-xs-12 col-md-3 register-font">성명</div>
 													<div class="col-xs-12 col-md-3">
 														<label class="sr-only" for="md_name">담당자 성명</label>
 														<input class="form-control" type="text" id="md_name" name="md_name" value="<?php echo $rows['md_name']; ?>" required />
@@ -492,7 +494,8 @@ if ("edit" == $mode) {
 									</form>
 
 
-						<?php
+<?php
+
 } else {; //end edit mode
     ?>
 
@@ -500,13 +503,13 @@ if ("edit" == $mode) {
 Start Register Form =============================================================
  -->
 
-							<form name="form1" id="form1" role="form" class="form-group" method="post" action="//<?php echo $_SERVER['SERVER_NAME']; ?>:<?php echo $sslPort; ?>/member/register-ok.php">
+							<form name="form1" id="form1" role="form" class="form-group" method="post" action="//<?php echo $_SERVER['SERVER_NAME']; ?>:<?php echo $sslPort; ?>/member/p-register-ok.php">
 									<div class="panel panel-info margin-top-10">
 										<div class="panel-heading"><h4>기본정보</h4></div>
 											<div class="panel-body">
 
 												<div class="row">
-													<div class="col-xs-12 col-md-3 register-font">업체 아이디</div>
+													<div class="col-xs-12 col-md-3 register-font">아이디</div>
 													<div class="col-xs-12 col-md-3">
 															<label class="sr-only" for="userid">ID</label>
 															<input class="form-control" name="userid" type="text" id="userid" required />
@@ -535,33 +538,21 @@ Start Register Form ============================================================
 												</div>
 
 												<div class="row">
-													<div class="col-xs-12 col-md-3 register-font">담당자 성명 및 직함</div>
+													<div class="col-xs-12 col-md-3 register-font">성명</div>
 													<div class="col-xs-12 col-md-3">
-														<label class="sr-only" for="md_name">담당자 성명</label>
-														<input class="form-control" type="text" id="md_name" name="md_name" required />
-													</div>
-													<div class="col-xs-12 col-md-3">
-														<label class="sr-only" for="job_title">직함</label>
-														<input class="form-control" type="text" id="job_title" name="job_title" placeholder="직함" />
+														<label class="sr-only" for="name">성명</label>
+														<input class="form-control" type="text" id="name" name="name" required />
 													</div>
 												</div>
 
 												<div class="row">
-													<div class="col-xs-12 col-md-3 register-font">담당자 이메일</div>
+													<div class="col-xs-12 col-md-3 register-font">이메일</div>
 													<div class="col-xs-12 col-md-3">
-														<label class="sr-only" for="md_email">담당자 이메일</label>
-														<input class="form-control" type="email" id="md_email" name="md_email" required />
+														<label class="sr-only" for="email">이메일</label>
+														<input class="form-control" type="email" id="email" name="email" required />
 													</div>
 													<div class="col-md-6">
 														<input type="checkbox" name="optin" value="Y" checked="checked" /> 이메일 수신동의
-													</div>
-												</div>
-
-												<div class="row">
-													<div class="col-xs-12 col-md-3 register-font">담당자 휴대폰</div>
-													<div class="col-xs-12 col-md-3">
-															<label class="sr-only" for="md_hphone">담당자 휴대폰</label>
-															<input class="form-control" type="text" id="md_hphone" name="md_hphone" placeholder="010-xxxx-xxxx" required />
 													</div>
 												</div>
 
@@ -570,48 +561,18 @@ Start Register Form ============================================================
 
 
 										<div class="panel panel-info">
-											<div class="panel-heading"><h4>사업자 정보</h4> <p>(세금계산서 발행 등을 위해 사업자등록증과 동일하게 작성하시면 됩니다.)</p></div>
+											<div class="panel-heading"><h4>기본주소 정보</h4> </div>
 												<div class="panel-body">
 
-													<div class="row">
+														<div class="row">
 														<div class="col-xs-12 col-md-3 register-font">
-															사업자 등록번호
-														</div>
-														<div class="col-sm-6 col-md-3">
-															<label class="sr-only" for="license_no">사업자 등록번호</label>
-															<input class="form-control" type="text" id="license_no" name="license_no" placeholder="xxx-xx-xxxxx" required />
-														</div>
-													</div>
-
-													<div class="row">
-														<div class="col-xs-12 col-md-3 register-font">
-															업체명
-														</div>
-														<div class="col-sm-6 col-md-3">
-															<label class="sr-only" for="company_name">업체명</label>
-															<input class="form-control" type="text" id="company_name" name="company_name" required />
-														</div>
-													</div>
-
-													<div class="row">
-														<div class="col-xs-12 col-md-3 register-font">
-															대표자 성명
-														</div>
-														<div class="col-sm-6 col-md-3">
-															<label class="sr-only" for="ceo">성명</label>
-															<input class="form-control" type="text" id="ceo" name="ceo" required />
-														</div>
-													</div>
-
-													<div class="row">
-														<div class="col-xs-12 col-md-3 register-font">
-															사업장 소재지
+															기본 주소
 														</div>
 														<div class="col-xs-6 col-md-2">
 															<input class="form-control" type="text" name="o_zipcode1" id="o_zipcode1" readonly="readonly" />
 														</div>
 														<div class="col-xs-6 col-md-2">
-                               <button class="btn btn-primary" type="button" onclick="openDaumPostcode()">우편번호 검색</button>
+                                                    		<button class="btn btn-primary" type="button" onclick="openDaumPostcode()">우편번호 검색</button>
 														</div>
 													</div>
 													<!-- postcode searching function -->
@@ -666,59 +627,26 @@ Start Register Form ============================================================
 															<input class="form-control" type="text" name="o_addr1" id="o_addr1" readonly="readonly" />
 														</div>
 														<div class="col-xs-12 col-md-4">
-															<label class="sr-only" for="o_addr2">사업장 소재지</label>
+															<label class="sr-only" for="o_addr2">상세주소</label>
 															<input class="form-control" type="text" id="o_addr2" name="o_addr2" required />
 														</div>
 													</div>
 
 													<div class="row">
 														<div class="col-xs-12 col-md-3 register-font">
-															업 태
+															일반 전화번호
 														</div>
 														<div class="col-xs-12 col-md-3">
-															<label class="sr-only" for="category1">업태</label>
-															<input class="form-control" type="text" id="category1" name="category1" required />
-														</div>
-													</div>
-
-													<div class="row">
-														<div class="col-xs-12 col-md-3 register-font">
-															종 목
-														</div>
-														<div class="col-xs-12 col-md-3">
-															<label class="sr-only" for="category2">종목</label>
-															<input class="form-control" type="text" id="category2" name="category2" required />
-														</div>
-													</div>
-
-													<div class="row">
-														<div class="col-xs-12 col-md-3 register-font">
-															과세 여부
-														</div>
-														<div class="col-xs-12 col-md-3 register-font">
-																<label class="sr-only" for="tax_type">과세 여부</label>
-																<input type="radio" id="tax_type_ilban" name="tax_type" value="1" checked required />일반과세자
-																<input type="radio" id="tax_type_gani" name="tax_type" value="2" required />간이과세자
-														</div>
-													</div>
-
-													<div class="row">
-														<div class="col-xs-12 col-md-3 register-font">
-															사업장 전화번호
-														</div>
-														<div class="col-xs-12 col-md-3">
-															<label class="sr-only" for="o_phone">사업장 전화번호</label>
+															<label class="sr-only" for="o_phone">일반 전화번호</label>
 															<input class="form-control" type="text" id="o_phone" name="o_phone" placeholder="02-xxx-xxxx" required />
 														</div>
 													</div>
 
 													<div class="row">
-														<div class="col-xs-12 col-md-3 register-font">
-															사업장 팩스
-														</div>
+														<div class="col-xs-12 col-md-3 register-font">휴대폰</div>
 														<div class="col-xs-12 col-md-3">
-															<label class="sr-only" for="o_fax">사업장 팩스</label>
-															<input class="form-control" type="text" id="o_fax" name="o_fax" placeholder="02-xxx-xxxx" />
+																<label class="sr-only" for="hphone">휴대폰</label>
+																<input class="form-control" type="text" id="hphone" name="hphone" placeholder="010-xxxx-xxxx" required />
 														</div>
 													</div>
 
@@ -731,7 +659,7 @@ Start Register Form ============================================================
 
 													<div class="row">
 														<div class="col-xs-12 col-md-12">
-																<input type="checkbox" name="same_info" onClick="useSameAddr()" > 사업장 소재지와 동일한 경우 체크
+																<input type="checkbox" name="same_info" onClick="usePmemberSameAddr()" > 기본 주소정보와 동일한 경우 체크
 														</div>
 													</div>
 
@@ -819,12 +747,10 @@ Start Register Form ============================================================
 													</div>
 
 													<div class="row">
-														<div class="col-xs-12 col-md-3 register-font">
-															배송지 팩스
-														</div>
-														<div class="col-sm-12 col-md-3">
-															<label class="sr-only" for="d_fax">배송지 팩스</label>
-															<input class="form-control" type="text" name="d_fax" placeholder="02-xxx-xxxx" />
+														<div class="col-xs-12 col-md-3 register-font">휴대폰</div>
+														<div class="col-xs-12 col-md-3">
+																<label class="sr-only" for="d_hphone">휴대폰</label>
+																<input class="form-control" type="text" id="d_hphone" name="d_hphone" placeholder="010-xxxx-xxxx" required />
 														</div>
 													</div>
 
