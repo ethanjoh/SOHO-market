@@ -112,7 +112,7 @@ if ("edit" == $mode) {
 										</div>
 												</form>
 
-									<form name="form1" id="form1" role="form" class="form-group" method="post" action="//<?php echo $_SERVER['SERVER_NAME']; ?>:<?php echo $port; ?>/member/register-ok.php">
+									<form name="form1" id="form1" role="form" class="form-group" method="post" action="//<?php echo $_SERVER['SERVER_NAME']; ?>:<?php echo $sslPort; ?>/member/register-ok.php">
 									<input type="hidden" name="mode" value="edit">
 									<input type="hidden" name="session_id" value="<?php echo $p_id; ?>">
 									<input type="hidden" name="session_name" value="<?php echo $p_name; ?>">

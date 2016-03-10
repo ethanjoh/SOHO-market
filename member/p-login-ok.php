@@ -11,7 +11,7 @@ $msave_all = set_var($_POST['msave_all']);
 $date_expiry = time() + 60 * 60 * 24 * 30; //30일동안 아이디저장
 
 //회원 테이블에서 정보확인
-$query  = "SELECT * FROM member WHERE id=binary('$id') ";
+$query  = "SELECT * FROM p_member WHERE id=binary('$id') ";
 $result = mysqli_query($connect, $query);
 $rows   = mysqli_fetch_array($result);
 
@@ -23,9 +23,9 @@ if ($rows['passwd'] != sha1($pwd)) {
 
     $_SESSION["p_id"] = $id;
     // $_SESSION["p_pw"]    = $pwd;
-    $_SESSION["p_name"]  = $rows['company_name'];
-    $_SESSION["p_email"] = $rows['md_email'];
-    $_SESSION["p_flag"]  = "c"; //멤버구분 플래그 p:개인회원, c:기업회원
+    $_SESSION["p_name"]  = $rows['name'];
+    $_SESSION["p_email"] = $rows['email'];
+    $_SESSION["p_flag"]  = "p"; //멤버구분 플래그 p:개인회원, c:기업회원
 
     //save id and passwd
     if ($msave_all) {

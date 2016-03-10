@@ -55,6 +55,7 @@ function show_login_menu()
 {
     $sessionId   = set_var($_SESSION['p_id']);
     $sessionName = set_var($_SESSION['p_name']);
+    $sessionFlag = set_var($_SESSION['p_flag']);
 
 // 미로그인
     if (!$sessionId || !$sessionName) {
@@ -63,7 +64,7 @@ function show_login_menu()
                                     <div class="top-cart-contain">
                                         <div class="block-cart">
                                             <div class="top-cart-title">
-                                                <a href="/shop/cart.php"><p><span>빈 카트</span></p></a>
+                                                <a href="/member/login.php"><p><span>빈 카트</span></p></a>
                                             </div>
                                         </div>
                                     </div>
@@ -92,8 +93,8 @@ function show_login_menu()
 
 HEREDOC;
 
-// 로그인
-    } else {
+// 기업회원 로그인
+    } elseif ($sessionFlag == "c") {
         $numberOfItems = count_items_in_cart();
 
         echo <<<HEREDOC
@@ -134,8 +135,49 @@ HEREDOC;
 
 
 HEREDOC;
-    }
+//개인회원 로그인
+    } elseif ($sessionFlag == "p") {
+        $numberOfItems = count_items_in_cart();
 
+        echo <<<HEREDOC
+                                <div class="top-cart-wrapper">
+                                    <div class="top-cart-contain">
+                                        <div class="block-cart">
+                                            <div class="top-cart-title">
+                                                <a href="/shop/cart.php">
+                                                <span id="cartInfo" class="cart-item">{$numberOfItems}</span></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="top-login">
+                                    <div class=" block-compare">
+                                        <div>
+                                            <a href="/member/logout.php"><i class="fa fa-unlock"></i> 로그아웃 </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="top-register">
+                                    <div class=" block-compare">
+                                        <div class="compare">
+                                            <a href="#"><i class="fa fa-cog"></i> 마이메뉴 </a>
+                                        </div>
+                                        <div class="home" id="right">
+                                            <ul>
+                                                <li><a href="/shop/order-list.php"><i class="fa fa-list-alt"></i> 주문내역</a></li>
+                                                <li><a href="/shop/order-stat-list.php"><i class="fa fa-bar-chart"></i> 통계보기</a></li>
+                                                <li><a href="/member/p-register-form.php?mode=edit"><i class="fa fa-wrench"></i> 정보수정</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+HEREDOC;
+    }
 }
 
 /**
@@ -1141,6 +1183,9 @@ function show_login_form()
                             </div> <!-- //.login-form -->
                             <div class="form-bottom-line about-optima-text">
                                 <button class="button2 elit" type="submit"><strong>로그인</strong></button>
+                                <div>
+                                    <input type="checkbox" name="msave_all">아이디 저장
+                                </div>
                             </div>
                             </form>
                         </div> <!-- //.login-form-head -->
@@ -1148,7 +1193,7 @@ function show_login_form()
                     <div class="col-md-6 client-say">
                         <div class="login-form-head">
                             <h2>개인회원 로그인</h2>
-                            <form method="post" name="p_login" action="//{$_SERVER['SERVER_NAME']}:{$sslPort}/member/login-ok.php" onsubmit="return(p_login_check());">
+                            <form method="post" name="p_login" action="//{$_SERVER['SERVER_NAME']}:{$sslPort}/member/p-login-ok.php" onsubmit="return(p_login_check());">
                             <input type="hidden" name="uri" value="{$uri}">
 
                             <div class="login-form">
@@ -1163,7 +1208,12 @@ function show_login_form()
                             </div> <!-- //.login-form -->
                             <div class="form-bottom-line about-optima-text">
                                 <button class="button2 elit" type="submit"><strong>로그인</strong></button>
+                                <div>
+                                    <input type="checkbox" name="msave_all">아이디 저장
+                                </div>
                             </div>
+
+
                             </form>
                         </div> <!-- //.login-form-head -->
                     </div> <!-- //.col-md-6 client-say -->
