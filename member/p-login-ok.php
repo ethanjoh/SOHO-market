@@ -16,7 +16,8 @@ $result = mysqli_query($connect, $query);
 $rows   = mysqli_fetch_array($result);
 
 if ($rows['passwd'] != sha1($pwd)) {
-    msg('비밀번호가 틀립니다.');
+    err_msg('비밀번호가 틀립니다.');
+    exit
 } else {
     // ini_set("session.cookie_domain", $_SERVER['SERVER_NAME']); //서브도메인간 세션 공유
     session_start();

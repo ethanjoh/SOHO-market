@@ -58,7 +58,7 @@ function show_login_menu()
     $sessionFlag = set_var($_SESSION['p_flag']);
 
 // 미로그인
-    if (!$sessionId || !$sessionName) {
+    if (!$sessionId || !$sessionName || !$sessionFlag) {
         echo <<<HEREDOC
                                 <div class="top-cart-wrapper">
                                     <div class="top-cart-contain">
