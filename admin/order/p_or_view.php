@@ -2,11 +2,11 @@
 
 <?php
 
-$mode      = set_var($_GET['mode']);
-$oid       = set_var($_GET['oid']);
-$key       = set_var($_GET['key']);
-$key_value = set_var($_GET['key_value']);
-$page      = '';
+	$mode    = set_var($_GET['mode']);
+	$oid     = set_var($_GET['oid']);
+	$key     = set_var($_GET['key']);
+	$keyword = set_var($_GET['keyword']);
+	$page    = '';
 ?>
 	<body>
 	  <section id="container" >
@@ -45,24 +45,24 @@ $page      = '';
 
 <?php
 
-$sql = "SELECT * FROM mall_order WHERE num = '$oid' ";
-$res = mysqli_query($connect, $sql);
-$row = mysqli_fetch_array($res);
+	$sql = "SELECT * FROM mall_order WHERE num = '$oid' ";
+	$res = mysqli_query($connect, $sql);
+	$row = mysqli_fetch_array($res);
 
-$today = date("Y-m-d H:i:s");
+	$today = date("Y-m-d H:i:s");
 
-//$com = explode(",", $row['company_name']);
-$a_goods_fk = explode(",", $row['goods_fk']);
-$org_price  = explode(",", $row['goods_price']);
-$mod_price  = explode(",", $row['mod_price']);
-$org_volume = explode(",", $row['goods_count']); //주문수량
-$mod_volume = explode(",", $row['mod_count']);   //변경된 수량
-$option     = explode(",", $row['goods_kind']);  //옵션정보
+	//$com = explode(",", $row['company_name']);
+	$a_goods_fk = explode(",", $row['goods_fk']);
+	$org_price  = explode(",", $row['goods_price']);
+	$mod_price  = explode(",", $row['mod_price']);
+	$org_volume = explode(",", $row['goods_count']); //주문수량
+	$mod_volume = explode(",", $row['mod_count']);   //변경된 수량
+	$option     = explode(",", $row['goods_kind']);  //옵션정보
 
-$tot_amount = 0;
-$org_amount = 0;
-$t_count    = 0;
-$mt_count   = 0;
+	$tot_amount = 0;
+	$org_amount = 0;
+	$t_count    = 0;
+	$mt_count   = 0;
 ?>
 
 				<!-- order list start -->
@@ -70,7 +70,7 @@ $mt_count   = 0;
 		            <div class="col-sm-12">
 						<section class="panel">
 							<header class="panel-heading table-head">
-							    주문 상세내역 (							                         							                         							                         							                         							                         							                         							                         							                         							                         							                         							                         							                         							                         							                         							                         							                         							                         							                         							                         							                         							                         							                         							                         							                          <?php echo $oid; ?> )
+							    주문 상세내역 (							                         							                         							                         							                         							                         							                         							                         							                         							                         							                         							                         							                         							                         							                         							                         							                         							                         							                         							                         							                         							                         							                         							                         							                         							                         							                         							                         							                         							                          <?php echo $oid; ?> )
 						  	</header>
 						  	<div class="panel-body">
 
@@ -94,42 +94,41 @@ $mt_count   = 0;
 
 <?php
 
-//물건 정보를 불러옵니다.
-for ($i = 0; $i < sizeof($a_goods_fk); $i++) {
-    $pro_sql    = "SELECT * FROM products WHERE num='$a_goods_fk[$i]'";
-    $pro_result = mysqli_query($connect, $pro_sql);
-    $pro_row    = mysqli_fetch_array($pro_result);
+	//물건 정보를 불러옵니다.
+	for ($i = 0; $i < sizeof($a_goods_fk); $i++) {
+	    $pro_sql    = "SELECT * FROM products WHERE num='$a_goods_fk[$i]'";
+	    $pro_result = mysqli_query($connect, $pro_sql);
+	    $pro_row    = mysqli_fetch_array($pro_result);
 
-    //$goods_name= cut_string_utf8($pro_row['name'],30, "...");
-    $goods_name = $pro_row['name'];
-    $img_char   = $pro_row['s_image1_name'];
+	    //$goods_name= cut_string_utf8($pro_row['name'],30, "...");
+	    $goods_name = $pro_row['name'];
+	    $img_char   = $pro_row['s_image1_name'];
 
-    //상품옵션 품절표시
-    //상품 옵션이 있는지 확인 후 진행
-    if ($option[$i] != "") {
-                                                            //장바구니의 옵션과 제품정보를 비교하여 품절옵션이 있는지 확인
-        $t_opt       = explode(",", $pro_row['opt']);       //제품의 옵션명을 배열로 만들어준다
-        $t_opt_stock = explode(",", $pro_row['opt_stock']); //제품의 옵션재고를 배열로 만들어준다
+	    //상품옵션 품절표시
+	    //상품 옵션이 있는지 확인 후 진행
+	    if ($option[$i] != "") {
+	                                                            //장바구니의 옵션과 제품정보를 비교하여 품절옵션이 있는지 확인
+	        $t_opt       = explode(",", $pro_row['opt']);       //제품의 옵션명을 배열로 만들어준다
+	        $t_opt_stock = explode(",", $pro_row['opt_stock']); //제품의 옵션재고를 배열로 만들어준다
 
-        //옵션의 문자열 비교
-        for ($j = 0; $j < count($t_opt); $j++) {
-            $str = strcmp($t_opt[$j], $option[$i]);
+	        //옵션의 문자열 비교
+	        for ($j = 0; $j < count($t_opt); $j++) {
+	            $str = strcmp($t_opt[$j], $option[$i]);
 
-            if (!$str) {
-                //문자열이 같다면 문자열 대체
-                if ($t_opt_stock[$j] == "0") {
-                    $option[$i] .= " (품절)";
-                } elseif ($t_opt_stock[$j] == "-1") {
-                    $option[$i] .= " (단종)";
-                } else {
-                    $option[$i] = $t_opt[$j];
-                }
+	            if (!$str) {
+	                //문자열이 같다면 문자열 대체
+	                if ($t_opt_stock[$j] == "0") {
+	                    $option[$i] .= " (품절)";
+	                } elseif ($t_opt_stock[$j] == "-1") {
+	                    $option[$i] .= " (단종)";
+	                } else {
+	                    $option[$i] = $t_opt[$j];
+	                }
 
-            }
+	            }
 
-        } //end of for loop
-    }
-    ; //end of if clause
+	        } //end of for loop
+	    } //end of if clause
     ?>
 
 									<tr>
@@ -140,20 +139,20 @@ for ($i = 0; $i < sizeof($a_goods_fk); $i++) {
 										  <?php echo show_icon($pro_row['num']); ?> &nbsp;<a href="" onclick="javascript:open_win('edit_pro.php?oid=<?php echo $oid; ?>&amp;p_num=<?php echo $pro_row['num']; ?>&amp;lcode=<?php echo $pro_row['category_l']; ?>&amp;mcode=<?php echo $pro_row['category_m']; ?>&amp;scode=<?php echo $pro_row['category_s']; ?>','nwin','scrollbars=yes,resizable=yes, width=800,height=650');"><?php echo stripslashes($goods_name); ?></a>
 <?php
 
-    if ($option[$i]) {
-        echo "<p>[" . $option[$i] . "]</p>\n";
-    }
+	    if ($option[$i]) {
+	        echo "<p>[" . $option[$i] . "]</p>\n";
+	    }
 
     ?>
 										</td>
 
 <?php
 
-    if ($org_volume[$i] > 1) {
-        echo "<td><strong>" . $org_volume[$i] . "</strong></td>\n";
-    } else {
-        echo "<td>" . $org_volume[$i] . "</td>\n";
-    }
+	    if ($org_volume[$i] > 1) {
+	        echo "<td><strong>" . $org_volume[$i] . "</strong></td>\n";
+	    } else {
+	        echo "<td>" . $org_volume[$i] . "</td>\n";
+	    }
     ?>
 										<td>
 											<input type="text" class="form-control" name="mod_volume[]" size="5" value="<?php echo $mod_volume[$i]; ?>" />&nbsp;<input class="form-control" type="submit" value="변경" />
@@ -162,16 +161,16 @@ for ($i = 0; $i < sizeof($a_goods_fk); $i++) {
 <!--
 <?php
 
-    if ($pro_row['sale_price']) {
-        echo "<td><s>" . number_format($pro_row['retail_price']) . "</s> 원<br/>" . number_format($pro_row['sale_price']) . " 원\n";
-    } else {
-        echo "<td>" . number_format($pro_row['retail_price']) . " 원\n";
-    }
+	    if ($pro_row['sale_price']) {
+	        echo "<td><s>" . number_format($pro_row['retail_price']) . "</s> 원<br/>" . number_format($pro_row['sale_price']) . " 원\n";
+	    } else {
+	        echo "<td>" . number_format($pro_row['retail_price']) . " 원\n";
+	    }
 
-    if ($pro_row['fixed_price']) {
-        echo "<td><img src=\"../images/lock.png\" alt=\"고정공급가\">" . number_format($org_price[$i]) . " 원<br>(" . number_format((1 - ($org_price[$i] / $pro_row['retail_price'])) * 100) . "% ↓)</td>\n";
-    } else {
-        echo "<td>" . number_format($org_price[$i]) . " 원<br>(" . number_format((1 - ($org_price[$i] / $pro_row['retail_price'])) * 100) . "% ↓)</td>\n";
+	    if ($pro_row['fixed_price']) {
+	        echo "<td><img src=\"../images/lock.png\" alt=\"고정공급가\">" . number_format($org_price[$i]) . " 원<br>(" . number_format((1 - ($org_price[$i] / $pro_row['retail_price'])) * 100) . "% ↓)</td>\n";
+	    } else {
+	        echo "<td>" . number_format($org_price[$i]) . " 원<br>(" . number_format((1 - ($org_price[$i] / $pro_row['retail_price'])) * 100) . "% ↓)</td>\n";
     }
     ?> -->
 										<td>
@@ -183,8 +182,8 @@ for ($i = 0; $i < sizeof($a_goods_fk); $i++) {
 
 <?php
 
-    $sub_amount = (int) $mod_volume[$i] * (int) $mod_price[$i];
-    //$sub_amount = number_format($sub_amount);
+	    $sub_amount = (int) $mod_volume[$i] * (int) $mod_price[$i];
+	    //$sub_amount = number_format($sub_amount);
     ?>
 
 										<td><?php echo number_format($sub_amount); ?> 원</td>
@@ -192,30 +191,30 @@ for ($i = 0; $i < sizeof($a_goods_fk); $i++) {
 
 <?php
 
-    $tot_amount = $tot_amount + ((int) $mod_price[$i] * (int) $mod_volume[$i]);
-    $org_amount = $org_amount + ((int) $org_price[$i] * (int) $org_volume[$i]);
-    $t_count    = $t_count + (int) $org_volume[$i];
-    $mt_count   = $mt_count + (int) $mod_volume[$i];
+	    $tot_amount = $tot_amount + ((int) $mod_price[$i] * (int) $mod_volume[$i]);
+	    $org_amount = $org_amount + ((int) $org_price[$i] * (int) $org_volume[$i]);
+	    $t_count    = $t_count + (int) $org_volume[$i];
+	    $mt_count   = $mt_count + (int) $mod_volume[$i];
 
-} // end of for loop
+	} // end of for loop
 
-$trans_cost = trans_cal($tot_amount, $connect);
-// $last_cost = $tot_amount + $row['trans_cost'];
-$last_cost = $tot_amount;
+	$trans_cost = trans_cal($tot_amount, $connect);
+	// $last_cost = $tot_amount + $row['trans_cost'];
+	$last_cost = $tot_amount;
 
-if ($row['trans_cost'] != "0") {
-    $amount_o            = $tot_amount + $row['trans_cost'];
-    $amount_order_detail = " ( " . $tot_amount . " 원 + " . $row['trans_cost'] . " 원 ) ";
-} else {
-    $amount_o = $tot_amount;
-}
+	if ($row['trans_cost'] != "0") {
+	    $amount_o            = $tot_amount + $row['trans_cost'];
+	    $amount_order_detail = " ( " . $tot_amount . " 원 + " . $row['trans_cost'] . " 원 ) ";
+	} else {
+	    $amount_o = $tot_amount;
+	}
 
-//$tot_amount = number_format($tot_amount);
+	//$tot_amount = number_format($tot_amount);
 
-//배송정책 가져옴
-$query4  = "SELECT * FROM misc_setup WHERE id='admin' ";
-$result4 = mysqli_query($connect, $query4);
-$misc    = mysqli_fetch_array($result4);
+	//배송정책 가져옴
+	$query4  = "SELECT * FROM misc_setup WHERE id='admin' ";
+	$result4 = mysqli_query($connect, $query4);
+	$misc    = mysqli_fetch_array($result4);
 
 ?>
 							</form>
@@ -230,12 +229,12 @@ $misc    = mysqli_fetch_array($result4);
 									</tr>
 
 <?php
-//$last_cost2 = $row['delivery_cost'] + $row['ship_cost']; //최종입력될 가격
+	//$last_cost2 = $row['delivery_cost'] + $row['ship_cost']; //최종입력될 가격
 ;?>
 
 <?php
-// $final = $last_cost + $last_cost2;
-$final = $last_cost;
+	// $final = $last_cost + $last_cost2;
+	$final = $last_cost;
 ?>
  									<tr>
  						    			<td colspan="8" ><i class="fa fa-envelope"></i> 배송 시 요청사항: <span><?php echo nl2br($row['memo_to_delivery']); ?></span>
@@ -259,7 +258,7 @@ $final = $last_cost;
 							<tbody>
 								<tr>
 									<td colspan="9" class="text-center">
-										<a class="btn btn-primary" href="p_top_order_list.php?mode=<?php echo $mode; ?>&amp;oid=<?php echo $oid; ?>&amp;key_value=<?php echo $key_value; ?>&amp;page=<?php echo $page; ?>">주문 목록</a>
+										<a class="btn btn-primary" href="p_top_order_list.php?mode=<?php echo $mode; ?>&amp;oid=<?php echo $oid; ?>&amp;keyword=<?php echo $keyword; ?>&amp;page=<?php echo $page; ?>">주문 목록</a>
 										<a class="btn btn-default" href="" onclick="javascript:open_win('print_quot.php?oid=<?php echo $oid; ?>','nwin','scrollbars=yes,resizable=yes,width=685');"><i class="fa fa-print"></i> 명세서 출력</a>
 										<a class="btn btn-default" href="quottoexcel.php?oid=<?php echo $oid; ?>"><i class="fa fa-file-excel-o"></i> 엑셀로 명세서 다운로드</a>
 									</td>
@@ -273,18 +272,18 @@ $final = $last_cost;
 
 <?php
 
-if ($row['payment_type'] == 1) {$payment_type = "무통장 입금";}
-if ($row['payment_type'] == 2) {$payment_type = "신용카드";}
-if ($row['payment_type'] == 2) {$payment_type = "휴대폰 결제";}
+	if ($row['payment_type'] == 1) {$payment_type = "무통장 입금";}
+	if ($row['payment_type'] == 2) {$payment_type = "신용카드";}
+	if ($row['payment_type'] == 2) {$payment_type = "휴대폰 결제";}
 
-$a_status['0'] = '<i class="fa fa-exclamation-triangle"></i> 발송지연';
-$a_status['3'] = '<i class="fa fa-circle"></i> 미처리 주문';
-$a_status['5'] = '<i class="fa fa-check-circle"></i> 주문확인';
-$a_status['7'] = '<i class="fa fa-cube"></i> 포장완료';
-$a_status['8'] = '<i class="fa fa-truck"></i> 발송완료(' . $row['senddate'] . ')';
+	$a_status['0'] = '<i class="fa fa-exclamation-triangle"></i> 발송지연';
+	$a_status['3'] = '<i class="fa fa-circle"></i> 미처리 주문';
+	$a_status['5'] = '<i class="fa fa-check-circle"></i> 주문확인';
+	$a_status['7'] = '<i class="fa fa-cube"></i> 포장완료';
+	$a_status['8'] = '<i class="fa fa-truck"></i> 발송완료(' . $row['senddate'] . ')';
 
-//도서신간지역 구분
-// $bg = check_zipno($row['recipient_zipcode'], $row);
+	//도서신간지역 구분
+	// $bg = check_zipno($row['recipient_zipcode'], $row);
 
 ?>
 
@@ -293,7 +292,7 @@ $a_status['8'] = '<i class="fa fa-truck"></i> 발송완료(' . $row['senddate'] 
 		            <div class="col-sm-12">
 						<section class="panel">
 							<header class="panel-heading table-head">
-							    주문번호							                							                							                							                							                							                							                							                							                							                							                							                							                							                							                							                							                							                							                							                							                							                							                							                 <?php echo $row['orderid']; ?> (주문일시 :<?php echo $row['createdate']; ?>)
+							    주문번호							                							                							                							                							                							                							                							                							                							                							                							                							                							                							                							                							                							                							                							                							                							                							                							                							                							                							                							                							                 <?php echo $row['orderid']; ?> (주문일시 :<?php echo $row['createdate']; ?>)
 						  	</header>
 						  	<div class="panel-body">
 						  		<div class="table-responsive">
@@ -328,46 +327,46 @@ $a_status['8'] = '<i class="fa fa-truck"></i> 발송완료(' . $row['senddate'] 
 								    <td  colspan="3">
 <?php
 
-$pay_status = '';
-$pay_status = get_pg_info($row['orderid']);
+	$pay_status = '';
+	$pay_status = get_pg_info($row['orderid']);
 
-$qry   = "SELECT * FROM member WHERE id='$row[user_id]' ";
-$res   = mysqli_query($connect, $qry);
-$mrows = mysqli_fetch_array($res);
+	$qry   = "SELECT * FROM member WHERE id='$row[user_id]' ";
+	$res   = mysqli_query($connect, $qry);
+	$mrows = mysqli_fetch_array($res);
 
-// switch ($mrows['payment_day']) {
-//     case "1":
-//         echo "당일 결제";
-//         break;
-//     case "2":
-//         echo "당월 말";
-//         break;
-//     case "3":
-//         echo "익월 5일";
-//         break;
-//     case "4":
-//         echo "익월 10일";
-//         break;
-//     case "5":
-//         echo "익월 15일";
-//         break;
-//     case "6":
-//         echo "익월 20일";
-//         break;
-//     case "7":
-//         echo "익월 25일";
-//         break;
-//     case "8":
-//         echo "익월 말";
-//         break;
-//     case "9":
-//         echo "기타";
-//         break;
-// }
+	// switch ($mrows['payment_day']) {
+	//     case "1":
+	//         echo "당일 결제";
+	//         break;
+	//     case "2":
+	//         echo "당월 말";
+	//         break;
+	//     case "3":
+	//         echo "익월 5일";
+	//         break;
+	//     case "4":
+	//         echo "익월 10일";
+	//         break;
+	//     case "5":
+	//         echo "익월 15일";
+	//         break;
+	//     case "6":
+	//         echo "익월 20일";
+	//         break;
+	//     case "7":
+	//         echo "익월 25일";
+	//         break;
+	//     case "8":
+	//         echo "익월 말";
+	//         break;
+	//     case "9":
+	//         echo "기타";
+	//         break;
+	// }
 
-echo $pay_status;
+	echo $pay_status;
 
-show_pay_data($row['orderid']);
+	show_pay_data($row['orderid']);
 ?>
                                     </td>
 								  </tr>
@@ -384,14 +383,14 @@ show_pay_data($row['orderid']);
 								    </td>
 								    <th>확정금액</th>
 								    <td  colspan="3"><?php
-if ($row['status'] == '7' || $row['status'] == '8') {
-    echo "<strong><font color=\"#AE3E0D\">" .
-    number_format($final) . "&nbsp;원 (VAT 포함)</font> = " . number_format($final) . "</strong>\n";
+								                     	if ($row['status'] == '7' || $row['status'] == '8') {
+								                     	    echo "<strong><font color=\"#AE3E0D\">" .
+								                     	    number_format($final) . "&nbsp;원 (VAT 포함)</font> = " . number_format($final) . "</strong>\n";
 
-} else {
-    echo "<strong>최종 입금금액을 산출 중입니다.</strong>";
-}
-?></td>
+								                     	} else {
+								                     	    echo "<strong>최종 입금금액을 산출 중입니다.</strong>";
+								                     }
+								                     ?></td>
 								  </tr>
 								  <tr>
 								    <th rowspan="2">배송상태</th>
@@ -401,10 +400,10 @@ if ($row['status'] == '7' || $row['status'] == '8') {
 								    <td colspan="3">
 
 								      	<form class="form-inline" role="form" name="form0" method="post" action="or_changed.php" style="display: inline-block;">
-									        <input type="hidden" name="mode" id="mode0" value="1" />
+									        <input type="hidden" name="mode" id="mode0" value="orderConfirm" />
 									        <input type="hidden" name="oid" id="oid0" value="<?php echo $oid; ?>" />
 									        <input type="hidden" name="key" value="<?php echo $key; ?>" />
-									        <input type="hidden" name="key_value" value="<?php echo $key_value; ?>" />
+									        <input type="hidden" name="keyword" value="<?php echo $keyword; ?>" />
 									        <input type="hidden" name="page" value="<?php echo $page; ?>" />
 									        <input type="hidden" name="status" value="<?php echo $row['status']; ?>" />
 									        <input type="hidden" name="last_amount" value="<?php echo $final; ?>" />
@@ -416,10 +415,10 @@ if ($row['status'] == '7' || $row['status'] == '8') {
 								    	</form>
 
 								      <form class="form-inline" role="form" name="form1" method="post" action="or_changed.php" style="display: inline-block;">
-								        <input type="hidden" name="mode" id="mode1" value="2" />
+								        <input type="hidden" name="mode" id="mode1" value="packingDone" />
 								        <input type="hidden" name="oid" id="oid1" value="<?php echo $oid; ?>" />
 								        <input type="hidden" name="key" value="<?php echo $key; ?>" />
-								        <input type="hidden" name="key_value" value="<?php echo $key_value; ?>" />
+								        <input type="hidden" name="keyword" value="<?php echo $keyword; ?>" />
 								        <input type="hidden" name="page" value="<?php echo $page; ?>" />
 								        <input type="hidden" name="status" value="<?php echo $row['status']; ?>" />
 								        <input type="hidden" name="last_amount" id="last_amount1" value="<?php echo $final; ?>" />
@@ -431,10 +430,10 @@ if ($row['status'] == '7' || $row['status'] == '8') {
 								      </form>
 
 									<form class="form-inline" role="form" name="form2" method="post" action="or_changed.php" style="display: inline-block;">
-								        <input type="hidden" name="mode" id="mode2" value="0" />
+								        <input type="hidden" name="mode" id="mode2" value="delay" />
 								        <input type="hidden" name="oid" id="oid2" value="<?php echo $oid; ?>" />
 								        <input type="hidden" name="key" value="<?php echo $key; ?>" />
-								        <input type="hidden" name="key_value" value="<?php echo $key_value; ?>" />
+								        <input type="hidden" name="keyword" value="<?php echo $keyword; ?>" />
 								        <input type="hidden" name="page" value="<?php echo $page; ?>" />
 								        <input type="hidden" name="status" value="<?php echo $row['status']; ?>" />
 								        <input type="hidden" name="last_amount" id="last_amount2" value="<?php echo $final; ?>" />
@@ -447,10 +446,10 @@ if ($row['status'] == '7' || $row['status'] == '8') {
 									<p>
 
 								      <form class="form-inline" role="form" name="form3" method="post" action="or_changed.php"  style="display: inline-block;">
-								        <input type="hidden" name="mode" id="mode3" value="3" />
+								        <input type="hidden" name="mode" id="mode3" value="sent" />
 								        <input type="hidden" name="oid" id="oid3" value="<?php echo $oid; ?>" />
 								        <input type="hidden" name="key" id="key3" value="<?php echo $key; ?>" />
-								        <input type="hidden" name="key_value" id="key_value3" value="<?php echo $key_value; ?>" />
+								        <input type="hidden" name="keyword" id="keyword3" value="<?php echo $keyword; ?>" />
 								        <input type="hidden" name="page" id="page3" value="<?php echo $page; ?>" />
 								        <input type="hidden" name="status" value="<?php echo $row['status']; ?>" />
 								        <input type="hidden" name="last_amount" id="last_amount3" value="<?php echo $final; ?>" />
@@ -462,24 +461,24 @@ if ($row['status'] == '7' || $row['status'] == '8') {
 								        <p class="help-block"><i class="fa fa-exclamation-triangle"></i> 여러 개 운송장 입력 시 구분은 ',(콤마)'로 분리하세요 </p>
 								      </form>
 <?php
-if ($row['status'] == "8" || $row['status'] == "-1" && $row['delivery_type'] == "L") {
-    //택배사 정보
-    // $log_sql    = "SELECT * FROM misc_setup";
-    // $log_result = mysqli_query($connect, $log_sql);
-    // $log_row    = mysqli_fetch_array($log_result);
+	if ($row['status'] == "8" || $row['status'] == "-1" && $row['delivery_type'] == "L") {
+	    //택배사 정보
+	    // $log_sql    = "SELECT * FROM misc_setup";
+	    // $log_result = mysqli_query($connect, $log_sql);
+	    // $log_row    = mysqli_fetch_array($log_result);
 
-    // //운송장번호 분리
-    // $t_no_arr = explode(",", $row['track_no']);
-    echo '<p class="help-block">(<i class="fa fa-exclamation-circle"></i> 상품추적 : ' . show_logistics();
+	    // //운송장번호 분리
+	    // $t_no_arr = explode(",", $row['track_no']);
+	    echo '<p class="help-block">(<i class="fa fa-exclamation-circle"></i> 상품추적 : ' . show_logistics();
 
-    // for ($i = 0; $i < count($t_no_arr); $i++) {
-    //     //운송장번호 '-' 제거
-    //     $t_no = preg_replace("/-/", "", $t_no_arr[$i]);
-    //     echo "<a href=\"#\" onClick=\"javascript:TrackInfo(" . $t_no . ");\">" . $t_no . " </a> ";
-    // }
+	    // for ($i = 0; $i < count($t_no_arr); $i++) {
+	    //     //운송장번호 '-' 제거
+	    //     $t_no = preg_replace("/-/", "", $t_no_arr[$i]);
+	    //     echo "<a href=\"#\" onClick=\"javascript:TrackInfo(" . $t_no . ");\">" . $t_no . " </a> ";
+	    // }
 
-    echo show_track_no($oid) . ' )</p>';
-}
+	    echo show_track_no($oid) . ' )</p>';
+	}
 ?>
 									</p>
 
@@ -502,7 +501,7 @@ if ($row['status'] == "8" || $row['status'] == "-1" && $row['delivery_type'] == 
 							<tbody>
 								<tr>
 								<td colspan="9" class="text-center">
-									<a class="btn btn-primary" href="p_top_order_list.php?mode=<?php echo $mode; ?>&amp;oid=<?php echo $oid; ?>&amp;key_value=<?php echo $key_value; ?>&amp;page=<?php echo $page; ?>">주문 목록</a>
+									<a class="btn btn-primary" href="p_top_order_list.php?mode=<?php echo $mode; ?>&amp;oid=<?php echo $oid; ?>&amp;keyword=<?php echo $keyword; ?>&amp;page=<?php echo $page; ?>">주문 목록</a>
 								</td>
 								</tr>
 							</tbody>
@@ -529,7 +528,7 @@ if ($row['status'] == "8" || $row['status'] == "-1" && $row['delivery_type'] == 
 		 	 	add_memo:$("textarea").val(),
 		 	 	oid:"<?php echo $oid; ?>",
 		 	 	key:"<?php echo $key; ?>",
-		 	 	key_value:"<?php echo $key_value; ?>",
+		 	 	keyword:"<?php echo $keyword; ?>",
 		 	 	page:"<?php echo $page; ?>"
 		 	 });
 		 });

@@ -12,8 +12,8 @@
 	$com_info = get_company_info();
 
 	//로그인 이전의 URL로 돌아가기
-	$uri = $_SERVER["REQUEST_URI"];
-	$uri = urlencode($uri);
+	$uri = $_SERVER['HTTP_REFERER'];
+	// $uri = urlencode($uri);
 
 ?>
 
