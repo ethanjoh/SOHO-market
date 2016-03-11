@@ -10,44 +10,29 @@
       <!--sidebar end-->
 <?php
 
-$today      = date("Y-m-d");
-$month      = date("Y-m");
-$this_month = date("F, Y", strtotime($month));
+$today     = date("Y-m-d");
+$month     = date("Y-m");
+$thisMonth = date("F, Y", strtotime($month));
 
 //총주문
 // $sql = "SELECT * FROM mall_order WHERE cancel='N' AND createdate='$today' AND user_id <> 'guest' ";
 // $res = mysqli_query($connect, $sql);
 // $total = mysqli_num_rows($res);
 
-//미확인건
-$sql_1       = "SELECT * FROM mall_order WHERE cancel='N' AND status='3' AND user_id <> 'guest' ";
-$res_1       = mysqli_query($connect, $sql_1);
-$unchk_total = mysqli_num_rows($res_1);
+//기업회원 미확인건
+$sql_1      = "SELECT * FROM mall_order WHERE cancel='N' AND status='3' AND user_id <> 'guest' AND user_flag = 'c' ";
+$res_1      = mysqli_query($connect, $sql_1);
+$unchkTotal = mysqli_num_rows($res_1);
 
-//발송완료건
-// $sql_2 = "SELECT * FROM mall_order WHERE cancel='N' AND status='8' AND createdate='$today' AND user_id <> 'guest' ";
-// $res_2 = mysqli_query($connect, $sql_2);
-// $end_total = mysqli_num_rows($res_2);
-
-//주문취소건
-// $sql_3 = "SELECT * FROM mall_order WHERE cancel='Y' AND createdate='$today' AND user_id <> 'guest' ";
-// $res_3 = mysqli_query($connect, $sql_3);
-// $cancel_total = mysqli_num_rows($res_3);
-
-//금일 가입업체
-// $sql_4        = "SELECT * FROM member WHERE reg_date='$today' ";
-// $res_4        = mysqli_query($connect, $sql_4);
-// $member_total = mysqli_num_rows($res_4);
+//개인회원 미확인건
+$sql_2       = "SELECT * FROM mall_order WHERE cancel='N' AND status='3' AND user_id <> 'guest' AND user_flag = 'p'";
+$res_2       = mysqli_query($connect, $sql_2);
+$pUnchkTotal = mysqli_num_rows($res_2);
 
 //미승인 업체
 $sql_5             = "SELECT * FROM member WHERE approved='N' ";
 $res_5             = mysqli_query($connect, $sql_5);
 $nonapproved_total = mysqli_num_rows($res_5);
-
-//쪽지
-// $sql_8 = "SELECT * FROM message_info WHERE receive_chk='N' AND receiveid_fk = 'admin'  ";
-// $res_8 = mysqli_query($connect, $sql_8);
-// $msg_total = mysqli_num_rows($res_8);
 
 //승인 상품
 $sql_9 = "SELECT * FROM products WHERE approved='Y' ";
@@ -58,18 +43,6 @@ if ($res_9) {
     $sp_total = 0;
 }
 
-//발송지연건
-// $sql_12 = "SELECT * FROM mall_order WHERE cancel='N' AND status='0' AND user_id <> 'guest' ";
-// $res_12 = mysqli_query($connect, $sql_12);
-// $delay_total = mysqli_num_rows($res_12);
-
-//미답변 문의
-// $sql_10 = "SELECT * FROM bbs_qa WHERE depth = '0'";
-// $res_10 = mysqli_query($connect, $sql_10);
-// $row_10 = mysqli_fetch_array($res_10);
-// if($row_10['depth'] == 0)
-// $noreply_total = mysqli_num_rows($res_10);
-
 mysqli_query($connect, 'set names utf8');
 ?>
       <!--main content start-->
@@ -77,20 +50,33 @@ mysqli_query($connect, 'set names utf8');
         <section class="wrapper">
           <!--state overview start-->
           <div class="row state-overview">
-            <div class="col-lg-4 col-sm-6">
+            <div class="col-lg-3 col-sm-6">
               <section class="panel">
                 <div class="symbol yellow">
                   <i class="fa fa-cart-plus"></i>
                 </div>
                 <div class="value">
                   <h1>
-                  <a href="../order/top_order_list.php?mode=unchk"><?php echo $unchk_total; ?></a>
+                  <a href="../order/top_order_list.php?mode=unchk"><?php echo $unchkTotal; ?></a>
                   </h1>
-                  <p>신규 주문</p>
+                  <p>기업회원 신규 주문</p>
                 </div>
               </section>
             </div>
-            <div class="col-lg-4 col-sm-6">
+            <div class="col-lg-3 col-sm-6">
+              <section class="panel">
+                <div class="symbol blue">
+                  <i class="fa fa-cart-plus"></i>
+                </div>
+                <div class="value">
+                  <h1>
+                  <a href="../order/p_top_order_list.php?mode=unchk"><?php echo $pUnchkTotal; ?></a>
+                  </h1>
+                  <p>개인회원 신규 주문</p>
+                </div>
+              </section>
+            </div>
+            <div class="col-lg-3 col-sm-6">
               <section class="panel">
                 <div class="symbol terques">
                   <i class="fa fa-user-plus"></i>
@@ -99,11 +85,11 @@ mysqli_query($connect, 'set names utf8');
                   <h1>
                   <a href="../member/top_member_list.php?mode=nonapproved"><?php echo $nonapproved_total; ?></a>
                   </h1>
-                  <p>신규 회원</p>
+                  <p>신규 기업회원</p>
                 </div>
               </section>
             </div>
-            <div class="col-lg-4 col-sm-6">
+            <div class="col-lg-3 col-sm-6">
               <section class="panel">
                 <div class="symbol red">
                   <i class="fa fa-cube"></i>
@@ -123,7 +109,7 @@ mysqli_query($connect, 'set names utf8');
               <!-- today's sales start-->
               <section class="panel">
                 <header class="panel-heading">
-                  <?php echo $this_month; ?> :: 월 상품판매량 (단위: 개)
+                  <?php echo $thisMonth; ?> :: 월 상품판매량 (단위: 개)
                 </header>
                 <div class="panel-body">
                   <div id="hero-bar" class="graph"></div>
