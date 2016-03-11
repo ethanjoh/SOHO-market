@@ -320,7 +320,7 @@ if ($res_4) {
             $total -= $row['last_amount']; //취소에 따른 합계금액차감
             ?>
 					          <tr bgcolor="<?php echo $c_color; ?>">
-					            <td><a href="or_view.php?mode=<?php echo $mode; ?>&amp;oid=<?php echo $row['num']; ?>&amp;key=<?php echo $key; ?>&amp;keyword=<?php echo $keyword; ?>&amp;page=<?php echo $page; ?>"><?php echo $row['createdate']; ?></a></td>
+					            <td><a href="p_or_view.php?mode=<?php echo $mode; ?>&amp;oid=<?php echo $row['num']; ?>&amp;key=<?php echo $key; ?>&amp;keyword=<?php echo $keyword; ?>&amp;page=<?php echo $page; ?>"><?php echo $row['createdate']; ?></a></td>
 					            <td><?php echo $row['user_id']; ?></td>
 					            <td>
 <?php
@@ -377,7 +377,7 @@ if ($res_4) {
 
             ?>
 					          <tr style="background-color:<?php echo $c_color; ?>;">
-					            <td><a href="or_view.php?mode=<?php echo $mode; ?>&amp;oid=<?php echo $row['num']; ?>&amp;key=<?php echo $key; ?>&amp;keyword=<?php echo $keyword; ?>&amp;page=<?php echo $page; ?>"><?php echo $row['createdate']; ?></a></td>
+					            <td><a href="p_or_view.php?mode=<?php echo $mode; ?>&amp;oid=<?php echo $row['num']; ?>&amp;key=<?php echo $key; ?>&amp;keyword=<?php echo $keyword; ?>&amp;page=<?php echo $page; ?>"><?php echo $row['createdate']; ?></a></td>
 					            <td><?php echo $row['user_id']; ?></td>
                                 <td>
 <?php

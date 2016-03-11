@@ -91,23 +91,32 @@ $products_kind  = array();
 $products_stock = array();
 $trans_cost     = null;
 
-//JOIN문을 사용해 장바구니와 제품정보에서 데이터를 가져옴
+// JOIN문을 사용해 장바구니와 제품정보에서 데이터를 가져옴
 // 카테고리와 등록 순서로 정렬
 $query  = "SELECT * FROM products p, products_cart c WHERE c.user_id='$p_id' AND p.num=c.product_code";
 $result = mysqli_query($connect, $query);
+
+$sessionFlag = set_var($_SESSION['p_flag']);
+$calcPrice   = 0;
 
 if ($result) {
 
     $tot_money = 0;
 
     for ($i = 0; $rows = mysqli_fetch_array($result); $i++) {
+        if ($sessionFlag == "c") {
+            $calcPrice = $rows['retail_price'];
+        } elseif ($sessionFlag == "p") {
+            $calcPrice = $rows['shop_price'];
+        }
+
         $s_tot          = (int) $rows['volume'] * (int) $rows['amount']; // 소계
         $tot_money      = $tot_money + $s_tot;                           //총합
         $products_stock = $rows['stock'] - $rows['volume'];              // 제품재고에서 카트 재고 뺌
 
         $products_num[$i]   = $rows['num'];
         $products_name[$i]  = stripslashes($rows['name']);
-        $products_price[$i] = calc_offer_price($rows['retail_price'], $p_id); // 업체별 공급가 확인
+        $products_price[$i] = calc_offer_price($calcPrice, $p_id); // 업체별 공급가 확인
         $products_count[$i] = $rows['volume'];
         $products_kind[$i]  = $rows['p_opt'];
     }
