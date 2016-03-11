@@ -212,6 +212,8 @@ function count_items_in_cart()
 function show_items_on_main($newOrBest, $howManyItems)
 {
     global $connect;
+    $sessionFlag = set_var($_SESSION['p_flag']);
+    $calcPrice   = 0;
 
     if ($newOrBest == 'best') {
         $isYes = "main_best='Y'";
@@ -226,16 +228,20 @@ function show_items_on_main($newOrBest, $howManyItems)
 
         for ($i = 0; $rows = mysqli_fetch_array($result); $i++) {
 
-            // $commaWholesalePrice = number_format($rows['retail_price']);
-            $itemName   = stripslashes($rows['name']);
-            $pnum       = $rows['num'];
-            $category_l = $rows['category_l'];
-            $category_m = $rows['category_m'];
-            // $category_s   = $rows['category_s'];
+            if ($sessionFlag == "c") {
+                $calcPrice = $rows['retail_price'];
+            } elseif ($sessionFlag == "p") {
+                $calcPrice = $rows['shop_price'];
+            }
+
+            $itemName            = stripslashes($rows['name']);
+            $pnum                = $rows['num'];
+            $category_l          = $rows['category_l'];
+            $category_m          = $rows['category_m'];
             $option              = $rows['opt'];
             $moq                 = $rows['moq'];
             $sessionId           = set_var($_SESSION['p_id']);
-            $calcWholesalePrice  = calc_offer_price($rows['retail_price'], $sessionId);
+            $calcWholesalePrice  = calc_offer_price($calcPrice, $sessionId);
             $commaWholesalePrice = number_format($calcWholesalePrice);
 
             echo <<<HEREDOC
@@ -302,23 +308,30 @@ HEREDOC;
 function show_items_on_catalog($result, $tabid)
 {
     global $connect;
-    $saleNewTag = '';
+    $saleNewTag  = '';
+    $calcPrice   = 0;
+    $sessionFlag = set_var($_SESSION['p_flag']);
 
     if ($result) {
 
         for ($i = 0; $rows = mysqli_fetch_array($result); $i++) {
+
+            if ($sessionFlag == "c") {
+                $calcPrice = $rows['retail_price'];
+            } elseif ($sessionFlag == "p") {
+                $calcPrice = $rows['shop_price'];
+            }
 
             // $commaWholesalePrice = number_format($rows['retail_price']);
             $itemName   = stripslashes($rows['name']);
             $pnum       = $rows['num'];
             $category_l = $rows['category_l'];
             $category_m = $rows['category_m'];
-            $category_s = $rows['category_s'];
             $moq        = $rows['moq'];
             $shortDesc  = $rows['short_desc'];
             // $option       = $rows['opt'];
             $sessionId           = set_var($_SESSION['p_id']);
-            $calcWholesalePrice  = calc_offer_price($rows['retail_price'], $sessionId);
+            $calcWholesalePrice  = calc_offer_price($calcPrice, $sessionId);
             $commaWholesalePrice = number_format($calcWholesalePrice);
             $price               = show_me_wholesale_price($pnum);
 
@@ -342,7 +355,7 @@ function show_items_on_catalog($result, $tabid)
                                     <div class="single-product">
                                         {$saleNewTag}
                                         <div class="product-img">
-                                            <a href="detail.php?pnum={$pnum}&lcode={$category_l}&mcode={$category_m}&scode={$category_s}">
+                                            <a href="detail.php?pnum={$pnum}&lcode={$category_l}&mcode={$category_m}">
                                                 <img class="primary-image" src="{$rows['b_image1_name']}" alt="" />
                                             </a>
                                         </div>
@@ -350,7 +363,7 @@ function show_items_on_catalog($result, $tabid)
                                             <div class="price-box">
                                                 {$price}
                                             </div>
-                                            <h2 class="product-name"><a href="detail.php?pnum={$pnum}&lcode={$category_l}&mcode={$category_m}&scode={$category_s}">{$itemName}</a></h2>
+                                            <h2 class="product-name"><a href="detail.php?pnum={$pnum}&lcode={$category_l}&mcode={$category_m}">{$itemName}</a></h2>
                                             <span class="desc">{$option}</span>
                                             <div class="product-icon">
 HEREDOC;
@@ -390,7 +403,7 @@ HEREDOC;
                                         <div class="single-product">
                                             {$saleNewTag}
                                             <div class="product-img">
-                                                <a href="detail.php?pnum={$pnum}&lcode={$category_l}&mcode={$category_m}&scode={$category_s}">
+                                                <a href="detail.php?pnum={$pnum}&lcode={$category_l}&mcode={$category_m}">
                                                     <img class="primary-image" src="{$rows['b_image1_name']}" alt="">
                                                 </a>
                                             </div>
@@ -399,7 +412,7 @@ HEREDOC;
                                     <div class="col-md-8 col-sm-8">
                                         <div class="f-fix">
                                             <h2 class="product-name">
-                                                <a href="detail.php?pnum={$pnum}&lcode={$category_l}&mcode={$category_m}&scode={$category_s}">{$itemName}</a>
+                                                <a href="detail.php?pnum={$pnum}&lcode={$category_l}&mcode={$category_m}">{$itemName}</a>
                                             </h2>
                                             <p class="desc">[모델:] {$shortDesc}<br>
                                             <span class="spec">{$option}</span></p>
@@ -456,9 +469,17 @@ function show_me_wholesale_price($pnum)
     $result = mysqli_query($connect, $query);
     $rows   = mysqli_fetch_array($result);
 
-    $sessionId = set_var($_SESSION['p_id']);
+    $calcPrice   = 0;
+    $sessionId   = set_var($_SESSION['p_id']);
+    $sessionFlag = set_var($_SESSION['p_flag']);
 
-    $calcWholesalePrice  = calc_offer_price($rows['retail_price'], $sessionId);
+    if ($sessionFlag == "c") {
+        $calcPrice = $rows['retail_price'];
+    } elseif ($sessionFlag == "p") {
+        $calcPrice = $rows['shop_price'];
+    }
+
+    $calcWholesalePrice  = calc_offer_price($calcPrice, $sessionId);
     $commaWholesalePrice = number_format($calcWholesalePrice);
     $commaCustomerPrice  = number_format($rows['shop_price']);
 
@@ -732,7 +753,9 @@ function show_cart_item()
 {
     global $connect;
 
-    $sessionId = set_var($_SESSION['p_id']);
+    $sessionId   = set_var($_SESSION['p_id']);
+    $sessionFlag = set_var($_SESSION['p_flag']);
+    $calcPrice   = 0;
 
     echo <<<HEREDOC
                                 <table id="shopping-cart-table" class="data-table cart-table">
@@ -774,11 +797,17 @@ HEREDOC;
         $tot_mny1  = 0;
 
         for ($i = 1; $rows = mysqli_fetch_array($result); $i++) {
-            $s_tot       = (int) $rows['volume'] * (int) $rows['amount']; // 소계
-            $tot_money   = $tot_money + $s_tot;
-            $show_stotal = number_format($s_tot); //소계 천단위표시
-                                                  // $total       = $tot_money;
-            $show_total = number_format($tot_money);
+            if ($sessionFlag == "c") {
+                $calcPrice = $rows['retail_price'];
+            } elseif ($sessionFlag == "p") {
+                $calcPrice = $rows['shop_price'];
+            }
+
+            $subTotal      = (int) $rows['volume'] * (int) $rows['amount']; // 소계
+            $tot_money     = $tot_money + $subTotal;
+            $commaSubTotal = number_format($subTotal); //소계 천단위표시
+                                                       // $total       = $tot_money;
+            $commaTotal = number_format($tot_money);
 
             $pnum          = $rows['num'];
             $category_l    = $rows['category_l'];
@@ -787,8 +816,8 @@ HEREDOC;
             $s_image1_name = $rows['s_image1_name'];
             $itemName      = stripslashes($rows['name']);
 
-            $calcWholesalePrice  = calc_offer_price($rows['retail_price'], $sessionId); // 업체별 공급가 확인
-            $commaWholesalePrice = number_format($calcWholesalePrice);                  // 천단위 구분
+            $calcWholesalePrice  = calc_offer_price($calcPrice, $sessionId); // 업체별 공급가 확인
+            $commaWholesalePrice = number_format($calcWholesalePrice);       // 천단위 구분
             $price               = show_me_wholesale_price($sessionId, $pnum);
             $qty                 = $rows['volume'];
             $cart_id             = $rows['cart_id'];
@@ -853,7 +882,7 @@ HEREDOC;
                                             <button type="submit" class="btn btn-default btn-warning" />변경</button>
                                             </form>
                                         </td>
-                                        <td class="sop-cart cost">{$show_stotal}</td>
+                                        <td class="sop-cart cost">{$commaSubTotal}</td>
                                     </tr>
 
 HEREDOC;
@@ -863,7 +892,7 @@ HEREDOC;
         echo <<<HEREDOC
                                     <tr class="totals">
                                         <td colspan="5" class="total-text">합계</td>
-                                        <td class="total-amount cost"><i class="fa fa-krw"></i> {$show_total}</td>
+                                        <td class="total-amount cost"><i class="fa fa-krw"></i> {$commaTotal}</td>
                                     </tr>
                                 </table>
 HEREDOC;
@@ -939,9 +968,9 @@ HEREDOC;
         $tot_mny1  = 0;
 
         for ($i = 1; $rows = mysqli_fetch_array($result); $i++) {
-            $s_tot       = (int) $rows['volume'] * (int) $rows['amount']; // 소계
-            $tot_money   = $tot_money + $s_tot;
-            $show_stotal = number_format($s_tot);
+            $subTotal    = (int) $rows['volume'] * (int) $rows['amount']; // 소계
+            $tot_money   = $tot_money + $subTotal;
+            $show_stotal = number_format($subTotal);
             $show_total  = number_format($tot_money);
 
             $pnum          = $rows['num'];
@@ -1054,7 +1083,8 @@ function show_buyer_info()
 {
     global $connect;
 
-    $sessionId = set_var($_SESSION['p_id']);
+    $sessionId   = set_var($_SESSION['p_id']);
+    $sessionFlag = set_var($_SESSION['p_flag']);
 
     // 중복되지 않는 주문번호 생성
     $timestamp = date('YmdHms');
@@ -1062,22 +1092,39 @@ function show_buyer_info()
     $r_oid     = $sessionId . "-" . $timestamp . "-" . str_shuffle($rd);
 
     if ($sessionId) {
-        $m_qry = "SELECT * FROM member WHERE id='$sessionId' ";
-        $m_res = mysqli_query($connect, $m_qry);
-        $row   = mysqli_fetch_array($m_res);
+        if ($sessionFlag == "c") {
+            $m_qry = "SELECT * FROM member WHERE id='$sessionId' ";
+            $m_res = mysqli_query($connect, $m_qry);
+            $row   = mysqli_fetch_array($m_res);
 
-        $company_name = $row['company_name'];
-        $d_zipcode    = $row['d_zipcode'];
-        $d_phone      = $row['d_phone'];
-        $md_name      = $row['md_name'];
-        $md_email     = $row['md_email'];
-        $md_hphone    = $row['md_hphone'];
-        $d_addr1      = $row['d_addr1'];
-        $d_addr2      = $row['d_addr2'];
-        $zipcode      = explode('-', $d_zipcode);
+            $company_name = $row['company_name'];
+            $d_zipcode    = $row['d_zipcode'];
+            $d_phone      = $row['d_phone'];
+            // $md_name      = $row['md_name'];
+            $md_email  = $row['md_email'];
+            $md_hphone = $row['md_hphone'];
+            $d_addr1   = $row['d_addr1'];
+            $d_addr2   = $row['d_addr2'];
+            $zipcode   = explode('-', $d_zipcode);
+
+        } elseif ($sessionFlag == "p") {
+            $m_qry = "SELECT * FROM p_member WHERE id='$sessionId' ";
+            $m_res = mysqli_query($connect, $m_qry);
+            $row   = mysqli_fetch_array($m_res);
+
+            $company_name = $row['name'];
+            $d_zipcode    = $row['d_zipcode'];
+            $d_phone      = $row['d_phone'];
+            // $md_name      = $row['name'];
+            $md_email  = $row['email'];
+            $md_hphone = $row['hphone'];
+            $d_addr1   = $row['d_addr1'];
+            $d_addr2   = $row['d_addr2'];
+            $zipcode   = explode('-', $d_zipcode);
+        }
 
         echo <<<HEREDOC
-                                                    <span>{$md_name}</span>
+
                                                     <span>{$company_name}</span>
                                                     <span>{$zipcode[0]}</span>
                                                     <span>{$d_addr1} {$d_addr2}</span>
