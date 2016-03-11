@@ -221,7 +221,7 @@ if ($mode == "search") {
 		            <div class="col-sm-12">
 						<section class="panel">
 							<header class="panel-heading table-head">
-							    주문 목록 (총
+							    기업회원 주문 목록 (총
                                 <?php echo number_format($total); ?>
                                 건)
 						  	</header>

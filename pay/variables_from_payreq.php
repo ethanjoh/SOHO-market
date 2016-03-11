@@ -21,23 +21,42 @@ $memo_to_admin    = set_var($_POST['memo_to_admin']);
 $p_id    = set_var($_SESSION['p_id']);
 $user_id = $p_id;
 
-// 주문자 정보 가져옴
-$qry = "SELECT * FROM member WHERE id='$p_id' ";
-$res = mysqli_query($connect, $qry);
+// 회원 구분해서 주문자 정보 가져옴
+// 'c':기업회원, 'p': 개인회원
+if ($sessionFlag == "c") {
+    $qry = "SELECT * FROM member WHERE id='$p_id' ";
+    $res = mysqli_query($connect, $qry);
 
-if ($res) {
-    $rows = mysqli_fetch_array($res);
+    if ($res) {
+        $rows = mysqli_fetch_array($res);
 
-    $buyer_name    = $rows['company_name'];
-    $buyer_email   = $rows['md_email'];
-    $buyer_zipcode = $rows['d_zipcode'];
-    $buyer_address = $rows['d_addr1'] . ' ' . $rows['d_addr2'];
-    $buyer_phone   = $rows['d_phone'];
-    $buyer_hphone  = $rows['md_hphone'];
+        $buyer_name    = $rows['company_name'];
+        $buyer_email   = $rows['md_email'];
+        $buyer_zipcode = $rows['d_zipcode'];
+        $buyer_address = $rows['d_addr1'] . ' ' . $rows['d_addr2'];
+        $buyer_phone   = $rows['d_phone'];
+        $buyer_hphone  = $rows['md_hphone'];
+    }
+} elseif ($sessionFlag == "p") {
+    $qry = "SELECT * FROM p_member WHERE id='$p_id' ";
+    $res = mysqli_query($connect, $qry);
+
+    if ($res) {
+        $rows = mysqli_fetch_array($res);
+
+        $buyer_name    = $rows['name'];
+        $buyer_email   = $rows['email'];
+        $buyer_zipcode = $rows['d_zipcode'];
+        $buyer_address = $rows['d_addr1'] . ' ' . $rows['d_addr2'];
+        $buyer_phone   = $rows['d_phone'];
+        $buyer_hphone  = $rows['hphone'];
+    }
 }
 
 // 중복되지 않는 주문번호 만듬
-$trade_code = $lgd_oid;
+{
+    $trade_code = $lgd_oid;
+}
 
 $delivery_type = 'L';
 $payment_type  = '';

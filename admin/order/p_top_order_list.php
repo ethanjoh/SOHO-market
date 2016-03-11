@@ -41,7 +41,7 @@ $scode   = set_var($_GET['scode']);
 							  사용방법
 							</header>
 							<ul class="info-body">
-							  <li><i class="fa fa-info-circle"></i> 업체별 기간검색하기 : 1. 하단 검색조건에서 "업체명"으로 업체 검색 -> 2. 검색결과에서 해당 업체명 클릭 -> 3. 날짜검색에서 기간 설정 후 검색</li>
+							  <li><i class="fa fa-info-circle"></i> 회원별 기간검색하기 : 1. 하단 검색조건에서 "회원명"으로 검색 -> 2. 검색결과에서 해당 회원명 클릭 -> 3. 날짜검색에서 기간 설정 후 검색</li>
 							</ul>
 		                </section>
 
@@ -158,7 +158,7 @@ $scale1 = $limit - $cline;
 if ($mode == "search") {
     ?>
 						<!-- calendar start -->
-						<form name="form" method="get" action="top_order_list.php" class="form-inline form-group" role="form">
+						<form name="form" method="get" action="p_top_order_list.php" class="form-inline form-group" role="form">
 						<input type="hidden" name="mode" value="date" />
 						<input type="hidden" name="key" value="<?php echo $key; ?>" />
 						<input type="hidden" name="keyword" value="<?php echo $keyword; ?>" />
@@ -198,15 +198,15 @@ if ($mode == "search") {
 							<tbody>
 							  <tr>
 							    <td class="text-center">
-						        	<a class="btn btn-default" href="top_order_list.php?mode=today">금일 주문건 (<?php echo $today_total; ?>)</a>
-						        	<a class="btn btn-default" href="top_order_list.php?mode=unchk">미처리 주문건 (<?php echo $unchk_total; ?>)</a>
-						        	<a class="btn btn-default" href="top_order_list.php?mode=chk">주문확인건 </a>
-						        	<a class="btn btn-default" href="top_order_list.php?mode=delay">발송지연건(<?php echo $delay_total; ?>)</a>
-						        	<a class="btn btn-default" href="top_order_list.php?mode=paid">발송대기건 (<?php echo $paid_total; ?>)</a>
-						        	<a class="btn btn-default" href="top_order_list.php?mode=finish">발송완료건</a>
-						        	<a class="btn btn-default" href="top_order_list.php?mode=cancel">주문취소건</a>
-						        	<!-- <a class="btn btn-default" href="top_order_list.php?mode=return">반품회수건</a> -->
-						        	<a class="btn btn-primary" href="top_order_list.php?mode=all">전체 주문</a>
+						        	<a class="btn btn-default" href="p_top_order_list.php?mode=today">금일 주문건 (<?php echo $today_total; ?>)</a>
+						        	<a class="btn btn-default" href="p_top_order_list.php?mode=unchk">미처리 주문건 (<?php echo $unchk_total; ?>)</a>
+						        	<a class="btn btn-default" href="p_top_order_list.php?mode=chk">주문확인건 </a>
+						        	<a class="btn btn-default" href="p_top_order_list.php?mode=delay">발송지연건(<?php echo $delay_total; ?>)</a>
+						        	<a class="btn btn-default" href="p_top_order_list.php?mode=paid">발송대기건 (<?php echo $paid_total; ?>)</a>
+						        	<a class="btn btn-default" href="p_top_order_list.php?mode=finish">발송완료건</a>
+						        	<a class="btn btn-default" href="p_top_order_list.php?mode=cancel">주문취소건</a>
+						        	<!-- <a class="btn btn-default" href="p_top_order_list.php?mode=return">반품회수건</a> -->
+						        	<a class="btn btn-primary" href="p_top_order_list.php?mode=all">전체 주문</a>
 							    </td>
 							  </tr>
 							</tbody>
@@ -221,7 +221,7 @@ if ($mode == "search") {
 		            <div class="col-sm-12">
 						<section class="panel">
 							<header class="panel-heading table-head">
-							    주문 목록 (총
+							    개인회원 주문 목록 (총
                                 <?php echo number_format($total); ?>
                                 건)
 						  	</header>
@@ -233,7 +233,7 @@ if ($mode == "search") {
 						            <!--<th  class="member" scope="col">주문번호</th>-->
 						            <th>주문일시</th>
 						            <th>ID</th>
-						            <th>업체명</th>
+						            <th>고객명</th>
 						            <!-- <th>거래형태</th> -->
 						            <th>할인율</th>
 						            <th>주문액</th>
@@ -303,7 +303,7 @@ if ($res_4) {
     for ($i = 0; $row = mysqli_fetch_array($res_4); $i++) {
 
         //회원정보
-        $sql  = "SELECT * FROM member WHERE id='$row[user_id]' ";
+        $sql  = "SELECT * FROM p_member WHERE id='$row[user_id]' ";
         $res  = mysqli_query($connect, $sql);
         $trow = mysqli_fetch_array($res);
 
@@ -326,9 +326,9 @@ if ($res_4) {
 <?php
 
             if ($row['recipient_name']) {
-                echo '<a href="top_order_list.php?mode=search&amp;key=user_id&amp;keyword=' . $row['user_id'] . '">' . $row['buyer_name'] . '</a> <i class="fa fa-arrow-right"></i> (' . $row['recipient_name'] . ')';
+                echo '<a href="p_top_order_list.php?mode=search&amp;key=user_id&amp;keyword=' . $row['user_id'] . '">' . $row['buyer_name'] . '</a> <i class="fa fa-arrow-right"></i> (' . $row['recipient_name'] . ')';
             } else {
-                echo '<a href="top_order_list.php?mode=search&amp;key=user_id&amp;keyword=' . $row['user_id'] . '">' . $row['buyer_name'] . '</a>';
+                echo '<a href="p_top_order_list.php?mode=search&amp;key=user_id&amp;keyword=' . $row['user_id'] . '">' . $row['buyer_name'] . '</a>';
             }
 
             if ($row['memo_to_admin']) {
@@ -383,9 +383,9 @@ if ($res_4) {
 <?php
 
             if ($row['recipient_name']) {
-                echo '<a href="top_order_list.php?mode=search&amp;key=user_id&amp;keyword=' . $row['user_id'] . '">' . $row['buyer_name'] . '</a> <i class="fa fa-arrow-right"></i> (' . $row['recipient_name'] . ')';
+                echo '<a href="p_top_order_list.php?mode=search&amp;key=user_id&amp;keyword=' . $row['user_id'] . '">' . $row['buyer_name'] . '</a> <i class="fa fa-arrow-right"></i> (' . $row['recipient_name'] . ')';
             } else {
-                echo '<a href="top_order_list.php?mode=search&amp;key=user_id&amp;keyword=' . $row['user_id'] . '">' . $row['buyer_name'] . '</a>';
+                echo '<a href="p_top_order_list.php?mode=search&amp;key=user_id&amp;keyword=' . $row['user_id'] . '">' . $row['buyer_name'] . '</a>';
             }
 
             if ($row['memo_to_admin']) {
@@ -396,7 +396,8 @@ if ($res_4) {
 					            <td><?php echo $trow['dc_rate']; ?> %</td>
 					            <td>
 <?php
-if ($row['last_amount'] == 0 && $row['status'] == "8") {
+
+            if ($row['last_amount'] == 0 && $row['status'] == "8") {
                 echo " 0";
             } else if ($row['status'] == "0" || $row['status'] == "1" || $row['status'] == "3" || $row['status'] == "5") {
                 echo "미확정";
@@ -411,7 +412,8 @@ if ($row['last_amount'] == 0 && $row['status'] == "8") {
 								<!--
 					            <td>
 <?php
-if ($row['delivery_type'] == 'L' || $row['delivery_type'] == 'L1') {
+
+            if ($row['delivery_type'] == 'L' || $row['delivery_type'] == 'L1') {
                 if ($row['trans_cost'] == '0') {
                     echo "선불";
                 } else if ($row['trans_cost'] > 0) {
@@ -452,12 +454,14 @@ if ($row['delivery_type'] == 'L' || $row['delivery_type'] == 'L1') {
 					            <td></td>
 					          </tr>
 <?php
+
 } else {
     ?>
 					          <tr>
 					            <td colspan="8"><p>해당 주문내역이 없습니다.</p></td>
 					          </tr>
 <?php
+
 }
 ?>
 					        </tbody>
@@ -478,6 +482,7 @@ if ($row['delivery_type'] == 'L' || $row['delivery_type'] == 'L1') {
 				            <tr>
 				              <td>
 <?php
+
 $url = $_SERVER['PHP_SELF'] . "?mode=" . $mode . "&pmode=" . $pmode . "&lcode=" . $lcode . "&mcode=" . $mcode . "&scode=" . $scode . "&key=" . $key . "&keyword=" . $keyword;
 page_nav($totalpage, $cpage, $url);
 ?>
@@ -493,7 +498,7 @@ page_nav($totalpage, $cpage, $url);
 	      		<!-- search start -->
 				<div class="row text-center">
 					<div class="col-sm-12">
-				    	<form class="form-inline" role="form" method="get" name="search" action="top_order_list.php">
+				    	<form class="form-inline" role="form" method="get" name="search" action="p_top_order_list.php">
 				        <input type="hidden" name="mode" value="search">
 				        <div class="ui-widget form-group">
 				            <input type="text" class="form-control" name="keyword" id="keyword" placeholder="수령인,업체명,아이디,상품명 입력" autocomplete="off">
