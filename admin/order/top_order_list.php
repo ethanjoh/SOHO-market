@@ -2,7 +2,7 @@
 
 <?php
 
-$sql_1       = "SELECT num FROM mall_order WHERE cancel='N' AND status='3' AND user_id <> 'guest' AND user_flag = 'c' ";
+$sql_1       = "SELECT num FROM mall_order WHERE user_flag = 'c' AND cancel='N' AND status='3' AND user_id <> 'guest' ";
 $res_1       = mysqli_query($connect, $sql_1);
 $unchk_total = mysqli_num_rows($res_1);
 
@@ -51,75 +51,75 @@ $reUrl = urlencode($_SERVER['PHP_SELF'] . "?" . $_SERVER['QUERY_STRING']);
 $today = date("Y-m-d");
 
 //미확인건
-$unchk_sql   = "SELECT * FROM mall_order WHERE cancel='N' AND status='3' AND user_id <> 'guest' AND user_flag = 'c' ";
+$unchk_sql   = "SELECT * FROM mall_order WHERE user_flag = 'c' AND cancel='N' AND status='3' AND user_id <> 'guest' ";
 $unchk_res   = mysqli_query($connect, $unchk_sql);
 $unchk_total = mysqli_num_rows($unchk_res);
 
 //금일주문건
-$today_sql   = "SELECT * FROM mall_order WHERE cancel='N' AND date(createdate)='$today' AND user_id <> 'guest' AND user_flag = 'c' ";
+$today_sql   = "SELECT * FROM mall_order WHERE user_flag = 'c' AND cancel='N' AND date(createdate)='$today' AND user_id <> 'guest' ";
 $today_res   = mysqli_query($connect, $today_sql);
 $today_total = mysqli_num_rows($today_res);
 
 //발송대기건
-$paid_sql   = "SELECT * FROM mall_order WHERE cancel='N' AND status='7' AND user_id <> 'guest' AND user_flag = 'c' ";
+$paid_sql   = "SELECT * FROM mall_order WHERE user_flag = 'c' AND cancel='N' AND status='7' AND user_id <> 'guest' ";
 $paid_res   = mysqli_query($connect, $paid_sql);
 $paid_total = mysqli_num_rows($paid_res);
 
 //미결제건
-$nopaid_sql   = "SELECT * FROM mall_order WHERE cancel='N' AND pchk='N' AND user_id <> 'guest' AND user_flag = 'c' ";
+$nopaid_sql   = "SELECT * FROM mall_order WHERE user_flag = 'c' AND cancel='N' AND pchk='N' AND user_id <> 'guest' ";
 $nopaid_res   = mysqli_query($connect, $nopaid_sql);
 $nopaid_total = mysqli_num_rows($nopaid_res);
 
 //발송지연건
-$delay_sql   = "SELECT * FROM mall_order WHERE cancel='N' AND status='0' AND user_id <> 'guest' AND user_flag = 'c' ";
+$delay_sql   = "SELECT * FROM mall_order WHERE user_flag = 'c' AND cancel='N' AND status='0' AND user_id <> 'guest' ";
 $delay_res   = mysqli_query($connect, $delay_sql);
 $delay_total = mysqli_num_rows($delay_res);
 
 //쪽지
-// $memo_sql  = "SELECT * FROM message_info WHERE receive_chk='N' AND receiveid_fk = 'admin'  ";
+// $memo_sql  = "SELECT * FROM message_info WHERE user_flag = 'c' AND receive_chk='N' AND receiveid_fk = 'admin'  ";
 // $memo_res  = mysqli_query($connect, $memo_sql);
 // $msg_total = mysqli_num_rows($memo_res);
 
 switch ($mode) {
     // case 'search' : $sql_2="SELECT orderid FROM mall_order
-    //                         WHERE user_id <> 'guest' AND $key LIKE '%$keyword%' "; break;
+    //                         WHERE user_flag = 'c' AND user_id <> 'guest' AND $key LIKE '%$keyword%' "; break;
     case 'search':$sql_2 = "SELECT * FROM mall_order
-					                          	  WHERE user_id <> 'guest' AND user_flag = 'c' AND (buyer_name LIKE '%$keyword%' OR user_id LIKE '%$keyword%' OR recipient_name LIKE '%$keyword%' OR goods_name LIKE '%$keyword%')";
+					                          	  WHERE user_flag = 'c' AND user_id <> 'guest' AND (buyer_name LIKE '%$keyword%' OR user_id LIKE '%$keyword%' OR recipient_name LIKE '%$keyword%' OR goods_name LIKE '%$keyword%')";
         break;
 
     case 'date':$sql_2 = "SELECT orderid FROM mall_order
-						                          WHERE cancel = 'N' AND user_flag = 'c' AND date(createdate) BETWEEN '$date1' AND '$date2' AND user_id = '$keyword' ";
+						                          WHERE user_flag = 'c' AND cancel = 'N' AND date(createdate) BETWEEN '$date1' AND '$date2' AND user_id = '$keyword' ";
         break;
     case 'today':$today = date("Y-m-d");
         $sql_2              = "SELECT orderid FROM mall_order
-						                          WHERE cancel = 'N' AND user_flag = 'c' AND user_id <> 'guest' AND date(createdate) = '$today' ";
+						                          WHERE user_flag = 'c' AND cancel = 'N' AND user_id <> 'guest' AND date(createdate) = '$today' ";
         break;
     case 'unchk':$sql_2 = "SELECT orderid FROM mall_order
-						                          WHERE cancel = 'N' AND user_flag = 'c' AND user_id <> 'guest' AND status = '3' ";
+						                          WHERE user_flag = 'c' AND cancel = 'N' AND user_id <> 'guest' AND status = '3' ";
         break;
     case 'chk':$sql_2 = "SELECT orderid FROM mall_order
-						                          WHERE cancel = 'N' AND user_flag = 'c' AND user_id <> 'guest' AND status = '5' ";
+						                          WHERE user_flag = 'c' AND cancel = 'N' AND user_id <> 'guest' AND status = '5' ";
         break;
     case 'paid':$sql_2 = "SELECT orderid FROM mall_order
-						                          WHERE cancel = 'N' AND user_flag = 'c' AND user_id <> 'guest' AND status = '7' ";
+						                          WHERE user_flag = 'c' AND cancel = 'N' AND user_id <> 'guest' AND status = '7' ";
         break;
     case 'nopaid':$sql_2 = "SELECT orderid FROM mall_order
-						                          WHERE cancel = 'N' AND user_flag = 'c' AND user_id <> 'guest' AND pchk = 'N' ";
+						                          WHERE user_flag = 'c' AND cancel = 'N' AND user_id <> 'guest' AND pchk = 'N' ";
         break;
     case 'delay':$sql_2 = "SELECT orderid FROM mall_order
-						                          WHERE cancel = 'N' AND user_flag = 'c' AND user_id <> 'guest' AND status = '0' ";
+						                          WHERE user_flag = 'c' AND cancel = 'N' AND user_id <> 'guest' AND status = '0' ";
         break;
     case 'finish':$sql_2 = "SELECT orderid FROM mall_order
-						                          WHERE cancel = 'N' AND user_flag = 'c' AND user_id <> 'guest' AND status = '8' ";
+						                          WHERE user_flag = 'c' AND cancel = 'N' AND user_id <> 'guest' AND status = '8' ";
         break;
     case 'cancel':$sql_2 = "SELECT orderid FROM mall_order
-						                          WHERE cancel = 'Y' AND user_id <> 'guest' ";
+						                          WHERE user_flag = 'c' AND cancel = 'Y' AND user_id <> 'guest' ";
         break;
     case 'return':$sql_2 = "SELECT * FROM mall_order
-						                          WHERE cancel = 'N' AND user_flag = 'c' AND user_id <> 'guest' AND status = '-1' ";
+						                          WHERE user_flag = 'c' AND cancel = 'N' AND user_id <> 'guest' AND status = '-1' ";
         break;
     default:$sql_2 = "SELECT orderid FROM mall_order
-						                          WHERE user_id <> 'guest' AND user_flag = 'c' ";
+						                          WHERE user_flag = 'c' AND user_id <> 'guest' ";
 }
 
 $res_2 = mysqli_query($connect, $sql_2);
@@ -249,44 +249,44 @@ if ($mode == "search") {
 
 switch ($mode) {
     // case 'search' : $sql_4 = "SELECT * FROM mall_order
-    //                           WHERE $key LIKE '%$keyword%' AND user_id <> 'guest' ORDER BY num DESC LIMIT $cline,$scale1 "; break;
+    //                           WHERE user_flag = 'c' AND $key LIKE '%$keyword%' AND user_id <> 'guest' ORDER BY num DESC LIMIT $cline,$scale1 "; break;
     case 'search':$sql_4 = "SELECT * FROM mall_order
-						                          WHERE user_id <> 'guest' AND user_flag = 'c' AND (buyer_name LIKE '%$keyword%' OR user_id LIKE '%$keyword%' OR recipient_name LIKE '%$keyword%' OR goods_name LIKE '%$keyword%') ORDER BY num DESC LIMIT $cline,$scale1 ";
+						                          WHERE user_flag = 'c' AND user_id <> 'guest' AND (buyer_name LIKE '%$keyword%' OR user_id LIKE '%$keyword%' OR recipient_name LIKE '%$keyword%' OR goods_name LIKE '%$keyword%') ORDER BY num DESC LIMIT $cline,$scale1 ";
         break;
 
     case 'date':$sql_4 = "SELECT * FROM mall_order
-						                          WHERE cancel = 'N' AND user_flag = 'c' AND date(createdate) BETWEEN '$date1' AND '$date2' AND user_id = '$keyword' ORDER BY num DESC LIMIT $cline,$scale1 ";
+						                          WHERE user_flag = 'c' AND cancel = 'N' AND date(createdate) BETWEEN '$date1' AND '$date2' AND user_id = '$keyword' ORDER BY num DESC LIMIT $cline,$scale1 ";
         break;
     case 'today':$today = date("Y-m-d");
         $sql_4              = "SELECT * FROM mall_order
-						                          WHERE cancel = 'N' AND user_flag = 'c' AND user_id <> 'guest' AND date(createdate) = '$today' ORDER BY num DESC LIMIT $cline,$scale1 ";
+						                          WHERE user_flag = 'c' AND cancel = 'N' AND user_id <> 'guest' AND date(createdate) = '$today' ORDER BY num DESC LIMIT $cline,$scale1 ";
         break;
     case 'unchk':$sql_4 = "SELECT * FROM mall_order
-						                          WHERE cancel = 'N' AND user_flag = 'c' AND status = '3' AND user_id <> 'guest' ORDER BY num DESC LIMIT $cline,$scale1 ";
+						                          WHERE user_flag = 'c' AND cancel = 'N' AND status = '3' AND user_id <> 'guest' ORDER BY num DESC LIMIT $cline,$scale1 ";
         break;
     case 'chk':$sql_4 = "SELECT * FROM mall_order
-						                          WHERE cancel = 'N' AND user_flag = 'c' AND user_id <> 'guest' AND status = '5' ORDER BY num DESC LIMIT $cline,$scale1 ";
+						                          WHERE user_flag = 'c' AND cancel = 'N' AND user_id <> 'guest' AND status = '5' ORDER BY num DESC LIMIT $cline,$scale1 ";
         break;
     case 'paid':$sql_4 = "SELECT * FROM mall_order
-						                          WHERE cancel = 'N' AND user_flag = 'c' AND user_id <> 'guest' AND status = '7' ORDER BY num DESC LIMIT $cline,$scale1 ";
+						                          WHERE user_flag = 'c' AND cancel = 'N' AND user_id <> 'guest' AND status = '7' ORDER BY num DESC LIMIT $cline,$scale1 ";
         break;
     case 'nopaid':$sql_4 = "SELECT * FROM mall_order
-						                          WHERE cancel = 'N' AND user_flag = 'c' AND user_id <> 'guest' AND pchk = 'N' ORDER BY num DESC LIMIT $cline,$scale1 ";
+						                          WHERE user_flag = 'c' AND cancel = 'N' AND user_id <> 'guest' AND pchk = 'N' ORDER BY num DESC LIMIT $cline,$scale1 ";
         break;
     case 'delay':$sql_4 = "SELECT * FROM mall_order
-						                          WHERE cancel = 'N' AND user_flag = 'c' AND user_id <> 'guest' AND status = '0' ORDER BY num DESC LIMIT $cline,$scale1 ";
+						                          WHERE user_flag = 'c' AND cancel = 'N' AND user_id <> 'guest' AND status = '0' ORDER BY num DESC LIMIT $cline,$scale1 ";
         break;
     case 'finish':$sql_4 = "SELECT * FROM mall_order
-						                          WHERE cancel = 'N' AND user_flag = 'c' AND user_id <> 'guest' AND status = '8' ORDER BY num DESC LIMIT $cline,$scale1 ";
+						                          WHERE user_flag = 'c' AND cancel = 'N' AND user_id <> 'guest' AND status = '8' ORDER BY num DESC LIMIT $cline,$scale1 ";
         break;
     case 'cancel':$sql_4 = "SELECT * FROM mall_order
-						                          WHERE cancel = 'Y' AND user_flag = 'c'  AND user_id <> 'guest' ORDER BY num DESC LIMIT $cline,$scale1 ";
+						                          WHERE user_flag = 'c' AND cancel = 'Y'  AND user_id <> 'guest' ORDER BY num DESC LIMIT $cline,$scale1 ";
         break;
     case 'return':$sql_4 = "SELECT * FROM mall_order
-						                          WHERE cancel = 'N' AND user_flag = 'c' AND user_id <> 'guest' AND status = '-1' ORDER BY num DESC LIMIT $cline,$scale1 ";
+						                          WHERE user_flag = 'c' AND cancel = 'N' AND user_id <> 'guest' AND status = '-1' ORDER BY num DESC LIMIT $cline,$scale1 ";
         break;
     default:$sql_4 = "SELECT * FROM mall_order
-						                          WHERE user_id <> 'guest' AND user_flag = 'c' ORDER BY num DESC LIMIT $cline,$scale1 ";
+						                          WHERE user_flag = 'c' AND user_id <> 'guest' ORDER BY num DESC LIMIT $cline,$scale1 ";
 }
 
 $a_pay_type['1'] = "무통장 입금";
@@ -304,7 +304,7 @@ if ($res_4) {
     for ($i = 0; $row = mysqli_fetch_array($res_4); $i++) {
 
         //회원정보
-        $sql  = "SELECT * FROM member WHERE id='$row[user_id]' ";
+        $sql  = "SELECT * FROM member WHERE user_flag = 'c' AND id='$row[user_id]' ";
         $res  = mysqli_query($connect, $sql);
         $trow = mysqli_fetch_array($res);
 
