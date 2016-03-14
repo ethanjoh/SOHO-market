@@ -6,6 +6,7 @@ include_once "../../util/util.php";
 $mode = set_var($_GET['mode']);
 $oid  = set_var($_GET['oid']);
 $page = set_var($_GET['page']);
+$uri  = $_SERVER['HTTP_REFERER'];
 
 //주문 취소에 따른 재고 복구
 $sql = "SELECT * FROM mall_order WHERE num = '$oid' ";
@@ -37,4 +38,4 @@ if ("d" == $mode) {
 $result = mysqli_query($connect, $update);
 
 // echo "<meta http-equiv='refresh' content='0; URL=top_order_list.php?page=$page'>";
-header("Location: top_order_list.php?page=" . $page . "");
+header("Location: " . $uri . "");

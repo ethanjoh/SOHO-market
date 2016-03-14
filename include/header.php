@@ -1,19 +1,19 @@
 <?php
 
-	include_once "../util/util.php";
-	include_once "../util/shop-functions.php";
+include_once "../util/util.php";
+include_once "../util/shop-functions.php";
 
-	session_start();
+session_start();
 
-	$p_sid  = set_var($_COOKIE['p_sid']);
-	$p_id   = set_var($_SESSION['p_id']);
-	$p_name = set_var($_SESSION['p_name']);
+$p_sid  = set_var($_COOKIE['p_sid']);
+$p_id   = set_var($_SESSION['p_id']);
+$p_name = set_var($_SESSION['p_name']);
 
-	$com_info = get_company_info();
+$com_info = get_company_info();
 
-	//로그인 이전의 URL로 돌아가기
-	$uri = $_SERVER['HTTP_REFERER'];
-	// $uri = urlencode($uri);
+//로그인 이전의 URL로 돌아가기
+$uri = set_var($_SERVER['HTTP_REFERER']);
+// $uri = urlencode($uri);
 
 ?>
 

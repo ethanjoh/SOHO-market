@@ -501,7 +501,7 @@ page_nav($totalpage, $cpage, $url);
 				    	<form class="form-inline" role="form" method="get" name="search" action="p_top_order_list.php">
 				        <input type="hidden" name="mode" value="search">
 				        <div class="ui-widget form-group">
-				            <input type="text" class="form-control" name="keyword" id="keyword" placeholder="수령인,업체명,아이디,상품명 입력" autocomplete="off">
+				            <input type="text" class="form-control" name="keyword" id="keyword" placeholder="검색어" autocomplete="off">
 				            <button class="btn btn-primary" onclick="search.submit()"><i class="fa fa-search"></i>검 색</button>
 				        </div>
 				      </form>

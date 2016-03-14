@@ -11,7 +11,8 @@ $page        = set_var($_POST['page']);
 $track_no    = set_var($_POST['track_no']);
 $senddate    = set_var($_POST['senddate']);
 $last_amount = set_var($_POST['last_amount']);
-$uri         = $_SERVER['HTTP_REFERER'];
+$uri         = set_var($_POST['reUrl']);
+$uri         = urldecode($uri);
 
 //택배비 변경
 if ($mode == 'd1') {
@@ -60,24 +61,23 @@ if ($mode == "pchk3") {
 }
 
 // 주문확인
-if ($mode == 'orderConfirm') {
+if ($mode == "orderConfirm") {
     $update = "UPDATE mall_order SET status='5' WHERE num='$oid' ";
     $result = mysqli_query($connect, $update);
 
-    header('location:' . $uri);
-
+    header("Location:" . $uri . "");
 }
 
 //입금확인//포장완료
-if ($mode == 'packingDone') {
+if ($mode == "packingDone") {
     $update = "UPDATE mall_order SET status='7', last_amount='$last_amount' WHERE num='$oid' ";
     $result = mysqli_query($connect, $update);
 
-    header('location:' . $uri);
+    header("Location:" . $uri . "");
 }
 
 //발송완료
-if ($mode == 'sent' || $mode == '4' || $mode == 'a') {
+if ($mode == "sent" || $mode == '4' || $mode == 'a') {
     // 3: 주문내역, 4: 사입, a:전체송장번호입력에서
 
     $update = "UPDATE mall_order SET status='8', track_no='$track_no', last_amount='$last_amount', senddate='$senddate' WHERE num='$oid' ";
@@ -86,15 +86,15 @@ if ($mode == 'sent' || $mode == '4' || $mode == 'a') {
 }
 
 //발송지연
-if ($mode == 'delay') {
+if ($mode == "delay") {
     $update = "UPDATE mall_order SET status='0' WHERE num='$oid' ";
     $result = mysqli_query($connect, $update);
 
-    header('location:' . $uri);
+    header("Location:" . $uri . "");
 }
 
 //직송 운송장 입력 시 운송장번호만 입력
-if ($mode == 'd') {
+if ($mode == "d") {
 
     $qry  = "SELECT * FROM mall_order WHERE num='$oid' ";
     $res  = mysqli_query($connect, $qry);
@@ -124,6 +124,9 @@ if ($sms_row['sms'] == "Y") {
 //DB 업데이트 후 복귀할 URL
 if ($mode == "sent") {
     echo "<meta http-equiv='refresh' content='0; URL=top_order_list.php?mode=" . $mode . "&amp;oid=" . $oid . "&amp;key=" . $key . "&amp;keyword=" . $keyword . "&amp;page=" . $page . "'>";
+} elseif ($mode == "p_sent") {
+    // 개인회원 주문발송완료
+    header("Location:" . $uri . "");
 } else if ($mode == "4") {
     //사입입력
     echo "<meta http-equiv='refresh' content='0; URL=track_list.php'>";
