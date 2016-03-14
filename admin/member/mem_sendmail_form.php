@@ -35,19 +35,19 @@
           <form class="form-horizontal" role="form" method="post" name="mail" action="mem_sendmail_ok.php"  enctype="multipart/form-data">
 <?php
 
-$num     = set_var($_POST['num']);
-$tot_cnt = sizeof($num);
+    $num     = set_var($_POST['num']);
+    $tot_cnt = sizeof($num);
 
-for ($i = 0; $i < sizeof($num); $i++) {
-    echo '<input type=hidden name="num[]" value="' . $num[$i] . '">' . "\r\n";
-}
+    for ($i = 0; $i < sizeof($num); $i++) {
+        echo '<input type=hidden name="num[]" value="' . $num[$i] . '">' . "\r\n";
+    }
 ?>
             <!-- send mail start-->
             <div class="row">
               <div class="col-sm-12">
                 <section class="panel">
                   <header class="panel-heading table-head">
-                      메일 발송 (발송할 회원 수 : <?php echo $tot_cnt; ?>)
+                      메일 발송 (발송할 회원 수 :                                                                                                                                                                                                                                                                                                                                                                                                                              <?php echo $tot_cnt; ?>)
                   </header>
                   <div class="panel-body">
                   <div class="table-responsive">
@@ -55,7 +55,7 @@ for ($i = 0; $i < sizeof($num); $i++) {
                     <table class="table">
                       <tbody>
                         <tr>
-                          <th>보내는 사람</th>
+                          <th width>보내는 사람</th>
                           <td><input type='text' size='100' name="sender" value="<?php echo $info['company_name']; ?>">
                           </td>
                         </tr>
@@ -121,20 +121,6 @@ for ($i = 0; $i < sizeof($num); $i++) {
     <?php include_once "../include/admin_footer.php";?>
       <!--footer end-->
 
-<!--     <script src="js/HuskyEZCreator.js" charset="utf-8"></script>
-
-    <script>
-    var oEditors = [];
-    // 마지막 옵션은 체감 속도 증진을 위해서 페이지 로딩 완료시 까지 화면 표시를 하지 않는 옵션 입니다.
-    // 개발 작업시에는 이 값을 false로 설정 하세요.
-    //nhn.husky.EZCreator.createInIFrame(oEditors, "contents", "SEditorSkin.html", "createSEditorInIFrame", null, false);
-    nhn.husky.EZCreator.createInIFrame({
-      oAppRef: oEditors,
-      elPlaceHolder: "contents",
-      sSkinURI: "SEditorSkin.html",
-      fCreator: "createSEditorInIFrame"
-    });
-    </script> -->
     <script language="JavaScript">
     <!--
     function form_check() {
@@ -157,17 +143,10 @@ for ($i = 0; $i < sizeof($num); $i++) {
         return;
       }
 
-    /*
-      if(!form.contents.value){
-        alert('발송 내용을 입력하지 않았습니다.');
-        form.contents.focus();
-        return;
-      }
-    */
-      // oEditors.getById["contents"].exec("UPDATE_IR_FIELD", []);
       form.submit();
     }
     //-->
     </script>
+
   </body>
 </html>
