@@ -20,12 +20,12 @@ $thisMonth = date("F, Y", strtotime($month));
 // $total = mysqli_num_rows($res);
 
 //기업회원 미확인건
-$sql_1      = "SELECT * FROM mall_order WHERE cancel='N' AND status='3' AND user_id <> 'guest' AND user_flag = 'c' ";
+$sql_1      = "SELECT * FROM mall_order WHERE user_flag = 'c' AND cancel='N' AND status='3' AND user_id <> 'guest' ";
 $res_1      = mysqli_query($connect, $sql_1);
 $unchkTotal = mysqli_num_rows($res_1);
 
 //개인회원 미확인건
-$sql_2       = "SELECT * FROM mall_order WHERE cancel='N' AND status='3' AND user_id <> 'guest' AND user_flag = 'p'";
+$sql_2       = "SELECT * FROM mall_order WHERE user_flag = 'p' AND cancel='N' AND status='3' AND user_id <> 'guest' ";
 $res_2       = mysqli_query($connect, $sql_2);
 $pUnchkTotal = mysqli_num_rows($res_2);
 
@@ -104,12 +104,14 @@ mysqli_query($connect, 'set names utf8');
             </div>
           </div>
           <!--state overview end-->
+
+          <!-- 기업회원 통계 -->
           <div class="row">
             <div class="col-lg-6">
               <!-- today's sales start-->
               <section class="panel">
                 <header class="panel-heading">
-                  <?php echo $thisMonth; ?> :: 월 상품판매량 (단위: 개)
+                  <?php echo $thisMonth; ?> :: 기업회원 주문수량 월 집계 (단위: 개)
                 </header>
                 <div class="panel-body">
                   <div id="hero-bar" class="graph"></div>
@@ -121,7 +123,7 @@ mysqli_query($connect, 'set names utf8');
               <!-- monthly sales start-->
               <section class="panel">
                 <header class="panel-heading">
-                  월 판매액 (단위: 원)
+                  기업회원 주문액 월 집계 (단위: 원)
                 </header>
                 <div class="panel-body">
                   <div id="hero-graph" class="graph"></div>
@@ -131,6 +133,33 @@ mysqli_query($connect, 'set names utf8');
             </div>
           </div>
 
+          <!-- 개인회원 통계 -->
+          <div class="row">
+            <div class="col-lg-6">
+              <!-- today's sales start-->
+              <section class="panel">
+                <header class="panel-heading">
+                  <?php echo $thisMonth; ?> :: 개인회원 주문수량 월 집계 (단위: 개)
+                </header>
+                <div class="panel-body">
+                  <div id="hero-bar2" class="graph"></div>
+                </div>
+              </section>
+              <!-- today's sales end-->
+            </div>
+            <div class="col-lg-6">
+              <!-- monthly sales start-->
+              <section class="panel">
+                <header class="panel-heading">
+                  개인회원 주문액 월 집계 (단위: 원)
+                </header>
+                <div class="panel-body">
+                  <div id="hero-graph2" class="graph"></div>
+                </div>
+              </section>
+              <!-- monthly sales end-->
+            </div>
+          </div>
           <!-- bbs start -->
           <div class="row">
 <?php
