@@ -17,6 +17,7 @@ $lcode   = set_var($_GET['lcode']);
 $mcode   = set_var($_GET['mcode']);
 $scode   = set_var($_GET['scode']);
 
+$reUrl = urlencode($_SERVER['PHP_SELF'] . "?" . $_SERVER['QUERY_STRING']);
 ?>
 
 	<body onLoad="init()">
@@ -340,7 +341,7 @@ if ($res_4) {
 					            <td>-</td>
 					            <td><?php echo $pay_status; ?></td>
                                 <td>-</td>
-					            <td><a type="button" class="btn btn-xs btn-danger" href="or_delete.php?mode=d&amp;oid=<?php echo $row['num']; ?>&amp;page=<?php echo $page; ?>" onclick="return confirm('취소된 주문입니다.\n삭제하시겠습니까?')"><i class="fa fa-trash-o"></i></a></td>
+					            <td><a type="button" class="btn btn-xs btn-danger" href="or_delete.php?mode=d&amp;oid=<?php echo $row['num']; ?>&amp;page=<?php echo $page; ?>&amp;reurl=<?php echo $reUrl; ?>" onclick="return confirm('취소된 주문입니다.\n삭제하시겠습니까?')"><i class="fa fa-trash-o"></i></a></td>
 <?php
 
             /**
@@ -431,7 +432,7 @@ if ($row['delivery_type'] == 'L' || $row['delivery_type'] == 'L1') {
 								-->
                                 <td><?php echo $pay_status; ?></td>
 					            <td><?php echo $status_now; ?></td>
-					            <td><a type="button" class="btn btn-xs btn-default" href="or_delete.php?oid=<?php echo $row['num']; ?>&amp;page=<?php echo $page; ?>" onclick="return confirm('정말 주문을 취소하시겠습니까?')"><i class="fa fa-times"></i></a></td>
+					            <td><a type="button" class="btn btn-xs btn-default" href="or_delete.php?oid=<?php echo $row['num']; ?>&amp;page=<?php echo $page; ?>&amp;reurl=<?php echo $reUrl; ?>" onclick="return confirm('정말 주문을 취소하시겠습니까?')"><i class="fa fa-times"></i></a></td>
 					          </tr>
 <?php
 

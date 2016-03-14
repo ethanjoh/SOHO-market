@@ -6,7 +6,8 @@ include_once "../../util/util.php";
 $mode = set_var($_GET['mode']);
 $oid  = set_var($_GET['oid']);
 $page = set_var($_GET['page']);
-$uri  = $_SERVER['HTTP_REFERER'];
+$uri  = set_var($_GET['reUrl']);
+$uri  = urldecode($uri);
 
 //주문 취소에 따른 재고 복구
 $sql = "SELECT * FROM mall_order WHERE num = '$oid' ";
@@ -27,11 +28,10 @@ for ($i = 0; $i < sizeof($a_goods_fk); $i++) {
     mysqli_query($connect, $update1);
 }
 
-if ("d" == $mode) {
+if ($mode == "d") {
     $update = "DELETE FROM mall_order WHERE num='$oid' ";
-} else
-// 해당 주문정보를 취소처리 합니다.
-{
+} else {
+    // 해당 주문정보를 취소처리 합니다.
     $update = "UPDATE mall_order SET cancel='Y', last_amount=0 WHERE num='$oid' ";
 }
 
