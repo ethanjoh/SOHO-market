@@ -7,7 +7,7 @@ $start_date = date("Y-m-01");
 $today      = date("Y-m-d");
 
 //1. 전체 주문을 구한다.
-$sql = "SELECT * FROM mall_order WHERE user_flag = 'c' AND cancel='N' AND status='8' AND date(createdate) BETWEEN '$start_date' AND '$today'  ORDER BY num DESC";
+$sql = "SELECT * FROM mall_order WHERE user_flag = 'p' AND cancel='N' AND status='8' AND date(createdate) BETWEEN '$start_date' AND '$today'  ORDER BY num DESC";
 $res = mysqli_query($connect, $sql);
 
 //2. 각 주문에서 제품코드를 구한다.
@@ -74,7 +74,7 @@ if ($p_no) {
 // monthly sales
 $one_year = date("Y-m-01", strtotime("-1 year"));
 $sql      = "SELECT date_format(createdate, '%Y-%m') AS group_date, sum(last_amount) AS sum_amount FROM mall_order
-                                      WHERE user_flag = 'c' AND cancel='N' AND status='8' AND date_format(createdate, '%Y-%m-%d') >= '$one_year'
+                                      WHERE user_flag = 'p' AND cancel='N' AND status='8' AND date_format(createdate, '%Y-%m-%d') >= '$one_year'
                                       GROUP BY date_format(createdate, '%Y-%m')  ";
 
 $res = mysqli_query($connect, $sql);
