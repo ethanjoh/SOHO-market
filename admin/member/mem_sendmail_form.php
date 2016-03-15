@@ -35,12 +35,12 @@
           <form class="form-horizontal" role="form" method="post" name="mail" action="mem_sendmail_ok.php"  enctype="multipart/form-data">
 <?php
 
-    $num     = set_var($_POST['num']);
-    $tot_cnt = sizeof($num);
+$num     = set_var($_POST['num']);
+$tot_cnt = sizeof($num);
 
-    for ($i = 0; $i < sizeof($num); $i++) {
-        echo '<input type=hidden name="num[]" value="' . $num[$i] . '">' . "\r\n";
-    }
+for ($i = 0; $i < sizeof($num); $i++) {
+    echo '<input type=hidden name="num[]" value="' . $num[$i] . '">' . "\r\n";
+}
 ?>
             <!-- send mail start-->
             <div class="row">
@@ -55,7 +55,7 @@
                     <table class="table">
                       <tbody>
                         <tr>
-                          <th width>보내는 사람</th>
+                          <th width="20%">보내는 사람</th>
                           <td><input type='text' size='100' name="sender" value="<?php echo $info['company_name']; ?>">
                           </td>
                         </tr>
