@@ -1233,6 +1233,12 @@ function show_login_form()
                                 <div>
                                     <input type="checkbox" name="msave_all">아이디 저장
                                 </div>
+
+                                <div class="login-form-element">
+                                    <a class="btn btn-default" type="button" href="/member/find-id.php">아이디 찾기</a>
+                                    <a class="btn btn-default" type="button" href="/member/find-pass.php">비밀번호 찾기</a>
+                                </div>
+
                             </div>
                             </form>
                         </div> <!-- //.login-form-head -->
@@ -1258,6 +1264,10 @@ function show_login_form()
                                 <div>
                                     <input type="checkbox" name="msave_all">아이디 저장
                                 </div>
+                                <div class="login-form-element">
+                                    <a class="btn btn-default" type="button" href="/member/p-find-id.php">아이디 찾기</a>
+                                    <a class="btn btn-default" type="button" href="/member/p-find-pass.php">비밀번호 찾기</a>
+                                </div>
                             </div>
 
 
@@ -1270,8 +1280,6 @@ function show_login_form()
                     <div class="col-md-12 text-center">
                         <div class="login-form-element">
                             <a class="btn btn-default" type="button" href="/member/register.php">가입하기</a>
-                            <a class="btn btn-default" type="button" href="/member/find-id.php">아이디 찾기</a>
-                            <a class="btn btn-default" type="button" href="/member/find-pass.php">비밀번호 찾기</a>
                         </div>
                     </div>
                 </div>

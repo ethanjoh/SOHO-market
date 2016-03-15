@@ -304,7 +304,7 @@ if ($res_4) {
     for ($i = 0; $row = mysqli_fetch_array($res_4); $i++) {
 
         //회원정보
-        $sql  = "SELECT * FROM member WHERE user_flag = 'c' AND id='$row[user_id]' ";
+        $sql  = "SELECT * FROM member WHERE id='$row[user_id]' ";
         $res  = mysqli_query($connect, $sql);
         $trow = mysqli_fetch_array($res);
 

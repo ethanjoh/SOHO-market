@@ -47,6 +47,10 @@ custom style
     margin: 0 auto;
 }
 
+.login-form-element {
+    margin-top: 20px;
+}
+
 .login-form-element a {
     border: 1px solid #2BA8DB;
     display: inline-block;
