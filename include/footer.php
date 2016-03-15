@@ -35,7 +35,7 @@
                                                         <a href="/member/delivery-policy.php">배송/반품 안내</a>
                                                     </li>
                                                     <li>
-                                                        <a href="/member/privacy-policy.php">정보보호정책</a>
+                                                        <a href="/member/privacy-policy.php">이용약관/정보보호정책</a>
                                                     </li>
                                                 </ul>
                                             </div>

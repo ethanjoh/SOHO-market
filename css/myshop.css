@@ -213,3 +213,8 @@ custom style
 .strong-text-400 {
     font-weight: 400;
 }
+
+.iframe-page {
+    height: 300px;
+    width: 100%;
+}

@@ -56,8 +56,8 @@
                     <div class="row">
                         <div class="col-md-12 text-center">
                              <div class="login-form-element">
-                                <a class="btn btn-default" type="button" href="#">이용약관</a>
-                                <a class="btn btn-default" type="button" href="#">정보보호정책</a>
+                                <a class="btn btn-default" type="button" href="/member/privacy-policy.php">이용약관</a>
+                                <a class="btn btn-default" type="button" href="/member/privacy-policy.php">개인정보 보호정책</a>
                             </div>
                         </div>
                     </div>

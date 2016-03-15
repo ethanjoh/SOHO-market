@@ -16,7 +16,7 @@
                                         </span>
                                     </li>
                                     <li class="category3">
-                                        <strong>개인정보보호 정책</strong>
+                                        <strong>이용약관 및 개인정보보호 정책</strong>
                                     </li>
                                 </ul>
                             </div>
@@ -27,22 +27,18 @@
                             <div class="about-optima-text">
                                 <h1>
                                     About
-                                    <strong>개인정보보호</strong>
+                                    <strong>이용약관</strong>
                                 </h1>
-                                <p>개인정보보호 안내입니다.</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt voluptatibus quisquam rerum sit ullam saepe, qui tenetur sunt in pariatur mollitia itaque, assumenda officia ut eos facere quasi error neque!</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, at? Quos officia, minus totam tenetur optio odit, laudantium, aut qui nesciunt consequuntur iste. Enim soluta sapiente, dicta hic itaque, nam.</p>
+                                <p><iframe class="iframe-page" seamless src="inc/contract1.html"></iframe></p>
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-12">
                             <div class="about-optima-text">
                                 <h1>
                                     About
-                                    <strong>정보보호 책임자</strong>
+                                    <strong>개인정보 보호정책</strong>
                                 </h1>
-                                <p>정보보호 책임자 안내입니다.</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta maxime dolorum tempora amet voluptatum sed autem esse voluptates aspernatur debitis, vel omnis? Dignissimos dicta ab officia, architecto voluptate asperiores placeat?</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti fuga praesentium, quaerat quibusdam blanditiis quo. Saepe incidunt ea, placeat odit fugiat earum magnam accusantium commodi, sint ab cum quae quas.</p>
+                                <p><iframe class="iframe-page" seamless src="inc/privacy.html"></iframe></p>
                             </div>
                         </div>
                     </div>
