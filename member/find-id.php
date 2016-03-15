@@ -30,7 +30,7 @@
                 <div class="panel panel-default">
                   <div class="panel-heading">아이디 찾기</div>
                   <div class="panel-body">
-                    <form name="form1" method="post" action="find_id_ok.php">
+                    <form name="form1" method="post" action="find-id-ok.php">
                         <div class="form-group form-inline">
                             <label for="id">담당자 이메일:</label>
                             <input class="form-control" type="text" name="md_email" />
@@ -53,7 +53,7 @@
                 <div class="panel panel-default">
                   <div class="panel-heading">비밀번호 초기화</div>
                   <div class="panel-body">
-                    <form name="form2" method="post" action="find_pass_ok.php">
+                    <form name="form2" method="post" action="find-pass-ok.php">
                         <div class="form-group form-inline">
                             <label for="id">아이디:</label>
                             <input class="form-control" type="text" name="id" />
