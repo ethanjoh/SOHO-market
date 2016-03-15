@@ -42,7 +42,7 @@
                             - <input class="form-control" size="5" name="license_no3" >
                         </div>
                         <p class="text-center">
-                            <a class="btn btn-primary" href="#" onclick="lost_checkInput1();"><span>찾기</span></a>
+                            <a class="btn btn-primary" href="#" onclick="find_id();"><span>찾기</span></a>
                             <a class="btn btn-default" href="/" ><span>취소</span></a>
                         </p>
                     </form>
@@ -65,7 +65,7 @@
                             - <input class="form-control" size="5" name="license_no3" >
                         </div>
                         <p class="text-center">
-                            <a class="btn btn-primary" href="#" onclick="lost_checkInput2();"><span>초기화</span></a>
+                            <a class="btn btn-primary" href="#" onclick="find_pw();"><span>초기화</span></a>
                             <a class="btn btn-default" href="/" ><span>취소</span></a>
                         </p>
                     </form>

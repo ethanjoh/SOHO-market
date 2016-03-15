@@ -538,7 +538,11 @@ function changePasswd2() {
     form.submit();
 }
 
-function lost_checkInput1() {
+/**
+ * [find_id 기업회원 아이디 찾기]
+ * @return {[type]} [description]
+ */
+function find_id() {
     var form = document.form1;
 
     if (!form.md_email.value) {
@@ -593,7 +597,11 @@ function lost_checkInput1() {
 }
 
 
-function lost_checkInput2() {
+/**
+ * [find_pw 기업회원 비밀번호 찾기]
+ * @return {[type]} [description]
+ */
+function find_pw() {
     var form = document.form2;
 
     if (!form.id.value) {
@@ -647,7 +655,11 @@ function lost_checkInput2() {
     form.submit();
 }
 
-function lost_p_checkInput1() {
+/**
+ * [find_p_id 개인회원 아이디 찾기]
+ * @return {[type]} [description]
+ */
+function find_p_id() {
     var form = document.form1;
 
     if (!form.email.value) {
@@ -701,7 +713,11 @@ function lost_p_checkInput1() {
     form.submit();
 }
 
-function lost_p_checkInput2() {
+/**
+ * [find_p_pw 개인회원 비밀번호 찾기]
+ * @return {[type]} [description]
+ */
+function find_p_pw() {
     var form = document.form2;
 
     if (!form.id.value) {
