@@ -11,24 +11,16 @@
               $page = set_var($_GET['page']);
               $from = set_var($_GET['from']);
 
-              $query  = "SELECT * FROM member WHERE seq_num='$num' ";
+              $query  = "SELECT * FROM p_member WHERE seq_num='$num' ";
               $result = mysqli_query($connect, $query);
               $rows   = mysqli_fetch_array($result);
 
-              $md_hphone  = explode("-", $rows['md_hphone']);
-              $o_zipno    = explode("-", $rows['o_zipcode']);
-              $o_phone    = explode("-", $rows['o_phone']);
-              $o_fax      = explode("-", $rows['o_fax']);
-              $d_zipno    = explode("-", $rows['d_zipcode']);
-              $d_phone    = explode("-", $rows['d_phone']);
-              $d_fax      = explode("-", $rows['d_fax']);
-              $license_no = explode("-", $rows['license_no']);
-              // $open_date  = explode("-", $rows['open_date']);
-
-              if (!defined("PHP_EOL")) {
-                  define("PHP_EOL", "\r\n");
-              }
-
+              $hphone   = explode("-", $rows['hphone']);
+              $o_zipno  = explode("-", $rows['o_zipcode']);
+              $o_phone  = explode("-", $rows['o_phone']);
+              $d_zipno  = explode("-", $rows['d_zipcode']);
+              $d_phone  = explode("-", $rows['d_phone']);
+              $d_hphone = explode("-", $rows['d_hphone']);
           ?>
 
             <!-- member info start -->
@@ -36,7 +28,7 @@
               <div class="col-sm-12">
                 <section class="panel">
                   <header class="panel-heading table-head">
-                      업체 정보수정/관리
+                      개인회원 정보수정/관리
                   </header>
                   <div class="panel-body">
                   <form name="form1" role="form" class="form-inline" method="post" action="//<?php echo $_SERVER['SERVER_NAME']; ?>:<?php echo $sslPort; ?>/admin/member/mem_edit_member.php">
@@ -58,18 +50,17 @@
                             </td>
                           </tr>
                           <tr>
-                            <th>담당자 성명 (직함)</th>
+                            <th>성명</th>
                             <td>
                               <div class="form-group">
-                                <input type="text" class="form-control" name="md_name" value="<?php echo $rows['md_name']; ?>" />
-                                <input type="text" class="form-control" name="job_title" value="<?php echo $rows['job_title']; ?>" />
+                                <input type="text" class="form-control" name="name" value="<?php echo $rows['name']; ?>" />
                               </div>
                             </td>
                           </tr>
                           <tr>
                             <th>담당자 이메일</th>
                             <td>
-                              <input type="text" class="form-control" name="md_email" size="25" value='<?php echo $rows['md_email']; ?>' />
+                              <input type="text" class="form-control" name="email" size="25" value='<?php echo $rows['email']; ?>' />
                               <?php
                                   if ($rows['optin'] == "Y") {
                                       echo "<p class=\"help-block\">(이메일 수신 함)</p>";
@@ -81,59 +72,7 @@
                             </td>
                           </tr>
                           <tr>
-                            <th>담당자 휴대폰</th>
-                            <td>
-                              <select name="md_hphone1" class="form-control" />
-                                <option value="">선택</option>
-                                <option value="010"
-                                <?php echo ($hphone[0] == '010') ? "selected" : ""; ?>>010</option>
-                                <option value="011"
-                                <?php echo ($hphone[0] == '011') ? "selected" : ""; ?>>011</option>
-                                <option value="016"
-                                <?php echo ($hphone[0] == '016') ? "selected" : ""; ?>>016</option>
-                                <option value="017"
-                                <?php echo ($hphone[0] == '017') ? "selected" : ""; ?>>017</option>
-                                <option value="018"
-                                <?php echo ($hphone[0] == '018') ? "selected" : ""; ?>>018</option>
-                                <option value="019"
-                                <?php echo ($hphone[0] == '019') ? "selected" : ""; ?>>019</option>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  ?>>019</option>
-                              </select>
-                              -
-                              <input type="text" class="form-control" name="md_hphone2" size="4"  value="<?php echo $md_hphone[1]; ?>" />
-                              -
-                              <input type="text" class="form-control" name="md_hphone3" size="4"  value="<?php echo $md_hphone[2]; ?>" />
-                              <?php
-                                  if ($rows['sms'] == "Y") {
-                                      echo '<p class="help-block">(SMS 수신 함)</p>' . PHP_EOL;
-                                  } else {
-                                      echo '<p class="help-block">(SMS 미수신 함)</p>' . PHP_EOL;
-                                  }
-
-                              ?>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th>사업자등록번호</th>
-                            <td>
-                                <input type="text" class="form-control" name="license_no1" size="3" value="<?php echo $license_no[0]; ?>"> -
-                                <input type="text" class="form-control" name="license_no2" size="2" value="<?php echo $license_no[1]; ?>"> -
-                                <input type="text" class="form-control" name="license_no3" size="5" value="<?php echo $license_no[2]; ?>">
-                            </td>
-                          </tr>
-                          <tr>
-                            <th>상 호(법인명)</th>
-                            <td>
-                              <input type="text" class="form-control" name="company_name" size="25" value="<?php echo stripslashes($rows['company_name']); ?>" />
-                            </td>
-                          </tr>
-                          <tr>
-                            <th>대표 성명</th>
-                            <td>
-                              <input type="text" class="form-control" name="ceo" size="10" value='<?php echo $rows['ceo']; ?>' />
-                            </td>
-                          </tr>
-                          <tr>
-                            <th>사업장 우편번호</th>
+                            <th>기본 주소지 우편번호</th>
                             <td>
                               <input type="text" class="form-control" name="o_zipcode1" id="o_zipcode1" size="5"  value="<?php echo $o_zipno[0]; ?>" readonly />
                               <input type="button" class="form-control" onclick="openDaumPostcode()" value="우편번호 찾기"><br />
@@ -193,7 +132,7 @@
                             </td>
                           </tr>
                           <tr>
-                            <th rowspan="2">사업장 소재지</th>
+                            <th rowspan="2">기본 주소지</th>
                             <td>
                               <input type="text" class="form-control" name="o_addr1" id="o_addr1" size="50" value='<?php echo $rows['o_addr1']; ?>' readonly /></td>
                           </tr>
@@ -201,34 +140,7 @@
                             <td><input type="text" class="form-control" name="o_addr2" id="o_addr2" size="50" value='<?php echo $rows['o_addr2']; ?>' /></td>
                           </tr>
                           <tr>
-                            <th>업태</th>
-                            <td><input type="text" class="form-control" name="category1" size="25" value='<?php echo $rows['category1']; ?>' /></td>
-                          </tr>
-                          <tr>
-                            <th>종목</th>
-                            <td><input type="text" class="form-control" name="category2" size="25" value='<?php echo $rows['category2']; ?>' /></td>
-                          </tr>
-                          <tr>
-                          <th>과세여부</th>
-                            <td>
-<?php
-
-    $chk1 = '';
-    $chk2 = '';
-
-    switch ($rows['tax_type']) {
-        case "I":
-            $chk1 = 'checked="checked"';
-            break;
-        case "G":
-            $chk2 = 'checked="checked"';
-            break;
-    }
-?>
-                            <input type="radio" class="form-control" name="tax_type" value="1"<?php echo $chk1; ?> />일반과세자 <input type="radio" class="form-control" name="tax_type" value="2"<?php echo $chk2; ?> />간이과세자</td>
-                          </tr>
-                          <tr>
-                            <th>사업장 전화번호</th>
+                            <th>기본 주소지 전화번호</th>
                             <td>
                               <label class="form-inline">
                                 <input type="text" class="form-control" name="o_phone1" size="3"  value="<?php echo $o_phone[0]; ?>"  /> -
@@ -238,24 +150,41 @@
                             </td>
                           </tr>
                           <tr>
-                            <th>사업장 팩스</th>
+                            <th>휴대폰</th>
                             <td>
-                              <input type="text" class="form-control" name="o_fax1" size="3" value="<?php echo $o_fax[0]; ?>" /> -
-                              <input type="text" class="form-control" name="o_fax2" size="4" value="<?php echo $o_fax[1]; ?>" /> -
-                              <input type="text" class="form-control" name="o_fax3" size="4" value="<?php echo $o_fax[2]; ?>" />
-                            </td>
-                          </tr>
-                          <tr>
-                            <th>홈페이지</th>
-                            <td>
-                              http:// <input type="text" class="form-control" name="homepage" size="30" value="<?php echo $rows['homepage']; ?>" />
-                              <?php echo $rows['homepage'] ? '&nbsp;&nbsp;<a href="http://$rows[homepage]" target="_blank"><i class="fa fa-external-link"></i></a>' : ''; ?>
+                              <select name="hphone1" class="form-control" />
+                                <option value="">선택</option>
+                                <option value="010"
+                                <?php echo ($hphone[0] == '010') ? "selected" : ""; ?>>010</option>
+                                <option value="011"
+                                <?php echo ($hphone[0] == '011') ? "selected" : ""; ?>>011</option>
+                                <option value="016"
+                                <?php echo ($hphone[0] == '016') ? "selected" : ""; ?>>016</option>
+                                <option value="017"
+                                <?php echo ($hphone[0] == '017') ? "selected" : ""; ?>>017</option>
+                                <option value="018"
+                                <?php echo ($hphone[0] == '018') ? "selected" : ""; ?>>018</option>
+                                <option value="019"
+                                <?php echo ($hphone[0] == '019') ? "selected" : ""; ?>>019</option>
+                              </select>
+                              -
+                              <input type="text" class="form-control" name="hphone2" size="4"  value="<?php echo $hphone[1]; ?>" />
+                              -
+                              <input type="text" class="form-control" name="hphone3" size="4"  value="<?php echo $hphone[2]; ?>" />
+                              <?php
+                                  if ($rows['sms'] == "Y") {
+                                      echo "<p class=\"help-block\">(SMS 수신 함)</p>";
+                                  } else {
+                                      echo "<p class=\"help-block\">(SMS 미수신 함)</p>";
+                                  }
+
+                              ?>
                             </td>
                           </tr>
                           <tr>
                             <th colspan="2">배송지 정보
                               <input type="checkbox" name="same_info" onClick="useSameAddr();" >
-                              사업장 소재지와 동일. 사무실과 물류창고 주소가 다른 경우 입력.)</th>
+                              기본 주소지와 동일할 경우 체크)</th>
                           </tr>
                           <tr>
                             <th>배송지 우편번호</th>
@@ -335,96 +264,44 @@
                           <tr>
                             <th>배송지 팩스</th>
                             <td>
-                              <input type="text" class="form-control" name="d_fax1" size="3" value="<?php echo $d_fax[0]; ?>" /> -
-                              <input type="text" class="form-control" name="d_fax2" size="4" value="<?php echo $d_fax[1]; ?>" /> -
-                              <input type="text" class="form-control" name="d_fax3" size="4" value="<?php echo $d_fax[2]; ?>" />
-                            </td>
-                          </tr>
-                          <tr>
-                            <th>거래형태</th>
-                            <td>
-<?php
-
-    switch ($rows['seller']) {
-        case "1":
-            echo '<input type="radio" name="seller" value="1" checked >사입 거래' . PHP_EOL;
-            echo '<input type="radio" name="seller" value="2">당사배송 위탁 거래' . PHP_EOL;
-            echo '<input type="radio" name="seller" value="3">판매자 배송 위탁 거래' . PHP_EOL;
-            break;
-        case "2":
-            echo '<input type="radio" name="seller" value="1">사입 거래' . PHP_EOL;
-            echo '<input type="radio" name="seller" value="2" checked>당사배송 위탁 거래' . PHP_EOL;
-            echo '<input type="radio" name="seller" value="3">판매자 배송 위탁 거래' . PHP_EOL;
-            break;
-        case "3":
-            echo '<input type="radio" name="seller" value="1">사입 거래' . PHP_EOL;
-            echo '<input type="radio" name="seller" value="2">당사배송 위탁 거래' . PHP_EOL;
-            echo '<input type="radio" name="seller" value="3"  checked>판매자 배송 위탁 거래' . PHP_EOL;
-            break;
-    }
-?>
+                              <input type="text" class="form-control" name="d_hphone1" size="3" value="<?php echo $d_hphone[0]; ?>" /> -
+                              <input type="text" class="form-control" name="d_hphone2" size="4" value="<?php echo $d_hphone[1]; ?>" /> -
+                              <input type="text" class="form-control" name="d_hphone3" size="4" value="<?php echo $d_hphone[2]; ?>" />
                             </td>
                           </tr>
                           <tr>
                             <th>기본할인율</th>
                             <td>
                               <input type="text" class="form-control" name="dc_rate" value="<?php echo $rows['dc_rate']; ?>" size="3"/> % DC
-<?php
-
-    switch ($rows['tax']) {
-        case "E":
-            echo '<input type="radio" name="tax" value="E" checked >(VAT 별도)' . PHP_EOL;
-            echo '<input type="radio" name="tax" value="I">(VAT 포함)' . PHP_EOL;
-            break;
-        case "I":
-            echo '<input type="radio" name="tax" value="E">(VAT 별도)' . PHP_EOL;
-            echo '<input type="radio" name="tax" value="I" checked>(VAT 포함)' . PHP_EOL;
-            break;
-    }
-?>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th>결제일</th>
-                            <td>
-                              <select name="payment_day" class="form-control">
-                                <option value="1"
-                                <?php echo ($rows['payment_day'] == 1) ? "selected>" : ">"; ?>당일 결제</option>
-                                <option value="2"
-                                <?php echo ($rows['payment_day'] == 2) ? "selected>" : ">"; ?>당월 말</option>
-                                <option value="3"
-                                <?php echo ($rows['payment_day'] == 3) ? "selected>" : ">"; ?>익월 5일</option>
-                                <option value="4"
-                                <?php echo ($rows['payment_day'] == 4) ? "selected>" : ">"; ?>익월 10일</option>
-                                <option value="5"
-                                <?php echo ($rows['payment_day'] == 5) ? "selected>" : ">"; ?>익월 15일</option>
-                                <option value="6"
-                                <?php echo ($rows['payment_day'] == 6) ? "selected>" : ">"; ?>익월 20일</option>
-                                <option value="7"
-                                <?php echo ($rows['payment_day'] == 7) ? "selected>" : ">"; ?>익월 25일</option>
-                                <option value="8"
-                                <?php echo ($rows['payment_day'] == 8) ? "selected>" : ">"; ?>익월 말</option>
-                                <option value="9"
-                                <?php echo ($rows['payment_day'] == 9) ? "selected>" : ">"; ?>기타</option>
-                              </select>
+                              <?php
+                                  switch ($rows['tax']) {
+                                      case "E":
+                                          echo '<input type="radio" name="tax" value="E" checked >(VAT 별도)
+                                      		<input type="radio" name="tax" value="I">(VAT 포함)';
+                                          break;
+                                      case "I":
+                                          echo '<input type="radio" name="tax" value="E">(VAT 별도)
+                                      		<input type="radio" name="tax" value="I" checked>(VAT 포함)';
+                                          break;
+                                  }
+                              ?>
                             </td>
                           </tr>
                           <tr>
                             <th> 승인상태 </th>
                             <td>
-<?php
-
-    switch ($rows['approved']) {
-        case "Y":
-            echo '<input type="radio" name="approved" value="Y" checked />승인' . PHP_EOL;
-            echo '<input type="radio" name="approved" value="N" />미승인' . PHP_EOL;
-            break;
-        case "N":
-            echo '<input type="radio" name="approved" value="Y" />승인' . PHP_EOL;
-            echo '<input type="radio" name="approved" value="N" checked />미승인' . PHP_EOL;
-            break;
-    }
-?>
+                              <?php
+                                  switch ($rows['approved']) {
+                                      case "Y":
+                                          echo "<input type=\"radio\" name=\"approved\" value=\"Y\" checked />승인
+                                      		<input type=\"radio\" name=\"approved\" value=\"N\" />미승인";
+                                          break;
+                                      case "N":
+                                          echo "<input type=\"radio\" name=\"approved\" value=\"Y\" />승인
+                                      		<input type=\"radio\" name=\"approved\" value=\"N\" checked />미승인";
+                                          break;
+                                  }
+                              ?>
                               ( <input type="checkbox" name="sms_chk" value="Y" /> 승인 시 SMS보내기)
                             </td>
                           </tr>
@@ -439,12 +316,11 @@
 <?php
 
     if ($from == "mail") {
-        echo '<a type="button" class="btn btn-default" href="#" onclick="opener.location.replace(\'mem_sendmail_list.php\');window.close();">닫기</a>' . PHP_EOL;
+        echo '<a type="button" class="btn btn-default" href="#" onclick="opener.location.replace(\'mem_sendmail_list.php\');window.close();">닫기</a>' . "\r\n";
     } else {
-        echo '<a type="button" class="btn btn-default" href="#" onclick="opener.location.replace(\'top_member_list.php?page=' . $page . '\');window.close();">닫기</a>' . PHP_EOL;
+        echo '<a type="button" class="btn btn-default" href="#" onclick="opener.location.replace(\'p_top_member_list.php?page=' . $page . '\');window.close();">닫기</a>' . "\r\n";
     }
 ?>
-
                       </div>
                     </div>
                   </form>

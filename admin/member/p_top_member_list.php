@@ -22,7 +22,7 @@
 
     $search_keyword = '';
     $id             = '';
-    $company_name   = '';
+    $name           = '';
     $phone          = '';
 
     if ("search" == $mode) {
@@ -31,12 +31,12 @@
             $search_keyword .= " AND id LIKE '%$id%' ";
         }
 
-        if ($company_name) {
-            $search_keyword .= " AND company_name LIKE '%$company_name%' ";
+        if ($name) {
+            $search_keyword .= " AND name LIKE '%$name%' ";
         }
 
         if ($phone) {
-            $search_keyword .= " AND o_phone LIKE '%$phone%' OR md_hphone LIKE '%$phone%' ";
+            $search_keyword .= " AND o_phone LIKE '%$phone%' OR hphone LIKE '%$phone%' ";
         }
 
     } else if ($mode == "nonapproved") {
@@ -47,7 +47,7 @@
     }
 
     //회원 테이블의 리스트를 불러옵니다.
-    $query  = "SELECT * FROM member WHERE 1 $search_keyword ORDER BY company_name";
+    $query  = "SELECT * FROM p_member WHERE 1 $search_keyword ORDER BY name";
     $result = mysqli_query($connect, $query);
     $total  = mysqli_num_rows($result);
 
@@ -59,7 +59,7 @@
                 <div class="col-sm-12">
                   <section class="panel">
                     <header class="panel-heading table-head">
-                        회원업체 찾기
+                        개인회원 찾기
                     </header>
                     <div class="panel-body">
 
@@ -72,9 +72,9 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="company_name" class="col-lg-2 col-sm-2 control-label">업체명:</label>
+                            <label for="name" class="col-lg-2 col-sm-2 control-label">회원명:</label>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" name="company_name" value="<?php echo $company_name; ?>">
+                                <input type="text" class="form-control" name="name" value="<?php echo $name; ?>">
                             </div>
                         </div>
                         <div class="form-group">
@@ -105,8 +105,8 @@
                     <tbody>
                       <tr>
                         <td class="text-center">
-                            <a class="btn btn-default" href="top_member_list.php?mode=nonapproved">미승인 업체</a>
-                            <a class="btn btn-default" href="top_member_list.php?mode=today">금일 가입업체</a>
+                            <a class="btn btn-default" href="top_member_list.php?mode=nonapproved">미승인 회원</a>
+                            <a class="btn btn-default" href="top_member_list.php?mode=today">금일 가입회원</a>
                             <a class="btn btn-primary" href="top_member_list.php">전체 목록</a>
                         </td>
                       </tr>
@@ -123,7 +123,7 @@
               <div class="col-sm-12">
                 <section class="panel">
                   <header class="panel-heading table-head">
-                      가입업체 리스트 (                                               <?php echo number_format($total); ?> 개 ) <a href="member2excel.php"><i class="fa fa-file-excel-o"></i> 엑셀로 저장하기</a>
+                      가입회원 리스트 (<?php echo number_format($total); ?> 개 ) <a href="pmember2excel.php"><i class="fa fa-file-excel-o"></i> 엑셀로 저장하기</a>
                   </header>
                   <div class="panel-body">
                   <div class="table-responsive">
@@ -132,12 +132,10 @@
                       <tr>
                         <th>번 호</th>
                         <th>아이디</th>
-                        <th>업체명</th>
-                        <!-- <th>구매가능 상품</th> -->
+                        <th>회원명</th>
                         <th>할인율</th>
-                        <th>사무실</th>
-                        <th>담당자</th>
                         <th>연락처</th>
+                        <th>휴대폰</th>
                         <th>가입일자</th>
                         <th>승인여부</th>
                         <th>삭 제</th>
@@ -174,36 +172,26 @@
 
     $scale1 = $limit - $cline;
 
-    $sql_2    = "SELECT * FROM member WHERE 1 $search_keyword ORDER BY reg_date DESC LIMIT $cline,$scale1 ";
+    $sql_2    = "SELECT * FROM p_member WHERE 1 $search_keyword ORDER BY reg_date DESC LIMIT $cline,$scale1 ";
     $result_2 = mysqli_query($connect, $sql_2);
     $total_2  = mysqli_num_rows($result_2);
 
     if ($total_2) {
         for ($i = 1; $list = mysqli_fetch_array($result_2); $i++) {
 
-            $bunho      = $total - ($i + $cline) + 1;
-            $license_no = explode("-", $list['license_no']);
+            $bunho = $total - ($i + $cline) + 1;
         ?>
                       <tr>
                         <td><?php echo $bunho; ?></td>
                         <td>
-                          <a href="javascript:open_win('mem_view_member.php?num=<?php echo $list['seq_num']; ?>&amp;page=<?php echo $page; ?>','nwin','scrollbars=yes,resizable=yes, width=800,height=650');"><?php echo $list['id']; ?></a>
+                          <a href="javascript:open_win('p_mem_view_member.php?num=<?php echo $list['seq_num']; ?>&amp;page=<?php echo $page; ?>','nwin','scrollbars=yes,resizable=yes, width=800,height=650');"><?php echo $list['id']; ?></a>
                         </td>
                         <td>
 <?php
 
-            if ($license_no[0] == "000") {
-                echo '<img src="../images/user-medium-silhouette.png">';
-            }
+            echo stripslashes($list['name']);
         ?>
-<?php echo stripslashes($list['company_name']); ?>
-<?php echo $list['homepage'] ? "&nbsp;&nbsp;<a href=\"http://$list[homepage]\" target=\"_blank\"><img src=\"../images/browser_explorer.png\" alt=\"홈페이지 가기\" /></a>" : ""; ?>
                         </td>
-                        <!--
-                        <td>
-                          <a href="product_list.php?id=<?php echo $list['id']; ?>">보기</a>
-                        </td>
-                        -->
                         <td><?php echo $list['dc_rate']; ?> % DC
 <?php
 
@@ -216,8 +204,7 @@
         ?>
                         </td>
                         <td><?php echo $list['o_phone']; ?></td>
-                        <td><?php echo $list['md_name']; ?> (<?php echo $list['job_title']; ?> )</td>
-                        <td><?php echo $list['md_hphone']; ?></td>
+                        <td><?php echo $list['hphone']; ?></td>
                         <td><?php echo $reg_date = substr($list['reg_date'], 0, 10); ?></td>
                         <td>
 <?php
@@ -242,7 +229,7 @@
     } else {
     ?>
                       <tr>
-                        <td colspan="11"><p>등록된 업체가 없습니다.</p></td>
+                        <td colspan="9"><p>등록된 회원이 없습니다.</p></td>
                       </tr>
 <?php
 
@@ -268,12 +255,6 @@
                           <td>
 <?php
 
-    $md_email   = '';
-    $o_phone    = '';
-    $md_hphone  = '';
-    $license_no = $license_no[0] . $license_no[1] . $license_no[2];
-
-    // $url = $_SERVER['PHP_SELF'] . '?id=' . $id . '&amp;mode=' . $mode . '&amp;license_no=' . $license_no . '&amp;md_email=' . $md_email . '&amp;o_phone=' . $o_phone . '&amp;company_name=' . $company_name . '&amp;md_hphone=' . $md_hphone;
     $url = $_SERVER['PHP_SELF'] . '?mode=' . $mode;
     page_nav($totalpage, $cpage, $url);
 ?>

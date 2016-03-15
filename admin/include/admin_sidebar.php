@@ -48,7 +48,8 @@
 	                          <span>회원 관리</span>
 	                      </a>
 	                      <ul class="sub">
-	                          <li><a  href="/admin/member/top_member_list.php">회원 리스트</a></li>
+	                          <li><a  href="/admin/member/top_member_list.php">기업회원 리스트</a></li>
+	                          <li><a  href="/admin/member/p_top_member_list.php">개인회원 리스트</a></li>
 	                          <li><a  href="/admin/member/mem_sendmail_list.php" target="_blank">전체메일 발송</a></li>
 	                          <li><a  href="/admin/member/mem_ins_member.php">회원 등록</a></li>
 	                      </ul>
