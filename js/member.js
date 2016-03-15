@@ -647,6 +647,113 @@ function lost_checkInput2() {
     form.submit();
 }
 
+function lost_p_checkInput1() {
+    var form = document.form1;
+
+    if (!form.email.value) {
+        alert("이메일 주소를 입력하세요");
+        form.email.focus();
+        return;
+    }
+
+    if (!form.phone_no1.value) {
+        alert("휴대폰번호를 입력하세요");
+        form.phone_no1.focus();
+        return;
+    }
+
+    if (form.phone_no1.value) {
+        if (!IsNumber(form.phone_no1.name)) {
+            alert("휴대폰번호는 숫자이어야 합니다");
+            form.phone_no1.focus();
+            return;
+        }
+    }
+
+    if (!form.phone_no2.value) {
+        alert("휴대폰번호를 입력하세요");
+        form.phone_no2.focus();
+        return;
+    }
+
+    if (form.phone_no2.value) {
+        if (!IsNumber(form.phone_no2.name)) {
+            alert("휴대폰번호는 숫자이어야 합니다");
+            form.phone_no2.focus();
+            return;
+        }
+    }
+
+    if (!form.phone_no3.value) {
+        alert("휴대폰번호를 입력하세요");
+        form.phone_no3.focus();
+        return;
+    }
+
+    if (form.phone_no3.value) {
+        if (!IsNumber(form.phone_no3.name)) {
+            alert("휴대폰번호는 숫자이어야 합니다");
+            form.phone_no3.focus();
+            return;
+        }
+    }
+
+    form.submit();
+}
+
+function lost_p_checkInput2() {
+    var form = document.form2;
+
+    if (!form.id.value) {
+        alert("ID를 입력하세요!");
+        form.id.focus();
+        return;
+    }
+
+    if (!form.phone_no1.value) {
+        alert("휴대폰번호를 입력하세요!");
+        form.phone_no1.focus();
+        return;
+    }
+
+    if (form.phone_no1.value) {
+        if (!IsNumber(form.phone_no1.name)) {
+            alert("휴대폰번호는 숫자이어야 합니다!");
+            form.phone_no1.focus();
+            return;
+        }
+    }
+
+    if (!form.phone_no2.value) {
+        alert("휴대폰번호를 입력하세요!");
+        form.phone_no2.focus();
+        return;
+    }
+
+    if (form.phone_no2.value) {
+        if (!IsNumber(form.phone_no2.name)) {
+            alert("휴대폰번호는 숫자이어야 합니다!");
+            form.phone_no2.focus();
+            return;
+        }
+    }
+
+    if (!form.phone_no3.value) {
+        alert("휴대폰번호를 입력하세요!");
+        form.phone_no3.focus();
+        return;
+    }
+
+    if (form.phone_no3.value) {
+        if (!IsNumber(form.phone_no3.name)) {
+            alert("휴대폰번호는 숫자이어야 합니다!");
+            form.phone_no3.focus();
+            return;
+        }
+    }
+
+    form.submit();
+}
 
 function focus_move() {
     var str = document.form1.license_no1.value.length;
@@ -665,6 +772,16 @@ function focus_move2() {
         document.form2.jumin2.focus();
 }
 
+function p_focus_move() {
+    var str = document.form1.phone_no1.value.length;
+    var str2 = document.form1.phone_no2.value.length;
+
+    if (str == 3)
+        document.form1.phone_no2.focus();
+    if (str2 == 4)
+        document.form1.phone_no3.focus();
+
+}
 
 function IsID(formname) {
     var form = eval("document.form1." + formname);
