@@ -51,12 +51,13 @@ while ($data = fgetcsv($fp)) {
     $saveDir = "../../upload/p_image/";
 
     // 서브분류에 따라 저장
+    // 대표이미지 생성 후 썸네일 이미지 자동생성
     if (trim($data['5']) == '아이언/우드그립' || trim($data['5']) == '클럽그립') {
         $mcode       = "1"; // 중카테고리
         $bImg1_chk   = "Y";
         $bigImg1File = $saveDir . $data['6'] . "/b/" . $data['4'];
 
-        // 생성할 디렉토리명은 모델번호로 지정
+        // 1) 생성할 디렉토리명은 모델번호로 지정
         $bigImg1Path = "upload/p_image/" . $data['6'] . "/b/";
         if (is_dir($bigImg1Path)) {
             echo "<p>directory " . $bigImg1Path . " is already exists.</p>\n";
@@ -67,10 +68,9 @@ while ($data = fgetcsv($fp)) {
                 echo "<p>directory " . $bigImg1Path . " is failed to create.</p>\n";
             }
         }
-
         copy("img/iron/" . $data['4'], $bigImg1Path . $data['4']);
 
-        //썸네일 자동생성
+        // 2) 썸네일 자동생성
         $smallImg1Path = "upload/p_image/" . $data['6'] . "/s/";
 
         if (is_dir($smallImg1Path)) {
@@ -85,7 +85,22 @@ while ($data = fgetcsv($fp)) {
         $simg1_chk     = "Y";
         $smallImg1File = $saveDir . $data['6'] . "/s/" . $data['4'];
         make_thumbnail($bigImg1Path . $data['4'], 100, 100, $smallImg1Path . $data['4']);
-        // 썸네일 생성 끝
+
+        // 3) 상세 이미지 복사
+        $detailImgFile = '<img src="http://' . $_SERVER['SERVER_NAME'] . '/upload/p_image/' . $data['6'] . "/d/" . $data['4'] . '">';
+        $detailImgFile = addslashes($detailImgFile);
+
+        $detailImgFilePath = "upload/p_image/" . $data['6'] . "/d/";
+        if (is_dir($detailImgFilePath)) {
+            echo "<p>directory " . $detailImgFilePath . " is already exists.</p>\n";
+        } else {
+            if (mkdir($detailImgFilePath, 0755, true)) {
+                echo "<p>directory " . $detailImgFilePath . " is created successfully.</p>\n";
+            } else {
+                echo "<p>directory " . $detailImgFilePath . " is failed to create.</p>\n";
+            }
+        }
+        copy("img/iron-detail/" . $data['4'], $detailImgFilePath . $data['4']);
 
     } elseif (trim($data['5']) == '퍼터그립') {
         $mcode       = "2";
@@ -103,7 +118,6 @@ while ($data = fgetcsv($fp)) {
                 echo "<p>directory " . $bigImg1Path . " is failed to create.</p>\n";
             }
         }
-
         copy("img/putter/" . $data['4'], $bigImg1Path . $data['4']);
 
         //썸네일 자동생성
@@ -122,6 +136,23 @@ while ($data = fgetcsv($fp)) {
         $smallImg1File = $saveDir . $data['6'] . "/s/" . $data['4'];
         make_thumbnail($bigImg1Path . $data['4'], 100, 100, $smallImg1Path . $data['4']);
         // 썸네일 생성 끝
+
+        // 3) 상세 이미지 복사
+        $detailImgFile = '<img src="http://' . $_SERVER['SERVER_NAME'] . '/upload/p_image/' . $data['6'] . "/d/" . $data['4'] . '">';
+        $detailImgFile = addslashes($detailImgFile);
+
+        $detailImgFilePath = "upload/p_image/" . $data['6'] . "/d/";
+        if (is_dir($detailImgFilePath)) {
+            echo "<p>directory " . $detailImgFilePath . " is already exists.</p>\n";
+        } else {
+            if (mkdir($detailImgFilePath, 0755, true)) {
+                echo "<p>directory " . $detailImgFilePath . " is created successfully.</p>\n";
+            } else {
+                echo "<p>directory " . $detailImgFilePath . " is failed to create.</p>\n";
+            }
+        }
+        copy("img/putter-detail/" . $data['4'], $detailImgFilePath . $data['4']);
+
     } else {
         $bImg1_chk   = "N";
         $bigImg1File = "";
@@ -158,7 +189,7 @@ while ($data = fgetcsv($fp)) {
 
     $sql = "INSERT INTO products(prod_code, category_l, category_m,
 								name, short_desc, company, importer, id, shop_price, retail_price,
-								moq, opt, opt_stock,stock,
+								moq, opt, opt_stock,stock,contents,
     							s_image1, s_image1_name,
     							b_image1, b_image1_name,
     							created, main_new, main_special, main_best,
@@ -166,7 +197,7 @@ while ($data = fgetcsv($fp)) {
     							del_chk, approved)
 			    		VALUES('$itemCode', '$lcode', '$mcode',
 					  		 		'$name', '$shortDesc', '$brand', '$importer', '$id', '$shopPrice', '$wholesalePrice',
-				      		 		'$moq',  '$opt', '$opt_stock', '$stock',
+				      		 		'$moq',  '$opt', '$opt_stock', '$stock', '$detailImgFile',
 					  		 		'$simg1_chk',   '$smallImg1File',
 					   		 		'$bImg1_chk', '$bigImg1File',
 							 		now(), '$main_new', '$main_special', '$main_best',
