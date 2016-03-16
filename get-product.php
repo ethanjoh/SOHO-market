@@ -6,6 +6,20 @@
 
 include_once "util/util.php";
 
+/**
+ * 가격에서 , 제거
+ * @param  [type] $price          [description]
+ * @return [type] [description]
+ */
+function removeComma($price)
+{
+    if (preg_match("/^[0-9,]+$/", $price)) {
+        $price = str_replace(',', '', $price);
+    }
+
+    return $price;
+}
+
 if (isset($_GET)) {
     $filename = $_GET['f'];
 } else {
@@ -37,13 +51,13 @@ while ($data = fgetcsv($fp)) {
     // data[0]:번호, data[1]: 상품코드, data[2]: 상품명, data[3]: 공급가, data[4]:이미지, data[5]: 서브분류,
     // data[6]: 모델번호, data[7]: 브랜드, data[8]: 규격, data[9]: 소비자가
 
-    $lcode          = "1";                          // 대카테고리
-    $itemCode       = trim($data['1']);             // 상품코드
-    $shortDesc      = trim($data['2']);             // 상품명=>간략설명
-    $wholesalePrice = trim($data['3']);             // 공급가. 기존 소비자가 컬럼에 삽입
-    $shopPrice      = trim($data['9']);             // 소비자판매가
-    $name           = addslashes(trim($data['6'])); // 모델번호 =>상품명
-    $brand          = trim($data['7']);             // 브랜드
+    $lcode          = "1";                           // 대카테고리
+    $itemCode       = trim($data['1']);              // 상품코드
+    $shortDesc      = trim($data['2']);              // 상품명=>간략설명
+    $wholesalePrice = removeComma(trim($data['3'])); // 공급가. 기존 소비자가 컬럼에 삽입
+    $shopPrice      = removeComma(trim($data['9'])); // 소비자판매가
+    $name           = addslashes(trim($data['6']));  // 모델번호 =>상품명
+    $brand          = trim($data['7']);              // 브랜드
     $id             = "admin";
     $importer       = "신수상사";
 
@@ -63,7 +77,7 @@ while ($data = fgetcsv($fp)) {
             echo "<p>directory " . $bigImg1Path . " is already exists.</p>\n";
         } else {
             if (mkdir($bigImg1Path, 0755, true)) {
-                echo "<p>directory " . $bigImg1Path . " is created successfully.</p>\n";
+                echo "<p>directory " . $bigImg1Path . " is created successfully. </p>\n";
             } else {
                 echo "<p>directory " . $bigImg1Path . " is failed to create.</p>\n";
             }
@@ -74,7 +88,7 @@ while ($data = fgetcsv($fp)) {
         $smallImg1Path = "upload/p_image/" . $data['6'] . "/s/";
 
         if (is_dir($smallImg1Path)) {
-            echo "<p>directory " . $smallImg1Path . " is already exists.</p>\n";
+            echo "<p>directory " . $smallImg1Path . " is already exists. </p>\n";
         } else {
             if (mkdir($smallImg1Path, 0755, true)) {
                 echo "<p>directory " . $smallImg1Path . " is created successfully.</p>\n";
@@ -92,7 +106,7 @@ while ($data = fgetcsv($fp)) {
 
         $detailImgFilePath = "upload/p_image/" . $data['6'] . "/d/";
         if (is_dir($detailImgFilePath)) {
-            echo "<p>directory " . $detailImgFilePath . " is already exists.</p>\n";
+            echo "<p>directory " . $detailImgFilePath . " is already exists. </p>\n";
         } else {
             if (mkdir($detailImgFilePath, 0755, true)) {
                 echo "<p>directory " . $detailImgFilePath . " is created successfully.</p>\n";
@@ -110,7 +124,7 @@ while ($data = fgetcsv($fp)) {
         // 생성할 디렉토리명은 모델번호로 지정
         $bigImg1Path = "upload/p_image/" . $data['6'] . "/b/";
         if (is_dir($bigImg1Path)) {
-            echo "<p>directory " . $bigImg1Path . " is already exists.</p>\n";
+            echo "<p>directory " . $bigImg1Path . " is already exists. </p>\n";
         } else {
             if (mkdir($bigImg1Path, 0755, true)) {
                 echo "<p>directory " . $bigImg1Path . " is created successfully.</p>\n";
@@ -124,7 +138,7 @@ while ($data = fgetcsv($fp)) {
         $smallImg1Path = "upload/p_image/" . $data['6'] . "/s/";
 
         if (is_dir($smallImg1Path)) {
-            echo "<p>directory " . $smallImg1Path . " is already exists.</p>\n";
+            echo "<p>directory " . $smallImg1Path . " is already exists. </p>\n";
         } else {
             if (mkdir($smallImg1Path, 0755, true)) {
                 echo "<p>directory " . $smallImg1Path . " is created successfully.</p>\n";
@@ -143,7 +157,7 @@ while ($data = fgetcsv($fp)) {
 
         $detailImgFilePath = "upload/p_image/" . $data['6'] . "/d/";
         if (is_dir($detailImgFilePath)) {
-            echo "<p>directory " . $detailImgFilePath . " is already exists.</p>\n";
+            echo "<p>directory " . $detailImgFilePath . " is already exists. </p>\n";
         } else {
             if (mkdir($detailImgFilePath, 0755, true)) {
                 echo "<p>directory " . $detailImgFilePath . " is created successfully.</p>\n";
