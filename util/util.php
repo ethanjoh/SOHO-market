@@ -1971,3 +1971,23 @@ function check_active_class($page_name)
         return null;
     }
 }
+
+/**
+ * [GenerateString 사용자 비밀번호 랜덤생성]
+ * @param [type] $length [description]
+ */
+function GenerateString($length)
+{
+    $characters = "0123456789";
+    $characters .= "abcdefghijkmnopqrstuvwxyz"; //비밀번호 l, i가 구분이 안되니 삭제
+    $characters .= "ABCDEFGHJKLMNOPQRSTUVWXYZ"; //비밀번호 I 구분이 안되니 삭제
+
+    $string_generated = "";
+
+    $nmr_loops = $length;
+    while ($nmr_loops--) {
+        $string_generated .= $characters[mt_rand(0, strlen($characters))];
+    }
+
+    return $string_generated;
+}

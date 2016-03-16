@@ -1,9 +1,6 @@
 <?php
 
-include_once "../util/config.php";
 include_once "../util/util.php";
-
-$connect = my_connect($host, $dbid, $dbpass, $dbname);
 
 $sid         = set_var($_POST['session_id']);
 $sname       = set_var($_POST['session_name']);

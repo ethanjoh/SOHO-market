@@ -60,8 +60,8 @@
                         </div>
                         <div class="form-group form-inline">
                             <label for="license_no">휴대폰 번호:</label>
-                            <input class="form-control"  size="3" name="phone_no1" OnKeyUp="p_focus_move();">
-                            - <input class="form-control" size="4" name="phone_no2" OnKeyUp="p_focus_move();">
+                            <input class="form-control"  size="3" name="phone_no1" OnKeyUp="p_pw_move();">
+                            - <input class="form-control" size="4" name="phone_no2" OnKeyUp="p_pw_move();">
                             - <input class="form-control" size="4" name="phone_no3" >
                         </div>
                         <p class="text-center">

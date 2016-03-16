@@ -539,7 +539,7 @@ function changePasswd2() {
 }
 
 /**
- * [find_id 기업회원 아이디 찾기]
+ * [기업회원 아이디 찾기]
  * @return {[type]} [description]
  */
 function find_id() {
@@ -598,7 +598,7 @@ function find_id() {
 
 
 /**
- * [find_pw 기업회원 비밀번호 찾기]
+ * [기업회원 비밀번호 찾기]
  * @return {[type]} [description]
  */
 function find_pw() {
@@ -656,7 +656,7 @@ function find_pw() {
 }
 
 /**
- * [find_p_id 개인회원 아이디 찾기]
+ * [개인회원 아이디 찾기]
  * @return {[type]} [description]
  */
 function find_p_id() {
@@ -714,7 +714,7 @@ function find_p_id() {
 }
 
 /**
- * [find_p_pw 개인회원 비밀번호 찾기]
+ * [개인회원 비밀번호 찾기]
  * @return {[type]} [description]
  */
 function find_p_pw() {
@@ -771,6 +771,10 @@ function find_p_pw() {
     form.submit();
 }
 
+/**
+ * [기업회원 아이디 찾기 input 이동]
+ * @return {[type]} [description]
+ */
 function focus_move() {
     var str = document.form1.license_no1.value.length;
     var str2 = document.form1.license_no2.value.length;
@@ -788,6 +792,26 @@ function focus_move2() {
         document.form2.jumin2.focus();
 }
 
+/**
+ * [기업회원 비밀번호 초기화 input 이동]
+ * @return {[type]} [description]
+ */
+function pw_move() {
+    var form = document.form2;
+    var str = form.license_no1.value.length;
+    var str2 = form.license_no2.value.length;
+
+    if (str == 3)
+        form.license_no2.focus();
+    if (str2 == 2)
+        form.license_no3.focus();
+
+}
+
+/**
+ * [개인회원 아이디 찾기 input 이동]
+ * @return {[type]} [description]
+ */
 function p_focus_move() {
     var str = document.form1.phone_no1.value.length;
     var str2 = document.form1.phone_no2.value.length;
@@ -796,6 +820,22 @@ function p_focus_move() {
         document.form1.phone_no2.focus();
     if (str2 == 4)
         document.form1.phone_no3.focus();
+
+}
+
+/**
+ * [개인회원 비밀번호 초기화 input 이동]
+ * @return {[type]} [description]
+ */
+function p_pw_move() {
+    var form = document.form2;
+    var str = form.phone_no1.value.length;
+    var str2 = form.phone_no2.value.length;
+
+    if (str == 3)
+        form.phone_no2.focus();
+    if (str2 == 4)
+        form.phone_no3.focus();
 
 }
 
@@ -831,7 +871,7 @@ function IsPW(formname) {
 
 
 function IsNumber(formname) {
-    var form = eval("document.form1." + formname);
+    var form = eval("document.form1." +formname);
 
     for (var i = 0; i < form.value.length; i++) {
         var chr = form.value.substr(i, 1);

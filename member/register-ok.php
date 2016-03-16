@@ -59,7 +59,7 @@ if ("edit" == $mode) {
 
     if ($mrow['passwd'] != sha1($passwd)) {
         $msg = "비밀번호가 일치하지 않습니다.";
-        $url = "http://" . $_SERVER['SERVER_NAME'] . "/member/register_form.php?mode=edit";
+        $url = "http://" . $_SERVER['SERVER_NAME'] . "/member/register-form.php?mode=edit";
         show_msg($msg, $url);
 
     } else {

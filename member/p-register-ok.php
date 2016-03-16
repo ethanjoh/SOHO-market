@@ -42,13 +42,13 @@ if ("edit" == $mode) {
     }
 
     //비밀번호 확인
-    $qry  = "SELECT * FROM member WHERE id='$sid' ";
+    $qry  = "SELECT * FROM p_member WHERE id='$sid' ";
     $res  = mysqli_query($connect, $qry);
     $mrow = mysqli_fetch_array($res);
 
     if ($mrow['passwd'] != sha1($passwd)) {
         $msg = "비밀번호가 일치하지 않습니다.";
-        $url = "http://" . $_SERVER['SERVER_NAME'] . "/member/register_form.php?mode=edit";
+        $url = "http://" . $_SERVER['SERVER_NAME'] . "/member/p-register-form.php?mode=edit";
         show_msg($msg, $url);
 
     } else {
@@ -75,7 +75,7 @@ if ("edit" == $mode) {
         }
 
         ########## 회원정보 테이블에 입력값을 수정한다. ##########
-        $query = "UPDATE p_member SET email 		= '$email',
+        $query = "UPDATE p_member SET email 	= '$email',
 									optin 		= '$optin',
 									name 		= '$name',
 									hphone 		= '$hphone',

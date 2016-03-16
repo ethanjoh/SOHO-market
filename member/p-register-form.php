@@ -80,7 +80,7 @@ if ($mode == "edit") {
 										<div class="panel panel-danger">
 										<div class="panel-heading"><h4>비밀번호 변경</h4></div>
 											<div class="panel-body">
-												<form name="pw_form" id="pw_form" role="form" class="form-group" method="post" action="//<?php echo $_SERVER['SERVER_NAME']; ?>:<?php echo $sslPort; ?>/member/change-passwd-ok.php">
+												<form name="pw_form" id="pw_form" role="form" class="form-group" method="post" action="//<?php echo $_SERVER['SERVER_NAME']; ?>:<?php echo $sslPort; ?>/member/p-change-passwd-ok.php">
 												<input type="hidden" name="session_id" value="<?php echo $p_id; ?>">
 												<input type="hidden" name="session_name" value="<?php echo $p_name; ?>">
 

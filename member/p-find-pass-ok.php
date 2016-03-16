@@ -2,33 +2,33 @@
 
 include_once "../util/util.php";
 
-$id          = set_var($_POST['id']);
-$license_no1 = set_var($_POST['license_no1']);
-$license_no2 = set_var($_POST['license_no2']);
-$license_no3 = set_var($_POST['license_no3']);
+$id        = set_var($_POST['id']);
+$phone_no1 = set_var($_POST['phone_no1']);
+$phone_no2 = set_var($_POST['phone_no2']);
+$phone_no3 = set_var($_POST['phone_no3']);
 
-if (!$id || !$license_no1 || !$license_no2 || !$license_no3) {
+if (!$id || !$phone_no1 || !$phone_no2 || !$phone_no3) {
     err_msg('정식으로 접속하세요.');
     exit;
 }
 
-$license_no = $license_no1 . "-" . $license_no2 . "-" . $license_no3;
-$id         = mysqli_real_escape_string($connect, $id);
-$license_no = mysqli_real_escape_string($connect, $license_no);
+$phone_no = $phone_no1 . "-" . $phone_no2 . "-" . $phone_no3;
+$id       = mysqli_real_escape_string($connect, $id);
+$phone_no = mysqli_real_escape_string($connect, $phone_no);
 
-$query  = "SELECT * FROM member WHERE license_no ='$license_no' AND id='$id' ";
+$query  = "SELECT * FROM p_member WHERE hphone ='$phone_no' AND id='$id' ";
 $result = mysqli_query($connect, $query);
 $num    = mysqli_num_rows($result);
 
 if ($num > 0) {
     $row        = mysqli_fetch_array($result);
     $user_id    = $id;
-    $user_email = $row['md_email'];
+    $user_email = $row['email'];
 
     $ini_password  = GenerateString(6);
     $save_password = sha1($ini_password);
 
-    $qry = "UPDATE member SET passwd = '$save_password' WHERE id='$id' ";
+    $qry = "UPDATE p_member SET passwd = '$save_password' WHERE id='$id' ";
     mysqli_query($connect, $qry);
 
     $com_info = get_company_info();
@@ -77,6 +77,6 @@ if ($num > 0) {
     }
 
 } else {
-    err_msg('아이디나 사업자등록번호와 일치하는 정보가 없습니다.');
+    err_msg('아이디나 휴대폰 번호와 일치하는 정보가 없습니다.');
     exit;
 }

@@ -59,9 +59,9 @@
                             <input class="form-control" type="text" name="id" />
                         </div>
                         <div class="form-group form-inline">
-                            <label for="license_no">사업자등록번호:</label>
-                            <input class="form-control"  size="3" name="license_no1" OnKeyUp="focus_move();">
-                            - <input class="form-control" size="2" name="license_no2" OnKeyUp="focus_move();">
+                            <label for="license_no1">사업자등록번호:</label>
+                            <input class="form-control"  size="3" name="license_no1" OnKeyUp="pw_move();">
+                            - <input class="form-control" size="2" name="license_no2" OnKeyUp="pw_move();">
                             - <input class="form-control" size="5" name="license_no3" >
                         </div>
                         <p class="text-center">

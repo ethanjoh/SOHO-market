@@ -42,7 +42,7 @@ if ($num > 0) {
     $email = $com_info['email'];
     $phone = $com_info['tel'];
 
-    $message = $com_info['homepage'] . '에서 아이디 찾기를 하셨습니다.' . PHP_EOL;
+    $message = $com_info['homepage'] . ' 에서 아이디 찾기를 하셨습니다.' . PHP_EOL;
     $message .= '(본인이 하신게 아니라면 해킹이 의심될 수 있으니 비밀번호를 변경하시기 바랍니다.)' . PHP_EOL . PHP_EOL;
     $message .= '문의하신 아이디는 아래와 같습니다.' . PHP_EOL;
     $message .= 'ID: ' . $user_id . PHP_EOL;
