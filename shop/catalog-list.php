@@ -8,7 +8,7 @@
                     <div class="container-inner">
                         <ul class="tasnimm">
                             <li class="home">
-                                <a href="#">Home</a>
+                                <a href="/">Home</a>
                                 <span>
                                     <i class="fa fa-angle-right"></i>
                                 </span>
