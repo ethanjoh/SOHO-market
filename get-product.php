@@ -30,7 +30,7 @@ if (isset($_GET)) {
 $csvFilePath = "upload/" . $filename . ".csv";
 
 // 테이블을 비우고 입력하고 싶을 때
-mysqli_query($connect, "TRUNCATE TABLE products");
+// mysqli_query($connect, "TRUNCATE TABLE products");
 
 $tempCSV = file_get_contents($csvFilePath);
 $tempCSV = mb_convert_encoding($tempCSV, 'UTF-8', 'EUC-KR');
@@ -50,8 +50,9 @@ while ($data = fgetcsv($fp)) {
 
     // data[0]:번호, data[1]: 상품코드, data[2]: 상품명, data[3]: 공급가, data[4]:이미지, data[5]: 서브분류,
     // data[6]: 모델번호, data[7]: 브랜드, data[8]: 규격, data[9]: 소비자가
+    // 반드시 카테고리에 따른 lcode와 mcode  확인하고 변경 후 실행할 것
 
-    $lcode          = "1";                           // 대카테고리
+    $lcode          = "8";                           // 대카테고리
     $itemCode       = trim($data['1']);              // 상품코드
     $shortDesc      = trim($data['2']);              // 상품명=>간략설명
     $wholesalePrice = removeComma(trim($data['3'])); // 공급가. 기존 소비자가 컬럼에 삽입
@@ -67,7 +68,7 @@ while ($data = fgetcsv($fp)) {
     // 서브분류에 따라 저장
     // 대표이미지 생성 후 썸네일 이미지 자동생성
     if (trim($data['5']) == '아이언/우드그립' || trim($data['5']) == '클럽그립') {
-        $mcode       = "1"; // 중카테고리
+        $mcode       = "14"; // 중카테고리
         $bImg1_chk   = "Y";
         $bigImg1File = $saveDir . $data['6'] . "/b/" . $data['4'];
 
@@ -117,7 +118,7 @@ while ($data = fgetcsv($fp)) {
         copy("img/iron-detail/" . $data['4'], $detailImgFilePath . $data['4']);
 
     } elseif (trim($data['5']) == '퍼터그립') {
-        $mcode       = "2";
+        $mcode       = "11";
         $bImg1_chk   = "Y";
         $bigImg1File = $saveDir . $data['6'] . "/b/" . $data['4'];
 
