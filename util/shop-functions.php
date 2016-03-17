@@ -636,7 +636,7 @@ function show_sub_category_name($lcode, $mcode)
     if ($numOfRows) {
 
         $rows = mysqli_fetch_array($m_res);
-        echo '<a href="category-list.php?lcode=' . $lcode . '&amp;mcode=' . $mcode . '">' . stripslashes($rows['name']) . '</a>';
+        echo '<a href="catalog-list.php?lcode=' . $lcode . '&amp;mcode=' . $mcode . '">' . stripslashes($rows['name']) . '</a>';
 
         mysqli_free_result($m_res);
 

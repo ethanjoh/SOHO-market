@@ -13,7 +13,7 @@
                                     <i class="fa fa-angle-right"></i>
                                 </span>
                             </li>
-                            <li class="category3">
+                            <li class="home-two">
                                 <strong>
 <?php
 
@@ -28,6 +28,30 @@ show_brand_name($lcode);
 ?>
                                 </strong>
                             </li>
+<?php
+
+if ($mcode) {
+    echo <<<HEREDOC
+
+                            <li class="category3">
+                                <strong>
+                                <span>
+                                    <i class="fa fa-angle-right"></i>
+                                </span>
+HEREDOC;
+    ?>
+                                    <?php echo show_sub_category_name($lcode, $mcode); ?>
+
+<?php
+
+    echo <<<HEREDOC
+                                </strong>
+                            </li>
+
+HEREDOC;
+}
+
+?>
                         </ul>
                     </div>
                 </div>
