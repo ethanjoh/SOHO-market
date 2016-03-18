@@ -612,7 +612,6 @@ function show_option($pnum)
     $query  = "SELECT * FROM products WHERE num='$pnum'";
     $result = mysqli_query($connect, $query);
     $rows   = mysqli_fetch_array($result);
-    mysqli_free_result($result);
 
     $opt       = explode(',', $rows['opt']);
     $opt_stock = explode(',', $rows['opt_stock']);
