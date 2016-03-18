@@ -251,8 +251,8 @@ if ($result1) {
                     <td>
 <?php
 
-        if ($prow['opt']) {
-            show_option($prow['num']);
+        if ($prow['opt'] != '') {
+            echo show_option($prow['num']);
         }
 
         ?>
