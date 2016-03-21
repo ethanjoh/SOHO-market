@@ -86,7 +86,7 @@
          $.ajax({
              type: "POST",
              data : data,
-             url: "track_fromexcel_process.php",
+             url: "upload_waybill_process.php",
              // dataType: 'json',
              cache: false,
              contentType: false,
