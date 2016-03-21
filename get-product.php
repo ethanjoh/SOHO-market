@@ -1,13 +1,19 @@
 <?php
-// 상품정보 업로드하기
-// get-product.php?f=[csv 파일명(확장자 제외)]
-// csv 파일은 /upload 폴더에 위치
-// 원본상품 이미지는 /img 폴더에 위치
+/**
+ * 상품정보 업로드하기
+ * get-product.php?f=[csv 파일명(확장자 제외)]
+ * csv 파일은 /upload 폴더에 위치
+ * 원본상품 이미지는 /img 폴더에 위치
+ *
+ * data[0]:번호, data[1]: 상품코드, data[2]: 상품명, data[3]: 공급가, data[4]:이미지, data[5]: 서브분류,
+ * data[6]: 모델번호, data[7]: 브랜드, data[8]: 규격, data[9]: 소비자가
+ * 반드시 카테고리에 따른 lcode와 mcode  확인하고 변경 후 실행할 것
+ */
 
 include_once "util/util.php";
 
 /**
- * 가격에서 , 제거
+ * csv 파일  가격에서 ',' 제거
  * @param  [type] $price          [description]
  * @return [type] [description]
  */
@@ -47,10 +53,6 @@ while ($data = fgetcsv($fp)) {
     // echo "<pre>";
     // print_r($data);
     // echo "</pre>";
-
-    // data[0]:번호, data[1]: 상품코드, data[2]: 상품명, data[3]: 공급가, data[4]:이미지, data[5]: 서브분류,
-    // data[6]: 모델번호, data[7]: 브랜드, data[8]: 규격, data[9]: 소비자가
-    // 반드시 카테고리에 따른 lcode와 mcode  확인하고 변경 후 실행할 것
 
     $lcode          = "7";                           // 대카테고리
     $itemCode       = trim($data['1']);              // 상품코드

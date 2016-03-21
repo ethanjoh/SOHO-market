@@ -6,30 +6,31 @@
         <!--main content start-->
         <!-- <section id="main-content"> -->
           <!-- <section class="wrapper"> -->
-          <?php
-              $num  = set_var($_GET['num']);
-              $page = set_var($_GET['page']);
-              $from = set_var($_GET['from']);
+<?php
 
-              $query  = "SELECT * FROM member WHERE seq_num='$num' ";
-              $result = mysqli_query($connect, $query);
-              $rows   = mysqli_fetch_array($result);
+$num  = set_var($_GET['num']);
+$page = set_var($_GET['page']);
+$from = set_var($_GET['from']);
 
-              $md_hphone  = explode("-", $rows['md_hphone']);
-              $o_zipno    = explode("-", $rows['o_zipcode']);
-              $o_phone    = explode("-", $rows['o_phone']);
-              $o_fax      = explode("-", $rows['o_fax']);
-              $d_zipno    = explode("-", $rows['d_zipcode']);
-              $d_phone    = explode("-", $rows['d_phone']);
-              $d_fax      = explode("-", $rows['d_fax']);
-              $license_no = explode("-", $rows['license_no']);
-              // $open_date  = explode("-", $rows['open_date']);
+$query  = "SELECT * FROM member WHERE seq_num='$num' ";
+$result = mysqli_query($connect, $query);
+$rows   = mysqli_fetch_array($result);
 
-              if (!defined("PHP_EOL")) {
-                  define("PHP_EOL", "\r\n");
-              }
+$md_hphone  = explode("-", $rows['md_hphone']);
+$o_zipno    = explode("-", $rows['o_zipcode']);
+$o_phone    = explode("-", $rows['o_phone']);
+$o_fax      = explode("-", $rows['o_fax']);
+$d_zipno    = explode("-", $rows['d_zipcode']);
+$d_phone    = explode("-", $rows['d_phone']);
+$d_fax      = explode("-", $rows['d_fax']);
+$license_no = explode("-", $rows['license_no']);
+// $open_date  = explode("-", $rows['open_date']);
 
-          ?>
+if (!defined("PHP_EOL")) {
+    define("PHP_EOL", "\r\n");
+}
+
+?>
 
             <!-- member info start -->
             <div class="row">
@@ -70,14 +71,15 @@
                             <th>담당자 이메일</th>
                             <td>
                               <input type="text" class="form-control" name="md_email" size="25" value='<?php echo $rows['md_email']; ?>' />
-                              <?php
-                                  if ($rows['optin'] == "Y") {
-                                      echo "<p class=\"help-block\">(이메일 수신 함)</p>";
-                                  } else {
-                                      echo "<p class=\"help-block\">(이메일 미수신 함)</p>";
-                                  }
+<?php
 
-                              ?>
+if ($rows['optin'] == "Y") {
+    echo "<p class=\"help-block\">(이메일 수신 함)</p>";
+} else {
+    echo "<p class=\"help-block\">(이메일 미수신 함)</p>";
+}
+
+?>
                             </td>
                           </tr>
                           <tr>
@@ -86,30 +88,31 @@
                               <select name="md_hphone1" class="form-control" />
                                 <option value="">선택</option>
                                 <option value="010"
-                                <?php echo ($hphone[0] == '010') ? "selected" : ""; ?>>010</option>
+                                <?php echo ($md_hphone[0] == '010') ? "selected" : ""; ?>>010</option>
                                 <option value="011"
-                                <?php echo ($hphone[0] == '011') ? "selected" : ""; ?>>011</option>
+                                <?php echo ($md_hphone[0] == '011') ? "selected" : ""; ?>>011</option>
                                 <option value="016"
-                                <?php echo ($hphone[0] == '016') ? "selected" : ""; ?>>016</option>
+                                <?php echo ($md_hphone[0] == '016') ? "selected" : ""; ?>>016</option>
                                 <option value="017"
-                                <?php echo ($hphone[0] == '017') ? "selected" : ""; ?>>017</option>
+                                <?php echo ($md_hphone[0] == '017') ? "selected" : ""; ?>>017</option>
                                 <option value="018"
-                                <?php echo ($hphone[0] == '018') ? "selected" : ""; ?>>018</option>
+                                <?php echo ($md_hphone[0] == '018') ? "selected" : ""; ?>>018</option>
                                 <option value="019"
-                                <?php echo ($hphone[0] == '019') ? "selected" : ""; ?>>019</option>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  ?>>019</option>
+                                <?php echo ($md_hphone[0] == '019') ? "selected" : ""; ?>>019</option>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  ?>>019</option>
                               </select>
                               -
                               <input type="text" class="form-control" name="md_hphone2" size="4"  value="<?php echo $md_hphone[1]; ?>" />
                               -
                               <input type="text" class="form-control" name="md_hphone3" size="4"  value="<?php echo $md_hphone[2]; ?>" />
-                              <?php
-                                  if ($rows['sms'] == "Y") {
-                                      echo '<p class="help-block">(SMS 수신 함)</p>' . PHP_EOL;
-                                  } else {
-                                      echo '<p class="help-block">(SMS 미수신 함)</p>' . PHP_EOL;
-                                  }
+<?php
 
-                              ?>
+if ($rows['sms'] == "Y") {
+    echo '<p class="help-block">(SMS 수신 함)</p>' . PHP_EOL;
+} else {
+    echo '<p class="help-block">(SMS 미수신 함)</p>' . PHP_EOL;
+}
+
+?>
                             </td>
                           </tr>
                           <tr>
@@ -213,17 +216,17 @@
                             <td>
 <?php
 
-    $chk1 = '';
-    $chk2 = '';
+$chk1 = '';
+$chk2 = '';
 
-    switch ($rows['tax_type']) {
-        case "I":
-            $chk1 = 'checked="checked"';
-            break;
-        case "G":
-            $chk2 = 'checked="checked"';
-            break;
-    }
+switch ($rows['tax_type']) {
+    case "I":
+        $chk1 = 'checked="checked"';
+        break;
+    case "G":
+        $chk2 = 'checked="checked"';
+        break;
+}
 ?>
                             <input type="radio" class="form-control" name="tax_type" value="1"<?php echo $chk1; ?> />일반과세자 <input type="radio" class="form-control" name="tax_type" value="2"<?php echo $chk2; ?> />간이과세자</td>
                           </tr>
@@ -345,23 +348,23 @@
                             <td>
 <?php
 
-    switch ($rows['seller']) {
-        case "1":
-            echo '<input type="radio" name="seller" value="1" checked >사입 거래' . PHP_EOL;
-            echo '<input type="radio" name="seller" value="2">당사배송 위탁 거래' . PHP_EOL;
-            echo '<input type="radio" name="seller" value="3">판매자 배송 위탁 거래' . PHP_EOL;
-            break;
-        case "2":
-            echo '<input type="radio" name="seller" value="1">사입 거래' . PHP_EOL;
-            echo '<input type="radio" name="seller" value="2" checked>당사배송 위탁 거래' . PHP_EOL;
-            echo '<input type="radio" name="seller" value="3">판매자 배송 위탁 거래' . PHP_EOL;
-            break;
-        case "3":
-            echo '<input type="radio" name="seller" value="1">사입 거래' . PHP_EOL;
-            echo '<input type="radio" name="seller" value="2">당사배송 위탁 거래' . PHP_EOL;
-            echo '<input type="radio" name="seller" value="3"  checked>판매자 배송 위탁 거래' . PHP_EOL;
-            break;
-    }
+switch ($rows['seller']) {
+    case "1":
+        echo '<input type="radio" name="seller" value="1" checked >사입 거래' . PHP_EOL;
+        echo '<input type="radio" name="seller" value="2">당사배송 위탁 거래' . PHP_EOL;
+        echo '<input type="radio" name="seller" value="3">판매자 배송 위탁 거래' . PHP_EOL;
+        break;
+    case "2":
+        echo '<input type="radio" name="seller" value="1">사입 거래' . PHP_EOL;
+        echo '<input type="radio" name="seller" value="2" checked>당사배송 위탁 거래' . PHP_EOL;
+        echo '<input type="radio" name="seller" value="3">판매자 배송 위탁 거래' . PHP_EOL;
+        break;
+    case "3":
+        echo '<input type="radio" name="seller" value="1">사입 거래' . PHP_EOL;
+        echo '<input type="radio" name="seller" value="2">당사배송 위탁 거래' . PHP_EOL;
+        echo '<input type="radio" name="seller" value="3"  checked>판매자 배송 위탁 거래' . PHP_EOL;
+        break;
+}
 ?>
                             </td>
                           </tr>
@@ -371,16 +374,16 @@
                               <input type="text" class="form-control" name="dc_rate" value="<?php echo $rows['dc_rate']; ?>" size="3"/> % DC
 <?php
 
-    switch ($rows['tax']) {
-        case "E":
-            echo '<input type="radio" name="tax" value="E" checked >(VAT 별도)' . PHP_EOL;
-            echo '<input type="radio" name="tax" value="I">(VAT 포함)' . PHP_EOL;
-            break;
-        case "I":
-            echo '<input type="radio" name="tax" value="E">(VAT 별도)' . PHP_EOL;
-            echo '<input type="radio" name="tax" value="I" checked>(VAT 포함)' . PHP_EOL;
-            break;
-    }
+switch ($rows['tax']) {
+    case "E":
+        echo '<input type="radio" name="tax" value="E" checked >(VAT 별도)' . PHP_EOL;
+        echo '<input type="radio" name="tax" value="I">(VAT 포함)' . PHP_EOL;
+        break;
+    case "I":
+        echo '<input type="radio" name="tax" value="E">(VAT 별도)' . PHP_EOL;
+        echo '<input type="radio" name="tax" value="I" checked>(VAT 포함)' . PHP_EOL;
+        break;
+}
 ?>
                             </td>
                           </tr>
@@ -414,16 +417,16 @@
                             <td>
 <?php
 
-    switch ($rows['approved']) {
-        case "Y":
-            echo '<input type="radio" name="approved" value="Y" checked />승인' . PHP_EOL;
-            echo '<input type="radio" name="approved" value="N" />미승인' . PHP_EOL;
-            break;
-        case "N":
-            echo '<input type="radio" name="approved" value="Y" />승인' . PHP_EOL;
-            echo '<input type="radio" name="approved" value="N" checked />미승인' . PHP_EOL;
-            break;
-    }
+switch ($rows['approved']) {
+    case "Y":
+        echo '<input type="radio" name="approved" value="Y" checked />승인' . PHP_EOL;
+        echo '<input type="radio" name="approved" value="N" />미승인' . PHP_EOL;
+        break;
+    case "N":
+        echo '<input type="radio" name="approved" value="Y" />승인' . PHP_EOL;
+        echo '<input type="radio" name="approved" value="N" checked />미승인' . PHP_EOL;
+        break;
+}
 ?>
                               ( <input type="checkbox" name="sms_chk" value="Y" /> 승인 시 SMS보내기)
                             </td>
@@ -438,11 +441,11 @@
                         <a type="button" class="btn btn-danger" href="mem_delete_member.php?m_num=<?php echo $num; ?>&amp;from=mail" onclick="return confirm('이 회원의 모든 정보가 즉시 삭제되며 복구할 수 없습니다. \n삭제하시겠습니까?')">삭제</a>
 <?php
 
-    if ($from == "mail") {
-        echo '<a type="button" class="btn btn-default" href="#" onclick="opener.location.replace(\'mem_sendmail_list.php\');window.close();">닫기</a>' . PHP_EOL;
-    } else {
-        echo '<a type="button" class="btn btn-default" href="#" onclick="opener.location.replace(\'top_member_list.php?page=' . $page . '\');window.close();">닫기</a>' . PHP_EOL;
-    }
+if ($from == "mail") {
+    echo '<a type="button" class="btn btn-default" href="#" onclick="opener.location.replace(\'mem_sendmail_list.php\');window.close();">닫기</a>' . PHP_EOL;
+} else {
+    echo '<a type="button" class="btn btn-default" href="#" onclick="opener.location.replace(\'top_member_list.php?page=' . $page . '\');window.close();">닫기</a>' . PHP_EOL;
+}
 ?>
 
                       </div>

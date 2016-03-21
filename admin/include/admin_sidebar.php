@@ -18,9 +18,9 @@
 	                          <li><a  href="/admin/order/top_order_list.php">기업회원 주문</a></li>
 	                          <li><a  href="/admin/order/p_top_order_list.php">개인회원 주문</a></li>
 	                          <li><a  href="/admin/order/sale_list.php">판매현황</a></li>
-	                          <li><a  href="/admin/order/track_a.php">운송장 출력</a></li>
-	                          <li><a  href="/admin/order/track_a_list.php">운송장 입력</a></li>
-	                          <li><a  href="/admin/order/track_fromexcel.php">운송장 업로드</a></li>
+	                          <li><a  href="/admin/order/print_waybill.php">운송장 출력</a></li>
+	                          <li><a  href="/admin/order/insert_waybill.php">운송장 입력</a></li>
+	                          <li><a  href="/admin/order/upload_waybill.php">운송장 업로드</a></li>
 	                      </ul>
 	                  </li>
 	                  <li class="sub-menu">

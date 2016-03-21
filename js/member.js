@@ -871,7 +871,7 @@ function IsPW(formname) {
 
 
 function IsNumber(formname) {
-    var form = eval("document.form1." +formname);
+    var form = eval("document.form1." + formname);
 
     for (var i = 0; i < form.value.length; i++) {
         var chr = form.value.substr(i, 1);
