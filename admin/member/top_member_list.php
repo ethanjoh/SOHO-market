@@ -17,9 +17,7 @@
 
 <?php
 
-    $mode = set_var($_GET['mode']);
-    $page = set_var($_GET['page']);
-
+    $mode           = set_var($_GET['mode']);
     $search_keyword = '';
     $id             = '';
     $company_name   = '';
@@ -123,7 +121,7 @@
               <div class="col-sm-12">
                 <section class="panel">
                   <header class="panel-heading table-head">
-                      가입업체 리스트 (                                               <?php echo number_format($total); ?> 개 ) <a href="member2excel.php"><i class="fa fa-file-excel-o"></i> 엑셀로 저장하기</a>
+                      가입업체 리스트 (                                                                                                                                                                                         <?php echo number_format($total); ?> 개 ) <a href="member2excel.php"><i class="fa fa-file-excel-o"></i> 엑셀로 저장하기</a>
                   </header>
                   <div class="panel-body">
                   <div class="table-responsive">
@@ -146,6 +144,7 @@
                     <tbody>
 <?php
 
+    $page  = set_var($_GET['page']);
     $scale = 20;
     $page  = (isset($_GET['page']) ? $_GET['page'] : '');
 
