@@ -1,11 +1,11 @@
 $.ajax({
-        url: "/admin/main/mainChartProcess.php",
-        cache: false,
-        type: "POST",
-        data: {anyVar: 'specialValue4PHPScriptAndDataBaseFilter'},
-        dataType: "json",
-        timeout:3000,
-        success : function (data) {
+    url: "/admin/main/mainChartProcess.php",
+    cache: false,
+    type: "POST",
+    data: { anyVar: 'specialValue4PHPScriptAndDataBaseFilter' },
+    dataType: "json",
+    timeout: 3000,
+    success: function(data) {
         console.log(data.monthly);
         // console.log((data.item).length);
 
@@ -14,9 +14,8 @@ $.ajax({
         var arr = [];
         var arr2 = [];
 
-        if((data.item)) {
-            for($i=0;$i < (data.item).length;$i++)
-            {
+        if ((data.item)) {
+            for ($i = 0; $i < (data.item).length; $i++) {
                 params = data.item[$i];
                 arr.push(params);
             }
@@ -24,8 +23,7 @@ $.ajax({
         }
 
         // console.log(data.monthly);
-        for($j=0;$j < (data.monthly).length;$j++)
-        {
+        for ($j = 0; $j < (data.monthly).length; $j++) {
             params2 = data.monthly[$j];
             arr2.push(params2);
         }
@@ -49,26 +47,26 @@ $.ajax({
             xkey: 'period',
             ykeys: ['amount'],
             labels: ['Amount'],
-            lineColors:['#8075c4']
+            lineColors: ['#8075c4']
         });
 
     },
-    error : function (xmlHttpRequest, textStatus, errorThrown) {
-         alert("Error " + errorThrown);
-         if(textStatus==='timeout')
-             alert("request timed out");
+    error: function(xmlHttpRequest, textStatus, errorThrown) {
+        alert("Error " + errorThrown);
+        if (textStatus === 'timeout')
+            alert("request timed out");
     }
 
 });
 
 $.ajax({
-        url: "/admin/main/mainChartProcess-p.php",
-        cache: false,
-        type: "POST",
-        data: {anyVar: 'specialValue4PHPScriptAndDataBaseFilter'},
-        dataType: "json",
-        timeout:3000,
-        success : function (data) {
+    url: "/admin/main/mainChartProcess-p.php",
+    cache: false,
+    type: "POST",
+    data: { anyVar: 'specialValue4PHPScriptAndDataBaseFilter' },
+    dataType: "json",
+    timeout: 3000,
+    success: function(data) {
         console.log(data.monthly);
         // console.log((data.item).length);
 
@@ -77,9 +75,8 @@ $.ajax({
         var arr = [];
         var arr2 = [];
 
-        if((data.item)) {
-            for($i=0;$i < (data.item).length;$i++)
-            {
+        if ((data.item)) {
+            for ($i = 0; $i < (data.item).length; $i++) {
                 params = data.item[$i];
                 arr.push(params);
             }
@@ -87,8 +84,7 @@ $.ajax({
         }
 
         // console.log(data.monthly);
-        for($j=0;$j < (data.monthly).length;$j++)
-        {
+        for ($j = 0; $j < (data.monthly).length; $j++) {
             params2 = data.monthly[$j];
             arr2.push(params2);
         }
@@ -112,14 +108,14 @@ $.ajax({
             xkey: 'period',
             ykeys: ['amount'],
             labels: ['Amount'],
-            lineColors:['#8075c4']
+            lineColors: ['#8075c4']
         });
 
     },
-    error : function (xmlHttpRequest, textStatus, errorThrown) {
-         alert("Error " + errorThrown);
-         if(textStatus==='timeout')
-             alert("request timed out");
+    error: function(xmlHttpRequest, textStatus, errorThrown) {
+        alert("Error " + errorThrown);
+        if (textStatus === 'timeout')
+            alert("request timed out");
     }
 
 });
