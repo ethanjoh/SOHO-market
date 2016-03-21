@@ -55,7 +55,7 @@ $zipcode = explode("-", $rows['zipcode']);
                   <h4>관리자 정보 설정</h4>
                 </header>
                 <div class="panel-body">
-                  <form class="form-inline" role="form" name="form1" action="//<?php echo $_SERVER['SERVER_NAME']; ?>:<?php echo $port; ?>/admin/setting/admin_setup_ok.php" method="post" enctype="multipart/form-data">
+                  <form class="form-inline" role="form" name="form1" action="//<?php echo $_SERVER['SERVER_NAME']; ?>:<?php echo $sslPort; ?>/admin/setting/admin_setup_ok.php" method="post" enctype="multipart/form-data">
                   <input type="hidden" name="type" value="1" />
                   <input type="hidden" name="admin_id" value="<?php echo $rows['id']; ?>">
                   <div class="table-responsive">
