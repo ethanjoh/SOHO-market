@@ -18,7 +18,6 @@
 <?php
 
     $mode = set_var($_GET['mode']);
-    $page = set_var($_GET['page']);
 
     $search_keyword = '';
     $id             = '';
@@ -144,6 +143,7 @@
                     <tbody>
 <?php
 
+    $page  = set_var($_GET['page']);
     $scale = 20;
     $page  = (isset($_GET['page']) ? $_GET['page'] : '');
 

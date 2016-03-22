@@ -18,41 +18,31 @@
 
 <?php
 
-$mode      = set_var($_GET['mode']);
-$page      = set_var($_GET['page']);
-$date1     = set_var($_GET['date1']);
-$date2     = set_var($_GET['date2']);
-$key       = set_var($_GET['key']);
-$key_value = set_var($_GET['key_value']);
-
-$today = date("Y-m-d");
+$mode  = set_var($_GET['mode']);
+$date1 = set_var($_GET['date1']);
+$date2 = set_var($_GET['date2']);
 
 switch ($mode) {
-    case 'search':
-        $sql_2 = "SELECT orderid FROM mall_order
-    			   WHERE delivery_type = 'L'
-    			   AND cancel = 'N'
-    			   AND status = '7'
-    			   AND $key LIKE '%$key_value%' ";
-        break;
     case 'date':
         $sql_2 = "SELECT orderid FROM mall_order
-    		          WHERE cancel = 'N'
-    				  AND delivery_type = 'L'
-    				  AND status = '7'
-    				  AND createdate BETWEEN '$date1' AND '$date2' ";
+    		          WHERE status = '7'
+                        AND cancel = 'N'
+              				  AND delivery_type = 'L'
+              				  AND createdate BETWEEN '$date1' AND '$date2' ";
         break;
     default:
         $sql_2 = "SELECT orderid FROM mall_order
-    	   				  WHERE delivery_type = 'L'
-    					  AND cancel = 'N'
-    					  AND status = '7' ";
+    	   				  WHERE status = '7'
+                        AND delivery_type = 'L'
+            					  AND cancel = 'N' ";
 }
 
 $res_2 = mysqli_query($connect, $sql_2);
 $total = mysqli_num_rows($res_2);
 
+$page  = set_var($_GET['page']);
 $scale = 50;
+
 if ($page == '') {
     $page = 1;
 }
@@ -125,23 +115,18 @@ $scale1 = $limit - $cline;
 <?php
 
 switch ($mode) {
-    case 'search':
-        $sql_4 = "SELECT * FROM mall_order
-                           WHERE $key LIKE '%$key_value%'
-              			 ORDER BY num DESC LIMIT $cline,$scale1 ";
-        break;
     case 'date':
         $sql_4 = "SELECT * FROM mall_order
               		          WHERE cancel = 'N'
-              				  AND createdate BETWEEN '$date1' AND '$date2'
-              				  ORDER BY num DESC LIMIT $cline,$scale1 ";
+                        				  AND createdate BETWEEN '$date1' AND '$date2'
+                        				  ORDER BY num DESC LIMIT $cline,$scale1 ";
         break;
     default:
         $sql_4 = "SELECT * FROM mall_order
                  		     		WHERE status = '7'
-              					AND cancel = 'N'
-              					AND delivery_type = 'L'
-                           		ORDER BY num DESC LIMIT $cline,$scale1 ";
+                        					AND cancel = 'N'
+                        					AND delivery_type = 'L'
+                               		ORDER BY num DESC LIMIT $cline,$scale1 ";
 }
 
 $res_4 = mysqli_query($connect, $sql_4);
@@ -150,21 +135,27 @@ $t_no  = mysqli_num_rows($res_4);
 if ($t_no > 0) {
 
     for ($i = 0; $row = mysqli_fetch_array($res_4); $i++) {
+        if ($row['user_flag'] == "c") {
+            $order_view = 'or_view.php';
+        } elseif ($row['user_flag'] == "p") {
+            $order_view = 'p_or_view.php';
+        }
 
         ?>
                     <tr>
                       <td>
-                        <a href="or_view.php?mode=<?php echo $mode; ?>&amp;oid=<?php echo $row['num']; ?>&amp;key=<?php echo $key; ?>&amp;key_value=<?php echo $key_value; ?>&amp;page=<?php echo $page; ?>">
+                        <a href="<?php echo $order_view; ?>?mode=<?php echo $mode; ?>&amp;oid=<?php echo $row['num']; ?>&amp;key=<?php echo $key; ?>&amp;keyword=<?php echo $keyword; ?>&amp;page=<?php echo $page; ?>" target="_blank">
                         <?php echo $row['orderid']; ?></a>
                       </td>
                       <td><?php echo $row['createdate']; ?></td>
                       <td><?php echo $row['recipient_name'] ? $row['recipient_name'] : $row['buyer_name']; ?></td>
                       <td>
-                        <form name="form1" class="form-inline" role="form" method="get" action="or_changed.php">
-                          <input type="hidden" name="mode" value="a" />
+                        <form name="form1" class="form-inline" role="form" method="post" action="or_changed.php">
+                          <input type="hidden" name="mode" value="all" />
                           <input type="hidden" name="oid" value="<?php echo $row['num']; ?>" />
                           <input type="hidden" name="last_amount" value="<?php echo $row['last_amount']; ?>" />
-                          <input type="hidden" name="senddate" value="<?php echo $today; ?>" />
+                          <input type="hidden" name="senddate" value="<?php echo date("Y-m-d"); ?>" />
+                          <input type="hidden" name="reUrl" value="<?php echo urlencode($_SERVER['PHP_SELF'] . "?" . $_SERVER['QUERY_STRING']); ?>" />
                           <input type="text" class="form-control" name="track_no" value="<?php echo $row['track_no']; ?>" size="80" />
                           &nbsp;
                           <button class="btn btn-success" type="submit" onclick="form1.submit()"><i class="fa fa-paper-plane"></i> 발 송</button>
@@ -205,7 +196,7 @@ if ($t_no > 0) {
                           <td>
 <?php
 
-$url = $_SERVER['PHP_SELF'] . '?mode=' . $mode . '&key=' . $key . '&key_value=' . $key_value;
+$url = $_SERVER['PHP_SELF'] . '?mode=' . $mode . '&key=' . $key . '&keyword=' . $keyword;
 page_nav($totalpage, $cpage, $url);
 ?>
                           </td>
@@ -216,24 +207,6 @@ page_nav($totalpage, $cpage, $url);
               </div>
             </div>
             <!-- page navigation end -->
-
-            <!-- search start -->
-            <div class="row text-center">
-              <div class="col-sm-12">
-                  <form class="form-inline" role="form" method="get" name="search" action="track_a_list.php">
-                    <input type="hidden" name="mode" value="search">
-                    <div class="ui-widget form-group">
-                      <select class="form-control" name="key">
-                        <option value="buyer_name">업체명</option>
-                        <option value="user_id">아이디</option>
-                      </select>
-                      <input type="text" class="form-control" name="key_value" id="key_value">
-                      <button class="btn btn-primary" type="submit" onclick="search.submit()"><i class="fa fa-search"></i>검 색</button>
-                    </div>
-                  </form>
-              </div>
-            </div>
-            <!-- search end -->
 
           </section>
       </section>

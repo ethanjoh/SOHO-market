@@ -60,7 +60,10 @@ if ($mode == "pchk3") {
     echo "<meta http-equiv='refresh' content='0; URL=$uri?mode=$mode&amp;oid=$oid&amp;key=$key&amp;keyword=$keyword&amp;page=$page'>";
 }
 
-// 주문확인
+/**
+ * 주문확인
+ * from or_view.php
+ */
 if ($mode == "orderConfirm") {
     $update = "UPDATE mall_order SET status='5' WHERE num='$oid' ";
     $result = mysqli_query($connect, $update);
@@ -68,7 +71,10 @@ if ($mode == "orderConfirm") {
     header("Location:" . $uri . "");
 }
 
-//입금확인//포장완료
+/**
+ * 포장완료
+ * from or_view.php
+ */
 if ($mode == "packingDone") {
     $update = "UPDATE mall_order SET status='7', last_amount='$last_amount' WHERE num='$oid' ";
     $result = mysqli_query($connect, $update);
@@ -76,16 +82,23 @@ if ($mode == "packingDone") {
     header("Location:" . $uri . "");
 }
 
-//발송완료
-if ($mode == "sent" || $mode == '4' || $mode == 'a') {
-    // 3: 주문내역, 4: 사입, a:전체송장번호입력에서
+/**
+ * 발송완료
+ * sent: from or_view.php
+ * 4: 사입
+ * all: from insert_waybill.php
+ */
+if ($mode == "sent" || $mode == '4' || $mode == 'all') {
 
     $update = "UPDATE mall_order SET status='8', track_no='$track_no', last_amount='$last_amount', senddate='$senddate' WHERE num='$oid' ";
     $result = mysqli_query($connect, $update);
 
 }
 
-//발송지연
+/**
+ * 발송지연
+ * from or_view.php
+ */
 if ($mode == "delay") {
     $update = "UPDATE mall_order SET status='0' WHERE num='$oid' ";
     $result = mysqli_query($connect, $update);
@@ -123,16 +136,16 @@ if ($sms_row['sms'] == "Y") {
 
 //DB 업데이트 후 복귀할 URL
 if ($mode == "sent") {
-    echo "<meta http-equiv='refresh' content='0; URL=top_order_list.php?mode=" . $mode . "&amp;oid=" . $oid . "&amp;key=" . $key . "&amp;keyword=" . $keyword . "&amp;page=" . $page . "'>";
-} elseif ($mode == "p_sent") {
-    // 개인회원 주문발송완료
+    // echo "<meta http-equiv='refresh' content='0; URL=top_order_list.php?mode=" . $mode . "&amp;oid=" . $oid . "&amp;key=" . $key . "&amp;keyword=" . $keyword . "&amp;page=" . $page . "'>";
     header("Location:" . $uri . "");
+
 } else if ($mode == "4") {
     //사입입력
     echo "<meta http-equiv='refresh' content='0; URL=track_list.php'>";
-} else if ($mode == "a") {
+} else if ($mode == "all") {
     //전체입력
-    echo "<meta http-equiv='refresh' content='0; URL=track_a_list.php'>";
+    header("Location:" . $uri . "");
+    // echo "<meta http-equiv='refresh' content='0; URL=insert_waybill.php'>";
 } else if ($mode == "d") {
     //직송입력
     echo "<meta http-equiv='refresh' content='0; URL=track_d_list.php'>";

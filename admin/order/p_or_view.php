@@ -3,10 +3,9 @@
 <?php
 
 $mode    = set_var($_GET['mode']);
-$oid     = set_var($_GET['oid']);
 $key     = set_var($_GET['key']);
 $keyword = set_var($_GET['keyword']);
-$page    = '';
+
 ?>
 	<body>
 	  <section id="container" >
@@ -45,6 +44,8 @@ $page    = '';
 
 <?php
 
+$oid = set_var($_GET['oid']);
+
 $sql = "SELECT * FROM mall_order WHERE num = '$oid' ";
 $res = mysqli_query($connect, $sql);
 $row = mysqli_fetch_array($res);
@@ -63,6 +64,8 @@ $tot_amount = 0;
 $org_amount = 0;
 $t_count    = 0;
 $mt_count   = 0;
+
+$page = set_var($_GET['page']);
 ?>
 
 				<!-- order list start -->
@@ -70,7 +73,7 @@ $mt_count   = 0;
 		            <div class="col-sm-12">
 						<section class="panel">
 							<header class="panel-heading table-head">
-							    주문 상세내역 (							                         							                         							                         							                         							                         							                         							                         							                         							                         							                         							                         							                         							                         							                         							                         							                         							                         							                         							                         							                         							                         							                         							                         							                         							                         							                         							                         							                         							                          <?php echo $oid; ?> )
+							    주문 상세내역 (	<?php echo $oid; ?> )
 						  	</header>
 						  	<div class="panel-body">
 
@@ -259,7 +262,7 @@ $final = $last_cost;
 							<tbody>
 								<tr>
 									<td colspan="9" class="text-center">
-										<a class="btn btn-primary" href="p_top_order_list.php?mode=<?php echo $mode; ?>&amp;oid=<?php echo $oid; ?>&amp;keyword=<?php echo $keyword; ?>&amp;page=<?php echo $page; ?>">주문 목록</a>
+										<a class="btn btn-primary" href="p_top_order_list.php?mode=<?php echo $mode; ?>&amp;oid=<?php echo $oid; ?>&amp;key=<?php echo $key; ?>&amp;keyword=<?php echo $keyword; ?>&amp;page=<?php echo $page; ?>">주문 목록</a>
 										<a class="btn btn-default" href="" onclick="javascript:open_win('print_quot.php?oid=<?php echo $oid; ?>','nwin','scrollbars=yes,resizable=yes,width=685');"><i class="fa fa-print"></i> 명세서 출력</a>
 										<a class="btn btn-default" href="quottoexcel.php?oid=<?php echo $oid; ?>"><i class="fa fa-file-excel-o"></i> 엑셀로 명세서 다운로드</a>
 									</td>
@@ -383,7 +386,9 @@ show_pay_data($row['orderid']);
 								    	<?php echo number_format($row['amount']); ?> 원 (VAT 포함) <br />
 								    </td>
 								    <th>확정금액</th>
-								    <td  colspan="3"><?php
+								    <td  colspan="3">
+<?php
+
 if ($row['status'] == '7' || $row['status'] == '8') {
     echo "<strong><font color=\"#AE3E0D\">" .
     number_format($final) . "&nbsp;원 (VAT 포함)</font> = " . number_format($final) . "</strong>\n";
@@ -446,7 +451,7 @@ if ($row['status'] == '7' || $row['status'] == '8') {
 									<p>
 
 								      <form class="form-inline" role="form" name="form3" method="post" action="or_changed.php"  style="display: inline-block;">
-								        <input type="hidden" name="mode" id="mode3" value="p_sent" />
+								        <input type="hidden" name="mode" id="mode3" value="sent" />
 								        <input type="hidden" name="oid" id="oid3" value="<?php echo $oid; ?>" />
 								        <input type="hidden" name="key" id="key3" value="<?php echo $key; ?>" />
 								        <input type="hidden" name="keyword" id="keyword3" value="<?php echo $keyword; ?>" />
@@ -462,6 +467,7 @@ if ($row['status'] == '7' || $row['status'] == '8') {
 								        <p class="help-block"><i class="fa fa-exclamation-triangle"></i> 여러 개 운송장 입력 시 구분은 ',(콤마)'로 분리하세요 </p>
 								      </form>
 <?php
+
 if ($row['status'] == "8" || $row['status'] == "-1" && $row['delivery_type'] == "L") {
     //택배사 정보
     // $log_sql    = "SELECT * FROM misc_setup";
@@ -502,7 +508,7 @@ if ($row['status'] == "8" || $row['status'] == "-1" && $row['delivery_type'] == 
 							<tbody>
 								<tr>
 								<td colspan="9" class="text-center">
-									<a class="btn btn-primary" href="p_top_order_list.php?mode=<?php echo $mode; ?>&amp;oid=<?php echo $oid; ?>&amp;keyword=<?php echo $keyword; ?>&amp;page=<?php echo $page; ?>">주문 목록</a>
+									<a class="btn btn-primary" href="p_top_order_list.php?mode=<?php echo $mode; ?>&amp;oid=<?php echo $oid; ?>&amp;key=<?php echo $key; ?>&amp;keyword=<?php echo $keyword; ?>&amp;page=<?php echo $page; ?>">주문 목록</a>
 								</td>
 								</tr>
 							</tbody>
