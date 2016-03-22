@@ -476,10 +476,18 @@
 	"buffers":
 	[
 		{
-			"file": "admin/member/p_top_member_list.php",
+			"file": "admin/order/top_order_list.php",
 			"settings":
 			{
-				"buffer_size": 9210,
+				"buffer_size": 22414,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "admin/order/p_top_order_list.php",
+			"settings":
+			{
+				"buffer_size": 22438,
 				"line_ending": "Windows"
 			}
 		}
@@ -641,8 +649,10 @@
 	],
 	"file_history":
 	[
-		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/User/phpfmt.sublime-settings",
+		"/C/wamp/www/shinsoo/admin/member/top_member_list.php",
+		"/C/wamp/www/shinsoo/admin/member/p_top_member_list.php",
 		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/phpfmt/phpfmt.sublime-settings",
+		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/User/phpfmt.sublime-settings",
 		"/C/wamp/www/shinsoo/admin/js/showMainChart.js",
 		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/HTML-CSS-JS Prettify/HTMLPrettify.sublime-settings",
 		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/jsfmt/jsfmt.sublime-settings",
@@ -653,10 +663,8 @@
 		"/C/wamp/www/shinsoo/admin/include/admin_sidebar.php",
 		"/C/wamp/www/shinsoo/admin/member/mem_sendmail_ok.php",
 		"/C/wamp/www/seminar/admin/add-user.php",
-		"/C/wamp/www/shinsoo/admin/member/top_member_list.php",
 		"/C/wamp/www/shinsoo/admin/member/mem_view_member.php",
 		"/C/wamp/www/shinsoo/admin/member/p_mem_view_member.php",
-		"/C/wamp/www/shinsoo/admin/member/p_top_member_list.php",
 		"/C/wamp/www/shinsoo/admin/member/pmember_list.php",
 		"/C/wamp/www/shinsoo/admin/member/mem_view_pmember.php",
 		"/C/wamp/www/shinsoo/admin/member/mem_sending_mail.php",
@@ -801,6 +809,19 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"$date1",
+			"$mode",
+			"$key",
+			"$pmode",
+			"$mode ",
+			"mode",
+			"$reUrl",
+			"$lcode",
+			"$date1",
+			"$page",
+			"$key",
+			"$pmode",
+			"$mode",
 			"$page",
 			"\" . $wholesalePrice . \"",
 			"removeComma",
@@ -915,20 +936,7 @@
 			"$memo_to_delivery",
 			"$pay_status",
 			"$status_now",
-			"$today_order_sum",
-			"$num_of_rows",
-			"totalRowsCount",
-			"$show_total",
-			"$total_count",
-			"$r_policy",
-			"$d_policy",
-			"b_image",
-			"image_order_no",
-			"$no",
-			"show_image",
-			"show_product_image",
-			"show_product_info",
-			"show_relative_item"
+			"$today_order_sum"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -949,24 +957,24 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "admin/member/p_top_member_list.php",
+					"file": "admin/order/top_order_list.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 9210,
+						"buffer_size": 22414,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5401,
-								5401
+								0,
+								0
 							]
 						],
 						"settings":
@@ -975,11 +983,42 @@
 							"remote_loading": false,
 							"synced": true,
 							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 3186.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "admin/order/p_top_order_list.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 22438,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								21098,
+								21098
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": true,
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 525.0,
+						"translation.y": 11377.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -1045,6 +1084,18 @@
 		"selected_items":
 		[
 			[
+				"p_top_o",
+				"admin\\order\\p_top_order_list.php"
+			],
+			[
+				"top_or",
+				"admin\\order\\top_order_list.php"
+			],
+			[
+				"top_mem",
+				"admin\\member\\top_member_list.php"
+			],
+			[
 				"p_top_mem",
 				"admin\\member\\p_top_member_list.php"
 			],
@@ -1063,10 +1114,6 @@
 			[
 				"mem_sen",
 				"admin\\member\\mem_sendmail_ok.php"
-			],
-			[
-				"top_mem",
-				"admin\\member\\top_member_list.php"
 			],
 			[
 				"mem_ve",
@@ -1263,10 +1310,6 @@
 			[
 				"admin",
 				"admin\\css\\admin_layout.css"
-			],
-			[
-				"top_or",
-				"admin\\order\\top_order_list.php"
 			],
 			[
 				"top_ord",
@@ -1551,10 +1594,6 @@
 			[
 				"top_pro",
 				"admin/products/top_pro_list.php"
-			],
-			[
-				"quot",
-				"admin/order/quottoexcel.php"
 			]
 		],
 		"width": 0.0
