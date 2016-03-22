@@ -16,11 +16,9 @@
 
 <?php
 
-$mode    = set_var($_GET['mode']);
 $key     = set_var($_GET['key']);
 $keyword = set_var($_GET['keyword']);
-$date1   = set_var($_GET['date1']);
-$date2   = set_var($_GET['date2']);
+
 ?>
 
         <!-- info start-->
@@ -69,6 +67,9 @@ $date2   = set_var($_GET['date2']);
 
 <?php
 
+$mode  = set_var($_GET['mode']);
+$date1 = set_var($_GET['date1']);
+$date2 = set_var($_GET['date2']);
 $total = 0; //공급가합
 $sales = array();
 

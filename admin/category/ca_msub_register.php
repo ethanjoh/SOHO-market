@@ -31,18 +31,22 @@
             </div>
             <!-- info end -->
 
-      <?php
-$lcode = $_GET['lcode'];
+<?php
+
+$mode  = set_var($_GET['mode']);
+$lcode = set_var($_GET['lcode']);
+$id    = set_var($_GET['id']);
 
 $sql     = "SELECT * FROM products_category1 WHERE code='$lcode' ";
 $result1 = mysqli_query($connect, $sql);
 $ca_m    = mysqli_fetch_array($result1);
 
 if ($mode == "update") {
-    $query  = "SELECT * FROM products_category2 WHERE id='$id'";
-    $result = mysqli_query($connect, $query);
-    $row    = mysqli_fetch_array($result);
-    mysqli_free_result($result);
+    $query         = "SELECT * FROM products_category2 WHERE id='$id'";
+    $result        = mysqli_query($connect, $query);
+    $row           = mysqli_fetch_array($result);
+    $category_name = $row['name'];
+    $code          = $row['code'];
 } else {
     $mode   = "insert";
     $query  = "SELECT max(code) AS max_code FROM products_category2";
@@ -55,6 +59,9 @@ if ($mode == "update") {
     } else {
         $max_code = "1";
     }
+
+    $category_name = '';
+    $code          = $max_code;
 }
 ?>
 
@@ -83,7 +90,7 @@ if ($mode == "update") {
                       <div class="form-group">
                           <label for="code" class="col-lg-2 col-sm-2 control-label">코드:</label>
                           <div class="col-sm-3">
-                            <input type="text" class="form-control" name="code" value="<?php echo ($mode == "insert") ? $max_code : $row['code']; ?>" readonly />
+                            <input type="text" class="form-control" name="code" value="<?php echo $code; ?>" readonly />
                             <p class="help">*자동입력(변경불가)</p>
                           </div>
                       </div>
@@ -91,7 +98,7 @@ if ($mode == "update") {
                       <div class="form-group">
                           <label for="ca_mname" class="col-lg-2 col-sm-2 control-label">중분류명:</label>
                           <div class="col-sm-3">
-                            <input type="text" class="form-control" name="ca_mname" value="<?php echo $row['name']; ?>" />
+                            <input type="text" class="form-control" name="ca_mname" value="<?php echo $category_name; ?>" />
                           </div>
                       </div>
 

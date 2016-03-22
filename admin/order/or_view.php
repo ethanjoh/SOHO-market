@@ -2,11 +2,9 @@
 
 <?php
 
-$mode      = set_var($_GET['mode']);
-$oid       = set_var($_GET['oid']);
-$key       = set_var($_GET['key']);
-$key_value = set_var($_GET['key_value']);
-$page      = '';
+$mode    = set_var($_GET['mode']);
+$key     = set_var($_GET['key']);
+$keyword = set_var($_GET['keyword']);
 ?>
 	<body>
 	  <section id="container" >
@@ -45,6 +43,8 @@ $page      = '';
 
 <?php
 
+$oid = set_var($_GET['oid']);
+
 $sql = "SELECT * FROM mall_order WHERE num = '$oid' ";
 $res = mysqli_query($connect, $sql);
 $row = mysqli_fetch_array($res);
@@ -63,6 +63,8 @@ $tot_amount = 0;
 $org_amount = 0;
 $t_count    = 0;
 $mt_count   = 0;
+
+$page = set_var($_GET['page']);
 ?>
 
 				<!-- order list start -->
@@ -257,7 +259,7 @@ $final = $last_cost;
 							<tbody>
 								<tr>
 									<td colspan="9" class="text-center">
-										<a class="btn btn-primary" href="top_order_list.php?mode=<?php echo $mode; ?>&amp;oid=<?php echo $oid; ?>&amp;key_value=<?php echo $key_value; ?>&amp;page=<?php echo $page; ?>">주문 목록</a>
+										<a class="btn btn-primary" href="top_order_list.php?mode=<?php echo $mode; ?>&amp;oid=<?php echo $oid; ?>&amp;key=<?php echo $key; ?>&amp;keyword=<?php echo $keyword; ?>&amp;page=<?php echo $page; ?>">주문 목록</a>
 										<a class="btn btn-default" href="" onclick="javascript:open_win('print_quot.php?oid=<?php echo $oid; ?>','nwin','scrollbars=yes,resizable=yes,width=685');"><i class="fa fa-print"></i> 명세서 출력</a>
 										<a class="btn btn-default" href="quottoexcel.php?oid=<?php echo $oid; ?>"><i class="fa fa-file-excel-o"></i> 엑셀로 명세서 다운로드</a>
 									</td>
@@ -404,7 +406,7 @@ if ($row['status'] == '7' || $row['status'] == '8') {
 									        <input type="hidden" name="mode" id="mode0" value="orderConfirm" />
 									        <input type="hidden" name="oid" id="oid0" value="<?php echo $oid; ?>" />
 									        <input type="hidden" name="key" value="<?php echo $key; ?>" />
-									        <input type="hidden" name="key_value" value="<?php echo $key_value; ?>" />
+									        <input type="hidden" name="keyword" value="<?php echo $keyword; ?>" />
 									        <input type="hidden" name="page" value="<?php echo $page; ?>" />
 									        <input type="hidden" name="status" value="<?php echo $row['status']; ?>" />
 									        <input type="hidden" name="sms" value="<?php echo $mrows['sms']; ?>" />
@@ -416,7 +418,7 @@ if ($row['status'] == '7' || $row['status'] == '8') {
 								        <input type="hidden" name="mode" id="mode1" value="packingDone" />
 								        <input type="hidden" name="oid" id="oid1" value="<?php echo $oid; ?>" />
 								        <input type="hidden" name="key" value="<?php echo $key; ?>" />
-								        <input type="hidden" name="key_value" value="<?php echo $key_value; ?>" />
+								        <input type="hidden" name="keyword" value="<?php echo $keyword; ?>" />
 								        <input type="hidden" name="page" value="<?php echo $page; ?>" />
 								        <input type="hidden" name="status" value="<?php echo $row['status']; ?>" />
 								        <input type="hidden" name="last_amount" id="last_amount1" value="<?php echo $final; ?>" />
@@ -432,7 +434,7 @@ if ($row['status'] == '7' || $row['status'] == '8') {
 								        <input type="hidden" name="mode" id="mode2" value="delay" />
 								        <input type="hidden" name="oid" id="oid2" value="<?php echo $oid; ?>" />
 								        <input type="hidden" name="key" value="<?php echo $key; ?>" />
-								        <input type="hidden" name="key_value" value="<?php echo $key_value; ?>" />
+								        <input type="hidden" name="keyword" value="<?php echo $keyword; ?>" />
 								        <input type="hidden" name="page" value="<?php echo $page; ?>" />
 								        <input type="hidden" name="status" value="<?php echo $row['status']; ?>" />
 								        <input type="hidden" name="last_amount" id="last_amount2" value="<?php echo $final; ?>" />
@@ -449,7 +451,7 @@ if ($row['status'] == '7' || $row['status'] == '8') {
 								        <input type="hidden" name="mode" id="mode3" value="sent" />
 								        <input type="hidden" name="oid" id="oid3" value="<?php echo $oid; ?>" />
 								        <input type="hidden" name="key" id="key3" value="<?php echo $key; ?>" />
-								        <input type="hidden" name="key_value" id="key_value3" value="<?php echo $key_value; ?>" />
+								        <input type="hidden" name="keyword" id="keyword3" value="<?php echo $keyword; ?>" />
 								        <input type="hidden" name="page" id="page3" value="<?php echo $page; ?>" />
 								        <input type="hidden" name="status" value="<?php echo $row['status']; ?>" />
 								        <input type="hidden" name="last_amount" id="last_amount3" value="<?php echo $final; ?>" />
@@ -503,7 +505,7 @@ if ($row['status'] == "8" || $row['status'] == "-1" && $row['delivery_type'] == 
 							<tbody>
 								<tr>
 								<td colspan="9" class="text-center">
-									<a class="btn btn-primary" href="top_order_list.php?mode=<?php echo $mode; ?>&amp;oid=<?php echo $oid; ?>&amp;key_value=<?php echo $key_value; ?>&amp;page=<?php echo $page; ?>">주문 목록</a>
+									<a class="btn btn-primary" href="top_order_list.php?mode=<?php echo $mode; ?>&amp;oid=<?php echo $oid; ?>&amp;key=<?php echo $key; ?>&amp;keyword=<?php echo $keyword; ?>&amp;page=<?php echo $page; ?>">주문 목록</a>
 								</td>
 								</tr>
 							</tbody>
@@ -530,7 +532,7 @@ if ($row['status'] == "8" || $row['status'] == "-1" && $row['delivery_type'] == 
 		 	 	add_memo:$("textarea").val(),
 		 	 	oid:"<?php echo $oid; ?>",
 		 	 	key:"<?php echo $key; ?>",
-		 	 	key_value:"<?php echo $key_value; ?>",
+		 	 	keyword:"<?php echo $keyword; ?>",
 		 	 	page:"<?php echo $page; ?>"
 		 	 });
 		 });
