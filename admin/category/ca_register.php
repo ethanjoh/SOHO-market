@@ -35,13 +35,14 @@
 
 <?php
 
-$mode = $_GET['mode'];
-$num  = $_GET['num'];
+$mode = set_var($_GET['mode']);
+$num  = set_var($_GET['num']);
 
-if ("update" == $mode) {
-    $query  = "SELECT * FROM products_category1 WHERE num='$num'";
-    $result = mysqli_query($connect, $query);
-    $row    = mysqli_fetch_array($result);
+if ($mode == "update") {
+    $query         = "SELECT * FROM products_category1 WHERE num='$num'";
+    $result        = mysqli_query($connect, $query);
+    $row           = mysqli_fetch_array($result);
+    $category_name = $row['name'];
 } else {
     $mode   = "insert";
     $query  = "SELECT max(code) AS max_code FROM products_category1";
@@ -54,6 +55,7 @@ if ("update" == $mode) {
         $max_code = "1";
     }
 
+    $category_name = '';
 }
 ?>
 
@@ -73,7 +75,7 @@ if ("update" == $mode) {
                       <div class="form-group">
                           <label for="ca_name" class="col-lg-2 col-sm-2 control-label">카테고리명 :</label>
                           <div class="col-sm-3">
-                            <input type="text" class="form-control" name="ca_name" value="<?php echo $row['name']; ?>" size="20" maxlength="20" />
+                            <input type="text" class="form-control" name="ca_name" value="<?php echo $category_name; ?>" size="20" maxlength="20" />
                           </div>
                       </div>
                       <div class="form-group">

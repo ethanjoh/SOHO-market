@@ -14,9 +14,9 @@
         <section id="main-content">
           <section class="wrapper">
 
-      <?php
-// 상위카테고리 코드값으로 부터 현 카테고리 값을 구함
-$lcode = $_GET['lcode'];
+<?php
+
+$lcode = set_var($_GET['lcode']);
 
 $query       = "SELECT * FROM products_category2 WHERE up_category='$lcode' ";
 $result      = mysqli_query($connect, $query);
@@ -63,7 +63,8 @@ $total_count = mysqli_num_rows($result);
                           </tr>
                         </thead>
                         <tbody>
-            <?php
+<?php
+
 for ($i = 0; $row = mysqli_fetch_array($result); $i++) {
     $query1    = "SELECT * FROM products_category3 WHERE up_category='$row[code]'";
     $result1   = mysqli_query($connect, $query1);
@@ -78,21 +79,22 @@ for ($i = 0; $row = mysqli_fetch_array($result); $i++) {
     ?>
                           <tr>
                             <td><?php echo $row['code']; ?></td>
-                            <td><a href="ca_ssub_list.php?lcode=<?php echo $lcode; ?>&amp;mcode=<?php echo $row['code']; ?>"><?php echo $row['name']; ?></a></td>
+                            <td><?php echo $row['name']; ?></td>
                             <td><?php echo $sub_count; ?></td>
                             <td><?php echo $products_count; ?></td>
                             <td><a type="button" class="btn btn-default" href='ca_msub_register.php?mode=update&amp;id=<?php echo $row['id']; ?>&amp;lcode=<?php echo $row['up_category']; ?>'><i class="fa fa-pencil-square-o"></i></a>&nbsp; <a type="button" class="btn btn-danger" href='ca_msub_delete.php?id=<?php echo $row['id']; ?>&amp;lcode=<?php echo $row['up_category']; ?>' onClick="return confirm('정말 삭제하시겠습니까?')"><i class="fa fa-trash-o"></i></a> </td>
                           </tr>
-          <?php
+<?php
+
 }
-mysqli_free_result($result);
 
 if ($total_count == 0) {
     ?>
                           <tr>
                             <td colspan="5" class="text-center"><p>등록된 중분류가 없습니다.</p></td>
                           </tr>
-          <?php
+<?php
+
 }
 ?>
                         </tbody>
