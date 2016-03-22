@@ -166,16 +166,20 @@ $sql = "SELECT * FROM mall_order
             ORDER BY num DESC";
 $res = mysqli_query($connect, $sql);
 
+$total = 0; //공급가합
+$sales = array();
+
 //2. 각 주문에서 제품코드를 구한다.
 for ($i = 0; $row = mysqli_fetch_array($res); $i++) {
     //판매금액 집계를 위한 배열
-    $sales[] = array(num => $row['num'], id => $row['user_id'], sub_total => $row['last_amount']);
+    $sales[] = array("num" => $row['num'], "id" => $row['user_id'], "sub_total" => $row['last_amount']);
     $total += $row['last_amount'];
 } //for end
 
+$sum = array();
 foreach ($sales as $key => $values) {
     //$sum[$values['company_name']] += $values['sub_total'];
-    $sum[$values['id']] += $values['sub_total'];
+    @$sum[$values['id']] += $values['sub_total'];
 }
 
 reset($sum);
@@ -192,34 +196,34 @@ foreach ($sum as $id => $sub_total) {
     ?>
     <tr>
       <td class="ess" style="mso-number-format:\@">01</td>
-      <td class="ess" style="mso-number-format:mm\/dd"><?php echo $makedate;?></td>
-      <td class="ess" style="mso-number-format:\@"><?php echo $info['license_no'];?></td>
+      <td class="ess" style="mso-number-format:mm\/dd"><?php echo $makedate; ?></td>
+      <td class="ess" style="mso-number-format:\@"><?php echo $info['license_no']; ?></td>
       <td class="txt"></td>
-      <td class="ess"><?php echo $info['company_name'];?></td>
-      <td class="ess"><?php echo $info['ceo'];?></td>
-      <td class="txt"><?php echo $info['addr1'];?> <?php echo $info['addr2'];?></td>
-      <td class="txt"><?php echo $info['category1'];?></td>
-      <td class="txt"><?php echo $info['category2'];?></td>
-      <td class="txt"><?php echo $info['email'];?></td>
-      <td class="ess" style="mso-number-format:\@"><?php echo $c_row['license_no'];?></td>
+      <td class="ess"><?php echo $info['company_name']; ?></td>
+      <td class="ess"><?php echo $info['ceo']; ?></td>
+      <td class="txt"><?php echo $info['addr1']; ?> <?php echo $info['addr2']; ?></td>
+      <td class="txt"><?php echo $info['category1']; ?></td>
+      <td class="txt"><?php echo $info['category2']; ?></td>
+      <td class="txt"><?php echo $info['email']; ?></td>
+      <td class="ess" style="mso-number-format:\@"><?php echo $c_row['license_no']; ?></td>
       <td class="txt"></td>
-      <td class="ess"><?php echo $c_row['company_name'];?></td>
-      <td class="ess"><?php echo $c_row['ceo'];?></td>
-      <td class="txt"><?php echo $c_row['addr1'];?> <?php echo $c_row['addr2'];?></td>
-      <td class="txt"><?php echo $c_row['category1'];?></td>
-      <td class="txt"><?php echo $c_row['category2'];?></td>
-      <td class="txt"><?php echo $c_row['md_email'];?></td>
+      <td class="ess"><?php echo $c_row['company_name']; ?></td>
+      <td class="ess"><?php echo $c_row['ceo']; ?></td>
+      <td class="txt"><?php echo $c_row['o_addr1']; ?> <?php echo $c_row['o_addr2']; ?></td>
+      <td class="txt"><?php echo $c_row['category1']; ?></td>
+      <td class="txt"><?php echo $c_row['category2']; ?></td>
+      <td class="txt"><?php echo $c_row['md_email']; ?></td>
       <td class="txt"></td>
-      <td class="ess"><?php echo number_format($sub_total);?></td>
-      <td class="ess"><?php echo number_format($sub_total * .1);?></td>
+      <td class="ess"><?php echo number_format($sub_total); ?></td>
+      <td class="ess"><?php echo number_format($sub_total * .1); ?></td>
       <td class="txt"></td>
-      <td class="ess" style="mso-number-format:\@"><?php echo $makedate2;?></td>
-      <td class="txt"></td>
-      <td class="txt"></td>
+      <td class="ess" style="mso-number-format:\@"><?php echo $makedate2; ?></td>
       <td class="txt"></td>
       <td class="txt"></td>
-      <td class="ess"><?php echo number_format($sub_total);?></td>
-      <td class="ess"><?php echo number_format($sub_total * .1);?></td>
+      <td class="txt"></td>
+      <td class="txt"></td>
+      <td class="ess"><?php echo number_format($sub_total); ?></td>
+      <td class="ess"><?php echo number_format($sub_total * .1); ?></td>
       <td class="txt"></td>
       <td class="txt"></td>
       <td class="txt"></td>
