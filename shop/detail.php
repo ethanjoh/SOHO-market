@@ -2,12 +2,12 @@
 
 <?php
 
-	$lcode = set_var($_GET['lcode']);
-	$mcode = set_var($_GET['mcode']);
-	$pnum  = set_var($_GET['pnum']);
-	// $p_id  = set_var($_SESSION['p_id']);
+$lcode = set_var($_GET['lcode']);
+$mcode = set_var($_GET['mcode']);
+$pnum  = set_var($_GET['pnum']);
+// $p_id  = set_var($_SESSION['p_id']);
 
-	$contents = get_item_contents($pnum);
+$contents = get_item_contents($pnum);
 
 ?>
 
@@ -19,7 +19,7 @@
                     <div class="container-inner">
                         <ul>
                             <li class="home">
-                                <a href="#">Home</a>
+                                <a href="/">Home</a>
                                 <span>
                                     <i class="fa fa-angle-right"></i>
                                 </span>

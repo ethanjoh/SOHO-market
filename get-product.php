@@ -54,9 +54,9 @@ while ($data = fgetcsv($fp)) {
     // print_r($data);
     // echo "</pre>";
 
-    $lcode          = "13";                          // 대카테고리
+    $lcode          = "9";                           // 대카테고리
     $itemCode       = trim($data['1']);              // 상품코드
-    $shortDesc      = trim($data['2']);              // 상품명=>간략설명
+    $shortDesc      = trim($data['8']);              // 규격=>간략설명
     $wholesalePrice = removeComma(trim($data['3'])); // 공급가. 기존 소비자가 컬럼에 삽입
     $shopPrice      = removeComma(trim($data['9'])); // 소비자판매가
     $name           = addslashes(trim($data['6']));  // 모델번호 =>상품명
@@ -69,10 +69,10 @@ while ($data = fgetcsv($fp)) {
 
     // 서브분류에 따라 저장
     // 대표이미지 생성 후 썸네일 이미지 자동생성
-    if (trim($data['5']) == '아이언/우드그립' || trim($data['5']) == '클럽그립') {
+    if (trim($data['5']) == '아이언/우드그립' || trim($data['5']) == '클럽그립' || trim($data['5']) == '주니어 그립') {
         // 이미지 파일이 있는 경우
         if ($data['4'] != '') {
-            $mcode       = "21"; // 중카테고리
+            $mcode       = "15"; // 중카테고리
             $bImg1_chk   = "Y";
             $bigImg1File = $saveDir . $data['6'] . "/b/" . $data['4'];
 
@@ -563,8 +563,8 @@ while ($data = fgetcsv($fp)) {
     $option4_chk = "N";
     $option5_chk = "N";
 
-    // 규격=>옵션
-    $opt       = trim($data['8']);
+    // 상품명=>옵션
+    $opt       = trim($data['2']);
     $opt_stock = '1';
 
     $event = "0";

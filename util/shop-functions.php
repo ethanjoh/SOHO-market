@@ -2142,7 +2142,7 @@ function show_item_info($pnum)
                                     <h1>{$itemName}</h1>
                                 </div>
                                 <div class="pro-rating">
-                                    모델명: {$shortDesc}
+                                    규격: {$shortDesc}
                                 </div>
                                 <p class="availability in-stock">
                                     재고:
