@@ -2002,3 +2002,35 @@ function check_img_extension($file)
     }
 
 }
+
+/**
+ * 디렉토리 반환
+ * ex) $haystack = "../../upload/p_image/B068-02/b/4848_3.jpg"
+ * return "../../upload/p_image/B068-02"
+ * @param  [type] $haystack [description]
+ * @param  [type] $needle   [description]
+ * @return [type]           [description]
+ */
+function reverse_strrchr($haystack, $needle)
+{
+    $pos = strrpos($haystack, $needle);
+    if ($pos === false) {
+        return $haystack;
+    }
+    return substr($haystack, 0, $pos - 1);
+}
+
+/**
+ * 서브디렉토리까지 삭제
+ * @param  [type] $dir [description]
+ * @return [type]      [description]
+ */
+function recurseRmdir($dir)
+{
+    // 디렉토리 자신 「.」 과 상위 디렉토리 「..」 를 배열에서 제외
+    $files = array_diff(scandir($dir), array('.', '..'));
+    foreach ($files as $file) {
+        (is_dir("$dir/$file")) ? recurseRmdir("$dir/$file") : unlink("$dir/$file");
+    }
+    return rmdir($dir);
+}
