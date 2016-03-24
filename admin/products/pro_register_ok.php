@@ -166,19 +166,19 @@ if ($mode == "insert") {
     $short_desc = nl2br($short_desc);
 
     if (isset($_FILES['b_image1'])) {
-        // check_img_extension($_FILES['b_image1']);
+        check_img_extension($_FILES['b_image1']['name']);
 
-        if ($_FILES['b_image1']['name']) {
-            $file_ext1 = substr(strrchr($_FILES['b_image1']['name'], "."), 1);
-            $file_ext1 = strtolower($file_ext1);
+        // if ($_FILES['b_image1']['name']) {
+        //     $file_ext1 = substr(strrchr($_FILES['b_image1']['name'], "."), 1);
+        //     $file_ext1 = strtolower($file_ext1);
 
-            if ($file_ext1 != 'jpg' && $file_ext1 != 'gif' && $file_ext1 != 'jpeg' && $file_ext1 != 'png') {
-                err_msg("이미지 파일만 올릴 수 있습니다.");
-            }
-            if (!$_FILES['b_image1']['size']) {
-                err_msg("지정한 파일(확대1)이 없거나 파일 크기가 0KB입니다.");
-            }
-        }
+        //     if ($file_ext1 != 'jpg' && $file_ext1 != 'gif' && $file_ext1 != 'jpeg' && $file_ext1 != 'png') {
+        //         err_msg("이미지 파일만 올릴 수 있습니다.");
+        //     }
+        //     if (!$_FILES['b_image1']['size']) {
+        //         err_msg("지정한 파일(확대1)이 없거나 파일 크기가 0KB입니다.");
+        //     }
+        // }
 
         $bImg1_chk   = "Y";
         $bigImg1File = $saveDir . $name . "/b/" . $_FILES['b_image1']['name'];
@@ -267,13 +267,8 @@ if ($mode == "insert") {
     }
     // 상품 업데이트
 } else if ($mode == "update") {
-    // if ($prod_code) {
-    //     $chg = "prod_code=" . "'" . $prod_code . "'";
-    // } else {
-    $chg = 'num=' . '' . $p_num . '';
-    // }
 
-    $query  = "SELECT * FROM products WHERE $chg ";
+    $query  = "SELECT * FROM products WHERE num='$p_num' ";
     $result = mysqli_query($connect, $query);
     $row    = mysqli_fetch_array($result);
 
@@ -411,7 +406,7 @@ if ($mode == "insert") {
                                          option3_chk  = '$option3_chk',
                                          option4_chk  = '$option4_chk',
 										 del_chk      = '$del_chk'
-					  WHERE $chg ";
+					  WHERE num='$p_num' ";
     $result1 = mysqli_query($connect, $dbinsert1);
 
     if ($result1) {

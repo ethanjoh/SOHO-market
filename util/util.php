@@ -1991,14 +1991,14 @@ function GenerateString($length)
     return $string_generated;
 }
 
-function check_img_extension($file)
+function check_img_extension($uploadFile)
 {
 
-    $file_ext = substr(strrchr($file . ['name'], "."), 1);
+    $file_ext = substr(strrchr($uploadFile, "."), 1);
     $file_ext = strtolower($file_ext);
 
     if ($file_ext != 'jpg' && $file_ext != 'gif' && $file_ext != 'jpeg' && $file_ext != 'png') {
-        err_msg("" . $file . " - " . $file_ext . " :: 이미지 파일만 올릴 수 있습니다.");
+        err_msg("" . $uploadFile . " - " . $file_ext . " :: 이미지 파일만 올릴 수 있습니다.");
     }
 
 }
@@ -2007,9 +2007,9 @@ function check_img_extension($file)
  * 디렉토리 반환
  * ex) $haystack = "../../upload/p_image/B068-02/b/4848_3.jpg"
  * return "../../upload/p_image/B068-02"
- * @param  [type] $haystack [description]
- * @param  [type] $needle   [description]
- * @return [type]           [description]
+ * @param  [type] $haystack       [description]
+ * @param  [type] $needle         [description]
+ * @return [type] [description]
  */
 function reverse_strrchr($haystack, $needle)
 {
@@ -2022,8 +2022,8 @@ function reverse_strrchr($haystack, $needle)
 
 /**
  * 서브디렉토리까지 삭제
- * @param  [type] $dir [description]
- * @return [type]      [description]
+ * @param  [type] $dir            [description]
+ * @return [type] [description]
  */
 function recurseRmdir($dir)
 {
