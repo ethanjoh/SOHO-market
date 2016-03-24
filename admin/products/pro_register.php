@@ -129,7 +129,6 @@ if ($mode == "update") {
 														<td>
 															<!-- <select class="form-control" name="lcode" onChange="change_lcode(<?php echo $p_num; ?>, <?php echo $lcode; ?>)"> -->
 															<select class="form-control" name="lcode">
-
 																<option value="">선택하세요</option>
 <?php
 
@@ -440,25 +439,6 @@ if ($mode == "update") {
     ?>
                                 </td>
 						  </tr>
-						  <tr >
-							<th><img src="../images/icn_05.gif" width="24" height="14" alt="선택" /> 대 5</th>
-							<td><input type="file" class="form-control" name="b_image5" size="30" />
-<?php
-
-    if ($update_row['b_image5'] == 'Y') {
-        ?>
-							<img src="<?php echo $update_row['b_image5_name']; ?>" width="50" height="50" />
-<?php
-
-    } else {
-        ?>
-							<img src="http://placehold.it/50x50">
-<?php
-
-    }
-    ?>
-                            </td>
-    					</tr>
     					<tr>
     						<th><img src="../images/icn_04.gif" width="24" height="14" alt="필수" /> 상세설명</th>
     						<td>
@@ -477,14 +457,14 @@ if ($mode == "update") {
 </div>
 <div class="row text-center">
 	<div class="col-sm-12">
-	<input type="hidden" name="mode" value="<?php echo $mode; ?>" />
-	<!-- <input type="hidden" name="pmode" value="<?php echo $pmode; ?>" /> -->
-	<input type="hidden" name="p_num" value="<?php echo $p_num; ?>" />
-	<input type="hidden" name="page" value="<?php echo $page; ?>" />
-	<input type="hidden" name="old_l_cate" value="<?php echo $update_row['category_m']; ?>" />
-	<button class="btn btn-success" onclick="send_post('contents');">등록</button>
-	<a type="button" class="btn btn-default" href="top_pro_list.php?lcode=<?php echo $lcode; ?>&mcode=<?php echo $mcode; ?>&page=<?php echo $page; ?>">취소</a>
-	<a type="button" class="btn btn-danger" href="pro_delete.php?p_num=<?php echo $p_num; ?>&amp;lcode=<?php echo $lcode; ?>&amp;mcode=<?php echo $mcode; ?>&amp;page=<?php echo $page; ?>" onclick="return confirm('정말 삭제하시겠습니까?')">삭제</a>
+    	<input type="hidden" name="mode" value="<?php echo $mode; ?>" />
+    	<!-- <input type="hidden" name="pmode" value="<?php echo $pmode; ?>" /> -->
+    	<input type="hidden" name="p_num" value="<?php echo $p_num; ?>" />
+    	<input type="hidden" name="page" value="<?php echo $page; ?>" />
+    	<input type="hidden" name="old_l_cate" value="<?php echo $update_row['category_m']; ?>" />
+    	<button class="btn btn-success" onclick="send_post('contents');">등록</button>
+    	<a type="button" class="btn btn-default" href="top_pro_list.php?lcode=<?php echo $lcode; ?>&mcode=<?php echo $mcode; ?>&page=<?php echo $page; ?>">취소</a>
+    	<a type="button" class="btn btn-danger" href="pro_delete.php?p_num=<?php echo $p_num; ?>&amp;lcode=<?php echo $lcode; ?>&amp;mcode=<?php echo $mcode; ?>&amp;page=<?php echo $page; ?>" onclick="return confirm('정말 삭제하시겠습니까?')">삭제</a>
 	</div>
 </div>
 </form>
@@ -697,14 +677,16 @@ if ($mode == "update") {
 														<td>
 															<input name="downRate" id="downRate" class="form-control" type="text"  value="" onkeyup="setPrice()" placeholder="할인율" size="3" />%↓
 															<input name="fixed_price" id="fixed_price" class="form-control" type="text" value="" readonly="readonly" placeholder="자동계산" /> 원 (<img src="../images/warning.gif" alt="주의" />고정된 공급가로만 판매 시)<br />
-															<?php
-if ("update" == $mode) {
+<?php
+
+    if ("update" == $mode) {
         ?>
 															<script>
 															getRate();
 															</script>
-															<?php
-}
+<?php
+
+    }
     ?>
 															<p class="help-block"><input type="checkbox" name="pflag"  />
 														<i class="fa fa-exclamation-triangle"></i> 마진율 무시 특별공급가 책정 시 체크(업체에 관계없이 동일한 공급가 적용)</p>
@@ -864,10 +846,6 @@ if ("update" == $mode) {
 										<tr>
 											<th><img src="../images/icn_05.gif" width="24" height="14" alt="선택" /> 대 4</th>
 											<td><input type="file" class="form-control" name="b_image4" size="30" /> <img src="http://placehold.it/50x50"></td>
-										</tr>
-										<tr >
-											<th><img src="../images/icn_05.gif" width="24" height="14" alt="선택" /> 대 5</th>
-											<td><input type="file" class="form-control" name="b_image5" size="30" /> <img src="http://placehold.it/50x50"></td>
 										</tr>
 										<tr>
 											<th><img src="../images/icn_04.gif" width="24" height="14" alt="필수" /> 상세설명</th>

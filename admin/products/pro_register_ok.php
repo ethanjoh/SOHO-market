@@ -154,12 +154,10 @@ if ($mode == "insert") {
     $bigImg2File = '';
     $bigImg3File = '';
     $bigImg4File = '';
-    $bigImg5File = '';
 
     $bImg2_chk = 'N';
     $bImg3_chk = 'N';
     $bImg4_chk = 'N';
-    $bImg5_chk = 'N';
 
     $name    = addslashes($name);
     $company = addslashes($company);
@@ -167,30 +165,42 @@ if ($mode == "insert") {
     $opt        = addslashes($optname_ins);
     $short_desc = nl2br($short_desc);
 
-    if (isset($_FILES['' . $b_image1 . ''])) {
-        check_img_extension($b_image1);
+    if (isset($_FILES['b_image1'])) {
+        // check_img_extension($_FILES['b_image1']);
+
+        if ($_FILES['b_image1']['name']) {
+            $file_ext1 = substr(strrchr($_FILES['b_image1']['name'], "."), 1);
+            $file_ext1 = strtolower($file_ext1);
+
+            if ($file_ext1 != 'jpg' && $file_ext1 != 'gif' && $file_ext1 != 'jpeg' && $file_ext1 != 'png') {
+                err_msg("이미지 파일만 올릴 수 있습니다.");
+            }
+            if (!$_FILES['b_image1']['size']) {
+                err_msg("지정한 파일(확대1)이 없거나 파일 크기가 0KB입니다.");
+            }
+        }
 
         $bImg1_chk   = "Y";
-        $bigImg1File = $saveDir . $name . "/b/" . $_FILES['' . $b_image1 . '']['name'];
+        $bigImg1File = $saveDir . $name . "/b/" . $_FILES['b_image1']['name'];
         $bigImg1Path = $saveDir . $name . "/b/";
 
         if (is_dir($bigImg1Path)) {
-            move_uploaded_file($_FILES['' . $b_image1 . '']['tmp_name'], $bigImg1File);
+            move_uploaded_file($_FILES['b_image1']['tmp_name'], $bigImg1File);
         } else {
             mkdir($bigImg1Path, 0755, true);
-            move_uploaded_file($_FILES['' . $b_image1 . '']['tmp_name'], $bigImg1File);
+            move_uploaded_file($_FILES['b_image1']['tmp_name'], $bigImg1File);
         }
 
         //썸네일 자동생성
         $sImg1_chk     = "Y";
-        $smallImg1File = $saveDir . $name . "/s/" . $_FILES['' . $b_image1 . '']['name'];
+        $smallImg1File = $saveDir . $name . "/s/" . $_FILES['b_image1']['name'];
         $smallImg1Path = $saveDir . $name . "/s/";
 
         if (is_dir($smallImg1Path)) {
-            make_thumbnail($bigImg1Path . $_FILES['' . $b_image1 . '']['name'], 100, 100, $smallImg1Path . $_FILES['' . $b_image1 . '']['name']);
+            make_thumbnail($bigImg1Path . $_FILES['b_image1']['name'], 100, 100, $smallImg1Path . $_FILES['b_image1']['name']);
         } else {
             mkdir($smallImg1Path, 0755, true);
-            make_thumbnail($bigImg1Path . $_FILES['' . $b_image1 . '']['name'], 100, 100, $smallImg1Path . $_FILES['' . $b_image1 . '']['name']);
+            make_thumbnail($bigImg1Path . $_FILES['b_image1']['name'], 100, 100, $smallImg1Path . $_FILES['b_image1']['name']);
         }
 
     } else {
@@ -227,7 +237,6 @@ if ($mode == "insert") {
 										b_image2, b_image2_name,
 										b_image3, b_image3_name,
 										b_image4, b_image4_name,
-										b_image5, b_image5_name,
 										created, main_new, main_special, main_best,
                                         option1_chk, option2_chk, option3_chk, option4_chk,
                                         del_chk)
@@ -240,7 +249,6 @@ if ($mode == "insert") {
 							 		'$bImg2_chk', '$bigImg2File',
 							 		'$bImg3_chk', '$bigImg3File',
 							 		'$bImg4_chk', '$bigImg4File',
-							 		'$bImg5_chk', '$bigImg5File',
 							 		now(), '$main_new', '$main_special', '$main_best',
                                     '$option1_chk', '$option2_chk', '$option3_chk', '$option4_chk',
                                     '$del_chk')";

@@ -38,8 +38,9 @@ if ($row['d_image'] == 'Y') {
 }
 
 // 해당데이타 삭제
-$query = "DELETE FROM products WHERE num=$p_num";
+$query = "DELETE FROM products WHERE num='$p_num' ";
 mysqli_query($connect, $query);
 
 // 리스트로 이동
-echo ("<meta http-equiv='refresh' content='0; URL=top_pro_list.php?lcode=$lcode&amp;mcode=$mcode&amp;page=$page'>");
+// echo ("<meta http-equiv='refresh' content='0; URL=top_pro_list.php?lcode=$lcode&amp;mcode=$mcode&amp;page=$page'>");
+header("Location: top_pro_list.php?lcode=" . $lcode . "&amp;mcode=" . $mcode . "&amp;page=" . $page . "");

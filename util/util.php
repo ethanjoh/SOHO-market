@@ -1991,14 +1991,14 @@ function GenerateString($length)
     return $string_generated;
 }
 
-function check_img_extension($imgName)
+function check_img_extension($file)
 {
 
-    $file_ext = substr(strrchr($imgName, "."), 1);
+    $file_ext = substr(strrchr($file . ['name'], "."), 1);
     $file_ext = strtolower($file_ext);
 
     if ($file_ext != 'jpg' && $file_ext != 'gif' && $file_ext != 'jpeg' && $file_ext != 'png') {
-        err_msg("" . $imgName . " - " . $file_ext . " :: 이미지 파일만 올릴 수 있습니다.");
+        err_msg("" . $file . " - " . $file_ext . " :: 이미지 파일만 올릴 수 있습니다.");
     }
 
 }
