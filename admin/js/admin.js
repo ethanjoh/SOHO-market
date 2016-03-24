@@ -302,21 +302,36 @@ function send_post(id)
   }
   */
 
+if(!form.shop_price.value) {
+     alert("소비자가를 입력하세요.");
+     form.shop_price.focus();
+     return ;
+  }
+
+
  if(!form.retail_price.value) {
-     alert("판매가를 입력하세요!");
+     alert("공급가를 입력하세요.");
 	 form.retail_price.focus();
 	 return ;
   }
 
+ if(form.shop_price.value) {
+     if(!IsNumber(form.shop_price.name)){
+         alert("상품가격은 숫자이어야 합니다.");
+         form.shop_price.focus();
+         return;
+      }
+  }
+
  if(form.retail_price.value) {
      if(!IsNumber(form.retail_price.name)){
-         alert("상품가격은 숫자이어야 합니다!");
+         alert("상품가격은 숫자이어야 합니다.");
 	     form.retail_price.focus();
 	     return;
 	  }
   }
 
-  oEditors.getById[id].exec("UPDATE_CONTENTS_FIELD", []);
+  // oEditors.getById[id].exec("UPDATE_CONTENTS_FIELD", []);
   form.submit();
 }
 

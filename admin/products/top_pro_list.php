@@ -192,6 +192,7 @@ if ($lcode) {
                       <th class="text-center">번호</th>
                       <th class="text-center" colspan="2">제품명</th>
                       <th class="text-center">옵션</th>
+                      <th class="text-center">소비자가</th>
                       <th class="text-center">공급가</th>
                       <th class="text-center" colspan="3">메인화면 표시</th>
 <!--                       <th>기획상품</th>
@@ -257,6 +258,7 @@ if ($result1) {
 
         ?>
                     </td>
+                    <td class="text-right" ><?php echo number_format(trim($prow['shop_price'])); ?> 원</td>
                     <td class="text-right" ><?php echo number_format(trim($prow['retail_price'])); ?> 원</td>
                     <td class="text-center">
 <?php
@@ -310,7 +312,7 @@ if ($result1) {
 if ($total == 0) {
     ?>
                   <tr>
-                    <td colspan="9"><p>등록된 상품이 없습니다.</p></td>
+                    <td colspan="10"><p>등록된 상품이 없습니다.</p></td>
                   </tr>
 <?php
 

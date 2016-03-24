@@ -1,10 +1,7 @@
 <?php
 
 include_once "../include/admin_auth.php";
-include_once "../../util/config.php";
 include_once "../../util/util.php";
-
-$connect = my_connect($host, $dbid, $dbpass, $dbname);
 
 $p_num = set_var($_GET['p_num']);
 $lcode = set_var($_GET['lcode']);
@@ -18,8 +15,8 @@ $row    = mysqli_fetch_array($result);
 mysqli_free_result($result);
 
 //작은 이미지가 있으면 삭제
-if ($row['s_image'] == 'Y') {
-    unlink($row['s_image_name']);
+if ($row['s_image1'] == 'Y') {
+    unlink($row['s_image1_name']);
 }
 if ($row['b_image1'] == 'Y') {
     unlink($row['b_image1_name']);
