@@ -25,7 +25,7 @@ if ($mode == 'del') {
     $result = mysqli_query($connect, $update);
 
     if ($result) {
-        $url = 'top_pro_list.php?lcode=' . $lcode . '&mcode=' . $mcode . '&scode=' . $scode . '&page=' . $page;
+        $url = 'top_pro_list.php?lcode=' . $lcode . '&mcode=' . $mcode . '&page=' . $page;
         show_msg('메인표시 해제했습니다.', $url);
     } else {
         err_msg('DB오류가 발생했습니다.');
@@ -45,7 +45,7 @@ if ($mode == 'insert') {
     $result = mysqli_query($connect, $update);
 
     if ($result) {
-        $url = 'top_pro_list.php?lcode=' . $lcode . '&mcode=' . $mcode . '&scode=' . $scode . '&page=' . $page;
+        $url = 'top_pro_list.php?lcode=' . $lcode . '&mcode=' . $mcode . '&page=' . $page;
         show_msg('메인표시 설정했습니다.', $url);
     } else {
         err_msg('DB오류가 발생했습니다.');

@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"heade",
+				"header〔function〕"
+			],
+			[
 				"catego",
 				"category_name"
 			],
@@ -510,10 +514,6 @@
 			[
 				"fon",
 				"font-size"
-			],
-			[
-				"wid",
-				"width"
 			]
 		]
 	},
@@ -523,15 +523,7 @@
 			"file": "get-product.php",
 			"settings":
 			{
-				"buffer_size": 11497,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "upload/tools.csv",
-			"settings":
-			{
-				"buffer_size": 5546,
+				"buffer_size": 24967,
 				"line_ending": "Windows"
 			}
 		}
@@ -682,17 +674,28 @@
 	"expanded_folders":
 	[
 		"/C/wamp/www/shinsoo",
-		"/C/wamp/www/shinsoo/admin",
 		"/C/wamp/www/shinsoo/admin/order",
+		"/C/wamp/www/shinsoo/img",
 		"/C/wamp/www/shinsoo/upload"
 	],
 	"file_history":
 	[
+		"/C/wamp/www/shinsoo/upload/tools.csv",
+		"/C/wamp/www/shinsoo/upload/ferrule_sp.csv",
+		"/C/wamp/www/shinsoo/upload/ferrule_iron.csv",
+		"/C/wamp/www/shinsoo/upload/ferrule_wood.csv",
+		"/C/wamp/www/shinsoo/util/shop-functions.php",
+		"/C/wamp/www/shinsoo/shop/detail.php",
+		"/C/wamp/www/shinsoo/upload/junior.csv",
+		"/C/wamp/www/shinsoo/admin/category/ca_msub_list.php",
+		"/C/wamp/www/shinsoo/admin/category/ca_msub_delete.php",
+		"/C/wamp/www/shinsoo/upload/shaft.csv",
+		"/C/wamp/www/shinsoo/shop/catalog-list.php",
+		"/C/wamp/www/shinsoo/util/util.php",
 		"/C/wamp/www/shinsoo/admin/stats/tax_list.php",
 		"/C/wamp/www/shinsoo/admin/stats/hometax_excel.php",
 		"/C/wamp/www/shinsoo/admin/category/ca_register.php",
 		"/C/wamp/www/shinsoo/admin/category/ca_msub_register.php",
-		"/C/wamp/www/shinsoo/admin/category/ca_msub_list.php",
 		"/C/wamp/www/shinsoo/get-product.php",
 		"/C/wamp/www/shinsoo/admin/order/insert_waybill.php",
 		"/C/wamp/www/shinsoo/admin/order/or_changed.php",
@@ -712,12 +715,8 @@
 		"/C/wamp/www/shinsoo/admin/member/p_mem_view_member.php",
 		"/C/wamp/www/shinsoo/admin/setting/admin_setup.php",
 		"/C/wamp/www/shinsoo/admin/member/mem_view_member.php",
-		"/C/wamp/www/shinsoo/util/util.php",
 		"/C/wamp/www/shinsoo/admin/products/top_pro_list.php",
-		"/C/wamp/www/shinsoo/shop/catalog-list.php",
-		"/C/wamp/www/shinsoo/util/shop-functions.php",
 		"/C/wamp/www/shinsoo/css/style.css",
-		"/C/wamp/www/shinsoo/shop/detail.php",
 		"/C/wamp/www/shinsoo/include/header.php",
 		"/C/wamp/www/shinsoo/member/p-find-pass-ok.php",
 		"/C/wamp/www/shinsoo/member/p-find-id-ok.php",
@@ -776,7 +775,6 @@
 		"/C/wamp/www/shinsoo/admin/setting/delivery_setup_ok.php",
 		"/C/wamp/www/shinsoo/admin/category/ca_delete.php",
 		"/C/wamp/www/shinsoo/admin/bbs/update_bbs.php",
-		"/C/wamp/www/shinsoo/admin/category/ca_msub_delete.php",
 		"/C/wamp/www/shinsoo/admin/category/ca_hide.php",
 		"/C/wamp/www/shinsoo/admin/category/ca_insert.php",
 		"/C/wamp/www/shinsoo/admin/category/ca_msub_insert.php",
@@ -809,13 +807,7 @@
 		"/C/wamp/www/shinsoo/admin/order/print_quotation.html",
 		"/C/Users/Seonghyeon/OneDrive/git_project/prixe/admin/supplier/print_offer.php",
 		"/C/Users/Seonghyeon/Downloads/specifications_of_transaction.files/sheet001.htm",
-		"/C/Users/Seonghyeon/Downloads/specifications_of_transaction.htm",
-		"/C/wamp/www/shinsoo/admin/setting/banner_list.php",
-		"/C/wamp/www/shinsoo/admin/setting/banner_setting.php",
-		"/C/wamp/www/shinsoo/util/config.ini",
-		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/User/SFTP.errors.log",
-		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
-		"/C/wamp/www/shinsoo/admin/setting/main_banner_setting.php"
+		"/C/Users/Seonghyeon/Downloads/specifications_of_transaction.htm"
 	],
 	"find":
 	{
@@ -848,6 +840,10 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"$line",
+			"brand",
+			"shortDesc",
+			"id",
 			"$date1",
 			"$mode",
 			"lcode",
@@ -971,11 +967,7 @@
 			"$cpage",
 			"img",
 			"$i",
-			"LGD_CASSEQNO",
-			"$CST_MID",
-			"$connect",
-			"CST_MID",
-			"$CST_MID"
+			"LGD_CASSEQNO"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -996,7 +988,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -1005,15 +997,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 11497,
+						"buffer_size": 24967,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1415,
-								1415
+								1162,
+								1162
 							]
 						],
 						"settings":
@@ -1022,61 +1014,61 @@
 							"auto_complete": false,
 							"bh_regions":
 							[
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
 								"bh_single_quote",
 								"bh_single_quote_center",
 								"bh_single_quote_open",
 								"bh_single_quote_close",
 								"bh_single_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
 								"bh_default",
 								"bh_default_center",
 								"bh_default_open",
 								"bh_default_close",
-								"bh_default_content"
+								"bh_default_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content"
 							],
 							"incomplete_sync": null,
 							"remote_loading": false,
@@ -1086,97 +1078,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1784.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "upload/tools.csv",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 5546,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content"
-							],
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": true,
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 926.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -1241,6 +1143,18 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"detail",
+				"shop\\detail.php"
+			],
+			[
+				"ca_msub",
+				"admin\\category\\ca_msub_list.php"
+			],
+			[
+				"cata",
+				"shop\\catalog-list.php"
+			],
 			[
 				"get",
 				"get-product.php"
@@ -1308,10 +1222,6 @@
 			[
 				"catalo",
 				"shop\\catalog-list.php"
-			],
-			[
-				"detail",
-				"shop\\detail.php"
 			],
 			[
 				"head",
@@ -1480,10 +1390,6 @@
 			[
 				"add",
 				"js\\addcart.js"
-			],
-			[
-				"cata",
-				"shop\\catalog-list.php"
 			],
 			[
 				"inde",
@@ -1748,10 +1654,6 @@
 			[
 				"hover",
 				"assets\\css\\hover-dropdown-menu.css"
-			],
-			[
-				"join",
-				"joinus.php"
 			]
 		],
 		"width": 0.0

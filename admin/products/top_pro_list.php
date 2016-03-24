@@ -261,12 +261,12 @@ if ($result1) {
                     <td class="text-center">
 <?php
 
-        if ('Y' == $prow['main_new']) {
-            // echo '<a type="button" class="btn btn-round btn-success" href="pro_opt.php?p_num=' . $prow['num'] . '&mode=del&lcode=' . $prow['category_l'] . '&mcode=' . $prow['category_m'] . '&scode=' . $prow['category_s'] . '&ck=main_new&page=' . $page . '"><i class="fa fa-times"></i> ON</a><p class="help-text">신상품</p>';
-            echo '<a type="button" class="btn btn-round btn-success" href="pro_opt.php?p_num=' . $prow['num'] . '&mode=del&ck=main_new&page=' . $page . '"><i class="fa fa-times"></i> ON</a><p class="help-text">신상품</p>';
+        if ($prow['main_new'] == 'Y') {
+            echo '<a type="button" class="btn btn-round btn-success" href="pro_opt.php?p_num=' . $prow['num'] . '&mode=del&lcode=' . $prow['category_l'] . '&mcode=' . $prow['category_m'] . '&scode=' . $prow['category_s'] . '&ck=main_new&page=' . $page . '"><i class="fa fa-times"></i> ON</a><p class="help-text">신상품</p>';
+            // echo '<a type="button" class="btn btn-round btn-success" href="pro_opt.php?p_num=' . $prow['num'] . '&mode=del&ck=main_new&page=' . $page . '"><i class="fa fa-times"></i> ON</a><p class="help-text">신상품</p>';
         } else {
-            // echo '<a type="button" class="btn btn-round btn-default" href="pro_opt.php?p_num=' . $prow['num'] . '&mode=insert&lcode=' . $prow['category_l'] . '&mcode=' . $prow['category_m'] . '&scode=' . $prow['category_s'] . '&ck=main_new&page=' . $page . '"><i class="fa fa-check"></i> OFF</a><p class="help-text">신상품</p>';
-            echo '<a type="button" class="btn btn-round btn-default" href="pro_opt.php?p_num=' . $prow['num'] . '&mode=insert&ck=main_new&page=' . $page . '"><i class="fa fa-check"></i> OFF</a><p class="help-text">신상품</p>';
+            echo '<a type="button" class="btn btn-round btn-default" href="pro_opt.php?p_num=' . $prow['num'] . '&mode=insert&lcode=' . $prow['category_l'] . '&mcode=' . $prow['category_m'] . '&scode=' . $prow['category_s'] . '&ck=main_new&page=' . $page . '"><i class="fa fa-check"></i> OFF</a><p class="help-text">신상품</p>';
+            // echo '<a type="button" class="btn btn-round btn-default" href="pro_opt.php?p_num=' . $prow['num'] . '&mode=insert&ck=main_new&page=' . $page . '"><i class="fa fa-check"></i> OFF</a><p class="help-text">신상품</p>';
 
         }
         ?>
@@ -274,7 +274,7 @@ if ($result1) {
                     <td class="text-center">
 <?php
 
-        if ('Y' == $prow['main_special']) {
+        if ($prow['main_special'] == 'Y') {
             echo '<a type="button" class="btn btn-round btn-success" href="pro_opt.php?p_num=' . $prow['num'] . '&mode=del&lcode=' . $prow['category_l'] . '&mcode=' . $prow['category_m'] . '&scode=' . $prow['category_s'] . '&ck=main_special&page=' . $page . '"><i class="fa fa-times"></i> ON</a><p class="help-text">기획상품</p>';
         } else {
             echo '<a type="button" class="btn btn-round btn-default" href="pro_opt.php?p_num=' . $prow['num'] . '&mode=insert&lcode=' . $prow['category_l'] . '&mcode=' . $prow['category_m'] . '&scode=' . $prow['category_s'] . '&ck=main_special&page=' . $page . '"><i class="fa fa-check"></i> OFF</a><p class="help-text">기획상품</p>';
@@ -284,7 +284,7 @@ if ($result1) {
                     <td class="text-center">
 <?php
 
-        if ('Y' == $prow['main_best']) {
+        if ($prow['main_best'] == 'Y') {
             echo '<a type="button" class="btn btn-round btn-success" href="pro_opt.php?p_num=' . $prow['num'] . '&mode=del&lcode=' . $prow['category_l'] . '&mcode=' . $prow['category_m'] . '&scode=' . $prow['category_s'] . '&ck=main_best&page=' . $page . '"><i class="fa fa-times"></i> ON</a><p class="help-text">인기상품</p>';
         } else {
             echo '<a type="button" class="btn btn-round btn-default" href="pro_opt.php?p_num=' . $prow['num'] . '&mode=insert&lcode=' . $prow['category_l'] . '&mcode=' . $prow['category_m'] . '&scode=' . $prow['category_s'] . '&ck=main_best&page=' . $page . '"><i class="fa fa-check"></i> OFF</a><p class="help-text">인기상품</p>';
