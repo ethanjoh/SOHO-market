@@ -278,13 +278,11 @@ if ($mode == "insert") {
     $s_temp2_char = '';
     $s_temp3_char = '';
     $s_temp4_char = '';
-    $s_temp5_char = '';
 
     $b_temp1_char = '';
     $b_temp2_char = '';
     $b_temp3_char = '';
     $b_temp4_char = '';
-    $b_temp5_char = '';
 
     if ($_FILES['b_image1']['name']) {
         $b_temp1 = $saveDir . "/b/" . $_FILES['b_image1']['name'];
@@ -334,18 +332,6 @@ if ($mode == "insert") {
         $s_temp4_char = ", s_image4='Y' , s_image4_name='$s_temp4' ";
     }
 
-    if ($_FILES['b_image5']['name']) {
-        $b_temp5 = $saveDir . "/b/" . $_FILES['b_image5']['name'];
-        move_uploaded_file($_FILES['b_image5']['tmp_name'], $b_temp5);
-        $b_temp5_char = ", b_image5='Y' , b_image5_name='$b_temp5' ";
-
-        //썸네일 자동생성
-        $s_temp5 = $saveDir . "/s/" . $_FILES['b_image5']['name'];
-        make_thumbnail($temp3, 100, 100, $s_temp5);
-        move_uploaded_file($_FILES['b_image5']['tmp_name'], $s_temp5);
-        $s_temp5_char = ", s_image5='Y' , s_image5_name='$s_temp5' ";
-    }
-
     $name    = addslashes($name);
     $company = addslashes($company);
     // $origin = addslashes($origin);
@@ -377,6 +363,7 @@ if ($mode == "insert") {
     // }
 
     $dbinsert1 = "UPDATE products SET category_l      = '$lcode',
+                                         category_m   = '$mcode' ,
 										 name         = '$name',
 										 short_desc   = '$short_desc',
 										 company      = '$company',
@@ -391,11 +378,9 @@ if ($mode == "insert") {
                                          $s_temp2_char
                                          $s_temp3_char
                                          $s_temp4_char
-                                         $s_temp5_char
 										 $b_temp1_char
 										 $b_temp2_char
 										 $b_temp3_char
-										 $b_temp4_char
 										 $b_temp4_char,
 										 modified     = now(),
 										 main_new     = '$main_new',
@@ -433,13 +418,13 @@ if ($mode == "insert") {
     $result1 = mysqli_query($connect, $query1);
     $row1    = mysqli_fetch_array($result1);
 
-    $sql = "INSERT INTO products(prod_code, category_l,
+    $sql = "INSERT INTO products(prod_code, category_l, category_m,
 								name, short_desc, company, id, shop_price, retail_price,
 								moq, opt, opt_stock,
 								contents,
 								created, main_new, main_special, main_best,
 								del_chk)
-			    		VALUES('$trade_code', '$row1[category_l]',
+			    		VALUES('$trade_code', '$row1[category_l]', '$row1[category_m]',
 				  		 		'$row1[name]', '$row1[short_desc]', '$row1[company]', '$row1[id]', '$row1[shop_price]', '$row1[retail_price]',
 			      		 		'$row1[moq]', '', '',
 								'$row1[contents]',

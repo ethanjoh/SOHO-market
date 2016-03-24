@@ -29,4 +29,4 @@ if (recurseRmdir($dir)) {
 
 // 리스트로 이동
 // echo ("<meta http-equiv='refresh' content='0; URL=top_pro_list.php?lcode=$lcode&amp;mcode=$mcode&amp;page=$page'>");
-header("Location: top_pro_list.php?lcode=" . $lcode . "&amp;mcode=" . $mcode . "&amp;page=" . $page . "");
+header("Location: top_pro_list.php?lcode=" . $lcode . "&mcode=" . $mcode . "&page=" . $page . "");
