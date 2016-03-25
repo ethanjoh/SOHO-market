@@ -32,15 +32,13 @@ $moq           = set_var($_POST['moq']);
 $optname_ins   = set_var($_POST['optname_ins']);
 $opt           = addslashes($optname_ins);
 $opt_stock_ins = set_var($_POST['opt_stock_ins']);
-// $barcode_ins = set_var($_POST['barcode_ins']);
-$optname  = set_var($_POST['optname']);
-$optstock = set_var($_POST['opt_stock']);
+$optname       = set_var($_POST['optname']);
+$optstock      = set_var($_POST['opt_stock']);
 
 $option1_chk = set_var($_POST['option1_chk']);
 $option2_chk = set_var($_POST['option2_chk']);
 $option3_chk = set_var($_POST['option3_chk']);
 $option4_chk = set_var($_POST['option4_chk']);
-// $option5_chk = set_var($_POST['option5_chk']);
 
 $main_new     = set_var($_POST['main_new']);
 $main_special = set_var($_POST['main_special']);
