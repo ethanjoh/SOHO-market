@@ -83,12 +83,6 @@ if (empty($option4_chk)) {
     $option4_chk = "Y";
 }
 
-// if (empty($option5_chk)) {
-//     $option5_chk = "N";
-// } else {
-//     $option5_chk = "Y";
-// }
-
 //메인화면 표시 옵션
 if (empty($main_new)) {
     $main_new = "N";
@@ -107,17 +101,6 @@ if (empty($main_best)) {
 } else {
     $main_best = "Y";
 }
-
-//특별 고정공급가 체크
-// if(empty($pflag)){
-//     $pflag = "N";
-// } else {
-//     $pflag = "Y";
-// }
-
-//재입고일이 미정일 경우
-// if($no_restock == "Y")
-//     $restock_date = "1111-00-00";
 
 const MAX_SIZE = 1024000;
 
