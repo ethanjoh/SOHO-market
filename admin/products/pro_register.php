@@ -494,7 +494,7 @@ if ($mode == "update") {
 													<tr>
 														<th><img src="../images/icn_04.gif" width="24" height="14" alt="필수" /> 상품등록 관리</th>
 														<td>
-															<input type="radio" name="del_chk" value="N" "checked" /> 전시
+															<input type="radio" name="del_chk" value="N" checked /> 전시
 															<input type="radio" name="del_chk" value="Y" /> <span class="label label-default">판매중지</span> (숨김)
 															<input type="radio" name="del_chk" value="O" /> <span class="label label-warning">일시품절</span>
 															<input type="radio" name="del_chk" value="C" /> <span class="label label-danger">단 종</span>

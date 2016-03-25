@@ -15,7 +15,6 @@ $event   = set_var($_POST['event']);
 $date1   = set_var($_POST['date1']);
 $date2   = set_var($_POST['date2']);
 
-//$id = set_var($_POST['id']);
 $name = set_var($_POST['name']);
 $name = addslashes($name);
 
@@ -23,18 +22,12 @@ $short_desc = set_var($_POST['short_desc']);
 $short_desc = nl2br($short_desc);
 $company    = set_var($_POST['company']);
 $company    = addslashes($company);
-// $importer = set_var($_POST['importer']);
-// $origin = set_var($_POST['origin']);
 
 $shop_price   = set_var($_POST['shop_price']);
 $shop_price   = trim($shop_price);
 $retail_price = set_var($_POST['retail_price']);
 $retail_price = trim($retail_price);
 
-// $sale_price = set_var($_POST['sale_price']);
-// $fixed_price = set_var($_POST['fixed_price']);
-// $pflag = set_var($_POST['pflag']);
-// $mileage = set_var($_POST['mileage']);
 $moq           = set_var($_POST['moq']);
 $optname_ins   = set_var($_POST['optname_ins']);
 $opt           = addslashes($optname_ins);
@@ -42,18 +35,6 @@ $opt_stock_ins = set_var($_POST['opt_stock_ins']);
 // $barcode_ins = set_var($_POST['barcode_ins']);
 $optname  = set_var($_POST['optname']);
 $optstock = set_var($_POST['opt_stock']);
-// $barcode = set_var($_POST['barcode']);
-// $size = set_var($_POST['size']);
-// $material = set_var($_POST['material']);
-// $auth = set_var($_POST['auth']);
-// $service = set_var($_POST['service']);
-// $warranty = set_var($_POST['warranty']);
-// $caution = set_var($_POST['caution']);
-
-// $stock = set_var($_POST['stock']);
-// $tag = set_var($_POST['tag']);
-// $restock_date = set_var($_POST['restock_date']);
-// $no_restock = set_var($_POST['no_restock']);
 
 $option1_chk = set_var($_POST['option1_chk']);
 $option2_chk = set_var($_POST['option2_chk']);
@@ -157,39 +138,6 @@ if ($mode == "insert") {
     $wdate      = date('md');
     $trade_code = "p" . $wdate . "-" . $p_code;
 
-    // if (isset($_FILES['b_image1'])) {
-    //     check_img_extension($_FILES['b_image1']['name']);
-
-    //     $bImg1_chk   = "Y";
-    //     $bigImg1File = $saveDir . $name . "/b/" . $_FILES['b_image1']['name'];
-    //     $bigImg1Path = $saveDir . $name . "/b/";
-
-    //     if (is_dir($bigImg1Path)) {
-    //         move_uploaded_file($_FILES['b_image1']['tmp_name'], $bigImg1File);
-    //     } else {
-    //         mkdir($bigImg1Path, 0755, true);
-    //         move_uploaded_file($_FILES['b_image1']['tmp_name'], $bigImg1File);
-    //     }
-
-    //     //썸네일 자동생성
-    //     $sImg1_chk     = "Y";
-    //     $smallImg1File = $saveDir . $name . "/s/" . $_FILES['b_image1']['name'];
-    //     $smallImg1Path = $saveDir . $name . "/s/";
-
-    //     if (is_dir($smallImg1Path)) {
-    //         make_thumbnail($bigImg1Path . $_FILES['b_image1']['name'], 100, 100, $smallImg1Path . $_FILES['b_image1']['name']);
-    //     } else {
-    //         mkdir($smallImg1Path, 0755, true);
-    //         make_thumbnail($bigImg1Path . $_FILES['b_image1']['name'], 100, 100, $smallImg1Path . $_FILES['b_image1']['name']);
-    //     }
-
-    // } else {
-    //     $bImg1_chk     = "N";
-    //     $sImg1_chk     = "N";
-    //     $bigImg1File   = 'http://placehold.it/500x500';
-    //     $smallImg1File = 'http://placehold.it/100x100';
-    // }
-
     $bImg_chk     = array();
     $sImg_chk     = array();
     $bigImgFile   = array();
@@ -197,6 +145,13 @@ if ($mode == "insert") {
 
     if (isset($_FILES['b_image'])) {
         for ($i = 0; $i < count($_FILES['b_image']['name']); $i++) {
+
+            if ($_FILES['b_image']['name'][$i] == "") {
+                $bImg_chk[$i]     = "N";
+                $sImg_chk[$i]     = "N";
+                $bigImgFile[$i]   = '';
+                $smallImgFile[$i] = '';
+            }
 
             // 업로드 파일을 확인합니다.
             list($result, $ext, $error_msg) = check_uploaded_file($i);
@@ -290,11 +245,6 @@ if ($mode == "insert") {
     $result1 = mysqli_query($connect, $dbinsert1);
 
     if ($result1) {
-
-        // 업체별 구매가능 DB에 신상품 추가
-        // $dbup    = "UPDATE buy_product SET pro_id=CONCAT_WS(',', '$trade_code', pro_id), available=CONCAT_WS(',','N', available), price=CONCAT_WS(',','0', price)";
-        // $result2 = mysqli_query($connect, $dbup);
-
         $url = "top_pro_list.php?lcode=" . $lcode . "&mcode=" . $mcode . "&page=" . $page . "";
         show_msg('신규 상품을 등록했습니다.', $url);
     } else {
@@ -302,18 +252,6 @@ if ($mode == "insert") {
     }
     // 상품 업데이트
 } else if ($mode == "update") {
-
-    // $saveDir = "../../upload/p_image/" . $name;
-
-    // $s_temp1_char = '';
-    // $s_temp2_char = '';
-    // $s_temp3_char = '';
-    // $s_temp4_char = '';
-
-    // $b_temp1_char = '';
-    // $b_temp2_char = '';
-    // $b_temp3_char = '';
-    // $b_temp4_char = '';
 
     $s_temp_str   = array();
     $b_temp_str   = array();
@@ -414,61 +352,6 @@ if ($mode == "insert") {
         }
     }
 
-    // if ($_FILES['b_image1']['name']) {
-    //     $b_temp1 = $saveDir . "/b/" . $_FILES['b_image1']['name'];
-    //     move_uploaded_file($_FILES['b_image1']['tmp_name'], $b_temp1);
-    //     $b_temp1_char = ", b_image1='Y' , b_image1_name='$b_temp1' ";
-
-    //     //썸네일 자동생성
-    //     $s_temp1 = $saveDir . "/s/" . $_FILES['b_image1']['name'];
-    //     make_thumbnail($temp3, 100, 100, $s_temp1);
-    //     move_uploaded_file($_FILES['b_image1']['tmp_name'], $s_temp1);
-    //     $s_temp1_char = ", s_image1='Y' , s_image1_name='$s_temp1' ";
-    // }
-
-    // if ($_FILES['b_image2']['name']) {
-    //     $b_temp2 = $saveDir . "/b/" . $_FILES['b_image2']['name'];
-    //     move_uploaded_file($_FILES['b_image2']['tmp_name'], $b_temp2);
-    //     $b_temp2_char = ", b_image2='Y' , b_image2_name='$b_temp2' ";
-
-    //     //썸네일 자동생성
-    //     $s_temp2 = $saveDir . "/s/" . $_FILES['b_image2']['name'];
-    //     make_thumbnail($temp3, 100, 100, $s_temp2);
-    //     move_uploaded_file($_FILES['b_image2']['tmp_name'], $s_temp2);
-    //     $s_temp2_char = ", s_image2='Y' , s_image2_name='$s_temp2' ";
-    // }
-
-    // if ($_FILES['b_image3']['name']) {
-    //     $b_temp3 = $saveDir . "/b/" . $_FILES['b_image3']['name'];
-    //     move_uploaded_file($_FILES['b_image3']['tmp_name'], $b_temp3);
-    //     $b_temp3_char = ", b_image3='Y' , b_image3_name='$b_temp3' ";
-
-    //     //썸네일 자동생성
-    //     $s_temp3 = $saveDir . "/s/" . $_FILES['b_image3']['name'];
-    //     make_thumbnail($temp3, 100, 100, $s_temp3);
-    //     move_uploaded_file($_FILES['b_image3']['tmp_name'], $s_temp3);
-    //     $s_temp3_char = ", s_image3='Y' , s_image3_name='$s_temp3' ";
-    // }
-
-    // if ($_FILES['b_image4']['name']) {
-    //     $b_temp4 = $saveDir . "/b/" . $_FILES['b_image4']['name'];
-    //     move_uploaded_file($_FILES['b_image4']['tmp_name'], $b_temp4);
-    //     $b_temp4_char = ", b_image4='Y' , b_image4_name='$b_temp4' ";
-
-    //     //썸네일 자동생성
-    //     $s_temp4 = $saveDir . "/s/" . $_FILES['b_image4']['name'];
-    //     make_thumbnail($temp3, 100, 100, $s_temp4);
-    //     move_uploaded_file($_FILES['b_image4']['tmp_name'], $s_temp4);
-    //     $s_temp4_char = ", s_image4='Y' , s_image4_name='$s_temp4' ";
-    // }
-
-    // $name    = addslashes($name);
-    // $company = addslashes($company);
-    // // $origin = addslashes($origin);
-    // $opt = addslashes($optname_ins);
-    // //$opt_stock = addslashes($opt_stock_ins);
-    // $short_desc = nl2br($short_desc);
-
     $t_opt = explode(",", $optname_ins); //배열로 만들어준다
 
     //옵션 갯수만큼 옵션재고관리 자동입력
@@ -486,11 +369,6 @@ if ($mode == "insert") {
         $opt_stock = implode(",", $optstock);
         // $barcode = implode(",", $barcode);
     }
-    //$contents = addslashes($contents);
-
-    // if($del_chk == "O") {
-    //     $stock = "0";
-    // }
 
     $dbinsert1 = "UPDATE products SET category_l      = '$lcode',
                                          category_m   = '$mcode' ,
@@ -539,8 +417,8 @@ if ($mode == "insert") {
     // 상품 복사
 } else if ($mode == "copy") {
 
-    $query = "INSERT INTO products_code VALUES ('')";
-    mysqli_query($connect, $query);
+    $qry = "INSERT INTO products_code VALUES ('')";
+    mysqli_query($connect, $qry);
 
     $query  = "SELECT max(num) AS maxid FROM products_code";
     $result = mysqli_query($connect, $query);
@@ -555,21 +433,21 @@ if ($mode == "insert") {
     $row1    = mysqli_fetch_array($result1);
 
     $sql = "INSERT INTO products(prod_code, category_l, category_m,
-								name, short_desc, company, id, shop_price, retail_price,
+								company, shop_price, retail_price,
 								moq, opt, opt_stock,
 								contents,
 								created, main_new, main_special, main_best,
 								del_chk)
-			    		VALUES('$trade_code', '$row1[category_l]', '$row1[category_m]',
-				  		 		'$row1[name]', '$row1[short_desc]', '$row1[company]', '$row1[id]', '$row1[shop_price]', '$row1[retail_price]',
-			      		 		'$row1[moq]', '', '',
-								'$row1[contents]',
-						 		now(), '$row1[main_new]', '$row1[main_special]', '$row1[main_best]',
-								'$row1[del_chk]')";
+			    		VALUES('" . $trade_code . "', '" . $row1['category_l'] . "', '" . $row1['category_m'] . "',
+				  		 		'" . $row1['company'] . "', '" . $row1['shop_price'] . "', '" . $row1['retail_price'] . "',
+			      		 		'" . $row1['moq'] . "', '', '',
+								'" . $row1['contents'] . "',
+						 		now(), '" . $row1['main_new'] . "', '" . $row1['main_special'] . "', '" . $row1['main_best'] . "',
+								'" . $row1['del_chk'] . "')";
     $result2 = mysqli_query($connect, $sql);
 
     if ($result2) {
-        $url = "pro_register.php?mode=update&prod_code=" . $trade_code . "&lcode=" . $row1['category_l'] . "&mcode=" . $row1['category_m'] . "&page=" . $page . "&flag=1";
+        $url = "pro_register.php?mode=update&p_num=" . $p_num . "&lcode=" . $row1['category_l'] . "&mcode=" . $row1['category_m'] . "&page=" . $page . "";
         show_msg('상품을 복사했습니다.', $url);
     } else {
         err_msg('상품 복사 중 DB오류가 발생했습니다.');
