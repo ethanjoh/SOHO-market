@@ -107,7 +107,7 @@ while ($data = fgetcsv($fp)) {
             make_thumbnail($bigImg1Path . $data['4'], 100, 100, $smallImg1Path . $data['4']);
 
             // 3) 상세 이미지 복사
-            $detailImgFile = '<img src="http://' . $_SERVER['SERVER_NAME'] . '/upload/p_image/' . $data['6'] . "/d/" . $data['4'] . '">';
+            $detailImgFile = '<img src="../upload/p_image/' . $data['6'] . "/d/" . $data['4'] . '">';
             $detailImgFile = addslashes($detailImgFile);
 
             $detailImgFilePath = "upload/p_image/" . $data['6'] . "/d/";

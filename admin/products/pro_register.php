@@ -555,7 +555,7 @@ if ($mode == "update") {
     $ca1_qry    = "SELECT * FROM products_category1 ORDER BY code";
     $ca1_result = mysqli_query($connect, $ca1_qry);
 
-    $lcode = set_var($_POST['lcode']);
+    $lcode = set_var($_GET['lcode']);
 
     for ($i = 0; $ca1_row = mysqli_fetch_array($ca1_result); $i++) {
         if ($ca1_row['code'] == $lcode) {
@@ -586,7 +586,7 @@ if ($mode == "update") {
     $ca2_qry    = "SELECT * FROM products_category2 WHERE up_category='$lcode' ORDER BY name";
     $ca2_result = mysqli_query($connect, $ca2_qry);
 
-    $mcode = set_var($_POST['mcode']);
+    $mcode = set_var($_GET['mcode']);
 
     for ($i = 0; $ca2_row = mysqli_fetch_array($ca2_result); $i++) {
         if ($ca2_row['code'] == $mcode) {
@@ -833,19 +833,19 @@ if ($mode == "update") {
 										</tr>
 										<tr >
 											<th><img src="../images/icn_04.gif" width="24" height="14" alt="필수" /> 대 1</th>
-											<td><input type="file" class="form-control" name="b_image1" size="30" /> <img src="http://placehold.it/50x50"></td>
+											<td><input type="file" class="form-control" name="b_image[]" size="30" /> <img src="http://placehold.it/50x50"></td>
 										</tr>
 										<tr>
 											<th><img src="../images/icn_05.gif" width="24" height="14" alt="선택" /> 대 2</th>
-											<td><input type="file" class="form-control" name="b_image2" size="30" /> <img src="http://placehold.it/50x50"></td>
+											<td><input type="file" class="form-control" name="b_image[]" size="30" /> <img src="http://placehold.it/50x50"></td>
 										</tr>
 										<tr >
 											<th><img src="../images/icn_05.gif" width="24" height="14" alt="선택" /> 대 3</th>
-											<td><input type="file" class="form-control" name="b_image3" size="30" /> <img src="http://placehold.it/50x50"></td>
+											<td><input type="file" class="form-control" name="b_image[]" size="30" /> <img src="http://placehold.it/50x50"></td>
 										</tr>
 										<tr>
 											<th><img src="../images/icn_05.gif" width="24" height="14" alt="선택" /> 대 4</th>
-											<td><input type="file" class="form-control" name="b_image4" size="30" /> <img src="http://placehold.it/50x50"></td>
+											<td><input type="file" class="form-control" name="b_image[]" size="30" /> <img src="http://placehold.it/50x50"></td>
 										</tr>
 										<tr>
 											<th><img src="../images/icn_04.gif" width="24" height="14" alt="필수" /> 상세설명</th>

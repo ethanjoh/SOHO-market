@@ -49,7 +49,8 @@ $optstock = set_var($_POST['opt_stock']);
 // $tag = set_var($_POST['tag']);
 // $restock_date = set_var($_POST['restock_date']);
 // $no_restock = set_var($_POST['no_restock']);
-$b_image1 = set_var($_POST['b_image1']);
+// $b_image1 = set_var($_POST['b_image1']);
+$b_image = set_var($_POST['b_image']);
 
 $option1_chk = set_var($_POST['option1_chk']);
 $option2_chk = set_var($_POST['option2_chk']);
@@ -131,6 +132,8 @@ if (empty($main_best)) {
 // if($no_restock == "Y")
 //     $restock_date = "1111-00-00";
 
+const MAX_SIZE = 1024000;
+
 //신규 상품 등록
 if ($mode == "insert") {
 
@@ -165,49 +168,86 @@ if ($mode == "insert") {
     $opt        = addslashes($optname_ins);
     $short_desc = nl2br($short_desc);
 
-    if (isset($_FILES['b_image1'])) {
-        check_img_extension($_FILES['b_image1']['name']);
+    // if (isset($_FILES['b_image1'])) {
+    //     check_img_extension($_FILES['b_image1']['name']);
 
-        // if ($_FILES['b_image1']['name']) {
-        //     $file_ext1 = substr(strrchr($_FILES['b_image1']['name'], "."), 1);
-        //     $file_ext1 = strtolower($file_ext1);
+    //     $bImg1_chk   = "Y";
+    //     $bigImg1File = $saveDir . $name . "/b/" . $_FILES['b_image1']['name'];
+    //     $bigImg1Path = $saveDir . $name . "/b/";
 
-        //     if ($file_ext1 != 'jpg' && $file_ext1 != 'gif' && $file_ext1 != 'jpeg' && $file_ext1 != 'png') {
-        //         err_msg("이미지 파일만 올릴 수 있습니다.");
-        //     }
-        //     if (!$_FILES['b_image1']['size']) {
-        //         err_msg("지정한 파일(확대1)이 없거나 파일 크기가 0KB입니다.");
-        //     }
-        // }
+    //     if (is_dir($bigImg1Path)) {
+    //         move_uploaded_file($_FILES['b_image1']['tmp_name'], $bigImg1File);
+    //     } else {
+    //         mkdir($bigImg1Path, 0755, true);
+    //         move_uploaded_file($_FILES['b_image1']['tmp_name'], $bigImg1File);
+    //     }
 
-        $bImg1_chk   = "Y";
-        $bigImg1File = $saveDir . $name . "/b/" . $_FILES['b_image1']['name'];
-        $bigImg1Path = $saveDir . $name . "/b/";
+    //     //썸네일 자동생성
+    //     $sImg1_chk     = "Y";
+    //     $smallImg1File = $saveDir . $name . "/s/" . $_FILES['b_image1']['name'];
+    //     $smallImg1Path = $saveDir . $name . "/s/";
 
-        if (is_dir($bigImg1Path)) {
-            move_uploaded_file($_FILES['b_image1']['tmp_name'], $bigImg1File);
-        } else {
-            mkdir($bigImg1Path, 0755, true);
-            move_uploaded_file($_FILES['b_image1']['tmp_name'], $bigImg1File);
-        }
+    //     if (is_dir($smallImg1Path)) {
+    //         make_thumbnail($bigImg1Path . $_FILES['b_image1']['name'], 100, 100, $smallImg1Path . $_FILES['b_image1']['name']);
+    //     } else {
+    //         mkdir($smallImg1Path, 0755, true);
+    //         make_thumbnail($bigImg1Path . $_FILES['b_image1']['name'], 100, 100, $smallImg1Path . $_FILES['b_image1']['name']);
+    //     }
 
-        //썸네일 자동생성
-        $sImg1_chk     = "Y";
-        $smallImg1File = $saveDir . $name . "/s/" . $_FILES['b_image1']['name'];
-        $smallImg1Path = $saveDir . $name . "/s/";
+    // } else {
+    //     $bImg1_chk     = "N";
+    //     $sImg1_chk     = "N";
+    //     $bigImg1File   = 'http://placehold.it/500x500';
+    //     $smallImg1File = 'http://placehold.it/100x100';
+    // }
 
-        if (is_dir($smallImg1Path)) {
-            make_thumbnail($bigImg1Path . $_FILES['b_image1']['name'], 100, 100, $smallImg1Path . $_FILES['b_image1']['name']);
-        } else {
-            mkdir($smallImg1Path, 0755, true);
-            make_thumbnail($bigImg1Path . $_FILES['b_image1']['name'], 100, 100, $smallImg1Path . $_FILES['b_image1']['name']);
+    $bImg_chk     = array();
+    $sImg_chk     = array();
+    $bigImgFile   = array();
+    $smallImgFile = array();
+
+    if (isset($_FILES['b_image'])) {
+        for ($i = 0; $i < count($_FILES['b_image']['name']); $i++) {
+
+            // 업로드 파일을 확인합니다.
+            list($result, $ext, $error_msg) = check_uploaded_file($i);
+            if ($result) {
+                $bImg_chk[$i]   = "Y";
+                $bigImgPath     = $saveDir . $name . "/b/";
+                $bigImgFile[$i] = $bigImgPath . $_FILES['b_image']['name'][$i];
+                $tmp_name       = $_FILES['b_image']['tmp_name'][$i];
+                $move_to        = $bigImgPath . $_FILES['b_image']['name'][$i];
+
+                if (is_dir($bigImgPath)) {
+                    move_uploaded_file($tmp_name, $move_to);
+                } else {
+                    mkdir($bigImgPath, 0755, true);
+                    move_uploaded_file($tmp_name, $move_to);
+                }
+
+                //썸네일 자동생성
+                $sImg_chk[$i]     = "Y";
+                $smallImgPath     = $saveDir . $name . "/s/";
+                $smallImgFile[$i] = $smallImgPath . $_FILES['b_image']['name'][$i];
+
+                if (is_dir($smallImgPath)) {
+                    make_thumbnail($bigImgPath . $_FILES['b_image']['name'][$i], 100, 100, $smallImgPath . $_FILES['b_image']['name'][$i]);
+                } else {
+                    mkdir($smallImgPath, 0755, true);
+                    make_thumbnail($bigImgPath . $_FILES['b_image']['name'][$i], 100, 100, $smallImgPath . $_FILES['b_image']['name'][$i]);
+                }
+
+            }
+
         }
 
     } else {
-        $bImg1_chk     = "N";
-        $sImg1_chk     = "N";
-        $bigImg1File   = 'http://placehold.it/500x500';
-        $smallImg1File = 'http://placehold.it/100x100';
+        for ($i = 0; $i < count($b_image); $i++) {
+            $bImg_chk[$i]     = "N";
+            $sImg_chk[$i]     = "N";
+            $bigImgFile[$i]   = 'http://placehold.it/500x500';
+            $smallImgFile[$i] = 'http://placehold.it/100x100';
+        }
     }
 
     $t_opt = explode(",", $optname_ins); //배열로 만들어준다
@@ -233,6 +273,9 @@ if ($mode == "insert") {
 										moq, opt, opt_stock,
 										contents,
 										s_image1, s_image1_name,
+                                        s_image2, s_image2_name,
+                                        s_image3, s_image3_name,
+                                        s_image4, s_image4_name,
 										b_image1, b_image1_name,
 										b_image2, b_image2_name,
 										b_image3, b_image3_name,
@@ -244,11 +287,14 @@ if ($mode == "insert") {
 					  		 		'$name', '$short_desc', '$company', '$id', '$shop_price', '$retail_price',
 				      		 		'$moq',  '$opt', '$opt_stock',
 									'$contents',
-					  		 		'$sImg1_chk', '$smallImg1File',
-					   		 		'$bImg1_chk', '$bigImg1File',
-							 		'$bImg2_chk', '$bigImg2File',
-							 		'$bImg3_chk', '$bigImg3File',
-							 		'$bImg4_chk', '$bigImg4File',
+					  		 		'$sImg_chk[0]', '$smallImgFile[0]',
+                                    '$sImg_chk[1]', '$smallImgFile[1]',
+                                    '$sImg_chk[2]', '$smallImgFile[2]',
+                                    '$sImg_chk[3]', '$smallImgFile[3]',
+					   		 		'$bImg_chk[0]', '$bigImgFile[0]',
+							 		'$bImg_chk[1]', '$bigImgFile[1]',
+							 		'$bImg_chk[2]', '$bigImgFile[2]',
+							 		'$bImg_chk[3]', '$bigImgFile[3]',
 							 		now(), '$main_new', '$main_special', '$main_best',
                                     '$option1_chk', '$option2_chk', '$option3_chk', '$option4_chk',
                                     '$del_chk')";

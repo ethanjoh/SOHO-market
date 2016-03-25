@@ -341,7 +341,7 @@ page_nav($totalpage, $cpage, $url);
 
         <!-- function buttons start -->
         <div class="pull-right margin-20">
-          <a type="button" class="btn btn-success" href="pro_register.php?mode=insert&amp;page=<?php echo $page; ?>">상품등록</a>
+          <a type="button" class="btn btn-success" href="pro_register.php?mode=insert&amp;lcode=<?php echo $lcode; ?>&amp;mcode=<?php echo $mcode; ?>&amp;page=<?php echo $page; ?>">상품등록</a>
         </div>
         <!-- function buttons end -->
 

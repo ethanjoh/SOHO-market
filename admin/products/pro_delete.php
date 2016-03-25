@@ -19,12 +19,17 @@ $imgPath = $row['b_image1_name'];
 $dir     = reverse_strrchr($imgPath, '/');
 
 // 서브디렉토리까지 모두 삭제
-if (recurseRmdir($dir)) {
-
+if (recurse_rmdir($dir)) {
+    // 해당 상품데이타 삭제
+    $query = "DELETE FROM products WHERE num='$p_num' ";
+    mysqli_query($connect, $query);
+    msg("상품 및 이미지를 삭제했습니다.");
+} else {
     // 해당 상품데이타 삭제
     $query = "DELETE FROM products WHERE num='$p_num' ";
     mysqli_query($connect, $query);
     msg("상품을 삭제했습니다.");
+
 }
 
 // 리스트로 이동
