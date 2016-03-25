@@ -258,6 +258,7 @@ if ($mode == "insert") {
     $bigImgFile   = array();
     $smallImgFile = array();
 
+    // 에러 발생 시
     if ($_FILES['b_image']['error'] > 0 && !isset($_FILES['b_image'])) {
 
         $query  = "SELECT * FROM products WHERE num='$p_num' ";
@@ -292,6 +293,7 @@ if ($mode == "insert") {
 
             $idx = $i + 1;
 
+            // 수정 시 파일이 업로드 되지 않은 경우 기존 상태유지
             if ($_FILES['b_image']['name'][$i] == "") {
                 $smallFlag      = "s_image" . $idx;
                 $smallFlagVal   = $row[$smallFlag];
@@ -418,15 +420,13 @@ if ($mode == "insert") {
 } else if ($mode == "copy") {
 
     $qry = "INSERT INTO products_code VALUES ('')";
-    mysqli_query($connect, $qry);
+    $res = mysqli_query($connect, $qry);
 
-    $query  = "SELECT max(num) AS maxid FROM products_code";
-    $result = mysqli_query($connect, $query);
-    $row    = mysqli_fetch_array($result);
-
-    $p_code     = $row['maxid'];
-    $wdate      = date('md');
-    $trade_code = "p" . $wdate . "-" . $p_code;
+    if ($res) {
+        $p_code     = mysqli_insert_id($connect);
+        $wdate      = date('md');
+        $trade_code = "p" . $wdate . "-" . $p_code;
+    }
 
     $query1  = "SELECT * FROM products WHERE num='$p_num' ";
     $result1 = mysqli_query($connect, $query1);
@@ -434,20 +434,21 @@ if ($mode == "insert") {
 
     $sql = "INSERT INTO products(prod_code, category_l, category_m,
 								company, shop_price, retail_price,
-								moq, opt, opt_stock,
+								moq,
 								contents,
 								created, main_new, main_special, main_best,
 								del_chk)
 			    		VALUES('" . $trade_code . "', '" . $row1['category_l'] . "', '" . $row1['category_m'] . "',
 				  		 		'" . $row1['company'] . "', '" . $row1['shop_price'] . "', '" . $row1['retail_price'] . "',
-			      		 		'" . $row1['moq'] . "', '', '',
+			      		 		'" . $row1['moq'] . "',
 								'" . $row1['contents'] . "',
 						 		now(), '" . $row1['main_new'] . "', '" . $row1['main_special'] . "', '" . $row1['main_best'] . "',
 								'" . $row1['del_chk'] . "')";
     $result2 = mysqli_query($connect, $sql);
 
     if ($result2) {
-        $url = "pro_register.php?mode=update&p_num=" . $p_num . "&lcode=" . $row1['category_l'] . "&mcode=" . $row1['category_m'] . "&page=" . $page . "";
+        $new_p_num = mysqli_insert_id($connect);
+        $url       = "pro_register.php?mode=update&p_num=" . $new_p_num . "&lcode=" . $row1['category_l'] . "&mcode=" . $row1['category_m'] . "&page=" . $page . "";
         show_msg('상품을 복사했습니다.', $url);
     } else {
         err_msg('상품 복사 중 DB오류가 발생했습니다.');

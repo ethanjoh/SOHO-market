@@ -1,24 +1,20 @@
 UPDATE products SET category_l      = '1',
                                          category_m   = '1' ,
-										 name         = '0325',
-										 short_desc   = '7777777ㄹ홀홀홀홀호<br />
-ㅗㅗㅗㅗㅗ',
+										 name         = '2016-03-25-4',
+										 short_desc   = '444444',
 										 company      = '',
 										 id           = '',
                                          shop_price   = '10000',
 										 retail_price = '5000',
 										 moq          = '1',
-										 opt          = '',
+										 opt          = '15cm',
 										 opt_stock    = '1',
-										 contents     = '<div style="text-align: center;">&nbsp;</div>
-
-<div style="text-align: center;"><img alt="" src="http://shinsoo/upload/d_image/20160325151846_coolerbag.jpg" style="float:left; height:2832px; width:650px" /></div>
-'
-										 , s_image1='Y' , s_image1_name='../../upload/p_image/0325/s/P6282282.jpg' 
+										 contents     = '44444444444444444'
+										 , s_image1='Y' , s_image1_name='../../upload/p_image/2016-03-25-4/s/P6272233.jpg' 
                                          , s_image2='N' , s_image2_name='' 
                                          , s_image3='N' , s_image3_name='' 
                                          , s_image4='N' , s_image4_name='' 
-										 , b_image1='Y' , b_image1_name='../../upload/p_image/0325/b/P6282282.jpg' 
+										 , b_image1='Y' , b_image1_name='../../upload/p_image/2016-03-25-4/b/P6272233.jpg' 
 										 , b_image2='N' , b_image2_name='' 
 										 , b_image3='N' , b_image3_name='' 
 										 , b_image4='N' , b_image4_name='' ,
@@ -31,4 +27,4 @@ UPDATE products SET category_l      = '1',
                                          option3_chk  = 'N',
                                          option4_chk  = 'N',
 										 del_chk      = 'N'
-					  WHERE num='1290' 
+					  WHERE num='346' 
