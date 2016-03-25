@@ -2074,20 +2074,20 @@ function check_uploaded_file($i) // 업로드 파일을 확인하는 함수
             $ext = 'png';
         }
 
-// 이미지 파일의 MIME 타입을 판별 [레시피 124]합니다.
+        // 이미지 파일의 MIME 타입을 판별 [레시피 124]합니다.
         $finfo     = new finfo(FILEINFO_MIME_TYPE);
         $finfoType = $finfo->file($tmp_name);
 
-// 이미지 파일의 크기 하한을 확인합니다.
+        // 이미지 파일의 크기 하한을 확인합니다.
         if ($size == 0) {
             $error_msg[] = '파일이 존재하지 않거나 빈 파일입니다.';
-// 이미지 파일의 크기 상한을 확인합니다.
+            // 이미지 파일의 크기 상한을 확인합니다.
         } elseif ($size > MAX_SIZE) {
             $error_msg[] = '파일 크기는 1MB 이하로 해주세요';
-// 전송된 MIME 타입과 이미지 파일의 MIME 타입이 일치하는지 확인합니다.
+            // 전송된 MIME 타입과 이미지 파일의 MIME 타입이 일치하는지 확인합니다.
         } elseif ($img_type != $finfoType) {
             $error_msg[] = 'MIME 타입이 일치하지 않습니다.';
-// 이미지 파일의 확장자를 확인합니다.
+            // 이미지 파일의 확장자를 확인합니다.
         } elseif ($ext != 'gif' && $ext != 'jpg' && $ext != 'png') {
             $error_msg[] = '업로드 가능한 파일은 gif, jpg, png 입니다';
         } else {
@@ -2095,29 +2095,4 @@ function check_uploaded_file($i) // 업로드 파일을 확인하는 함수
         }
     }
     return array(false, $ext, $error_msg);
-}
-
-// php.ini는 post_max_size 를 넘은 데이터가 전송되지 않았는지 확인하는 함수
-function checkPostMaxSize()
-{
-    $max_size = ini_get('post_max_size');
-    // post_max_size 가 8M 와 같이 설정된 경우에 정수로 한다
-    $multiple = 1;
-    $unit     = substr($max_size, -1);
-    if ($unit == 'M') {
-        $multiple = 1024 * 1024;
-    } elseif ($unit == 'K') {
-        $multiple = 1024;
-    } elseif ($unit == 'G') {
-        $multiple = 1024 * 1024 * 1024;
-    }
-    $max_size = substr($max_size, 0, strlen($max_size) - 1) * $multiple;
-
-    // post_max_size를 넘어선 데이터가 게시됐는지 확인
-    if ($_SERVER['REQUEST_METHOD'] == 'POST' &&
-        $_SERVER['CONTENT_LENGTH'] > $max_size) {
-        return false;
-    } else {
-        return true;
-    }
 }

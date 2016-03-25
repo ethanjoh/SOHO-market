@@ -10,8 +10,8 @@ if ($_FILES["upload"]["size"] > 0) {
     $ext          = strtolower($ext);
     $savefilename = $date_filedir . "_" . str_replace(" ", "_", $_FILES["upload"]["name"]);
 
-    $uploadpath = $_SERVER['DOCUMENT_ROOT'] . "/upload/p_image";
-    $uploadsrc  = $_SERVER['HTTP_HOST'] . "/upload/p_image/";
+    $uploadpath = $_SERVER['DOCUMENT_ROOT'] . "/upload/d_image";
+    $uploadsrc  = $_SERVER['HTTP_HOST'] . "/upload/d_image/";
     $http       = 'http' . ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 's' : '') . '://';
 
     //php 파일업로드하는 부분

@@ -369,7 +369,7 @@ if ($mode == "update") {
 										</tr>
 										<tr >
 											<th><img src="../images/icn_04.gif" width="24" height="14" alt="필수" /> 대 1</th>
-											<td><input type="file" class="form-control" name="b_image1" size="30" />
+											<td><input type="file" class="form-control" name="b_image[]" size="30" />
 <?php
 
     if ($update_row['b_image1'] == 'Y') {
@@ -388,7 +388,7 @@ if ($mode == "update") {
 									</tr>
 									<tr>
 										<th><img src="../images/icn_05.gif" width="24" height="14" alt="선택" /> 대 2</th>
-										<td><input type="file" class="form-control" name="b_image2" size="30" />
+										<td><input type="file" class="form-control" name="b_image[]" size="30" />
 <?php
 
     if ($update_row['b_image2'] == 'Y') {
@@ -407,7 +407,7 @@ if ($mode == "update") {
 								</tr>
 								<tr >
 									<th><img src="../images/icn_05.gif" width="24" height="14" alt="선택" /> 대 3</th>
-									<td><input type="file" class="form-control" name="b_image3" size="30" />
+									<td><input type="file" class="form-control" name="b_image[]" size="30" />
 <?php
 
     if ($update_row['b_image3'] == 'Y') {
@@ -426,7 +426,7 @@ if ($mode == "update") {
 							</tr>
 							<tr>
 								<th><img src="../images/icn_05.gif" width="24" height="14" alt="선택" /> 대 4</th>
-								<td><input type="file" class="form-control" name="b_image4" size="30" />
+								<td><input type="file" class="form-control" name="b_image[]" size="30" />
 <?php
 
     if ($update_row['b_image4'] == 'Y') {

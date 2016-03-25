@@ -16,9 +16,13 @@ $date1   = set_var($_POST['date1']);
 $date2   = set_var($_POST['date2']);
 
 //$id = set_var($_POST['id']);
-$name       = set_var($_POST['name']);
+$name = set_var($_POST['name']);
+$name = addslashes($name);
+
 $short_desc = set_var($_POST['short_desc']);
+$short_desc = nl2br($short_desc);
 $company    = set_var($_POST['company']);
+$company    = addslashes($company);
 // $importer = set_var($_POST['importer']);
 // $origin = set_var($_POST['origin']);
 
@@ -33,6 +37,7 @@ $retail_price = trim($retail_price);
 // $mileage = set_var($_POST['mileage']);
 $moq           = set_var($_POST['moq']);
 $optname_ins   = set_var($_POST['optname_ins']);
+$opt           = addslashes($optname_ins);
 $opt_stock_ins = set_var($_POST['opt_stock_ins']);
 // $barcode_ins = set_var($_POST['barcode_ins']);
 $optname  = set_var($_POST['optname']);
@@ -49,8 +54,6 @@ $optstock = set_var($_POST['opt_stock']);
 // $tag = set_var($_POST['tag']);
 // $restock_date = set_var($_POST['restock_date']);
 // $no_restock = set_var($_POST['no_restock']);
-// $b_image1 = set_var($_POST['b_image1']);
-$b_image = set_var($_POST['b_image']);
 
 $option1_chk = set_var($_POST['option1_chk']);
 $option2_chk = set_var($_POST['option2_chk']);
@@ -62,8 +65,11 @@ $main_new     = set_var($_POST['main_new']);
 $main_special = set_var($_POST['main_special']);
 $main_best    = set_var($_POST['main_best']);
 
+// $origin = addslashes($origin);
+
 $ca1_qry    = "SELECT * FROM products_category1 WHERE code='$lcode' ";
 $ca1_result = mysqli_query($connect, $ca1_qry);
+
 if ($ca1_result) {
     $ca1_row = mysqli_fetch_array($ca1_result);
     $id      = $ca1_row['id'];
@@ -134,6 +140,8 @@ if (empty($main_best)) {
 
 const MAX_SIZE = 1024000;
 
+$saveDir = "../../upload/p_image/";
+
 //신규 상품 등록
 if ($mode == "insert") {
 
@@ -148,25 +156,6 @@ if ($mode == "insert") {
     $p_code     = $row['maxid'];
     $wdate      = date('md');
     $trade_code = "p" . $wdate . "-" . $p_code;
-
-    $saveDir = "../../upload/p_image/";
-
-    $smallImg1File = '';
-
-    $bigImg1File = '';
-    $bigImg2File = '';
-    $bigImg3File = '';
-    $bigImg4File = '';
-
-    $bImg2_chk = 'N';
-    $bImg3_chk = 'N';
-    $bImg4_chk = 'N';
-
-    $name    = addslashes($name);
-    $company = addslashes($company);
-    // $origin = addslashes($origin);
-    $opt        = addslashes($optname_ins);
-    $short_desc = nl2br($short_desc);
 
     // if (isset($_FILES['b_image1'])) {
     //     check_img_extension($_FILES['b_image1']['name']);
@@ -242,7 +231,7 @@ if ($mode == "insert") {
         }
 
     } else {
-        for ($i = 0; $i < count($b_image); $i++) {
+        for ($i = 0; $i < 4; $i++) {
             $bImg_chk[$i]     = "N";
             $sImg_chk[$i]     = "N";
             $bigImgFile[$i]   = 'http://placehold.it/500x500';
@@ -314,76 +303,171 @@ if ($mode == "insert") {
     // 상품 업데이트
 } else if ($mode == "update") {
 
-    $query  = "SELECT * FROM products WHERE num='$p_num' ";
-    $result = mysqli_query($connect, $query);
-    $row    = mysqli_fetch_array($result);
+    // $saveDir = "../../upload/p_image/" . $name;
 
-    $saveDir = "../../upload/p_image/" . $name;
+    // $s_temp1_char = '';
+    // $s_temp2_char = '';
+    // $s_temp3_char = '';
+    // $s_temp4_char = '';
 
-    $s_temp1_char = '';
-    $s_temp2_char = '';
-    $s_temp3_char = '';
-    $s_temp4_char = '';
+    // $b_temp1_char = '';
+    // $b_temp2_char = '';
+    // $b_temp3_char = '';
+    // $b_temp4_char = '';
 
-    $b_temp1_char = '';
-    $b_temp2_char = '';
-    $b_temp3_char = '';
-    $b_temp4_char = '';
+    $s_temp_str   = array();
+    $b_temp_str   = array();
+    $bigImgFile   = array();
+    $smallImgFile = array();
 
-    if ($_FILES['b_image1']['name']) {
-        $b_temp1 = $saveDir . "/b/" . $_FILES['b_image1']['name'];
-        move_uploaded_file($_FILES['b_image1']['tmp_name'], $b_temp1);
-        $b_temp1_char = ", b_image1='Y' , b_image1_name='$b_temp1' ";
+    if ($_FILES['b_image']['error'] > 0 && !isset($_FILES['b_image'])) {
 
-        //썸네일 자동생성
-        $s_temp1 = $saveDir . "/s/" . $_FILES['b_image1']['name'];
-        make_thumbnail($temp3, 100, 100, $s_temp1);
-        move_uploaded_file($_FILES['b_image1']['tmp_name'], $s_temp1);
-        $s_temp1_char = ", s_image1='Y' , s_image1_name='$s_temp1' ";
+        $query  = "SELECT * FROM products WHERE num='$p_num' ";
+        $result = mysqli_query($connect, $query);
+        $row    = mysqli_fetch_array($result);
+
+        for ($i = 0; $i < 4; $i++) {
+            $idx = $i + 1;
+
+            $smallFlag      = "s_image" . $idx;
+            $smallFlagVal   = $row[$smallFlag];
+            $smallFileTitle = $smallFlag . "_name";
+            $smallFileVal   = $row[$smallFileTitle];
+
+            $bigFlag      = "b_image" . $idx;
+            $bigFlagVal   = $row[$bigFlag];
+            $bigFileTitle = $bigFlag . "_name";
+            $bigFileVal   = $row[$bigFileTitle];
+
+            $b_temp_str[$i] = ", " . $bigFlag . "='" . $bigFlagVal . "' , " . $bigFileTitle . "='" . $bigFileVal . "' ";
+            $s_temp_str[$i] = ", " . $smallFlag . "='" . $smallFlagVal . "' , " . $smallFileTitle . "='" . $smallFileVal . "' ";
+
+        }
+
+    } else {
+
+        $query  = "SELECT * FROM products WHERE num='$p_num' ";
+        $result = mysqli_query($connect, $query);
+        $row    = mysqli_fetch_array($result);
+
+        for ($i = 0; $i < count($_FILES['b_image']['name']); $i++) {
+
+            $idx = $i + 1;
+
+            if ($_FILES['b_image']['name'][$i] == "") {
+                $smallFlag      = "s_image" . $idx;
+                $smallFlagVal   = $row[$smallFlag];
+                $smallFileTitle = $smallFlag . "_name";
+                $smallFileVal   = $row[$smallFileTitle];
+
+                $bigFlag      = "b_image" . $idx;
+                $bigFlagVal   = $row[$bigFlag];
+                $bigFileTitle = $bigFlag . "_name";
+                $bigFileVal   = $row[$bigFileTitle];
+
+                $b_temp_str[$i] = ", " . $bigFlag . "='" . $bigFlagVal . "' , " . $bigFileTitle . "='" . $bigFileVal . "' ";
+                $s_temp_str[$i] = ", " . $smallFlag . "='" . $smallFlagVal . "' , " . $smallFileTitle . "='" . $smallFileVal . "' ";
+            }
+
+            // 업로드 파일을 확인합니다.
+            list($result, $ext, $error_msg) = check_uploaded_file($i);
+
+            if ($result) {
+
+                $bigImgPath     = $saveDir . $name . "/b/";
+                $bigImgFile[$i] = $bigImgPath . $_FILES['b_image']['name'][$i];
+                $tmp_name       = $_FILES['b_image']['tmp_name'][$i];
+                $move_to        = $bigImgPath . $_FILES['b_image']['name'][$i];
+
+                if (is_dir($bigImgPath)) {
+                    move_uploaded_file($tmp_name, $move_to);
+                } else {
+                    mkdir($bigImgPath, 0755, true);
+                    move_uploaded_file($tmp_name, $move_to);
+                }
+
+                $bigFlag        = "b_image" . $idx;
+                $b_temp_str[$i] = ", " . $bigFlag . "='Y' , " . $bigFlag . "_name='" . $bigImgFile[$i] . "' ";
+
+                //썸네일 자동생성
+                $smallImgPath     = $saveDir . $name . "/s/";
+                $smallImgFile[$i] = $smallImgPath . $_FILES['b_image']['name'][$i];
+
+                if (is_dir($smallImgPath)) {
+                    make_thumbnail($bigImgPath . $_FILES['b_image']['name'][$i], 100, 100, $smallImgPath . $_FILES['b_image']['name'][$i]);
+                } else {
+                    mkdir($smallImgPath, 0755, true);
+                    make_thumbnail($bigImgPath . $_FILES['b_image']['name'][$i], 100, 100, $smallImgPath . $_FILES['b_image']['name'][$i]);
+                }
+
+                $smallFlag      = "s_image" . $idx;
+                $s_temp_str[$i] = ", " . $smallFlag . "='Y' , " . $smallFlag . "_name='" . $smallImgFile[$i] . "' ";
+
+            }
+
+            if (count($error_msg) > 0) {
+                foreach ($error_msg as $msg) {
+                    msg($msg . "\n");
+                }
+            }
+
+        }
     }
 
-    if ($_FILES['b_image2']['name']) {
-        $b_temp2 = $saveDir . "/b/" . $_FILES['b_image2']['name'];
-        move_uploaded_file($_FILES['b_image2']['tmp_name'], $b_temp2);
-        $b_temp2_char = ", b_image2='Y' , b_image2_name='$b_temp2' ";
+    // if ($_FILES['b_image1']['name']) {
+    //     $b_temp1 = $saveDir . "/b/" . $_FILES['b_image1']['name'];
+    //     move_uploaded_file($_FILES['b_image1']['tmp_name'], $b_temp1);
+    //     $b_temp1_char = ", b_image1='Y' , b_image1_name='$b_temp1' ";
 
-        //썸네일 자동생성
-        $s_temp2 = $saveDir . "/s/" . $_FILES['b_image2']['name'];
-        make_thumbnail($temp3, 100, 100, $s_temp2);
-        move_uploaded_file($_FILES['b_image2']['tmp_name'], $s_temp2);
-        $s_temp2_char = ", s_image2='Y' , s_image2_name='$s_temp2' ";
-    }
+    //     //썸네일 자동생성
+    //     $s_temp1 = $saveDir . "/s/" . $_FILES['b_image1']['name'];
+    //     make_thumbnail($temp3, 100, 100, $s_temp1);
+    //     move_uploaded_file($_FILES['b_image1']['tmp_name'], $s_temp1);
+    //     $s_temp1_char = ", s_image1='Y' , s_image1_name='$s_temp1' ";
+    // }
 
-    if ($_FILES['b_image3']['name']) {
-        $b_temp3 = $saveDir . "/b/" . $_FILES['b_image3']['name'];
-        move_uploaded_file($_FILES['b_image3']['tmp_name'], $b_temp3);
-        $b_temp3_char = ", b_image3='Y' , b_image3_name='$b_temp3' ";
+    // if ($_FILES['b_image2']['name']) {
+    //     $b_temp2 = $saveDir . "/b/" . $_FILES['b_image2']['name'];
+    //     move_uploaded_file($_FILES['b_image2']['tmp_name'], $b_temp2);
+    //     $b_temp2_char = ", b_image2='Y' , b_image2_name='$b_temp2' ";
 
-        //썸네일 자동생성
-        $s_temp3 = $saveDir . "/s/" . $_FILES['b_image3']['name'];
-        make_thumbnail($temp3, 100, 100, $s_temp3);
-        move_uploaded_file($_FILES['b_image3']['tmp_name'], $s_temp3);
-        $s_temp3_char = ", s_image3='Y' , s_image3_name='$s_temp3' ";
-    }
+    //     //썸네일 자동생성
+    //     $s_temp2 = $saveDir . "/s/" . $_FILES['b_image2']['name'];
+    //     make_thumbnail($temp3, 100, 100, $s_temp2);
+    //     move_uploaded_file($_FILES['b_image2']['tmp_name'], $s_temp2);
+    //     $s_temp2_char = ", s_image2='Y' , s_image2_name='$s_temp2' ";
+    // }
 
-    if ($_FILES['b_image4']['name']) {
-        $b_temp4 = $saveDir . "/b/" . $_FILES['b_image4']['name'];
-        move_uploaded_file($_FILES['b_image4']['tmp_name'], $b_temp4);
-        $b_temp4_char = ", b_image4='Y' , b_image4_name='$b_temp4' ";
+    // if ($_FILES['b_image3']['name']) {
+    //     $b_temp3 = $saveDir . "/b/" . $_FILES['b_image3']['name'];
+    //     move_uploaded_file($_FILES['b_image3']['tmp_name'], $b_temp3);
+    //     $b_temp3_char = ", b_image3='Y' , b_image3_name='$b_temp3' ";
 
-        //썸네일 자동생성
-        $s_temp4 = $saveDir . "/s/" . $_FILES['b_image4']['name'];
-        make_thumbnail($temp3, 100, 100, $s_temp4);
-        move_uploaded_file($_FILES['b_image4']['tmp_name'], $s_temp4);
-        $s_temp4_char = ", s_image4='Y' , s_image4_name='$s_temp4' ";
-    }
+    //     //썸네일 자동생성
+    //     $s_temp3 = $saveDir . "/s/" . $_FILES['b_image3']['name'];
+    //     make_thumbnail($temp3, 100, 100, $s_temp3);
+    //     move_uploaded_file($_FILES['b_image3']['tmp_name'], $s_temp3);
+    //     $s_temp3_char = ", s_image3='Y' , s_image3_name='$s_temp3' ";
+    // }
 
-    $name    = addslashes($name);
-    $company = addslashes($company);
-    // $origin = addslashes($origin);
-    $opt = addslashes($optname_ins);
-    //$opt_stock = addslashes($opt_stock_ins);
-    $short_desc = nl2br($short_desc);
+    // if ($_FILES['b_image4']['name']) {
+    //     $b_temp4 = $saveDir . "/b/" . $_FILES['b_image4']['name'];
+    //     move_uploaded_file($_FILES['b_image4']['tmp_name'], $b_temp4);
+    //     $b_temp4_char = ", b_image4='Y' , b_image4_name='$b_temp4' ";
+
+    //     //썸네일 자동생성
+    //     $s_temp4 = $saveDir . "/s/" . $_FILES['b_image4']['name'];
+    //     make_thumbnail($temp3, 100, 100, $s_temp4);
+    //     move_uploaded_file($_FILES['b_image4']['tmp_name'], $s_temp4);
+    //     $s_temp4_char = ", s_image4='Y' , s_image4_name='$s_temp4' ";
+    // }
+
+    // $name    = addslashes($name);
+    // $company = addslashes($company);
+    // // $origin = addslashes($origin);
+    // $opt = addslashes($optname_ins);
+    // //$opt_stock = addslashes($opt_stock_ins);
+    // $short_desc = nl2br($short_desc);
 
     $t_opt = explode(",", $optname_ins); //배열로 만들어준다
 
@@ -420,14 +504,14 @@ if ($mode == "insert") {
 										 opt          = '$opt',
 										 opt_stock    = '$opt_stock',
 										 contents     = '$contents'
-										 $s_temp1_char
-                                         $s_temp2_char
-                                         $s_temp3_char
-                                         $s_temp4_char
-										 $b_temp1_char
-										 $b_temp2_char
-										 $b_temp3_char
-										 $b_temp4_char,
+										 $s_temp_str[0]
+                                         $s_temp_str[1]
+                                         $s_temp_str[2]
+                                         $s_temp_str[3]
+										 $b_temp_str[0]
+										 $b_temp_str[1]
+										 $b_temp_str[2]
+										 $b_temp_str[3],
 										 modified     = now(),
 										 main_new     = '$main_new',
 										 main_special = '$main_special',
@@ -440,6 +524,12 @@ if ($mode == "insert") {
 					  WHERE num='$p_num' ";
     $result1 = mysqli_query($connect, $dbinsert1);
 
+    // debug
+    $txt  = print_r($dbinsert1, true);
+    $file = fopen("log.txt", "w+");
+    fwrite($file, $txt);
+    fclose($file);
+
     if ($result1) {
         $url = "top_pro_list.php?lcode=" . $lcode . "&mcode=" . $mcode . "&page=" . $page . "";
         show_msg('상품 등록정보를 수정했습니다.', $url);
@@ -447,7 +537,7 @@ if ($mode == "insert") {
         err_msg('상품 수정 중 DB오류가 발생했습니다.');
     }
     // 상품 복사
-} else if ("copy" == $mode) {
+} else if ($mode == "copy") {
 
     $query = "INSERT INTO products_code VALUES ('')";
     mysqli_query($connect, $query);
