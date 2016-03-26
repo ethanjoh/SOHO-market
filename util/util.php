@@ -2096,3 +2096,20 @@ function check_uploaded_file($i) // 업로드 파일을 확인하는 함수
     }
     return array(false, $ext, $error_msg);
 }
+
+/**
+ * DB에 들어가는 상품코드 생성
+ * @return [type] [description]
+ */
+function generate_item_code()
+{
+    $qry = "INSERT INTO products_code VALUES ('')";
+    $res = mysqli_query($connect, $qry);
+
+    if ($res) {
+        $p_code = mysqli_insert_id($connect);
+        $wdate  = date('md');
+        $code   = "p" . $wdate . "-" . $p_code;
+        return $code;
+    }
+}

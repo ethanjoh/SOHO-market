@@ -107,18 +107,6 @@ $saveDir = "../../upload/p_image/";
 //신규 상품 등록
 if ($mode == "insert") {
 
-    $query = "INSERT INTO products_code VALUES ('')";
-    mysqli_query($connect, $query);
-
-    $query  = "SELECT max(num) AS maxid FROM products_code";
-    $result = mysqli_query($connect, $query);
-    $row    = mysqli_fetch_array($result);
-    mysqli_free_result($result);
-
-    $p_code     = $row['maxid'];
-    $wdate      = date('md');
-    $trade_code = "p" . $wdate . "-" . $p_code;
-
     $bImg_chk     = array();
     $sImg_chk     = array();
     $bigImgFile   = array();
@@ -191,7 +179,8 @@ if ($mode == "insert") {
         $moq = "1";
     }
 
-    $stock = "999";
+    $stock     = "999";
+    $item_code = generate_item_code();
 
     $dbinsert1 = "INSERT INTO products(prod_code, category_l, category_m,
 										name, short_desc, company, id, shop_price, retail_price,
@@ -208,7 +197,7 @@ if ($mode == "insert") {
 										created, main_new, main_special, main_best,
                                         option1_chk, option2_chk, option3_chk, option4_chk,
                                         del_chk)
-			    		VALUES('$trade_code', '$lcode', '$mcode',
+			    		VALUES('$item_code', '$lcode', '$mcode',
 					  		 		'$name', '$short_desc', '$company', '$id', '$shop_price', '$retail_price',
 				      		 		'$moq',  '$opt', '$opt_stock',
 									'$contents',
@@ -386,10 +375,10 @@ if ($mode == "insert") {
     $result1 = mysqli_query($connect, $dbinsert1);
 
     // debug
-    $txt  = print_r($dbinsert1, true);
-    $file = fopen("log.txt", "w+");
-    fwrite($file, $txt);
-    fclose($file);
+    // $txt  = print_r($dbinsert1, true);
+    // $file = fopen("log.txt", "w+");
+    // fwrite($file, $txt);
+    // fclose($file);
 
     if ($result1) {
         $url = "top_pro_list.php?lcode=" . $lcode . "&mcode=" . $mcode . "&page=" . $page . "";
@@ -400,14 +389,7 @@ if ($mode == "insert") {
     // 상품 복사
 } else if ($mode == "copy") {
 
-    $qry = "INSERT INTO products_code VALUES ('')";
-    $res = mysqli_query($connect, $qry);
-
-    if ($res) {
-        $p_code     = mysqli_insert_id($connect);
-        $wdate      = date('md');
-        $trade_code = "p" . $wdate . "-" . $p_code;
-    }
+    $item_code = generate_item_code();
 
     $query1  = "SELECT * FROM products WHERE num='$p_num' ";
     $result1 = mysqli_query($connect, $query1);
@@ -419,7 +401,7 @@ if ($mode == "insert") {
 								contents,
 								created, main_new, main_special, main_best,
 								del_chk)
-			    		VALUES('" . $trade_code . "', '" . $row1['category_l'] . "', '" . $row1['category_m'] . "',
+			    		VALUES('" . $item_code . "', '" . $row1['category_l'] . "', '" . $row1['category_m'] . "',
 				  		 		'" . $row1['company'] . "', '" . $row1['shop_price'] . "', '" . $row1['retail_price'] . "',
 			      		 		'" . $row1['moq'] . "',
 								'" . $row1['contents'] . "',
