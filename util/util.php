@@ -2113,3 +2113,38 @@ function generate_item_code()
         return $code;
     }
 }
+
+function restore_option($row)
+{
+    $optname  = explode(",", $row['opt']);
+    $optstock = explode(",", $row['opt_stock']);
+
+    for ($i = 0; $i < count($optname); $i++) {
+        echo '<input name="optname[]" type="text" class="form-control" value="' . $optname[$i] . '" size="20" >&nbsp;';
+
+        if ($optstock[$i] == 1) {
+            $a = "checked";
+        } else {
+            $a = "";
+        }
+
+        if ($optstock[$i] == 0) {
+            $b = "checked";
+        } else {
+            $b = "";
+        }
+
+        if ($optstock[$i] == -1) {
+            $c = "checked";
+        } else {
+            $c = "";
+        }
+
+        echo <<<HEREDOC
+
+        <input name="opt_stock['{$i}']" type="radio" value="1" {$a} />재고 있음&nbsp;
+        <input name="opt_stock['{$i}']" type="radio" value="0" {$b} />품절&nbsp;
+        <input name="opt_stock['{$i}']" type="radio" value="-1" {$c} />단종
+HEREDOC;
+    }
+}
