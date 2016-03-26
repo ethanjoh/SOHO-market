@@ -261,9 +261,9 @@ function change_code() {
 
 }
 
-function change_lcode(p_num, lcode) {
+function change_lcode(p_num, page) {
 
-    document.form1.action = 'pro_register.php?mode=update&p_num=' + p_num + '&lcode=' + lcode;
+    document.form1.action = 'pro_register.php?mode=update&p_num=' + p_num + '&page=' + page;
     document.form1.submit();
 
 }
