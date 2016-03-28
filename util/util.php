@@ -2096,3 +2096,142 @@ function check_uploaded_file($i) // 업로드 파일을 확인하는 함수
     }
     return array(false, $ext, $error_msg);
 }
+
+/**
+ * DB에 들어가는 상품코드 생성
+ * @return [type] [description]
+ */
+function generate_item_code()
+{
+    global $connect;
+
+    $qry = "INSERT INTO products_code VALUES ('')";
+    $res = mysqli_query($connect, $qry);
+
+    if ($res) {
+        $p_code = mysqli_insert_id($connect);
+        $wdate  = date('md');
+        $code   = "p" . $wdate . "-" . $p_code;
+        return $code;
+    }
+}
+
+/**
+ * 상품 등록 시 옵션 보여주기
+ * @param  [type] $row            [description]
+ * @return [type] [description]
+ */
+function restore_option($row)
+{
+    $optname  = explode(",", $row['opt']);
+    $optstock = explode(",", $row['opt_stock']);
+
+    for ($i = 0; $i < count($optname); $i++) {
+        echo '<input name="optname[]" type="text" class="form-control" value="' . $optname[$i] . '" size="20" >&nbsp;';
+
+        if ($optstock[$i] == 1) {
+            $a = "checked";
+        } else {
+            $a = "";
+        }
+
+        if ($optstock[$i] == 0) {
+            $b = "checked";
+        } else {
+            $b = "";
+        }
+
+        if ($optstock[$i] == -1) {
+            $c = "checked";
+        } else {
+            $c = "";
+        }
+
+        echo <<<HEREDOC
+
+        <input name="opt_stock['{$i}']" type="radio" value="1" {$a} />재고 있음&nbsp;
+        <input name="opt_stock['{$i}']" type="radio" value="0" {$b} />품절&nbsp;
+        <input name="opt_stock['{$i}']" type="radio" value="-1" {$c} />단종
+HEREDOC;
+    }
+}
+
+/**
+ * 어드민 카테고리 분류
+ * @param  [type] $mode  [모드]
+ * @param  [type] $lcode [대카테고리]
+ * @param  [type] $mcode [중카테고리]
+ * @return [type]        [description]
+ */
+function restore_category($mode, $lcode, $mcode)
+{
+    global $connect;
+
+    if ($mode == "insert") {
+        $jsCode = "change_code();";
+    } elseif ($mode == "update") {
+        $p_num  = set_var($_GET['p_num']);
+        $page   = set_var($_GET['page']);
+        $jsCode = "change_lcode(" . $p_num . ", " . $page . ");";
+    }
+    echo <<<HEREDOC
+
+                                                                <select class="form-control" name="lcode" onChange="{$jsCode}">
+                                                                <option value="">선택하세요</option>
+HEREDOC;
+
+    $ca1_qry    = "SELECT * FROM products_category1 ORDER BY code";
+    $ca1_result = mysqli_query($connect, $ca1_qry);
+
+    // $lcode = set_var($_POST['lcode']);
+
+    for ($i = 0; $ca1_row = mysqli_fetch_array($ca1_result); $i++) {
+        if ($ca1_row['code'] == $lcode) {
+            echo <<<HEREDOC
+
+                                                                <option value="{$ca1_row['code']}" selected>
+                                                                    {$ca1_row['name']}
+                                                                </option>
+HEREDOC;
+
+        } else {
+            echo <<<HEREDOC
+
+                                                                <option value="{$ca1_row['code']}">
+                                                                    {$ca1_row['name']}
+                                                                </option>
+HEREDOC;
+
+        }
+    }
+
+    echo <<<HEREDOC
+                                                            </select>
+
+                                                            <select class="form-control" name="mcode">
+                                                                <option value="">선택하세요</option>
+HEREDOC;
+
+    $ca2_qry    = "SELECT * FROM products_category2 WHERE up_category='$lcode' ORDER BY code";
+    $ca2_result = mysqli_query($connect, $ca2_qry);
+
+    for ($i = 0; $ca2_row = mysqli_fetch_array($ca2_result); $i++) {
+        if ($ca2_row['code'] == $mcode) {
+            echo <<<HEREDOC
+                                                                <option value="{$ca2_row['code']}" selected="selected">
+                                                                    {$ca2_row['name']}
+                                                                </option>
+HEREDOC;
+
+        } else {
+            echo <<<HEREDOC
+                                                                <option value="{$ca2_row['code']}">
+                                                                    {$ca2_row['name']}
+                                                                </option>
+HEREDOC;
+
+        }
+    }
+
+    echo '</select>' . "\r\n";
+}

@@ -32,15 +32,13 @@ $moq           = set_var($_POST['moq']);
 $optname_ins   = set_var($_POST['optname_ins']);
 $opt           = addslashes($optname_ins);
 $opt_stock_ins = set_var($_POST['opt_stock_ins']);
-// $barcode_ins = set_var($_POST['barcode_ins']);
-$optname  = set_var($_POST['optname']);
-$optstock = set_var($_POST['opt_stock']);
+$optname       = set_var($_POST['optname']);
+$optstock      = set_var($_POST['opt_stock']);
 
 $option1_chk = set_var($_POST['option1_chk']);
 $option2_chk = set_var($_POST['option2_chk']);
 $option3_chk = set_var($_POST['option3_chk']);
 $option4_chk = set_var($_POST['option4_chk']);
-// $option5_chk = set_var($_POST['option5_chk']);
 
 $main_new     = set_var($_POST['main_new']);
 $main_special = set_var($_POST['main_special']);
@@ -83,12 +81,6 @@ if (empty($option4_chk)) {
     $option4_chk = "Y";
 }
 
-// if (empty($option5_chk)) {
-//     $option5_chk = "N";
-// } else {
-//     $option5_chk = "Y";
-// }
-
 //메인화면 표시 옵션
 if (empty($main_new)) {
     $main_new = "N";
@@ -108,35 +100,12 @@ if (empty($main_best)) {
     $main_best = "Y";
 }
 
-//특별 고정공급가 체크
-// if(empty($pflag)){
-//     $pflag = "N";
-// } else {
-//     $pflag = "Y";
-// }
-
-//재입고일이 미정일 경우
-// if($no_restock == "Y")
-//     $restock_date = "1111-00-00";
-
 const MAX_SIZE = 1024000;
 
 $saveDir = "../../upload/p_image/";
 
 //신규 상품 등록
 if ($mode == "insert") {
-
-    $query = "INSERT INTO products_code VALUES ('')";
-    mysqli_query($connect, $query);
-
-    $query  = "SELECT max(num) AS maxid FROM products_code";
-    $result = mysqli_query($connect, $query);
-    $row    = mysqli_fetch_array($result);
-    mysqli_free_result($result);
-
-    $p_code     = $row['maxid'];
-    $wdate      = date('md');
-    $trade_code = "p" . $wdate . "-" . $p_code;
 
     $bImg_chk     = array();
     $sImg_chk     = array();
@@ -210,7 +179,8 @@ if ($mode == "insert") {
         $moq = "1";
     }
 
-    $stock = "999";
+    $stock     = "999";
+    $item_code = generate_item_code();
 
     $dbinsert1 = "INSERT INTO products(prod_code, category_l, category_m,
 										name, short_desc, company, id, shop_price, retail_price,
@@ -227,7 +197,7 @@ if ($mode == "insert") {
 										created, main_new, main_special, main_best,
                                         option1_chk, option2_chk, option3_chk, option4_chk,
                                         del_chk)
-			    		VALUES('$trade_code', '$lcode', '$mcode',
+			    		VALUES('$item_code', '$lcode', '$mcode',
 					  		 		'$name', '$short_desc', '$company', '$id', '$shop_price', '$retail_price',
 				      		 		'$moq',  '$opt', '$opt_stock',
 									'$contents',
@@ -258,6 +228,7 @@ if ($mode == "insert") {
     $bigImgFile   = array();
     $smallImgFile = array();
 
+    // 에러 발생 시
     if ($_FILES['b_image']['error'] > 0 && !isset($_FILES['b_image'])) {
 
         $query  = "SELECT * FROM products WHERE num='$p_num' ";
@@ -292,6 +263,7 @@ if ($mode == "insert") {
 
             $idx = $i + 1;
 
+            // 수정 시 파일이 업로드 되지 않은 경우 기존 상태유지
             if ($_FILES['b_image']['name'][$i] == "") {
                 $smallFlag      = "s_image" . $idx;
                 $smallFlagVal   = $row[$smallFlag];
@@ -403,10 +375,10 @@ if ($mode == "insert") {
     $result1 = mysqli_query($connect, $dbinsert1);
 
     // debug
-    $txt  = print_r($dbinsert1, true);
-    $file = fopen("log.txt", "w+");
-    fwrite($file, $txt);
-    fclose($file);
+    // $txt  = print_r($dbinsert1, true);
+    // $file = fopen("log.txt", "w+");
+    // fwrite($file, $txt);
+    // fclose($file);
 
     if ($result1) {
         $url = "top_pro_list.php?lcode=" . $lcode . "&mcode=" . $mcode . "&page=" . $page . "";
@@ -417,16 +389,7 @@ if ($mode == "insert") {
     // 상품 복사
 } else if ($mode == "copy") {
 
-    $qry = "INSERT INTO products_code VALUES ('')";
-    mysqli_query($connect, $qry);
-
-    $query  = "SELECT max(num) AS maxid FROM products_code";
-    $result = mysqli_query($connect, $query);
-    $row    = mysqli_fetch_array($result);
-
-    $p_code     = $row['maxid'];
-    $wdate      = date('md');
-    $trade_code = "p" . $wdate . "-" . $p_code;
+    $item_code = generate_item_code();
 
     $query1  = "SELECT * FROM products WHERE num='$p_num' ";
     $result1 = mysqli_query($connect, $query1);
@@ -434,20 +397,21 @@ if ($mode == "insert") {
 
     $sql = "INSERT INTO products(prod_code, category_l, category_m,
 								company, shop_price, retail_price,
-								moq, opt, opt_stock,
+								moq,
 								contents,
 								created, main_new, main_special, main_best,
 								del_chk)
-			    		VALUES('" . $trade_code . "', '" . $row1['category_l'] . "', '" . $row1['category_m'] . "',
+			    		VALUES('" . $item_code . "', '" . $row1['category_l'] . "', '" . $row1['category_m'] . "',
 				  		 		'" . $row1['company'] . "', '" . $row1['shop_price'] . "', '" . $row1['retail_price'] . "',
-			      		 		'" . $row1['moq'] . "', '', '',
+			      		 		'" . $row1['moq'] . "',
 								'" . $row1['contents'] . "',
 						 		now(), '" . $row1['main_new'] . "', '" . $row1['main_special'] . "', '" . $row1['main_best'] . "',
 								'" . $row1['del_chk'] . "')";
     $result2 = mysqli_query($connect, $sql);
 
     if ($result2) {
-        $url = "pro_register.php?mode=update&p_num=" . $p_num . "&lcode=" . $row1['category_l'] . "&mcode=" . $row1['category_m'] . "&page=" . $page . "";
+        $new_p_num = mysqli_insert_id($connect);
+        $url       = "pro_register.php?mode=update&p_num=" . $new_p_num . "&lcode=" . $row1['category_l'] . "&mcode=" . $row1['category_m'] . "&page=" . $page . "";
         show_msg('상품을 복사했습니다.', $url);
     } else {
         err_msg('상품 복사 중 DB오류가 발생했습니다.');
