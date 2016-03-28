@@ -88,9 +88,9 @@ $page = set_var($_GET['page']);
 										<th>상품명</th>
 										<th>주문수량</th>
 										<th>수량변경</th>
-										<th>공급가</th>
-										<th>공급가변경</th>
-										<th>공급가합</th>
+										<th>판매가</th>
+										<th>판매가 변경</th>
+										<th>판매가 합</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -166,15 +166,15 @@ for ($i = 0; $i < sizeof($a_goods_fk); $i++) {
 <?php
 
     if ($pro_row['sale_price']) {
-        echo "<td><s>" . number_format($pro_row['retail_price']) . "</s> 원<br/>" . number_format($pro_row['sale_price']) . " 원\n";
+        echo "<td><s>" . number_format($pro_row['shop_price']) . "</s> 원<br/>" . number_format($pro_row['sale_price']) . " 원\n";
     } else {
-        echo "<td>" . number_format($pro_row['retail_price']) . " 원\n";
+        echo "<td>" . number_format($pro_row['shop_price']) . " 원\n";
     }
 
     if ($pro_row['fixed_price']) {
-        echo "<td><img src=\"../images/lock.png\" alt=\"고정공급가\">" . number_format($org_price[$i]) . " 원<br>(" . number_format((1 - ($org_price[$i] / $pro_row['retail_price'])) * 100) . "% ↓)</td>\n";
+        echo "<td><img src=\"../images/lock.png\" alt=\"고정공급가\">" . number_format($org_price[$i]) . " 원<br>(" . number_format((1 - ($org_price[$i] / $pro_row['shop_price'])) * 100) . "% ↓)</td>\n";
     } else {
-        echo "<td>" . number_format($org_price[$i]) . " 원<br>(" . number_format((1 - ($org_price[$i] / $pro_row['retail_price'])) * 100) . "% ↓)</td>\n";
+        echo "<td>" . number_format($org_price[$i]) . " 원<br>(" . number_format((1 - ($org_price[$i] / $pro_row['shop_price'])) * 100) . "% ↓)</td>\n";
     }
     ?> -->
 										<td>

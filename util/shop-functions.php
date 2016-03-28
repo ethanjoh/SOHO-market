@@ -867,9 +867,9 @@ HEREDOC;
                                             <a href="cart-update.php?mode=del&amp;cart_no={$cart_id}&amp;where=cart" onclick="return confirm('해당 상품을 삭제하시겠습니까?')"><i class="fa fa-times"></i></a>
                                         </td>
                                         <td class="sop-cart">
-                                            <a href="detail.php?pnum={$pnum}&amp;lcode={$category_l}&smp;mcode={$category_m}&amp;scode={$category_s}"><img class="primary-image" alt="" src="{$s_image1_name}"></a>
+                                            <a href="detail.php?pnum={$pnum}&amp;lcode={$category_l}&smp;mcode={$category_m}"><img class="primary-image" alt="" src="{$s_image1_name}"></a>
                                         </td>
-                                        <td class="sop-cart"><a href="detail.php?pnum={$pnum}&amp;lcode={$category_l}&amp;mcode={$category_m}&amp;scode={$category_s}">{$itemName}</a><br>[{$p_opt}]</td>
+                                        <td class="sop-cart"><a href="detail.php?pnum={$pnum}&amp;lcode={$category_l}&amp;mcode={$category_m}">{$itemName}</a><br>[{$p_opt}]</td>
                                         <td class="sop-cart cost"> {$commaWholesalePrice}</td>
                                         <td>
                                             <form name="basket{$i}" method="post" action="cart-update.php">
@@ -1703,7 +1703,16 @@ HEREDOC;
                           <input type="hidden" name="CST_MID" value="{$CST_MID}">
                           <input type="hidden" name="CST_PLATFORM" value="{$CST_PLATFORM}">
                           <input type="hidden" name="LGD_TID" value="{$pg_row['LGD_TID']}">
-                          <button type="submit" class="btn btn-xs btn-danger" onclick="return confirm('정말 주문을 취소하시겠습니까?')"><i class="fa fa-remove"></i></button>
+HEREDOC;
+
+                if ($row['status'] == '8') {
+                    echo '<a href="#" onclick="alert(\'상품이 배송 중에 있어 취소가 되지 않습니다.\n관리자에게 문의하세요.\')"><i class="fa fa-ban"></i></a>';
+                } else {
+                    echo '<button type="submit" class="btn btn-xs btn-danger" onclick="return confirm(\'정말 주문을 취소하시겠습니까?\')"><i class="fa fa-remove"></i></button>';
+                }
+
+                echo <<<HEREDOC
+
                           </form>
                       </td>
                     </tr>

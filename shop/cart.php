@@ -1,5 +1,3 @@
-<?php //include_once '../include/auth.php';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;?>
-
 <?php include_once '../include/header.php';?>
 
 

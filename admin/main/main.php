@@ -98,7 +98,7 @@ mysqli_query($connect, 'set names utf8');
                   <h1>
                   <a href="../products/top_pro_list.php"><?php echo $sp_total; ?></a>
                   </h1>
-                  <p>상품등록</p>
+                  <p>등록상품</p>
                 </div>
               </section>
             </div>
