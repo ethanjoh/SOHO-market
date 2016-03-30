@@ -10,40 +10,40 @@
       <!--sidebar end-->
 <?php
 
-$today     = date("Y-m-d");
-$month     = date("Y-m");
-$thisMonth = date("F, Y", strtotime($month));
+    $today     = date("Y-m-d");
+    $month     = date("Y-m");
+    $thisMonth = date("F, Y", strtotime($month));
 
-//총주문
-// $sql = "SELECT * FROM mall_order WHERE cancel='N' AND createdate='$today' AND user_id <> 'guest' ";
-// $res = mysqli_query($connect, $sql);
-// $total = mysqli_num_rows($res);
+    //총주문
+    // $sql = "SELECT * FROM mall_order WHERE cancel='N' AND createdate='$today' AND user_id <> 'guest' ";
+    // $res = mysqli_query($connect, $sql);
+    // $total = mysqli_num_rows($res);
 
-//기업회원 미확인건
-$sql_1      = "SELECT * FROM mall_order WHERE user_flag = 'c' AND cancel='N' AND status='3' AND user_id <> 'guest' ";
-$res_1      = mysqli_query($connect, $sql_1);
-$unchkTotal = mysqli_num_rows($res_1);
+    //기업회원 미확인건
+    $sql_1      = "SELECT * FROM mall_order WHERE user_flag = 'c' AND cancel='N' AND status='3' AND user_id <> 'guest' ";
+    $res_1      = mysqli_query($connect, $sql_1);
+    $unchkTotal = mysqli_num_rows($res_1);
 
-//개인회원 미확인건
-$sql_2       = "SELECT * FROM mall_order WHERE user_flag = 'p' AND cancel='N' AND status='3' AND user_id <> 'guest' ";
-$res_2       = mysqli_query($connect, $sql_2);
-$pUnchkTotal = mysqli_num_rows($res_2);
+    //개인회원 미확인건
+    $sql_2       = "SELECT * FROM mall_order WHERE user_flag = 'p' AND cancel='N' AND status='3' AND user_id <> 'guest' ";
+    $res_2       = mysqli_query($connect, $sql_2);
+    $pUnchkTotal = mysqli_num_rows($res_2);
 
-//미승인 업체
-$sql_5             = "SELECT * FROM member WHERE approved='N' ";
-$res_5             = mysqli_query($connect, $sql_5);
-$nonapproved_total = mysqli_num_rows($res_5);
+    //미승인 업체
+    $sql_5             = "SELECT * FROM member WHERE approved='N' ";
+    $res_5             = mysqli_query($connect, $sql_5);
+    $nonapproved_total = mysqli_num_rows($res_5);
 
-//승인 상품
-$sql_9 = "SELECT * FROM products WHERE approved='Y' ";
-$res_9 = mysqli_query($connect, $sql_9);
-if ($res_9) {
-    $sp_total = mysqli_num_rows($res_9);
-} else {
-    $sp_total = 0;
-}
+    //승인 상품
+    $sql_9 = "SELECT * FROM products WHERE approved='Y' ";
+    $res_9 = mysqli_query($connect, $sql_9);
+    if ($res_9) {
+        $sp_total = mysqli_num_rows($res_9);
+    } else {
+        $sp_total = 0;
+    }
 
-mysqli_query($connect, 'set names utf8');
+    mysqli_query($connect, 'set names utf8');
 ?>
       <!--main content start-->
       <section id="main-content">
@@ -164,11 +164,11 @@ mysqli_query($connect, 'set names utf8');
           <div class="row">
 <?php
 
-$query  = "SELECT * FROM code WHERE 1 ORDER BY num";
-$result = mysqli_query($connect, $query);
-$total  = mysqli_num_rows($result);
+    $query  = "SELECT * FROM code WHERE 1 ORDER BY num";
+    $result = mysqli_query($connect, $query);
+    $total  = mysqli_num_rows($result);
 
-if ($total == 0) {
+    if ($total == 0) {
     ?>
             <div class="col-sm-12">
               <div class="alert alert-danger" role="alert">
@@ -177,23 +177,23 @@ if ($total == 0) {
               </div>
 <?php
 
-} else {
-    if ($total % 2 == 0) {
-        echo '        <div class="col-sm-6">';
     } else {
-        echo '        <div class="col-sm-6">';
-    }
-
-    for ($i = 0; $rows = mysqli_fetch_array($result); $i++) {
-        $board   = 'bbs_' . $rows['code'];
-        $query2  = "SELECT * FROM $board WHERE 1 ORDER BY mod_date DESC LIMIT 5";
-        $result2 = mysqli_query($connect, $query2);
-
-        if ($result2) {
-            $total2 = mysqli_num_rows($result2);
+        if ($total % 2 == 0) {
+            echo '        <div class="col-sm-6">';
         } else {
-            $total2 = 0;
+            echo '        <div class="col-sm-6">';
         }
+
+        for ($i = 0; $rows = mysqli_fetch_array($result); $i++) {
+            $board   = 'bbs_' . $rows['code'];
+            $query2  = "SELECT * FROM $board WHERE 1 ORDER BY mod_date DESC LIMIT 5";
+            $result2 = mysqli_query($connect, $query2);
+
+            if ($result2) {
+                $total2 = mysqli_num_rows($result2);
+            } else {
+                $total2 = 0;
+            }
         ?>
                         <section class="panel">
                           <div class="weather-bg">
@@ -213,18 +213,18 @@ if ($total == 0) {
                               <tbody>
 <?php
 
-        if ($total2 == 0) {
-            echo <<<HEREDOC
-                              <tr>
+            if ($total2 == 0) {
+                echo <<<HEREDOC
+																			                              <tr>
                                 <td colspan="4"><p>등록된 글이 없습니다</p></td>
                               </tr>
 HEREDOC;
-        } else {
-            for ($j = 0; $rows2 = mysqli_fetch_array($result2); $j++) {
-                //날짜 형식을 바꾼다.
-                $post_date = substr($rows2['date'], 0, 10);
-                //답변있는 경우
-                if ($rows2['depth'] > 0) {
+            } else {
+                for ($j = 0; $rows2 = mysqli_fetch_array($result2); $j++) {
+                    //날짜 형식을 바꾼다.
+                    $post_date = substr($rows2['date'], 0, 10);
+                    //답변있는 경우
+                    if ($rows2['depth'] > 0) {
                     ?>
                               <tr>
                                 <td><?php echo $rows2['main_no']; ?></td>
@@ -233,7 +233,7 @@ HEREDOC;
                               </tr>
 <?php
 
-                } else {
+                    } else {
                     ?>
                               <tr>
                                 <td><?php echo $j + 1; ?></td>
@@ -242,10 +242,9 @@ HEREDOC;
                               </tr>
 <?php
 
-                } // end of inner if
-            } // end of inner for loop
-        }
-        ; // end of outer if
+                    } // end of inner if
+                } // end of inner for loop
+            } // end of outer if
         ?>
                               </tbody>
                             </table>
@@ -253,23 +252,22 @@ HEREDOC;
                         </section>
 <?php
 
-        if ($total2 % 2 == 0) {
-            echo <<<HEREDOC
-                       </div> <!-- end of col-sm-6 -->
+            if ($total2 % 2 == 0) {
+                echo <<<HEREDOC
+																			                       </div> <!-- end of col-sm-6 -->
                      </div>
                      <div class="row">
                        <div class="col-sm-6">
 HEREDOC;
-        } else {
-            echo <<<HEREDOC
-                       </div> <!-- end of col-sm-6 -->
+            } else {
+                echo <<<HEREDOC
+																			                       </div> <!-- end of col-sm-6 -->
                        <div class="col-sm-6">
 
 HEREDOC;
-        }
-    } // end of outer for loop
-}
-; //end of if($total == 0)
+            }
+        } // end of outer for loop
+    } //end of if($total == 0)
 ?>
                       </div>
                     </div><!-- end of bbs -->

@@ -561,7 +561,7 @@ function setPrice () {
 
 }
 
-function buy_save(){
+function buy_save() {
   var form = document.form1;
   // checkboxToHidden(form, form.num);
 
