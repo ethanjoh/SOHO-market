@@ -54,7 +54,7 @@ while ($data = fgetcsv($fp)) {
     // print_r($data);
     // echo "</pre>";
 
-    $lcode          = "1";                           // 대카테고리
+    $lcode          = "12";                          // 대카테고리
     $itemCode       = trim($data['1']);              // 상품코드
     $shortDesc      = trim($data['8']);              // 규격=>간략설명
     $wholesalePrice = removeComma(trim($data['3'])); // 공급가. 기존 소비자가 컬럼에 삽입
@@ -72,7 +72,7 @@ while ($data = fgetcsv($fp)) {
     if (trim($data['5']) == '아이언/우드그립' || trim($data['5']) == '클럽그립' || trim($data['5']) == '주니어 그립') {
         // 이미지 파일이 있는 경우
         if ($data['4'] != '') {
-            $mcode       = "1"; // 중카테고리
+            $mcode       = "8"; // 중카테고리
             $bImg1_chk   = "Y";
             $bigImg1File = $saveDir . $data['6'] . "/b/" . $data['4'];
 
@@ -107,7 +107,7 @@ while ($data = fgetcsv($fp)) {
             make_thumbnail($bigImg1Path . $data['4'], 100, 100, $smallImg1Path . $data['4']);
 
             // 3) 상세 이미지 복사
-            $detailImgFile = '<img src="../upload/p_image/' . $data['6'] . "/d/" . $data['4'] . '">';
+            $detailImgFile = '<img src="../../upload/p_image/' . $data['6'] . "/d/" . $data['4'] . '">';
             $detailImgFile = addslashes($detailImgFile);
 
             $detailImgFilePath = "upload/p_image/" . $data['6'] . "/d/";
@@ -130,7 +130,7 @@ while ($data = fgetcsv($fp)) {
     } elseif (trim($data['5']) == '퍼터그립') {
         // 이미지 파일이 있는 경우
         if (($data['4']) != '') {
-            $mcode       = "2";
+            $mcode       = "9";
             $bImg1_chk   = "Y";
             $bigImg1File = $saveDir . $data['6'] . "/b/" . $data['4'];
 
@@ -166,7 +166,7 @@ while ($data = fgetcsv($fp)) {
             // 썸네일 생성 끝
 
             // 3) 상세 이미지 복사
-            $detailImgFile = '<img src="../upload/p_image/' . $data['6'] . "/d/" . $data['4'] . '">';
+            $detailImgFile = '<img src="../../upload/p_image/' . $data['6'] . "/d/" . $data['4'] . '">';
             $detailImgFile = addslashes($detailImgFile);
 
             $detailImgFilePath = "upload/p_image/" . $data['6'] . "/d/";
@@ -225,7 +225,7 @@ while ($data = fgetcsv($fp)) {
             make_thumbnail($bigImg1Path . $data['4'], 100, 100, $smallImg1Path . $data['4']);
 
             // 3) 상세 이미지 복사
-            $detailImgFile = '<img src="../upload/p_image/' . $data['6'] . "/d/" . $data['4'] . '">';
+            $detailImgFile = '<img src="../../upload/p_image/' . $data['6'] . "/d/" . $data['4'] . '">';
             $detailImgFile = addslashes($detailImgFile);
 
             $detailImgFilePath = "upload/p_image/" . $data['6'] . "/d/";
@@ -284,7 +284,7 @@ while ($data = fgetcsv($fp)) {
             make_thumbnail($bigImg1Path . $data['4'], 100, 100, $smallImg1Path . $data['4']);
 
             // 3) 상세 이미지 복사
-            $detailImgFile = '<img src="../upload/p_image/' . $data['6'] . "/d/" . $data['4'] . '">';
+            $detailImgFile = '<img src="../../upload/p_image/' . $data['6'] . "/d/" . $data['4'] . '">';
             $detailImgFile = addslashes($detailImgFile);
 
             $detailImgFilePath = "upload/p_image/" . $data['6'] . "/d/";
@@ -343,7 +343,7 @@ while ($data = fgetcsv($fp)) {
             make_thumbnail($bigImg1Path . $data['4'], 100, 100, $smallImg1Path . $data['4']);
 
             // 3) 상세 이미지 복사
-            $detailImgFile = '<img src="../upload/p_image/' . $data['6'] . "/d/" . $data['4'] . '">';
+            $detailImgFile = '<img src="../../upload/p_image/' . $data['6'] . "/d/" . $data['4'] . '">';
             $detailImgFile = addslashes($detailImgFile);
 
             $detailImgFilePath = "upload/p_image/" . $data['6'] . "/d/";
@@ -402,7 +402,7 @@ while ($data = fgetcsv($fp)) {
             make_thumbnail($bigImg1Path . $data['4'], 100, 100, $smallImg1Path . $data['4']);
 
             // 3) 상세 이미지 복사
-            $detailImgFile = '<img src="../upload/p_image/' . $data['6'] . "/d/" . $data['4'] . '">';
+            $detailImgFile = '<img src="../../upload/p_image/' . $data['6'] . "/d/" . $data['4'] . '">';
             $detailImgFile = addslashes($detailImgFile);
 
             $detailImgFilePath = "upload/p_image/" . $data['6'] . "/d/";
@@ -461,7 +461,7 @@ while ($data = fgetcsv($fp)) {
             make_thumbnail($bigImg1Path . $data['4'], 100, 100, $smallImg1Path . $data['4']);
 
             // 3) 상세 이미지 복사
-            $detailImgFile = '<img src="../upload/p_image/' . $data['6'] . "/d/" . $data['4'] . '">';
+            $detailImgFile = '<img src="../../upload/p_image/' . $data['6'] . "/d/" . $data['4'] . '">';
             $detailImgFile = addslashes($detailImgFile);
 
             $detailImgFilePath = "upload/p_image/" . $data['6'] . "/d/";
@@ -520,7 +520,7 @@ while ($data = fgetcsv($fp)) {
             make_thumbnail($bigImg1Path . $data['4'], 100, 100, $smallImg1Path . $data['4']);
 
             // 3) 상세 이미지 복사
-            $detailImgFile = '<img src="../upload/p_image/' . $data['6'] . "/d/" . $data['4'] . '">';
+            $detailImgFile = '<img src="../../upload/p_image/' . $data['6'] . "/d/" . $data['4'] . '">';
             $detailImgFile = addslashes($detailImgFile);
 
             $detailImgFilePath = "upload/p_image/" . $data['6'] . "/d/";

@@ -1553,9 +1553,9 @@ function get_list_page_result($mode, $lcode, $mcode, $key, $keyword, $scaleTimes
 
     if ($mode == "search") {
         $search_qry .= " AND (name LIKE '%" . $keyword . "%' OR prod_code LIKE '" . $keyword . "' OR company LIKE '%" . $keyword . "%') ";
-        $qry = "SELECT * FROM products WHERE approved='Y' AND del_chk != 'Y' " . $search_qry . " ORDER BY num DESC LIMIT " . $scaleTimesPageNum . ", " . $numOfLastPage . "";
+        $qry = "SELECT * FROM products WHERE approved='Y' AND del_chk != 'Y' " . $search_qry . " ORDER BY name DESC LIMIT " . $scaleTimesPageNum . ", " . $numOfLastPage . "";
     } else {
-        $qry = "SELECT * FROM products WHERE category_l = '$lcode' AND del_chk='N'" . $added_qry . " AND approved = 'Y' ORDER BY num DESC LIMIT " . $scaleTimesPageNum . ", " . $numOfLastPage . "";
+        $qry = "SELECT * FROM products WHERE category_l = '$lcode' AND del_chk='N'" . $added_qry . " AND approved = 'Y' ORDER BY name DESC LIMIT " . $scaleTimesPageNum . ", " . $numOfLastPage . "";
     }
 
     $res       = mysqli_query($connect, $qry);

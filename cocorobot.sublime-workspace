@@ -519,30 +519,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "shop/catalog-list.php",
-			"settings":
-			{
-				"buffer_size": 6434,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "util/shop-functions.php",
-			"settings":
-			{
-				"buffer_size": 96507,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "get-product.php",
-			"settings":
-			{
-				"buffer_size": 24701,
-				"line_ending": "Windows"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -717,10 +693,7 @@
 	},
 	"expanded_folders":
 	[
-		"/C/wamp/www/shinsoo",
-		"/C/wamp/www/shinsoo/img",
-		"/C/wamp/www/shinsoo/pay",
-		"/C/wamp/www/shinsoo/upload"
+		"/C/wamp/www/cocorobot"
 	],
 	"file_history":
 	[
@@ -884,8 +857,6 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"<img src=\"../upload",
-			"num",
 			"retail_price",
 			"row1",
 			"result1",
@@ -1011,7 +982,9 @@
 			"$sessionFlag",
 			"top_order_list.php",
 			"cancel = 'N'",
-			"user_id <> 'guest'"
+			"user_id <> 'guest'",
+			"cancel = 'N'",
+			"user_flag"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1032,315 +1005,8 @@
 	"groups":
 	[
 		{
-			"selected": 2,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "shop/catalog-list.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 6434,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								4212,
-								4212
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content"
-							],
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": true,
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 3150.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "util/shop-functions.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 96507,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								60701,
-								60701
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"auto_complete": false,
-							"bh_regions":
-							[
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content"
-							],
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": true,
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 53602.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "get-product.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 24701,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3510,
-								3510
-							],
-							[
-								6131,
-								6131
-							],
-							[
-								8768,
-								8768
-							],
-							[
-								11499,
-								11499
-							],
-							[
-								14129,
-								14129
-							],
-							[
-								16759,
-								16759
-							],
-							[
-								19388,
-								19388
-							],
-							[
-								22016,
-								22016
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"auto_complete": false,
-							"bh_regions":
-							[
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content"
-							],
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": true,
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 3132.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -1388,7 +1054,7 @@
 		"height": 172.0
 	},
 	"pinned_build_system": "",
-	"project": "shinsoo.sublime-project",
+	"project": "cocorobot.sublime-project",
 	"replace":
 	{
 		"height": 54.0
@@ -1401,16 +1067,12 @@
 		"selected_items":
 		[
 			[
-				"get",
-				"get-product.php"
-			],
-			[
-				"cata",
-				"shop\\catalog-list.php"
-			],
-			[
 				"main",
 				"js\\main.js"
+			],
+			[
+				"get",
+				"get-product.php"
 			],
 			[
 				"order",
@@ -1479,6 +1141,10 @@
 			[
 				"ca_msub",
 				"admin\\category\\ca_msub_list.php"
+			],
+			[
+				"cata",
+				"shop\\catalog-list.php"
 			],
 			[
 				"home",
