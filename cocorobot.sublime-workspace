@@ -519,44 +519,6 @@
 	},
 	"buffers":
 	[
-		{
-<<<<<<< HEAD
-			"file": "get-product.php",
-			"settings":
-			{
-				"buffer_size": 24677,
-=======
-			"file": "shop/catalog-list.php",
-			"settings":
-			{
-				"buffer_size": 6434,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "util/shop-functions.php",
-			"settings":
-			{
-				"buffer_size": 96507,
->>>>>>> c2aba4de3cdf3e1acf57efb612ec07d129e57369
-				"line_ending": "Windows"
-			}
-		},
-		{
-<<<<<<< HEAD
-			"file": "admin/products/top_pro_list.php",
-			"settings":
-			{
-				"buffer_size": 15124,
-=======
-			"file": "get-product.php",
-			"settings":
-			{
-				"buffer_size": 24701,
->>>>>>> c2aba4de3cdf3e1acf57efb612ec07d129e57369
-				"line_ending": "Windows"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -731,25 +693,13 @@
 	},
 	"expanded_folders":
 	[
-		"/C/wamp/www/shinsoo",
-<<<<<<< HEAD
-		"/C/wamp/www/shinsoo/admin",
-=======
-		"/C/wamp/www/shinsoo/img",
-		"/C/wamp/www/shinsoo/pay",
->>>>>>> c2aba4de3cdf3e1acf57efb612ec07d129e57369
-		"/C/wamp/www/shinsoo/upload"
+		"/C/wamp/www/cocorobot"
 	],
 	"file_history":
 	[
-<<<<<<< HEAD
-		"/C/wamp/www/shinsoo/admin/products/top_pro_list.php",
-		"/C/wamp/www/shinsoo/upload/tigerchoi.csv",
-=======
 		"/C/wamp/www/shinsoo/get-product.php",
 		"/C/Users/Seonghyeon/AppData/Roaming/Sublime Text 3/Packages/SublimeLinter/SublimeLinter.sublime-settings",
 		"/C/Users/Seonghyeon/AppData/Roaming/Sublime Text 3/Packages/User/SublimeLinter.sublime-settings",
->>>>>>> c2aba4de3cdf3e1acf57efb612ec07d129e57369
 		"/C/wamp/www/shinsoo/css/main.css",
 		"/C/wamp/www/shinsoo/js/main.js",
 		"/C/Users/Seonghyeon/AppData/Roaming/Sublime Text 3/Packages/User/SublimeCodeIntel.sublime-settings",
@@ -846,41 +796,6 @@
 		"/C/wamp/www/shinsoo/shop/checkout.php",
 		"/C/wamp/www/shinsoo/shop/index.php",
 		"/C/wamp/www/shinsoo/pay/payreq_crossplatform.php",
-<<<<<<< HEAD
-		"/C/wamp/www/shinsoo/shop/order-delete.php",
-		"/C/wamp/www/shinsoo/pay/Cancel.php",
-		"/C/wamp/www/shinsoo/pay/Cancel.html",
-		"/C/wamp/www/shinsoo/lgpay/conf/mall.conf",
-		"/C/wamp/www/shinsoo/pay/CashReceipt.php",
-		"/C/wamp/www/shinsoo/shop/checkout.php",
-		"/C/wamp/www/shinsoo/pay/payres.php",
-		"/C/wamp/www/shinsoo/lgpay/ping.php",
-		"/C/wamp/www/shinsoo/lgpay/patch.php",
-		"/C/wamp/www/shinsoo/lgpay/dir.php",
-		"/C/wamp/www/shinsoo/pay/returnurl.php",
-		"/C/wamp/www/shinsoo/lgpay/conf/lgdacom.conf",
-		"/C/Users/Joh/Downloads/my.ini",
-		"/C/Users/Joh/Downloads/LGU+_XPay_Crossplatform/LGU+_XPay_Crossplatform_PHP/cas_noteurl.php",
-		"/C/wamp/www/shinsoo/pay/i_log.txt",
-		"/C/wamp/www/shinsoo/pay/r_log.txt",
-		"/C/wamp/www/shinsoo/pay/result_log.txt",
-		"/C/Users/Joh/Downloads/Preferences.sublime-settings",
-		"/C/Users/Joh/Downloads/LGU+_XPay_Crossplatform/LGU+_XPay_Crossplatform_PHP/payreq_crossplatform.php",
-		"/C/Users/Joh/OneDrive/git_project/linktrading-co-kr/pay/cas_noteurl.php",
-		"/C/wamp/www/shinsoo/pay/variables_from_payreq.php",
-		"/C/wamp/www/shinsoo/lgpay/XPayClient.php",
-		"/C/wamp/www/shinsoo/pay/save_pginfo_to_db.php",
-		"/C/wamp/www/shinsoo/util/scm_auth.php",
-		"/C/wamp/www/shinsoo/shop/order-detail.php",
-		"/C/wamp/www/shinsoo/admin/order/or_view.php",
-		"/C/wamp/www/shinsoo/admin/css/admin_layout.css",
-		"/C/Users/Joh/OneDrive/git_project/linktrading-co-kr/shop/sub_list.php",
-		"/C/wamp/www/shinsoo/bbs/list.php",
-		"/C/Users/Joh/OneDrive/git_project/linktrading-co-kr/shop/order_detail.php",
-		"/C/Users/Joh/OneDrive/git_project/linktrading-co-kr/pay/payres.php",
-		"/C/Users/Joh/OneDrive/git_project/linktrading-co-kr/pay/payreq.php",
-		"/C/Users/Joh/OneDrive/git_project/linktrading-co-kr/pay/note_url.php"
-=======
 		"/C/wamp/www/shinsoo/member/login-ok.php",
 		"/C/wamp/www/shinsoo/member/p-login-ok.php",
 		"/C/wamp/www/shinsoo/shop/cart-update.php",
@@ -910,7 +825,6 @@
 		"/C/wamp/www/shinsoo/admin/category/ca_ssub_register.php",
 		"/C/wamp/www/shinsoo/admin/change_price.php",
 		"/C/wamp/www/shinsoo/admin/member/bbs_list.php"
->>>>>>> c2aba4de3cdf3e1acf57efb612ec07d129e57369
 	],
 	"find":
 	{
@@ -943,8 +857,6 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"<img src=\"../upload",
-			"num",
 			"retail_price",
 			"row1",
 			"result1",
@@ -1070,7 +982,9 @@
 			"$sessionFlag",
 			"top_order_list.php",
 			"cancel = 'N'",
-			"user_id <> 'guest'"
+			"user_id <> 'guest'",
+			"cancel = 'N'",
+			"user_flag"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1091,365 +1005,8 @@
 	"groups":
 	[
 		{
-<<<<<<< HEAD
-			"selected": 0,
-=======
-			"selected": 2,
->>>>>>> c2aba4de3cdf3e1acf57efb612ec07d129e57369
 			"sheets":
 			[
-				{
-					"buffer": 0,
-<<<<<<< HEAD
-					"file": "get-product.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 24677,
-=======
-					"file": "shop/catalog-list.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 6434,
->>>>>>> c2aba4de3cdf3e1acf57efb612ec07d129e57369
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-<<<<<<< HEAD
-								4566,
-								4566
-=======
-								4212,
-								4212
->>>>>>> c2aba4de3cdf3e1acf57efb612ec07d129e57369
-							]
-						],
-						"settings":
-						{
-<<<<<<< HEAD
-=======
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content"
-							],
->>>>>>> c2aba4de3cdf3e1acf57efb612ec07d129e57369
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": true,
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-<<<<<<< HEAD
-						"translation.y": 2633.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-=======
-						"translation.y": 3150.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
->>>>>>> c2aba4de3cdf3e1acf57efb612ec07d129e57369
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-<<<<<<< HEAD
-					"file": "admin/products/top_pro_list.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 15124,
-=======
-					"file": "util/shop-functions.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 96507,
->>>>>>> c2aba4de3cdf3e1acf57efb612ec07d129e57369
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-<<<<<<< HEAD
-								3250,
-								3250
-=======
-								60701,
-								60701
->>>>>>> c2aba4de3cdf3e1acf57efb612ec07d129e57369
-							]
-						],
-						"settings":
-						{
-<<<<<<< HEAD
-=======
-							"BracketHighlighterBusy": false,
-							"auto_complete": false,
-							"bh_regions":
-							[
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content"
-							],
->>>>>>> c2aba4de3cdf3e1acf57efb612ec07d129e57369
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": true,
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-<<<<<<< HEAD
-						"translation.y": 1663.0,
-=======
-						"translation.y": 53602.0,
->>>>>>> c2aba4de3cdf3e1acf57efb612ec07d129e57369
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-<<<<<<< HEAD
-=======
-				},
-				{
-					"buffer": 2,
-					"file": "get-product.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 24701,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3510,
-								3510
-							],
-							[
-								6131,
-								6131
-							],
-							[
-								8768,
-								8768
-							],
-							[
-								11499,
-								11499
-							],
-							[
-								14129,
-								14129
-							],
-							[
-								16759,
-								16759
-							],
-							[
-								19388,
-								19388
-							],
-							[
-								22016,
-								22016
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"auto_complete": false,
-							"bh_regions":
-							[
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content"
-							],
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": true,
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 3132.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
->>>>>>> c2aba4de3cdf3e1acf57efb612ec07d129e57369
-				}
 			]
 		}
 	],
@@ -1497,7 +1054,7 @@
 		"height": 172.0
 	},
 	"pinned_build_system": "",
-	"project": "shinsoo.sublime-project",
+	"project": "cocorobot.sublime-project",
 	"replace":
 	{
 		"height": 54.0
@@ -1510,25 +1067,12 @@
 		"selected_items":
 		[
 			[
-<<<<<<< HEAD
-				"top_pr",
-				"admin\\products\\top_pro_list.php"
-			],
-			[
-				"main.",
-				"css\\main.css"
-=======
-				"get",
-				"get-product.php"
-			],
-			[
-				"cata",
-				"shop\\catalog-list.php"
->>>>>>> c2aba4de3cdf3e1acf57efb612ec07d129e57369
-			],
-			[
 				"main",
 				"js\\main.js"
+			],
+			[
+				"get",
+				"get-product.php"
 			],
 			[
 				"order",
@@ -1597,6 +1141,10 @@
 			[
 				"ca_msub",
 				"admin\\category\\ca_msub_list.php"
+			],
+			[
+				"cata",
+				"shop\\catalog-list.php"
 			],
 			[
 				"home",
@@ -2023,17 +1571,12 @@
 				"admin\\seminar.php"
 			],
 			[
-<<<<<<< HEAD
-				"admin.j",
-				"admin/js/admin.js"
-=======
 				"sess",
 				"session-1.php"
 			],
 			[
 				"setting",
 				"admin\\setting.php"
->>>>>>> c2aba4de3cdf3e1acf57efb612ec07d129e57369
 			]
 		],
 		"width": 0.0
