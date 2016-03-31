@@ -26,6 +26,89 @@ function removeComma($price)
     return $price;
 }
 
+/**
+ * 대표이미지 복사
+ * @param  [type] $dirName        [description]
+ * @param  [type] $modelNum       [description]
+ * @param  [type] $imgName        [description]
+ * @return [type] [description]
+ */
+function copy_big_img($dirName, $modelNum, $imgName)
+{
+
+    // 1) 생성할 디렉토리명은 모델번호로 지정
+    $bigImg1Path = "upload/p_image/" . $modelNum . "/b/";
+    if (is_dir($bigImg1Path)) {
+        echo "<p>directory " . $bigImg1Path . " is already exists.</p>\n";
+    } else {
+        if (mkdir($bigImg1Path, 0755, true)) {
+            echo "<p>directory " . $bigImg1Path . " is created successfully. </p>\n";
+        } else {
+            echo "<p>directory " . $bigImg1Path . " is failed to create.</p>\n";
+        }
+    }
+
+    copy("img/" . $dirName . "/" . $imgName, $bigImg1Path . $imgName);
+}
+
+/**
+ * 썸네일 이미지 만들기
+ * @param  [type] $modelNum       [description]
+ * @param  [type] $imgName        [description]
+ * @return [type] [description]
+ */
+function make_small_img($modelNum, $imgName)
+{
+
+    //DB에 저장할 이미지 저장 경로
+    $saveDir     = "../../upload/p_image/";
+    $bigImg1Path = "upload/p_image/" . $modelNum . "/b/";
+
+    // 2) 썸네일 자동생성
+    $smallImg1Path = "upload/p_image/" . $modelNum . "/s/";
+
+    if (is_dir($smallImg1Path)) {
+        echo "<p>directory " . $smallImg1Path . " is already exists. </p>\n";
+    } else {
+        if (mkdir($smallImg1Path, 0755, true)) {
+            echo "<p>directory " . $smallImg1Path . " is created successfully.</p>\n";
+        } else {
+            echo "<p>directory " . $smallImg1Path . " is failed to create.</p>\n";
+        }
+    }
+    $simg1_chk     = "Y";
+    $smallImg1File = $saveDir . $modelNum . "/s/" . $imgName;
+    make_thumbnail($bigImg1Path . $imgName, 100, 100, $smallImg1Path . $imgName);
+    return array($simg1_chk, $smallImg1File);
+}
+
+/**
+ * 상세 이미지 복사
+ * @param  [type] $dirName        [description]
+ * @param  [type] $modelNum       [description]
+ * @param  [type] $imgName        [description]
+ * @return [type] [description]
+ */
+function copy_detail_img($dirName, $modelNum, $imgName)
+{
+    // 3) 상세 이미지 복사
+    $detailImgFile = '<img src="../../upload/p_image/' . $modelNum . "/d/" . $imgName . '">';
+    $detailImgFile = addslashes($detailImgFile);
+
+    $detailImgFilePath = "upload/p_image/" . $modelNum . "/d/";
+    if (is_dir($detailImgFilePath)) {
+        echo "<p>directory " . $detailImgFilePath . " is already exists. </p>\n";
+    } else {
+        if (mkdir($detailImgFilePath, 0755, true)) {
+            echo "<p>directory " . $detailImgFilePath . " is created successfully.</p>\n";
+        } else {
+            echo "<p>directory " . $detailImgFilePath . " is failed to create.</p>\n";
+        }
+    }
+    copy("img/" . $dirName . "/" . $imgName, $detailImgFilePath . $imgName);
+    return $detailImgFile;
+}
+
 if (isset($_GET)) {
     $filename = $_GET['f'];
 } else {
@@ -36,7 +119,7 @@ if (isset($_GET)) {
 $csvFilePath = "upload/" . $filename . ".csv";
 
 // 테이블을 비우고 입력하고 싶을 때
-// mysqli_query($connect, "TRUNCATE TABLE products");
+mysqli_query($connect, "TRUNCATE TABLE products");
 
 $tempCSV = file_get_contents($csvFilePath);
 $tempCSV = mb_convert_encoding($tempCSV, 'UTF-8', 'EUC-KR');
@@ -46,7 +129,8 @@ fwrite($fp, $tempCSV);
 rewind($fp);
 setlocale(LC_ALL, 'ko_KR.UTF-8');
 
-$line = 1;
+$line  = 1;
+$lcode = "11"; // 대카테고리
 
 while ($data = fgetcsv($fp)) {
 
@@ -54,15 +138,12 @@ while ($data = fgetcsv($fp)) {
     // print_r($data);
     // echo "</pre>";
 
-    $lcode          = "12";                          // 대카테고리
     $itemCode       = trim($data['1']);              // 상품코드
     $shortDesc      = trim($data['8']);              // 규격=>간략설명
     $wholesalePrice = removeComma(trim($data['3'])); // 공급가. 기존 소비자가 컬럼에 삽입
     $shopPrice      = removeComma(trim($data['9'])); // 소비자판매가
     $name           = addslashes(trim($data['6']));  // 모델번호 =>상품명
     $brand          = trim($data['7']);              // 브랜드
-    $id             = "admin";
-    $importer       = "신수상사";
 
     //DB에 저장할 이미지 저장 경로
     $saveDir = "../../upload/p_image/";
@@ -72,55 +153,16 @@ while ($data = fgetcsv($fp)) {
     if (trim($data['5']) == '아이언/우드그립' || trim($data['5']) == '클럽그립' || trim($data['5']) == '주니어 그립') {
         // 이미지 파일이 있는 경우
         if ($data['4'] != '') {
-            $mcode       = "8"; // 중카테고리
+            $mcode       = "3"; // 중카테고리
             $bImg1_chk   = "Y";
             $bigImg1File = $saveDir . $data['6'] . "/b/" . $data['4'];
 
-            // 1) 생성할 디렉토리명은 모델번호로 지정
-            $bigImg1Path = "upload/p_image/" . $data['6'] . "/b/";
-            if (is_dir($bigImg1Path)) {
-                echo "<p>directory " . $bigImg1Path . " is already exists.</p>\n";
-            } else {
-                if (mkdir($bigImg1Path, 0755, true)) {
-                    echo "<p>directory " . $bigImg1Path . " is created successfully. </p>\n";
-                } else {
-                    echo "<p>directory " . $bigImg1Path . " is failed to create.</p>\n";
-                }
-            }
+            copy_big_img("iron", $data['6'], $data['4']);
+            $result        = make_small_img($data['6'], $data['4']);
+            $simg1_chk     = $result[0];
+            $smallImg1File = $result[1];
+            $detailImgFile = copy_detail_img("iron-detail", $data['6'], $data['4']);
 
-            copy("img/iron/" . $data['4'], $bigImg1Path . $data['4']);
-
-            // 2) 썸네일 자동생성
-            $smallImg1Path = "upload/p_image/" . $data['6'] . "/s/";
-
-            if (is_dir($smallImg1Path)) {
-                echo "<p>directory " . $smallImg1Path . " is already exists. </p>\n";
-            } else {
-                if (mkdir($smallImg1Path, 0755, true)) {
-                    echo "<p>directory " . $smallImg1Path . " is created successfully.</p>\n";
-                } else {
-                    echo "<p>directory " . $smallImg1Path . " is failed to create.</p>\n";
-                }
-            }
-            $simg1_chk     = "Y";
-            $smallImg1File = $saveDir . $data['6'] . "/s/" . $data['4'];
-            make_thumbnail($bigImg1Path . $data['4'], 100, 100, $smallImg1Path . $data['4']);
-
-            // 3) 상세 이미지 복사
-            $detailImgFile = '<img src="../../upload/p_image/' . $data['6'] . "/d/" . $data['4'] . '">';
-            $detailImgFile = addslashes($detailImgFile);
-
-            $detailImgFilePath = "upload/p_image/" . $data['6'] . "/d/";
-            if (is_dir($detailImgFilePath)) {
-                echo "<p>directory " . $detailImgFilePath . " is already exists. </p>\n";
-            } else {
-                if (mkdir($detailImgFilePath, 0755, true)) {
-                    echo "<p>directory " . $detailImgFilePath . " is created successfully.</p>\n";
-                } else {
-                    echo "<p>directory " . $detailImgFilePath . " is failed to create.</p>\n";
-                }
-            }
-            copy("img/iron-detail/" . $data['4'], $detailImgFilePath . $data['4']);
         } else {
             $bigImg1File   = 'http://placehold.it/500x500';
             $smallImg1File = 'http://placehold.it/100x100';
@@ -130,56 +172,16 @@ while ($data = fgetcsv($fp)) {
     } elseif (trim($data['5']) == '퍼터그립') {
         // 이미지 파일이 있는 경우
         if (($data['4']) != '') {
-            $mcode       = "9";
+            $mcode       = "4";
             $bImg1_chk   = "Y";
             $bigImg1File = $saveDir . $data['6'] . "/b/" . $data['4'];
 
-            // 생성할 디렉토리명은 모델번호로 지정
-            $bigImg1Path = "upload/p_image/" . $data['6'] . "/b/";
-            if (is_dir($bigImg1Path)) {
-                echo "<p>directory " . $bigImg1Path . " is already exists. </p>\n";
-            } else {
-                if (mkdir($bigImg1Path, 0755, true)) {
-                    echo "<p>directory " . $bigImg1Path . " is created successfully.</p>\n";
-                } else {
-                    echo "<p>directory " . $bigImg1Path . " is failed to create.</p>\n";
-                }
-            }
+            copy_big_img("putter", $data['6'], $data['4']);
+            $result        = make_small_img($data['6'], $data['4']);
+            $simg1_chk     = $result[0];
+            $smallImg1File = $result[1];
+            $detailImgFile = copy_detail_img("putter-detail", $data['6'], $data['4']);
 
-            copy("img/putter/" . $data['4'], $bigImg1Path . $data['4']);
-
-            //썸네일 자동생성
-            $smallImg1Path = "upload/p_image/" . $data['6'] . "/s/";
-
-            if (is_dir($smallImg1Path)) {
-                echo "<p>directory " . $smallImg1Path . " is already exists. </p>\n";
-            } else {
-                if (mkdir($smallImg1Path, 0755, true)) {
-                    echo "<p>directory " . $smallImg1Path . " is created successfully.</p>\n";
-                } else {
-                    echo "<p>directory " . $smallImg1Path . " is failed to create.</p>\n";
-                }
-            }
-            $simg1_chk     = "Y";
-            $smallImg1File = $saveDir . $data['6'] . "/s/" . $data['4'];
-            make_thumbnail($bigImg1Path . $data['4'], 100, 100, $smallImg1Path . $data['4']);
-            // 썸네일 생성 끝
-
-            // 3) 상세 이미지 복사
-            $detailImgFile = '<img src="../../upload/p_image/' . $data['6'] . "/d/" . $data['4'] . '">';
-            $detailImgFile = addslashes($detailImgFile);
-
-            $detailImgFilePath = "upload/p_image/" . $data['6'] . "/d/";
-            if (is_dir($detailImgFilePath)) {
-                echo "<p>directory " . $detailImgFilePath . " is already exists. </p>\n";
-            } else {
-                if (mkdir($detailImgFilePath, 0755, true)) {
-                    echo "<p>directory " . $detailImgFilePath . " is created successfully.</p>\n";
-                } else {
-                    echo "<p>directory " . $detailImgFilePath . " is failed to create.</p>\n";
-                }
-            }
-            copy("img/putter-detail/" . $data['4'], $detailImgFilePath . $data['4']);
         } else {
             $bigImg1File   = 'http://placehold.it/500x500';
             $smallImg1File = 'http://placehold.it/100x100';
@@ -194,51 +196,12 @@ while ($data = fgetcsv($fp)) {
             $bImg1_chk   = "Y";
             $bigImg1File = $saveDir . $data['6'] . "/b/" . $data['4'];
 
-            // 1) 생성할 디렉토리명은 모델번호로 지정
-            $bigImg1Path = "upload/p_image/" . $data['6'] . "/b/";
-            if (is_dir($bigImg1Path)) {
-                echo "<p>directory " . $bigImg1Path . " is already exists.</p>\n";
-            } else {
-                if (mkdir($bigImg1Path, 0755, true)) {
-                    echo "<p>directory " . $bigImg1Path . " is created successfully. </p>\n";
-                } else {
-                    echo "<p>directory " . $bigImg1Path . " is failed to create.</p>\n";
-                }
-            }
+            copy_big_img("tools", $data['6'], $data['4']);
+            $result        = make_small_img($data['6'], $data['4']);
+            $simg1_chk     = $result[0];
+            $smallImg1File = $result[1];
+            $detailImgFile = copy_detail_img("tools-detail", $data['6'], $data['4']);
 
-            copy("img/tools/" . $data['4'], $bigImg1Path . $data['4']);
-
-            // 2) 썸네일 자동생성
-            $smallImg1Path = "upload/p_image/" . $data['6'] . "/s/";
-
-            if (is_dir($smallImg1Path)) {
-                echo "<p>directory " . $smallImg1Path . " is already exists. </p>\n";
-            } else {
-                if (mkdir($smallImg1Path, 0755, true)) {
-                    echo "<p>directory " . $smallImg1Path . " is created successfully.</p>\n";
-                } else {
-                    echo "<p>directory " . $smallImg1Path . " is failed to create.</p>\n";
-                }
-            }
-            $simg1_chk     = "Y";
-            $smallImg1File = $saveDir . $data['6'] . "/s/" . $data['4'];
-            make_thumbnail($bigImg1Path . $data['4'], 100, 100, $smallImg1Path . $data['4']);
-
-            // 3) 상세 이미지 복사
-            $detailImgFile = '<img src="../../upload/p_image/' . $data['6'] . "/d/" . $data['4'] . '">';
-            $detailImgFile = addslashes($detailImgFile);
-
-            $detailImgFilePath = "upload/p_image/" . $data['6'] . "/d/";
-            if (is_dir($detailImgFilePath)) {
-                echo "<p>directory " . $detailImgFilePath . " is already exists. </p>\n";
-            } else {
-                if (mkdir($detailImgFilePath, 0755, true)) {
-                    echo "<p>directory " . $detailImgFilePath . " is created successfully.</p>\n";
-                } else {
-                    echo "<p>directory " . $detailImgFilePath . " is failed to create.</p>\n";
-                }
-            }
-            copy("img/tools-detail/" . $data['4'], $detailImgFilePath . $data['4']);
         } else {
             $bigImg1File   = 'http://placehold.it/500x500';
             $smallImg1File = 'http://placehold.it/100x100';
@@ -253,51 +216,12 @@ while ($data = fgetcsv($fp)) {
             $bImg1_chk   = "Y";
             $bigImg1File = $saveDir . $data['6'] . "/b/" . $data['4'];
 
-            // 1) 생성할 디렉토리명은 모델번호로 지정
-            $bigImg1Path = "upload/p_image/" . $data['6'] . "/b/";
-            if (is_dir($bigImg1Path)) {
-                echo "<p>directory " . $bigImg1Path . " is already exists.</p>\n";
-            } else {
-                if (mkdir($bigImg1Path, 0755, true)) {
-                    echo "<p>directory " . $bigImg1Path . " is created successfully. </p>\n";
-                } else {
-                    echo "<p>directory " . $bigImg1Path . " is failed to create.</p>\n";
-                }
-            }
+            copy_big_img("furrule", $data['6'], $data['4']);
+            $result        = make_small_img($data['6'], $data['4']);
+            $simg1_chk     = $result[0];
+            $smallImg1File = $result[1];
+            $detailImgFile = copy_detail_img("furrule-detail", $data['6'], $data['4']);
 
-            copy("img/ferrule/" . $data['4'], $bigImg1Path . $data['4']);
-
-            // 2) 썸네일 자동생성
-            $smallImg1Path = "upload/p_image/" . $data['6'] . "/s/";
-
-            if (is_dir($smallImg1Path)) {
-                echo "<p>directory " . $smallImg1Path . " is already exists. </p>\n";
-            } else {
-                if (mkdir($smallImg1Path, 0755, true)) {
-                    echo "<p>directory " . $smallImg1Path . " is created successfully.</p>\n";
-                } else {
-                    echo "<p>directory " . $smallImg1Path . " is failed to create.</p>\n";
-                }
-            }
-            $simg1_chk     = "Y";
-            $smallImg1File = $saveDir . $data['6'] . "/s/" . $data['4'];
-            make_thumbnail($bigImg1Path . $data['4'], 100, 100, $smallImg1Path . $data['4']);
-
-            // 3) 상세 이미지 복사
-            $detailImgFile = '<img src="../../upload/p_image/' . $data['6'] . "/d/" . $data['4'] . '">';
-            $detailImgFile = addslashes($detailImgFile);
-
-            $detailImgFilePath = "upload/p_image/" . $data['6'] . "/d/";
-            if (is_dir($detailImgFilePath)) {
-                echo "<p>directory " . $detailImgFilePath . " is already exists. </p>\n";
-            } else {
-                if (mkdir($detailImgFilePath, 0755, true)) {
-                    echo "<p>directory " . $detailImgFilePath . " is created successfully.</p>\n";
-                } else {
-                    echo "<p>directory " . $detailImgFilePath . " is failed to create.</p>\n";
-                }
-            }
-            copy("img/ferrule-detail/" . $data['4'], $detailImgFilePath . $data['4']);
         } else {
             $bigImg1File   = 'http://placehold.it/500x500';
             $smallImg1File = 'http://placehold.it/100x100';
@@ -312,51 +236,12 @@ while ($data = fgetcsv($fp)) {
             $bImg1_chk   = "Y";
             $bigImg1File = $saveDir . $data['6'] . "/b/" . $data['4'];
 
-            // 1) 생성할 디렉토리명은 모델번호로 지정
-            $bigImg1Path = "upload/p_image/" . $data['6'] . "/b/";
-            if (is_dir($bigImg1Path)) {
-                echo "<p>directory " . $bigImg1Path . " is already exists.</p>\n";
-            } else {
-                if (mkdir($bigImg1Path, 0755, true)) {
-                    echo "<p>directory " . $bigImg1Path . " is created successfully. </p>\n";
-                } else {
-                    echo "<p>directory " . $bigImg1Path . " is failed to create.</p>\n";
-                }
-            }
+            copy_big_img("shaft", $data['6'], $data['4']);
+            $result        = make_small_img($data['6'], $data['4']);
+            $simg1_chk     = $result[0];
+            $smallImg1File = $result[1];
+            $detailImgFile = copy_detail_img("shaft-detail", $data['6'], $data['4']);
 
-            copy("img/shaft/" . $data['4'], $bigImg1Path . $data['4']);
-
-            // 2) 썸네일 자동생성
-            $smallImg1Path = "upload/p_image/" . $data['6'] . "/s/";
-
-            if (is_dir($smallImg1Path)) {
-                echo "<p>directory " . $smallImg1Path . " is already exists. </p>\n";
-            } else {
-                if (mkdir($smallImg1Path, 0755, true)) {
-                    echo "<p>directory " . $smallImg1Path . " is created successfully.</p>\n";
-                } else {
-                    echo "<p>directory " . $smallImg1Path . " is failed to create.</p>\n";
-                }
-            }
-            $simg1_chk     = "Y";
-            $smallImg1File = $saveDir . $data['6'] . "/s/" . $data['4'];
-            make_thumbnail($bigImg1Path . $data['4'], 100, 100, $smallImg1Path . $data['4']);
-
-            // 3) 상세 이미지 복사
-            $detailImgFile = '<img src="../../upload/p_image/' . $data['6'] . "/d/" . $data['4'] . '">';
-            $detailImgFile = addslashes($detailImgFile);
-
-            $detailImgFilePath = "upload/p_image/" . $data['6'] . "/d/";
-            if (is_dir($detailImgFilePath)) {
-                echo "<p>directory " . $detailImgFilePath . " is already exists. </p>\n";
-            } else {
-                if (mkdir($detailImgFilePath, 0755, true)) {
-                    echo "<p>directory " . $detailImgFilePath . " is created successfully.</p>\n";
-                } else {
-                    echo "<p>directory " . $detailImgFilePath . " is failed to create.</p>\n";
-                }
-            }
-            copy("img/shaft-detail/" . $data['4'], $detailImgFilePath . $data['4']);
         } else {
             $bigImg1File   = 'http://placehold.it/500x500';
             $smallImg1File = 'http://placehold.it/100x100';
@@ -371,51 +256,12 @@ while ($data = fgetcsv($fp)) {
             $bImg1_chk   = "Y";
             $bigImg1File = $saveDir . $data['6'] . "/b/" . $data['4'];
 
-            // 1) 생성할 디렉토리명은 모델번호로 지정
-            $bigImg1Path = "upload/p_image/" . $data['6'] . "/b/";
-            if (is_dir($bigImg1Path)) {
-                echo "<p>directory " . $bigImg1Path . " is already exists.</p>\n";
-            } else {
-                if (mkdir($bigImg1Path, 0755, true)) {
-                    echo "<p>directory " . $bigImg1Path . " is created successfully. </p>\n";
-                } else {
-                    echo "<p>directory " . $bigImg1Path . " is failed to create.</p>\n";
-                }
-            }
+            copy_big_img("shaft", $data['6'], $data['4']);
+            $result        = make_small_img($data['6'], $data['4']);
+            $simg1_chk     = $result[0];
+            $smallImg1File = $result[1];
+            $detailImgFile = copy_detail_img("shaft-detail", $data['6'], $data['4']);
 
-            copy("img/shaft/" . $data['4'], $bigImg1Path . $data['4']);
-
-            // 2) 썸네일 자동생성
-            $smallImg1Path = "upload/p_image/" . $data['6'] . "/s/";
-
-            if (is_dir($smallImg1Path)) {
-                echo "<p>directory " . $smallImg1Path . " is already exists. </p>\n";
-            } else {
-                if (mkdir($smallImg1Path, 0755, true)) {
-                    echo "<p>directory " . $smallImg1Path . " is created successfully.</p>\n";
-                } else {
-                    echo "<p>directory " . $smallImg1Path . " is failed to create.</p>\n";
-                }
-            }
-            $simg1_chk     = "Y";
-            $smallImg1File = $saveDir . $data['6'] . "/s/" . $data['4'];
-            make_thumbnail($bigImg1Path . $data['4'], 100, 100, $smallImg1Path . $data['4']);
-
-            // 3) 상세 이미지 복사
-            $detailImgFile = '<img src="../../upload/p_image/' . $data['6'] . "/d/" . $data['4'] . '">';
-            $detailImgFile = addslashes($detailImgFile);
-
-            $detailImgFilePath = "upload/p_image/" . $data['6'] . "/d/";
-            if (is_dir($detailImgFilePath)) {
-                echo "<p>directory " . $detailImgFilePath . " is already exists. </p>\n";
-            } else {
-                if (mkdir($detailImgFilePath, 0755, true)) {
-                    echo "<p>directory " . $detailImgFilePath . " is created successfully.</p>\n";
-                } else {
-                    echo "<p>directory " . $detailImgFilePath . " is failed to create.</p>\n";
-                }
-            }
-            copy("img/shaft-detail/" . $data['4'], $detailImgFilePath . $data['4']);
         } else {
             $bigImg1File   = 'http://placehold.it/500x500';
             $smallImg1File = 'http://placehold.it/100x100';
@@ -430,51 +276,12 @@ while ($data = fgetcsv($fp)) {
             $bImg1_chk   = "Y";
             $bigImg1File = $saveDir . $data['6'] . "/b/" . $data['4'];
 
-            // 1) 생성할 디렉토리명은 모델번호로 지정
-            $bigImg1Path = "upload/p_image/" . $data['6'] . "/b/";
-            if (is_dir($bigImg1Path)) {
-                echo "<p>directory " . $bigImg1Path . " is already exists.</p>\n";
-            } else {
-                if (mkdir($bigImg1Path, 0755, true)) {
-                    echo "<p>directory " . $bigImg1Path . " is created successfully. </p>\n";
-                } else {
-                    echo "<p>directory " . $bigImg1Path . " is failed to create.</p>\n";
-                }
-            }
+            copy_big_img("shaft", $data['6'], $data['4']);
+            $result        = make_small_img($data['6'], $data['4']);
+            $simg1_chk     = $result[0];
+            $smallImg1File = $result[1];
+            $detailImgFile = copy_detail_img("shaft-detail", $data['6'], $data['4']);
 
-            copy("img/shaft/" . $data['4'], $bigImg1Path . $data['4']);
-
-            // 2) 썸네일 자동생성
-            $smallImg1Path = "upload/p_image/" . $data['6'] . "/s/";
-
-            if (is_dir($smallImg1Path)) {
-                echo "<p>directory " . $smallImg1Path . " is already exists. </p>\n";
-            } else {
-                if (mkdir($smallImg1Path, 0755, true)) {
-                    echo "<p>directory " . $smallImg1Path . " is created successfully.</p>\n";
-                } else {
-                    echo "<p>directory " . $smallImg1Path . " is failed to create.</p>\n";
-                }
-            }
-            $simg1_chk     = "Y";
-            $smallImg1File = $saveDir . $data['6'] . "/s/" . $data['4'];
-            make_thumbnail($bigImg1Path . $data['4'], 100, 100, $smallImg1Path . $data['4']);
-
-            // 3) 상세 이미지 복사
-            $detailImgFile = '<img src="../../upload/p_image/' . $data['6'] . "/d/" . $data['4'] . '">';
-            $detailImgFile = addslashes($detailImgFile);
-
-            $detailImgFilePath = "upload/p_image/" . $data['6'] . "/d/";
-            if (is_dir($detailImgFilePath)) {
-                echo "<p>directory " . $detailImgFilePath . " is already exists. </p>\n";
-            } else {
-                if (mkdir($detailImgFilePath, 0755, true)) {
-                    echo "<p>directory " . $detailImgFilePath . " is created successfully.</p>\n";
-                } else {
-                    echo "<p>directory " . $detailImgFilePath . " is failed to create.</p>\n";
-                }
-            }
-            copy("img/shaft-detail/" . $data['4'], $detailImgFilePath . $data['4']);
         } else {
             $bigImg1File   = 'http://placehold.it/500x500';
             $smallImg1File = 'http://placehold.it/100x100';
@@ -489,51 +296,12 @@ while ($data = fgetcsv($fp)) {
             $bImg1_chk   = "Y";
             $bigImg1File = $saveDir . $data['6'] . "/b/" . $data['4'];
 
-            // 1) 생성할 디렉토리명은 모델번호로 지정
-            $bigImg1Path = "upload/p_image/" . $data['6'] . "/b/";
-            if (is_dir($bigImg1Path)) {
-                echo "<p>directory " . $bigImg1Path . " is already exists.</p>\n";
-            } else {
-                if (mkdir($bigImg1Path, 0755, true)) {
-                    echo "<p>directory " . $bigImg1Path . " is created successfully. </p>\n";
-                } else {
-                    echo "<p>directory " . $bigImg1Path . " is failed to create.</p>\n";
-                }
-            }
+            copy_big_img("shaft", $data['6'], $data['4']);
+            $result        = make_small_img($data['6'], $data['4']);
+            $simg1_chk     = $result[0];
+            $smallImg1File = $result[1];
+            $detailImgFile = copy_detail_img("shaft-detail", $data['6'], $data['4']);
 
-            copy("img/shaft/" . $data['4'], $bigImg1Path . $data['4']);
-
-            // 2) 썸네일 자동생성
-            $smallImg1Path = "upload/p_image/" . $data['6'] . "/s/";
-
-            if (is_dir($smallImg1Path)) {
-                echo "<p>directory " . $smallImg1Path . " is already exists. </p>\n";
-            } else {
-                if (mkdir($smallImg1Path, 0755, true)) {
-                    echo "<p>directory " . $smallImg1Path . " is created successfully.</p>\n";
-                } else {
-                    echo "<p>directory " . $smallImg1Path . " is failed to create.</p>\n";
-                }
-            }
-            $simg1_chk     = "Y";
-            $smallImg1File = $saveDir . $data['6'] . "/s/" . $data['4'];
-            make_thumbnail($bigImg1Path . $data['4'], 100, 100, $smallImg1Path . $data['4']);
-
-            // 3) 상세 이미지 복사
-            $detailImgFile = '<img src="../../upload/p_image/' . $data['6'] . "/d/" . $data['4'] . '">';
-            $detailImgFile = addslashes($detailImgFile);
-
-            $detailImgFilePath = "upload/p_image/" . $data['6'] . "/d/";
-            if (is_dir($detailImgFilePath)) {
-                echo "<p>directory " . $detailImgFilePath . " is already exists. </p>\n";
-            } else {
-                if (mkdir($detailImgFilePath, 0755, true)) {
-                    echo "<p>directory " . $detailImgFilePath . " is created successfully.</p>\n";
-                } else {
-                    echo "<p>directory " . $detailImgFilePath . " is failed to create.</p>\n";
-                }
-            }
-            copy("img/shaft-detail/" . $data['4'], $detailImgFilePath . $data['4']);
         } else {
             $bigImg1File   = 'http://placehold.it/500x500';
             $smallImg1File = 'http://placehold.it/100x100';
@@ -544,6 +312,9 @@ while ($data = fgetcsv($fp)) {
         $bImg1_chk   = "N";
         $bigImg1File = "";
     }
+
+    $id       = "admin";
+    $importer = "신수상사";
 
     // 재고
     $stock   = "999";
