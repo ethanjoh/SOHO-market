@@ -3,6 +3,9 @@
 include_once "../include/admin_auth.php";
 include_once "../../util/util.php";
 
+$chk  = set_var($_GET['chk']);
+$code = set_var($_GET['code']);
+
 if ($chk == "Y") {
     $flag = "N";
 } else {
