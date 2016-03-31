@@ -503,6 +503,22 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "get-product.php",
+			"settings":
+			{
+				"buffer_size": 24677,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "admin/products/top_pro_list.php",
+			"settings":
+			{
+				"buffer_size": 15124,
+				"line_ending": "Windows"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -673,10 +689,14 @@
 	},
 	"expanded_folders":
 	[
-		"/C/wamp/www/shinsoo"
+		"/C/wamp/www/shinsoo",
+		"/C/wamp/www/shinsoo/admin",
+		"/C/wamp/www/shinsoo/upload"
 	],
 	"file_history":
 	[
+		"/C/wamp/www/shinsoo/admin/products/top_pro_list.php",
+		"/C/wamp/www/shinsoo/upload/tigerchoi.csv",
 		"/C/wamp/www/shinsoo/css/main.css",
 		"/C/wamp/www/shinsoo/js/main.js",
 		"/C/wamp/www/shinsoo/admin/main/main.php",
@@ -802,9 +822,7 @@
 		"/C/Users/Joh/OneDrive/git_project/linktrading-co-kr/shop/order_detail.php",
 		"/C/Users/Joh/OneDrive/git_project/linktrading-co-kr/pay/payres.php",
 		"/C/Users/Joh/OneDrive/git_project/linktrading-co-kr/pay/payreq.php",
-		"/C/Users/Joh/OneDrive/git_project/linktrading-co-kr/pay/note_url.php",
-		"/C/Users/Joh/Downloads/LGU+_XPay_Crossplatform/LGU+_XPay_Crossplatform_PHP/payres.php",
-		"/C/Users/Joh/OneDrive/git_project/linktrading-co-kr/util/config.php"
+		"/C/Users/Joh/OneDrive/git_project/linktrading-co-kr/pay/note_url.php"
 	],
 	"find":
 	{
@@ -985,8 +1003,75 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "get-product.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 24677,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4566,
+								4566
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": true,
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2633.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "admin/products/top_pro_list.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 15124,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3250,
+								3250
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": true,
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1663.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -1046,6 +1131,10 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"top_pr",
+				"admin\\products\\top_pro_list.php"
+			],
 			[
 				"main.",
 				"css\\main.css"
@@ -1552,10 +1641,6 @@
 			],
 			[
 				"admin.j",
-				"admin/js/admin.js"
-			],
-			[
-				"admin.",
 				"admin/js/admin.js"
 			]
 		],
