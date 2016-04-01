@@ -22,9 +22,10 @@
                 사용방법
               </header>
               <ul class="info-body">
-                <li><i class="fa fa-info-circle"></i> 상품을 등록할 카테고리를 먼저 선택하세요.</li>
+                <li><i class="fa fa-info-circle"></i> 상품 등록순으로 표시가 됩니다.</li>
                 <li><i class="fa fa-info-circle"></i> 유사상품을 반복해서 등록할 때는 [복사] 기능을 이용하세요.</li>
-                <li><i class="fa fa-info-circle"></i> 본 페이지에서는 관리자가 등록한 상품만 출력됩니다. 공급업체 등록상품은 [공급업체 관리] > [상품관리] 에서 확인하세요.</li>
+                <li><i class="fa fa-info-circle"></i> 상품명 옆의 <i class="fa fa-external-link"></i>를 클릭하시면 쇼핑몰에서 해당 상품을 보여줍니다.</li>
+                <li><i class="fa fa-info-circle"></i> 상품명을 클릭하시면 수정이 가능합니다.</li>
                 <li><i class="fa fa-info-circle"></i> 신상품/기획상품/인기상품은 메인화면에 표시 여부입니다.</li>
                 <li><i class="fa fa-info-circle"></i> <i class="fa fa-lock"></i> 표시는 숨김상품입니다.</li>
 
@@ -39,7 +40,7 @@
           <div class="col-sm-12">
             <section class="panel">
               <header class="panel-heading table-head">
-                  카테고리 리스트
+                  브랜드 리스트
                 </header>
                 <div class="panel-body">
                   <form name="category">
@@ -49,16 +50,16 @@
                         <tr>
                           <td>
                               <select class="form-control" name="lcode" onchange="show_msub();">
-                                <option>--- 카테고리 ---</option>
+                                <option>--- 브랜드 ---</option>
 <?php
 
+$mode    = set_var($_GET['mode']);
 $lcode   = set_var($_GET['lcode']);
 $mcode   = set_var($_GET['mcode']);
 $pmode   = set_var($_GET['pmode']);
-$mode    = set_var($_GET['mode']);
-$page    = set_var($_GET['page']);
 $key     = set_var($_GET['key']);
 $keyword = set_var($_GET['keyword']);
+$page    = set_var($_GET['page']);
 
 $query   = "SELECT * FROM products_category1 ORDER BY num ";
 $result2 = mysqli_query($connect, $query);
@@ -78,7 +79,7 @@ mysqli_free_result($result2);
                           </td>
                           <td>
                             <select class="form-control" name="mcode" onchange="show_ssub('<?php echo $lcode; ?>');">
-                              <option>--- 중분류 ---</option>
+                              <option>--- 하위 분류 ---</option>
 <?php
 
 if ($lcode) {
@@ -124,11 +125,11 @@ if ($mcode) {
     $qry_char .= " AND category_m ='$mcode' ";
 }
 
-if ("search" == $mode) {
+if ($mode == "search") {
     $qry_char .= " AND $key LIKE '%$keyword%' ";
 }
 
-if ("out" == $pmode) {
+if ($pmode == "out") {
     $qry_char .= "AND del_chk = 'O' ";
 } else if ($pmode == "cut") {
     $qry_char .= "AND del_chk = 'C' ";
@@ -190,7 +191,7 @@ if ($lcode) {
                   <thead>
                     <tr>
                       <th class="text-center">번호</th>
-                      <th class="text-center" colspan="2">제품명</th>
+                      <th class="text-center" colspan="2">상품명</th>
                       <th class="text-center">옵션</th>
                       <th class="text-center">소비자가</th>
                       <th class="text-center">공급가</th>
@@ -350,7 +351,7 @@ page_nav($totalpage, $cpage, $url);
         <!-- search start -->
         <div class="row text-center">
           <div class="col-sm-12">
-            <form class="form-inline" action="top_pro_list.php" name="search" method="post" >
+            <form class="form-inline" action="top_pro_list.php" name="search" method="get" >
               해당 카테고리 내 검색 :
               <select name="key" class="form-control">
                 <option value="name">상품명</option>

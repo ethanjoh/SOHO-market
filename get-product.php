@@ -119,7 +119,7 @@ if (isset($_GET)) {
 $csvFilePath = "upload/" . $filename . ".csv";
 
 // 테이블을 비우고 입력하고 싶을 때
-mysqli_query($connect, "TRUNCATE TABLE products");
+// mysqli_query($connect, "TRUNCATE TABLE products");
 
 $tempCSV = file_get_contents($csvFilePath);
 $tempCSV = mb_convert_encoding($tempCSV, 'UTF-8', 'EUC-KR');
@@ -130,7 +130,7 @@ rewind($fp);
 setlocale(LC_ALL, 'ko_KR.UTF-8');
 
 $line  = 1;
-$lcode = "11"; // 대카테고리
+$lcode = "12"; // 대카테고리
 
 while ($data = fgetcsv($fp)) {
 
