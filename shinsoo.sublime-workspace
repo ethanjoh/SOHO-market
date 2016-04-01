@@ -519,6 +519,22 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "get-product.php",
+			"settings":
+			{
+				"buffer_size": 12311,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "admin/products/top_pro_list.php",
+			"settings":
+			{
+				"buffer_size": 14494,
+				"line_ending": "Windows"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -697,6 +713,10 @@
 	],
 	"file_history":
 	[
+		"/C/wamp/www/shinsoo/util/shop-functions.php",
+		"/C/wamp/www/shinsoo/shop/catalog-list.php",
+		"/C/wamp/www/shinsoo/admin/products/pro_opt.php",
+		"/C/wamp/www/shinsoo/admin/products/top_pro_list.php",
 		"/C/wamp/www/shinsoo/shinsoo.sublime-project",
 		"/C/wamp/www/shinsoo/shinsoo.sublime-workspace",
 		"/C/wamp/www/cocorobot/web/launch/css/custom.css",
@@ -725,7 +745,6 @@
 		"/C/Users/Seonghyeon/Google 드라이브/git_project/cocokorea/.git/config",
 		"/C/Users/Seonghyeon/OneDrive/git_project/prixe/shop/order_info.php",
 		"/C/wamp/www/shinsoo/shop/order-list.php",
-		"/C/wamp/www/shinsoo/util/shop-functions.php",
 		"/C/wamp/www/shinsoo/admin/order/p_or_view.php",
 		"/C/wamp/www/shinsoo/shop/cart.php",
 		"/C/wamp/www/shinsoo/admin/order/p_top_order_list.php",
@@ -745,12 +764,10 @@
 		"/C/wamp/www/shinsoo/pay/save_pginfo_to_db.php",
 		"/C/wamp/www/shinsoo/pay/save_wireinfo_to_db.php",
 		"/C/wamp/www/shinsoo/admin/products/pro_delete.php",
-		"/C/wamp/www/shinsoo/admin/products/top_pro_list.php",
 		"/C/wamp/www/shinsoo/upload/upload.php",
 		"/C/Users/Seonghyeon/Downloads/PHP  예제 소스/htdocs/php-recipe/04/02/delete_directory.php",
 		"/C/wamp/www/shinsoo/admin/products/del.php",
 		"/C/Users/Seonghyeon/OneDrive/git_project/smedics/admin/products/pro_register_ok.php",
-		"/C/wamp/www/shinsoo/admin/products/pro_opt.php",
 		"/C/wamp/www/shinsoo/upload/ferrule_sp.csv",
 		"/C/wamp/www/shinsoo/upload/ferrule_iron.csv",
 		"/C/wamp/www/shinsoo/upload/ferrule_wood.csv",
@@ -759,7 +776,6 @@
 		"/C/wamp/www/shinsoo/admin/category/ca_msub_list.php",
 		"/C/wamp/www/shinsoo/admin/category/ca_msub_delete.php",
 		"/C/wamp/www/shinsoo/upload/shaft.csv",
-		"/C/wamp/www/shinsoo/shop/catalog-list.php",
 		"/C/wamp/www/shinsoo/admin/stats/tax_list.php",
 		"/C/wamp/www/shinsoo/admin/stats/hometax_excel.php",
 		"/C/wamp/www/shinsoo/admin/category/ca_register.php",
@@ -857,6 +873,14 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"ins",
+			"del",
+			"main_best",
+			"main_special",
+			"main_new",
+			"'&scode=' . $prow['category_s'] .",
+			" '&",
+			"'&scode=' . $prow['category_s'] .",
 			"current_time",
 			"days",
 			"css/",
@@ -976,15 +1000,7 @@
 			"프릭스",
 			"prixe",
 			" 개인정보",
-			"프릭스",
-			"S-medics solution",
-			"WHERE",
-			"AND user_flag = 'p'",
-			"WHERE",
-			"AND user_flag = 'c'",
-			"top_order_list",
-			"top_order",
-			"or_view.php"
+			"프릭스"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1005,8 +1021,195 @@
 	"groups":
 	[
 		{
+			"selected": 1,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "get-product.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 12311,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6939,
+								6939
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"auto_complete": false,
+							"bh_regions":
+							[
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": true,
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 6841.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "admin/products/top_pro_list.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 14494,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								939,
+								939
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"auto_complete": false,
+							"bh_regions":
+							[
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": true,
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 385.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -1067,6 +1270,22 @@
 		"selected_items":
 		[
 			[
+				"top_pr",
+				"admin\\products\\top_pro_list.php"
+			],
+			[
+				"get",
+				"get-product.php"
+			],
+			[
+				"cata",
+				"shop\\catalog-list.php"
+			],
+			[
+				"pro_opt",
+				"admin\\products\\pro_opt.php"
+			],
+			[
 				"scr",
 				"js\\scripts.js"
 			],
@@ -1089,10 +1308,6 @@
 			[
 				"main",
 				"js\\main.js"
-			],
-			[
-				"get",
-				"get-product.php"
 			],
 			[
 				"order",
@@ -1127,10 +1342,6 @@
 				"upload\\upload.php"
 			],
 			[
-				"top_pr",
-				"admin\\products\\top_pro_list.php"
-			],
-			[
 				"pro",
 				"admin\\products\\pro_delete.php"
 			],
@@ -1161,10 +1372,6 @@
 			[
 				"ca_msub",
 				"admin\\category\\ca_msub_list.php"
-			],
-			[
-				"cata",
-				"shop\\catalog-list.php"
 			],
 			[
 				"home",
@@ -1573,10 +1780,6 @@
 			[
 				"use",
 				"admin\\user.php"
-			],
-			[
-				"nav",
-				"admin\\include\\navigation.php"
 			]
 		],
 		"width": 0.0
