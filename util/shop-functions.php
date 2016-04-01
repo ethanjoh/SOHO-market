@@ -300,161 +300,6 @@ HEREDOC;
 }
 
 /**
- * [show_items_on_catalog 카탈로그 리스트에서 상품표시]
- * @param  [type] $result         [페이징 결과]
- * @param  [type] $tabid          [표시방법 탭]
- * @return [type] [description]
- */
-function show_items_on_catalog($result, $tabid)
-{
-    global $connect;
-    $saleNewTag  = '';
-    $calcPrice   = 0;
-    $sessionFlag = set_var($_SESSION['p_flag']);
-
-    if ($result) {
-
-        for ($i = 0; $rows = mysqli_fetch_array($result); $i++) {
-
-            if ($sessionFlag == "c") {
-                $calcPrice = $rows['retail_price'];
-            } elseif ($sessionFlag == "p") {
-                $calcPrice = $rows['shop_price'];
-            }
-
-            // $commaWholesalePrice = number_format($rows['retail_price']);
-            $itemName   = stripslashes($rows['name']);
-            $pnum       = $rows['num'];
-            $category_l = $rows['category_l'];
-            $category_m = $rows['category_m'];
-            $moq        = $rows['moq'];
-            $shortDesc  = $rows['short_desc'];
-            // $option       = $rows['opt'];
-            $sessionId           = set_var($_SESSION['p_id']);
-            $calcWholesalePrice  = calc_offer_price($calcPrice, $sessionId);
-            $commaWholesalePrice = number_format($calcWholesalePrice);
-            $price               = show_me_wholesale_price($pnum);
-
-            $option = show_option($pnum);
-
-            if ($rows['main_best'] == "Y") {
-                $saleNewTag = '<span class="best-text">Best</span>';
-            } elseif ($rows['main_new'] == "Y") {
-                $saleNewTag = '<span class="new-text">New</span>';
-            } elseif ($rows['main_special'] == "Y") {
-                $saleNewTag = '<span class="sale-text">Sale</span>';
-            }
-
-            if ($tabid == 'home') {
-                echo <<<HEREDOC
-
-                                <!-- single-product start -->
-                                <form name="form_{$pnum}" method="post" action="">
-                                <input type="hidden" name="pnum" id="pnum_{$pnum}" value="{$pnum}">
-                                <div class="col-md-3">
-                                    <div class="single-product">
-                                        {$saleNewTag}
-                                        <div class="product-img">
-                                            <a href="detail.php?pnum={$pnum}&lcode={$category_l}&mcode={$category_m}">
-                                                <img class="primary-image" src="{$rows['b_image1_name']}" alt="" />
-                                            </a>
-                                        </div>
-                                        <div class="product-content">
-                                            <div class="price-box">
-                                                {$price}
-                                            </div>
-                                            <h2 class="product-name"><a href="detail.php?pnum={$pnum}&lcode={$category_l}&mcode={$category_m}">{$itemName}</a></h2>
-                                            <span class="desc">{$option}</span>
-                                            <div class="product-icon">
-HEREDOC;
-
-                if ($sessionId) {
-                    echo <<<HEREDOC
-                                                <input type="text" name="products_count" id="products_count_{$pnum}" value="{$moq}" size="2">
-                                                <a href="#" id="{$pnum}" class="addCart_submit"><i class="fa fa-shopping-cart"></i></a>
-                                                <div id="loadplace{$pnum}"></div>
-                                                <input type="hidden" name="amount" id="amount_{$pnum}" value="{$calcWholesalePrice}">
-                                                <input type="hidden" name="from" id="from" value="list">
-HEREDOC;
-
-                } else {
-                    echo '                      <a href="/member/login.php"><i class="fa fa-shopping-cart"></i></a>';
-                }
-
-                echo <<<HEREDOC
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                </form>
-                                <!-- single-product end -->
-
-HEREDOC;
-            } elseif ($tabid == 'profile') {
-                $option = show_option($pnum);
-
-                echo <<<HEREDOC
-                                <!-- single-product start -->
-                                <form name="form_{$pnum}" method="post" action="">
-                                <input type="hidden" name="pnum" id="pnum_{$pnum}" value="{$pnum}">
-                                <div class="li-item">
-                                    <div class="col-md-4 col-sm-4">
-                                        <div class="single-product">
-                                            {$saleNewTag}
-                                            <div class="product-img">
-                                                <a href="detail.php?pnum={$pnum}&lcode={$category_l}&mcode={$category_m}">
-                                                    <img class="primary-image" src="{$rows['b_image1_name']}" alt="">
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-8 col-sm-8">
-                                        <div class="f-fix">
-                                            <h2 class="product-name">
-                                                <a href="detail.php?pnum={$pnum}&lcode={$category_l}&mcode={$category_m}">{$itemName}</a>
-                                            </h2>
-                                            <p class="desc">[모델:] {$shortDesc}<br>
-                                            <span class="spec">{$option}</span></p>
-                                            <div class="p-box">
-                                                {$price}
-                                            </div>
-                                            <div class="product-icon">
-HEREDOC;
-                if ($sessionId) {
-                    echo '                      <input type="text" name="products_count" id="products_count_' . $pnum . '" value="' . $moq . '" size="2">
-                                                <a href="#" id="' . $pnum . '" class="addCart_submit"><i class="fa fa-shopping-cart"></i></a>
-                                                <div id="loadplace' . $pnum . '"></div>
-                                                <input type="hidden" name="amount" id="amount_' . $pnum . '" value="' . $calcWholesalePrice . '">
-                                                <input type="hidden" name="from" id="from" value="list">';
-
-                } else {
-                    echo '                      <a href="/member/login.php"><i class="fa fa-shopping-cart"></i></a>';
-                }
-
-                echo <<<HEREDOC
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                </form>
-                                <hr>
-                                <!-- single-product end -->
-
-HEREDOC;
-            }
-
-        }
-        //end for
-        mysqli_free_result($result);
-
-    } else {
-        echo "<p>등록된 상품이 없습니다.</p><p>관리자 페이지 > 상품관리에서 상품을 등록해 주세요.</p>\n";
-    }
-
-}
-
-/**
  * [show_me_wholesale_price 웹페이지에 공급가 보여주기]
  * @param  [type] $session_id     [세션 아이디]
  * @param  [type] $pnum           [제품번호]
@@ -1563,6 +1408,163 @@ function get_list_page_result($mode, $lcode, $mcode, $key, $keyword, $scaleTimes
 
     // return array($numOfRows, $res);
     return $res;
+
+}
+
+/**
+ * [show_items_on_catalog 카탈로그 리스트에서 상품표시]
+ * @param  [type] $result         [페이징 결과]
+ * @param  [type] $tabid          [표시방법 탭]
+ * @return [type] [description]
+ */
+function show_items_on_catalog($result, $tabid)
+{
+    global $connect;
+
+    $calcPrice   = 0;
+    $sessionFlag = set_var($_SESSION['p_flag']);
+
+    if ($result) {
+
+        for ($i = 0; $rows = mysqli_fetch_array($result); $i++) {
+
+            $saleNewTag = '';
+
+            if ($sessionFlag == "c") {
+                $calcPrice = $rows['retail_price'];
+            } elseif ($sessionFlag == "p") {
+                $calcPrice = $rows['shop_price'];
+            }
+
+            // $commaWholesalePrice = number_format($rows['retail_price']);
+            $itemName   = stripslashes($rows['name']);
+            $pnum       = $rows['num'];
+            $category_l = $rows['category_l'];
+            $category_m = $rows['category_m'];
+            $moq        = $rows['moq'];
+            $shortDesc  = $rows['short_desc'];
+            // $option       = $rows['opt'];
+            $sessionId           = set_var($_SESSION['p_id']);
+            $calcWholesalePrice  = calc_offer_price($calcPrice, $sessionId);
+            $commaWholesalePrice = number_format($calcWholesalePrice);
+            $price               = show_me_wholesale_price($pnum);
+
+            $option = show_option($pnum);
+
+            if ($rows['main_best'] == "Y") {
+                $saleNewTag = '<span class="best-text">Best</span>';
+            } elseif ($rows['main_new'] == "Y") {
+                $saleNewTag = '<span class="new-text">New</span>';
+            } elseif ($rows['main_special'] == "Y") {
+                $saleNewTag = '<span class="sale-text">Sale</span>';
+            }
+
+            if ($tabid == 'home') {
+                echo <<<HEREDOC
+
+                                <!-- single-product start -->
+                                <form name="form_{$pnum}" method="post" action="">
+                                <input type="hidden" name="pnum" id="pnum_{$pnum}" value="{$pnum}">
+                                <div class="col-md-3">
+                                    <div class="single-product">
+                                        {$saleNewTag}
+                                        <div class="product-img">
+                                            <a href="detail.php?pnum={$pnum}&lcode={$category_l}&mcode={$category_m}">
+                                                <img class="primary-image" src="{$rows['b_image1_name']}" alt="" />
+                                            </a>
+                                        </div>
+                                        <div class="product-content">
+                                            <div class="price-box">
+                                                {$price}
+                                            </div>
+                                            <h2 class="product-name"><a href="detail.php?pnum={$pnum}&lcode={$category_l}&mcode={$category_m}">{$itemName}</a></h2>
+                                            <span class="desc">{$option}</span>
+                                            <div class="product-icon">
+HEREDOC;
+
+                if ($sessionId) {
+                    echo <<<HEREDOC
+                                                <input type="text" name="products_count" id="products_count_{$pnum}" value="{$moq}" size="2">
+                                                <a href="#" id="{$pnum}" class="addCart_submit"><i class="fa fa-shopping-cart"></i></a>
+                                                <div id="loadplace{$pnum}"></div>
+                                                <input type="hidden" name="amount" id="amount_{$pnum}" value="{$calcWholesalePrice}">
+                                                <input type="hidden" name="from" id="from" value="list">
+HEREDOC;
+
+                } else {
+                    echo '                      <a href="/member/login.php"><i class="fa fa-shopping-cart"></i></a>';
+                }
+
+                echo <<<HEREDOC
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </form>
+                                <!-- single-product end -->
+
+HEREDOC;
+            } elseif ($tabid == 'profile') {
+                $option = show_option($pnum);
+
+                echo <<<HEREDOC
+                                <!-- single-product start -->
+                                <form name="form_{$pnum}" method="post" action="">
+                                <input type="hidden" name="pnum" id="pnum_{$pnum}" value="{$pnum}">
+                                <div class="li-item">
+                                    <div class="col-md-4 col-sm-4">
+                                        <div class="single-product">
+                                            {$saleNewTag}
+                                            <div class="product-img">
+                                                <a href="detail.php?pnum={$pnum}&lcode={$category_l}&mcode={$category_m}">
+                                                    <img class="primary-image" src="{$rows['b_image1_name']}" alt="">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8 col-sm-8">
+                                        <div class="f-fix">
+                                            <h2 class="product-name">
+                                                <a href="detail.php?pnum={$pnum}&lcode={$category_l}&mcode={$category_m}">{$itemName}</a>
+                                            </h2>
+                                            <p class="desc">[모델:] {$shortDesc}<br>
+                                            <span class="spec">{$option}</span></p>
+                                            <div class="p-box">
+                                                {$price}
+                                            </div>
+                                            <div class="product-icon">
+HEREDOC;
+                if ($sessionId) {
+                    echo '                      <input type="text" name="products_count" id="products_count_' . $pnum . '" value="' . $moq . '" size="2">
+                                                <a href="#" id="' . $pnum . '" class="addCart_submit"><i class="fa fa-shopping-cart"></i></a>
+                                                <div id="loadplace' . $pnum . '"></div>
+                                                <input type="hidden" name="amount" id="amount_' . $pnum . '" value="' . $calcWholesalePrice . '">
+                                                <input type="hidden" name="from" id="from" value="list">';
+
+                } else {
+                    echo '                      <a href="/member/login.php"><i class="fa fa-shopping-cart"></i></a>';
+                }
+
+                echo <<<HEREDOC
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </form>
+                                <hr>
+                                <!-- single-product end -->
+
+HEREDOC;
+            }
+
+        }
+        //end for
+        mysqli_free_result($result);
+
+    } else {
+        echo "<p>등록된 상품이 없습니다.</p><p>관리자 페이지 > 상품관리에서 상품을 등록해 주세요.</p>\n";
+    }
 
 }
 
