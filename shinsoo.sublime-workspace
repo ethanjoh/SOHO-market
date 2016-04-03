@@ -4,116 +4,60 @@
 		"selected_items":
 		[
 			[
-				"paddin",
-				"padding-top"
+				"copy",
+				"copy_detail_img"
 			],
 			[
-				"current",
-				"current_time"
+				"p",
+				"python"
 			],
 			[
-				"s_",
-				"s_image1"
+				"restore",
+				"restore_category"
 			],
 			[
-				"count",
-				"count〔function〕"
+				"HEREDOC",
+				"hw_Free_Document"
 			],
 			[
-				"rever",
-				"reverse_strrchr"
+				"php",
+				"php"
 			],
 			[
-				"heade",
-				"header〔function〕"
+				"update",
+				"update_row"
 			],
 			[
-				"catego",
-				"category_name"
+				"tra",
+				"trade_code"
 			],
 			[
-				"ini",
-				"ini_password"
+				"category",
+				"category_m"
 			],
 			[
-				"user",
-				"user_email"
+				"de",
+				"detailImgFile"
 			],
 			[
-				"mysqli_num",
-				"mysqli_num_rows〔function〕"
+				"dat",
+				"dataType	(addcart.js)"
 			],
 			[
-				"lice",
-				"$license_no〔variable〕"
+				"PHP",
+				"PHP_EOL"
 			],
 			[
-				"licen",
-				"license_no"
+				"order",
+				"orderConfirm"
 			],
 			[
-				"company",
-				"company_name"
+				"shop",
+				"shopPrice"
 			],
 			[
 				"mar",
-				"margin-top"
-			],
-			[
-				"url",
-				"urlencode〔function〕"
-			],
-			[
-				"temp",
-				"tempUri2"
-			],
-			[
-				"ses",
-				"sessionFlag	(shop-functions.php)"
-			],
-			[
-				"_",
-				"_SESSION	(shop-functions.php)"
-			],
-			[
-				"sele",
-				"selectedDb"
-			],
-			[
-				"sel",
-				"selectedDb"
-			],
-			[
-				"session",
-				"sessionFlag"
-			],
-			[
-				"dc",
-				"dc_rate"
-			],
-			[
-				"getb",
-				"getElementById"
-			],
-			[
-				"license",
-				"license_no1	(mem_ins_ok.php)"
-			],
-			[
-				"bort",
-				"border-bottom"
-			],
-			[
-				"border-right",
-				"border-right-style"
-			],
-			[
-				"border-bot",
-				"border-bottom-style"
-			],
-			[
-				"border-top-",
-				"border-top-style"
+				"margin"
 			],
 			[
 				"glo",
@@ -194,6 +138,10 @@
 			[
 				"con",
 				"connection"
+			],
+			[
+				"user",
+				"username"
 			],
 			[
 				"admin",
@@ -514,25 +462,73 @@
 			[
 				"tota",
 				"totalSum"
+			],
+			[
+				"compa",
+				"company"
+			],
+			[
+				"al",
+				"vertical-align"
+			],
+			[
+				"in",
+				"inline-block"
+			],
+			[
+				"text",
+				"text-align"
+			],
+			[
+				"fon",
+				"font-size"
+			],
+			[
+				"wid",
+				"width"
+			],
+			[
+				"fo",
+				"font-size"
+			],
+			[
+				"print",
+				"print_r"
+			],
+			[
+				"hea",
+				"header"
+			],
+			[
+				"thumb",
+				"thumb_dir"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "get-product.php",
+			"file": "shop/index.php",
 			"settings":
 			{
-				"buffer_size": 12311,
+				"buffer_size": 1962,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "admin/products/top_pro_list.php",
+			"file": "util/shop-functions.php",
 			"settings":
 			{
-				"buffer_size": 14494,
+				"buffer_size": 96516,
 				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/Joh/Google 드라이브/홈페이지 템플릿/신수상사 템플릿/hitstore/index.html",
+			"settings":
+			{
+				"buffer_size": 198332,
+				"line_ending": "Unix"
 			}
 		}
 	],
@@ -543,44 +539,36 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 530.0,
-		"last_filter": "lint",
+		"height": 354.0,
+		"last_filter": "",
 		"selected_items":
 		[
 			[
-				"lint",
-				"SublimeLinter: Toggle Linter"
-			],
-			[
-				"remo",
-				"Package Control: Remove Package"
-			],
-			[
-				"instal",
-				"Package Control: Install Package"
-			],
-			[
-				"remove",
-				"Package Control: Remove Package"
-			],
-			[
-				"ins",
-				"Package Control: Install Package"
-			],
-			[
-				"sublimelinter",
+				"sublime",
 				"SublimeLinter: Choose Gutter Theme"
+			],
+			[
+				"linter",
+				"SublimeLinter: Toggle Linter"
 			],
 			[
 				"insta",
 				"Package Control: Install Package"
 			],
 			[
-				"re",
+				"rp",
 				"Package Control: Remove Package"
 			],
 			[
 				"pic",
+				"Package Control: Remove Repository"
+			],
+			[
+				"pr",
+				"Package Control: Remove Package"
+			],
+			[
+				"pi",
 				"Package Control: Install Package"
 			],
 			[
@@ -602,6 +590,10 @@
 			[
 				"package ",
 				"Package Control: Enable Package"
+			],
+			[
+				"remo",
+				"Package Control: Remove Repository"
 			],
 			[
 				"pci",
@@ -688,7 +680,7 @@
 				"Package Control: List Packages"
 			]
 		],
-		"width": 764.0
+		"width": 510.0
 	},
 	"console":
 	{
@@ -709,150 +701,152 @@
 	},
 	"expanded_folders":
 	[
-		"/C/wamp/www/shinsoo"
+		"/C/wamp/www/shinsoo",
+		"/C/wamp/www/shinsoo/admin",
+		"/C/wamp/www/shinsoo/upload"
 	],
 	"file_history":
 	[
-		"/C/wamp/www/shinsoo/util/shop-functions.php",
-		"/C/wamp/www/shinsoo/shop/catalog-list.php",
-		"/C/wamp/www/shinsoo/admin/products/pro_opt.php",
-		"/C/wamp/www/shinsoo/admin/products/top_pro_list.php",
-		"/C/wamp/www/shinsoo/shinsoo.sublime-project",
-		"/C/wamp/www/shinsoo/shinsoo.sublime-workspace",
-		"/C/wamp/www/cocorobot/web/launch/css/custom.css",
-		"/C/wamp/www/cocorobot/js/scripts.js",
-		"/C/wamp/www/cocorobot/css/custom.css",
-		"/C/Users/Seonghyeon/Google 드라이브/git_project/seminar/js/custom.js",
-		"/C/wamp/www/cocorobot/css/flipclock.css",
-		"/C/wamp/www/cocorobot/js/flipclock.min.js",
-		"/C/Users/Seonghyeon/Google 드라이브/git_project/seminar/welcome.php",
-		"/C/wamp/www/cocorobot/main/index.html",
-		"/C/wamp/www/cocorobot/.htaccess",
-		"/C/wamp/www/cocorobot/.gitignore",
-		"/C/wamp/www/cocorobot/index.html",
-		"/C/wamp/www/cocorobot/sftp-config.json",
-		"/C/wamp/www/cocorobot/index-default.html",
-		"/C/wamp/bin/apache/apache2.4.9/conf/httpd.conf",
-		"/C/wamp/bin/apache/apache2.4.9/conf/extra/httpd-vhosts.conf",
-		"/C/Users/Seonghyeon/Downloads/hosts",
+		"/C/wamp/www/shinsoo/css/style.css",
 		"/C/wamp/www/shinsoo/get-product.php",
-		"/C/Users/Seonghyeon/AppData/Roaming/Sublime Text 3/Packages/SublimeLinter/SublimeLinter.sublime-settings",
-		"/C/Users/Seonghyeon/AppData/Roaming/Sublime Text 3/Packages/User/SublimeLinter.sublime-settings",
+		"/C/wamp/www/shinsoo/admin/category/ca_hide.php",
+		"/C/wamp/www/shinsoo/admin/category/top_ca_list.php",
+		"/C/wamp/www/shinsoo/admin/products/top_pro_list.php",
+		"/C/wamp/bin/apache/apache2.4.9/conf/extra/httpd-vhosts.conf",
+		"/C/Users/Joh/Downloads/hosts",
+		"/C/wamp/www/shinsoo/upload/tigerchoi.csv",
 		"/C/wamp/www/shinsoo/css/main.css",
 		"/C/wamp/www/shinsoo/js/main.js",
-		"/C/Users/Seonghyeon/AppData/Roaming/Sublime Text 3/Packages/User/SublimeCodeIntel.sublime-settings",
 		"/C/wamp/www/shinsoo/admin/main/main.php",
-		"/C/Users/Seonghyeon/Google 드라이브/git_project/cocokorea/.git/config",
-		"/C/Users/Seonghyeon/OneDrive/git_project/prixe/shop/order_info.php",
-		"/C/wamp/www/shinsoo/shop/order-list.php",
-		"/C/wamp/www/shinsoo/admin/order/p_or_view.php",
-		"/C/wamp/www/shinsoo/shop/cart.php",
-		"/C/wamp/www/shinsoo/admin/order/p_top_order_list.php",
-		"/C/wamp/www/shinsoo/util/util.php",
-		"/C/wamp/www/shinsoo/upload/tools.csv",
-		"/C/wamp/www/shinsoo/admin/products/pro_register.php",
-		"/C/wamp/www/shinsoo/admin/products/pro_register_ok.php",
-		"/C/wamp/www/shinsoo/admin/js/admin.js",
-		"/C/Users/Seonghyeon/Downloads/PHP  예제 소스/htdocs/php-recipe/07/07/upload_multi_images.php",
-		"/C/wamp/www/shinsoo/pay/variables_from_payreq.php",
-		"/C/wamp/www/shinsoo/pay/cas_noteurl.php",
-		"/C/wamp/www/shinsoo/admin/products/delimg.php",
-		"/C/wamp/www/shinsoo/admin/products/test.php",
-		"/C/wamp/www/shinsoo/pay/returnurl.php",
-		"/C/wamp/www/shinsoo/pay/result_log.txt",
-		"/C/wamp/www/shinsoo/pay/payres.php",
-		"/C/wamp/www/shinsoo/pay/save_pginfo_to_db.php",
-		"/C/wamp/www/shinsoo/pay/save_wireinfo_to_db.php",
-		"/C/wamp/www/shinsoo/admin/products/pro_delete.php",
-		"/C/wamp/www/shinsoo/upload/upload.php",
-		"/C/Users/Seonghyeon/Downloads/PHP  예제 소스/htdocs/php-recipe/04/02/delete_directory.php",
-		"/C/wamp/www/shinsoo/admin/products/del.php",
-		"/C/Users/Seonghyeon/OneDrive/git_project/smedics/admin/products/pro_register_ok.php",
-		"/C/wamp/www/shinsoo/upload/ferrule_sp.csv",
-		"/C/wamp/www/shinsoo/upload/ferrule_iron.csv",
-		"/C/wamp/www/shinsoo/upload/ferrule_wood.csv",
-		"/C/wamp/www/shinsoo/shop/detail.php",
-		"/C/wamp/www/shinsoo/upload/junior.csv",
-		"/C/wamp/www/shinsoo/admin/category/ca_msub_list.php",
-		"/C/wamp/www/shinsoo/admin/category/ca_msub_delete.php",
-		"/C/wamp/www/shinsoo/upload/shaft.csv",
-		"/C/wamp/www/shinsoo/admin/stats/tax_list.php",
-		"/C/wamp/www/shinsoo/admin/stats/hometax_excel.php",
-		"/C/wamp/www/shinsoo/admin/category/ca_register.php",
-		"/C/wamp/www/shinsoo/admin/category/ca_msub_register.php",
-		"/C/wamp/www/shinsoo/admin/order/insert_waybill.php",
-		"/C/wamp/www/shinsoo/admin/order/or_changed.php",
-		"/C/wamp/www/shinsoo/admin/order/or_view.php",
-		"/C/wamp/www/shinsoo/admin/include/admin_sidebar.php",
-		"/C/Users/Seonghyeon/AppData/Roaming/Sublime Text 3/Packages/User/phpfmt.sublime-settings",
-		"/C/wamp/www/shinsoo/admin/order/upload_waybill_process.php",
-		"/C/wamp/www/shinsoo/admin/order/upload_waybill.php",
-		"/C/wamp/www/shinsoo/admin/order/print_waybill.php",
-		"/C/wamp/www/shinsoo/js/showChart.js",
-		"/C/wamp/www/shinsoo/js/shopping.js",
-		"/C/wamp/www/shinsoo/js/member.js",
-		"/C/wamp/www/shinsoo/js/highcharts.js",
+		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/SublimeLinter/SublimeLinter.sublime-settings",
+		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/User/SublimeLinter.sublime-settings",
 		"/C/wamp/www/shinsoo/js/addcart.js",
-		"/C/wamp/www/shinsoo/admin/member/p_mem_view_member.php",
-		"/C/wamp/www/shinsoo/admin/setting/admin_setup.php",
-		"/C/wamp/www/shinsoo/admin/member/mem_view_member.php",
-		"/C/wamp/www/shinsoo/css/style.css",
-		"/C/wamp/www/shinsoo/include/header.php",
-		"/C/wamp/www/shinsoo/member/p-find-pass-ok.php",
-		"/C/wamp/www/shinsoo/member/p-find-id-ok.php",
-		"/C/wamp/www/shinsoo/member/p-change-passwd-ok.php",
-		"/C/wamp/www/shinsoo/member/p-register-form.php",
-		"/C/wamp/www/shinsoo/member/p-register-ok.php",
-		"/C/wamp/www/shinsoo/member/register-ok.php",
-		"/C/wamp/www/shinsoo/member/p-find-id.php",
-		"/C/wamp/www/shinsoo/member/login.php",
-		"/C/wamp/www/shinsoo/member/find-id.php",
-		"/C/Users/Seonghyeon/OneDrive/git_project/seminar/admin/add-user.php",
-		"/C/wamp/www/shinsoo/member/find-id-ok.php",
-		"/C/Users/Seonghyeon/OneDrive/git_project/smedics/js/member.js",
-		"/C/wamp/www/shinsoo/member/find-pass-ok.php",
-		"/C/wamp/www/shinsoo/member/find-pass.php",
-		"/C/wamp/www/shinsoo/admin/member/mem_sendmail_ok.php",
+		"/C/wamp/www/shinsoo/admin/js/admin.js",
+		"/C/wamp/www/shinsoo/util/util.php",
+		"/C/wamp/www/shinsoo/admin/products/pro_register_ok.php",
+		"/C/wamp/www/shinsoo/admin/products/pro_register.php",
+		"/C/wamp/bin/mysql/mysql5.6.17/data/asus-slow.log",
+		"/C/wamp/www/shinsoo/admin/products/pro_delete.php",
 		"/C/wamp/www/shinsoo/member/register.php",
-		"/C/wamp/www/shinsoo/css/myshop.css",
 		"/C/wamp/www/shinsoo/admin/order/top_order_list.php",
-		"/C/wamp/www/shinsoo/include/footer.php",
-		"/C/wamp/www/shinsoo/member/privacy-policy.php",
-		"/C/wamp/www/shinsoo/member/inc/contract1.html",
-		"/C/wamp/www/shinsoo/member/inc/privacy.html",
-		"/C/wamp/www/shinsoo/member/contract2.html",
-		"/C/wamp/www/shinsoo/member/contract1.html",
-		"/C/wamp/www/shinsoo/admin/member/mem_sendmail_form.php",
+		"/C/wamp/www/shinsoo/admin/order/p_top_order_list.php",
+		"/C/wamp/www/shinsoo/admin/member/top_member_list.php",
+		"/C/wamp/www/shinsoo/admin/member/p_top_member_list.php",
+		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/phpfmt/phpfmt.sublime-settings",
+		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/User/phpfmt.sublime-settings",
 		"/C/wamp/www/shinsoo/admin/js/showMainChart.js",
-		"/C/wamp/www/shinsoo/admin/main/mainChartProcess.php",
-		"/C/wamp/www/shinsoo/admin/main/mainChartProcess-p.php",
-		"/C/wamp/www/shinsoo/admin/order/or_delete.php",
-		"/C/wamp/www/shinsoo/shop/checkout.php",
-		"/C/wamp/www/shinsoo/shop/index.php",
-		"/C/wamp/www/shinsoo/pay/payreq_crossplatform.php",
-		"/C/wamp/www/shinsoo/member/login-ok.php",
-		"/C/wamp/www/shinsoo/member/p-login-ok.php",
+		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/HTML-CSS-JS Prettify/HTMLPrettify.sublime-settings",
+		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/jsfmt/jsfmt.sublime-settings",
+		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/Javascript Beautify/JavascriptBeautify.sublime-settings",
+		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/CSS Format/CSS Format.sublime-settings",
+		"/C/wamp/www/shinsoo/admin/include/admin_sidebar.php",
+		"/C/wamp/www/shinsoo/admin/member/mem_sendmail_ok.php",
+		"/C/wamp/www/seminar/admin/add-user.php",
+		"/C/wamp/www/shinsoo/admin/member/mem_view_member.php",
+		"/C/wamp/www/shinsoo/admin/member/p_mem_view_member.php",
+		"/C/wamp/www/shinsoo/admin/member/pmember_list.php",
+		"/C/wamp/www/shinsoo/admin/member/mem_view_pmember.php",
+		"/C/wamp/www/shinsoo/admin/member/mem_sending_mail.php",
+		"/C/wamp/www/shinsoo/admin/member/mem_sendmail_form.php",
+		"/C/Users/Joh/OneDrive/git_project/smedics/admin/member/mem_sendmail_ok.php",
+		"/C/wamp/www/shinsoo/admin/include/header.php",
 		"/C/wamp/www/shinsoo/shop/cart-update.php",
-		"/C/wamp/www/shinsoo/member/logout.php",
-		"/C/wamp/www/shinsoo/member/register-form.php",
-		"/C/wamp/www/shinsoo/member/checkAvail.php",
-		"/C/wamp/www/shinsoo/css/bootstrap.min.css",
-		"/C/wamp/www/shinsoo/admin/order/track_a.php",
-		"/C/wamp/www/shinsoo/admin/order/tracktoexcel_a.php",
-		"/C/wamp/www/shinsoo/admin/order/track_fromexcel.php",
-		"/C/wamp/www/shinsoo/admin/order/track_fromexcel_process.php"
+		"/C/wamp/www/shinsoo/admin/order/or_changed.php",
+		"/C/wamp/www/shinsoo/admin/order/p_or_view.php",
+		"/C/wamp/www/shinsoo/include/header.php",
+		"/C/wamp/www/shinsoo/member/p-login-ok.php",
+		"/C/wamp/www/shinsoo/member/login.php",
+		"/C/wamp/www/shinsoo/include/footer.php",
+		"/C/wamp/www/shinsoo/member/login-ok.php",
+		"/C/wamp/www/shinsoo/util/shop-functions.php",
+		"/C/wamp/www/shinsoo/css/bootstrap-dialog.min.css",
+		"/C/wamp/www/shinsoo/js/bootstrap-dialog.min.js",
+		"/C/wamp/www/shinsoo/css/bootstrap-dialog.css",
+		"/C/wamp/www/shinsoo/admin/css/print.css",
+		"/C/wamp/www/shinsoo/admin/css/screen.css",
+		"/C/wamp/www/shinsoo/admin/order/print_quot.php",
+		"/C/wamp/www/shinsoo/admin/products/pro_opt.php",
+		"/C/wamp/www/shinsoo/admin/check_login.php",
+		"/C/wamp/www/shinsoo/admin/index.php",
+		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/C/wamp/www/shinsoo/admin/setting/banner_setting.php",
+		"/C/wamp/www/shinsoo/.gitignore",
+		"/C/wamp/www/shinsoo/shop/catalog-list.php",
+		"/C/wamp/www/shinsoo/shop/order-stat-list.php",
+		"/C/wamp/www/shinsoo/shop/order-list.php",
+		"/C/wamp/www/shinsoo/css/myshop.css",
+		"/C/wamp/www/shinsoo/css/responsive.css",
+		"/C/wamp/www/shinsoo/admin/css/style.css",
+		"/C/wamp/www/shinsoo/shop/index.php",
+		"/C/wamp/www/shinsoo/shop/detail.php",
+		"/C/wamp/www/shinsoo/bbs/login_ok.php",
+		"/C/wamp/www/shinsoo/admin/order/sale_list.php",
+		"/C/wamp/www/shinsoo/admin/css/jquery-ui.css",
+		"/C/wamp/www/shinsoo/admin/include/admin_footer.php",
+		"/C/wamp/www/shinsoo/admin/js/datepicker.js",
+		"/C/wamp/www/shinsoo/css/jquery-ui.css",
+		"/C/wamp/www/shinsoo/admin/js/jq_datepicker.js",
+		"/C/wamp/www/shinsoo/css/nigran.datepicker.css",
+		"/C/Users/Joh/Downloads/source/index.html",
+		"/C/wamp/www/shinsoo/js/jq_datepicker.js",
+		"/C/wamp/www/shinsoo/css/jquery-bootstrap-datepicker.css",
+		"/C/wamp/www/shinsoo/css/vigo.datepicker.css",
+		"/C/Users/Joh/Downloads/jquery-ui-1.11.4.custom/jquery-ui.css",
+		"/C/Users/Joh/Downloads/jquery-ui-1.11.4.custom/index.html",
+		"/C/wamp/www/shinsoo/css/jquery-ui.min.css",
+		"/C/Users/Joh/Downloads/source/css/datepicker.css",
+		"/C/wamp/www/shinsoo/js/shopping.js",
+		"/C/wamp/www/shinsoo/util/config.ini",
+		"/C/wamp/www/shinsoo/sftp-config.json",
+		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/User/SFTP.errors.log",
+		"/C/wamp/www/shinsoo/admin/setting/banner_list.php",
+		"/C/wamp/www/shinsoo/admin/setting/main_banner_setting.php",
+		"/C/wamp/www/shinsoo/pay/cas_noteurl.php",
+		"/C/wamp/www/shinsoo/pay/save_wireinfo_to_db.php",
+		"/C/Users/Joh/Downloads/ssss01047271791.sql",
+		"/C/Users/Joh/OneDrive/git_project/linktrading-co-kr/shop/order_list.php",
+		"/C/wamp/www/shinsoo/pay/payreq_crossplatform.php",
+		"/C/wamp/www/shinsoo/shop/order-delete.php",
+		"/C/wamp/www/shinsoo/pay/Cancel.php",
+		"/C/wamp/www/shinsoo/pay/Cancel.html",
+		"/C/wamp/www/shinsoo/lgpay/conf/mall.conf",
+		"/C/wamp/www/shinsoo/pay/CashReceipt.php",
+		"/C/wamp/www/shinsoo/shop/checkout.php",
+		"/C/wamp/www/shinsoo/pay/payres.php",
+		"/C/wamp/www/shinsoo/lgpay/ping.php",
+		"/C/wamp/www/shinsoo/lgpay/patch.php",
+		"/C/wamp/www/shinsoo/lgpay/dir.php",
+		"/C/wamp/www/shinsoo/pay/returnurl.php",
+		"/C/wamp/www/shinsoo/lgpay/conf/lgdacom.conf",
+		"/C/Users/Joh/Downloads/my.ini",
+		"/C/Users/Joh/Downloads/LGU+_XPay_Crossplatform/LGU+_XPay_Crossplatform_PHP/cas_noteurl.php",
+		"/C/wamp/www/shinsoo/pay/i_log.txt",
+		"/C/wamp/www/shinsoo/pay/r_log.txt",
+		"/C/wamp/www/shinsoo/pay/result_log.txt",
+		"/C/Users/Joh/Downloads/Preferences.sublime-settings",
+		"/C/Users/Joh/Downloads/LGU+_XPay_Crossplatform/LGU+_XPay_Crossplatform_PHP/payreq_crossplatform.php",
+		"/C/Users/Joh/OneDrive/git_project/linktrading-co-kr/pay/cas_noteurl.php",
+		"/C/wamp/www/shinsoo/pay/variables_from_payreq.php",
+		"/C/wamp/www/shinsoo/lgpay/XPayClient.php",
+		"/C/wamp/www/shinsoo/pay/save_pginfo_to_db.php",
+		"/C/wamp/www/shinsoo/util/scm_auth.php",
+		"/C/wamp/www/shinsoo/shop/order-detail.php",
+		"/C/wamp/www/shinsoo/admin/order/or_view.php",
+		"/C/wamp/www/shinsoo/admin/css/admin_layout.css",
+		"/C/Users/Joh/OneDrive/git_project/linktrading-co-kr/shop/sub_list.php",
+		"/C/wamp/www/shinsoo/bbs/list.php"
 	],
 	"find":
 	{
-		"height": 42.0
+		"height": 70.0
 	},
 	"find_in_files":
 	{
 		"height": 203.0,
 		"where_history":
 		[
-			"C:\\wamp\\www\\shinsoo\\",
-			"C:\\wamp\\www\\shinsoo\\admin",
+			"C:\\wamp\\www\\shinsoo\\, *.php",
+			"C:\\wamp\\www\\shinsoo\\*.php",
 			"C:\\wamp\\www\\shinsoo",
 			"C:\\wamp\\www\\modoo",
 			"C:\\Users\\Seonghyeon\\OneDrive\\git_project\\makecard",
@@ -873,139 +867,139 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"ins",
-			"del",
-			"main_best",
-			"main_special",
-			"main_new",
-			"'&scode=' . $prow['category_s'] .",
-			" '&",
-			"'&scode=' . $prow['category_s'] .",
-			"current_time",
-			"days",
-			"css/",
-			"js/",
-			"content/",
-			"wepartners",
-			"munjadang",
-			"retail_price",
-			"row1",
-			"result1",
-			"query1",
-			"flag",
-			"b_image[]",
-			"\" . ",
-			"s_temp_str",
-			"bigFileName",
-			"smallFileName",
-			"small",
-			"_char",
-			"b_image",
-			"smallImg1Path",
-			"uploadfile",
-			"$_FILES['b_image1']['tmp_name']",
-			"bigImg1Path",
-			"bigImg1File",
-			"bigImg1Path",
-			"uploadfile",
-			"file_ext3",
-			"imgName",
-			"$_FILES[$b_image1]",
-			"\"\" . $b_image1 . \"\"",
-			"'\" . $b_image1 . \"'",
-			"\"\" . $b_image1 . \"\"",
-			"$b_image1",
-			"'' . $b_image1 . ''",
-			"s_image1_name",
-			"sImg1_chk",
-			"smallImg1File",
-			"retail_price",
-			"$data['6']",
-			"$trade_code",
-			"$id",
-			"$file1",
-			"$file8",
-			"$file1",
-			"simg5_chk",
-			"bimg5_chk",
-			"bimg4_chk",
-			"bimg3_chk",
-			"bimg2_chk",
-			"simg3_chk",
-			"simg2_chk",
-			"$simg_chk",
-			"retail_price",
-			"stock",
-			"$shop_price",
-			"file_ext3",
+			"img",
 			"simg1_chk",
-			"$imgName",
-			"'b_image1'",
-			"$b_image1",
-			"'b_image1'",
-			"b_image1",
-			"simg1_file",
-			"bimg1_chk",
-			"bimg1_file",
-			"$savedir",
-			"$line",
-			"brand",
-			"shortDesc",
-			"id",
+			"detailImgFile",
+			"saveDir",
+			"$data['4']",
+			"$data['6']",
+			"$data['4']",
+			"$data['6']",
+			"$data['4']",
+			"$data['6']",
+			"$data['4']",
+			"카테고리",
+			"munjadang",
+			"lcode",
+			"_GET",
+			"<?php echo ",
+			"update_row",
+			"show_option",
+			"trade_code",
+			"maxid",
+			"$file",
+			"file",
 			"$date1",
 			"$mode",
-			"lcode",
-			"$id",
-			"lcode",
-			"$oid",
-			"keyword",
-			"key_value",
-			"page",
 			"$key",
-			"$oid",
-			"$mode",
-			"p_sent",
-			"$uri",
-			"$today",
-			"key_value",
-			"$key_value",
+			"$pmode",
+			"$mode ",
+			"mode",
+			"$reUrl",
+			"$lcode",
 			"$date1",
 			"$page",
-			"hphone",
-			"md_hphone",
+			"$key",
+			"$pmode",
+			"$mode",
+			"$page",
+			"\" . $wholesalePrice . \"",
+			"removeComma",
+			"a",
 			"detailImgFile",
-			"result3",
-			"query3",
-			"sid",
-			"company_name",
-			"license_no",
-			"document.form2",
-			"pw_license_no",
-			"license",
-			"$check",
+			"bigImg1Path",
+			"\\",
+			"=\\\"",
+			"fax",
 			"md_email",
-			"lost",
-			"사업자등록",
-			"license",
-			"사업자등록",
-			"license",
-			"md_email",
+			"md_name",
+			"md_hphone",
 			"company_name",
-			"license",
-			"$md_email",
-			"license",
-			"license_no1",
-			"license",
-			"check",
-			"프릭스",
-			"prixe",
-			" 개인정보",
-			"프릭스"
+			"\\r\\n",
+			"pageItSelf",
+			"$_SERVER['PHP_SELF']",
+			"or_view.php",
+			"key_value",
+			"top_order_list",
+			"top_order",
+			";",
+			"$port",
+			"$port;?>",
+			"$port;",
+			"$port",
+			"$uploaddir",
+			"$shopPrice",
+			"$bigImgPath",
+			"$savedir",
+			"$smallImgPath",
+			"$file4",
+			"$simg_chk",
+			"$file1",
+			"$file4",
+			"$file3",
+			"$dir",
+			"$dir2",
+			"$dir",
+			"dir",
+			"simg4_file",
+			"simg4_chk",
+			"bimg4_chk",
+			"bimg4_file",
+			"b_image4",
+			"simg3_file",
+			"simg3_chk",
+			"bimg3_chk",
+			"bimg3_file",
+			"b_image3",
+			"simg2_chk",
+			"simg2_file",
+			"bimg2_chk",
+			"$bimg2_file",
+			"b_image2",
+			"$file2",
+			"$bimg1_file",
+			"$file3",
+			"file1",
+			"$simg_chk",
+			"$retail_price",
+			"include_once \"../../util/config.php\";",
+			"$bimg2_chk",
+			"$bimg1_chk",
+			"$retail_price",
+			"$short_desc",
+			"$prod_code",
+			"$company",
+			"best",
+			"new",
+			"best",
+			"$mode",
+			"= $mode",
+			" $mode",
+			" = $mode",
+			"$total",
+			"$cost",
+			"$ret",
+			"$return_price",
+			"$cat_name",
+			"$msub_total",
+			"$s_image",
+			"$b_image",
+			"$last_page_num",
+			"$totalpage",
+			"$unchked_order_total",
+			"$today_order_total",
+			"$readyToSend_order_total",
+			"$port",
+			"show_loginForm",
+			"show_me_price",
+			"$icon_tag",
+			"show_catalog_products",
+			"$flag"
 		],
 		"highlight": true,
 		"in_selection": false,
 		"preserve_case": false,
-		"regex": false,
+		"regex": true,
 		"replace_history":
 		[
 			"<!DOCTYPE html>",
@@ -1026,83 +1020,23 @@
 			[
 				{
 					"buffer": 0,
-					"file": "get-product.php",
+					"file": "shop/index.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 12311,
+						"buffer_size": 1962,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								6939,
-								6939
+								94,
+								94
 							]
 						],
 						"settings":
 						{
-							"BracketHighlighterBusy": false,
-							"auto_complete": false,
-							"bh_regions":
-							[
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content"
-							],
 							"incomplete_sync": null,
 							"remote_loading": false,
 							"synced": true,
@@ -1111,7 +1045,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 6841.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
@@ -1119,95 +1053,69 @@
 				},
 				{
 					"buffer": 1,
-					"file": "admin/products/top_pro_list.php",
+					"file": "util/shop-functions.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 14494,
+						"buffer_size": 96516,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								939,
-								939
+								91431,
+								91431
 							]
 						],
 						"settings":
 						{
-							"BracketHighlighterBusy": false,
-							"auto_complete": false,
-							"bh_regions":
-							[
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content"
-							],
 							"incomplete_sync": null,
 							"remote_loading": false,
 							"synced": true,
 							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 2,
+							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 385.0,
+						"translation.y": 55386.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/C/Users/Joh/Google 드라이브/홈페이지 템플릿/신수상사 템플릿/hitstore/index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 198332,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								46979,
+								46979
+							]
+						],
+						"settings":
+						{
+							"color_scheme": "Packages/User/Color Highlighter/themes/Material-Theme.tmTheme",
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 16965.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
 					"type": "text"
 				}
 			]
@@ -1215,7 +1123,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 42.0
+		"height": 70.0
 	},
 	"input":
 	{
@@ -1260,7 +1168,7 @@
 	"project": "shinsoo.sublime-project",
 	"replace":
 	{
-		"height": 80.0
+		"height": 54.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -1270,255 +1178,67 @@
 		"selected_items":
 		[
 			[
-				"top_pr",
-				"admin\\products\\top_pro_list.php"
-			],
-			[
-				"get",
-				"get-product.php"
-			],
-			[
-				"cata",
-				"shop\\catalog-list.php"
-			],
-			[
-				"pro_opt",
-				"admin\\products\\pro_opt.php"
-			],
-			[
-				"scr",
-				"js\\scripts.js"
-			],
-			[
-				"scip",
-				"js\\scripts.js"
-			],
-			[
-				"index",
-				"main\\index.html"
-			],
-			[
 				"inde",
-				"index.html"
-			],
-			[
-				"inter",
-				"index-interactive.html"
-			],
-			[
-				"main",
-				"js\\main.js"
-			],
-			[
-				"order",
-				"shop\\order-list.php"
-			],
-			[
-				"cart",
-				"shop\\cart.php"
-			],
-			[
-				"p_or",
-				"admin\\order\\p_or_view.php"
-			],
-			[
-				"p_top",
-				"admin\\order\\p_top_order_list.php"
-			],
-			[
-				"util",
-				"util\\util.php"
-			],
-			[
-				"admin",
-				"admin\\js\\admin.js"
-			],
-			[
-				"pro_re",
-				"admin\\products\\pro_register.php"
-			],
-			[
-				"uplo",
-				"upload\\upload.php"
-			],
-			[
-				"pro",
-				"admin\\products\\pro_delete.php"
-			],
-			[
-				"pro_de",
-				"admin\\products\\pro_delete.php"
-			],
-			[
-				"top_",
-				"admin\\products\\top_pro_list.php"
-			],
-			[
-				"pro_reg",
-				"admin\\products\\pro_register_ok.php"
-			],
-			[
-				"top_pro",
-				"admin\\products\\top_pro_list.php"
-			],
-			[
-				"pro_op",
-				"admin\\products\\pro_opt.php"
-			],
-			[
-				"detail",
-				"shop\\detail.php"
-			],
-			[
-				"ca_msub",
-				"admin\\category\\ca_msub_list.php"
-			],
-			[
-				"home",
-				"admin\\stats\\hometax_excel.php"
-			],
-			[
-				"tax",
-				"admin\\stats\\tax_list.php"
-			],
-			[
-				"ca_msu",
-				"admin\\category\\ca_msub_list.php"
-			],
-			[
-				"ca_me",
-				"admin\\category\\ca_msub_register.php"
-			],
-			[
-				"ca_re",
-				"admin\\category\\ca_register.php"
-			],
-			[
-				"or_view",
-				"admin\\order\\or_view.php"
-			],
-			[
-				"or_cha",
-				"admin\\order\\or_changed.php"
-			],
-			[
-				"inser",
-				"admin\\order\\insert_waybill.php"
-			],
-			[
-				"p_mem",
-				"admin\\member\\p_mem_view_member.php"
-			],
-			[
-				"mem_view",
-				"admin\\member\\mem_view_member.php"
-			],
-			[
-				"admin_se",
-				"admin\\setting\\admin_setup.php"
-			],
-			[
-				"style",
-				"css\\style.css"
-			],
-			[
-				"catalo",
-				"shop\\catalog-list.php"
-			],
-			[
-				"head",
-				"include\\header.php"
-			],
-			[
-				"p-find",
-				"member\\p-find-pass-ok.php"
-			],
-			[
-				"change-",
-				"member\\change-passwd-ok.php"
-			],
-			[
-				"regist",
-				"member\\register-ok.php"
-			],
-			[
-				"p-re",
-				"member\\p-register-ok.php"
-			],
-			[
-				"p-reg",
-				"member\\p-register-form.php"
-			],
-			[
-				"find",
-				"member\\find-id.php"
-			],
-			[
-				"p-",
-				"member\\p-find-id.php"
-			],
-			[
-				"login",
-				"member\\login.php"
-			],
-			[
-				"find-",
-				"member\\find-id.php"
-			],
-			[
-				"fin",
-				"member\\find-id-ok.php"
-			],
-			[
-				"register",
-				"member\\register-ok.php"
+				"shop\\index.php"
 			],
 			[
 				"sty",
 				"css\\style.css"
 			],
 			[
-				"my",
-				"css\\myshop.css"
+				"top_ca",
+				"admin\\category\\top_ca_list.php"
 			],
 			[
-				"re",
+				"ca_hi",
+				"admin\\category\\ca_hide.php"
+			],
+			[
+				"top_pr",
+				"admin\\products\\top_pro_list.php"
+			],
+			[
+				"main.",
+				"css\\main.css"
+			],
+			[
+				"main",
+				"css\\main.css"
+			],
+			[
+				"style",
+				"css\\style.css"
+			],
+			[
+				"adm",
+				"admin\\js\\admin.js"
+			],
+			[
+				"styl",
+				"css\\style.css"
+			],
+			[
+				"admin",
+				"admin\\js\\admin.js"
+			],
+			[
+				"pro_de",
+				"admin\\products\\pro_delete.php"
+			],
+			[
+				"pro_re",
+				"admin\\products\\pro_register_ok.php"
+			],
+			[
+				"pro_reg",
+				"admin\\products\\pro_register.php"
+			],
+			[
+				"regis",
 				"member\\register.php"
 			],
 			[
-				"p_",
-				"admin\\order\\p_top_order_list.php"
-			],
-			[
-				"top_order",
-				"admin\\order\\top_order_list.php"
-			],
-			[
-				"contr",
-				"member\\inc\\contract1.html"
-			],
-			[
-				"mysh",
-				"css\\myshop.css"
-			],
-			[
-				"reg",
-				"member\\register.php"
-			],
-			[
-				"pri",
-				"member\\privacy-policy.php"
-			],
-			[
-				"footer",
-				"include\\footer.php"
-			],
-			[
-				"mem_sne",
-				"admin\\member\\mem_sendmail_form.php"
-			],
-			[
-				"p_order",
+				"p_top_o",
 				"admin\\order\\p_top_order_list.php"
 			],
 			[
@@ -1526,144 +1246,152 @@
 				"admin\\order\\top_order_list.php"
 			],
 			[
-				"shoma",
+				"top_mem",
+				"admin\\member\\top_member_list.php"
+			],
+			[
+				"p_top_mem",
+				"admin\\member\\p_top_member_list.php"
+			],
+			[
+				"showma",
 				"admin\\js\\showMainChart.js"
 			],
 			[
-				"show",
-				"js\\showChart.js"
-			],
-			[
-				"or_",
-				"admin\\order\\or_view.php"
-			],
-			[
-				"or_dele",
-				"admin\\order\\or_delete.php"
-			],
-			[
-				"or",
-				"admin\\order\\or_changed.php"
-			],
-			[
-				"shop",
-				"util\\shop-functions.php"
-			],
-			[
-				"",
-				"admin\\order\\p_or_view.php"
-			],
-			[
-				"var",
-				"pay\\variables_from_payreq.php"
-			],
-			[
-				"p-lo",
-				"member\\p-login-ok.php"
-			],
-			[
-				"log",
-				"member\\login-ok.php"
-			],
-			[
-				"side",
+				"admin_si",
 				"admin\\include\\admin_sidebar.php"
 			],
 			[
-				"top_ord",
-				"admin\\order\\top_order_list.php"
+				"mem_sen",
+				"admin\\member\\mem_sendmail_ok.php"
 			],
 			[
-				"checo",
-				"shop\\checkout.php"
+				"mem_ve",
+				"admin\\member\\mem_view_member.php"
 			],
 			[
-				"pay",
-				"pay\\payreq_crossplatform.php"
+				"mem_view",
+				"admin\\member\\mem_view_member.php"
 			],
 			[
-				"add",
-				"js\\addcart.js"
+				"admin_s",
+				"admin\\include\\admin_sidebar.php"
 			],
 			[
-				"regis",
-				"member\\register-form.php"
+				"head",
+				"admin\\include\\header.php"
 			],
 			[
-				"he",
-				"include\\header.php"
-			],
-			[
-				"member",
-				"js\\member.js"
-			],
-			[
-				"boot",
-				"css\\bootstrap.min.css"
-			],
-			[
-				"che",
-				"member\\checkAvail.php"
-			],
-			[
-				"track_fro",
-				"admin\\order\\track_fromexcel_process.php"
-			],
-			[
-				"track_from",
-				"admin\\order\\track_fromexcel.php"
-			],
-			[
-				"track",
-				"admin\\order\\tracktoexcel_a.php"
-			],
-			[
-				"tra",
-				"admin\\order\\track_a.php"
-			],
-			[
-				"check",
-				"shop\\checkout.php"
-			],
-			[
-				"mem_de",
-				"admin\\member\\mem_delete_member.php"
-			],
-			[
-				"foo",
-				"admin\\include\\admin_footer.php"
-			],
-			[
-				"mem_ins",
-				"admin\\member\\mem_ins_member.php"
-			],
-			[
-				"print",
-				"admin\\order\\print_quot.php"
-			],
-			[
-				"qut",
-				"admin\\order\\quottoexcel.php"
-			],
-			[
-				"scre",
-				"admin\\css\\screen.css"
+				"mem_sned",
+				"admin\\member\\mem_sendmail_form.php"
 			],
 			[
 				"mem_send",
 				"admin\\member\\mem_sendmail_ok.php"
 			],
 			[
-				"mem_sen",
-				"admin\\member\\mem_sendmail_form.php"
+				"or",
+				"admin\\order\\or_changed.php"
+			],
+			[
+				"or_cha",
+				"admin\\order\\or_changed.php"
+			],
+			[
+				"p_or",
+				"admin\\order\\p_or_view.php"
+			],
+			[
+				"foo",
+				"include\\footer.php"
+			],
+			[
+				"login",
+				"member\\login.php"
+			],
+			[
+				"footer",
+				"include\\footer.php"
+			],
+			[
+				"p-lo",
+				"member\\p-login-ok.php"
+			],
+			[
+				"shop",
+				"util\\shop-functions.php"
+			],
+			[
+				"print",
+				"admin\\css\\print.css"
+			],
+			[
+				"scre",
+				"admin\\css\\screen.css"
+			],
+			[
+				"pro_op",
+				"admin\\products\\pro_opt.php"
+			],
+			[
+				"util",
+				"util\\util.php"
+			],
+			[
+				"in",
+				"admin\\index.php"
+			],
+			[
+				"pro",
+				"admin\\products\\pro_register_ok.php"
 			],
 			[
 				"banner",
 				"admin\\setting\\banner_setting.php"
 			],
 			[
-				"banne",
-				"admin\\setting\\banner_list.php"
+				"",
+				".gitignore"
+			],
+			[
+				"cata",
+				"shop\\catalog-list.php"
+			],
+			[
+				"order-st",
+				"shop\\order-stat-list.php"
+			],
+			[
+				"order",
+				"shop\\order-list.php"
+			],
+			[
+				"my",
+				"css\\myshop.css"
+			],
+			[
+				"res",
+				"css\\responsive.css"
+			],
+			[
+				"hea",
+				"include\\header.php"
+			],
+			[
+				"he",
+				"include\\header.php"
+			],
+			[
+				"admin_f",
+				"admin\\include\\admin_footer.php"
+			],
+			[
+				"sal",
+				"admin\\order\\sale_list.php"
+			],
+			[
+				"confi",
+				"util\\config.ini"
 			],
 			[
 				"con",
@@ -1672,6 +1400,10 @@
 			[
 				"foot",
 				"include\\footer.php"
+			],
+			[
+				"index",
+				"shop\\index.php"
 			],
 			[
 				"bann",
@@ -1686,28 +1418,56 @@
 				"pay\\cas_noteurl.php"
 			],
 			[
+				"top_",
+				"admin\\order\\top_order_list.php"
+			],
+			[
+				"catalo",
+				"shop\\catalog-list.php"
+			],
+			[
 				"orde",
 				"shop\\order-list.php"
+			],
+			[
+				"detail",
+				"shop\\detail.php"
 			],
 			[
 				"config",
 				"util\\config.php"
 			],
 			[
+				"mysh",
+				"css\\myshop.css"
+			],
+			[
 				"or_v",
 				"admin\\order\\or_view.php"
+			],
+			[
+				"top_ord",
+				"admin\\order\\top_order_list.php"
 			],
 			[
 				"ind",
 				"shop\\index.php"
 			],
 			[
+				"che",
+				"shop\\checkout.php"
+			],
+			[
 				"sav",
 				"pay\\save_pginfo_to_db.php"
 			],
 			[
-				"hea",
-				"include\\header.php"
+				"pay",
+				"pay\\payreq_crossplatform.php"
+			],
+			[
+				"cart",
+				"shop\\cart.php"
 			],
 			[
 				"chec",
@@ -1726,6 +1486,10 @@
 				"util\\shop-functions.php"
 			],
 			[
+				"add",
+				"admin\\add-user.php"
+			],
+			[
 				"wel",
 				"welcome.php"
 			],
@@ -1736,10 +1500,6 @@
 			[
 				"se",
 				"admin\\session-3-comment.php"
-			],
-			[
-				"in",
-				"index.php"
 			],
 			[
 				"sa",
@@ -1780,6 +1540,154 @@
 			[
 				"use",
 				"admin\\user.php"
+			],
+			[
+				"nav",
+				"admin\\include\\navigation.php"
+			],
+			[
+				"sem",
+				"admin\\seminar.php"
+			],
+			[
+				"sess",
+				"session-1.php"
+			],
+			[
+				"setting",
+				"admin\\setting.php"
+			],
+			[
+				"ses",
+				"session-1.php"
+			],
+			[
+				"log",
+				"logout.php"
+			],
+			[
+				"cus",
+				"js\\custom.js"
+			],
+			[
+				"crea",
+				"css\\creative.css"
+			],
+			[
+				"set",
+				"admin\\setting.php"
+			],
+			[
+				"lo",
+				"login.php"
+			],
+			[
+				"cea",
+				"css\\creative.css"
+			],
+			[
+				"cre",
+				"css\\creative.css"
+			],
+			[
+				"colo",
+				"assets\\css\\color.css"
+			],
+			[
+				"hover",
+				"assets\\css\\hover-dropdown-menu.css"
+			],
+			[
+				"join",
+				"joinus.php"
+			],
+			[
+				"int",
+				"intro.php"
+			],
+			[
+				"map",
+				"map.php"
+			],
+			[
+				"sale",
+				"admin/order/sale_test.php"
+			],
+			[
+				"produc",
+				"admin/member/product_list.php"
+			],
+			[
+				"track",
+				"admin/order/track_a_list.php"
+			],
+			[
+				"or_chan",
+				"admin/order/or_changed.php"
+			],
+			[
+				"admin_he",
+				"admin/include/admin_head.php"
+			],
+			[
+				"mem",
+				"admin/member/mem_sendmail_form.php"
+			],
+			[
+				"sh",
+				"admin/js/showMainChart.js"
+			],
+			[
+				"mainch",
+				"admin/mainChartProcess.php"
+			],
+			[
+				"mem_se",
+				"admin/member/mem_sendmail_form.php"
+			],
+			[
+				"list",
+				"bbs/list.php"
+			],
+			[
+				"re",
+				"member/register_form.php"
+			],
+			[
+				"post",
+				"bbs/post.php"
+			],
+			[
+				"read",
+				"bbs/read.php"
+			],
+			[
+				"dele",
+				"bbs/delete.php"
+			],
+			[
+				"send",
+				"admin/supplier/sendmail_form.php"
+			],
+			[
+				"or_view",
+				"admin/order/or_view.php"
+			],
+			[
+				"ordr",
+				"shop/order-detail.php"
+			],
+			[
+				"prod",
+				"admin/member/product_list_ok.php"
+			],
+			[
+				"top",
+				"admin/order/top_order_list.php"
+			],
+			[
+				"offer",
+				"admin/supplier/offer_list.php"
 			]
 		],
 		"width": 0.0
@@ -1814,7 +1722,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 399.0,
+	"side_bar_width": 193.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

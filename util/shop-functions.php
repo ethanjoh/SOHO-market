@@ -2307,7 +2307,7 @@ HEREDOC;
             $imagePath = 'm_banner' . $i . '_image';
             $isYes     = 'm_banner' . $i;
 
-            if ("Y" == $row[$isYes]) {
+            if ($row[$isYes] == "Y") {
                 echo <<<HEREDOC
                     <img src="{$row[$imagePath]}" alt="" title="#slider-direction-{$i}">
 
@@ -2321,7 +2321,7 @@ HEREDOC;
             $isYes = 'm_banner' . $j;
             $link  = 'mlink' . $j;
 
-            if ("Y" == $row[$isYes]) {
+            if ($row[$isYes] == "Y") {
                 echo <<<HEREDOC
 
                 <div id="slider-direction-{$j}" class="slider-direction">
