@@ -5,7 +5,7 @@
 	        // var opt = "#selected_opt_"+Id;
 	        var qty = $("#products_count_" + Id).val();
 
-	        if ('' == qty || 0 == qty) {
+	        if (qty == '' || qty == 0) {
 	            alert("주문수량을 1개 이상 넣어주세요.");
 	        } else {
 

@@ -1210,10 +1210,6 @@ select.select option {
     position: absolute;
 }
 
-.bit {
-    margin-top: 35px;
-}
-
 .bit span.new-text {
     left: 25px;
     top: 52%;
@@ -1240,15 +1236,36 @@ select.select option {
     position: absolute;
 }
 
-.bit {
-    margin-top: 35px;
-}
-
 .bit span.best-text {
     left: 25px;
     top: 52%;
 }
 
+.single-product span.cut-text,
+.bit span.cut-text {
+    background: #795548 none repeat scroll 0 0;
+    border-radius: 10%;
+    box-shadow: 0 3px 0 0 #4E382F;
+    color: #fff;
+    display: block;    /*font-family: Lato;*/
+    font-size: 16px;
+    font-weight: 700;
+    height: 36px;
+    left: 20px;
+    line-height: 36px;
+    position: absolute;
+    text-align: center;
+    text-transform: capitalize;
+    top: 10px;
+    width: 56px;
+    z-index: 1;
+    position: absolute;
+}
+
+.bit span.cut-text {
+    left: 25px;
+    top: 52%;
+}
 .bit .product-img {
     position: relative;
 }
