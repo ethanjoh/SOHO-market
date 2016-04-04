@@ -1400,7 +1400,7 @@ function get_list_page_result($mode, $lcode, $mcode, $key, $keyword, $scaleTimes
         $search_qry .= " AND (name LIKE '%" . $keyword . "%' OR prod_code LIKE '" . $keyword . "' OR company LIKE '%" . $keyword . "%') ";
         $qry = "SELECT * FROM products WHERE approved='Y' AND del_chk != 'Y' " . $search_qry . " ORDER BY name DESC LIMIT " . $scaleTimesPageNum . ", " . $numOfLastPage . "";
     } else {
-        $qry = "SELECT * FROM products WHERE category_l = '$lcode' AND del_chk='N'" . $added_qry . " AND approved = 'Y' ORDER BY name DESC LIMIT " . $scaleTimesPageNum . ", " . $numOfLastPage . "";
+        $qry = "SELECT * FROM products WHERE category_l = '$lcode' AND del_chk !='Y'" . $added_qry . " AND approved = 'Y' ORDER BY name DESC LIMIT " . $scaleTimesPageNum . ", " . $numOfLastPage . "";
     }
 
     $res       = mysqli_query($connect, $qry);
@@ -1457,6 +1457,8 @@ function show_items_on_catalog($result, $tabid)
                 $saleNewTag = '<span class="new-text">New</span>';
             } elseif ($rows['main_special'] == "Y") {
                 $saleNewTag = '<span class="sale-text">Sale</span>';
+            } elseif ($rows['del_chk'] == "C") {
+                $saleNewTag = '<span class="cut-text">단종</span>';
             }
 
             if ($tabid == 'home') {
@@ -1482,7 +1484,7 @@ function show_items_on_catalog($result, $tabid)
                                             <div class="product-icon">
 HEREDOC;
 
-                if ($sessionId) {
+                if ($sessionId && $rows['del_chk'] == "N") {
                     echo <<<HEREDOC
                                                 <input type="text" name="products_count" id="products_count_{$pnum}" value="{$moq}" size="2">
                                                 <a href="#" id="{$pnum}" class="addCart_submit"><i class="fa fa-shopping-cart"></i></a>
@@ -1491,12 +1493,15 @@ HEREDOC;
                                                 <input type="hidden" name="from" id="from" value="list">
 HEREDOC;
 
+                } elseif ($rows['del_chk'] == "C") {
+                    echo '<a href="#" onclick="alert(\'단종입니다.\')"><i class="fa fa-shopping-cart"></i></a>' . "\r\n";
+                } elseif ($rows['del_chk'] == "O") {
+                    echo '<a href="#" onclick="alert(\'품절입니다.\')"><i class="fa fa-shopping-cart"></i></a>' . "\r\n";
                 } else {
-                    echo '                      <a href="/member/login.php"><i class="fa fa-shopping-cart"></i></a>';
+                    echo '<a href="/member/login.php"><i class="fa fa-shopping-cart"></i></a>' . "\r\n";
                 }
 
                 echo <<<HEREDOC
-
                                             </div>
                                         </div>
                                     </div>
