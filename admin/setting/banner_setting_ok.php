@@ -11,7 +11,7 @@ $pos  = set_var($_POST['pos']);
 $dir           = "../../images/banner";
 const MAX_SIZE = 1024000; // 최대 파일 크기
 
-if ('insert' == $mode) {
+if ($mode == 'insert') {
 
     // 파일이 업로드 되어 있는지를 확인합니다.
     if (isset($_FILES['uploadfile'])) {
@@ -39,11 +39,12 @@ if ('insert' == $mode) {
 
                 // 업로드 한 임시파일을 지정한 장소로 이동합니다.
                 if (move_uploaded_file($tmp_name, $move_to)) {
-                    $file[$i]     = $move_to;
                     $mimg_chk[$i] = "Y";
+                    $file[$i]     = $move_to;
                     $mlink[$i]    = $link[$i];
                 } else {
                     $mimg_chk[$i] = "N";
+                    $mlink[$i]    = "";
                     // $error_msg[] = '이미지 업로드에 실패했습니다.';
                 }
             }
@@ -56,13 +57,15 @@ if ('insert' == $mode) {
             }
         }
 
-        $qry = "INSERT INTO banner(  pos, m_banner1,  m_banner1_image, m_link1,
+        $qry = "INSERT INTO banner(  pos,
+                                      m_banner1,  m_banner1_image, m_link1,
                                       m_banner2,  m_banner2_image, m_link2,
                                       m_banner3,  m_banner3_image, m_link3,
                                       m_banner4,  m_banner4_image, m_link4,
                                       m_banner5,  m_banner5_image, m_link5,
                                       created)
-              VALUES( '$pos', '$mimg_chk[0]', '$file[0]', '$mlink[0]',
+              VALUES( '$pos',
+                      '$mimg_chk[0]', '$file[0]', '$mlink[0]',
                       '$mimg_chk[1]', '$file[1]', '$mlink[1]',
                       '$mimg_chk[2]', '$file[2]', '$mlink[2]',
                       '$mimg_chk[3]', '$file[3]', '$mlink[3]',
