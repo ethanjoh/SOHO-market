@@ -23,6 +23,8 @@
                     </header>
                     <ul class="info-body">
                         <li><i class="fa fa-info-circle"></i> 각 배너별로 최근에 등록한 배너가 쇼핑몰에 표시됩니다.</li>
+                        <li><i class="fa fa-info-circle"></i> 각 배너 사이즈 및 갯수를 확인하세요.</li>
+
                     </ul>
                 </section>
             </div>
@@ -34,7 +36,7 @@
           <div class="col-sm-6">
             <section class="panel">
               <header class="panel-heading table-head">
-                  <h4>메인 배너 관리</h4>
+                  <h4>메인 배너 등록 (1920 x 650px) * MAX 5</h4>
                 </header>
                 <div class="panel-body">
                   <div class="table-responsive">
@@ -43,7 +45,7 @@
                         <tr>
                           <th>번호</th>
                           <th>등록일</th>
-                          <th>관리</th>
+                          <th>삭제</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -61,8 +63,7 @@ if ($result) {
                           <td><?php echo $row['num']; ?></td>
                           <td><?php echo $row['created']; ?></td>
                           <td>
-                            <a class="btn btn-info" type="button" href="banner_setting.php?mode=update&amp;pos=main&amp;num=<?php echo $row['num']; ?>" ><i class="fa fa-pencil-square-o"></i></a>
-                            <a class="btn btn-danger" type="button" href="banner_delete.php?mode=main&amp;num=<?php echo $row['num']; ?>" onclick="return confirm('정말 삭제하시겠습니까?')"><i class="fa fa-trash-o"></i></a></td>
+                            <a class="btn btn-danger" type="button" href="banner_delete.php?pos=main&amp;num=<?php echo $row['num']; ?>" onclick="return confirm('정말 삭제하시겠습니까?')"><i class="fa fa-trash-o"></i></a></td>
                         </tr>
 <?php
 
@@ -97,7 +98,7 @@ if ($result) {
           <div class="col-sm-6">
             <section class="panel">
               <header class="panel-heading table-head">
-                  <h4>상단 배너 관리</h4>
+                  <h4>상단 배너 등록 (370 x 243px) * 3</h4>
                 </header>
                 <div class="panel-body">
                   <div class="table-responsive">
@@ -124,8 +125,7 @@ if ($tres) {
                           <td><?php echo $trow['num']; ?></td>
                           <td><?php echo $trow['created']; ?></td>
                           <td>
-                            <a class="btn btn-info" type="button" href="banner_setting.php?mode=update&amp;pos=top&amp;num=<?php echo $trow['num']; ?>" ><i class="fa fa-pencil-square-o"></i></a>
-                            <a class="btn btn-danger" type="button" href="banner_delete.php?mode=top&amp;num=<?php echo $trow['num']; ?>" onclick="return confirm('정말 삭제하시겠습니까?')"><i class="fa fa-trash-o"></i></a></td>
+                            <a class="btn btn-danger" type="button" href="banner_delete.php?pos=top&amp;num=<?php echo $trow['num']; ?>" onclick="return confirm('정말 삭제하시겠습니까?')"><i class="fa fa-trash-o"></i></a></td>
                         </tr>
 <?php
 
@@ -161,7 +161,7 @@ if ($tres) {
           <div class="col-sm-6">
             <section class="panel">
               <header class="panel-heading table-head">
-                  <h4>중간 배너 관리</h4>
+                  <h4>중간 배너 등록 (570 x 298px) * 2</h4>
                 </header>
                 <div class="panel-body">
                   <div class="table-responsive">
@@ -188,8 +188,7 @@ if ($mres) {
                           <td><?php echo $mrow['num']; ?></td>
                           <td><?php echo $mrow['created']; ?></td>
                           <td>
-                            <a class="btn btn-info" type="button" href="banner_setting.php?mode=update&amp;pos=middle&amp;num=<?php echo $mrow['num']; ?>" ><i class="fa fa-pencil-square-o"></i></a>
-                            <a class="btn btn-danger" type="button" href="banner_delete.php?mode=middle&amp;num=<?php echo $mrow['num']; ?>" onclick="return confirm('정말 삭제하시겠습니까?')"><i class="fa fa-trash-o"></i></a></td>
+                            <a class="btn btn-danger" type="button" href="banner_delete.php?pos=middle&amp;num=<?php echo $mrow['num']; ?>" onclick="return confirm('정말 삭제하시겠습니까?')"><i class="fa fa-trash-o"></i></a></td>
                         </tr>
 <?php
 
@@ -224,7 +223,7 @@ if ($mres) {
           <div class="col-sm-6">
             <section class="panel">
               <header class="panel-heading table-head">
-                  <h4>하단 배너 관리</h4>
+                  <h4>하단 배너 등록 (1168 x 90px) * 1</h4>
                 </header>
                 <div class="panel-body">
                   <div class="table-responsive">
@@ -251,8 +250,7 @@ if ($bres) {
                           <td><?php echo $brow['num']; ?></td>
                           <td><?php echo $brow['created']; ?></td>
                           <td>
-                            <a class="btn btn-info" type="button" href="banner_setting.php?mode=update&amp;pos=bottom&amp;num=<?php echo $brow['num']; ?>" ><i class="fa fa-pencil-square-o"></i></a>
-                            <a class="btn btn-danger" type="button" href="banner_delete.php?mode=bottom&amp;num=<?php echo $brow['num']; ?>" onclick="return confirm('정말 삭제하시겠습니까?')"><i class="fa fa-trash-o"></i></a></td>
+                            <a class="btn btn-danger" type="button" href="banner_delete.php?pos=bottom&amp;num=<?php echo $brow['num']; ?>" onclick="return confirm('정말 삭제하시겠습니까?')"><i class="fa fa-trash-o"></i></a></td>
                         </tr>
 <?php
 

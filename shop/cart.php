@@ -13,7 +13,7 @@
                             </div>
                             <div class="cart-form table-responsive">
                             <!-- 카트 아이템 보여주기 반환값: 총합 -->
-                            <?php $total = show_cart_item();?>
+                            <?php $reVal = show_cart_item();?>
                             <!-- 카트 아이템 보여주기 -->
                                 <div class="a-all ">
                                     <div class="a-left">
@@ -35,12 +35,38 @@
                     <div class="col-md-4 col-sm-12">
                         <div class="totals">
                             <div class="subtotal">
-                                <p><i class="fa fa-truck"></i> 택배비: <span><?php echo show_delivery_fee($total); ?></span></p>
-                                <p class="grand-total">총  합: <span><i class="fa fa-krw"></i>                                                                                                 <?php echo number_format($total); ?></span> (VAT 포함)</p>
+                                <p><i class="fa fa-truck"></i> 택배비: <span><?php echo show_delivery_fee($reVal[0]); ?></span></p>
+                                <p class="grand-total">총  합: <span><i class="fa fa-krw"></i><?php echo number_format($reVal[0]); ?></span> (VAT 포함)</p>
                             </div>
-                            <button class="button2 get" type="button" onclick="<?php echo go_purchase($total); ?>">
+<?php
+
+$pflag = $reVal[1]; // 상품품절여부
+$oflag = $reVal[2]; // 옵션품절여부
+
+if ($pflag == "Y") {
+    echo <<<HEREDOC
+
+                            <button class="button2 get" type="button" onclick="alert('품절/단종된 상품이 있습니다. 해당상품 삭제 후 다시 주문하시기 바랍니다.')">
                                 <span><i class="fa fa-check-circle"></i> 주문서 작성하기</span>
                             </button>
+HEREDOC;
+} elseif ($oflag == "Y") {
+    echo <<<HEREDOC
+
+                            <button class="button2 get" type="button" onclick="alert('품절/단종된 옵션이 있습니다. 해당상품 삭제 후 다시 주문하시기 바랍니다.')">
+                                <span><i class="fa fa-check-circle"></i> 주문서 작성하기</span>
+                            </button>
+HEREDOC;
+} else {
+    echo <<<HEREDOC
+
+                            <button class="button2 get" type="button" onclick="<?php echo go_purchase($reVal[0]); ?>">
+                                <span><i class="fa fa-check-circle"></i> 주문서 작성하기</span>
+                            </button>
+HEREDOC;
+}
+?>
+
                         </div>
                     </div>
                 </div>

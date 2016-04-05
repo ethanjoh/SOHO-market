@@ -672,11 +672,11 @@ HEREDOC;
             $s_image1_name = $rows['s_image1_name'];
             $itemName      = stripslashes($rows['name']);
 
-            $calcWholesalePrice  = calc_offer_price($calcPrice, $sessionId); // 업체별 공급가 확인
-            $commaWholesalePrice = number_format($calcWholesalePrice);       // 천단위 구분
-            $price               = show_me_wholesale_price($sessionId, $pnum);
-            $qty                 = $rows['volume'];
-            $cart_id             = $rows['cart_id'];
+            // $calcWholesalePrice  = calc_offer_price($calcPrice, $sessionId); // 업체별 공급가 확인
+            // $commaWholesalePrice = number_format($calcWholesalePrice);       // 천단위 구분
+            // $price               = show_me_wholesale_price($sessionId, $pnum);
+            $qty     = $rows['volume'];
+            $cart_id = $rows['cart_id'];
 
             $pflag = '';
             $oflag = '';
@@ -717,6 +717,23 @@ HEREDOC;
 
             $p_opt = $rows['p_opt'];
 
+            $calcWholesalePrice = show_me_wholesale_price($pnum);
+
+            if ($sessionId && $sessionFlag == "c") {
+                $commaWholesalePrice = number_format($calcWholesalePrice);
+                $price               = $commaWholesalePrice;
+                $passingPrice        = $calcWholesalePrice;
+            } elseif ($sessionId && $sessionFlag == "p") {
+                $commaCustomerPrice = number_format($calcWholesalePrice);
+                $price              = $commaCustomerPrice;
+                $passingPrice       = $calcWholesalePrice;
+            } else {
+                $commaCustomerPrice = number_format($rows['shop_price']);
+                $price              = $commaCustomerPrice;
+            }
+
+            $icon = show_icon($rows['num']);
+
             echo <<<HEREDOC
                                     <tr>
                                         <td class="sop-icon">
@@ -725,8 +742,8 @@ HEREDOC;
                                         <td class="sop-cart">
                                             <a href="detail.php?pnum={$pnum}&amp;lcode={$category_l}&smp;mcode={$category_m}"><img class="primary-image" alt="" src="{$s_image1_name}"></a>
                                         </td>
-                                        <td class="sop-cart"><a href="detail.php?pnum={$pnum}&amp;lcode={$category_l}&amp;mcode={$category_m}">{$itemName}</a><br>[{$p_opt}]</td>
-                                        <td class="sop-cart cost"> {$commaWholesalePrice}</td>
+                                        <td class="sop-cart"><a href="detail.php?pnum={$pnum}&amp;lcode={$category_l}&amp;mcode={$category_m}">{$icon} {$itemName}</a><br>[{$p_opt}]</td>
+                                        <td class="sop-cart cost"> {$price}</td>
                                         <td>
                                             <form name="basket{$i}" method="post" action="cart-update.php">
                                             <input type="hidden" name="md" value="edit" />
@@ -753,7 +770,7 @@ HEREDOC;
                                 </table>
 HEREDOC;
 
-        return $tot_money;
+        return array($tot_money, $pflag, $oflag);
 
     } // ./else
 
@@ -1432,7 +1449,7 @@ function show_items_on_catalog($result, $tabid)
 {
     global $connect;
 
-    $calcPrice   = 0;
+    // $calcPrice   = 0;
     $sessionId   = set_var($_SESSION['p_id']);
     $sessionFlag = set_var($_SESSION['p_flag']);
 
@@ -1477,6 +1494,8 @@ function show_items_on_catalog($result, $tabid)
                 $saleNewTag = '<span class="sale-text">Sale</span>';
             } elseif ($rows['del_chk'] == "C") {
                 $saleNewTag = '<span class="cut-text">단종</span>';
+            } elseif ($rows['del_chk'] == "O") {
+                $saleNewTag = '<span class="out-text">품절</span>';
             }
 
             if ($tabid == 'home') {
@@ -2185,12 +2204,14 @@ function show_item_info($pnum)
 
     switch ($rows['del_chk']) {
         case "C":
-            $stock = "단종";
-            $alert = '<a href="#" onclick="alert(\'단종입니다.\')"><i class="fa fa-shopping-cart"></i></a>' . "\r\n";
+            $stock     = "없음";
+            $alert     = '<a href="#" onclick="alert(\'단종입니다.\')"><i class="fa fa-shopping-cart"></i></a>' . "\r\n";
+            $show_icon = show_icon($rows['num']);
             break;
 
         case "O":
-            $stock = "품절";
+            $stock     = "없음";
+            $show_icon = show_icon($rows['num']);
             break;
 
         default:
@@ -2205,7 +2226,7 @@ function show_item_info($pnum)
 
                             <div class="cras">
                                 <div class="product-name">
-                                    <h1>{$itemName}</h1>
+                                    <h1>{$show_icon} {$itemName}</h1>
                                 </div>
                                 <div class="pro-rating">
                                     규격: {$shortDesc}
@@ -2413,7 +2434,13 @@ HEREDOC;
 
         for ($j = 1; $j <= 5; $j++) {
             $isYes = 'm_banner' . $j;
-            $link  = 'mlink' . $j;
+            $link  = 'm_link' . $j;
+
+            if ($row[$link] != "") {
+                $show_link = $row[$link];
+            } else {
+                $show_link = "#";
+            }
 
             if ($row[$isYes] == "Y") {
                 echo <<<HEREDOC
@@ -2422,7 +2449,7 @@ HEREDOC;
                     <div class="slider-content t-lfr s-tb slider-2">
                         <div class="title-container s-tb-c">
                             <div class="s-title">
-                                <a href="{$row[$link]}">자세히 보기</a>
+                                <a href="{$show_link}">자세히 보기</a>
                             </div>
                         </div>
                     </div>
@@ -2479,13 +2506,19 @@ function show_top_banner()
 
             $imagePath = 'm_banner' . $i . '_image';
             $isYes     = 'm_banner' . $i;
-            $link      = 'mlink' . $i;
+            $link      = 'm_link' . $i;
+
+            if ($row[$link] != "") {
+                $show_link = $row[$link];
+            } else {
+                $show_link = "#";
+            }
 
             if ("Y" == $row[$isYes]) {
                 echo <<<HEREDOC
 
                         <div class="product col-md-4 col-sm-4 col-xs-12">
-                            <a href="{$row[$link]}"><img src="{$row[$imagePath]}" alt=""></a>
+                            <a href="{$show_link}"><img src="{$row[$imagePath]}" alt=""></a>
                         </div>
 
 HEREDOC;
@@ -2531,12 +2564,18 @@ function show_middle_banner()
             $isYes     = 'm_banner' . $i;
             $link      = 'mlink' . $i;
 
+            if ($row[$link] != "") {
+                $show_link = $row[$link];
+            } else {
+                $show_link = "#";
+            }
+
             if ("Y" == $row[$isYes]) {
                 echo <<<HEREDOC
 
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="mid-banner">
-                            <a href="{$row[$link]}"><img src="{$row[$imagePath]}" alt=""></a>
+                            <a href="{$show_link}"><img src="{$row[$imagePath]}" alt=""></a>
                         </div>
                     </div>
 
@@ -2587,11 +2626,17 @@ function show_bottom_banner()
             $isYes     = 'm_banner' . $i;
             $link      = 'mlink' . $i;
 
+            if ($row[$link] != "") {
+                $show_link = $row[$link];
+            } else {
+                $show_link = "#";
+            }
+
             if ("Y" == $row[$isYes]) {
                 echo <<<HEREDOC
 
                         <div class="banner">
-                            <a href="{$row[$link]}"><img src="{$row[$imagePath]}" alt=""></a>
+                            <a href="{$show_link}"><img src="{$row[$imagePath]}" alt=""></a>
                         </div>
 
 HEREDOC;

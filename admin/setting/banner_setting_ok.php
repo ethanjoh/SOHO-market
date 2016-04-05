@@ -3,50 +3,66 @@
 include_once "../include/admin_auth.php";
 include_once "../../util/util.php";
 
-$mode = set_var($_POST['mode']);
-$num  = set_var($_POST['num']);
-$link = set_var($_POST['link']);
-$pos  = set_var($_POST['pos']);
+$mode  = set_var($_POST['mode']);
+$num   = set_var($_POST['num']);
+$link  = set_var($_POST['link']);
+$pos   = set_var($_POST['pos']);
+$count = set_var($_POST['count']);
 
-$dir           = "../../images/banner";
+$saveDir       = "../../images/banner/";
 const MAX_SIZE = 1024000; // 최대 파일 크기
 
 if ($mode == 'insert') {
 
+    $mimg_chk = array();
+    $file     = array();
+    $mlink    = array();
+
+    $fileNums = count($_FILES['uploadfile']['name']);
+
     // 파일이 업로드 되어 있는지를 확인합니다.
     if (isset($_FILES['uploadfile'])) {
-        for ($i = 0; $i < count($_FILES['uploadfile']['name']); $i++) {
+
+        for ($i = 0; $i < $fileNums; $i++) {
+
+            if ($_FILES['uploadfile']['name'][$i] == "") {
+                $mimg_chk[$i] = "N";
+                $file[$i]     = '';
+                $mlink[$i]    = '';
+            }
+
             list($result, $ext, $error_msg) = check_file($i);
 
             if ($result) {
-                $name     = $_FILES['uploadfile']['name'][$i];
-                $tmp_name = $_FILES['uploadfile']['tmp_name'][$i];
+                $mimg_chk[$i] = "Y";
+                // $file[$i]     = $saveDir . $_FILES['uploadfile']['name'][$i];
+                $mlink[$i] = $link[$i];
+                $tmp_name  = $_FILES['uploadfile']['tmp_name'][$i];
+                $name      = $_FILES['uploadfile']['name'][$i];
 
                 // 여기에서는 저장할 디렉토리 아래에 「"upfile_" + 현재의 타임스탬프 + 일련 번호 +
                 // "_" + 마이크로초와 전 파일 이름과 연결 전 IP 주소에 근거하는 MD5 + 확장자」 로
                 // 배치합니다.
-                if ('main' == $pos) {
+                if ($pos == 'main') {
                     $sub = 'main_';
-                } elseif ('top' == $pos) {
+                } elseif ($pos == 'top') {
                     $sub = 'top_';
-                } elseif ('middle' == $pos) {
+                } elseif ($pos == 'middle') {
                     $sub = 'middle_';
-                } elseif ('bottom' == $pos) {
+                } elseif ($pos == 'bottom') {
                     $sub = 'bottom_';
                 }
 
-                $move_to = $dir . $sub . time() . $i . '_' . md5(microtime() . $name . $_SERVER['REMOTE_ADDR']) . '.' . $ext;
+                $move_to  = $saveDir . $sub . time() . $i . '_' . md5(microtime() . $name . $_SERVER['REMOTE_ADDR']) . '.' . $ext;
+                $file[$i] = $move_to;
 
-                // 업로드 한 임시파일을 지정한 장소로 이동합니다.
-                if (move_uploaded_file($tmp_name, $move_to)) {
-                    $mimg_chk[$i] = "Y";
-                    $file[$i]     = $move_to;
-                    $mlink[$i]    = $link[$i];
+                if (is_dir($saveDir)) {
+                    move_uploaded_file($tmp_name, $move_to);
                 } else {
-                    $mimg_chk[$i] = "N";
-                    $mlink[$i]    = "";
-                    // $error_msg[] = '이미지 업로드에 실패했습니다.';
+                    mkdir($saveDir, 0755, true);
+                    move_uploaded_file($tmp_name, $move_to);
                 }
+
             }
 
             // 에러 메시지가 있으면 표시합니다.
@@ -55,15 +71,40 @@ if ($mode == 'insert') {
                     msg($msg);
                 }
             }
+
         }
 
-        $qry = "INSERT INTO banner(  pos,
-                                      m_banner1,  m_banner1_image, m_link1,
-                                      m_banner2,  m_banner2_image, m_link2,
-                                      m_banner3,  m_banner3_image, m_link3,
-                                      m_banner4,  m_banner4_image, m_link4,
-                                      m_banner5,  m_banner5_image, m_link5,
-                                      created)
+    } else {
+        for ($i = 0; $i < 5; $i++) {
+            $mimg_chk[$i] = "N";
+            $file[$i]     = "";
+            $mlink[$i]    = "";
+        }
+
+        // err_msg('업로드 이미지가 없습니다.');
+    }
+
+    if ($fileNums < 5) {
+        $limit = 5 - $fileNums;
+        $j     = $fileNums;
+
+        for ($i = 0; $i < $limit; $i++) {
+
+            $mimg_chk[$j] = "N";
+            $file[$j]     = "";
+            $mlink[$j]    = "";
+
+            $j++;
+        }
+    }
+
+    $qry = "INSERT INTO banner(  pos,
+                                  m_banner1,  m_banner1_image, m_link1,
+                                  m_banner2,  m_banner2_image, m_link2,
+                                  m_banner3,  m_banner3_image, m_link3,
+                                  m_banner4,  m_banner4_image, m_link4,
+                                  m_banner5,  m_banner5_image, m_link5,
+                                  created)
               VALUES( '$pos',
                       '$mimg_chk[0]', '$file[0]', '$mlink[0]',
                       '$mimg_chk[1]', '$file[1]', '$mlink[1]',
@@ -71,21 +112,22 @@ if ($mode == 'insert') {
                       '$mimg_chk[3]', '$file[3]', '$mlink[3]',
                       '$mimg_chk[4]', '$file[4]', '$mlink[4]',
                       now() )";
-        $res = mysqli_query($connect, $qry);
+    $res = mysqli_query($connect, $qry);
 
-        if ($res) {
-            $msg = "배너를 등록했습니다.";
-            $url = "banner_list.php";
+    // debug
+    // $txt  = print_r($qry, true);
+    // $file = fopen("debug.txt", "w+");
+    // fwrite($file, $txt);
+    // fclose($file);
 
-            show_msg($msg, $url);
-            // msg("배너를 등록했습니다.");
-            // header("Location:banner_list.php");
-        } else {
-            err_msg('배너 등록 중 DB오류가 발생했습니다.');
-        }
+    if ($res) {
+        $msg = "배너를 등록했습니다.";
+        $url = "banner_list.php";
+
+        show_msg($msg, $url);
 
     } else {
-        err_msg('업로드 이미지가 없습니다.');
+        err_msg('배너 등록 중 DB오류가 발생했습니다.');
     }
 
 }

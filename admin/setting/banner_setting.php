@@ -55,6 +55,8 @@ if ('main' == $pos) {
                 <input type="hidden" name="mode" value="<?php echo $mode; ?>">
                 <input type="hidden" name="num" value="<?php echo $num; ?>">
                 <input type="hidden" name="pos" value="<?php echo $pos; ?>">
+                <input type="hidden" name="count" value="<?php echo $j; ?>">
+
                   <div class="table-responsive">
                     <table class="table table-striped">
                       <tbody>

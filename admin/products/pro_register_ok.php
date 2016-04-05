@@ -124,6 +124,7 @@ if ($mode == "insert") {
 
             // 업로드 파일을 확인합니다.
             list($result, $ext, $error_msg) = check_uploaded_file($i);
+
             if ($result) {
                 $bImg_chk[$i]   = "Y";
                 $bigImgPath     = $saveDir . $name . "/b/";
