@@ -231,7 +231,7 @@ if ($limit >= $total) {
 
 $scale1 = $limit - $cline;
 
-$query1 = "SELECT * FROM products WHERE $qry_char ORDER BY num DESC LIMIT $cline,$scale1";
+$query1 = "SELECT * FROM products WHERE $qry_char ORDER BY name DESC LIMIT $cline,$scale1";
 //echo $query1;
 $result1 = mysqli_query($connect, $query1);
 

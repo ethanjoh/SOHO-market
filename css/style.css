@@ -1243,9 +1243,9 @@ select.select option {
 
 .single-product span.cut-text,
 .bit span.cut-text {
-    background: #795548 none repeat scroll 0 0;
+    background: #d9534f none repeat scroll 0 0;
     border-radius: 10%;
-    box-shadow: 0 3px 0 0 #4E382F;
+    box-shadow: 0 3px 0 0 #A71612;
     color: #fff;
     display: block;    /*font-family: Lato;*/
     font-size: 16px;

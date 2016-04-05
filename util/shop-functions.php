@@ -672,11 +672,11 @@ HEREDOC;
             $s_image1_name = $rows['s_image1_name'];
             $itemName      = stripslashes($rows['name']);
 
-            $calcWholesalePrice  = calc_offer_price($calcPrice, $sessionId); // 업체별 공급가 확인
-            $commaWholesalePrice = number_format($calcWholesalePrice);       // 천단위 구분
-            $price               = show_me_wholesale_price($sessionId, $pnum);
-            $qty                 = $rows['volume'];
-            $cart_id             = $rows['cart_id'];
+            // $calcWholesalePrice  = calc_offer_price($calcPrice, $sessionId); // 업체별 공급가 확인
+            // $commaWholesalePrice = number_format($calcWholesalePrice);       // 천단위 구분
+            // $price               = show_me_wholesale_price($sessionId, $pnum);
+            $qty     = $rows['volume'];
+            $cart_id = $rows['cart_id'];
 
             $pflag = '';
             $oflag = '';
@@ -717,6 +717,23 @@ HEREDOC;
 
             $p_opt = $rows['p_opt'];
 
+            $calcWholesalePrice = show_me_wholesale_price($pnum);
+
+            if ($sessionId && $sessionFlag == "c") {
+                $commaWholesalePrice = number_format($calcWholesalePrice);
+                $price               = $commaWholesalePrice;
+                $passingPrice        = $calcWholesalePrice;
+            } elseif ($sessionId && $sessionFlag == "p") {
+                $commaCustomerPrice = number_format($calcWholesalePrice);
+                $price              = $commaCustomerPrice;
+                $passingPrice       = $calcWholesalePrice;
+            } else {
+                $commaCustomerPrice = number_format($rows['shop_price']);
+                $price              = $commaCustomerPrice;
+            }
+
+            $icon = show_icon($rows['num']);
+
             echo <<<HEREDOC
                                     <tr>
                                         <td class="sop-icon">
@@ -725,8 +742,8 @@ HEREDOC;
                                         <td class="sop-cart">
                                             <a href="detail.php?pnum={$pnum}&amp;lcode={$category_l}&smp;mcode={$category_m}"><img class="primary-image" alt="" src="{$s_image1_name}"></a>
                                         </td>
-                                        <td class="sop-cart"><a href="detail.php?pnum={$pnum}&amp;lcode={$category_l}&amp;mcode={$category_m}">{$itemName}</a><br>[{$p_opt}]</td>
-                                        <td class="sop-cart cost"> {$commaWholesalePrice}</td>
+                                        <td class="sop-cart"><a href="detail.php?pnum={$pnum}&amp;lcode={$category_l}&amp;mcode={$category_m}">{$icon} {$itemName}</a><br>[{$p_opt}]</td>
+                                        <td class="sop-cart cost"> {$price}</td>
                                         <td>
                                             <form name="basket{$i}" method="post" action="cart-update.php">
                                             <input type="hidden" name="md" value="edit" />
@@ -753,7 +770,7 @@ HEREDOC;
                                 </table>
 HEREDOC;
 
-        return $tot_money;
+        return array($tot_money, $pflag, $oflag);
 
     } // ./else
 
@@ -2187,12 +2204,14 @@ function show_item_info($pnum)
 
     switch ($rows['del_chk']) {
         case "C":
-            $stock = "단종";
-            $alert = '<a href="#" onclick="alert(\'단종입니다.\')"><i class="fa fa-shopping-cart"></i></a>' . "\r\n";
+            $stock     = "없음";
+            $alert     = '<a href="#" onclick="alert(\'단종입니다.\')"><i class="fa fa-shopping-cart"></i></a>' . "\r\n";
+            $show_icon = show_icon($rows['num']);
             break;
 
         case "O":
-            $stock = "품절";
+            $stock     = "없음";
+            $show_icon = show_icon($rows['num']);
             break;
 
         default:
@@ -2207,7 +2226,7 @@ function show_item_info($pnum)
 
                             <div class="cras">
                                 <div class="product-name">
-                                    <h1>{$itemName}</h1>
+                                    <h1>{$show_icon} {$itemName}</h1>
                                 </div>
                                 <div class="pro-rating">
                                     규격: {$shortDesc}
