@@ -212,8 +212,10 @@ function count_items_in_cart()
 function show_items_on_main($newOrBest, $howManyItems)
 {
     global $connect;
-    $sessionFlag = set_var($_SESSION['p_flag']);
-    $calcPrice   = 0;
+    $sessionId    = set_var($_SESSION['p_id']);
+    $sessionFlag  = set_var($_SESSION['p_flag']);
+    $isApprovedId = check_approved_id();
+    $calcPrice    = 0;
 
     if ($newOrBest == 'best') {
         $isYes = "main_best='Y'";
@@ -228,22 +230,22 @@ function show_items_on_main($newOrBest, $howManyItems)
 
         for ($i = 0; $rows = mysqli_fetch_array($result); $i++) {
 
-            if ($sessionFlag == "c") {
-                $calcPrice = $rows['retail_price'];
-            } elseif ($sessionFlag == "p") {
-                $calcPrice = $rows['shop_price'];
-            }
+            // if ($sessionFlag == "c") {
+            //     $calcPrice = $rows['retail_price'];
+            // } elseif ($sessionFlag == "p") {
+            //     $calcPrice = $rows['shop_price'];
+            // }
 
-            $sessionId   = set_var($_SESSION['p_id']);
-            $sessionFlag = set_var($_SESSION['p_flag']);
+            $itemName   = stripslashes($rows['name']);
+            $pnum       = $rows['num'];
+            $category_l = $rows['category_l'];
+            $category_m = $rows['category_m'];
+            $option     = $rows['opt'];
+            $moq        = $rows['moq'];
 
-            $itemName           = stripslashes($rows['name']);
-            $pnum               = $rows['num'];
-            $category_l         = $rows['category_l'];
-            $category_m         = $rows['category_m'];
-            $option             = $rows['opt'];
-            $moq                = $rows['moq'];
-            $calcWholesalePrice = calc_offer_price($calcPrice, $sessionId);
+            $calcWholesalePrice = show_me_wholesale_price($pnum);
+
+            // $calcWholesalePrice = calc_offer_price($calcPrice, $sessionId);
             // $price              = '';
             // $commaWholesalePrice = number_format($calcWholesalePrice);
 
@@ -261,22 +263,16 @@ function show_items_on_main($newOrBest, $howManyItems)
 
 HEREDOC;
 
-            if ($sessionId && $sessionFlag == "c") {
+            if ($sessionId && $sessionFlag == "c" && $isApprovedId) {
                 $commaWholesalePrice = number_format($calcWholesalePrice);
                 echo $price          = '                                <span class="special-price"><i class="fa fa-krw"></i> ' . $commaWholesalePrice . '</span>' . "\r\n";
-                // $passingPrice        = $calcWholesalePrice;
             } elseif ($sessionId && $sessionFlag == "p") {
-                // $price              = $commaCustomerPrice;
                 $commaCustomerPrice = number_format($calcWholesalePrice);
                 echo $price         = '                                <span class="shop-price"><i class="fa fa-krw"></i> ' . $commaCustomerPrice . '</span>' . "\r\n";
-                // $passingPrice       = $calcWholesalePrice;
             } else {
                 $commaCustomerPrice = number_format($rows['shop_price']);
                 echo $price         = '                                <span class="shop-price"><i class="fa fa-krw"></i> ' . $commaCustomerPrice . '</span>' . "\r\n";
             }
-
-            // echo show_me_wholesale_price($pnum);
-            // $option = show_option($pnum);
 
             echo <<<HEREDOC
                                             </div>
@@ -1450,8 +1446,9 @@ function show_items_on_catalog($result, $tabid)
     global $connect;
 
     // $calcPrice   = 0;
-    $sessionId   = set_var($_SESSION['p_id']);
-    $sessionFlag = set_var($_SESSION['p_flag']);
+    $sessionId    = set_var($_SESSION['p_id']);
+    $sessionFlag  = set_var($_SESSION['p_flag']);
+    $isApprovedId = check_approved_id();
 
     if ($result) {
 
@@ -1473,7 +1470,7 @@ function show_items_on_catalog($result, $tabid)
             // $commaWholesalePrice = number_format($calcWholesalePrice);
             // $price               = show_me_wholesale_price($pnum);
 
-            if ($sessionId && $sessionFlag == "c") {
+            if ($sessionId && $sessionFlag == "c" && $isApprovedId) {
                 $commaWholesalePrice = number_format($calcWholesalePrice);
                 $price               = '                                <span class="special-price"><i class="fa fa-krw"></i> ' . $commaWholesalePrice . '</span>' . "\r\n";
                 $passingPrice        = $calcWholesalePrice;
@@ -1484,6 +1481,7 @@ function show_items_on_catalog($result, $tabid)
             } else {
                 $commaCustomerPrice = number_format($rows['shop_price']);
                 $price              = '                                <span class="shop-price"><i class="fa fa-krw"></i> ' . $commaCustomerPrice . '</span>' . "\r\n";
+                $passingPrice       = $calcWholesalePrice;
             }
 
             if ($rows['main_best'] == "Y") {
@@ -2176,8 +2174,9 @@ function show_item_info($pnum)
     $res  = mysqli_query($connect, $qry);
     $rows = mysqli_fetch_array($res);
 
-    $sessionId   = set_var($_SESSION['p_id']);
-    $sessionFlag = set_var($_SESSION['p_flag']);
+    $sessionId    = set_var($_SESSION['p_id']);
+    $sessionFlag  = set_var($_SESSION['p_flag']);
+    $isApprovedId = check_approved_id();
 
     $itemName  = stripslashes($rows['name']);
     $moq       = $rows['moq'];
@@ -2189,7 +2188,7 @@ function show_item_info($pnum)
     // $commaWholesalePrice = number_format($calcWholesalePrice);
     // $price               = show_me_wholesale_price($pnum);
 
-    if ($sessionId && $sessionFlag == "c") {
+    if ($sessionId && $sessionFlag == "c" && $isApprovedId) {
         $commaWholesalePrice = number_format($calcWholesalePrice);
         $price               = '                                <span class="special-price"><i class="fa fa-krw"></i> ' . $commaWholesalePrice . '</span>' . "\r\n";
         $passingPrice        = $calcWholesalePrice;
@@ -2200,6 +2199,7 @@ function show_item_info($pnum)
     } else {
         $commaCustomerPrice = number_format($rows['shop_price']);
         $price              = '                                <span class="shop-price"><i class="fa fa-krw"></i> ' . $commaCustomerPrice . '</span>' . "\r\n";
+        $passingPrice       = $calcWholesalePrice;
     }
 
     switch ($rows['del_chk']) {
@@ -2215,7 +2215,8 @@ function show_item_info($pnum)
             break;
 
         default:
-            $stock = "있음";
+            $stock     = "있음";
+            $show_icon = "";
             break;
     }
 
@@ -2319,8 +2320,9 @@ function show_relative_items($lcode, $mcode)
 {
     global $connect;
 
-    $sessionId   = set_var($_SESSION['p_id']);
-    $sessionFlag = set_var($_SESSION['p_flag']);
+    $sessionId    = set_var($_SESSION['p_id']);
+    $sessionFlag  = set_var($_SESSION['p_flag']);
+    $isApprovedId = check_approved_id();
 
     $qry = "SELECT * FROM products WHERE del_chk='N' AND category_l='$lcode' AND category_m='$mcode' AND approved = 'Y' ORDER BY rand() LIMIT 4 ";
     $res = mysqli_query($connect, $qry);
@@ -2354,7 +2356,7 @@ function show_relative_items($lcode, $mcode)
                                                 <div class="price-box">
 HEREDOC;
 
-        if ($sessionId && $sessionFlag == "c") {
+        if ($sessionId && $sessionFlag == "c" && $isApprovedId) {
             $commaWholesalePrice = number_format($calcWholesalePrice);
             echo $price          = '                                <span class="special-price"><i class="fa fa-krw"></i> ' . $commaWholesalePrice . '</span>' . "\r\n";
         } elseif ($sessionId && $sessionFlag == "p") {
@@ -2658,4 +2660,23 @@ HEREDOC;
                         </div>
 HEREDOC;
     }
+}
+
+function check_approved_id()
+{
+    global $connect;
+    $sessionId = set_var($_SESSION['p_id']);
+
+    $query  = "SELECT * FROM member WHERE id='" . $sessionId . "'";
+    $result = mysqli_query($connect, $query);
+
+    if ($result) {
+        $row = mysqli_fetch_array($result);
+        if ($row['approved'] == "Y") {
+            return true;
+        }
+    } else {
+        return false;
+    }
+
 }
