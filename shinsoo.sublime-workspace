@@ -508,10 +508,17 @@
 	"buffers":
 	[
 		{
+<<<<<<< HEAD
 			"file": "shop/catalog-list.php",
 			"settings":
 			{
 				"buffer_size": 6434,
+=======
+			"file": "shop/detail.php",
+			"settings":
+			{
+				"buffer_size": 7045,
+>>>>>>> 454beaeffa8548f497d63893864c4c2ddf8810ea
 				"line_ending": "Windows"
 			}
 		},
@@ -519,11 +526,16 @@
 			"file": "util/shop-functions.php",
 			"settings":
 			{
+<<<<<<< HEAD
 				"buffer_size": 96986,
+=======
+				"buffer_size": 99927,
+>>>>>>> 454beaeffa8548f497d63893864c4c2ddf8810ea
 				"line_ending": "Windows"
 			}
 		},
 		{
+<<<<<<< HEAD
 			"file": "pay/payres.php",
 			"settings":
 			{
@@ -536,6 +548,12 @@
 			"settings":
 			{
 				"buffer_size": 2646,
+=======
+			"file": "shop/catalog-list.php",
+			"settings":
+			{
+				"buffer_size": 6434,
+>>>>>>> 454beaeffa8548f497d63893864c4c2ddf8810ea
 				"line_ending": "Windows"
 			}
 		}
@@ -709,6 +727,7 @@
 	},
 	"expanded_folders":
 	[
+<<<<<<< HEAD
 		"/C/wamp/www/shinsoo",
 		"/C/wamp/www/shinsoo/pay",
 		"/C/wamp/www/shinsoo/shop",
@@ -720,6 +739,15 @@
 		"/C/wamp/www/shinsoo/js/addcart.js",
 		"/C/wamp/www/shinsoo/shop/cart-update.php",
 		"/C/Users/Seonghyeon/Google 드라이브/git_project/prixe/shop/sub_list.php",
+=======
+		"/C/wamp/www/shinsoo"
+	],
+	"file_history":
+	[
+		"/C/wamp/www/shinsoo/util/shop-functions.php",
+		"/C/wamp/www/shinsoo/shop/index.php",
+		"/C/Users/Joh/Google 드라이브/홈페이지 템플릿/신수상사 템플릿/hitstore/index.html",
+>>>>>>> 454beaeffa8548f497d63893864c4c2ddf8810ea
 		"/C/wamp/www/shinsoo/css/style.css",
 		"/C/wamp/www/shinsoo/util/shop-functions.php",
 		"/C/wamp/www/shinsoo/shop/index.php",
@@ -843,7 +871,13 @@
 		"/C/wamp/www/shinsoo/pay/save_pginfo_to_db.php",
 		"/C/wamp/www/shinsoo/util/scm_auth.php",
 		"/C/wamp/www/shinsoo/shop/order-detail.php",
+<<<<<<< HEAD
 		"/C/wamp/www/shinsoo/admin/order/or_view.php"
+=======
+		"/C/wamp/www/shinsoo/admin/order/or_view.php",
+		"/C/wamp/www/shinsoo/admin/css/admin_layout.css",
+		"/C/Users/Joh/OneDrive/git_project/linktrading-co-kr/shop/sub_list.php"
+>>>>>>> 454beaeffa8548f497d63893864c4c2ddf8810ea
 	],
 	"find":
 	{
@@ -876,9 +910,16 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+<<<<<<< HEAD
 			"1",
 			"0",
 			"sale-text",
+=======
+			"hiddenPrice",
+			"calcWholesalePrice",
+			"show_me_wholesale_price",
+			"show_item_info",
+>>>>>>> 454beaeffa8548f497d63893864c4c2ddf8810ea
 			"img",
 			"simg1_chk",
 			"detailImgFile",
@@ -1002,8 +1043,12 @@
 			"$today_order_total",
 			"$readyToSend_order_total",
 			"$port",
+<<<<<<< HEAD
 			"show_loginForm",
 			"show_me_price"
+=======
+			"show_loginForm"
+>>>>>>> 454beaeffa8548f497d63893864c4c2ddf8810ea
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1029,23 +1074,37 @@
 			[
 				{
 					"buffer": 0,
+<<<<<<< HEAD
 					"file": "shop/catalog-list.php",
 					"semi_transient": false,
 					"settings":
 					{
 						"buffer_size": 6434,
+=======
+					"file": "shop/detail.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7045,
+>>>>>>> 454beaeffa8548f497d63893864c4c2ddf8810ea
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
+<<<<<<< HEAD
 								4805,
 								4805
+=======
+								2067,
+								2067
+>>>>>>> 454beaeffa8548f497d63893864c4c2ddf8810ea
 							]
 						],
 						"settings":
 						{
+<<<<<<< HEAD
 							"BracketHighlighterBusy": false,
 							"auto_complete": false,
 							"bh_regions":
@@ -1106,6 +1165,8 @@
 								"bh_default_close",
 								"bh_default_content"
 							],
+=======
+>>>>>>> 454beaeffa8548f497d63893864c4c2ddf8810ea
 							"color_scheme": "Packages/User/Color Highlighter/themes/Material-Theme.tmTheme",
 							"incomplete_sync": null,
 							"remote_loading": false,
@@ -1115,10 +1176,17 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
+<<<<<<< HEAD
 						"translation.y": 3570.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
+=======
+						"translation.y": 1008.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+>>>>>>> 454beaeffa8548f497d63893864c4c2ddf8810ea
 					"type": "text"
 				},
 				{
@@ -1127,19 +1195,29 @@
 					"semi_transient": false,
 					"settings":
 					{
+<<<<<<< HEAD
 						"buffer_size": 96986,
+=======
+						"buffer_size": 99927,
+>>>>>>> 454beaeffa8548f497d63893864c4c2ddf8810ea
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
+<<<<<<< HEAD
 								57907,
 								57907
+=======
+								13291,
+								13291
+>>>>>>> 454beaeffa8548f497d63893864c4c2ddf8810ea
 							]
 						],
 						"settings":
 						{
+<<<<<<< HEAD
 							"BracketHighlighterBusy": false,
 							"auto_complete": false,
 							"bh_regions":
@@ -1201,15 +1279,24 @@
 								"bh_single_quote_content"
 							],
 							"color_scheme": "Packages/User/Color Highlighter/themes/Material-Theme.tmTheme",
+=======
+							"color_scheme": "Packages/User/Color Highlighter/themes/Material-Theme.tmTheme",
+							"history_list_is_closing": true,
+>>>>>>> 454beaeffa8548f497d63893864c4c2ddf8810ea
 							"incomplete_sync": null,
 							"remote_loading": false,
+							"sftp_duplicate_views": 0,
 							"synced": true,
 							"syntax": "Packages/PHP/PHP.sublime-syntax",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
+<<<<<<< HEAD
 						"translation.y": 51607.0,
+=======
+						"translation.y": 10493.0,
+>>>>>>> 454beaeffa8548f497d63893864c4c2ddf8810ea
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
@@ -1217,19 +1304,32 @@
 				},
 				{
 					"buffer": 2,
+<<<<<<< HEAD
 					"file": "pay/payres.php",
 					"semi_transient": false,
 					"settings":
 					{
 						"buffer_size": 13604,
+=======
+					"file": "shop/catalog-list.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6434,
+>>>>>>> 454beaeffa8548f497d63893864c4c2ddf8810ea
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
+<<<<<<< HEAD
 								11042,
 								11042
+=======
+								4307,
+								4307
+>>>>>>> 454beaeffa8548f497d63893864c4c2ddf8810ea
 							]
 						],
 						"settings":
@@ -1303,6 +1403,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
+<<<<<<< HEAD
 						"translation.y": 9065.0,
 						"zoom_level": 1.0
 					},
@@ -1397,9 +1498,54 @@
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
+=======
+						"translation.y": 2232.0,
+>>>>>>> 454beaeffa8548f497d63893864c4c2ddf8810ea
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 3,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 1,
+					"file": "util/shop-functions.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 99927,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								85195,
+								85195
+							]
+						],
+						"settings":
+						{
+							"color_scheme": "Packages/User/Color Highlighter/themes/Material-Theme.tmTheme",
+							"history_list_is_closing": true,
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"sftp_duplicate_views": 0,
+							"synced": true,
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 51317.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
 					"type": "text"
 				}
 			]
@@ -1422,11 +1568,18 @@
 				0,
 				1,
 				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
 			]
 		],
 		"cols":
 		[
 			0.0,
+			0.147153167602,
 			1.0
 		],
 		"rows":
@@ -1462,6 +1615,7 @@
 		"selected_items":
 		[
 			[
+<<<<<<< HEAD
 				"banner",
 				"admin\\setting\\banner_setting_ok.php"
 			],
@@ -1476,12 +1630,23 @@
 			[
 				"add",
 				"js\\addcart.js"
+=======
+				"shop",
+				"util\\shop-functions.php"
+>>>>>>> 454beaeffa8548f497d63893864c4c2ddf8810ea
 			],
 			[
 				"cata",
 				"shop\\catalog-list.php"
 			],
 			[
+<<<<<<< HEAD
+=======
+				"detai",
+				"shop\\detail.php"
+			],
+			[
+>>>>>>> 454beaeffa8548f497d63893864c4c2ddf8810ea
 				"inde",
 				"shop\\index.php"
 			],
@@ -1616,10 +1781,6 @@
 			[
 				"p-lo",
 				"member\\p-login-ok.php"
-			],
-			[
-				"shop",
-				"util\\shop-functions.php"
 			],
 			[
 				"print",
@@ -1968,10 +2129,6 @@
 			[
 				"top",
 				"admin/order/top_order_list.php"
-			],
-			[
-				"offer",
-				"admin/supplier/offer_list.php"
 			]
 		],
 		"width": 0.0
@@ -1998,7 +2155,7 @@
 		],
 		"width": 378.0
 	},
-	"selected_group": 0,
+	"selected_group": 1,
 	"settings":
 	{
 	},

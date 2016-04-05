@@ -1266,6 +1266,33 @@ select.select option {
     left: 25px;
     top: 52%;
 }
+
+.single-product span.out-text,
+.bit span.out-text {
+    background: #9E9E9E none repeat scroll 0 0;
+    border-radius: 10%;
+    box-shadow: 0 3px 0 0 #696767;
+    color: #fff;
+    display: block;    /*font-family: Lato;*/
+    font-size: 16px;
+    font-weight: 700;
+    height: 36px;
+    left: 20px;
+    line-height: 36px;
+    position: absolute;
+    text-align: center;
+    text-transform: capitalize;
+    top: 10px;
+    width: 56px;
+    z-index: 1;
+    position: absolute;
+}
+
+.bit span.out-text {
+    left: 25px;
+    top: 52%;
+}
+
 .bit .product-img {
     position: relative;
 }
@@ -3757,7 +3784,7 @@ button.btn-in span {
 .cart-table .sop-cart {
     color: #454545;
     font-size: 15px;
-    font-weight: 300;
+    font-weight: 400;
 }
 
 .cart-table .sop > a {

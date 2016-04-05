@@ -234,15 +234,18 @@ function show_items_on_main($newOrBest, $howManyItems)
                 $calcPrice = $rows['shop_price'];
             }
 
-            $itemName            = stripslashes($rows['name']);
-            $pnum                = $rows['num'];
-            $category_l          = $rows['category_l'];
-            $category_m          = $rows['category_m'];
-            $option              = $rows['opt'];
-            $moq                 = $rows['moq'];
-            $sessionId           = set_var($_SESSION['p_id']);
-            $calcWholesalePrice  = calc_offer_price($calcPrice, $sessionId);
-            $commaWholesalePrice = number_format($calcWholesalePrice);
+            $sessionId   = set_var($_SESSION['p_id']);
+            $sessionFlag = set_var($_SESSION['p_flag']);
+
+            $itemName           = stripslashes($rows['name']);
+            $pnum               = $rows['num'];
+            $category_l         = $rows['category_l'];
+            $category_m         = $rows['category_m'];
+            $option             = $rows['opt'];
+            $moq                = $rows['moq'];
+            $calcWholesalePrice = calc_offer_price($calcPrice, $sessionId);
+            // $price              = '';
+            // $commaWholesalePrice = number_format($calcWholesalePrice);
 
             echo <<<HEREDOC
                                 <!-- single-product start -->
@@ -258,7 +261,21 @@ function show_items_on_main($newOrBest, $howManyItems)
 
 HEREDOC;
 
-            echo show_me_wholesale_price($pnum);
+            if ($sessionId && $sessionFlag == "c") {
+                $commaWholesalePrice = number_format($calcWholesalePrice);
+                echo $price          = '                                <span class="special-price"><i class="fa fa-krw"></i> ' . $commaWholesalePrice . '</span>' . "\r\n";
+                // $passingPrice        = $calcWholesalePrice;
+            } elseif ($sessionId && $sessionFlag == "p") {
+                // $price              = $commaCustomerPrice;
+                $commaCustomerPrice = number_format($calcWholesalePrice);
+                echo $price         = '                                <span class="shop-price"><i class="fa fa-krw"></i> ' . $commaCustomerPrice . '</span>' . "\r\n";
+                // $passingPrice       = $calcWholesalePrice;
+            } else {
+                $commaCustomerPrice = number_format($rows['shop_price']);
+                echo $price         = '                                <span class="shop-price"><i class="fa fa-krw"></i> ' . $commaCustomerPrice . '</span>' . "\r\n";
+            }
+
+            // echo show_me_wholesale_price($pnum);
             // $option = show_option($pnum);
 
             echo <<<HEREDOC
@@ -315,26 +332,20 @@ function show_me_wholesale_price($pnum)
     $rows   = mysqli_fetch_array($result);
 
     $calcPrice   = 0;
+    $rePrice     = 0;
     $sessionId   = set_var($_SESSION['p_id']);
     $sessionFlag = set_var($_SESSION['p_flag']);
 
-    if ($sessionFlag == "c") {
-        $calcPrice = $rows['retail_price'];
-    } elseif ($sessionFlag == "p") {
+    if ($sessionId && $sessionFlag == "c") {
+        $calcPrice          = $rows['retail_price'];
+        $calcWholesalePrice = calc_offer_price($calcPrice, $sessionId);
+        $rePrice            = $calcWholesalePrice;
+    } elseif ($sessionId && $sessionFlag == "p") {
         $calcPrice = $rows['shop_price'];
+        $rePrice   = $calcPrice;
     }
 
-    $calcWholesalePrice  = calc_offer_price($calcPrice, $sessionId);
-    $commaWholesalePrice = number_format($calcWholesalePrice);
-    $commaCustomerPrice  = number_format($rows['shop_price']);
-
-    if ($sessionId) {
-        $reWholesalePrice = '                                <span class="special-price"><i class="fa fa-krw"></i> ' . $commaWholesalePrice . '</span>' . "\r\n";
-    } else {
-        $reWholesalePrice = '                                <span class="shop-price"><i class="fa fa-krw"></i> ' . $commaCustomerPrice . '</span>' . "\r\n";
-    }
-
-    return $reWholesalePrice;
+    return $rePrice;
 }
 
 /**
@@ -1421,7 +1432,8 @@ function show_items_on_catalog($result, $tabid)
 {
     global $connect;
 
-    $calcPrice   = 0;
+    // $calcPrice   = 0;
+    $sessionId   = set_var($_SESSION['p_id']);
     $sessionFlag = set_var($_SESSION['p_flag']);
 
     if ($result) {
@@ -1430,26 +1442,32 @@ function show_items_on_catalog($result, $tabid)
 
             $saleNewTag = '';
 
-            if ($sessionFlag == "c") {
-                $calcPrice = $rows['retail_price'];
-            } elseif ($sessionFlag == "p") {
-                $calcPrice = $rows['shop_price'];
-            }
-
-            // $commaWholesalePrice = number_format($rows['retail_price']);
             $itemName   = stripslashes($rows['name']);
             $pnum       = $rows['num'];
             $category_l = $rows['category_l'];
             $category_m = $rows['category_m'];
             $moq        = $rows['moq'];
             $shortDesc  = $rows['short_desc'];
-            // $option       = $rows['opt'];
-            $sessionId           = set_var($_SESSION['p_id']);
-            $calcWholesalePrice  = calc_offer_price($calcPrice, $sessionId);
-            $commaWholesalePrice = number_format($calcWholesalePrice);
-            $price               = show_me_wholesale_price($pnum);
+            $option     = show_option($pnum);
 
-            $option = show_option($pnum);
+            // $option       = $rows['opt'];
+            // $calcWholesalePrice  = calc_offer_price($calcPrice, $sessionId);
+            $calcWholesalePrice = show_me_wholesale_price($pnum);
+            // $commaWholesalePrice = number_format($calcWholesalePrice);
+            // $price               = show_me_wholesale_price($pnum);
+
+            if ($sessionId && $sessionFlag == "c") {
+                $commaWholesalePrice = number_format($calcWholesalePrice);
+                $price               = '                                <span class="special-price"><i class="fa fa-krw"></i> ' . $commaWholesalePrice . '</span>' . "\r\n";
+                $passingPrice        = $calcWholesalePrice;
+            } elseif ($sessionId && $sessionFlag == "p") {
+                $commaCustomerPrice = number_format($calcWholesalePrice);
+                $price              = '                                <span class="shop-price"><i class="fa fa-krw"></i> ' . $commaCustomerPrice . '</span>' . "\r\n";
+                $passingPrice       = $calcWholesalePrice;
+            } else {
+                $commaCustomerPrice = number_format($rows['shop_price']);
+                $price              = '                                <span class="shop-price"><i class="fa fa-krw"></i> ' . $commaCustomerPrice . '</span>' . "\r\n";
+            }
 
             if ($rows['main_best'] == "Y") {
                 $saleNewTag = '<span class="best-text">Best</span>';
@@ -1459,6 +1477,8 @@ function show_items_on_catalog($result, $tabid)
                 $saleNewTag = '<span class="sale-text">Sale</span>';
             } elseif ($rows['del_chk'] == "C") {
                 $saleNewTag = '<span class="cut-text">단종</span>';
+            } elseif ($rows['del_chk'] == "O") {
+                $saleNewTag = '<span class="out-text">품절</span>';
             }
 
             if ($tabid == 'home') {
@@ -1489,7 +1509,7 @@ HEREDOC;
                                                 <input type="text" name="products_count" id="products_count_{$pnum}" value="{$moq}" size="2">
                                                 <a href="#" id="{$pnum}" class="addCart_submit"><i class="fa fa-shopping-cart"></i></a>
                                                 <div id="loadplace{$pnum}"></div>
-                                                <input type="hidden" name="amount" id="amount_{$pnum}" value="{$calcWholesalePrice}">
+                                                <input type="hidden" name="amount" id="amount_{$pnum}" value="{$passingPrice}">
                                                 <input type="hidden" name="from" id="from" value="list">
 HEREDOC;
 
@@ -1544,7 +1564,7 @@ HEREDOC;
                     echo '                      <input type="text" name="products_count" id="products_count_' . $pnum . '" value="' . $moq . '" size="2">
                                                 <a href="#" id="' . $pnum . '" class="addCart_submit"><i class="fa fa-shopping-cart"></i></a>
                                                 <div id="loadplace' . $pnum . '"></div>
-                                                <input type="hidden" name="amount" id="amount_' . $pnum . '" value="' . $calcWholesalePrice . '">
+                                                <input type="hidden" name="amount" id="amount_' . $pnum . '" value="' . $passingPrice . '">
                                                 <input type="hidden" name="from" id="from" value="list">';
 
                 } else {
@@ -2135,18 +2155,50 @@ function show_item_info($pnum)
 
     global $connect;
 
-    $qry  = "SELECT * FROM products WHERE del_chk='N' AND approved = 'Y' AND num='$pnum' ";
+    $qry  = "SELECT * FROM products WHERE del_chk != 'Y' AND approved = 'Y' AND num='$pnum' ";
     $res  = mysqli_query($connect, $qry);
     $rows = mysqli_fetch_array($res);
 
-    $sessionId = set_var($_SESSION['p_id']);
+    $sessionId   = set_var($_SESSION['p_id']);
+    $sessionFlag = set_var($_SESSION['p_flag']);
 
-    $itemName           = stripslashes($rows['name']);
-    $moq                = $rows['moq'];
-    $shortDesc          = $rows['short_desc'];
-    $calcWholesalePrice = calc_offer_price($rows['retail_price'], $sessionId);
-    $price              = show_me_wholesale_price($pnum);
-    $option             = show_option($pnum);
+    $itemName  = stripslashes($rows['name']);
+    $moq       = $rows['moq'];
+    $shortDesc = $rows['short_desc'];
+    $option    = show_option($pnum);
+    // $commaCustomerPrice = number_format($rows['shop_price']);
+    // $calcWholesalePrice  = calc_offer_price($rows['retail_price'], $sessionId);
+    $calcWholesalePrice = show_me_wholesale_price($pnum);
+    // $commaWholesalePrice = number_format($calcWholesalePrice);
+    // $price               = show_me_wholesale_price($pnum);
+
+    if ($sessionId && $sessionFlag == "c") {
+        $commaWholesalePrice = number_format($calcWholesalePrice);
+        $price               = '                                <span class="special-price"><i class="fa fa-krw"></i> ' . $commaWholesalePrice . '</span>' . "\r\n";
+        $passingPrice        = $calcWholesalePrice;
+    } elseif ($sessionId && $sessionFlag == "p") {
+        $commaCustomerPrice = number_format($calcWholesalePrice);
+        $price              = '                                <span class="shop-price"><i class="fa fa-krw"></i> ' . $commaCustomerPrice . '</span>' . "\r\n";
+        $passingPrice       = $calcWholesalePrice;
+    } else {
+        $commaCustomerPrice = number_format($rows['shop_price']);
+        $price              = '                                <span class="shop-price"><i class="fa fa-krw"></i> ' . $commaCustomerPrice . '</span>' . "\r\n";
+    }
+
+    switch ($rows['del_chk']) {
+        case "C":
+            $stock = "단종";
+            $alert = '<a href="#" onclick="alert(\'단종입니다.\')"><i class="fa fa-shopping-cart"></i></a>' . "\r\n";
+            break;
+
+        case "O":
+            $stock = "품절";
+            break;
+
+        default:
+            $stock = "있음";
+            break;
+    }
 
     echo <<<HEREDOC
                             <!-- show product info -->
@@ -2162,7 +2214,7 @@ function show_item_info($pnum)
                                 </div>
                                 <p class="availability in-stock">
                                     재고:
-                                    <span>있음</span>
+                                    <span>{$stock}</span>
                                 </p>
                                 <div class="short-description">
                                     <p> {$option} </p>
@@ -2175,7 +2227,7 @@ function show_item_info($pnum)
                                         <div class="add-to-cart">
 HEREDOC;
 
-    if ($sessionId) {
+    if ($sessionId && $rows['del_chk'] == "N") {
         echo <<<HEREDOC
                                             <div class="product-icon">
                                                 <div class="input-content">
@@ -2187,7 +2239,31 @@ HEREDOC;
                                                 </button>
                                                 <div id="loadplace{$pnum}"></div>
                                                 <input type="hidden" name="from" id="from" value="detail">
-                                                <input type="hidden" name="amount" id="amount_{$pnum}" value="{$calcWholesalePrice}">
+                                                <input type="hidden" name="amount" id="amount_{$pnum}" value="{$passingPrice}">
+                                            </div>
+HEREDOC;
+    } elseif ($rows['del_chk'] == "C") {
+        echo <<<HEREDOC
+                                            <div class="product-icon">
+                                                <div class="input-content">
+                                                    <label for="qty">수량: </label>
+                                                    <input id="qty" name="qty" type="text" class="input-text qty" value="1">
+                                                </div>
+                                                <button class="button2 btn-cart" title="" type="button" onclick="alert('단종입니다.')">
+                                                    <span>주문 불가</span>
+                                                </button>
+                                            </div>
+HEREDOC;
+    } elseif ($rows['del_chk'] == "O") {
+        echo <<<HEREDOC
+                                            <div class="product-icon">
+                                                <div class="input-content">
+                                                    <label for="qty">수량: </label>
+                                                    <input id="qty" name="qty" type="text" class="input-text qty" value="1">
+                                                </div>
+                                                <button class="button2 btn-cart" title="" type="button" onclick="alert('품절입니다.')">
+                                                    <span>주문 불가</span>
+                                                </button>
                                             </div>
 HEREDOC;
     } else {
@@ -2224,30 +2300,34 @@ function show_relative_items($lcode, $mcode)
 {
     global $connect;
 
+    $sessionId   = set_var($_SESSION['p_id']);
+    $sessionFlag = set_var($_SESSION['p_flag']);
+
     $qry = "SELECT * FROM products WHERE del_chk='N' AND category_l='$lcode' AND category_m='$mcode' AND approved = 'Y' ORDER BY rand() LIMIT 4 ";
     $res = mysqli_query($connect, $qry);
 
     for ($i = 0; $i < $rows = mysqli_fetch_array($res); $i++) {
-        $sessionId = set_var($_SESSION['p_id']);
 
-        $firstThumbnail      = $rows['s_image1_name'];
-        $itemName            = $rows['name'];
-        $shortDesc           = get_short($rows['short_desc'], 25);
-        $commaCustomerPrice  = number_format($rows['shop_price']);
-        $calcWholesalePrice  = calc_offer_price($rows['retail_price'], $sessionId);
-        $commaWholesalePrice = number_format($calcWholesalePrice);
+        $pnum           = $rows['num'];
+        $firstThumbnail = $rows['s_image1_name'];
+        $itemName       = $rows['name'];
+        $shortDesc      = get_short($rows['short_desc'], 25);
+        // $commaCustomerPrice  = number_format($rows['shop_price']);
+        // $calcWholesalePrice = calc_offer_price($rows['retail_price'], $sessionId);
+        $calcWholesalePrice = show_me_wholesale_price($pnum);
+        // $commaWholesalePrice = number_format($calcWholesalePrice);
 
         echo <<<HEREDOC
 
                                         <div class="ma-box-content">
                                             <div class="product-img-right">
-                                                <a href="#">
+                                                <a href="detail.php?pnum={$pnum}&lcode={$lcode}&mcode={$mcode}">
                                                     <img class="primary-image" alt="" src="{$firstThumbnail}">
                                                 </a>
                                             </div>
                                             <div class="product-content">
                                                 <h2 class="product-name">
-                                                    <a href="#">{$itemName}</a>
+                                                    <a href="detail.php?pnum={$pnum}&lcode={$lcode}&mcode={$mcode}">{$itemName}</a>
                                                 </h2>
                                                 <div class="pro-rating">
                                                     {$shortDesc}
@@ -2255,11 +2335,22 @@ function show_relative_items($lcode, $mcode)
                                                 <div class="price-box">
 HEREDOC;
 
-        if ($sessionId) {
-            echo '                                                <span class="special"><i class="fa fa-krw"></i> ' . $commaWholesalePrice . '</span>';
+        if ($sessionId && $sessionFlag == "c") {
+            $commaWholesalePrice = number_format($calcWholesalePrice);
+            echo $price          = '                                <span class="special-price"><i class="fa fa-krw"></i> ' . $commaWholesalePrice . '</span>' . "\r\n";
+        } elseif ($sessionId && $sessionFlag == "p") {
+            $commaCustomerPrice = number_format($calcWholesalePrice);
+            echo $price         = '                                <span class="shop-price"><i class="fa fa-krw"></i> ' . $commaCustomerPrice . '</span>' . "\r\n";
         } else {
-            echo '                                                <span class="shop"><i class="fa fa-krw"></i> ' . $commaCustomerPrice . '</span>';
+            $commaCustomerPrice = number_format($rows['shop_price']);
+            echo $price         = '                                <span class="shop-price"><i class="fa fa-krw"></i> ' . $commaCustomerPrice . '</span>' . "\r\n";
         }
+
+        // if ($sessionId) {
+        //     echo '                                                <span class="special"><i class="fa fa-krw"></i> ' . $commaWholesalePrice . '</span>';
+        // } else {
+        //     echo '                                                <span class="shop"><i class="fa fa-krw"></i> ' . $commaCustomerPrice . '</span>';
+        // }
 
         echo <<<HEREDOC
                                                 </div>

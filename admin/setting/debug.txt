@@ -1,0 +1,14 @@
+INSERT INTO banner(  pos,
+                                  m_banner1,  m_banner1_image, m_link1,
+                                  m_banner2,  m_banner2_image, m_link2,
+                                  m_banner3,  m_banner3_image, m_link3,
+                                  m_banner4,  m_banner4_image, m_link4,
+                                  m_banner5,  m_banner5_image, m_link5,
+                                  created)
+              VALUES( 'top',
+                      'Y', '../../images/banner/top_14598293270_8350be334fe2a602f0ddd559b4f2e758.jpg', '',
+                      'Y', '../../images/banner/top_14598293271_633a13348e72216fe63bfa341dd687ae.jpg', '',
+                      'Y', '../../images/banner/top_14598293272_53647ce8307424c26e7329a3ea02ad40.jpg', '',
+                      'N', '', '',
+                      'N', '', '',
+                      now() )
