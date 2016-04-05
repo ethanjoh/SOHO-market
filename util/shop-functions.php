@@ -2415,7 +2415,13 @@ HEREDOC;
 
         for ($j = 1; $j <= 5; $j++) {
             $isYes = 'm_banner' . $j;
-            $link  = 'mlink' . $j;
+            $link  = 'm_link' . $j;
+
+            if ($row[$link] != "") {
+                $show_link = $row[$link];
+            } else {
+                $show_link = "#";
+            }
 
             if ($row[$isYes] == "Y") {
                 echo <<<HEREDOC
@@ -2424,7 +2430,7 @@ HEREDOC;
                     <div class="slider-content t-lfr s-tb slider-2">
                         <div class="title-container s-tb-c">
                             <div class="s-title">
-                                <a href="{$row[$link]}">자세히 보기</a>
+                                <a href="{$show_link}">자세히 보기</a>
                             </div>
                         </div>
                     </div>
@@ -2481,13 +2487,19 @@ function show_top_banner()
 
             $imagePath = 'm_banner' . $i . '_image';
             $isYes     = 'm_banner' . $i;
-            $link      = 'mlink' . $i;
+            $link      = 'm_link' . $i;
+
+            if ($row[$link] != "") {
+                $show_link = $row[$link];
+            } else {
+                $show_link = "#";
+            }
 
             if ("Y" == $row[$isYes]) {
                 echo <<<HEREDOC
 
                         <div class="product col-md-4 col-sm-4 col-xs-12">
-                            <a href="{$row[$link]}"><img src="{$row[$imagePath]}" alt=""></a>
+                            <a href="{$show_link}"><img src="{$row[$imagePath]}" alt=""></a>
                         </div>
 
 HEREDOC;
@@ -2533,12 +2545,18 @@ function show_middle_banner()
             $isYes     = 'm_banner' . $i;
             $link      = 'mlink' . $i;
 
+            if ($row[$link] != "") {
+                $show_link = $row[$link];
+            } else {
+                $show_link = "#";
+            }
+
             if ("Y" == $row[$isYes]) {
                 echo <<<HEREDOC
 
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="mid-banner">
-                            <a href="{$row[$link]}"><img src="{$row[$imagePath]}" alt=""></a>
+                            <a href="{$show_link}"><img src="{$row[$imagePath]}" alt=""></a>
                         </div>
                     </div>
 
@@ -2589,11 +2607,17 @@ function show_bottom_banner()
             $isYes     = 'm_banner' . $i;
             $link      = 'mlink' . $i;
 
+            if ($row[$link] != "") {
+                $show_link = $row[$link];
+            } else {
+                $show_link = "#";
+            }
+
             if ("Y" == $row[$isYes]) {
                 echo <<<HEREDOC
 
                         <div class="banner">
-                            <a href="{$row[$link]}"><img src="{$row[$imagePath]}" alt=""></a>
+                            <a href="{$show_link}"><img src="{$row[$imagePath]}" alt=""></a>
                         </div>
 
 HEREDOC;
