@@ -17,37 +17,37 @@
 
 <?php
 
-    $mode           = set_var($_GET['mode']);
-    $search_keyword = '';
-    $id             = '';
-    $company_name   = '';
-    $phone          = '';
+$mode           = set_var($_POST['mode']);
+$search_keyword = '';
+$id             = set_var($_POST['id']);
+$company_name   = set_var($_POST['company_name']);
+$phone          = set_var($_POST['phone']);
 
-    if ("search" == $mode) {
+if ($mode == "search") {
 
-        if ($id) {
-            $search_keyword .= " AND id LIKE '%$id%' ";
-        }
-
-        if ($company_name) {
-            $search_keyword .= " AND company_name LIKE '%$company_name%' ";
-        }
-
-        if ($phone) {
-            $search_keyword .= " AND o_phone LIKE '%$phone%' OR md_hphone LIKE '%$phone%' ";
-        }
-
-    } else if ($mode == "nonapproved") {
-        $search_keyword .= " AND approved='N' ";
-    } else if ($mode == "today") {
-        $today = date("Y-m-d");
-        $search_keyword .= " AND reg_date='$today' ";
+    if ($id) {
+        $search_keyword .= " AND id LIKE '%$id%' ";
     }
 
-    //회원 테이블의 리스트를 불러옵니다.
-    $query  = "SELECT * FROM member WHERE 1 $search_keyword ORDER BY company_name";
-    $result = mysqli_query($connect, $query);
-    $total  = mysqli_num_rows($result);
+    if ($company_name) {
+        $search_keyword .= " AND company_name LIKE '%$company_name%' ";
+    }
+
+    if ($phone) {
+        $search_keyword .= " AND o_phone LIKE '%$phone%' OR md_hphone LIKE '%$phone%' ";
+    }
+
+} else if ($mode == "nonapproved") {
+    $search_keyword .= " AND approved='N' ";
+} else if ($mode == "today") {
+    $today = date("Y-m-d");
+    $search_keyword .= " AND reg_date='$today' ";
+}
+
+//회원 테이블의 리스트를 불러옵니다.
+$query  = "SELECT * FROM member WHERE 1 $search_keyword ORDER BY company_name";
+$result = mysqli_query($connect, $query);
+$total  = mysqli_num_rows($result);
 
 ?>
 
@@ -144,44 +144,44 @@
                     <tbody>
 <?php
 
-    $page  = set_var($_GET['page']);
-    $scale = 20;
-    $page  = (isset($_GET['page']) ? $_GET['page'] : '');
+$page  = set_var($_GET['page']);
+$scale = 20;
+$page  = (isset($_GET['page']) ? $_GET['page'] : '');
 
-    if ('' == $page) {
-        $page = 1;
-    }
+if ('' == $page) {
+    $page = 1;
+}
 
-    $cpage     = intval($page);
-    $totalpage = intval($total / $scale);
+$cpage     = intval($page);
+$totalpage = intval($total / $scale);
 
-    if ($totalpage * $scale != $total) {
-        $totalpage = $totalpage + 1;
-    }
+if ($totalpage * $scale != $total) {
+    $totalpage = $totalpage + 1;
+}
 
-    if (1 == $cpage) {
-        $cline = 0;
-    } else {
-        $cline = ($cpage * $scale) - $scale;
-    }
+if (1 == $cpage) {
+    $cline = 0;
+} else {
+    $cline = ($cpage * $scale) - $scale;
+}
 
-    $limit = $cline + $scale;
+$limit = $cline + $scale;
 
-    if ($limit >= $total) {
-        $limit = $total;
-    }
+if ($limit >= $total) {
+    $limit = $total;
+}
 
-    $scale1 = $limit - $cline;
+$scale1 = $limit - $cline;
 
-    $sql_2    = "SELECT * FROM member WHERE 1 $search_keyword ORDER BY reg_date DESC LIMIT $cline,$scale1 ";
-    $result_2 = mysqli_query($connect, $sql_2);
-    $total_2  = mysqli_num_rows($result_2);
+$sql_2    = "SELECT * FROM member WHERE 1 $search_keyword ORDER BY reg_date DESC LIMIT $cline,$scale1 ";
+$result_2 = mysqli_query($connect, $sql_2);
+$total_2  = mysqli_num_rows($result_2);
 
-    if ($total_2) {
-        for ($i = 1; $list = mysqli_fetch_array($result_2); $i++) {
+if ($total_2) {
+    for ($i = 1; $list = mysqli_fetch_array($result_2); $i++) {
 
-            $bunho      = $total - ($i + $cline) + 1;
-            $license_no = explode("-", $list['license_no']);
+        $bunho      = $total - ($i + $cline) + 1;
+        $license_no = explode("-", $list['license_no']);
         ?>
                       <tr>
                         <td><?php echo $bunho; ?></td>
@@ -191,9 +191,9 @@
                         <td>
 <?php
 
-            if ($license_no[0] == "000") {
-                echo '<img src="../images/user-medium-silhouette.png">';
-            }
+        if ($license_no[0] == "000") {
+            echo '<img src="../images/user-medium-silhouette.png">';
+        }
         ?>
 <?php echo stripslashes($list['company_name']); ?>
 <?php echo $list['homepage'] ? "&nbsp;&nbsp;<a href=\"http://$list[homepage]\" target=\"_blank\"><img src=\"../images/browser_explorer.png\" alt=\"홈페이지 가기\" /></a>" : ""; ?>
@@ -206,12 +206,12 @@
                         <td><?php echo $list['dc_rate']; ?> % DC
 <?php
 
-            switch ($list['tax']) {
-                case "E":echo " (VAT 별도)";
-                    break;
-                case "I":echo " (VAT 포함)";
-                    break;
-            }
+        switch ($list['tax']) {
+            case "E":echo " (VAT 별도)";
+                break;
+            case "I":echo " (VAT 포함)";
+                break;
+        }
         ?>
                         </td>
                         <td><?php echo $list['o_phone']; ?></td>
@@ -221,11 +221,11 @@
                         <td>
 <?php
 
-            if ($list['approved'] == "Y") {
-                echo '<i class="fa fa-check"></i> OK';
-            } else {
-                echo '<i class="fa fa-pause"></i> PAUSE';
-            }
+        if ($list['approved'] == "Y") {
+            echo '<i class="fa fa-check"></i> OK';
+        } else {
+            echo '<i class="fa fa-pause"></i> PAUSE';
+        }
 
         ?>
                         </td>
@@ -235,17 +235,17 @@
                       </tr>
 <?php
 
-        } // end of for loop
+    } // end of for loop
 
-        mysqli_free_result($result_2);
-    } else {
+    mysqli_free_result($result_2);
+} else {
     ?>
                       <tr>
                         <td colspan="11"><p>등록된 업체가 없습니다.</p></td>
                       </tr>
 <?php
 
-    }
+}
 ?>
                       </tbody>
                     </table>
@@ -267,14 +267,14 @@
                           <td>
 <?php
 
-    $md_email   = '';
-    $o_phone    = '';
-    $md_hphone  = '';
-    $license_no = $license_no[0] . $license_no[1] . $license_no[2];
+$md_email   = '';
+$o_phone    = '';
+$md_hphone  = '';
+$license_no = $license_no[0] . $license_no[1] . $license_no[2];
 
-    // $url = $_SERVER['PHP_SELF'] . '?id=' . $id . '&amp;mode=' . $mode . '&amp;license_no=' . $license_no . '&amp;md_email=' . $md_email . '&amp;o_phone=' . $o_phone . '&amp;company_name=' . $company_name . '&amp;md_hphone=' . $md_hphone;
-    $url = $_SERVER['PHP_SELF'] . '?mode=' . $mode;
-    page_nav($totalpage, $cpage, $url);
+// $url = $_SERVER['PHP_SELF'] . '?id=' . $id . '&amp;mode=' . $mode . '&amp;license_no=' . $license_no . '&amp;md_email=' . $md_email . '&amp;o_phone=' . $o_phone . '&amp;company_name=' . $company_name . '&amp;md_hphone=' . $md_hphone;
+$url = $_SERVER['PHP_SELF'] . '?mode=' . $mode;
+page_nav($totalpage, $cpage, $url);
 ?>
                           </td>
                         </tr>
