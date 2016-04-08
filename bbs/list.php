@@ -13,7 +13,7 @@ $p_name = set_var($_SESSION['p_name']);
 
 $s_sql = '';
 
-if ("search" == $mode) {
+if ($mode == "search") {
     switch ($key) {
         case 'title':
             $s_sql .= " AND title LIKE '%$keyword%' ";
@@ -163,7 +163,7 @@ if ($total == 0) {
 <?php
 
 } else {
-    if ('admin' == $p_id) {
+    if ($p_id == 'admin') {
         $num = 6;
     } else {
         $num = 5;
@@ -182,7 +182,7 @@ if ($total == 0) {
 
         echo "<tr>\n";
 
-        if ('admin' == $p_id) {
+        if ($p_id == 'admin') {
             echo "<td><input type=\"checkbox\" name=\"chk[]\" value=\"" . $row['main_no'] . "\"></td>\n";
         }
         ?>
@@ -255,7 +255,7 @@ $row1 = mysqli_fetch_array($res);
 
 //관리자 전용쓰기 게시판 여부 확인
 // 읽기권한: 회원 및 관리자
-if ($row1['readable'] == 'M' && 'admin' == $p_id) {
+if ($row1['readable'] == 'M' && $p_id == 'admin') {
     ?>
             <div class="row">
               <p>
@@ -266,7 +266,7 @@ if ($row1['readable'] == 'M' && 'admin' == $p_id) {
 <?php
 
     // 비회원 읽기 가능
-} else if ($row1['readable'] == 'E' && 'admin' != $p_id) {
+} else if ($row1['readable'] == 'E' && $p_id != 'admin') {
     ?>
             <div class="row">
               <p>
@@ -279,21 +279,21 @@ if ($row1['readable'] == 'M' && 'admin' == $p_id) {
 <?php
 
     //회원 로그인 확인
-} else if ($row1['readable'] == 'E' && $p_id && 'admin' != $p_id) {
+} else if ($row1['readable'] == 'E' && $p_id && $p_id != 'admin') {
     ?>
             <div class="row">
               <p><a class="btn btn-success" href="post.php?code=<?php echo $code; ?>"><i class="fa fa-pencil-square-o"></i> 쓰 기</a><a class="a-login btn btn-xs btn-primary pull-right" href="" data-popup="login2"><i class="fa fa-cog"></i> ADMIN LOGIN</a></p>
             </div>
 <?php
 
-} else if ($row1['readable'] == 'E' && 'admin' == $p_id) {
+} else if ($row1['readable'] == 'E' && $p_id == 'admin') {
     ?>
             <div class="row">
               <p><a class="btn btn-success" href="post.php?code=<?php echo $code; ?>"><i class="fa fa-pencil-square-o"></i> 쓰 기</a> &nbsp; <a class="btn btn-danger" href="#" onClick="javascript:del_send();"><i class="fa fa-trash-o"></i> 삭 제</a></p>
             </div>
 <?php
 
-} else if ($row1['readable'] == 'E' && 'admin' != $p_id) {
+} else if ($row1['readable'] == 'E' && $p_id != 'admin') {
     ; //일반 게시판 & 일반회원
     ?>
             <div class="row">
