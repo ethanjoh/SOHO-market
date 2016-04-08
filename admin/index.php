@@ -1,14 +1,16 @@
 <?php
-	include_once "../util/util.php";
 
-	$connect    = my_connect($host, $dbid, $dbpass, $dbname);
-	$info_query = "SELECT * FROM admin_setup";
-	$info_res   = mysqli_query($connect, $info_query);
-	$info       = mysqli_fetch_array($info_res);
+include_once "../util/util.php";
 
-	$root_cookie = (isset($_COOKIE['save_id']) ? $_COOKIE['ROOT_ID'] : '');
-	$save_cookie = (isset($_COOKIE['save_id']) ? 'checked' : '');
+$connect    = my_connect($host, $dbid, $dbpass, $dbname);
+$info_query = "SELECT * FROM admin_setup";
+$info_res   = mysqli_query($connect, $info_query);
+$info       = mysqli_fetch_array($info_res);
 
+$root_cookie = (isset($_COOKIE['save_id']) ? $_COOKIE['ROOT_ID'] : '');
+$save_cookie = (isset($_COOKIE['save_id']) ? 'checked' : '');
+
+$protocol = check_protocol($sslPort);
 ?>
 <!DOCTYPE html>
 <html lang="ko">
@@ -37,7 +39,7 @@
     </head>
     <body class="login-body">
         <div class="container">
-            <form role="form" class="form-signin" action="//<?php echo $_SERVER['SERVER_NAME']; ?>:<?php echo $sslPort; ?>/admin/check_login.php" method="post" name="login" onsubmit="return chkLogin(this);">
+            <form role="form" class="form-signin" action="<?php echo $protocol; ?>//<?php echo $_SERVER['SERVER_NAME']; ?>:<?php echo $sslPort; ?>/admin/check_login.php" method="post" name="login" onsubmit="return chkLogin(this);">
                 <!-- <form role="form" class="form-signin" action="http://<?php echo $_SERVER['SERVER_NAME']; ?>/admin/check_login.php" method="post" name="login" onsubmit="return chkLogin(this);"> -->
                 <div class="form-signin-heading">
                     <img src="/images/shinsoo-logo.svg" class="admin-logo">
