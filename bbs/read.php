@@ -16,8 +16,8 @@ $code     = set_var($_GET['code']);
 $main_no  = set_var($_GET['main_no']);
 $page     = set_var($_GET['page']);
 $reply_no = set_var($_GET['reply_no']);
-
-$p_id = set_var($_SESSION['p_id']);
+$flag     = set_var($_GET['flag']); // 미사용
+$p_id     = set_var($_SESSION['p_id']);
 
 $bqry = "SELECT * FROM code WHERE code='$code' ";
 $bres = mysqli_query($connect, $bqry);
@@ -33,8 +33,7 @@ if ($code) {
 }
 
 //조회수 증가
-if ('admin' != $p_id) {
-
+if ($p_id != 'admin') {
     mysqli_query($connect, "UPDATE $board SET count = count+1 WHERE main_no = '$main_no' ");
 }
 
@@ -47,14 +46,14 @@ if ('admin' != $p_id) {
 
 switch ($readable) {
     case 'E':
-        $sql = "SELECT * FROM $board ORDER BY main_no DESC ";
+        $sql = "SELECT * FROM $board WHERE main_no='$main_no' ";
 
         break;
 
     case 'A':
         // 작성자 및 관리자만 읽기 가능 (1:1 게시판 등)
         if ('admin' == $p_id || $row['id'] == $p_id) {
-            $sql = "SELECT * FROM $board WHERE (id='$p_id' OR id='admin') ORDER BY main_no DESC ";
+            $sql = "SELECT * FROM $board WHERE main_no='$main_no' AND (id='$p_id' OR id='admin') ";
         } else {
             echo <<<HEREDOC
                     <div class="row">
@@ -70,7 +69,7 @@ HEREDOC;
 
     case 'M':
         if ($p_id) {
-            $sql = "SELECT * FROM $board ORDER BY main_no DESC ";
+            $sql = "SELECT * FROM $board WHERE main_no='$main_no' ";
         } else {
             echo <<<HEREDOC
                     <div class="row">
@@ -211,10 +210,12 @@ if (isset($sql)) {
 
     //로그인을 했을 때만 댓글입력할 수 있도록
     if ('admin' == $p_id || $p_id) {
+
+        $protocol = check_protocol($sslPort);
         ?>
 
                       <!-- 댓글 -->
-                        <form name="reply_form" method="post" action="//<?php echo $_SERVER['SERVER_NAME']; ?>:<?php echo $port; ?>/bbs/post_ok.php">
+                        <form name="reply_form" method="post" action="<?php echo $protocol; ?>//<?php echo $_SERVER['SERVER_NAME']; ?>:<?php echo $sslPort; ?>/bbs/post_ok.php">
                             <input type="hidden" name="mode" value="reply" />
                             <input type="hidden" name="main_no" value="<?php echo $main_no; ?>" />
                             <input type="hidden" name="reply_no" value="<?php echo $reply_no; ?>" />

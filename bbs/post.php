@@ -44,9 +44,10 @@ if ('edit' == $mode) {
     $bres1 = mysqli_query($connect, $bqry1);
     $brow1 = mysqli_fetch_array($bres1);
 
-    $bbs_name = $brow1['title'];
+    $bbs_name = $brow1['bbs_name'];
 }
 
+$protocol = check_protocol($sslPort);
 ?>
 
     <!-- HOME -->
@@ -64,8 +65,7 @@ if ('edit' == $mode) {
             <div class="row">
                 <div class="table-responsive">
 
-                  <!-- <form name="write_form" method="post" ENCTYPE="multipart/form-data" action="https://www.<?php echo $_SERVER['SERVER_NAME']; ?>:<?php echo $port; ?>/bbs/post_ok.php"> -->
-                  <form name="write_form" method="post" ENCTYPE="multipart/form-data" action="//<?php echo $_SERVER['SERVER_NAME']; ?>:<?php echo $port; ?>/bbs/post_ok.php">
+                  <form name="write_form" method="post" ENCTYPE="multipart/form-data" action="<?php echo $protocol; ?>//<?php echo $_SERVER['SERVER_NAME']; ?>:<?php echo $sslPort; ?>/bbs/post_ok.php">
                     <input type="hidden" name="mode"    value="<?php echo $mode; ?>" />
                     <input type="hidden" name="main_no" value="<?php echo $main_no; ?>" />
                     <input type="hidden" name="code"    value="<?php echo $code; ?>" />
