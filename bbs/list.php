@@ -186,7 +186,7 @@
             echo "<tr>\n";
 
             if ($p_id == 'admin') {
-                echo "<td><input type=\"checkbox\" name=\"chk[]\" value=\"" . $row['main_no'] . "\"></td>\n";
+                echo '<td><input type="checkbox" name="chk[]" value="' . $row['main_no'] . '"></td>' . "\r\n";
             }
         ?>
                               <td><?php echo $row['main_no']; ?></td>
