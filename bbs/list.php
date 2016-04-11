@@ -4,7 +4,6 @@
 
 $mode     = set_var($_GET['mode']);
 $code     = set_var($_GET['code']);
-$page     = set_var($_GET['page']);
 $main_no  = set_var($_POST['main_no']);
 $reply_no = set_var($_POST['reply_no']);
 
@@ -74,7 +73,9 @@ if ($code) {
 
 <?php
 
+$page  = set_var($_GET['page']);
 $scale = 20;
+
 if ($page == '') {
     $page = 1;
 }
@@ -132,7 +133,7 @@ $scale1 = $limit - $cline;
                             <tr>
 <?php
 
-if ('admin' == $p_id) {
+if ($p_id == 'admin') {
     echo '<th>선택</th>';
 }
 ?>
@@ -147,13 +148,15 @@ if ('admin' == $p_id) {
 
 <?php
 
+if ($p_id == 'admin') {
+    $num = 6;
+} else {
+    $num = 5;
+}
+
 // 만약 검색 결과가 없다면,
 if ($total == 0) {
-    if ('admin' == $p_id) {
-        $num = 6;
-    } else {
-        $num = 5;
-    }
+
     ?>
 
                             <tr>
@@ -163,13 +166,13 @@ if ($total == 0) {
 <?php
 
 } else {
-    if ($p_id == 'admin') {
-        $num = 6;
-    } else {
-        $num = 5;
-    }
+    // if ($p_id == 'admin') {
+    //     $num = 6;
+    // } else {
+    //     $num = 5;
+    // }
 
-    if ($readable == 'N' && $p_id != 'admin') {
+    if ($readable == 'M' && $p_id != 'admin') {
         $sql = "SELECT * FROM $board WHERE (id='$_SESSION[p_id]' OR id='admin') $s_sql ORDER BY mod_date DESC LIMIT $cline,$scale1";
     } else {
         $sql = "SELECT * FROM $board WHERE 1 $s_sql ORDER BY mod_date DESC LIMIT $cline,$scale1";
@@ -187,37 +190,31 @@ if ($total == 0) {
         }
         ?>
                               <td><?php echo $row['main_no']; ?></td>
-                            <!-- 답변글이 있다면 -->
+
 <?php
 
-        //답변만 있는 경우
-        if ($row['depth'] > 0 && (!$row['filename'])) {
-            ?>
-                                    <td><a href="read.php?code=<?php echo $code; ?>&amp;main_no=<?php echo $row['main_no']; ?>&amp;page=<?php echo $page; ?>"><?php echo stripslashes($row['title']); ?></a>&nbsp;<span class="badge"><?php echo $row['depth']; ?></span></td>
-<?php
-
-            //답변과 첨부파일이 다 있는 경우
-        } else if ($row['depth'] > 0 && ($row['filename'])) {
-            ?>
-                                    <td><a href="read.php?code=<?php echo $code; ?>&amp;main_no=<?php echo $row['main_no']; ?>&amp;page=<?php echo $page; ?>"><?php echo stripslashes($row['title']); ?></a>&nbsp;<i class="fa fa-floppy-o"></i>&nbsp;<span class="badge"><?php echo $row['depth']; ?></span></td>
-<?php
-
-            //첨부파일만 있는 경우
-        } else if ($row['depth'] == 0 && ($row['filename'])) {
-            ?>
-                                    <td><a href="read.php?code=<?php echo $code; ?>&amp;main_no=<?php echo $row['main_no']; ?>&amp;page=<?php echo $page; ?>"><?php echo stripslashes($row['title']); ?></a>&nbsp;<i class="fa fa-floppy-o"></i>&nbsp;</td>
-<?php
-
+        if ($row['depth'] > 0) {
+            $hasReply = '&nbsp;<span class="badge">' . $row['depth'] . '</span>';
         } else {
+            $hasReply = '';
+        }
 
-            ?>
-                                    <td><a href="read.php?code=<?php echo $code; ?>&amp;main_no=<?php echo $row['main_no']; ?>&amp;page=<?php echo $page; ?>"><?php echo stripslashes($row['title']); ?></a><?php echo check_new_post('notice', $row['main_no'], 3); ?></td>
+        if ($row['filename']) {
+            $hasAttachment = '&nbsp;<i class="fa fa-floppy-o"></i>&nbsp;';
+        } else {
+            $hasAttachment = '';
+        }
+        ; // //답변만 있는 경우; // if ($row['depth'] > 0 && (!$row['filename'])) {
+        ?>
+                              <td><a href="read.php?code=<?php echo $code; ?>&amp;main_no=<?php echo $row['main_no']; ?>&amp;page=<?php echo $page; ?>"><?php echo stripslashes($row['title']); ?></a><?php echo $hasAttachment; ?><?php echo $hasReply; ?></td>
+
 <?php
 
-        }
-        //날짜 형식을 바꾼다.
-        $post_date = substr($row['date'], 0, 11);
-        ?>
+    }
+
+    //날짜 형식을 바꾼다.
+    $post_date = substr($row['date'], 0, 11);
+    ?>
                               <td><?php echo $row['name']; ?></td>
                               <td><?php echo $post_date; ?></td>
                               <td><?php echo $row['count']; ?></td>
@@ -225,20 +222,20 @@ if ($total == 0) {
 
 <?php
 
-    }
-    ; // end for loop
-    ?>
+}
+; // end for loop
+?>
                         </tbody>
                         <tfoot>
                             <tr>
                               <td colspan="<?php echo $num; ?>" class="text-center">
 <?php
 
-    //쪽 수를 표시
-    $url = $_SERVER['PHP_SELF'] . "?code=" . $code;
-    page_nav($totalpage, $cpage, $url);
-}
-; // end else -->
+//쪽 수를 표시
+$url = $_SERVER['PHP_SELF'] . "?code=" . $code;
+page_nav($totalpage, $cpage, $url);
+
+// end else -->
 ?>
 <!--                               </td>
                             </tr>
@@ -249,60 +246,54 @@ if ($total == 0) {
 
 <?php
 
-$qry  = "SELECT * FROM code WHERE code='$code' ";
-$res  = mysqli_query($connect, $qry);
-$row1 = mysqli_fetch_array($res);
+// $qry  = "SELECT * FROM code WHERE code='$code' ";
+// $res  = mysqli_query($connect, $qry);
+// $row1 = mysqli_fetch_array($res);
 
 //관리자 전용쓰기 게시판 여부 확인
 // 읽기권한: 회원 및 관리자
-if ($row1['readable'] == 'M' && $p_id == 'admin') {
-    ?>
-            <div class="row">
-              <p>
-                <a class="btn btn-success" href="post.php?code=<?php echo $code; ?>"><i class="fa fa-pencil-square-o"></i> 쓰 기</a> &nbsp;
-                <a class="btn btn-danger" href="#" onClick="del_send();"><i class="fa fa-trash-o"></i> 삭 제</a>
-              </p>
-            </div>
-<?php
 
-    // 비회원 읽기 가능
-} else if ($row1['readable'] == 'E' && $p_id != 'admin') {
-    ?>
-            <div class="row">
-              <p>
-                <button type="button" class="btn btn-xs btn-primary pull-right" data-toggle="modal" data-target="#login2">
-                  <i class="fa fa-cog"></i> ADMIN LOGIN
-                </button>
-              </p>
-              <!-- <a class="a-login btn btn-primary pull-right" href="" data-popup="login2"><i class="fa fa-cog"></i>ADMIN LOGIN</a></p> -->
-            </div>
-<?php
+switch ($writable) {
+    case 'A':
+        if ($p_id == 'admin') {
+            $showButton = '<a class="btn btn-success" href="post.php?code=<?php echo $code; ?>"><i class="fa fa-pencil-square-o"></i> 쓰 기</a>' . "\r\n";
+            $showButton .= '<a class="btn btn-danger" href="#" onClick="javascript:del_send();"><i class="fa fa-trash-o"></i> 삭 제</a></p>' . "\r\n";
+        } else {
+            $showButton = '<button type="button" class="btn btn-xs btn-primary pull-right" data-toggle="modal" data-target="#login2">' . "\r\n";
+            $showButton .= '<i class="fa fa-cog"></i> ADMIN LOGIN' . "\r\n";
+            $showButton .= '</button>' . "\r\n";
+        }
 
-    //회원 로그인 확인
-} else if ($row1['readable'] == 'E' && $p_id && $p_id != 'admin') {
-    ?>
-            <div class="row">
-              <p><a class="btn btn-success" href="post.php?code=<?php echo $code; ?>"><i class="fa fa-pencil-square-o"></i> 쓰 기</a><a class="a-login btn btn-xs btn-primary pull-right" href="" data-popup="login2"><i class="fa fa-cog"></i> ADMIN LOGIN</a></p>
-            </div>
-<?php
+        break;
 
-} else if ($row1['readable'] == 'E' && $p_id == 'admin') {
-    ?>
-            <div class="row">
-              <p><a class="btn btn-success" href="post.php?code=<?php echo $code; ?>"><i class="fa fa-pencil-square-o"></i> 쓰 기</a> &nbsp; <a class="btn btn-danger" href="#" onClick="javascript:del_send();"><i class="fa fa-trash-o"></i> 삭 제</a></p>
-            </div>
-<?php
+    case 'M':
+        if ($p_id) {
+            $showButton = '<a class="btn btn-success" href="post.php?code=<?php echo $code; ?>"><i class="fa fa-pencil-square-o"></i> 쓰 기</a> &nbsp;' . "\r\n";
+            // $showButton .= '<a class="btn btn-danger" href="#" onClick="del_send();"><i class="fa fa-trash-o"></i> 삭 제</a>' . "\r\n";
+        } else {
+            $showButton = '<button type="button" class="btn btn-xs btn-primary pull-right" data-toggle="modal" data-target="#login2">' . "\r\n";
+            $showButton .= '<i class="fa fa-cog"></i> ADMIN LOGIN' . "\r\n";
+            $showButton .= '</button>' . "\r\n";
+        }
 
-} else if ($row1['readable'] == 'E' && $p_id != 'admin') {
-    ; //일반 게시판 & 일반회원
-    ?>
-            <div class="row">
-              <p><a class="a-login btn btn-xs btn-primary pull-right" href="" data-popup="login2"><i class="fa fa-cog"></i> ADMIN LOGIN</a></p>
-            </div>
-<?php
+        break;
 
+    case 'E':
+        $showButton = '<a class="btn btn-success" href="post.php?code=<?php echo $code; ?>"><i class="fa fa-pencil-square-o"></i> 쓰 기</a> &nbsp;' . "\r\n";
+        $showButton .= '<button type="button" class="btn btn-xs btn-primary pull-right" data-toggle="modal" data-target="#login2">' . "\r\n";
+        $showButton .= '<i class="fa fa-cog"></i> ADMIN LOGIN' . "\r\n";
+        $showButton .= '</button>' . "\r\n";
+
+        break;
 }
+
 ?>
+            <div class="row">
+              <p>
+                <?php echo $showButton; ?>
+              </p>
+            </div>
+
         </form>
 
         <form name="search_form" class="form-inline" action="list.php?code=<?php echo $code; ?>" method="post">

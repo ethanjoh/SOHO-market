@@ -162,7 +162,7 @@ if (isset($sql)) {
                         <a class="btn btn-warning" href="post.php?mode=edit&amp;code=<?php echo $code; ?>&amp;main_no=<?php echo $row['main_no']; ?>">수 정</a>
 <?php
 
-    if ('admin' == $p_id) {
+    if ($writable == 'A' && $p_id == 'admin') {
         echo '<a class="btn btn-danger" href="admin_delete.php?code=' . $code . '&amp;main_no=' . $row['main_no'] . '&amp;from=read" return confirm(\'삭제하시겠습니까?\')"><i class="fa fa-trash-o"></i>삭 제</a>';
     } else {
         echo '<a class="btn btn-danger" href="delete.php?mode=parent&code=' . $code . '&amp;main_no=' . $row['main_no'] . '" return confirm(\'삭제하시겠습니까?\')"><i class="fa fa-trash-o"></i>삭 제</a>';
@@ -187,7 +187,7 @@ if (isset($sql)) {
                       <div class="pane">
 <?php
 
-            if ('admin' == $p_id) {
+            if ($writable == 'A' && $p_id == 'admin') {
                 echo '<a href="admin_delete.php?code=' . $code . '&amp;main_no=' . $main_no . '&amp;reply_no=' . $re_row['reply_no'] . '&amp;from=reply" onclick="return confirm(\'답변을 삭제하시겠습니까?\');" class="btn btn-xs btn-danger"><i class="fa fa-trash-o"></i></a>';
             } else {
                 echo '<a href="delete.php?mode=child&code=' . $code . '&amp;main_no=' . $main_no . '&amp;reply_no=' . $re_row['reply_no'] . '" class="btn btn-xs btn-danger"><i class="fa fa-trash-o"></i></a>';
