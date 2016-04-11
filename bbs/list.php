@@ -270,8 +270,9 @@ switch ($writable) {
         if ($p_id && $p_id != 'admin') {
             $showButton = '<a class="btn btn-success" href="post.php?code=<?php echo $code; ?>"><i class="fa fa-pencil-square-o"></i> 쓰 기</a> &nbsp;' . "\r\n";
         } elseif ($p_id == 'admin') {
-            $showButton = '<a class="btn btn-success" href="post.php?code=<?php echo $code; ?>"><i class="fa fa-pencil-square-o"></i> 쓰 기</a> &nbsp;' . "\r\n";
+            $showButton = '<a class="btn btn-success" href="post.php?code=<?php echo $code; ?>"><i class="fa fa-pencil-square-o"></i> 쓰 기</a>' . "\r\n";
             $showButton .= '<a class="btn btn-danger" href="#" onClick="del_send();"><i class="fa fa-trash-o"></i> 삭 제</a>' . "\r\n";
+            $showButton .= '<a class="btn btn-warning" href="/member/logout.php">로그아웃</a>' . "\r\n";
         } else {
             $showButton = '<button type="button" class="btn btn-xs btn-primary pull-right" data-toggle="modal" data-target="#login2">' . "\r\n";
             $showButton .= '<i class="fa fa-cog"></i> ADMIN LOGIN' . "\r\n";
