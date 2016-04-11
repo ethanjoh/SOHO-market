@@ -2,52 +2,52 @@
 
 <?php
 
-$mode     = set_var($_GET['mode']);
-$p_id     = set_var($_SESSION['p_id']);
-$main_no  = set_var($_GET['main_no']);
-$code     = set_var($_GET['code']);
-$bbs_name = '';
+    $mode     = set_var($_GET['mode']);
+    $p_id     = set_var($_SESSION['p_id']);
+    $main_no  = set_var($_GET['main_no']);
+    $code     = set_var($_GET['code']);
+    $bbs_name = '';
 
-if ('edit' == $mode) {
-    $board  = 'bbs_' . $code;
-    $sql    = "SELECT * FROM $board WHERE main_no='$main_no' ";
-    $result = mysqli_query($connect, $sql);
-    $row    = mysqli_fetch_array($result);
+    if ($mode == 'edit') {
+        $board  = 'bbs_' . $code;
+        $sql    = "SELECT * FROM $board WHERE main_no='$main_no' ";
+        $result = mysqli_query($connect, $sql);
+        $row    = mysqli_fetch_array($result);
 
-    if ($row['id'] != $p_id) {
-        $url = 'read.php?code=' . $code . '&main_no=' . $main_no;
-        show_msg('본인이 작성한 글이 아닙니다.', $url);
+        if ($row['id'] != $p_id) {
+            $url = 'read.php?code=' . $code . '&main_no=' . $main_no;
+            show_msg('본인이 작성한 글이 아닙니다.', $url);
+        }
+
+        //기존 첨부파일 여부 체크
+        if (strlen($row['filename']) > 0) {
+            $path = 'upload/' . $row['filename'];
+
+            //Array 값으로 분리, [0]에는 "_"이전 값이, [1]에는 "_"이후 값이 들어있다.
+            $chk_name = explode('_', $row['filename']);
+            $old_file = $chk_name[sizeof($chk_name) - 1];
+        }
+
+        $bbs_name = $row['title'];
+
+    } else if ($mode == 'reply') {
+        $board = 'bbs_' . $code;
+        $sql   = "SELECT * FROM $board WHERE main_no='$main_no' ";
+
+        $result = mysqli_query($connect, $sql);
+        $row    = mysqli_fetch_array($result);
+
+        $bbs_name = $row['title'];
+
+    } else {
+        $bqry1 = "SELECT * FROM code WHERE code='$code' ";
+        $bres1 = mysqli_query($connect, $bqry1);
+        $brow1 = mysqli_fetch_array($bres1);
+
+        $bbs_name = $brow1['bbs_name'];
     }
 
-    //기존 첨부파일 여부 체크
-    if (strlen($row['filename']) > 0) {
-        $path = 'upload/' . $row['filename'];
-
-        //Array 값으로 분리, [0]에는 "_"이전 값이, [1]에는 "_"이후 값이 들어있다.
-        $chk_name = explode('_', $row['filename']);
-        $old_file = $chk_name[sizeof($chk_name) - 1];
-    }
-
-    $bbs_name = $row['title'];
-
-} else if ('reply' == $mode) {
-    $board = 'bbs_' . $code;
-    $sql   = "SELECT * FROM $board WHERE main_no='$main_no' ";
-
-    $result = mysqli_query($connect, $sql);
-    $row    = mysqli_fetch_array($result);
-
-    $bbs_name = $row['title'];
-
-} else {
-    $bqry1 = "SELECT * FROM code WHERE code='$code' ";
-    $bres1 = mysqli_query($connect, $bqry1);
-    $brow1 = mysqli_fetch_array($bres1);
-
-    $bbs_name = $brow1['bbs_name'];
-}
-
-$protocol = check_protocol($sslPort);
+    $protocol = check_protocol($sslPort);
 ?>
 
     <!-- HOME -->
@@ -85,21 +85,21 @@ $protocol = check_protocol($sslPort);
                           <td class="left">
 <?php
 
-if ('edit' == $mode) {
-    echo '<input type="text" name="title" size="50" maxlength="50" value="' . stripcslashes($row['title']) . '" /></td>';
-} else {
-    echo '<input type="text" name="title" size="50" maxlength="50" /></td>';
-}
+    if ('edit' == $mode) {
+        echo '<input type="text" name="title" size="50" maxlength="50" value="' . stripcslashes($row['title']) . '" /></td>';
+    } else {
+        echo '<input type="text" name="title" size="50" maxlength="50" /></td>';
+    }
 ?>
                         </tr>
                         <tr>
                           <td colspan="2">
 <?php
 
-if ($mode == 'edit') {
-    $contents = stripslashes($row['contents']);
-    echo <<<HEREDOC
-                            <textarea name="contents" class="form-control" id="contents">{$contents}</textarea>
+    if ($mode == 'edit') {
+        $contents = stripslashes($row['contents']);
+        echo <<<HEREDOC
+		                            <textarea name="contents" class="form-control" id="contents">{$contents}</textarea>
                             <script type="text/javascript">
                                 CKEDITOR.replace( 'contents' );
                             </script>
@@ -110,9 +110,9 @@ if ($mode == 'edit') {
 
 HEREDOC;
 
-} else {
-    echo <<<HEREDOC
-                            <textarea name="contents" class="form-control" id="contents"></textarea>
+    } else {
+        echo <<<HEREDOC
+		                            <textarea name="contents" class="form-control" id="contents"></textarea>
                             <script type="text/javascript">
                                 CKEDITOR.replace( 'contents' );
                             </script>

@@ -25,7 +25,7 @@ $code     = set_var($_GET['code']);
             <input type="hidden" name="code"      value="<?php echo $code; ?>" />
             <div class="row">
                 <div class="col-md-4 col-md-offset-4">
-                    <label for="passwd">비밀번호 (게시판 관리 비밀번호): </label>
+                    <label for="passwd">로그인 비밀번호: </label>
                     <input type="password" class="form-control" name="passwd">
                 </div>
             </div>
@@ -47,13 +47,16 @@ $code     = set_var($_GET['code']);
 
         <script>
         function send()  {
-          var x = window.confirm("정말 삭제하시겠습니까?");
+            var x = window.confirm("정말 삭제하시겠습니까?");
 
-          if(x = true)
+            if(x) {
              document.delete_form.submit();
-          else
+            }
+            else {
             document.location.replace("read.php?code=<?php echo $code; ?>&amp;main_no=<?php echo $main_no; ?>");
-        }
+            }
+         }
+
         </script>
     </body>
 </html>

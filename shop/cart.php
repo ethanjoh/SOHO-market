@@ -58,9 +58,10 @@ HEREDOC;
                             </button>
 HEREDOC;
 } else {
+    $go_order = go_purchase($reVal[0]);
     echo <<<HEREDOC
 
-                            <button class="button2 get" type="button" onclick="<?php echo go_purchase($reVal[0]); ?>">
+                            <button class="button2 get" type="button" onclick="{$go_order}">
                                 <span><i class="fa fa-check-circle"></i> 주문서 작성하기</span>
                             </button>
 HEREDOC;
