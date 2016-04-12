@@ -1445,7 +1445,7 @@ HEREDOC;
 HEREDOC;
 
     } else {
-        $sql    = "SELECT * FROM $board WHERE id='admin' ORDER BY mod_date DESC LIMIT $cline,$scale1";
+        $sql    = "SELECT * FROM $board WHERE id='admin' ORDER BY create_date DESC LIMIT $cline,$scale1";
         $result = mysqli_query($connect, $sql);
 
         for ($i = 0; $row = mysqli_fetch_array($result); $i++) {
@@ -1460,7 +1460,7 @@ HEREDOC;
 HEREDOC;
 
 //날짜 형식을 바꾼다.
-            $post_date = substr($row['date'], 0, 11);
+            $post_date = substr($row['create_date'], 0, 11);
             echo <<<HEREDOC
                         <td class="text-center">{$post_date}</td>
                     </tr>
@@ -2116,10 +2116,10 @@ HEREDOC;
 
 /**
  * 어드민 카테고리 분류
- * @param  [type] $mode  [모드]
- * @param  [type] $lcode [대카테고리]
- * @param  [type] $mcode [중카테고리]
- * @return [type]        [description]
+ * @param  [type] $mode           [모드]
+ * @param  [type] $lcode          [대카테고리]
+ * @param  [type] $mcode          [중카테고리]
+ * @return [type] [description]
  */
 function restore_category($mode, $lcode, $mcode)
 {
@@ -2196,8 +2196,8 @@ HEREDOC;
 
 /**
  * 시큐어 프로토콜이 적용되는지 확인
- * @param  [type] $port [description]
- * @return [type]       [description]
+ * @param  [type] $port           [description]
+ * @return [type] [description]
  */
 function check_protocol($port)
 {

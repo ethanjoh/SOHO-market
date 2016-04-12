@@ -9,7 +9,7 @@ $code     = set_var($_POST['code']);
 $writable = set_var($_POST['writable']);
 $readable = set_var($_POST['readable']);
 
-if ("modify" == $mode) {
+if ($mode == "modify") {
     $query  = "UPDATE code SET bbs_name='$title' WHERE num = '$num' ";
     $result = mysqli_query($connect, $query);
 
@@ -20,7 +20,7 @@ if ("modify" == $mode) {
         show_msg('게시판명을 수정했습니다.', $url);
     }
 
-} else if ("del" == $mode) {
+} else if ($mode == "del") {
     $query  = "DELETE FROM code WHERE num = '$num' ";
     $result = mysqli_query($connect, $query);
 
@@ -41,7 +41,7 @@ if ("modify" == $mode) {
         show_msg('게시판을 삭제했습니다.', $url);
     }
 
-} else if ("ins" == $mode) {
+} else if ($mode == "ins") {
     $passwd = sha1($passwd);
     $query  = "INSERT INTO code (code, bbs_name, passwd, writable, readable)
 				    VALUES ('$code', '$title', '$passwd', '$writable[0]', '$readable[0]' )";
@@ -56,7 +56,7 @@ if ("modify" == $mode) {
 				 name varchar(20) NOT NULL,
 				 contents mediumtext NOT NULL,
 				 passwd varchar(41) NOT NULL,
-				 date datetime NOT NULL,
+				 create_date datetime NOT NULL,
 				 mod_date datetime NOT NULL,
 				 count int(10) unsigned NOT NULL default '0',
 				 email  varchar(40),
@@ -77,7 +77,7 @@ if ("modify" == $mode) {
 				 name varchar(20) NOT NULL,
 				 contents mediumtext NOT NULL,
 				 passwd varchar(41) NOT NULL,
-				 date datetime NOT NULL,
+				 create_date datetime NOT NULL,
 				 email  varchar(40),
 				 PRIMARY KEY (reply_no),
 				 KEY (main_no)
@@ -92,7 +92,7 @@ if ("modify" == $mode) {
         show_msg('게시판을 생성했습니다.', $url);
     }
 
-} else if ("pw" == $mode) {
+} else if ($mode == "pw") {
     $passwd = sha1($passwd);
     $query  = "UPDATE code SET passwd='$passwd' WHERE num = '$num' ";
     $result = mysqli_query($connect, $query);
@@ -104,7 +104,7 @@ if ("modify" == $mode) {
         show_msg('작업을 완료했습니다.', $url);
     }
 
-} else if ("edit" == $mode) {
+} else if ($mode == "edit") {
     $query  = "UPDATE code SET writable = '$writable[0]', readable = '$readable[0]' WHERE code='$code'";
     $result = mysqli_query($connect, $query);
 

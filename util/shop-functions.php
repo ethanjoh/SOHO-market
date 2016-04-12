@@ -2422,7 +2422,7 @@ HEREDOC;
 
         for ($i = 1; $i <= 5; $i++) {
             $imagePath = 'm_banner' . $i . '_image';
-            $isYes     = 'm_banner' . $i;
+            $isYes     = 'm_banner' . $i . '';
 
             if ($row[$isYes] == "Y") {
                 echo <<<HEREDOC
@@ -2435,8 +2435,8 @@ HEREDOC;
         echo '              </div>' . "\r\n";
 
         for ($j = 1; $j <= 5; $j++) {
-            $isYes = 'm_banner' . $j;
-            $link  = 'm_link' . $j;
+            $isYes = 'm_banner' . $j . '';
+            $link  = 'm_link' . $j . '';
 
             if ($row[$link] != "") {
                 $show_link = $row[$link];
@@ -2507,8 +2507,8 @@ function show_top_banner()
         for ($i = 1; $i <= 3; $i++) {
 
             $imagePath = 'm_banner' . $i . '_image';
-            $isYes     = 'm_banner' . $i;
-            $link      = 'm_link' . $i;
+            $isYes     = 'm_banner' . $i . '';
+            $link      = 'm_link' . $i . '';
 
             if ($row[$link] != "") {
                 $show_link = $row[$link];
@@ -2563,8 +2563,8 @@ function show_middle_banner()
         for ($i = 1; $i <= 2; $i++) {
 
             $imagePath = 'm_banner' . $i . '_image';
-            $isYes     = 'm_banner' . $i;
-            $link      = 'mlink' . $i;
+            $isYes     = 'm_banner' . $i . '';
+            $link      = 'm_link' . $i . '';
 
             if ($row[$link] != "") {
                 $show_link = $row[$link];
@@ -2572,7 +2572,7 @@ function show_middle_banner()
                 $show_link = "#";
             }
 
-            if ("Y" == $row[$isYes]) {
+            if ($row[$isYes] == "Y") {
                 echo <<<HEREDOC
 
                     <div class="col-md-6 col-sm-6 col-xs-12">
@@ -2622,36 +2622,34 @@ function show_bottom_banner()
     if ($res) {
         $row = mysqli_fetch_array($res);
 
-        for ($i = 1; $i <= 1; $i++) {
+        $imagePath = 'm_banner1_image';
+        $isYes     = 'm_banner1';
+        $link      = 'm_link1';
 
-            $imagePath = 'm_banner' . $i . '_image';
-            $isYes     = 'm_banner' . $i;
-            $link      = 'mlink' . $i;
+        if ($row[$link] != "") {
+            $show_link = $row[$link];
+        } else {
+            $show_link = "#";
+        }
 
-            if ($row[$link] != "") {
-                $show_link = $row[$link];
-            } else {
-                $show_link = "#";
-            }
-
-            if ("Y" == $row[$isYes]) {
-                echo <<<HEREDOC
+        if ("Y" == $row[$isYes]) {
+            echo <<<HEREDOC
 
                         <div class="banner">
                             <a href="{$show_link}"><img src="{$row[$imagePath]}" alt=""></a>
                         </div>
 
 HEREDOC;
-            } else {
-                echo <<<HEREDOC
+        } else {
+            echo <<<HEREDOC
 
                         <div class="banner">
                             <a href="#"></a>
                         </div>
 
 HEREDOC;
-            }
         }
+
     } else {
         echo <<<HEREDOC
 

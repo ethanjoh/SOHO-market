@@ -173,9 +173,9 @@ if ($total == 0) {
     // }
 
     if ($readable == 'M' && $p_id != 'admin') {
-        $sql = "SELECT * FROM $board WHERE (id='$_SESSION[p_id]' OR id='admin') $s_sql ORDER BY mod_date DESC LIMIT $cline,$scale1";
+        $sql = "SELECT * FROM $board WHERE (id='$_SESSION[p_id]' OR id='admin') $s_sql ORDER BY create_date DESC LIMIT $cline,$scale1";
     } else {
-        $sql = "SELECT * FROM $board WHERE 1 $s_sql ORDER BY mod_date DESC LIMIT $cline,$scale1";
+        $sql = "SELECT * FROM $board WHERE 1 $s_sql ORDER BY create_date DESC LIMIT $cline,$scale1";
     }
 
     //쿼리 후 결과를 저장한다.
@@ -186,7 +186,7 @@ if ($total == 0) {
         echo "<tr>\n";
 
         if ($p_id == 'admin') {
-            echo "<td><input type=\"checkbox\" name=\"chk[]\" value=\"" . $row['main_no'] . "\"></td>\n";
+            echo '<td><input type="checkbox" name="chk[]" value="' . $row['main_no'] . '"></td>' . "\r\n";
         }
         ?>
                               <td><?php echo $row['main_no']; ?></td>
@@ -203,27 +203,21 @@ if ($total == 0) {
             $hasAttachment = '&nbsp;<i class="fa fa-floppy-o"></i>&nbsp;';
         } else {
             $hasAttachment = '';
-        }
-        ; // //답변만 있는 경우; // if ($row['depth'] > 0 && (!$row['filename'])) {
+        } // //답변만 있는 경우; // if ($row['depth'] > 0 && (!$row['filename'])) {
+
+        //날짜 형식을 바꾼다.
+        $post_date = substr($row['create_date'], 0, 11);
         ?>
                               <td><a href="read.php?code=<?php echo $code; ?>&amp;main_no=<?php echo $row['main_no']; ?>&amp;page=<?php echo $page; ?>"><?php echo stripslashes($row['title']); ?></a><?php echo $hasAttachment; ?><?php echo $hasReply; ?></td>
-
-<?php
-
-    }
-
-    //날짜 형식을 바꾼다.
-    $post_date = substr($row['date'], 0, 11);
-    ?>
                               <td><?php echo $row['name']; ?></td>
                               <td><?php echo $post_date; ?></td>
                               <td><?php echo $row['count']; ?></td>
                             </tr>
-
 <?php
 
+    }
 }
-; // end for loop
+; // end else
 ?>
                         </tbody>
                         <tfoot>
@@ -256,7 +250,7 @@ page_nav($totalpage, $cpage, $url);
 switch ($writable) {
     case 'A':
         if ($p_id == 'admin') {
-            $showButton = '<a class="btn btn-success" href="post.php?code=<?php echo $code; ?>"><i class="fa fa-pencil-square-o"></i> 쓰 기</a>' . "\r\n";
+            $showButton = '<a class="btn btn-success" href="post.php?code=' . $code . '"><i class="fa fa-pencil-square-o"></i> 쓰 기</a>' . "\r\n";
             $showButton .= '<a class="btn btn-danger" href="#" onClick="javascript:del_send();"><i class="fa fa-trash-o"></i> 삭 제</a></p>' . "\r\n";
         } else {
             $showButton = '<button type="button" class="btn btn-xs btn-primary pull-right" data-toggle="modal" data-target="#login2">' . "\r\n";
@@ -268,9 +262,9 @@ switch ($writable) {
 
     case 'M':
         if ($p_id && $p_id != 'admin') {
-            $showButton = '<a class="btn btn-success" href="post.php?code=<?php echo $code; ?>"><i class="fa fa-pencil-square-o"></i> 쓰 기</a> &nbsp;' . "\r\n";
+            $showButton = '<a class="btn btn-success" href="post.php?code=' . $code . '"><i class="fa fa-pencil-square-o"></i> 쓰 기</a> &nbsp;' . "\r\n";
         } elseif ($p_id == 'admin') {
-            $showButton = '<a class="btn btn-success" href="post.php?code=<?php echo $code; ?>"><i class="fa fa-pencil-square-o"></i> 쓰 기</a>' . "\r\n";
+            $showButton = '<a class="btn btn-success" href="post.php?code=' . $code . '"><i class="fa fa-pencil-square-o"></i> 쓰 기</a>' . "\r\n";
             $showButton .= '<a class="btn btn-danger" href="#" onClick="del_send();"><i class="fa fa-trash-o"></i> 삭 제</a>' . "\r\n";
             $showButton .= '<a class="btn btn-warning" href="/member/logout.php">로그아웃</a>' . "\r\n";
         } else {
@@ -282,7 +276,7 @@ switch ($writable) {
         break;
 
     case 'E':
-        $showButton = '<a class="btn btn-success" href="post.php?code=<?php echo $code; ?>"><i class="fa fa-pencil-square-o"></i> 쓰 기</a> &nbsp;' . "\r\n";
+        $showButton = '<a class="btn btn-success" href="post.php?code=' . $code . '"><i class="fa fa-pencil-square-o"></i> 쓰 기</a> &nbsp;' . "\r\n";
         $showButton .= '<button type="button" class="btn btn-xs btn-primary pull-right" data-toggle="modal" data-target="#login2">' . "\r\n";
         $showButton .= '<i class="fa fa-cog"></i> ADMIN LOGIN' . "\r\n";
         $showButton .= '</button>' . "\r\n";
@@ -361,7 +355,7 @@ switch ($writable) {
 
       <script type="text/javascript">
         function del_send() {
-        var form = document.form1;
+          var form = document.form1;
           var b=0;
 
           for (i=0; i < form.elements.length; i++) {

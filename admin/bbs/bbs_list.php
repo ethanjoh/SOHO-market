@@ -15,9 +15,9 @@
       <section class="wrapper">
 <?php
 
-$query  = "SELECT * FROM code WHERE 1 ORDER BY num DESC";
-$result = mysqli_query($connect, $query);
-$total  = mysqli_num_rows($result);
+    $query  = "SELECT * FROM code WHERE 1 ORDER BY num DESC";
+    $result = mysqli_query($connect, $query);
+    $total  = mysqli_num_rows($result);
 ?>
 
         <!-- info start -->
@@ -66,53 +66,53 @@ $total  = mysqli_num_rows($result);
                     <tbody>
 <?php
 
-$mode = set_var($_GET['mode']);
-$code = set_var($_GET['code']);
+    $mode = set_var($_GET['mode']);
+    $code = set_var($_GET['code']);
 
-$page  = '';
-$scale = 10;
+    $page  = '';
+    $scale = 10;
 
-if ($page == '') {
-    $page = 1;
-}
+    if ($page == '') {
+        $page = 1;
+    }
 
-$cpage     = intval($page);
-$totalpage = intval($total / $scale);
+    $cpage     = intval($page);
+    $totalpage = intval($total / $scale);
 
-if ($totalpage * $scale != $total) {
-    $totalpage = $totalpage + 1;
-}
+    if ($totalpage * $scale != $total) {
+        $totalpage = $totalpage + 1;
+    }
 
-if ($cpage == 1) {
-    $cline = 0;
-} else {
-    $cline = ($cpage * $scale) - $scale;
-}
+    if ($cpage == 1) {
+        $cline = 0;
+    } else {
+        $cline = ($cpage * $scale) - $scale;
+    }
 
-$limit = $cline + $scale;
+    $limit = $cline + $scale;
 
-if ($limit >= $total) {
-    $limit = $total;
-}
+    if ($limit >= $total) {
+        $limit = $total;
+    }
 
-$scale1 = $limit - $cline;
+    $scale1 = $limit - $cline;
 
-if ($total == 0) {
-    echo "<tr>\n
+    if ($total == 0) {
+        echo "<tr>\n
                 			           <td colspan=\"4\">등록된 게시판이 없습니다.</td>\n
                 			         </tr>\n";
-} else {
-    for ($i = 0; $rows = mysqli_fetch_array($result); $i++) {
-        $board   = 'bbs_' . $rows['code'];
-        $query2  = "SELECT * FROM $board WHERE 1 ";
-        $result2 = mysqli_query($connect, $query2);
-        if ($result2) {
-            $total2 = mysqli_num_rows($result2);
-        } else {
-            $total2 = 0;
-        }
+    } else {
+        for ($i = 0; $rows = mysqli_fetch_array($result); $i++) {
+            $board   = 'bbs_' . $rows['code'];
+            $query2  = "SELECT * FROM $board WHERE 1 ";
+            $result2 = mysqli_query($connect, $query2);
+            if ($result2) {
+                $total2 = mysqli_num_rows($result2);
+            } else {
+                $total2 = 0;
+            }
 
-        $bunho = $total - ($i + $cline);
+            $bunho = $total - ($i + $cline);
 
         ?>
                     <tr>
@@ -140,31 +140,34 @@ if ($total == 0) {
                       <td>
 <?php
 
-        switch ($rows['writable']) {
-            case "E":
-                echo "비회원 가능";
-                break;
-            case "A":
-                echo "관리자전용";
-                break;
-            case "M":
-                echo "관리자 및 회원전용";
-                break;
+            switch ($rows['writable']) {
+                case "E":
+                    echo "비회원 가능";
+                    break;
+                case "A":
+                    echo "관리자전용";
+                    break;
+                case "M":
+                    echo "관리자 및 회원전용";
+                    break;
 
-        }
+            }
         ?>
                       </td>
                       <td>
 <?php
 
-        switch ($rows['readable']) {
-            case "E":
-                echo "비회원 가능";
-                break;
-            case "M":
-                echo "회원전용";
-                break;
-        }
+            switch ($rows['readable']) {
+                case "E":
+                    echo "비회원 가능";
+                    break;
+                case "A":
+                    echo "관리자전용";
+                    break;
+                case "M":
+                    echo "회원전용";
+                    break;
+            }
         ?>
                       </td>
 
@@ -179,8 +182,8 @@ if ($total == 0) {
                     </tr>
 <?php
 
+        }
     }
-}
 ?>
                     </tbody>
                   </table>
@@ -205,18 +208,18 @@ if ($total == 0) {
                           <div class="col-sm-3">
 <?php
 
-if ("edit" == $mode) {
+    if ("edit" == $mode) {
 
-    $query  = "SELECT * FROM code WHERE code='$code'";
-    $result = mysqli_query($connect, $query);
-    $row    = mysqli_fetch_array($result);
-}
+        $query  = "SELECT * FROM code WHERE code='$code'";
+        $result = mysqli_query($connect, $query);
+        $row    = mysqli_fetch_array($result);
+    }
 
-if ("edit" == $mode) {
-    echo '<input type="text" class="form-control" name="code" id="code" value="' . $row['code'] . '" readonly="readonly">';
-} else {
-    echo '<input type="text" class="form-control" name="code" id="code">';
-}
+    if ("edit" == $mode) {
+        echo '<input type="text" class="form-control" name="code" id="code" value="' . $row['code'] . '" readonly="readonly">';
+    } else {
+        echo '<input type="text" class="form-control" name="code" id="code">';
+    }
 
 ?>
                           </div>
@@ -226,11 +229,11 @@ if ("edit" == $mode) {
                           <div class="col-sm-3">
 <?php
 
-if ("edit" == $mode) {
-    echo '<input type="text" class="form-control" name="title" id="title" value="' . $row['bbs_name'] . '" readonly="readonly" >';
-} else {
-    echo '<input type="text" class="form-control" name="title" id="title">';
-}
+    if ("edit" == $mode) {
+        echo '<input type="text" class="form-control" name="title" id="title" value="' . $row['bbs_name'] . '" readonly="readonly" >';
+    } else {
+        echo '<input type="text" class="form-control" name="title" id="title">';
+    }
 
 ?>
                           </div>
@@ -240,41 +243,41 @@ if ("edit" == $mode) {
                           <div class="col-sm-4">
 <?php
 
-if ("edit" == $mode) {
-    switch ($row['writable']) {
-        case 'M':
-            echo <<<HEREDOC
-                            <input type="radio" name="writable" id="writable" value="M" checked="checked" />관리자/회원
+    if ("edit" == $mode) {
+        switch ($row['writable']) {
+            case 'M':
+                echo <<<HEREDOC
+	                            <input type="radio" name="writable" id="writable" value="M" checked="checked" />관리자/회원
                             <input type="radio" name="writable" id="writable" value="E" />비회원 가능
                             <input type="radio" name="writable" id="writable" value="A" />관리자 전용
 HEREDOC;
-            break;
+                break;
 
-        case 'E':
-            echo <<<HEREDOC
-                            <input type="radio" name="writable" id="writable" value="M" />관리자/회원
+            case 'E':
+                echo <<<HEREDOC
+	                            <input type="radio" name="writable" id="writable" value="M" />관리자/회원
                             <input type="radio" name="writable" id="writable" value="E" checked="checked" />비회원 가능
                             <input type="radio" name="writable" id="writable" value="A" />관리자 전용
 HEREDOC;
-            break;
+                break;
 
-        case 'A':
-            echo <<<HEREDOC
-                            <input type="radio" name="writable" id="writable" value="M" />관리자/회원
+            case 'A':
+                echo <<<HEREDOC
+	                            <input type="radio" name="writable" id="writable" value="M" />관리자/회원
                             <input type="radio" name="writable" id="writable" value="E" />비회원 가능
                             <input type="radio" name="writable" id="writable" value="A" checked="checked" />관리자 전용
 HEREDOC;
-            break;
-    }
+                break;
+        }
 
-} else {
-    echo <<<HEREDOC
-                            <input type="radio" name="writable" id="writable" value="M" />관리자/회원
+    } else {
+        echo <<<HEREDOC
+	                            <input type="radio" name="writable" id="writable" value="M" />관리자/회원
                             <input type="radio" name="writable" id="writable" value="E" />비회원 가능
                             <input type="radio" name="writable" id="writable" value="A" />관리자 전용
 HEREDOC;
 
-}
+    }
 ?>
                           </div>
                       </div>
@@ -283,41 +286,41 @@ HEREDOC;
                           <div class="col-sm-3">
 <?php
 
-if ("edit" == $mode) {
-    switch ($row['readable']) {
-        case 'E':
-            echo <<<HEREDOC
-                            <input type="radio" name="readable" id="readable" value="E" checked="checked" />비회원 가능
+    if ("edit" == $mode) {
+        switch ($row['readable']) {
+            case 'E':
+                echo <<<HEREDOC
+	                            <input type="radio" name="readable" id="readable" value="E" checked="checked" />비회원 가능
                             <input type="radio" name="readable" id="readable" value="A" />관리자 전용
                             <input type="radio" name="readable" id="readable" value="M" />회원 전용
 HEREDOC;
-            break;
+                break;
 
-        case 'A':
-            echo <<<HEREDOC
-                            <input type="radio" name="readable" id="readable" value="E" />비회원 가능
+            case 'A':
+                echo <<<HEREDOC
+	                            <input type="radio" name="readable" id="readable" value="E" />비회원 가능
                             <input type="radio" name="readable" id="readable" value="A" checked="checked" />관리자 전용
                             <input type="radio" name="readable" id="readable" value="M" />회원 전용
 HEREDOC;
-            break;
+                break;
 
-        case 'M':
-            echo <<<HEREDOC
-                            <input type="radio" name="readable" id="readable" value="E" />비회원 가능
+            case 'M':
+                echo <<<HEREDOC
+	                            <input type="radio" name="readable" id="readable" value="E" />비회원 가능
                             <input type="radio" name="readable" id="readable" value="A" />관리자 전용
                             <input type="radio" name="readable" id="readable" value="M" checked="checked" />회원 전용
 HEREDOC;
-            break;
+                break;
 
-    }
-} else {
-    echo <<<HEREDOC
-                            <input type="radio" name="readable" id="readable" value="E" />비회원 가능
+        }
+    } else {
+        echo <<<HEREDOC
+	                            <input type="radio" name="readable" id="readable" value="E" />비회원 가능
                             <input type="radio" name="readable" id="readable" value="A" />관리자 전용
                             <input type="radio" name="readable" id="readable" value="M" />회원 전용
 HEREDOC;
 
-}
+    }
 ?>
 
                           </div>
@@ -325,13 +328,13 @@ HEREDOC;
                       <div class="text-center">
 <?php
 
-if ("edit" == $mode) {
-    echo '<input type="hidden" name="mode" value="edit" />';
-    echo '<button class="btn btn-success" type="submit">권한수정</button>';
-} else {
-    echo '<input type="hidden" name="mode" value="ins" />';
-    echo '<button class="btn btn-success" type="submit">만들기</button>';
-}
+    if ("edit" == $mode) {
+        echo '<input type="hidden" name="mode" value="edit" />';
+        echo '<button class="btn btn-success" type="submit">권한수정</button>';
+    } else {
+        echo '<input type="hidden" name="mode" value="ins" />';
+        echo '<button class="btn btn-success" type="submit">만들기</button>';
+    }
 
 ?>
                       </div>

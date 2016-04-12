@@ -1,6 +1,5 @@
 <?php include_once '../include/header.php';?>
 
-
     <!-- HOME -->
     <div class="container">
         <div class="row text-center">
@@ -9,53 +8,49 @@
     </div>
     <!-- /.home -->
 
-
 <?php
 
-$code     = set_var($_GET['code']);
-$main_no  = set_var($_GET['main_no']);
-$page     = set_var($_GET['page']);
-$reply_no = set_var($_GET['reply_no']);
-$flag     = set_var($_GET['flag']); // 미사용
-$p_id     = set_var($_SESSION['p_id']);
+    $code     = set_var($_GET['code']);
+    $main_no  = set_var($_GET['main_no']);
+    $page     = set_var($_GET['page']);
+    $reply_no = set_var($_GET['reply_no']);
+    $flag     = set_var($_GET['flag']); // 미사용
+    $p_id     = set_var($_SESSION['p_id']);
 
-$bqry = "SELECT * FROM code WHERE code='$code' ";
-$bres = mysqli_query($connect, $bqry);
-$brow = mysqli_fetch_array($bres);
+    $bqry = "SELECT * FROM code WHERE code='$code' ";
+    $bres = mysqli_query($connect, $bqry);
+    $brow = mysqli_fetch_array($bres);
 
-$readable = $brow['readable'];
-$writable = $brow['writable'];
+    $readable = $brow['readable'];
+    $writable = $brow['writable'];
 
-if ($code) {
-    $board = 'bbs_' . $code;
-} else {
-    $board = 'bbs_notice';
-}
+    if ($code) {
+        $board = 'bbs_' . $code;
+    } else {
+        $board = 'bbs_notice';
+    }
 
-//조회수 증가
-if ($p_id != 'admin') {
-    mysqli_query($connect, "UPDATE $board SET count = count+1 WHERE main_no = '$main_no' ");
-}
+    //조회수 증가
+    if ($p_id != 'admin') {
+        mysqli_query($connect, "UPDATE $board SET count = count+1 WHERE main_no = '$main_no' ");
+    }
 
-?>
-
-        <!-- contents -->
-        <div class="container">
-
-<?php
-
-switch ($readable) {
-    case 'E':
-        $sql = "SELECT * FROM $board WHERE main_no='$main_no' ";
-
-        break;
-
-    case 'A':
+    if ($readable == 'E') {
+        $sql    = "SELECT * FROM $board WHERE main_no='$main_no' ";
+        $result = mysqli_query($connect, $sql);
+    } elseif ($readable == 'A') {
         // 작성자 및 관리자만 읽기 가능 (1:1 게시판 등)
-        if ('admin' == $p_id || $row['id'] == $p_id) {
-            $sql = "SELECT * FROM $board WHERE main_no='$main_no' AND (id='$p_id' OR id='admin') ";
+        $qry    = "SELECT * FROM $board WHERE main_no='$main_no' ";
+        $res    = mysqli_query($connect, $qry);
+        $trow   = mysqli_fetch_array($res);
+        $writer = $trow['id'];
+
+        if ($p_id == 'admin' || $p_id == $writer) {
+            $sql    = "SELECT * FROM $board WHERE main_no='$main_no' AND (id='$writer' OR id='admin') ";
+            $result = mysqli_query($connect, $sql);
         } else {
             echo <<<HEREDOC
+
                     <div class="row">
                       <div class="text-center alert alert-danger" role="alert">
                         <p><a href="/member/login.php" class="a-login btn btn-primary">로그인</a></p>
@@ -63,15 +58,15 @@ switch ($readable) {
                       </div>
                     </div>
 HEREDOC;
+
         }
-
-        break;
-
-    case 'M':
+    } elseif ($readable == 'M') {
         if ($p_id) {
-            $sql = "SELECT * FROM $board WHERE main_no='$main_no' ";
+            $sql    = "SELECT * FROM $board WHERE main_no='$main_no' ";
+            $result = mysqli_query($connect, $sql);
         } else {
             echo <<<HEREDOC
+
                     <div class="row">
                       <div class="text-center alert alert-danger" role="alert">
                         <p><a href="/member/login.php" class="a-login btn btn-primary">로그인</a></p>
@@ -81,15 +76,20 @@ HEREDOC;
 HEREDOC;
 
         }
+    }
 
-        break;
+?>
 
-}
+        <!-- contents -->
+        <div class="container">
 
-// if ('admin' == $p_id || 'E' == $readable || 'admin' == $row['id']) {
-if (isset($sql)) {
-    $result = mysqli_query($connect, $sql);
-    $row    = mysqli_fetch_array($result);
+<?php
+
+    // if ('admin' == $p_id || 'E' == $readable || 'admin' == $row['id']) {
+    if (isset($result)) {
+        // $result = mysqli_query($connect, $sql);
+        $row = mysqli_fetch_array($result);
+
     ?>
             <div class="row">
                 <div class="table-responsive">
@@ -108,13 +108,13 @@ if (isset($sql)) {
                                 <td><?php echo $row['main_no']; ?></td>
                                 <td class="left"><?php echo stripslashes($row['title']); ?></td>
                                 <td><a href="mailto:<?php echo $row['email']; ?>"><?php echo $row['name']; ?></a></td>
-                                <td><?php echo $row['date']; ?></td>
+                                <td><?php echo $row['create_date']; ?></td>
                                 <td><?php echo $row['count']; ?></td>
                             </tr>
                             <tr>
                                 <td class="smartOutput" colspan="5" style="text-align:left">
                                     <p><?php echo stripslashes($row['contents']); ?></p>
-                                    <p>[ 최종수정일 : <?php echo $row['mod_date']; ?> ]</p>
+                                    <p>[ 최종수정일 :                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       <?php echo $row['mod_date']; ?> ]</p>
                                 </td>
                             </tr>
                         </tbody>
@@ -122,10 +122,10 @@ if (isset($sql)) {
 
 <?php
 
-////////////////////////첨부파일 표시//////////////////////////////////
-    $max_file_num = 1; //업로드 파일 갯수 지정
+                           ////////////////////////첨부파일 표시//////////////////////////////////
+        $max_file_num = 1; //업로드 파일 갯수 지정
 
-    if ($row['filename']) {
+        if ($row['filename']) {
         ?>
                       <table class="table">
                         <tbody>
@@ -133,19 +133,19 @@ if (isset($sql)) {
                             <td>
 <?php
 
-        for ($i = 0; $i < $max_file_num; $i++) {
-            if ($row['filename']) {
-                $path = $row['filename'];
+            for ($i = 0; $i < $max_file_num; $i++) {
+                if ($row['filename']) {
+                    $path = $row['filename'];
 
-                //Array 값으로 분리, [0]에는 "_"이전 값이, [1]에는 "_"이후 값이 들어있다.
-                $chk_name  = explode("_", $row['filename']);
-                $real_name = $chk_name[sizeof($chk_name) - 1];
+                    //Array 값으로 분리, [0]에는 "_"이전 값이, [1]에는 "_"이후 값이 들어있다.
+                    $chk_name  = explode("_", $row['filename']);
+                    $real_name = $chk_name[sizeof($chk_name) - 1];
                 ?>
                               <i class="fa fa-paperclip"></i> <a href="<?php echo $path; ?>"><?php echo $real_name; ?></a>
 <?php
 
+                }
             }
-        }
         ?>
                             </td>
                           </tr>
@@ -153,8 +153,7 @@ if (isset($sql)) {
                       </table>
 <?php
 
-    }
-    ; //if문
+        } // end if ($row['filename'])
     ?>
                       <!-- 게시판 기능 버튼 -->
                     <div class="text-center">
@@ -162,11 +161,11 @@ if (isset($sql)) {
                         <a class="btn btn-warning" href="post.php?mode=edit&amp;code=<?php echo $code; ?>&amp;main_no=<?php echo $row['main_no']; ?>">수 정</a>
 <?php
 
-    if ($writable == 'A' && $p_id == 'admin') {
-        echo '<a class="btn btn-danger" href="admin_delete.php?code=' . $code . '&amp;main_no=' . $row['main_no'] . '&amp;from=read" return confirm(\'삭제하시겠습니까?\')"><i class="fa fa-trash-o"></i>삭 제</a>';
-    } else {
-        echo '<a class="btn btn-danger" href="delete.php?mode=parent&code=' . $code . '&amp;main_no=' . $row['main_no'] . '" return confirm(\'삭제하시겠습니까?\')"><i class="fa fa-trash-o"></i>삭 제</a>';
-    }
+        if ($writable == 'A' && $p_id == 'admin') {
+            echo '<a class="btn btn-danger" href="admin_delete.php?code=' . $code . '&amp;main_no=' . $row['main_no'] . '&amp;from=read" return confirm(\'삭제하시겠습니까?\')"><i class="fa fa-trash-o"></i>삭 제</a>';
+        } else {
+            echo '<a class="btn btn-danger" href="delete.php?mode=parent&code=' . $code . '&amp;main_no=' . $row['main_no'] . '" return confirm(\'삭제하시겠습니까?\')"><i class="fa fa-trash-o"></i>삭 제</a>';
+        }
     ?>
 
                     </div>
@@ -174,44 +173,46 @@ if (isset($sql)) {
 
 <?php
 
-    /////////////////////////답글이 있다면 순차적을 정열한다./////////////////////////
-    if ($row['depth'] > 0) {
-        $board     = 'bbs_re_' . $code;
-        $re_sql    = "SELECT * FROM $board WHERE main_no = $main_no ORDER BY reply_no ASC";
-        $re_result = mysqli_query($connect, $re_sql);
+        /////////////////////////답글이 있다면 순차적을 정열한다./////////////////////////
+        if ($row['depth'] > 0) {
+            $board     = 'bbs_re_' . $code;
+            $re_sql    = "SELECT * FROM $board WHERE main_no = $main_no ORDER BY reply_no ASC";
+            $re_result = mysqli_query($connect, $re_sql);
 
-        $i = 1;
+            $i = 1;
 
-        while ($re_row = mysqli_fetch_array($re_result)) {
+            while ($re_row = mysqli_fetch_array($re_result)) {
             ?>
                       <div class="pane">
 <?php
 
-            if ($writable == 'A' && $p_id == 'admin') {
-                echo '<a href="admin_delete.php?code=' . $code . '&amp;main_no=' . $main_no . '&amp;reply_no=' . $re_row['reply_no'] . '&amp;from=reply" onclick="return confirm(\'답변을 삭제하시겠습니까?\');" class="btn btn-xs btn-danger"><i class="fa fa-trash-o"></i></a>';
-            } else {
-                echo '<a href="delete.php?mode=child&code=' . $code . '&amp;main_no=' . $main_no . '&amp;reply_no=' . $re_row['reply_no'] . '" class="btn btn-xs btn-danger"><i class="fa fa-trash-o"></i></a>';
-            }
+                if ($writable == 'A' && $p_id == 'admin') {
+                    echo '<a href="admin_delete.php?code=' . $code . '&amp;main_no=' . $main_no . '&amp;reply_no=' . $re_row['reply_no'] . '&amp;from=reply" onclick="return confirm(\'답변을 삭제하시겠습니까?\');" class="btn btn-xs btn-danger"><i class="fa fa-trash-o"></i></a>';
+                } else {
+                    echo '<a href="delete.php?mode=child&code=' . $code . '&amp;main_no=' . $main_no . '&amp;reply_no=' . $re_row['reply_no'] . '" class="btn btn-xs btn-danger"><i class="fa fa-trash-o"></i></a>';
+                }
             ?>
-                        <?php echo $re_row['name']; ?> 답변:
-                        <p>
-                            <div class="margin-top-10">
-                                <p><?php echo stripslashes($re_row['contents']); ?></p>
-                            </div>
-                        </p>
-                        <p class="pull-right">[작성일 : <?php echo $re_row['date']; ?>]</p>
+<?php echo $re_row['name']; ?> 답변:
+                            <p>
+                                <div class="margin-top-10">
+                                    <p><?php echo stripslashes($re_row['contents']); ?></p>
+                                </div>
+                            </p>
+                            <p class="pull-right">[작성일 :
+                              <?php echo $re_row['create_date']; ?>]
+                            </p>
                         </div>
 <?php
 
-            $reply_no = $re_row['reply_no']; // 마지막 답글 번호를 저장해 답변 시 넘긴다.
-            $i++;
-        }
-    }
+                $reply_no = $re_row['reply_no']; // 마지막 답글 번호를 저장해 답변 시 넘긴다.
+                $i++;
+            } // end while
+        } // end if ($row['depth'] > 0)
 
-    //로그인을 했을 때만 댓글입력할 수 있도록
-    if ('admin' == $p_id || $p_id) {
+        //로그인을 했을 때만 댓글입력할 수 있도록
+        if ($p_id == 'admin' || $p_id) {
 
-        $protocol = check_protocol($sslPort);
+            $protocol = check_protocol($sslPort);
         ?>
 
                       <!-- 댓글 -->
@@ -231,9 +232,9 @@ if (isset($sql)) {
                         </form>
 <?php
 
-    }
+        } // end if ($p_id == 'admin' || $p_id)
 
-}
+    }
 
 ?>
           </div>
@@ -248,7 +249,6 @@ if (isset($sql)) {
 <?php include_once '../include/footer.php';?>
 
     <script language="JavaScript">
-    <!--
         function send(id)
         {
             if (document.getElementById(id).value <0) {
@@ -259,7 +259,6 @@ if (isset($sql)) {
         // oEditors.getById[id].exec("UPDATE_CONTENTS_FIELD", []);
             document.reply_form.submit();
         }
-    -->
     </script>
   </body>
 </html>
