@@ -511,17 +511,6 @@
 	},
 	"buffers":
 	[
-		{
-			"contents": "Package Control Messages\n========================\n\nMaterial Theme\n--------------\n\n  Material Theme for Sublime Text 3\n  https://github.com/equinusocio/material-theme\n  \n  👉 Version 2.1.0 👈\n  ********************************************************************************\n  \n  🏮 UI THEME\n  \n    ➼ New setting to set a small search panel (\"material_theme_compact_panel\": true)\n    ➼ New find/replace regex icon\n    ➼ New npm file icon\n    ➼ 3 KABOOM! Completely new accent color. Pink, Blue, Cyan\n  \n  🏮 COLOR SCHEME\n  \n    ➼ Fix active guide color with Lighter theme.\n    ➼ Fix #id selector color for css/sass/scss\n\n\nMaterial Theme - Appbar\n-----------------------\n\n  \n  Material Theme - Appbar Addon\n  https://github.com/equinusocio/material-theme-appbar\n  \n  \n  👉 Version 1.2.0 👈\n  ********************************************************************************\n  \n    ➼ New accent color: pink\n    ➼ New accent color: cyan\n    ➼ New accent color: blue\n  \n    ⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞\n    !! IMPORTANT NOTE !!\n    ⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟⏟\n  \n    FThe appbar doesn't get anymore the color from the material theme accent preference.\n    So, if yuou want ex. indigo tint, you have to set the color separately by adding:\n  \n    {\n      ...\n      \"material_theme_appbar_indigo\": true,\n      ...\n    }\n  \n    By this way you can combine two colors. Check the full preferences in the readme file of the repository.\n",
-			"settings":
-			{
-				"buffer_size": 1486,
-				"line_ending": "Windows",
-				"name": "Package Control Messages",
-				"read_only": true,
-				"scratch": true
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -696,11 +685,20 @@
 	],
 	"file_history":
 	[
+		"/C/wamp/www/shinsoo/bbs/post.php",
+		"/C/wamp/www/shinsoo/member/login-ok.php",
+		"/C/wamp/www/shinsoo/bbs/post_ok.php",
+		"/C/wamp/www/shinsoo/admin/bbs/update_bbs.php",
+		"/C/wamp/www/shinsoo/admin/bbs/bbs_list.php",
+		"/C/wamp/www/shinsoo/util/util.php",
+		"/C/wamp/www/shinsoo/bbs/read.php",
+		"/C/wamp/www/shinsoo/bbs/list.php",
+		"/C/wamp/www/shinsoo/util/shop-functions.php",
+		"/C/wamp/www/shinsoo/admin/setting/banner_setting_ok.php",
+		"/C/wamp/www/shinsoo/admin/products/pro_register_ok.php",
 		"/C/wamp/www/shinsoo/shop/index.php",
 		"/C/wamp/www/shinsoo/shop/catalog-list.php",
 		"/C/wamp/www/shinsoo/shop/detail.php",
-		"/C/wamp/www/shinsoo/util/shop-functions.php",
-		"/C/wamp/www/shinsoo/admin/setting/banner_setting_ok.php",
 		"/C/wamp/www/shinsoo/css/style.css",
 		"/C/Users/Joh/Google 드라이브/홈페이지 템플릿/신수상사 템플릿/hitstore/index.html",
 		"/C/wamp/www/shinsoo/get-product.php",
@@ -717,8 +715,6 @@
 		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/User/SublimeLinter.sublime-settings",
 		"/C/wamp/www/shinsoo/js/addcart.js",
 		"/C/wamp/www/shinsoo/admin/js/admin.js",
-		"/C/wamp/www/shinsoo/util/util.php",
-		"/C/wamp/www/shinsoo/admin/products/pro_register_ok.php",
 		"/C/wamp/www/shinsoo/admin/products/pro_register.php",
 		"/C/wamp/bin/mysql/mysql5.6.17/data/asus-slow.log",
 		"/C/wamp/www/shinsoo/admin/products/pro_delete.php",
@@ -752,7 +748,6 @@
 		"/C/wamp/www/shinsoo/member/p-login-ok.php",
 		"/C/wamp/www/shinsoo/member/login.php",
 		"/C/wamp/www/shinsoo/include/footer.php",
-		"/C/wamp/www/shinsoo/member/login-ok.php",
 		"/C/wamp/www/shinsoo/css/bootstrap-dialog.min.css",
 		"/C/wamp/www/shinsoo/js/bootstrap-dialog.min.js",
 		"/C/wamp/www/shinsoo/css/bootstrap-dialog.css",
@@ -817,13 +812,7 @@
 		"/C/Users/Joh/Downloads/Preferences.sublime-settings",
 		"/C/Users/Joh/Downloads/LGU+_XPay_Crossplatform/LGU+_XPay_Crossplatform_PHP/payreq_crossplatform.php",
 		"/C/Users/Joh/OneDrive/git_project/linktrading-co-kr/pay/cas_noteurl.php",
-		"/C/wamp/www/shinsoo/pay/variables_from_payreq.php",
-		"/C/wamp/www/shinsoo/lgpay/XPayClient.php",
-		"/C/wamp/www/shinsoo/pay/save_pginfo_to_db.php",
-		"/C/wamp/www/shinsoo/util/scm_auth.php",
-		"/C/wamp/www/shinsoo/shop/order-detail.php",
-		"/C/wamp/www/shinsoo/admin/order/or_view.php",
-		"/C/wamp/www/shinsoo/admin/css/admin_layout.css"
+		"/C/wamp/www/shinsoo/pay/variables_from_payreq.php"
 	],
 	"find":
 	{
@@ -856,6 +845,10 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"$errmsg",
+			"$name",
+			"$code",
+			"$errmsg",
 			"show_item_info",
 			"calcWholesalePrice",
 			"show_me_wholesale_price",
@@ -979,11 +972,7 @@
 			"$cat_name",
 			"$msub_total",
 			"$s_image",
-			"$b_image",
-			"$last_page_num",
-			"$totalpage",
-			"$unchked_order_total",
-			"$today_order_total"
+			"$b_image"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1004,41 +993,8 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1486,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								164,
-								164
-							]
-						],
-						"settings":
-						{
-							"auto_indent": false,
-							"default_dir": "C:\\wamp\\www\\shinsoo",
-							"incomplete_sync": null,
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"tab_width": 2,
-							"word_wrap": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -1099,20 +1055,52 @@
 		"selected_items":
 		[
 			[
-				"sty",
-				"css\\style.css"
+				"bann",
+				"admin\\setting\\banner_setting_ok.php"
+			],
+			[
+				"pro_r",
+				"admin\\products\\pro_register_ok.php"
 			],
 			[
 				"shop",
 				"util\\shop-functions.php"
 			],
 			[
-				"index",
-				"shop\\index.php"
+				"read",
+				"bbs\\read.php"
 			],
 			[
-				"bann",
-				"admin\\setting\\banner_setting_ok.php"
+				"util",
+				"util\\util.php"
+			],
+			[
+				"upda",
+				"admin\\bbs\\update_bbs.php"
+			],
+			[
+				"bbs_li",
+				"admin\\bbs\\bbs_list.php"
+			],
+			[
+				"log",
+				"member\\login-ok.php"
+			],
+			[
+				"post",
+				"bbs\\post.php"
+			],
+			[
+				"list",
+				"bbs\\list.php"
+			],
+			[
+				"sty",
+				"css\\style.css"
+			],
+			[
+				"index",
+				"shop\\index.php"
 			],
 			[
 				"cata",
@@ -1269,10 +1257,6 @@
 			[
 				"pro_op",
 				"admin\\products\\pro_opt.php"
-			],
-			[
-				"util",
-				"util\\util.php"
 			],
 			[
 				"in",
@@ -1487,10 +1471,6 @@
 				"session-1.php"
 			],
 			[
-				"log",
-				"logout.php"
-			],
-			[
 				"cus",
 				"js\\custom.js"
 			],
@@ -1571,20 +1551,8 @@
 				"admin/member/mem_sendmail_form.php"
 			],
 			[
-				"list",
-				"bbs/list.php"
-			],
-			[
 				"re",
 				"member/register_form.php"
-			],
-			[
-				"post",
-				"bbs/post.php"
-			],
-			[
-				"read",
-				"bbs/read.php"
 			],
 			[
 				"dele",
@@ -1597,18 +1565,6 @@
 			[
 				"or_view",
 				"admin/order/or_view.php"
-			],
-			[
-				"ordr",
-				"shop/order-detail.php"
-			],
-			[
-				"prod",
-				"admin/member/product_list_ok.php"
-			],
-			[
-				"top",
-				"admin/order/top_order_list.php"
 			]
 		],
 		"width": 0.0
