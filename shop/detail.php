@@ -86,7 +86,9 @@ $contents = get_item_contents($pnum);
                             </ul>
                             <!-- Tab panes -->
                             <div class="tab-content">
-                                <div role="tabpanel" class="tab-pane active" id="desc">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     <?php echo $contents; ?></div>
+                                <div role="tabpanel" class="tab-pane active" id="desc">
+<?php echo $contents; ?>
+                                </div>
                                 <div role="tabpanel" class="tab-pane" id="delivery">
                                     <div class="row">
                                         <div class="col-md-6 col-xs-12">
@@ -99,7 +101,6 @@ $contents = get_item_contents($pnum);
                                                 <div class="customer-reviews-two">
                                                     <?php show_policy('d');?>
                                                 </div>
-
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-xs-12">
