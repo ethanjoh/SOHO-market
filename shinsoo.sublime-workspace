@@ -511,6 +511,22 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "util/shop-functions.php",
+			"settings":
+			{
+				"buffer_size": 104751,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "shop/index.php",
+			"settings":
+			{
+				"buffer_size": 1962,
+				"line_ending": "Windows"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -993,8 +1009,77 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "util/shop-functions.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 104751,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								8478,
+								13417
+							]
+						],
+						"settings":
+						{
+							"color_scheme": "Packages/User/Color Highlighter/themes/cobalt2.tmTheme",
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": true,
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 6945.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "shop/index.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1962,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								74,
+								74
+							]
+						],
+						"settings":
+						{
+							"color_scheme": "Packages/User/Color Highlighter/themes/cobalt2.tmTheme",
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": true,
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -1055,6 +1140,14 @@
 		"selected_items":
 		[
 			[
+				"index",
+				"shop\\index.php"
+			],
+			[
+				"sho",
+				"util\\shop-functions.php"
+			],
+			[
 				"bann",
 				"admin\\setting\\banner_setting_ok.php"
 			],
@@ -1097,10 +1190,6 @@
 			[
 				"sty",
 				"css\\style.css"
-			],
-			[
-				"index",
-				"shop\\index.php"
 			],
 			[
 				"cata",
@@ -1389,10 +1478,6 @@
 			[
 				"sam",
 				"pay\\sample_crossplatform.html"
-			],
-			[
-				"sho",
-				"util\\shop-functions.php"
 			],
 			[
 				"add",

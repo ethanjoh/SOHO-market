@@ -57,7 +57,6 @@ $total_count = mysqli_num_rows($result);
                           <tr>
                             <th>코드</th>
                             <th>중분류명</th>
-                            <th>하위 소분류 수</th>
                             <th>등록된 상품수</th>
                             <th>관리</th>
                           </tr>
@@ -80,7 +79,6 @@ for ($i = 0; $row = mysqli_fetch_array($result); $i++) {
                           <tr>
                             <td><?php echo $row['code']; ?></td>
                             <td><?php echo $row['name']; ?></td>
-                            <td><?php echo $sub_count; ?></td>
                             <td><?php echo $products_count; ?></td>
                             <td><a type="button" class="btn btn-default" href='ca_msub_register.php?mode=update&amp;id=<?php echo $row['id']; ?>&amp;lcode=<?php echo $row['up_category']; ?>'><i class="fa fa-pencil-square-o"></i></a>&nbsp; <a type="button" class="btn btn-danger" href='ca_msub_delete.php?id=<?php echo $row['id']; ?>&amp;lcode=<?php echo $row['up_category']; ?>' onClick="return confirm('정말 삭제하시겠습니까?')"><i class="fa fa-trash-o"></i></a> </td>
                           </tr>
@@ -91,7 +89,7 @@ for ($i = 0; $row = mysqli_fetch_array($result); $i++) {
 if ($total_count == 0) {
     ?>
                           <tr>
-                            <td colspan="5" class="text-center"><p>등록된 중분류가 없습니다.</p></td>
+                            <td colspan="4" class="text-center"><p>등록된 중분류가 없습니다.</p></td>
                           </tr>
 <?php
 
