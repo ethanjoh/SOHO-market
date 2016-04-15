@@ -16,10 +16,11 @@ $row    = mysqli_fetch_array($result);
 // ex) $imgPath = "../../upload/p_image/B068-02/b/4848_3.jpg"
 // $dir = "../../upload/p_image/B068-02"
 $imgPath = $row['b_image1_name'];
-$dir     = reverse_strrchr($imgPath, '/');
+// $dir     = reverse_strrchr($imgPath, '/');
 
 // 서브디렉토리까지 모두 삭제
-if (recurse_rmdir($dir)) {
+// if (recurse_rmdir($dir)) {
+if (unlink($imgPath)) {
     // 해당 상품데이타 삭제
     $query = "DELETE FROM products WHERE num='$p_num' ";
     mysqli_query($connect, $query);

@@ -128,9 +128,9 @@ if ($mode == "insert") {
             if ($result) {
                 $bImg_chk[$i]   = "Y";
                 $bigImgPath     = $saveDir . $name . "/b/";
-                $bigImgFile[$i] = $bigImgPath . $_FILES['b_image']['name'][$i];
+                $bigImgFile[$i] = $bigImgPath . md5(microtime()) . '_' . $_FILES['b_image']['name'][$i];
                 $tmp_name       = $_FILES['b_image']['tmp_name'][$i];
-                $move_to        = $bigImgPath . $_FILES['b_image']['name'][$i];
+                $move_to        = $bigImgFile[$i];
 
                 if (is_dir($bigImgPath)) {
                     move_uploaded_file($tmp_name, $move_to);
@@ -142,13 +142,15 @@ if ($mode == "insert") {
                 //썸네일 자동생성
                 $sImg_chk[$i]     = "Y";
                 $smallImgPath     = $saveDir . $name . "/s/";
-                $smallImgFile[$i] = $smallImgPath . $_FILES['b_image']['name'][$i];
+                $smallImgFile[$i] = $smallImgPath . md5(microtime()) . '_' . $_FILES['b_image']['name'][$i];
 
                 if (is_dir($smallImgPath)) {
-                    make_thumbnail($bigImgPath . $_FILES['b_image']['name'][$i], 100, 100, $smallImgPath . $_FILES['b_image']['name'][$i]);
+                    make_thumbnail($bigImgFile[$i], 100, 100, $smallImgFile[$i]);
+
                 } else {
                     mkdir($smallImgPath, 0755, true);
-                    make_thumbnail($bigImgPath . $_FILES['b_image']['name'][$i], 100, 100, $smallImgPath . $_FILES['b_image']['name'][$i]);
+                    make_thumbnail($bigImgFile[$i], 100, 100, $smallImgFile[$i]);
+
                 }
 
             }
@@ -286,9 +288,9 @@ if ($mode == "insert") {
             if ($result) {
 
                 $bigImgPath     = $saveDir . $name . "/b/";
-                $bigImgFile[$i] = $bigImgPath . $_FILES['b_image']['name'][$i];
+                $bigImgFile[$i] = $bigImgPath . md5(microtime()) . '_' . $_FILES['b_image']['name'][$i];
                 $tmp_name       = $_FILES['b_image']['tmp_name'][$i];
-                $move_to        = $bigImgPath . $_FILES['b_image']['name'][$i];
+                $move_to        = $bigImgFile[$i];
 
                 if (is_dir($bigImgPath)) {
                     move_uploaded_file($tmp_name, $move_to);
@@ -302,13 +304,13 @@ if ($mode == "insert") {
 
                 //썸네일 자동생성
                 $smallImgPath     = $saveDir . $name . "/s/";
-                $smallImgFile[$i] = $smallImgPath . $_FILES['b_image']['name'][$i];
+                $smallImgFile[$i] = $smallImgPath . md5(microtime()) . '_' . $_FILES['b_image']['name'][$i];
 
                 if (is_dir($smallImgPath)) {
-                    make_thumbnail($bigImgPath . $_FILES['b_image']['name'][$i], 100, 100, $smallImgPath . $_FILES['b_image']['name'][$i]);
+                    make_thumbnail($bigImgFile[$i], 100, 100, $smallImgFile[$i]);
                 } else {
                     mkdir($smallImgPath, 0755, true);
-                    make_thumbnail($bigImgPath . $_FILES['b_image']['name'][$i], 100, 100, $smallImgPath . $_FILES['b_image']['name'][$i]);
+                    make_thumbnail($bigImgFile[$i], 100, 100, $smallImgFile[$i]);
                 }
 
                 $smallFlag      = "s_image" . $idx;
