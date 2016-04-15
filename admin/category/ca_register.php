@@ -23,9 +23,7 @@
                     사용방법
                   </header>
                   <ul class="info-body">
-                    <li><i class="fa fa-info-circle"></i> 해당 카테고리의 공급업체를 먼저 등록하신 후 카테고리를 등록해야 합니다.</li>
-                    <li><i class="fa fa-info-circle"></i> 카테고리 입력 후 공급업체를 조회하여 선택하십시오.</li>
-                    <li><i class="fa fa-info-circle"></i> 공급업체가 없는 경우 빈칸으로 두시기 바랍니다.</li>
+                    <li><i class="fa fa-info-circle"></i> 브랜드명을 입력하시고 등록 버튼을 클릭하세요.</li>
                   </ul>
                 </section>
               </div>
@@ -64,7 +62,7 @@ if ($mode == "update") {
               <div class="col-sm-12">
                 <section class="panel">
                   <header class="panel-heading table-head">
-                      카테고리 등록
+                      브랜드 등록
                   </header>
                   <div class="panel-body">
 
@@ -73,12 +71,12 @@ if ($mode == "update") {
                       <input type="hidden" name="num" value="<?php echo $num; ?>">
 
                       <div class="form-group">
-                          <label for="ca_name" class="col-lg-2 col-sm-2 control-label">카테고리명 :</label>
+                          <label for="ca_name" class="col-lg-2 col-sm-2 control-label">브랜드명 :</label>
                           <div class="col-sm-3">
                             <input type="text" class="form-control" name="ca_name" value="<?php echo $category_name; ?>" size="20" maxlength="20" />
                           </div>
                       </div>
-                      <div class="form-group">
+<!--                       <div class="form-group">
                           <label for="code" class="col-lg-2 col-sm-2 control-label">공급업체 선택 :</label>
                           <div class="col-sm-3">
                             <select name="id" id="id" class="form-control" onchange="sel();">
@@ -96,9 +94,9 @@ for ($i = 0; $mrow = mysqli_fetch_array($mres); $i++) {
                               </select>
                               <input type="text" class="form-control" name="val" value="<?php echo $mrow['id']; ?>" readonly />
                           </div>
-                      </div>
+                      </div> -->
                       <div class="form-group">
-                          <label for="code" class="col-lg-2 col-sm-2 control-label">카테고리 코드 :</label>
+                          <label for="code" class="col-lg-2 col-sm-2 control-label">브랜드 코드 :</label>
                           <div class="col-sm-3">
                               <input type="text" class="form-control" name="code" value="<?php echo ($mode == "insert") ? $max_code : $row['code']; ?>" readonly />
                               <p class="help-block">*자동입력(수정불가)</p>

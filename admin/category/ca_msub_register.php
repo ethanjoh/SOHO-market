@@ -23,8 +23,7 @@
                     사용방법
                   </header>
                   <ul class="info-body">
-                    <li><i class="fa fa-info-circle"></i> 해당 카테고리의 공급업체를 먼저 등록하신 후 카테고리를 등록해야 합니다.</li>
-                    <li><i class="fa fa-info-circle"></i> 카테고리 입력 후 공급업체를 조회하여 선택하십시오.</li>
+                    <li><i class="fa fa-info-circle"></i> 중분류명을 입력하시고 등록 버튼을 클릭하세요.</li>
                   </ul>
                 </section>
               </div>
