@@ -17,10 +17,10 @@
 
 <?php
 
-    // 상위브랜드 코드값으로 부터 현 브랜드 값을 구함
-    $query       = "SELECT * FROM products_category1 ORDER BY code";
-    $result      = mysqli_query($connect, $query);
-    $total_count = mysqli_num_rows($result);
+// 상위브랜드 코드값으로 부터 현 브랜드 값을 구함
+$query       = "SELECT * FROM products_category1 WHERE del='N' ORDER BY code";
+$result      = mysqli_query($connect, $query);
+$total_count = mysqli_num_rows($result);
 ?>
 
             <!-- info start-->
@@ -69,17 +69,17 @@
                         <tbody>
 <?php
 
-    for ($i = 0; $row = mysqli_fetch_array($result); $i++) {
+for ($i = 0; $row = mysqli_fetch_array($result); $i++) {
 
-        $query     = "SELECT * FROM products_category2 WHERE up_category='$row[code]'";
-        $result2   = mysqli_query($connect, $query);
-        $sub_count = mysqli_num_rows($result2);
-        mysqli_free_result($result2);
+    $query     = "SELECT * FROM products_category2 WHERE up_category='$row[code]'";
+    $result2   = mysqli_query($connect, $query);
+    $sub_count = mysqli_num_rows($result2);
+    mysqli_free_result($result2);
 
-        $query1         = "SELECT * FROM products WHERE category_l='$row[code]'";
-        $result3        = mysqli_query($connect, $query1);
-        $products_count = mysqli_num_rows($result3);
-        mysqli_free_result($result3);
+    $query1         = "SELECT * FROM products WHERE category_l='$row[code]'";
+    $result3        = mysqli_query($connect, $query1);
+    $products_count = mysqli_num_rows($result3);
+    mysqli_free_result($result3);
 
     ?>
                           <tr>
@@ -92,11 +92,11 @@
                             <td>
 <?php
 
-        if ($row['hide'] == "Y") {
-            echo '<a type="button" class="btn btn-round btn-success" href="ca_hide.php?code=' . $row['code'] . '&amp;chk=Y"><i class="fa fa-times"></i> ON</a>' . "\r\n";
-        } else {
-            echo '<a type="button" class="btn btn-round btn-default" href="ca_hide.php?code=' . $row['code'] . '&amp;chk=N"><i class="fa fa-check"></i> OFF</a>' . "\r\n";
-        }
+    if ($row['hide'] == "Y") {
+        echo '<a type="button" class="btn btn-round btn-success" href="ca_hide.php?code=' . $row['code'] . '&amp;chk=Y"><i class="fa fa-times"></i> ON</a>' . "\r\n";
+    } else {
+        echo '<a type="button" class="btn btn-round btn-default" href="ca_hide.php?code=' . $row['code'] . '&amp;chk=N"><i class="fa fa-check"></i> OFF</a>' . "\r\n";
+    }
     ?>
                             </td>
                             <td>
@@ -105,17 +105,17 @@
                             </td>
                           </tr>
 <?php
-    } // end of for loop
+} // end of for loop
 
-    mysqli_free_result($result);
+mysqli_free_result($result);
 
-    if ($total_count == 0) {
+if ($total_count == 0) {
     ?>
                           <tr>
                             <td colspan="5" class="text-center"><p>등록된 브랜드가 없습니다.</p></td>
                           </tr>
 <?php
-    }
+}
 ?>
                         </tbody>
                       </table>

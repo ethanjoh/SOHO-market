@@ -24,13 +24,14 @@ if ($mode == "insert") {
     }
      */
 
-    $query = "insert into products_category2 values ('','$lcode','$code','$ca_mname')";
+    $query = "INSERT INTO products_category2 VALUES ('','$lcode','$code','$ca_mname', 'N')";
     mysqli_query($connect, $query);
 
 } else if ($mode == "update") {
 
     // 자신의 값 변경
-    $query = "update products_category2 set name='$ca_mname' where id=$id";
+    $query = "UPDATE products_category2 SET name='$ca_mname' WHERE id='$id' ";
     mysqli_query($connect, $query);
 }
-echo ("<meta http-equiv='refresh' content='0; URL=ca_msub_list.php?lcode=$lcode'>");
+
+header("Location: ca_msub_list.php?lcode=" . $lcode . "");

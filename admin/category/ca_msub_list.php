@@ -18,7 +18,7 @@
 
 $lcode = set_var($_GET['lcode']);
 
-$query       = "SELECT * FROM products_category2 WHERE up_category='$lcode' ";
+$query       = "SELECT * FROM products_category2 WHERE up_category='$lcode' AND del='N' ";
 $result      = mysqli_query($connect, $query);
 $total_count = mysqli_num_rows($result);
 ?>
@@ -65,12 +65,12 @@ $total_count = mysqli_num_rows($result);
 <?php
 
 for ($i = 0; $row = mysqli_fetch_array($result); $i++) {
-    $query1    = "SELECT * FROM products_category3 WHERE up_category='$row[code]'";
-    $result1   = mysqli_query($connect, $query1);
-    $sub_count = mysqli_num_rows($result1);
-    mysqli_free_result($result1);
+    // $query1    = "SELECT * FROM products_category3 WHERE up_category='$row[code]'";
+    // $result1   = mysqli_query($connect, $query1);
+    // $sub_count = mysqli_num_rows($result1);
+    // mysqli_free_result($result1);
 
-    $query          = "select * from products where category_m='$row[code]'";
+    $query          = "SELECT * FROM products WHERE category_m='$row[code]'";
     $result2        = mysqli_query($connect, $query);
     $products_count = mysqli_num_rows($result2);
     mysqli_free_result($result2);
@@ -80,7 +80,10 @@ for ($i = 0; $row = mysqli_fetch_array($result); $i++) {
                             <td><?php echo $row['code']; ?></td>
                             <td><?php echo $row['name']; ?></td>
                             <td><?php echo $products_count; ?></td>
-                            <td><a type="button" class="btn btn-default" href='ca_msub_register.php?mode=update&amp;id=<?php echo $row['id']; ?>&amp;lcode=<?php echo $row['up_category']; ?>'><i class="fa fa-pencil-square-o"></i></a>&nbsp; <a type="button" class="btn btn-danger" href='ca_msub_delete.php?id=<?php echo $row['id']; ?>&amp;lcode=<?php echo $row['up_category']; ?>' onClick="return confirm('정말 삭제하시겠습니까?')"><i class="fa fa-trash-o"></i></a> </td>
+                            <td>
+                              <a type="button" class="btn btn-default" href='ca_msub_register.php?mode=update&amp;id=<?php echo $row['id']; ?>&amp;lcode=<?php echo $row['up_category']; ?>'><i class="fa fa-pencil-square-o"></i></a>&nbsp;
+                              <a type="button" class="btn btn-danger" href='ca_msub_delete.php?id=<?php echo $row['id']; ?>&amp;lcode=<?php echo $row['up_category']; ?>' onClick="return confirm('정말 삭제하시겠습니까?')"><i class="fa fa-trash-o"></i></a>
+                            </td>
                           </tr>
 <?php
 

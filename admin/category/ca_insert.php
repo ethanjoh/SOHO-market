@@ -22,7 +22,7 @@ if ("insert" == $mode) {
     err_msg("입력하신 코드가 이미 있습니다.");
     }*/
 
-    $query  = "INSERT INTO products_category1(num, id, code, name, hide) VALUES('$num', '$id', '$code','$ca_name', 'N')";
+    $query  = "INSERT INTO products_category1(num, id, code, name, hide, del) VALUES('$num', '$id', '$code','$ca_name', 'N', 'N')";
     $result = mysqli_query($connect, $query);
 
     if ($result) {
