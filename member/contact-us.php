@@ -99,7 +99,7 @@
                                             </div>
                                             <div class="col-md-4 contactemail">
                                                 <label>이메일 주소 *</label>
-                                                <input type="email" value="" data-msg-required="이메일주소를 입력하세요." data-msg-email="Please enter a valid email address." maxlength="100" class="form-control" name="email" id="email" required>
+                                                <input type="email" value="" data-msg-required="이메일주소를 입력하세요." maxlength="100" class="form-control" name="email" id="email" required>
                                             </div>
                                             <div class="col-md-4 npr">
                                                 <label>전화번호 *</label>
