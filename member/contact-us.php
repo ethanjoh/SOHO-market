@@ -83,18 +83,50 @@
                             </div>
                             <div class="col-sm-7 col-md-8 npr">
                                 <div class="contactfrom">
+                                    <div class="alert alert-success hidden" id="contactSuccess">
+                                        <strong>성공!</strong> 메시지를 보냈습니다.
+                                    </div>
+
+                                    <div class="alert alert-danger hidden" id="contactError">
+                                        <strong>에러!</strong> 메시지를 보내는 중에 에러가 발생했습니다.
+                                    </div>
                                     <h1>문의</h1>
-                                    <form class="">
-                                        <div class="col-md-6 npl">
-                                            <input id="InputName" class="form-control" type="text" placeholder="성함" required="">
+                                    <form id="contactForm" action="php/contact-form.php" method="POST">
+                                        <div class="form-group">
+                                            <div class="col-md-4 npl">
+                                                <label>성함 *</label>
+                                                <input type="text" value="" data-msg-required="성함을 입력하세요." maxlength="100" class="form-control" name="name" id="name" required>
+                                            </div>
+                                            <div class="col-md-4 contactemail">
+                                                <label>이메일 주소 *</label>
+                                                <input type="email" value="" data-msg-required="이메일주소를 입력하세요." data-msg-email="Please enter a valid email address." maxlength="100" class="form-control" name="email" id="email" required>
+                                            </div>
+                                            <div class="col-md-4 npr">
+                                                <label>전화번호 *</label>
+                                                <input type="tel" value="" data-msg-required="전화번호를 입력하세요." data-msg-email="Please enter phone number." maxlength="20" class="form-control" name="phone" id="phone" required>
+                                            </div>
                                         </div>
-                                        <div class="col-md-6 contactemail npr">
-                                            <input id="InputEmail" class="form-control" type="email" placeholder="연락처" required="">
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <div class="col-md-12">
+                                                    <label>제목</label>
+                                                    <input type="text" value="" data-msg-required="제목을 입력하세요." maxlength="100" class="form-control" name="subject" id="subject" required>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="col-md-12 margin-top-10">
-                                            <textarea class="form-control margin-top-10" rows="13" placeholder="내용" required=""></textarea>
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <div class="col-md-12">
+                                                    <label>상담내용 *</label>
+                                                    <textarea maxlength="5000" data-msg-required="내용을 입력하세요." rows="10" class="form-control" name="message" id="message" required></textarea>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <button class="btn btnContact" type="submit">보내기</button>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <input type="submit" value="문의 보내기" class="btn btnContact" data-loading-text="보내는 중...">
+                                            </div>
+                                        </div>
                                     </form>
                                 </div>
                             </div>
@@ -123,9 +155,9 @@
               };
             var map=new google.maps.Map(document.getElementById("hastech"),mapProp);
             var marker=new google.maps.Marker({
-              position:myCenter,
+                position:myCenter,
                 animation:google.maps.Animation.BOUNCE,
-              icon:'/images/map-marker.png',
+                icon:'/images/map-marker.png',
                 map: map,
               });
 
@@ -135,6 +167,8 @@
         </script>
 		<!-- main JS
 		============================================ -->
-        <script src="js/main.js"></script>
+        <script src="/js/jquery.validation.min.js"></script>
+        <script src="/js/view.contact.js"></script>
+
     </body>
 </html>
