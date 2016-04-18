@@ -103,7 +103,7 @@
                                             </div>
                                             <div class="col-md-4 npr">
                                                 <label>전화번호 *</label>
-                                                <input type="tel" value="" data-msg-required="전화번호를 입력하세요." data-msg-email="Please enter phone number." maxlength="20" class="form-control" name="phone" id="phone" required>
+                                                <input type="tel" value="" data-msg-required="전화번호를 입력하세요."  maxlength="20" class="form-control" name="phone" id="phone" required>
                                             </div>
                                         </div>
                                         <div class="row">

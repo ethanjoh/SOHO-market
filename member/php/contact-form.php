@@ -10,8 +10,12 @@ header('Expires: ' . gmdate('r', 0));
 
 header('Content-type: application/json');
 
+include_once "../../util/util.php";
+
+$com_info = get_company_info();
+
 // Step 1 - Enter your email address below.
-$to = 'osakabiz@naver.com';
+$to = $com_info['email'];
 
 // Step 2 - Enable if the server requires SMTP authentication. (true/false)
 $enablePHPMailer = false;
