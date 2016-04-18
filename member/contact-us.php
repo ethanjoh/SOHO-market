@@ -117,7 +117,7 @@
                                         <div class="row">
                                             <div class="form-group">
                                                 <div class="col-md-12">
-                                                    <label>상담내용 *</label>
+                                                    <label>문의내용 *</label>
                                                     <textarea maxlength="5000" data-msg-required="내용을 입력하세요." rows="10" class="form-control" name="message" id="message" required></textarea>
                                                 </div>
                                             </div>
