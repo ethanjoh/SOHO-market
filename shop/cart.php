@@ -17,7 +17,7 @@
                             <!-- 카트 아이템 보여주기 -->
                                 <div class="a-all ">
                                     <div class="a-left">
-                                        <button class="button2  notice" type="button">
+                                        <button class="button2  notice" type="button" onclick="location.href='/shop/'">
                                             <span>쇼핑 계속하기</span>
                                         </button>
                                     </div>

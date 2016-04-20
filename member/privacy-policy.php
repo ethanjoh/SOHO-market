@@ -29,7 +29,7 @@
                                     About
                                     <strong>이용약관</strong>
                                 </h1>
-                                <p><iframe class="iframe-page" seamless src="inc/contract1.html"></iframe></p>
+                                <p><iframe class="iframe-page" seamless src="inc/rule.html"></iframe></p>
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-12">

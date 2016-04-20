@@ -29,9 +29,8 @@
                                     About
                                     <strong>배송</strong>
                                 </h1>
-                                <p>배송정책 안내입니다.</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt voluptatibus quisquam rerum sit ullam saepe, qui tenetur sunt in pariatur mollitia itaque, assumenda officia ut eos facere quasi error neque!</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, at? Quos officia, minus totam tenetur optio odit, laudantium, aut qui nesciunt consequuntur iste. Enim soluta sapiente, dicta hic itaque, nam.</p>
+                                <p><i class="fa fa-check-square-o" aria-hidden="true"></i> 영업일 기준으로 1~3일 이내 발송합니다. </p>
+                                <p><i class="fa fa-check-square-o" aria-hidden="true"></i> 택배비는 50,000원 이상 주문 시 무료배송입니다.</p>
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-12">
@@ -40,9 +39,19 @@
                                     About
                                     <strong>반품/환불</strong>
                                 </h1>
-                                <p>반품정책 안내입니다.</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta maxime dolorum tempora amet voluptatum sed autem esse voluptates aspernatur debitis, vel omnis? Dignissimos dicta ab officia, architecto voluptate asperiores placeat?</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti fuga praesentium, quaerat quibusdam blanditiis quo. Saepe incidunt ea, placeat odit fugiat earum magnam accusantium commodi, sint ab cum quae quas.</p>
+                                <p>[공통사항]</p>
+                                <p><i class="fa fa-check-square-o" aria-hidden="true"></i> 상품 불량 및 파손 등은 동일 상품으로 맞교환 또는 환불 처리(품절 등의 사유)해 드립니다. <br>
+                                <i class="fa fa-check-square-o" aria-hidden="true"></i> 고객의 부주의로 인한 파손 등에 대해서는 교환이나 환불처리 되지 않으며, 보증기간 내에는 무상수리됩니다. 그 외 사유에서는 유상처리됩니다.
+                                </p>
+                                <p>[기업회원]</p>
+                                <p><i class="fa fa-check-square-o" aria-hidden="true"></i> 판매 부진에 의한 반품은 처리되지 않습니다. <br>
+                                <i class="fa fa-check-square-o" aria-hidden="true"></i> 고객의 단순반품부주의로 인한 파손 등에 대해서는 교환이나 환불처리 되지 않으며, 보증기간 내에는 무상수리됩니다. 그 외 사유에서는 유상처리됩니다.
+                                </p>
+                                <p>[개인회원]</p>
+                                <p><i class="fa fa-check-square-o" aria-hidden="true"></i> 단순변심에 의한 반품 및 환불요청은 본사로 상품 입고 후 규정에 따라 확인 후 처리됩니다. <br>
+                                <i class="fa fa-check-square-o" aria-hidden="true"></i> 단순변심에 의한 반품 시에는 택배비 선불 또는 (무료배송 상품의 경우) 왕복택배비 동봉 후 착불처리하여야 합니다.
+                                </p>
+
                             </div>
                         </div>
                     </div>
