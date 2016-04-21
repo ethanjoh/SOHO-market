@@ -14,11 +14,6 @@ $today     = date("Y-m-d");
 $month     = date("Y-m");
 $thisMonth = date("F, Y", strtotime($month));
 
-//총주문
-// $sql = "SELECT * FROM mall_order WHERE cancel='N' AND createdate='$today' AND user_id <> 'guest' ";
-// $res = mysqli_query($connect, $sql);
-// $total = mysqli_num_rows($res);
-
 //기업회원 미확인건
 $sql_1      = "SELECT * FROM mall_order WHERE user_flag = 'c' AND cancel='N' AND status='3' AND user_id <> 'guest' ";
 $res_1      = mysqli_query($connect, $sql_1);
@@ -162,13 +157,15 @@ mysqli_query($connect, 'set names utf8');
           </div>
           <!-- bbs start -->
           <div class="row">
+            <div class="col-sm-6">
+
 <?php
 
-$query  = "SELECT * FROM code WHERE 1 ORDER BY num";
-$result = mysqli_query($connect, $query);
-$total  = mysqli_num_rows($result);
+$query    = "SELECT * FROM code WHERE 1 ORDER BY num";
+$result   = mysqli_query($connect, $query);
+$numOfBbs = mysqli_num_rows($result);
 
-if ($total == 0) {
+if ($numOfBbs == 0) {
     ?>
             <div class="col-sm-12">
               <div class="alert alert-danger" role="alert">
@@ -178,11 +175,6 @@ if ($total == 0) {
 <?php
 
 } else {
-    if ($total % 2 == 0) {
-        echo '            <div class="col-sm-6">' . "\r\n";
-    } else {
-        echo '            <div class="col-sm-6">' . "\r\n";
-    }
 
     for ($i = 0; $rows = mysqli_fetch_array($result); $i++) {
         $board   = 'bbs_' . $rows['code'];
@@ -190,30 +182,31 @@ if ($total == 0) {
         $result2 = mysqli_query($connect, $query2);
 
         if ($result2) {
-            $total2 = mysqli_num_rows($result2);
+            $numOfPosts = mysqli_num_rows($result2);
         } else {
-            $total2 = 0;
+            $numOfPosts = 0;
         }
         ?>
-              <section class="panel">
-                <div class="weather-bg">
-                  <header class="panel-heading">
-                    <a href="/bbs/list.php?code=<?php echo $rows['code']; ?>" target="_blank"><span class="bbs-title"><?php echo $rows['bbs_name']; ?></span></a>
-                  </header>
-                </div>
-                <div class="table-responsive">
-                  <table class="table table-striped">
-                    <thead>
-                      <tr>
-                        <th>#</th>
-                        <th>제 목</th>
-                        <th>날 짜</th>
-                      </tr>
-                    </thead>
-                    <tbody>
+
+                        <section class="panel">
+                          <div class="weather-bg">
+                            <header class="panel-heading">
+                              <a href="/bbs/list.php?code=<?php echo $rows['code']; ?>" target="_blank"><span class="bbs-title"><?php echo $rows['bbs_name']; ?></span></a>
+                            </header>
+                          </div>
+                          <div class="table-responsive">
+                            <table class="table table-striped">
+                              <thead>
+                                <tr>
+                                  <th>#</th>
+                                  <th>제 목</th>
+                                  <th>날 짜</th>
+                                </tr>
+                              </thead>
+                              <tbody>
 <?php
 
-        if ($total2 == 0) {
+        if ($numOfPosts == 0) {
             echo <<<HEREDOC
                               <tr>
                                 <td colspan="4"><p>등록된 글이 없습니다</p></td>
@@ -226,20 +219,20 @@ HEREDOC;
                 //답변있는 경우
                 if ($rows2['depth'] > 0) {
                     ?>
-                      <tr>
-                        <td><?php echo $rows2['main_no']; ?></td>
-                        <td><a href="/bbs/read.php?code=<?php echo $rows['code']; ?>&amp;main_no=<?php echo $rows2['main_no']; ?>" target="_blank"><?php echo stripslashes($rows2['title']); ?></a>&nbsp;<span class="badge"><?php echo $rows2['depth']; ?></span></td>
-                        <td><?php echo $post_date; ?></td>
-                      </tr>
+                                <tr>
+                                  <td><?php echo $rows2['main_no']; ?></td>
+                                  <td><a href="/bbs/read.php?code=<?php echo $rows['code']; ?>&amp;main_no=<?php echo $rows2['main_no']; ?>" target="_blank"><?php echo stripslashes($rows2['title']); ?></a>&nbsp;<span class="badge"><?php echo $rows2['depth']; ?></span></td>
+                                  <td><?php echo $post_date; ?></td>
+                                </tr>
 <?php
 
                 } else {
                     ?>
-                      <tr>
-                        <td><?php echo $j + 1; ?></td>
-                        <td><a href="/bbs/read.php?code=<?php echo $rows['code']; ?>&amp;main_no=<?php echo $rows2['main_no']; ?>" target="_blank"><?php echo stripslashes($rows2['title']); ?></a></td>
-                        <td><?php echo $post_date; ?></td>
-                      </tr>
+                                <tr>
+                                  <td><?php echo $j + 1; ?></td>
+                                  <td><a href="/bbs/read.php?code=<?php echo $rows['code']; ?>&amp;main_no=<?php echo $rows2['main_no']; ?>" target="_blank"><?php echo stripslashes($rows2['title']); ?></a></td>
+                                  <td><?php echo $post_date; ?></td>
+                                </tr>
 <?php
 
                 } // end of inner if
@@ -247,23 +240,26 @@ HEREDOC;
         }
         ; // end of outer if
         ?>
-                    </tbody>
-                  </table>
-                </div>
-              </section>
+                              </tbody>
+                            </table>
+                          </div>
+                        </section>
 <?php
 
-        if ($total2 % 2 == 0) {
+        if (($i % 2) == 1) {
             echo <<<HEREDOC
-                      </div> <!-- end of col-sm-6 -->
-                     </div>
-                     <div class="row">
-                       <div class="col-sm-6">
+
+              </div> <!-- end of col-sm-6 -->
+             </div>
+             <div class="row">
+              <div class="col-sm-6">
+
 HEREDOC;
         } else {
             echo <<<HEREDOC
-                        </div> <!-- end of col-sm-6 -->
-                       <div class="col-sm-6">
+
+              </div> <!-- end of col-sm-6 -->
+              <div class="col-sm-6">
 
 HEREDOC;
         }
@@ -272,10 +268,10 @@ HEREDOC;
 ; //end of if($total == 0)
 ?>
 
-                      </div>
-                    </div><!-- end of bbs -->
-                  </section>
-                </section><!--main content end-->
+                </div>
+              </div><!-- end of bbs -->
+            </section>
+          </section><!--main content end-->
 
 
           <!--footer start-->
