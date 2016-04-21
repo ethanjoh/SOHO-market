@@ -21,7 +21,17 @@
                                             <div class="footer-static-content">
                                                 <ul>
                                                     <li>
-                                                        <a href="#">1:1 문의</a>
+<?php
+
+$sessionId = set_var($_SESSION['p_id']);
+
+if ($sessionId) {
+    echo '                                                        <a href="/bbs/list.php?code=qna">1:1 문의</a>' . "\r\n";
+} else {
+    echo '                                                        <a href="/member/login.php">1:1 문의</a>' . "\r\n";
+}
+
+?>
                                                     </li>
                                                     <li>
                                                         <a href="/member/delivery-policy.php">배송/반품 안내</a>
