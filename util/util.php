@@ -1461,7 +1461,7 @@ HEREDOC;
 
         for ($i = 0; $row = mysqli_fetch_array($result); $i++) {
             // $title = cut_string_utf8($row['title'], 20, '&#183;&#183;&#183;');
-            $title = get_short($row['title'], 36);
+            $title = get_short($row['title'], 50);
             $title = stripslashes($title);
             echo <<<HEREDOC
                     <tr>
