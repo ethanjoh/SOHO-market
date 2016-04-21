@@ -10,12 +10,7 @@
 
                                     <div class="f-col f-col2 col-md-6 hidden-sm col-xs-12">
                                         <div class="static_all">
-                                            <div class="footer-static-title">
-                                                <h3>피팅 가이드</h3>
-                                            </div>
-                                            <div class="footer-static-content">
                                                 <?php echo get_bbs_title('fitting', 5); ?>
-                                            </div>
                                         </div>
                                     </div>
                                     <div class="f-col f-col3 col-md-3 col-sm-4  col-xs-12">
@@ -25,9 +20,6 @@
                                             </div>
                                             <div class="footer-static-content">
                                                 <ul>
-                                                    <li>
-                                                        <a href="/bbs/list.php?code=notice">공지사항</a>
-                                                    </li>
                                                     <li>
                                                         <a href="#">1:1 문의</a>
                                                     </li>

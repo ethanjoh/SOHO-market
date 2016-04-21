@@ -118,7 +118,7 @@ $uri = set_var($_SERVER['HTTP_REFERER']);
                                 <nav>
                                     <ul>
                                         <li><a href="/member/about-us.php">회사 소개</a></li>
-                                        <li><a href="/bbs/list.php?code=fitting">피팅 가이드</a></li>
+                                        <li><a href="/bbs/list.php?code=fitting">새소식</a></li>
                                         <li><a href="/member/contact-us.php">문의</a></li>
                                     </ul>
                                 </nav>

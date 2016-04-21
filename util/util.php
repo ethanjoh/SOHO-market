@@ -1369,6 +1369,12 @@ function get_company_info()
 
 }
 
+/**
+ * 게시판 가져오기
+ * @param  [type] $code  [description]
+ * @param  [type] $limit [description]
+ * @return [type]        [description]
+ */
 function get_bbs_title($code, $limit)
 {
 
@@ -1426,22 +1432,27 @@ function get_bbs_title($code, $limit)
     $scale1 = $limit - $cline;
 
     echo <<<HEREDOC
-          <!-- 게시판 본문 -->
-          <section id="bbs-embed">
-            <div class="col-md-11">
-              <table class="table table-responsive">
-                <tbody>
+                                            <div class="footer-static-title">
+                                                <h3>{$brow1['bbs_name']}</h3>
+                                                <span class="bbs_more"><a href="/bbs/list.php?code={$code}"><i class="fa fa-plus-square-o" aria-hidden="true"></i> more</a></span>
+                                            </div>
+                                            <div class="footer-static-content">
+                                              <!-- 게시판 본문 -->
+                                              <section id="bbs-embed">
+                                                <div class="col-md-11">
+                                                  <table class="table table-responsive">
+                                                    <tbody>
 HEREDOC;
 
 // 만약 검색 결과가 없다면,
     if ($total == 0) {
         echo <<<HEREDOC
-                  <tr class="danger">
-                    <td colspan="2"><p>등록된 글이 없습니다.</p></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+                                                  <tr class="danger">
+                                                    <td colspan="2"><p>등록된 글이 없습니다.</p></td>
+                                                  </tr>
+                                                </tbody>
+                                              </table>
+                                            </div>
 HEREDOC;
 
     } else {
@@ -1468,11 +1479,12 @@ HEREDOC;
         }
 
         echo <<<HEREDOC
-                    </tbody>
-                  </table>
-                <hr>
-                </div>
-             </section>
+                                                    </tbody>
+                                                  </table>
+                                                <hr>
+                                                </div>
+                                             </section>
+                                            </div>
 HEREDOC;
     }
 }

@@ -222,3 +222,7 @@ custom style
     height: 300px;
     width: 100%;
 }
+
+#bbs-embed {
+    margin-top: 30px;
+}

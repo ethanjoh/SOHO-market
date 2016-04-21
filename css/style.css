@@ -1866,6 +1866,7 @@ strong {
 
 .footer-static-title {
     margin-bottom: 35px;
+    width: 90%;
 }
 
 .footer-static-title h3 {
@@ -1874,6 +1875,12 @@ strong {
     font-size: 16px;
     position: relative;
     text-transform: uppercase;
+}
+
+.footer-static-title span.bbs_more {
+    color: #ffffff;
+    font-size: 12px;
+    float: right;
 }
 
 .footer-static-top ul li a {
