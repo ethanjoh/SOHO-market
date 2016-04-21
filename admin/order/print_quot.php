@@ -225,7 +225,7 @@ echo <<<HEREDOC
                         <td class="num-right strong-text-400" colspan="2">{$commaFinal}</td>
                     </tr>
                     <tr>
-                        <td colspan="8">TEL :{$row['tel']} FAX : {$row['fax']} (주문마감시간 평일 오후 4시, 토/일 휴무)
+                        <td colspan="8">TEL :{$row['tel']} FAX : {$row['fax']} (주문마감시간 평일 오후 3시, 토/일 휴무)
                         </td>
                     </tr>
 HEREDOC;
