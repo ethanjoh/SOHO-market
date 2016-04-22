@@ -52,7 +52,7 @@ if ($mode == "modify") {
     $query2 = "CREATE TABLE IF NOT EXISTS $board (
 				  main_no int(11) unsigned NOT NULL AUTO_INCREMENT,
 				 id varchar(11) NOT NULL,
-				 title varchar(30) NOT NULL,
+				 title varchar(100) NOT NULL,
 				 name varchar(20) NOT NULL,
 				 contents mediumtext NOT NULL,
 				 passwd varchar(41) NOT NULL,
