@@ -26,6 +26,8 @@
               <ul class="info-body">
                 <li><i class="fa fa-info-circle"></i> 날짜와 관계없이 포장완료된 주문만 표시됩니다.</li>
                 <li><i class="fa fa-info-circle"></i> 포장이 완료되어야 나타납니다.</li>
+                <li><i class="fa fa-info-circle"></i> 택배시스템에 대량으로 업로드하려면 엑셀파일을 다운받으세요.</li>
+                <li><i class="fa fa-info-circle"></i> 엑셀파일을 열 때 경고창이 나오면 "예"를 누르세요.</li>
               </ul>
             </section>
           </div>
@@ -127,7 +129,7 @@ $scale1 = $limit - $cline;
         <div class="col-sm-12">
           <section class="panel">
             <header class="panel-heading table-head">
-                주문 목록 ( <?php echo $date1; ?>  ~ <?php echo $date2; ?>  기간 내 총 <?php echo $total; ?> 건) <i class="fa fa-file-excel-o"></i> <a href="tracktoexcel_a.php?date1=<?php echo $date1; ?>&amp;date2=<?php echo $date2; ?>">엑셀로 다운로드</a>
+                주문 목록 ( <?php echo $date1; ?>  ~ <?php echo $date2; ?>  기간 내 총 <?php echo $total; ?> 건)
             </header>
               <div class="panel-body">
                 <div class="table-responsive">
@@ -206,18 +208,21 @@ if ($t_no > 0) {
         }
 
         //배송정책 가져옴
-        $query4  = "SELECT * FROM misc_setup WHERE id='admin' ";
-        $result4 = mysqli_query($connect, $query4);
-        $misc    = mysqli_fetch_array($result4);
+        // $query4  = "SELECT * FROM misc_setup WHERE id='admin' ";
+        // $result4 = mysqli_query($connect, $query4);
+        // $misc    = mysqli_fetch_array($result4);
 
         //if($row['last_amount'] >=$misc['min_sum'] || $row['trans_cost'] == '0')
-        if ($row['trans_cost'] == '0') {
-            $str    = "3"; //신용
-            $t_cost = "2200";
-        } else {
-            $str    = "2"; //착불
-            $t_cost = "2500";
-        }
+        // if ($row['trans_cost'] == '0') {
+        //     $str    = "3"; //신용
+        //     $t_cost = "2200";
+        // } else {
+        //     $str    = "2"; //착불
+        //     $t_cost = "2500";
+        // }
+
+        $re = define_delivery_fee($row['trans_cost']);
+
         ?>
                         <td><?php echo $goods_name; ?></td>
                         <td>1</td>
@@ -225,8 +230,8 @@ if ($t_no > 0) {
                         <td><?php echo $row['recipient_name'] ? $row['recipient_address'] : $row['buyer_address']; ?></td>
                         <td><?php echo $row['recipient_name'] ? $row['recipient_phone'] : $row['buyer_phone']; ?></td>
                         <td><?php echo $row['recipient_name'] ? $row['recipient_hphone'] : $row['buyer_hphone']; ?></td>
-                        <td><?php echo $str; ?></td>
-                        <td><?php echo $t_cost; ?></td>
+                        <td><?php echo $re['credit']; ?></td>
+                        <td><?php echo $re['t_cost']; ?></td>
                         <td>
 <?php
 
@@ -257,6 +262,11 @@ if ($t_no > 0) {
                     </tbody>
                   </table>
                 </form>
+              </div>
+            </div>
+            <div class="row text-center">
+              <div class="col-sm-12 excel_btn">
+                <a type="button" class="btn btn-success" href="tracktoexcel_a.php?date1=<?php echo $date1; ?>&amp;date2=<?php echo $date2; ?>"><i class="fa fa-file-excel-o"></i> 엑셀로 다운로드</a>
               </div>
             </div>
           </section>

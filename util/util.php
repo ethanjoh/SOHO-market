@@ -405,7 +405,7 @@ function show_delivery_fee($total)
     $row    = mysqli_fetch_array($result);
 
     if ($row['min_sum'] > $total) {
-        return $reMsg = "5만원 미만 착불";
+        return $reMsg = "" . number_format($row['min_sum']) . "원 미만 착불";
     } elseif (0 == $total) {
         return $reMsg = "-";
     } elseif ($total >= $row['min_sum']) {
@@ -434,6 +434,25 @@ function calc_delivery_fee($orderSum)
     }
 
     return $reDeliveryFee;
+}
+
+function define_delivery_fee($transCost)
+{
+
+    global $connect;
+
+    $query  = "SELECT * FROM misc_setup";
+    $result = mysqli_query($connect, $query);
+    $row    = mysqli_fetch_array($result);
+    $t_cost = $row['d_charge'];
+
+    if ($transCost == "0") {
+        $credit = "3"; //신용
+    } else {
+        $credit = "2"; //착불
+    }
+
+    return array('credit' => $credit, 't_cost' => $t_cost);
 }
 
 /**
