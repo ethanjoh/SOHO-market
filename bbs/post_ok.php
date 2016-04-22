@@ -2,20 +2,17 @@
 
 include_once '../util/util.php';
 
-$connect = my_connect($host, $dbid, $dbpass, $dbname);
-
 //post.php에서 넘어온 값들을 변수에 저장한다.
 //사용자 함수를 사용해서 변수값을 가져온다.
 $mode     = set_var($_POST['mode']);
 $id       = set_var($_POST['id']);
-$name     = set_var($_SESSION['p_name']);
+$name     = set_var($_POST['name']);
 $main_no  = set_var($_POST['main_no']);
 $reply_no = set_var($_POST['reply_no']);
 $code     = set_var($_POST['code']);
 $title    = set_var($_POST['title']);
 $contents = set_var($_POST['contents']);
 $email    = set_var($_POST['email']);
-$p_id     = set_var($_SESSION['p_id']);
 
 $title = addslashes($title);
 $email = addslashes($email);
@@ -70,6 +67,7 @@ if ($mode == 'edit') {
             $sql   = "UPDATE $board SET title='$title',
 									contents='$contents',
 									mod_date=now(),
+                                    name = '$name',
 									email='$email',
 									filename='$filename'
 	      				       WHERE main_no='$main_no' ";
@@ -88,7 +86,8 @@ if ($mode == 'edit') {
         $board = 'bbs_' . $code;
         $sql   = "UPDATE $board SET title='$title',
 								 contents='$contents',
-								 mod_date=now(),
+								 mod_date=now(),\
+                                 name = '$name',
 								 email='$email',
 								 filename=''
 	      				      WHERE main_no=$main_no";
@@ -116,7 +115,7 @@ if ($mode == 'edit') {
             show_msg('글을 수정했습니다.', $url);
         }
     }
-} else if ('reply' == $mode) {
+} else if ($mode == 'reply') {
     //글 작성 시 암호는 회원 로그인 암호를 자동입력
     if ($id == 'admin') {
         $query = "SELECT * FROM code WHERE code='$code' ";

@@ -25,6 +25,10 @@ $uri = set_var($_SERVER['HTTP_REFERER']);
         <title><?php echo $com_info['company_name']; ?></title>
         <meta name="keyword" content="<?php echo $com_info['keywords']; ?>">
         <meta name="description" content="<?php echo $com_info['description']; ?>">
+        <meta property="og:title" content="<?php echo $com_info['site_name']; ?>"/>
+        <meta property="og:site_name" content="<?php echo $com_info['company_name']; ?>"/>
+        <meta property="og:url" content="<?php echo $com_info['homepage']; ?>" />
+        <meta property="og:description" content="<?php echo $com_info['description']; ?>" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico">
         <link rel="stylesheet" href="/css/bootstrap.min.css">
