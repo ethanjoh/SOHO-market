@@ -247,9 +247,9 @@ if ($numOfBbs == 0) {
                             <table class="table table-striped">
                               <thead>
                                 <tr>
-                                  <th>#</th>
-                                  <th>제 목</th>
-                                  <th>날 짜</th>
+                                  <th class="text-center" width="10%">#</th>
+                                  <th class="text-center">제 목</th>
+                                  <th width="20%" class="text-center">날 짜</th>
                                 </tr>
                               </thead>
                               <tbody>
@@ -269,18 +269,18 @@ HEREDOC;
                 if ($rows2['depth'] > 0) {
                     ?>
                                 <tr>
-                                  <td><?php echo $rows2['main_no']; ?></td>
+                                  <td class="text-center"><?php echo $rows2['main_no']; ?></td>
                                   <td><a href="/bbs/read.php?code=<?php echo $rows['code']; ?>&amp;main_no=<?php echo $rows2['main_no']; ?>" target="_blank"><?php echo stripslashes($rows2['title']); ?></a>&nbsp;<span class="badge"><?php echo $rows2['depth']; ?></span></td>
-                                  <td><?php echo $post_date; ?></td>
+                                  <td class="text-center"><?php echo $post_date; ?></td>
                                 </tr>
 <?php
 
                 } else {
                     ?>
                                 <tr>
-                                  <td><?php echo $j + 1; ?></td>
+                                  <td class="text-center"><?php echo $j + 1; ?></td>
                                   <td><a href="/bbs/read.php?code=<?php echo $rows['code']; ?>&amp;main_no=<?php echo $rows2['main_no']; ?>" target="_blank"><?php echo stripslashes($rows2['title']); ?></a></td>
-                                  <td><?php echo $post_date; ?></td>
+                                  <td class="text-center"><?php echo $post_date; ?></td>
                                 </tr>
 <?php
 

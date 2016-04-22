@@ -22,8 +22,7 @@
                 사용방법
               </header>
               <ul class="info-body">
-                <li><i class="fa fa-info-circle"></i> 비밀번호를 분실하지 않도록 주의하시기 바랍니다.</li>
-                <li><i class="fa fa-info-circle"></i> 인감이미지는 배경을 투명하게 하십시오.</li>
+                <li><i class="fa fa-info-circle"></i> 각 정책 등은 예제를 참고해서 작성하시기 바랍니다.</li>
               </ul>
             </section>
           </div>
