@@ -64,17 +64,7 @@ if ($t_no > 0) {
         }
 
         //배송정책 가져옴
-        $query4  = "SELECT * FROM misc_setup WHERE id='admin' ";
-        $result4 = mysqli_query($connect, $query4);
-        $misc    = mysqli_fetch_array($result4);
-        //if($row['last_amount'] >=$misc['min_sum'] || $row['trans_cost'] == '0')
-        if ($row['trans_cost'] == '0') {
-            $str    = "3"; //신용
-            $t_cost = "2200";
-        } else {
-            $str    = "2"; //착불
-            $t_cost = "2500";
-        }
+        $re = define_delivery_fee($row['trans_cost']);
         ?>
           <td><?php echo $goods_name; ?></td>
           <td>1</td>
@@ -82,8 +72,8 @@ if ($t_no > 0) {
           <td><?php echo $row['recipient_name'] ? $row['recipient_address'] : $row['buyer_address']; ?></td>
           <td><?php echo $row['recipient_name'] ? $row['recipient_phone'] : $row['buyer_phone']; ?></td>
           <td><?php echo $row['recipient_name'] ? $row['recipient_hphone'] : $row['buyer_hphone']; ?></td>
-          <td><?php echo $str; ?></td>
-          <td><?php echo $t_cost; ?></td>
+          <td><?php echo $re['credit']; ?></td>
+          <td><?php echo $re['t_cost']; ?></td>
           <td>
 <?php
 

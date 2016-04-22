@@ -24,10 +24,28 @@ $sql_2       = "SELECT * FROM mall_order WHERE user_flag = 'p' AND cancel='N' AN
 $res_2       = mysqli_query($connect, $sql_2);
 $pUnchkTotal = mysqli_num_rows($res_2);
 
+//게시판 미답변 문의글
+$sql_3   = "SELECT * FROM bbs_qna WHERE depth=0 ";
+$res_3   = mysqli_query($connect, $sql_3);
+$unReply = mysqli_num_rows($res_3);
+
 //미승인 업체
-$sql_5             = "SELECT * FROM member WHERE approved='N' ";
-$res_5             = mysqli_query($connect, $sql_5);
-$nonapproved_total = mysqli_num_rows($res_5);
+$sql_5         = "SELECT * FROM member WHERE approved='N' ";
+$res_5         = mysqli_query($connect, $sql_5);
+$newCorpMember = mysqli_num_rows($res_5);
+
+if ($newCorpMember == 0) {
+    $newCorpMember = 0;
+}
+
+//신규 개인회원
+$sql_6             = "SELECT * FROM p_member WHERE reg_date='$today' ";
+$res_6             = mysqli_query($connect, $sql_6);
+$newPersonalMember = mysqli_num_rows($res_6);
+
+if ($newPersonalMember == 0) {
+    $newPersonalMember = 0;
+}
 
 //승인 상품
 $sql_9 = "SELECT * FROM products WHERE approved='Y' ";
@@ -78,12 +96,29 @@ mysqli_query($connect, 'set names utf8');
                 </div>
                 <div class="value">
                   <h1>
-                  <a href="../member/top_member_list.php?mode=nonapproved"><?php echo $nonapproved_total; ?></a>
+                  <a href="../member/top_member_list.php?mode=nonapproved"><?php echo $newCorpMember; ?></a>
                   </h1>
                   <p>신규 기업회원</p>
                 </div>
               </section>
             </div>
+            <div class="col-lg-3 col-sm-6">
+              <section class="panel">
+                <div class="symbol green">
+                  <i class="fa fa-user-plus"></i>
+                </div>
+                <div class="value">
+                  <h1>
+                  <a href="../member/top_member_list.php?mode=nonapproved"><?php echo $newPersonalMember; ?></a>
+                  </h1>
+                  <p>신규 개인회원</p>
+                </div>
+              </section>
+            </div>
+          </div>
+          <!--state overview end-->
+
+          <div class="row state-overview">
             <div class="col-lg-3 col-sm-6">
               <section class="panel">
                 <div class="symbol red">
@@ -97,8 +132,22 @@ mysqli_query($connect, 'set names utf8');
                 </div>
               </section>
             </div>
+            <div class="col-lg-3 col-sm-6">
+              <section class="panel">
+                <div class="symbol purple">
+                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                </div>
+                <div class="value">
+                  <h1>
+                  <a href="/bbs/list.php?code=qna" target="_blank"><?php echo $unReply; ?></a>
+                  </h1>
+                  <p>미답변 문의글</p>
+                </div>
+              </section>
+            </div>
           </div>
-          <!--state overview end-->
+
+
 
           <!-- 기업회원 통계 -->
           <div class="row">

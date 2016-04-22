@@ -35,13 +35,13 @@
                     <div class="col-md-4 col-sm-12">
                         <div class="totals">
                             <div class="subtotal">
-                                <p><i class="fa fa-truck"></i> 택배비: <span><?php echo show_delivery_fee($reVal[0]); ?></span></p>
-                                <p class="grand-total">총  합: <span><i class="fa fa-krw"></i><?php echo number_format($reVal[0]); ?></span> (VAT 포함)</p>
+                                <p><i class="fa fa-truck"></i> 택배비: <span><?php echo show_delivery_fee($reVal['tot_money']); ?></span></p>
+                                <p class="grand-total">총  합: <span><i class="fa fa-krw"></i><?php echo number_format($reVal['tot_money']); ?></span> (VAT 포함)</p>
                             </div>
 <?php
 
-$pflag = $reVal[1]; // 상품품절여부
-$oflag = $reVal[2]; // 옵션품절여부
+$pflag = $reVal['pflag']; // 상품품절여부
+$oflag = $reVal['oflag']; // 옵션품절여부
 
 if ($pflag == "Y") {
     echo <<<HEREDOC
@@ -58,7 +58,7 @@ HEREDOC;
                             </button>
 HEREDOC;
 } else {
-    $go_order = go_purchase($reVal[0]);
+    $go_order = go_purchase($reVal['tot_money']);
     echo <<<HEREDOC
 
                             <button class="button2 get" type="button" onclick="{$go_order}">

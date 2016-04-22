@@ -766,7 +766,7 @@ HEREDOC;
                                 </table>
 HEREDOC;
 
-        return array($tot_money, $pflag, $oflag);
+        return array('tot_money' => $tot_money, 'pflag' => $pflag, 'oflag' => $oflag);
 
     } // ./else
 
