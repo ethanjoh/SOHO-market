@@ -27,26 +27,26 @@
 					<!-- info end -->
 <?php
 
-    $mode = $_GET['mode'];
+$mode = $_GET['mode'];
 
-    if ($mode == "update") {
+if ($mode == "update") {
 
-        // 상품목록에서 수정 시
-        $p_num = set_var($_GET['p_num']);
-        $page  = set_var($_GET['page']);
+    // 상품목록에서 수정 시
+    $p_num = set_var($_GET['p_num']);
+    $page  = set_var($_GET['page']);
 
-        $update_qry    = "SELECT * FROM products WHERE num='$p_num'";
-        $update_result = mysqli_query($connect, $update_qry);
-        $update_row    = mysqli_fetch_array($update_result);
+    $update_qry    = "SELECT * FROM products WHERE num='$p_num'";
+    $update_result = mysqli_query($connect, $update_qry);
+    $update_row    = mysqli_fetch_array($update_result);
 
-        if (set_var($_POST['lcode'])) {
-            // 키테고리 변경 시 POST 값으로 넘어옴
-            $lcode = set_var($_POST['lcode']);
-            $mcode = set_var($_POST['mcode']);
-        } else {
-            $lcode = $update_row['category_l'];
-            $mcode = $update_row['category_m'];
-        }
+    if (set_var($_POST['lcode'])) {
+        // 키테고리 변경 시 POST 값으로 넘어옴
+        $lcode = set_var($_POST['lcode']);
+        $mcode = set_var($_POST['mcode']);
+    } else {
+        $lcode = $update_row['category_l'];
+        $mcode = $update_row['category_m'];
+    }
 
     ?>
 
@@ -73,6 +73,12 @@
 															<input type="radio" name="del_chk" value="C"															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                            															                                             <?php echo ($update_row['del_chk'] == 'C' ? "checked" : ""); ?> /> <span class="label label-danger">단 종</span>
 														</td>
 													</tr>
+                          <tr >
+                            <th><img src="../images/icn_04.gif" width="24" height="14" alt="필수" /> 분류</th>
+                            <td>
+                                                            <?php echo restore_category($mode, $lcode, $mcode); ?>
+                            </td>
+                          </tr>
 													<tr>
 														<th><img src="../images/icn_05.gif" width="24" height="14" alt="선택" /> 메인페이지 노출</th>
 														<td>
@@ -94,7 +100,7 @@
 															<span class="label label-warning">SALE</span>
 														</td>
 													</tr>
-													<tr>
+<!-- 													<tr>
 														<th rowspan="2"><img src="../images/icn_05.gif" width="24" height="14" alt="선택" /> 이벤트 관리</th>
 														<td>
 															<input type="radio" name="event" value="0"															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                          															                                           <?php echo ($update_row['event'] == '0' || 'insert' == $mode ? "checked" : ""); ?> /> 해당사항 없음(중지)
@@ -109,16 +115,10 @@
 															기간 : (시작일) <input type="text" class="w8em format-y-m-d divider-dash highlight-days-67 range-low-2008-01-01 no-transparency" name="date1" id="sd" value="<?php echo $update_row['date1']; ?>" size="10" />&nbsp;~&nbsp;
 															(종료일) <input type="text" class="w8em format-y-m-d divider-dash highlight-days-67 range-low-2008-01-01 no-transparency" name="date2" id="ed" value="<?php echo $update_row['date2']; ?>" size="10" />
 														</td>
-													</tr>
+													</tr> -->
 
 													<tr >
 														<th colspan="2"><i class="fa fa-cube"></i> 상품 정보</th>
-													</tr>
-													<tr >
-														<th><img src="../images/icn_04.gif" width="24" height="14" alt="필수" /> 분류</th>
-														<td>
-                                                            <?php echo restore_category($mode, $lcode, $mcode); ?>
-														</td>
 													</tr>
 													<tr >
 														<th><img src="../images/icn_04.gif" width="24" height="14" alt="필수" /> 상품명</th>
@@ -129,7 +129,7 @@
 														</td>
 													</tr>
 													<tr >
-														<th><img src="../images/icn_04.gif" width="24" height="14" alt="필수" /> 상품 간략설명</th>
+														<th><img src="../images/icn_05.gif" width="24" height="14" alt="선택" /> 상품 간략설명</th>
 														<td>
 															<div align="left">
 																<!-- <input type="text" class="form-control" name="short_desc" value="<?php echo stripslashes($update_row['short_desc']); ?>" size="100%" /> -->
@@ -161,15 +161,15 @@
         												<td>
 <?php
 
-        if (isset($update_row['opt'])) {
-            restore_option($update_row);
-        } else {
-            echo <<<HEREDOC
+    if (isset($update_row['opt'])) {
+        restore_option($update_row);
+    } else {
+        echo <<<HEREDOC
 
                                                             <input name="optname_ins" type="text" class="form-control" value="" size="100" >
                                                             <p class="help-block"><i class="fa fa-exclamation-triangle"></i> 구분은 ',(콤마)' 하세요 (예:블루,레드,블랙)</p>
 HEREDOC;
-        }
+    }
     ?>
                                                         </td>
         											</tr>
@@ -184,17 +184,17 @@ HEREDOC;
             											<td><input type="file" class="form-control" name="b_image[]" size="30" />
 <?php
 
-        if ($update_row['b_image1'] == 'Y') {
+    if ($update_row['b_image1'] == 'Y') {
         ?>
                 											<img src="<?php echo $update_row['b_image1_name']; ?>" width="50" height="50" />
 <?php
 
-        } else {
+    } else {
         ?>
                 											<img src="http://placehold.it/50x50">
 <?php
 
-        }
+    }
     ?>
                                                             </td>
                 									</tr>
@@ -203,17 +203,17 @@ HEREDOC;
                 										<td><input type="file" class="form-control" name="b_image[]" size="30" />
 <?php
 
-        if ($update_row['b_image2'] == 'Y') {
+    if ($update_row['b_image2'] == 'Y') {
         ?>
                     										<img src="<?php echo $update_row['b_image2_name']; ?>" width="50" height="50" />
 <?php
 
-        } else {
+    } else {
         ?>
                     										<img src="http://placehold.it/50x50">
 <?php
 
-        }
+    }
     ?>
                                                         </td>
                     								</tr>
@@ -222,17 +222,17 @@ HEREDOC;
                     									<td><input type="file" class="form-control" name="b_image[]" size="30" />
 <?php
 
-        if ($update_row['b_image3'] == 'Y') {
+    if ($update_row['b_image3'] == 'Y') {
         ?>
                         									<img src="<?php echo $update_row['b_image3_name']; ?>" width="50" height="50" />
 <?php
 
-        } else {
+    } else {
         ?>
                         									<img src="http://placehold.it/50x50">
 <?php
 
-        }
+    }
     ?>
                                                         </td>
                         							</tr>
@@ -241,13 +241,13 @@ HEREDOC;
                         								<td><input type="file" class="form-control" name="b_image[]" size="30" />
 <?php
 
-        if ($update_row['b_image4'] == 'Y') {
+    if ($update_row['b_image4'] == 'Y') {
         ?>
                             								<img src="<?php echo $update_row['b_image4_name']; ?>" width="50" height="50" />
 <?php } else {?>
                             								<img src="http://placehold.it/50x50">
 <?php
-    }
+}
     ?>
                                                         </td>
                             						</tr>
@@ -283,12 +283,12 @@ HEREDOC;
 
 
 <?php
+//////////////////////////////
+    /////신상품 등록
     //////////////////////////////
-        /////신상품 등록
-        //////////////////////////////
-    } elseif ($mode == "insert") {
-        $lcode = set_var($_POST['lcode']);
-        $mcode = set_var($_POST['mcode']);
+} elseif ($mode == "insert") {
+    $lcode = set_var($_POST['lcode']);
+    $mcode = set_var($_POST['mcode']);
     ?>
 
 					<form name="form1" class="form-inline" role="form" method="post" enctype="multipart/form-data" action="pro_register_ok.php">
@@ -314,6 +314,12 @@ HEREDOC;
 															<input type="radio" name="del_chk" value="C" /> <span class="label label-danger">단 종</span>
 														</td>
 													</tr>
+                          <tr >
+                            <th><img src="../images/icn_04.gif" width="24" height="14" alt="필수" /> 분류</th>
+                            <td>
+<?php echo restore_category($mode, $lcode, $mcode); ?>
+                            </td>
+                          </tr>
 													<tr>
 														<th><img src="../images/icn_05.gif" width="24" height="14" alt="선택" /> 메인페이지 노출</th>
 														<td>
@@ -335,7 +341,7 @@ HEREDOC;
 															<span class="label label-warning">SALE</span>
 														</td>
 													</tr>
-													<tr>
+<!-- 													<tr>
 														<th rowspan="2"><img src="../images/icn_05.gif" width="24" height="14" alt="선택" /> 이벤트 관리</th>
 														<td>
 															<input type="radio" name="event" value="0" /> 해당사항 없음(중지)
@@ -350,16 +356,10 @@ HEREDOC;
 															기간 : (시작일) <input type="text" class="w8em format-y-m-d divider-dash highlight-days-67 range-low-2008-01-01 no-transparency" name="date1" id="sd" value="" size="10" />&nbsp;~&nbsp;
 															(종료일) <input type="text" class="w8em format-y-m-d divider-dash highlight-days-67 range-low-2008-01-01 no-transparency" name="date2" id="ed" value="" size="10" />
 														</td>
-													</tr>
+													</tr> -->
 
 													<tr >
 														<th colspan="2"><i class="fa fa-cube"></i> 상품 정보</th>
-													</tr>
-													<tr >
-														<th><img src="../images/icn_04.gif" width="24" height="14" alt="필수" /> 분류</th>
-														<td>
-                                                            <?php echo restore_category($mode, $lcode, $mcode); ?>
-														</td>
 													</tr>
 													<tr >
 														<th><img src="../images/icn_04.gif" width="24" height="14" alt="필수" /> 상품명</th>
@@ -370,7 +370,7 @@ HEREDOC;
 														</td>
 													</tr>
 													<tr >
-														<th><img src="../images/icn_04.gif" width="24" height="14" alt="필수" /> 상품 간략설명</th>
+														<th><img src="../images/icn_05.gif" width="24" height="14" alt="선택" /> 상품 간략설명</th>
 														<td>
 															<div align="left">
 																<!-- <input type="text" class="form-control" name="short_desc" value="" size="100%" /> -->
@@ -390,7 +390,7 @@ HEREDOC;
                                                         <td><input name="shop_price" id="shop_price" class="form-control" type="text" value="" /> 원 (숫자만 입력) </td>
                                                     </tr>
 													<tr>
-														<th><img src="../images/icn_04.gif" width="24" height="14" alt="필수" /> 판매가</th>
+														<th><img src="../images/icn_04.gif" width="24" height="14" alt="필수" /> 공급가</th>
 														<td><input name="retail_price" id="retail_price" class="form-control" type="text" value="" /> 원 (숫자만 입력) </td>
 													</tr>
     												<tr>
@@ -454,7 +454,7 @@ HEREDOC;
 
 <?php
 
-    }
+}
 ?>
 
 		</section>

@@ -139,7 +139,7 @@ for ($i = 0; $i < sizeof($a_goods_fk); $i++) {
 									  		<a href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/shop/detail.php?pnum=<?php echo $pro_row['num']; ?>&amp;lcode=<?php echo $pro_row['category_l']; ?>&amp;mcode=<?php echo $pro_row['category_m']; ?>&amp;scode=<?php echo $pro_row['category_s']; ?>" target="_blank"><img src="<?php echo $img_char; ?>" width="50" height="50"></a>
 									  	</td>
 									  	<td><div class="brand">[<?php echo $pro_row['company']; ?>]</div>
-										  <?php echo show_icon($pro_row['num']); ?> &nbsp;<a href="" onclick="javascript:open_win('edit_pro.php?oid=<?php echo $oid; ?>&amp;p_num=<?php echo $pro_row['num']; ?>&amp;lcode=<?php echo $pro_row['category_l']; ?>&amp;mcode=<?php echo $pro_row['category_m']; ?>&amp;scode=<?php echo $pro_row['category_s']; ?>','nwin','scrollbars=yes,resizable=yes, width=800,height=650');"><?php echo stripslashes($goods_name); ?></a>
+										  <?php echo show_icon($pro_row['num']); ?> &nbsp;<a href="" onclick="javascript:open_win('edit_pro.php?oid=<?php echo $oid; ?>&amp;p_num=<?php echo $pro_row['num']; ?>&amp;lcode=<?php echo $pro_row['category_l']; ?>&amp;mcode=<?php echo $pro_row['category_m']; ?>','nwin','scrollbars=yes,resizable=yes, width=800,height=650');"><?php echo stripslashes($goods_name); ?></a>
 <?php
 
     if ($option[$i]) {
@@ -380,15 +380,14 @@ show_pay_data($row['orderid']);
 								  <tr>
 								    <th>주문금액</th>
 								    <td>
-								    	<?php echo number_format($row['amount']); ?> 원 (VAT 포함) <br />
+								    	<?php echo number_format($last_cost); ?> 원 (VAT 포함) <br />
 								    </td>
 								    <th>확정금액</th>
 								    <td  colspan="3">
 <?php
 
 if ($row['status'] == '7' || $row['status'] == '8') {
-    echo "<strong><font color=\"#AE3E0D\">" .
-    number_format($final) . "&nbsp;원 (VAT 포함)</font> = " . number_format($final) . "</strong>\n";
+    echo '<strong><font color="#AE3E0D">' . number_format($final) . ' 원 (VAT 포함)</font></strong>' . "\r\n";
 
 } else {
     echo "<strong>최종 입금금액을 산출 중입니다.</strong>";
