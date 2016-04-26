@@ -1315,7 +1315,7 @@ function check_new_post($code, $main_no, $day)
         $today = date("Y-m-d");
 
         $row       = mysqli_fetch_array($result);
-        $post_date = substr($row['date'], 0, 11);
+        $post_date = substr($row['create_date'], 0, 11);
         $diff      = intval((strtotime($today) - strtotime($post_date)) / 86400);
         // echo $diff;
 
