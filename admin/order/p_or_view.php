@@ -206,7 +206,7 @@ $trans_cost = trans_cal($tot_amount, $connect);
 // $last_cost = $tot_amount + $row['trans_cost'];
 $last_cost = $tot_amount;
 
-if ($row['trans_cost'] != "0") {
+if ($row['trans_cost'] != 0) {
     $amount_o            = $tot_amount + $row['trans_cost'];
     $amount_order_detail = " ( " . $tot_amount . " 원 + " . $row['trans_cost'] . " 원 ) ";
 } else {
@@ -222,14 +222,23 @@ $misc    = mysqli_fetch_array($result4);
 
 ?>
 							</form>
+                  <tr>
+                      <td colspan="2">택배비 :</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td><i class="fa fa-plus-circle"></i> <?php echo number_format($row['trans_cost']); ?> 원</td>
+
+                  </tr>
 									<tr>
-									  	<td colspan="2">▶ TOTAL</td>
-									  	<td><?php echo $t_count; ?> 개</td>
+								  	<td colspan="2">▶ TOTAL</td>
+								  	<td><?php echo $t_count; ?> 개</td>
 										<td><?php echo $mt_count; ?> 개</td>
 										<!-- <td></td> -->
 										<td></td>
 										<td></td>
-									 	<td><?php echo number_format($last_cost); ?> 원</td>
+									 	<td><?php echo number_format($amount_o); ?> 원</td>
 									</tr>
 
 <?php
@@ -382,11 +391,11 @@ show_pay_data($row['orderid']);
 								  </tr>
 								  <tr>
 								    <th>주문금액</th>
-								    <td>
-								    	<?php echo number_format($row['amount']); ?> 원 (VAT 포함) <br />
+								    <td colspan="3">
+								    	<?php echo number_format($amount_o); ?> 원 (VAT 포함) <br />
 								    </td>
-								    <th>확정금액</th>
-								    <td  colspan="3">
+<!--								    <th>확정금액</th>
+ 								    <td  colspan="3">
 <?php
 
 if ($row['status'] == '7' || $row['status'] == '8') {
@@ -396,7 +405,7 @@ if ($row['status'] == '7' || $row['status'] == '8') {
 } else {
     echo "<strong>최종 입금금액을 산출 중입니다.</strong>";
 }
-?></td>
+?></td> -->
 								  </tr>
 								  <tr>
 								    <th rowspan="2">배송상태</th>
@@ -413,7 +422,7 @@ if ($row['status'] == '7' || $row['status'] == '8') {
 									        <input type="hidden" name="page" value="<?php echo $page; ?>" />
 									        <input type="hidden" name="status" value="<?php echo $row['status']; ?>" />
 									        <input type="hidden" name="sms" value="<?php echo $mrows['sms']; ?>" />
-                                            <input type="hidden" name="reUrl" value="<?php echo urlencode($_SERVER['PHP_SELF'] . "?" . $_SERVER['QUERY_STRING']); ?>" />
+                          <input type="hidden" name="reUrl" value="<?php echo urlencode($_SERVER['PHP_SELF'] . "?" . $_SERVER['QUERY_STRING']); ?>" />
 									    	<button id="check" class="form-control" type="submit" onclick="return confirm('주문을 확인처리 하시겠습니까?')"><i class="fa fa-check-circle"></i> 주문확인</button>
 								    	</form>
 
@@ -429,7 +438,7 @@ if ($row['status'] == '7' || $row['status'] == '8') {
 								        <input type="hidden" name="buyer_hphone" value="<?php echo $row['buyer_hphone']; ?>" />
 								        <input type="hidden" name="buyer_name" value="<?php echo $row['buyer_name']; ?>" />
 								        <input type="hidden" name="delivery_type" value="<?php echo $row['delivery_type']; ?>" />
-                                        <input type="hidden" name="reUrl" value="<?php echo urlencode($_SERVER['PHP_SELF'] . "?" . $_SERVER['QUERY_STRING']); ?>" />
+                        <input type="hidden" name="reUrl" value="<?php echo urlencode($_SERVER['PHP_SELF'] . "?" . $_SERVER['QUERY_STRING']); ?>" />
 								        <button id="pack" class="form-control" type="submit" onclick="return confirm('포장 완료처리 하시겠습니까?')"><i class="fa fa-cube"></i> 포장완료</button>
 								      </form>
 
@@ -445,7 +454,7 @@ if ($row['status'] == '7' || $row['status'] == '8') {
 								        <input type="hidden" name="buyer_hphone" value="<?php echo $row['buyer_hphone']; ?>" />
 								        <input type="hidden" name="buyer_name" value="<?php echo $row['buyer_name']; ?>" />
 								        <input type="hidden" name="delivery_type" value="<?php echo $row['delivery_type']; ?>" />
-                                        <input type="hidden" name="reUrl" value="<?php echo urlencode($_SERVER['PHP_SELF'] . "?" . $_SERVER['QUERY_STRING']); ?>" />
+                        <input type="hidden" name="reUrl" value="<?php echo urlencode($_SERVER['PHP_SELF'] . "?" . $_SERVER['QUERY_STRING']); ?>" />
 								      	<button id="delay" class="btn btn-warning"  onclick="return confirm('발송이 지연됩니까?')"><i class="fa fa-exclamation-triangle"></i> 발송지연</button>
 									</form>
 									<p>
@@ -458,7 +467,7 @@ if ($row['status'] == '7' || $row['status'] == '8') {
 								        <input type="hidden" name="page" id="page3" value="<?php echo $page; ?>" />
 								        <input type="hidden" name="status" value="<?php echo $row['status']; ?>" />
 								        <input type="hidden" name="last_amount" id="last_amount3" value="<?php echo $final; ?>" />
-                                        <input type="hidden" name="reUrl" value="<?php echo urlencode($_SERVER['PHP_SELF'] . "?" . $_SERVER['QUERY_STRING']); ?>" />
+                        <input type="hidden" name="reUrl" value="<?php echo urlencode($_SERVER['PHP_SELF'] . "?" . $_SERVER['QUERY_STRING']); ?>" />
 								        <input type="hidden" name="senddate" value="<?php echo $row['status'] == '8' ? $row['senddate'] : $today; ?>" />
 								         운송장 번호
 								        <input type="text" class="form-control" name="track_no" id="track_no" value="<?php echo $row['track_no']; ?>" size="50" />

@@ -1712,7 +1712,7 @@ HEREDOC;
 
                 echo $show_admin_memo;
 
-                $show_order_amount = number_format($row['amount']);
+                $show_order_amount = number_format($row['amount'] + $row['trans_cost']);
                 $payStatus         = get_pg_info2($row['orderid']);
                 $print_receipt     = '';
 
@@ -1896,9 +1896,9 @@ HEREDOC;
         $modified_total_item_num = $modified_total_item_num + (int) $modified_item_num[$i];
     } // ./ for ($i = 0; $i < sizeof($a_goods_fk); $i++)
 
-    $last_cost  = $final_order_sum;
-    $reAddedFee = show_delivery_fee($last_cost);
-    $show_total = number_format($tot_money + $reAddedFee['trans_cost']);
+    // $last_cost  = $final_order_sum;
+    $reAddedFee = show_delivery_fee($final_order_sum);
+    $show_total = number_format($final_order_sum + $reAddedFee['trans_cost']);
     $trans_cost = number_format($reAddedFee['trans_cost']);
 
     echo <<<HEREDOC
@@ -2030,7 +2030,7 @@ HEREDOC;
 HEREDOC;
     }
 
-    $orderSum        = number_format($row['amount']);
+    $orderSum        = number_format($row['amount'] + $row['trans_cost']);
     $orderStatus     = show_order_status($oid, $row['status']);
     $memoForDelivery = nl2br($row['memo_to_delivery']);
     $memoForAdmin    = nl2br($row['memo_to_admin']);
