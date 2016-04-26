@@ -656,10 +656,9 @@ HEREDOC;
             }
 
             $subTotal      = (int) $rows['volume'] * (int) $rows['amount']; // 소계
+            $commaSubTotal = number_format($subTotal);                      //소계 천단위표시
             $tot_money     = $tot_money + $subTotal;
-            $commaSubTotal = number_format($subTotal); //소계 천단위표시
-                                                       // $total       = $tot_money;
-            $commaTotal = number_format($tot_money);
+            $commaTotal    = number_format($tot_money);
 
             $pnum          = $rows['num'];
             $category_l    = $rows['category_l'];
@@ -840,7 +839,6 @@ HEREDOC;
             $subTotal    = (int) $rows['volume'] * (int) $rows['amount']; // 소계
             $tot_money   = $tot_money + $subTotal;
             $show_stotal = number_format($subTotal);
-            $show_total  = number_format($tot_money);
 
             $pnum          = $rows['num'];
             $category_l    = $rows['category_l'];
@@ -923,18 +921,22 @@ HEREDOC;
 
         } // ./ for ($i = 1; $rows = mysqli_fetch_array($result); $i++)
 
-        $show_delivery_fee = show_delivery_fee($tot_money);
+        $reAddedFee = show_delivery_fee($tot_money);
+        $trans_cost = number_format($reAddedFee['trans_cost']);
+        $show_total = number_format($tot_money + $reAddedFee['trans_cost']);
+        $finalSum   = $tot_money + $reAddedFee['trans_cost'];
+
         echo <<<HEREDOC
                                                         </tbody>
                                                         <tfoot>
                                                             <tr class="tr-f">
                                                                 <td colspan="3">배송비</td>
-                                                                <td colspan="1">{$show_delivery_fee}</td>
+                                                                <td colspan="1">{$trans_cost}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td colspan="3">총합</td>
                                                                 <td colspan="1">{$show_total}</td>
-                                                                <input type="hidden" name="LGD_AMOUNT"   value="{$tot_money}">
+                                                                <input type="hidden" name="LGD_AMOUNT"   value="{$finalSum}">
                                                             </tr>
                                                         </tfoot>
                                                     </table>
@@ -1894,9 +1896,10 @@ HEREDOC;
         $modified_total_item_num = $modified_total_item_num + (int) $modified_item_num[$i];
     } // ./ for ($i = 0; $i < sizeof($a_goods_fk); $i++)
 
-    $last_cost         = $final_order_sum;
-    $show_delivery_fee = show_delivery_fee($last_cost);
-    $show_last_cost    = number_format($last_cost);
+    $last_cost  = $final_order_sum;
+    $reAddedFee = show_delivery_fee($last_cost);
+    $show_total = number_format($tot_money + $reAddedFee['trans_cost']);
+    $trans_cost = number_format($reAddedFee['trans_cost']);
 
     echo <<<HEREDOC
                                 <tr>
@@ -1909,14 +1912,14 @@ HEREDOC;
                                     <td colspan="3">택배비 :</td>
                                     <td></td>
                                     <td></td>
-                                    <td colspan="2"><i class="fa fa-plus-circle"></i> {$show_delivery_fee}</td>
+                                    <td colspan="2"><i class="fa fa-plus-circle"></i> {$trans_cost}</td>
 
                                 </tr>
                                 <tr>
                                     <td colspan="3"><h4>총 합 : </h4></td>
                                     <td></td>
                                     <td></td>
-                                    <td colspan="2"><h4>{$show_last_cost}</h4>(VAT 포함)</td>
+                                    <td colspan="2"><h4>{$show_total}</h4>(VAT 포함)</td>
                                 </tr>
 HEREDOC;
 }

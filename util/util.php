@@ -399,17 +399,27 @@ function send_sms($to, $msg_type, $name, $sdate, $connect)
 function show_delivery_fee($total)
 {
     global $connect;
+    $sessionFlag = set_var($_SESSION['p_flag']);
 
     $query  = "SELECT * FROM misc_setup ";
     $result = mysqli_query($connect, $query);
     $row    = mysqli_fetch_array($result);
 
-    if ($row['min_sum'] > $total) {
-        return $reMsg = "" . number_format($row['min_sum']) . "원 미만 착불";
-    } elseif (0 == $total) {
-        return $reMsg = "-";
+    if ($total < $row['min_sum']) {
+        if ($sessionFlag == 'c') {
+            $reMsg = "" . number_format($row['min_sum']) . "원 미만 착불";
+            return array('msg' => $reMsg, 'trans_cost' => 0);
+        } elseif ($sessionFlag == 'p') {
+            $reMsg = '<i class="fa fa-krw"></i> ' . number_format($row['d_charge']) . ' <i class="fa fa-plus-circle"></i>' . "\r\n";
+            return array('msg' => $reMsg, 'trans_cost' => $row['d_charge']);
+        }
+
+    } elseif ($total == 0) {
+        $reMsg = "-";
+        return array('msg' => $reMsg, 'trans_cost' => 0);
     } elseif ($total >= $row['min_sum']) {
-        return $reMsg = "무료배송";
+        $reMsg = "무료배송";
+        return array('msg' => $reMsg, 'trans_cost' => 0);
     }
 }
 
