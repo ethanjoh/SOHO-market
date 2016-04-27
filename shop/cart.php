@@ -35,8 +35,9 @@
                     <div class="col-md-4 col-sm-12">
                         <div class="totals">
                             <div class="subtotal">
-                                <p><i class="fa fa-truck"></i> 택배비: <span><?php echo show_delivery_fee($reVal['tot_money']); ?></span></p>
-                                <p class="grand-total">총  합: <span><i class="fa fa-krw"></i><?php echo number_format($reVal['tot_money']); ?></span> (VAT 포함)</p>
+<?php $reAddedFee = show_delivery_fee($reVal['tot_money']);?>
+                                <p><i class="fa fa-truck"></i> 택배비: <span><?php echo $reAddedFee['msg']; ?></span></p>
+                                <p class="grand-total">총  합: <span><i class="fa fa-krw"></i> <?php echo number_format($reVal['tot_money'] + $reAddedFee['trans_cost']); ?></span> (VAT 포함)</p>
                             </div>
 <?php
 
