@@ -208,7 +208,7 @@ if ($total == 0) {
         //날짜 형식을 바꾼다.
         $post_date = substr($row['create_date'], 0, 11);
         ?>
-                              <td><a href="read.php?code=<?php echo $code; ?>&amp;main_no=<?php echo $row['main_no']; ?>&amp;page=<?php echo $page; ?>"><?php echo stripslashes($row['title']); ?></a><?php echo $hasAttachment; ?><?php echo $hasReply; ?></td>
+                              <td><?php echo check_new_post($code, $row['main_no'], 7); ?> <a href="read.php?code=<?php echo $code; ?>&amp;main_no=<?php echo $row['main_no']; ?>&amp;page=<?php echo $page; ?>"><?php echo stripslashes($row['title']); ?></a><?php echo $hasAttachment; ?><?php echo $hasReply; ?></td>
                               <td><?php echo $row['name']; ?></td>
                               <td><?php echo $post_date; ?></td>
                               <td><?php echo $row['count']; ?></td>
