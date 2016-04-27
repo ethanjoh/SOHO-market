@@ -166,19 +166,19 @@ for ($i = 0; $i < sizeof($a_goods_fk); $i++) {
 <?php
 
     if ($pro_row['sale_price']) {
-        echo "<td><s>" . number_format($pro_row['shop_price']) . "</s> 원<br/>" . number_format($pro_row['sale_price']) . " 원\n";
+        echo "<td><s>" . number_format($pro_row['shop_price']) . "</s> <br/>" . number_format($pro_row['sale_price']) . " \n";
     } else {
-        echo "<td>" . number_format($pro_row['shop_price']) . " 원\n";
+        echo "<td>" . number_format($pro_row['shop_price']) . " \n";
     }
 
     if ($pro_row['fixed_price']) {
-        echo "<td><img src=\"../images/lock.png\" alt=\"고정공급가\">" . number_format($org_price[$i]) . " 원<br>(" . number_format((1 - ($org_price[$i] / $pro_row['shop_price'])) * 100) . "% ↓)</td>\n";
+        echo "<td><img src=\"../images/lock.png\" alt=\"고정공급가\">" . number_format($org_price[$i]) . " <br>(" . number_format((1 - ($org_price[$i] / $pro_row['shop_price'])) * 100) . "% ↓)</td>\n";
     } else {
-        echo "<td>" . number_format($org_price[$i]) . " 원<br>(" . number_format((1 - ($org_price[$i] / $pro_row['shop_price'])) * 100) . "% ↓)</td>\n";
+        echo "<td>" . number_format($org_price[$i]) . " <br>(" . number_format((1 - ($org_price[$i] / $pro_row['shop_price'])) * 100) . "% ↓)</td>\n";
     }
     ?> -->
 										<td>
-											<?php echo number_format($org_price[$i]); ?> 원<br>(<?php echo number_format((1 - ($org_price[$i] / $pro_row['shop_price'])) * 100); ?> % ↓)
+											<?php echo number_format($org_price[$i]); ?> <br>(<?php echo number_format((1 - ($org_price[$i] / $pro_row['shop_price'])) * 100); ?> % ↓)
 										</td>
 										<td>
 											<input type="text" class="form-control" name="mod_price[]" size="5" value="<?php echo $mod_price[$i]; ?>"/>&nbsp;<input class="form-control" type="submit" value="변경" />
@@ -190,7 +190,7 @@ for ($i = 0; $i < sizeof($a_goods_fk); $i++) {
     //$sub_amount = number_format($sub_amount);
     ?>
 
-										<td><?php echo number_format($sub_amount); ?> 원</td>
+										<td><?php echo number_format($sub_amount); ?> </td>
 									</tr>
 
 <?php
@@ -208,7 +208,7 @@ $last_cost = $tot_amount;
 
 if ($row['trans_cost'] != 0) {
     $amount_o            = $tot_amount + $row['trans_cost'];
-    $amount_order_detail = " ( " . $tot_amount . " 원 + " . $row['trans_cost'] . " 원 ) ";
+    $amount_order_detail = " ( " . $tot_amount . " + " . $row['trans_cost'] . " ) ";
 } else {
     $amount_o = $tot_amount;
 }
@@ -228,7 +228,7 @@ $misc    = mysqli_fetch_array($result4);
                       <td></td>
                       <td></td>
                       <td></td>
-                      <td><i class="fa fa-plus-circle"></i> <?php echo number_format($row['trans_cost']); ?> 원</td>
+                      <td><i class="fa fa-krw"></i> <?php echo number_format($row['trans_cost']); ?> <i class="fa fa-plus-circle"></i></td>
 
                   </tr>
 									<tr>
@@ -238,7 +238,7 @@ $misc    = mysqli_fetch_array($result4);
 										<!-- <td></td> -->
 										<td></td>
 										<td></td>
-									 	<td><?php echo number_format($amount_o); ?> 원</td>
+									 	<td><i class="fa fa-krw"></i> <?php echo number_format($amount_o); ?></td>
 									</tr>
 
 <?php

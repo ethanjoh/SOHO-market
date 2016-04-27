@@ -435,7 +435,7 @@ if ($res_4) {
 <?php
 
             $o_total += $row['amount'];
-            $total += $row['last_amount'];
+            $total += ($row['amount'] + $row['trans_cost']);
         } // else end
     }
     ; // for loop end

@@ -1762,7 +1762,7 @@ HEREDOC;
                     </tr>
 HEREDOC;
 
-                $todayOrderSum += ($row['amount']);
+                $todayOrderSum += ($row['amount'] + $row['trans_cost']);
             } // ./ if-else end
         } // ./for ($i = 0; $row = mysqli_fetch_array($result); $i++)
 
@@ -1912,14 +1912,14 @@ HEREDOC;
                                     <td colspan="3">택배비 :</td>
                                     <td></td>
                                     <td></td>
-                                    <td colspan="2"><i class="fa fa-plus-circle"></i> {$trans_cost}</td>
+                                    <td colspan="2"><i class="fa fa-krw"></i> {$trans_cost} <i class="fa fa-plus-circle"></i></td>
 
                                 </tr>
                                 <tr>
                                     <td colspan="3"><h4>총 합 : </h4></td>
                                     <td></td>
                                     <td></td>
-                                    <td colspan="2"><h4>{$show_total}</h4>(VAT 포함)</td>
+                                    <td colspan="2"><h4><i class="fa fa-krw"></i> {$show_total}</h4>(VAT 포함)</td>
                                 </tr>
 HEREDOC;
 }

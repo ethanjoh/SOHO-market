@@ -405,7 +405,7 @@ function show_delivery_fee($total)
     $result = mysqli_query($connect, $query);
     $row    = mysqli_fetch_array($result);
 
-    if ($total < $row['min_sum']) {
+    if ($total < $row['min_sum'] && $total > 0) {
         if ($sessionFlag == 'c') {
             $reMsg = "" . number_format($row['min_sum']) . "원 미만 착불";
             return array('msg' => $reMsg, 'trans_cost' => 0);
