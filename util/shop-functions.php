@@ -582,7 +582,6 @@ function show_policy($policy)
     $query  = "SELECT * FROM misc_setup";
     $result = mysqli_query($connect, $query);
     $rows   = mysqli_fetch_array($result);
-    mysqli_free_result($result);
 
     if ($policy == 'd') {
         $deliveryPolicy = nl2br($rows['d_policy']);

@@ -2693,6 +2693,10 @@ home-4 .outlink ul li a {
     font-weight: normal;
 }
 
+.about-optima-text {
+    margin-bottom: 50px;
+}
+
 /*-----end breadcrumbs....*/
 .category-image {
     margin: 0 0 20px;

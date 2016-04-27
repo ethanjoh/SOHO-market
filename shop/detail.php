@@ -81,7 +81,7 @@ $contents = get_item_contents($pnum);
                                     <a href="#desc" aria-controls="desc" role="tab" data-toggle="tab">상세 설명</a>
                                 </li>
                                 <li role="presentation">
-                                    <a href="#delivery" aria-controls="delivery" role="tab" data-toggle="tab">배송 안내</a>
+                                    <a href="#delivery" aria-controls="delivery" role="tab" data-toggle="tab">배송/환불 안내</a>
                                 </li>
                             </ul>
                             <!-- Tab panes -->

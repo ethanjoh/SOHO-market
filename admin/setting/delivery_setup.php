@@ -23,6 +23,7 @@
               </header>
               <ul class="info-body">
                 <li><i class="fa fa-info-circle"></i> 각 정책 등은 예제를 참고해서 작성하시기 바랍니다.</li>
+                <li><i class="fa fa-info-circle"></i> 무료배송 금액, 배송비 등을 입력할 때는 , 없이 입럭하세요.</li>
               </ul>
             </section>
           </div>
@@ -58,13 +59,15 @@ if ($total > 0) {
                       <tbody>
                         <tr>
                           <th>배송업체</th>
-                          <td><input type="text" class="form-control" name="logistics" id="logistics" size="5"  value="<?php echo $rows['logistics']; ?>"/></td>
+                          <td width="15%"><input type="text" class="form-control" name="logistics" id="logistics" value="<?php echo $rows['logistics']; ?>"/></td>
+                          <th>무료배송 금액</th>
+                          <td><input type="text" class="form-control" name="min_sum" id="min_sum" value="<?php echo $rows['min_sum']; ?>"/> 원 이상 무료배송</td>
                           <th>배송료</th>
-                          <td><input type="text" class="form-control" name="delivery_charge" id="delivery_charge" size="5"  value="<?php echo $rows['d_charge']; ?>"/></td>
+                          <td width="15%"><input type="text" class="form-control" name="delivery_charge" id="delivery_charge" size="5"  value="<?php echo $rows['d_charge']; ?>"/></td>
                         </tr>
                         <tr>
                           <th>배송정책 설정</th>
-                          <td colspan="3">
+                          <td colspan="5">
                             <textarea class="form-control" name="delivery_policy" rows="8" cols="100"><?php echo $rows['d_policy']; ?></textarea>
                             <p class="help-block">
                               - 총 구매액 10만원이상 구매시 배송비는 무료이며, 그 이하 구매시 배송비 2,500원이 별도 부과됩니다. <br />
@@ -75,7 +78,7 @@ if ($total > 0) {
                         </tr>
                         <tr>
                           <th>환불/반품정책 설정</th>
-                          <td colspan="3">
+                          <td colspan="5">
                             <textarea class="form-control" name="refund_policy" rows="8" cols="100"><?php echo $rows['r_policy']; ?></textarea>
                             <p class="help-block">
                               - 배송 시 파손 등은 수령일로부터 7일 이내에 접수와 상품이 확인이 되어야, 교환/반품/환불이 가능합니다. <br />
