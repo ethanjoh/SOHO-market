@@ -953,7 +953,7 @@ HEREDOC;
                                                         <tfoot>
                                                             <tr class="tr-f">
                                                                 <td colspan="3">배송비</td>
-                                                                <td colspan="1">{$trans_cost}</td>
+                                                                <td colspan="1"><i class="fa fa-plus-circle"></i> {$trans_cost}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td colspan="3">총합</td>
