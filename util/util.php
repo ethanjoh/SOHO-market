@@ -424,7 +424,7 @@ function show_delivery_fee($total)
 }
 
 /**
- * [calc_delivery_fee 택배비 계산]
+ * [주문 후 DB에 저장할 때 택배비 계산]
  * @param  [type] $orderSum       [주문액]
  * @return [type] [description]
  */
@@ -432,18 +432,18 @@ function calc_delivery_fee($orderSum)
 {
 
     global $connect;
+    // $sessionFlag = set_var($_SESSION['p_flag']);
 
     $query  = "SELECT * FROM misc_setup ";
     $result = mysqli_query($connect, $query);
     $row    = mysqli_fetch_array($result);
 
-    if ($row['min_sum'] > $orderSum) {
+    if ($orderSum < $row['min_sum']) {
         $reDeliveryFee = $row['d_charge'];
     } else {
         $reDeliveryFee = 0;
     }
 
-    return $reDeliveryFee;
 }
 
 function define_delivery_fee($transCost)

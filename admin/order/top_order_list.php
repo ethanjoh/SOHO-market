@@ -31,7 +31,8 @@ $reUrl = urlencode($_SERVER['PHP_SELF'] . "?" . $_SERVER['QUERY_STRING']);
 							  사용방법
 							</header>
 							<ul class="info-body">
-							  <li><i class="fa fa-info-circle"></i> 업체별 기간검색하기 : 1. 하단 검색조건에서 "업체명"으로 업체 검색 -> 2. 검색결과에서 해당 업체명 클릭 -> 3. 날짜검색에서 기간 설정 후 검색</li>
+							  <li><i class="fa fa-info-circle"></i> 신규주문 확인을 위해 5분마다 화면이 리프레시됩니다.</li>
+                <li><i class="fa fa-info-circle"></i> 업체별 기간검색하기 : 1. 하단 검색조건에서 "업체명"으로 업체 검색 -> 2. 검색결과에서 해당 업체명 클릭 -> 3. 날짜검색에서 기간 설정 후 검색</li>
 							</ul>
 		                </section>
 
@@ -233,8 +234,8 @@ if ($mode == "search") {
 						            <!-- <th>거래형태</th> -->
 						            <th>할인율</th>
 						            <th>주문액</th>
-						            <!-- <th>택배비</th> -->
-                                    <th>결제상태</th>
+						            <th>택배비</th>
+                        <th>결제상태</th>
 						            <th>처리상태</br>(발송일)</th>
 						            <th>취소/삭제</th>
 						          </tr>
@@ -334,8 +335,9 @@ if ($res_4) {
 								</td>
 					            <td><?php echo $trow['dc_rate']; ?> %</td>
 					            <td>-</td>
+                      <td>-</td>
 					            <td><?php echo $pay_status; ?></td>
-                                <td>-</td>
+                      <td>-</td>
 					            <td><a type="button" class="btn btn-xs btn-danger" href="or_delete.php?mode=d&amp;oid=<?php echo $row['num']; ?>&amp;page=<?php echo $page; ?>&amp;reurl=<?php echo $reUrl; ?>" onclick="return confirm('취소된 주문입니다.\n삭제하시겠습니까?')"><i class="fa fa-trash-o"></i></a></td>
 <?php
 
@@ -392,22 +394,24 @@ if ($res_4) {
 					            <td><?php echo $trow['dc_rate']; ?> %</td>
 					            <td>
 <?php
-if ($row['last_amount'] == 0 && $row['status'] == "8") {
-                echo " 0";
-            } else if ($row['status'] == "0" || $row['status'] == "1" || $row['status'] == "3" || $row['status'] == "5") {
-                echo "미확정";
-            } else if ($row['amount'] != $row['last_amount']) {
-                echo "<font color=\"#CC0066\">" . number_format($row['last_amount']) . "</font>";
-            } else {
-                echo number_format($row['last_amount']);
-            }
+
+            // if ($row['last_amount'] == 0 && $row['status'] == "8") {
+            //     echo " 0";
+            // } else if ($row['status'] == "0" || $row['status'] == "1" || $row['status'] == "3" || $row['status'] == "5") {
+            //     echo "미확정";
+            // } else if ($row['amount'] != $row['last_amount']) {
+            //     echo "<font color=\"#CC0066\">" . number_format($row['last_amount']) . "</font>";
+            // } else {
+            //     echo number_format($row['last_amount']);
+            // }
+            echo number_format($row['amount']);
 
             ?>
 								</td>
-								<!--
-					            <td>
+		            <td>
 <?php
-if ($row['delivery_type'] == 'L' || $row['delivery_type'] == 'L1') {
+
+            if ($row['delivery_type'] == 'L' || $row['delivery_type'] == 'L1') {
                 if ($row['trans_cost'] == '0') {
                     echo "선불";
                 } else if ($row['trans_cost'] > 0) {
@@ -424,15 +428,15 @@ if ($row['delivery_type'] == 'L' || $row['delivery_type'] == 'L1') {
 
             ?>
 								</td>
-								-->
-                                <td><?php echo $pay_status; ?></td>
+
+                      <td><?php echo $pay_status; ?></td>
 					            <td><?php echo $status_now; ?></td>
 					            <td><a type="button" class="btn btn-xs btn-default" href="or_delete.php?oid=<?php echo $row['num']; ?>&amp;page=<?php echo $page; ?>&amp;reurl=<?php echo $reUrl; ?>" onclick="return confirm('정말 주문을 취소하시겠습니까?')"><i class="fa fa-times"></i></a></td>
 					          </tr>
 <?php
 
             $o_total += $row['amount'];
-            $total += $row['last_amount'];
+            $total += ($row['amount'] + $row['trans_cost']);
         } // else end
     }
     ; // for loop end
@@ -446,6 +450,7 @@ if ($row['delivery_type'] == 'L' || $row['delivery_type'] == 'L1') {
 					            <td></td>
 					            <td></td>
 					            <td></td>
+                      <td></td>
 					          </tr>
 <?php
 } else {

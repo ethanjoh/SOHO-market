@@ -31,6 +31,7 @@ $reUrl = urlencode($_SERVER['PHP_SELF'] . "?" . $_SERVER['QUERY_STRING']);
 							  사용방법
 							</header>
 							<ul class="info-body">
+                <li><i class="fa fa-info-circle"></i> 신규주문 확인을 위해 5분마다 화면이 리프레시됩니다.</li>
 							  <li><i class="fa fa-info-circle"></i> 회원별 기간검색하기 : 1. 하단 검색조건에서 "회원명"으로 검색 -> 2. 검색결과에서 해당 회원명 클릭 -> 3. 날짜검색에서 기간 설정 후 검색</li>
 							</ul>
 		                </section>
@@ -233,8 +234,8 @@ if ($mode == "search") {
 						            <!-- <th>거래형태</th> -->
 						            <th>할인율</th>
 						            <th>주문액</th>
-						            <!-- <th>택배비</th> -->
-                                    <th>결제상태</th>
+						            <th>택배비</th>
+                        <th>결제상태</th>
 						            <th>처리상태</br>(발송일)</th>
 						            <th>취소/삭제</th>
 						          </tr>
@@ -334,6 +335,7 @@ if ($res_4) {
 								</td>
 					            <td><?php echo $trow['dc_rate']; ?> %</td>
 					            <td>-</td>
+                      <td>-</td>
 					            <td><?php echo $pay_status; ?></td>
                                 <td>-</td>
 					            <td><a type="button" class="btn btn-xs btn-danger" href="or_delete.php?mode=d&amp;oid=<?php echo $row['num']; ?>&amp;page=<?php echo $page; ?>&amp;reurl=<?php echo $reUrl; ?>" onclick="return confirm('취소된 주문입니다.\n삭제하시겠습니까?')"><i class="fa fa-trash-o"></i></a></td>
@@ -406,15 +408,14 @@ if ($res_4) {
 
             ?>
 								</td>
-								<!--
-					            <td>
+		            <td>
 <?php
 
             if ($row['delivery_type'] == 'L' || $row['delivery_type'] == 'L1') {
                 if ($row['trans_cost'] == '0') {
-                    echo "선불";
+                    echo "무료배송";
                 } else if ($row['trans_cost'] > 0) {
-                    echo "<font color=\"#FF0000\">착불</font>";
+                    echo "선불";
                 } else if ($row['trans_cost'] == "-1") {
                     echo "(합포장)";
                 }
@@ -427,8 +428,8 @@ if ($res_4) {
 
             ?>
 								</td>
-								-->
-                                <td><?php echo $pay_status; ?></td>
+
+                      <td><?php echo $pay_status; ?></td>
 					            <td><?php echo $status_now; ?></td>
 					            <td><a type="button" class="btn btn-xs btn-default" href="or_delete.php?oid=<?php echo $row['num']; ?>&amp;page=<?php echo $page; ?>&amp;reurl=<?php echo $reUrl; ?>" onclick="return confirm('정말 주문을 취소하시겠습니까?')"><i class="fa fa-times"></i></a></td>
 					          </tr>
@@ -449,6 +450,7 @@ if ($res_4) {
 					            <td></td>
 					            <td></td>
 					            <td></td>
+                      <td></td>
 					          </tr>
 <?php
 
