@@ -382,7 +382,7 @@ show_pay_data($row['orderid']);
 								    <td>
 								    	<?php echo number_format($last_cost); ?> 원 (VAT 포함) <br />
 								    </td>
-								    <th>확정금액</th>
+<!-- 								    <th>확정금액</th>
 								    <td  colspan="3">
 <?php
 
@@ -392,7 +392,8 @@ if ($row['status'] == '7' || $row['status'] == '8') {
 } else {
     echo "<strong>최종 입금금액을 산출 중입니다.</strong>";
 }
-?></td>
+?>
+                    </td> -->
 								  </tr>
 								  <tr>
 								    <th rowspan="2">배송상태</th>

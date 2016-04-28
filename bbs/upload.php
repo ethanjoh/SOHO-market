@@ -6,9 +6,10 @@ if ($_FILES["upload"]["size"] > 0) {
     $date_filedir = date("YmdHis");
 
     //오리지널 파일 이름.확장자
-    $ext          = substr(strrchr($_FILES["upload"]["name"], "."), 1);
-    $ext          = strtolower($ext);
-    $savefilename = $date_filedir . "_" . str_replace(" ", "_", $_FILES["upload"]["name"]);
+    $ext = substr(strrchr($_FILES["upload"]["name"], "."), 1);
+    $ext = strtolower($ext);
+    // $savefilename = $date_filedir . "_" . str_replace(" ", "_", $_FILES["upload"]["name"]);
+    $savefilename = $date_filedir . "_" . md5(microtime()) . "." . $ext;
 
     $uploadpath = $_SERVER['DOCUMENT_ROOT'] . "/bbs/upload/images";
     $uploadsrc  = $_SERVER['HTTP_HOST'] . "/bbs/upload/images/";
@@ -21,7 +22,7 @@ if ($_FILES["upload"]["size"] > 0) {
             echo "<script type='text/javascript'>alert('업로드성공: " . $savefilename . "');</script>;";
         }
     } else {
-        echo "<script type='text/javascript'>alert('jpg,gif,png파일만 업로드가능합니다.');</script>;";
+        echo "<script type='text/javascript'>alert('jpg, gif, png 파일만 업로드가능합니다.');</script>;";
     }
 
 } else {
