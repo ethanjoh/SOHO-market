@@ -792,8 +792,8 @@ function show_checkout_item()
 {
     global $connect;
 
-    $sessionId = set_var($_SESSION['p_id']);
-    // $show_total = '';
+    $sessionId   = set_var($_SESSION['p_id']);
+    $sessionFlag = set_var($_SESSION['p_flag']);
 
     echo <<<HEREDOC
                                                     <table class="table">
@@ -835,9 +835,17 @@ HEREDOC;
         $tot_mny1  = 0;
 
         for ($i = 1; $rows = mysqli_fetch_array($result); $i++) {
-            $subTotal    = (int) $rows['volume'] * (int) $rows['amount']; // 소계
-            $tot_money   = $tot_money + $subTotal;
-            $show_stotal = number_format($subTotal);
+            if ($sessionFlag == "c") {
+                $calcPrice = $rows['retail_price'];
+            } elseif ($sessionFlag == "p") {
+                $calcPrice = $rows['shop_price'];
+            }
+
+            $subTotal      = (int) $rows['volume'] * (int) $rows['amount']; // 소계
+            $commaSubTotal = number_format($subTotal);                      //소계 천단위표시
+            $tot_money     = $tot_money + $subTotal;
+            // $show_stotal   = number_format($subTotal);
+            $commaTotal = number_format($tot_money);
 
             $pnum          = $rows['num'];
             $category_l    = $rows['category_l'];
@@ -846,11 +854,11 @@ HEREDOC;
             $s_image1_name = $rows['s_image1_name'];
             $itemName      = stripslashes($rows['name']);
 
-            $calcWholesalePrice  = calc_offer_price($rows['retail_price'], $sessionId); // 업체별 공급가 확인
-            $commaWholesalePrice = number_format($calcWholesalePrice);                  // 천단위 구분
-            $price               = show_me_wholesale_price($sessionId, $pnum);
-            $qty                 = $rows['volume'];
-            $cart_id             = $rows['cart_id'];
+            // $calcWholesalePrice  = calc_offer_price($rows['retail_price'], $sessionId); // 업체별 공급가 확인
+            // $commaWholesalePrice = number_format($calcWholesalePrice);                  // 천단위 구분
+            // $price               = show_me_wholesale_price($sessionId, $pnum);
+            $qty     = $rows['volume'];
+            $cart_id = $rows['cart_id'];
 
             $pflag = '';
             $oflag = '';
@@ -891,6 +899,21 @@ HEREDOC;
 
             $p_opt = $rows['p_opt'];
 
+            $calcWholesalePrice = show_me_wholesale_price($pnum);
+
+            if ($sessionId && $sessionFlag == "c") {
+                $commaWholesalePrice = number_format($calcWholesalePrice);
+                $price               = $commaWholesalePrice;
+                $passingPrice        = $calcWholesalePrice;
+            } elseif ($sessionId && $sessionFlag == "p") {
+                $commaCustomerPrice = number_format($calcWholesalePrice);
+                $price              = $commaCustomerPrice;
+                $passingPrice       = $calcWholesalePrice;
+            } else {
+                $commaCustomerPrice = number_format($rows['shop_price']);
+                $price              = $commaCustomerPrice;
+            }
+
             echo <<<HEREDOC
 
                                                             <tr>
@@ -902,7 +925,7 @@ HEREDOC;
                                                                 </td>
                                                                 <td>
                                                                     <div class="o-pro-price">
-                                                                        <p>{$commaWholesalePrice}</p>
+                                                                        <p>{$price}</p>
                                                                     </div>
                                                                 </td>
                                                                 <td>
@@ -912,7 +935,7 @@ HEREDOC;
                                                                 </td>
                                                                 <td>
                                                                     <div class="o-pro-subtotal">
-                                                                        <p>{$show_stotal}</p>
+                                                                        <p>{$commaSubTotal}</p>
                                                                     </div>
                                                                 </td>
                                                             </tr>
@@ -922,7 +945,7 @@ HEREDOC;
 
         $reAddedFee = show_delivery_fee($tot_money);
         $trans_cost = number_format($reAddedFee['trans_cost']);
-        $show_total = number_format($tot_money + $reAddedFee['trans_cost']);
+        $commaTotal = number_format($tot_money + $reAddedFee['trans_cost']);
         $finalSum   = $tot_money + $reAddedFee['trans_cost'];
 
         echo <<<HEREDOC
@@ -934,7 +957,7 @@ HEREDOC;
                                                             </tr>
                                                             <tr>
                                                                 <td colspan="3">총합</td>
-                                                                <td colspan="1">{$show_total}</td>
+                                                                <td colspan="1">{$commaTotal}</td>
                                                                 <input type="hidden" name="LGD_AMOUNT"   value="{$finalSum}">
                                                             </tr>
                                                         </tfoot>

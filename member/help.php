@@ -65,7 +65,7 @@
                                 <p> 비회원은 주문을 하실 수 없습니다.<br>
                                 </p>
                                 <p><i class="fa fa-check-square-o" aria-hidden="true"></i> 로그인 후 상품 검색 후 카트에 담기 <br>
-                                <i class="fa fa-check-square-o" aria-hidden="true"></i> 주문서 작성 후 결제(신용카드, 실시간 계좌이체, 가상계좌입금)<br>
+                                <i class="fa fa-check-square-o" aria-hidden="true"></i> 주문서 작성 후 결제(신용카드, 실시간 계좌이체, 무통장입금)<br>
                                 <i class="fa fa-check-square-o" aria-hidden="true"></i> 주문 성공 후 주문조회에서 주문내역 확인 가능<br>
                                 </p>
                             </div>
@@ -105,7 +105,7 @@
                                 <p><i class="fa fa-check-square-o" aria-hidden="true"></i> 상품 불량 및 파손 등은 동일 상품으로 맞교환 또는 환불 처리(품절 등의 사유)해 드립니다. <br>
                                 <i class="fa fa-check-square-o" aria-hidden="true"></i> 고객의 부주의로 인한 파손 등에 대해서는 교환이나 환불처리 되지 않습니다.<br>
                                 <i class="fa fa-check-square-o" aria-hidden="true"></i> 주문취소는 주문 미확인 전에는 회원님이 직접 주문조회 목록에서 취소할 수 있습니다.<br>
-                                <i class="fa fa-check-square-o" aria-hidden="true"></i> 가상계좌입금의 경우 일정기간 동안 송금을 하지 않으면 자동 취소가 됩니다.<br>
+                                <i class="fa fa-check-square-o" aria-hidden="true"></i> 무통장입금의 경우 일정기간 동안 송금을 하지 않으면 자동 취소가 됩니다.<br>
                                 <i class="fa fa-check-square-o" aria-hidden="true"></i> 카드결제의 경우 승인 취소가 가능하면 취소해드리고, 그렇지 않은 경우 송금해 드립니다.<br>
                                 <i class="fa fa-check-square-o" aria-hidden="true"></i> 반송을 하실 때에는 주문번호, 회원아이디, 연락처를 메모하여 동봉해서 보내주시면 신속한 처리에 도움이 됩니다.(문의전화 <?php echo $com_info['tel']; ?>)<br>
                                 </p>
