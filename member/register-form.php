@@ -509,7 +509,8 @@ Start Register Form ============================================================
 													<div class="col-xs-12 col-md-3 register-font">업체 아이디</div>
 													<div class="col-xs-12 col-md-3">
 															<label class="sr-only" for="userid">ID</label>
-															<input class="form-control" name="userid" type="text" id="userid" required />
+															<input class="form-control" name="userid" type="text" id="userid" style="ime-mode:disabled;" required  />
+															<p class="help-block">ID는 영문/숫자만 가능합니다.</p>
 														</div>
 														<div class="col-md-6">
 															<span id="useridLoading"><img src="../images/indicator.gif" alt="Ajax Indicator" /></span>
@@ -861,7 +862,15 @@ Start Register Form ============================================================
 
 				<script>
 					$(document).ready(function() {
+
 						$('#useridLoading').hide();
+
+            $("#userid").keyup(function(event){
+                    if (!(event.keyCode >=37 && event.keyCode<=40)) {
+                        var inputVal = $(this).val();
+                        $(this).val(inputVal.replace(/[^a-z0-9]/gi,''));
+                    }
+            });
 
 						$('#userid').blur(function(){
 							$('#useridLoading').show();
@@ -876,6 +885,8 @@ Start Register Form ============================================================
 
 						});
 
+
+
 					});
 
 
@@ -889,6 +900,16 @@ Start Register Form ============================================================
 
 				</script>
 				<!-- check id end -->
+
+				<script type="text/javascript">
+				function Chk_Text(){
+				        var ChkText=/^([a-zA-Z0-9]{1,20})$/
+				        if(ChkText.test(ChkID)==false){
+				                alert("'"+ChkID + "' 는 사용이 불가능 합니다. \n 영문문자나 숫자 아이디만 사용이 가능합니다.")
+				                return;
+				          }
+				}
+				</script>
 
 		</body>
 </html>

@@ -1,7 +1,7 @@
 <?php
 
-// $config       = parse_ini_file('/home/hosting_users/ssss01047271791/config/config.ini');
-$config = parse_ini_file('config.ini');
+$config = parse_ini_file('/home/hosting_users/ssss01047271791/config/config.ini');
+// $config = parse_ini_file('config.ini');
 
 $host         = $config['host'];
 $dbid         = $config['dbid'];
@@ -2126,7 +2126,7 @@ function restore_option($row)
     $optstock = explode(",", $row['opt_stock']);
 
     for ($i = 0; $i < count($optname); $i++) {
-        echo '<input name="optname[]" type="text" class="form-control" value="' . $optname[$i] . '" size="20" >&nbsp;';
+        echo '<input name="optname[]" type="text" class="form-control" value="' . $optname[$i] . '" size="50" >&nbsp;';
 
         if ($optstock[$i] == 1) {
             $a = "checked";

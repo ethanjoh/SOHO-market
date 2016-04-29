@@ -167,10 +167,10 @@ if ($mode == "update") {
         echo <<<HEREDOC
 
                                                             <input name="optname_ins" type="text" class="form-control" value="" size="100" >
-                                                            <p class="help-block"><i class="fa fa-exclamation-triangle"></i> 구분은 ',(콤마)' 하세요 (예:블루,레드,블랙)</p>
 HEREDOC;
     }
     ?>
+                                                            <p class="help-block"><i class="fa fa-exclamation-triangle"></i> 구분은 ',(콤마)' 하세요 (예:블루,레드,블랙)</p>
                                                         </td>
         											</tr>
             										<tr>
