@@ -86,7 +86,7 @@ if ($mode == 'edit') {
         $board = 'bbs_' . $code;
         $sql   = "UPDATE $board SET title='$title',
 								 contents='$contents',
-								 mod_date=now(),\
+								 mod_date=now(),
                                  name = '$name',
 								 email='$email',
 								 filename=''

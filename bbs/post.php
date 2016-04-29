@@ -150,7 +150,6 @@ HEREDOC;
 <?php include_once '../include/footer.php';?>
 
         <script language="JavaScript">
-        <!--
             function send(id)
             {
                 if (document.write_form.title.value.length <1) {
@@ -162,7 +161,6 @@ HEREDOC;
                 // oEditors.getById[id].exec("UPDATE_CONTENTS_FIELD", []);
                 document.write_form.submit();
             }
-        -->
         </script>
     </body>
 </html>
