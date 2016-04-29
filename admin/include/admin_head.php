@@ -19,7 +19,10 @@
                         <p class="green">바로가기</p>
                     </li>
                     <li class="external">
-                        <a href="/index.php" target="_blank"><i class="fa fa-home"></i> 홈페이지</a>
+                        <a href="/index.php" target="_blank"><i class="fa fa-home"></i> 쇼핑몰 가기</a>
+                    </li>
+                    <li class="external">
+                        <a href="http://pgweb.uplus.co.kr/" target="_blank"><i class="fa fa-external-link-square"></i> PG 상점관리자</a>
                     </li>
                     <li class="external">
                         <a href="https://www.hometax.go.kr/" target="_blank"><i class="fa fa-external-link-square"></i> 국세청 홈택스</a>
