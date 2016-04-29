@@ -338,7 +338,7 @@ if ($res_4) {
                       <td>-</td>
 					            <td><?php echo $pay_status; ?></td>
                       <td>-</td>
-					            <td><a type="button" class="btn btn-xs btn-danger" href="or_delete.php?mode=d&amp;oid=<?php echo $row['num']; ?>&amp;page=<?php echo $page; ?>&amp;reurl=<?php echo $reUrl; ?>" onclick="return confirm('취소된 주문입니다.\n삭제하시겠습니까?')"><i class="fa fa-trash-o"></i></a></td>
+					            <td><a type="button" class="btn btn-xs btn-danger" href="or_delete.php?mode=d&amp;oid=<?php echo $row['num']; ?>&amp;page=<?php echo $page; ?>" onclick="return confirm('취소된 주문입니다.\n삭제하시겠습니까?')"><i class="fa fa-trash-o"></i></a></td>
 <?php
 
             /**
@@ -431,7 +431,7 @@ if ($res_4) {
 
                       <td><?php echo $pay_status; ?></td>
 					            <td><?php echo $status_now; ?></td>
-					            <td><a type="button" class="btn btn-xs btn-default" href="or_delete.php?oid=<?php echo $row['num']; ?>&amp;page=<?php echo $page; ?>&amp;reurl=<?php echo $reUrl; ?>" onclick="return confirm('정말 주문을 취소하시겠습니까?')"><i class="fa fa-times"></i></a></td>
+					            <td><a type="button" class="btn btn-xs btn-default" href="or_delete.php?oid=<?php echo $row['num']; ?>&amp;page=<?php echo $page; ?>" onclick="return confirm('정말 주문을 취소하시겠습니까?')"><i class="fa fa-times"></i></a></td>
 					          </tr>
 <?php
 

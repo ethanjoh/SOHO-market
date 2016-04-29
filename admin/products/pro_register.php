@@ -144,10 +144,10 @@ if ($mode == "update") {
 															<p class="help-block"><i class="fa fa-exclamation-triangle"></i> 해당사항 없을 시 공란</p>
 														</td>
 													</tr>
-                                                    <tr>
-                                                        <th><img src="../images/icn_04.gif" width="24" height="14" alt="필수" /> 소비자가</th>
-                                                        <td><input name="shop_price" id="shop_price" class="form-control" type="text" value="<?php echo $update_row['shop_price']; ?>" /> 원 (숫자만 입력) </td>
-                                                    </tr>
+                          <tr>
+                              <th><img src="../images/icn_04.gif" width="24" height="14" alt="필수" /> 소비자가</th>
+                              <td><input name="shop_price" id="shop_price" class="form-control" type="text" value="<?php echo $update_row['shop_price']; ?>" /> 원 (숫자만 입력) </td>
+                          </tr>
 													<tr>
 														<th><img src="../images/icn_04.gif" width="24" height="14" alt="필수" /> 공급가</th>
 														<td><input name="retail_price" id="retail_price" class="form-control" type="text" value="<?php echo $update_row['retail_price']; ?>" /> 원 (숫자만 입력) </td>

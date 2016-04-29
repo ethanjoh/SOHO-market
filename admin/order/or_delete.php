@@ -37,5 +37,5 @@ if ($mode == "d") {
 
 $result = mysqli_query($connect, $update);
 
-// echo "<meta http-equiv='refresh' content='0; URL=top_order_list.php?page=$page'>";
-header("Location: " . $uri . "");
+echo "<meta http-equiv='refresh' content='0; URL=top_order_list.php?page=$page'>";
+// header("Location: " . $uri . "");
