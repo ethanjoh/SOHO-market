@@ -61,7 +61,7 @@ $key     = set_var($_GET['key']);
 $keyword = set_var($_GET['keyword']);
 $page    = set_var($_GET['page']);
 
-$query   = "SELECT * FROM products_category1 ORDER BY num ";
+$query   = "SELECT * FROM products_category1 WHERE del='N' ORDER BY num ";
 $result2 = mysqli_query($connect, $query);
 // 현재위치 표시
 for ($i = 1; $row2 = mysqli_fetch_array($result2); $i++) {
@@ -83,7 +83,7 @@ mysqli_free_result($result2);
 <?php
 
 if ($lcode) {
-    $query  = "SELECT * FROM products_category2 WHERE up_category='$lcode' ORDER BY code";
+    $query  = "SELECT * FROM products_category2 WHERE up_category='$lcode' AND del='N' ORDER BY code";
     $result = mysqli_query($connect, $query);
 
     for ($i = 0; $row = mysqli_fetch_array($result); $i++) {

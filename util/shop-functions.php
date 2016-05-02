@@ -383,7 +383,7 @@ function show_brands()
     global $connect;
 
     // 쇼핑몰 대분류
-    $l_qry = "SELECT * FROM products_category1 WHERE hide='N' ORDER BY num ";
+    $l_qry = "SELECT * FROM products_category1 WHERE hide='N' AND del='N' ORDER BY num ";
     $l_res = mysqli_query($connect, $l_qry);
     $total = mysqli_num_rows($l_res);
 

@@ -25,7 +25,7 @@ $reUrl = urlencode($_SERVER['PHP_SELF'] . "?" . $_SERVER['QUERY_STRING']);
 
 				<!-- info start-->
 				<div class="row">
-		        	<div class="col-sm-12">
+		      <div class="col-sm-12">
 						<section class="panel">
 							<header class="panel-heading">
 							  사용방법
@@ -34,7 +34,7 @@ $reUrl = urlencode($_SERVER['PHP_SELF'] . "?" . $_SERVER['QUERY_STRING']);
 							  <li><i class="fa fa-info-circle"></i> 신규주문 확인을 위해 5분마다 화면이 리프레시됩니다.</li>
                 <li><i class="fa fa-info-circle"></i> 업체별 기간검색하기 : 1. 하단 검색조건에서 "업체명"으로 업체 검색 -> 2. 검색결과에서 해당 업체명 클릭 -> 3. 날짜검색에서 기간 설정 후 검색</li>
 							</ul>
-		                </section>
+		        </section>
 
 <?php
 

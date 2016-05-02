@@ -15,40 +15,55 @@
         <section id="main-content">
           <section class="wrapper">
 
+            <!-- info start-->
+            <div class="row">
+              <div class="col-sm-12">
+                <section class="panel">
+                  <header class="panel-heading">
+                    사용방법
+                  </header>
+                  <ul class="info-body">
+                    <li><i class="fa fa-info-circle"></i> 회원 삭제 시 복구가 안되므로 주의하시기 바랍니다.</li>
+                    <li><i class="fa fa-info-circle"></i> 사용에 제한을 두고 구매기록 등을 보존하려면 미승인으로 처리하시기 바랍니다.</li>
+                  </ul>
+                </section>
+              </div>
+            </div>
+            <!-- info end -->
 <?php
 
-    $mode = set_var($_GET['mode']);
+$mode = set_var($_GET['mode']);
 
-    $search_keyword = '';
-    $id             = '';
-    $name           = '';
-    $phone          = '';
+$search_keyword = '';
+$id             = '';
+$name           = '';
+$phone          = '';
 
-    if ("search" == $mode) {
+if ("search" == $mode) {
 
-        if ($id) {
-            $search_keyword .= " AND id LIKE '%$id%' ";
-        }
-
-        if ($name) {
-            $search_keyword .= " AND name LIKE '%$name%' ";
-        }
-
-        if ($phone) {
-            $search_keyword .= " AND o_phone LIKE '%$phone%' OR hphone LIKE '%$phone%' ";
-        }
-
-    } else if ($mode == "nonapproved") {
-        $search_keyword .= " AND approved='N' ";
-    } else if ($mode == "today") {
-        $today = date("Y-m-d");
-        $search_keyword .= " AND reg_date='$today' ";
+    if ($id) {
+        $search_keyword .= " AND id LIKE '%$id%' ";
     }
 
-    //회원 테이블의 리스트를 불러옵니다.
-    $query  = "SELECT * FROM p_member WHERE 1 $search_keyword ORDER BY name";
-    $result = mysqli_query($connect, $query);
-    $total  = mysqli_num_rows($result);
+    if ($name) {
+        $search_keyword .= " AND name LIKE '%$name%' ";
+    }
+
+    if ($phone) {
+        $search_keyword .= " AND o_phone LIKE '%$phone%' OR hphone LIKE '%$phone%' ";
+    }
+
+} else if ($mode == "nonapproved") {
+    $search_keyword .= " AND approved='N' ";
+} else if ($mode == "today") {
+    $today = date("Y-m-d");
+    $search_keyword .= " AND reg_date='$today' ";
+}
+
+//회원 테이블의 리스트를 불러옵니다.
+$query  = "SELECT * FROM p_member WHERE 1 $search_keyword ORDER BY name";
+$result = mysqli_query($connect, $query);
+$total  = mysqli_num_rows($result);
 
 ?>
 
@@ -122,7 +137,7 @@
               <div class="col-sm-12">
                 <section class="panel">
                   <header class="panel-heading table-head">
-                      가입회원 리스트 (<?php echo number_format($total); ?> 개 ) <a href="pmember2excel.php"><i class="fa fa-file-excel-o"></i> 엑셀로 저장하기</a>
+                      개인회원 리스트 (<?php echo number_format($total); ?> 개 ) <a href="pmember2excel.php"><i class="fa fa-file-excel-o"></i> 엑셀로 저장하기</a>
                   </header>
                   <div class="panel-body">
                   <div class="table-responsive">
@@ -143,43 +158,43 @@
                     <tbody>
 <?php
 
-    $page  = set_var($_GET['page']);
-    $scale = 20;
-    $page  = (isset($_GET['page']) ? $_GET['page'] : '');
+$page  = set_var($_GET['page']);
+$scale = 20;
+$page  = (isset($_GET['page']) ? $_GET['page'] : '');
 
-    if ('' == $page) {
-        $page = 1;
-    }
+if ('' == $page) {
+    $page = 1;
+}
 
-    $cpage     = intval($page);
-    $totalpage = intval($total / $scale);
+$cpage     = intval($page);
+$totalpage = intval($total / $scale);
 
-    if ($totalpage * $scale != $total) {
-        $totalpage = $totalpage + 1;
-    }
+if ($totalpage * $scale != $total) {
+    $totalpage = $totalpage + 1;
+}
 
-    if (1 == $cpage) {
-        $cline = 0;
-    } else {
-        $cline = ($cpage * $scale) - $scale;
-    }
+if (1 == $cpage) {
+    $cline = 0;
+} else {
+    $cline = ($cpage * $scale) - $scale;
+}
 
-    $limit = $cline + $scale;
+$limit = $cline + $scale;
 
-    if ($limit >= $total) {
-        $limit = $total;
-    }
+if ($limit >= $total) {
+    $limit = $total;
+}
 
-    $scale1 = $limit - $cline;
+$scale1 = $limit - $cline;
 
-    $sql_2    = "SELECT * FROM p_member WHERE 1 $search_keyword ORDER BY reg_date DESC LIMIT $cline,$scale1 ";
-    $result_2 = mysqli_query($connect, $sql_2);
-    $total_2  = mysqli_num_rows($result_2);
+$sql_2    = "SELECT * FROM p_member WHERE 1 $search_keyword ORDER BY reg_date DESC LIMIT $cline,$scale1 ";
+$result_2 = mysqli_query($connect, $sql_2);
+$total_2  = mysqli_num_rows($result_2);
 
-    if ($total_2) {
-        for ($i = 1; $list = mysqli_fetch_array($result_2); $i++) {
+if ($total_2) {
+    for ($i = 1; $list = mysqli_fetch_array($result_2); $i++) {
 
-            $bunho = $total - ($i + $cline) + 1;
+        $bunho = $total - ($i + $cline) + 1;
         ?>
                       <tr>
                         <td><?php echo $bunho; ?></td>
@@ -189,18 +204,18 @@
                         <td>
 <?php
 
-            echo stripslashes($list['name']);
+        echo stripslashes($list['name']);
         ?>
                         </td>
                         <td><?php echo $list['dc_rate']; ?> % DC
 <?php
 
-            switch ($list['tax']) {
-                case "E":echo " (VAT 별도)";
-                    break;
-                case "I":echo " (VAT 포함)";
-                    break;
-            }
+        switch ($list['tax']) {
+            case "E":echo " (VAT 별도)";
+                break;
+            case "I":echo " (VAT 포함)";
+                break;
+        }
         ?>
                         </td>
                         <td><?php echo $list['o_phone']; ?></td>
@@ -209,31 +224,31 @@
                         <td>
 <?php
 
-            if ($list['approved'] == "Y") {
-                echo '<i class="fa fa-check"></i> OK';
-            } else {
-                echo '<i class="fa fa-pause"></i> PAUSE';
-            }
+        if ($list['approved'] == "Y") {
+            echo '<i class="fa fa-check"></i> OK';
+        } else {
+            echo '<i class="fa fa-pause"></i> PAUSE';
+        }
 
         ?>
                         </td>
                         <td>
-                          <a type="button" class="btn btn-xs btn-danger" href="mem_delete_member.php?m_num=<?php echo $list['seq_num']; ?>&amp;page=<?php echo $page; ?>" onclick="return confirm('이 회원의 모든 정보가 즉시 삭제되며 복구할 수 없습니다. \n삭제하시겠습니까?')"><i class="fa fa-trash-o"></i></a>
+                          <a type="button" class="btn btn-xs btn-danger" href="p_mem_delete_member.php?m_num=<?php echo $list['seq_num']; ?>&amp;page=<?php echo $page; ?>" onclick="return confirm('이 회원의 모든 정보가 즉시 삭제되며 복구할 수 없습니다. \n삭제하시겠습니까?')"><i class="fa fa-trash-o"></i></a>
                         </td>
                       </tr>
 <?php
 
-        } // end of for loop
+    } // end of for loop
 
-        mysqli_free_result($result_2);
-    } else {
+    mysqli_free_result($result_2);
+} else {
     ?>
                       <tr>
                         <td colspan="9"><p>등록된 회원이 없습니다.</p></td>
                       </tr>
 <?php
 
-    }
+}
 ?>
                       </tbody>
                     </table>
@@ -255,8 +270,8 @@
                           <td>
 <?php
 
-    $url = $_SERVER['PHP_SELF'] . '?mode=' . $mode;
-    page_nav($totalpage, $cpage, $url);
+$url = $_SERVER['PHP_SELF'] . '?mode=' . $mode;
+page_nav($totalpage, $cpage, $url);
 ?>
                           </td>
                         </tr>
