@@ -97,7 +97,7 @@ $uri = set_var($_SERVER['HTTP_REFERER']);
             <div class="top-menu">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-3 col-md-4 col-sm-5">
+                        <div class="col-lg-3 col-md-4 col-xs-12">
                             <div class="left-category-menu">
                                 <div class="left-product-cat">
                                     <div class="category-heading">
@@ -109,7 +109,7 @@ $uri = set_var($_SERVER['HTTP_REFERER']);
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-9 col-md-8 col-sm-7">
+                        <div class="col-lg-9 col-md-8 hidden-xs ">
                             <div class="home_menu">
                                 <nav>
                                     <ul>
