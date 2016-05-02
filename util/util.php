@@ -1,7 +1,7 @@
 <?php
 
-// $config = parse_ini_file('/home/hosting_users/ssss01047271791/config/config.ini');
-$config = parse_ini_file('config.ini');
+$config = parse_ini_file('/home/hosting_users/ssss01047271791/config/config.ini');
+// $config = parse_ini_file('config.ini');
 
 $host         = $config['host'];
 $dbid         = $config['dbid'];
@@ -2211,7 +2211,7 @@ HEREDOC;
                                                                 <option value="">선택하세요</option>
 HEREDOC;
 
-    $ca2_qry    = "SELECT * FROM products_category2 WHERE up_category='$lcode' AND WHERE del='N' ORDER BY code";
+    $ca2_qry    = "SELECT * FROM products_category2 WHERE up_category='$lcode' AND del='N' ORDER BY code";
     $ca2_result = mysqli_query($connect, $ca2_qry);
 
     for ($i = 0; $ca2_row = mysqli_fetch_array($ca2_result); $i++) {
