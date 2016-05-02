@@ -175,8 +175,8 @@ if ("edit" == $mode) {
         $contents = "<p><a href=\"http://www." . $_SERVER['SERVER_NAME'] . "\">" . $op_company . "</a>에 가입하신 것을 환영합니다.<br />";
         $contents .= "가입하신 회원 정보 확인을 부탁드립니다.</p>";
         $contents .= "<p>ID:" . $id . "</p>";
-        $contents .= " <p>기타 문의사항은 [이용안내] 게시판에서 먼저 확인해 주시고, " . $op_tel . " 또는 1:1 문의게시판을 이용해주시기 바랍니다.<br>";
-        $contents .= " 이용해 주셔서 고맙습니다.</p>";
+        $contents .= "<p>기타 문의사항은 <a href=\"http://" . $_SERVER['SERVER_NAME'] . "/member/help.php\">[이용안내]</a> 또는 1:1 문의게시판 , " . $op_tel . " 을 이용해주시기 바랍니다.<br>";
+        $contents .= "고맙습니다.</p>";
         $contents = addslashes($contents);
 
         $headers = "Return-Path: $sender_email\r\n";

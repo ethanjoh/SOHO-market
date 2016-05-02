@@ -7,21 +7,21 @@
         <!-- <section id="main-content"> -->
           <!-- <section class="wrapper"> -->
           <?php
-              $num  = set_var($_GET['num']);
-              $page = set_var($_GET['page']);
-              $from = set_var($_GET['from']);
+$num  = set_var($_GET['num']);
+$page = set_var($_GET['page']);
+$from = set_var($_GET['from']);
 
-              $query  = "SELECT * FROM p_member WHERE seq_num='$num' ";
-              $result = mysqli_query($connect, $query);
-              $rows   = mysqli_fetch_array($result);
+$query  = "SELECT * FROM p_member WHERE seq_num='$num' ";
+$result = mysqli_query($connect, $query);
+$rows   = mysqli_fetch_array($result);
 
-              $hphone   = explode("-", $rows['hphone']);
-              $o_zipno  = explode("-", $rows['o_zipcode']);
-              $o_phone  = explode("-", $rows['o_phone']);
-              $d_zipno  = explode("-", $rows['d_zipcode']);
-              $d_phone  = explode("-", $rows['d_phone']);
-              $d_hphone = explode("-", $rows['d_hphone']);
-          ?>
+$hphone   = explode("-", $rows['hphone']);
+$o_zipno  = explode("-", $rows['o_zipcode']);
+$o_phone  = explode("-", $rows['o_phone']);
+$d_zipno  = explode("-", $rows['d_zipcode']);
+$d_phone  = explode("-", $rows['d_phone']);
+$d_hphone = explode("-", $rows['d_hphone']);
+?>
 
             <!-- member info start -->
             <div class="row">
@@ -62,13 +62,13 @@
                             <td>
                               <input type="text" class="form-control" name="email" size="25" value='<?php echo $rows['email']; ?>' />
                               <?php
-                                  if ($rows['optin'] == "Y") {
-                                      echo "<p class=\"help-block\">(이메일 수신 함)</p>";
-                                  } else {
-                                      echo "<p class=\"help-block\">(이메일 미수신 함)</p>";
-                                  }
+if ($rows['optin'] == "Y") {
+    echo "<p class=\"help-block\">(이메일 수신 함)</p>";
+} else {
+    echo "<p class=\"help-block\">(이메일 미수신 함)</p>";
+}
 
-                              ?>
+?>
                             </td>
                           </tr>
                           <tr>
@@ -172,13 +172,13 @@
                               -
                               <input type="text" class="form-control" name="hphone3" size="4"  value="<?php echo $hphone[2]; ?>" />
                               <?php
-                                  if ($rows['sms'] == "Y") {
-                                      echo "<p class=\"help-block\">(SMS 수신 함)</p>";
-                                  } else {
-                                      echo "<p class=\"help-block\">(SMS 미수신 함)</p>";
-                                  }
+if ($rows['sms'] == "Y") {
+    echo "<p class=\"help-block\">(SMS 수신 함)</p>";
+} else {
+    echo "<p class=\"help-block\">(SMS 미수신 함)</p>";
+}
 
-                              ?>
+?>
                             </td>
                           </tr>
                           <tr>
@@ -189,7 +189,7 @@
                           <tr>
                             <th>배송지 우편번호</th>
                             <td>
-                              <input type="text" class="form-control" name="d_zipcode1" id="d_zipcode1" size="5" value="<?php echo $d_zipno[0]; ?>" readonly /> -
+                              <input type="text" class="form-control" name="d_zipcode1" id="d_zipcode1" size="5" value="<?php echo $d_zipno[0]; ?>" readonly />
                               <input type="button" class="form-control" onclick="openDaumPostcode1()" value="우편번호 찾기"><br />
                           <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
                           <script>
@@ -274,34 +274,34 @@
                             <td>
                               <input type="text" class="form-control" name="dc_rate" value="<?php echo $rows['dc_rate']; ?>" size="3"/> % DC
                               <?php
-                                  switch ($rows['tax']) {
-                                      case "E":
-                                          echo '<input type="radio" name="tax" value="E" checked >(VAT 별도)
+switch ($rows['tax']) {
+    case "E":
+        echo '<input type="radio" name="tax" value="E" checked >(VAT 별도)
                                       		<input type="radio" name="tax" value="I">(VAT 포함)';
-                                          break;
-                                      case "I":
-                                          echo '<input type="radio" name="tax" value="E">(VAT 별도)
+        break;
+    case "I":
+        echo '<input type="radio" name="tax" value="E">(VAT 별도)
                                       		<input type="radio" name="tax" value="I" checked>(VAT 포함)';
-                                          break;
-                                  }
-                              ?>
+        break;
+}
+?>
                             </td>
                           </tr>
                           <tr>
                             <th> 승인상태 </th>
                             <td>
                               <?php
-                                  switch ($rows['approved']) {
-                                      case "Y":
-                                          echo "<input type=\"radio\" name=\"approved\" value=\"Y\" checked />승인
+switch ($rows['approved']) {
+    case "Y":
+        echo "<input type=\"radio\" name=\"approved\" value=\"Y\" checked />승인
                                       		<input type=\"radio\" name=\"approved\" value=\"N\" />미승인";
-                                          break;
-                                      case "N":
-                                          echo "<input type=\"radio\" name=\"approved\" value=\"Y\" />승인
+        break;
+    case "N":
+        echo "<input type=\"radio\" name=\"approved\" value=\"Y\" />승인
                                       		<input type=\"radio\" name=\"approved\" value=\"N\" checked />미승인";
-                                          break;
-                                  }
-                              ?>
+        break;
+}
+?>
                               ( <input type="checkbox" name="sms_chk" value="Y" /> 승인 시 SMS보내기)
                             </td>
                           </tr>
@@ -315,11 +315,11 @@
                         <a type="button" class="btn btn-danger" href="mem_delete_member.php?m_num=<?php echo $num; ?>&amp;from=mail" onclick="return confirm('이 회원의 모든 정보가 즉시 삭제되며 복구할 수 없습니다. \n삭제하시겠습니까?')">삭제</a>
 <?php
 
-    if ($from == "mail") {
-        echo '<a type="button" class="btn btn-default" href="#" onclick="opener.location.replace(\'mem_sendmail_list.php\');window.close();">닫기</a>' . "\r\n";
-    } else {
-        echo '<a type="button" class="btn btn-default" href="#" onclick="opener.location.replace(\'p_top_member_list.php?page=' . $page . '\');window.close();">닫기</a>' . "\r\n";
-    }
+if ($from == "mail") {
+    echo '<a type="button" class="btn btn-default" href="#" onclick="opener.location.replace(\'mem_sendmail_list.php\');window.close();">닫기</a>' . "\r\n";
+} else {
+    echo '<a type="button" class="btn btn-default" href="#" onclick="opener.location.replace(\'p_top_member_list.php?page=' . $page . '\');window.close();">닫기</a>' . "\r\n";
+}
 ?>
                       </div>
                     </div>

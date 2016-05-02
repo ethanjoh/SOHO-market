@@ -225,13 +225,12 @@ if ("edit" == $mode) {
         $subject_c = "=?EUC-KR?B?" . base64_encode(iconv("UTF-8", "EUC-KR", $subject)) . "?=\r\n";
         $subject_c = addslashes($subject_c);
 
-        $contents = "<p><a href=\"http://www." . $_SERVER['SERVER_NAME'] . "\">" . $op_company . "</a>에 가입하신 것을 환영합니다.<br />";
+        $contents = "<p><a href=\"http://" . $_SERVER['SERVER_NAME'] . "\">" . $op_company . "</a>에 가입하신 것을 환영합니다.<br />";
         $contents .= "아래 이용안내를 필히 확인하시고 이용부탁드립니다.</p>";
-        $contents .= "<p>사용하시는 이메일 계정에서 수신거부 등으로 공지메일 등이 반송될 경우 별도통지없이 회원탈퇴처리될 수 있습니다.<br />";
-        $contents .= "담당자와 연락이 닿지 않는 경우 사용정지될 수 있으니 연락가능한 전화번호를 필히 기재하시기 바랍니다.<br />";
-        $contents .= "기존 거래업체가 아닌 신규 회원가입업체께서는 사업자등록증 사본을 팩스(" . $op_fax . ")로 보내주시기 바랍니다.<br />";
+        $contents .= "<p>담당자와 연락이 닿지 않는 경우 사용정지될 수 있으니 연락가능한 전화번호를 필히 기재하시기 바랍니다.<br />";
+        $contents .= "기존 거래업체가 아닌 신규 회원가입업체께서는 사업자등록증 사본을 팩스(" . $op_fax . ")로 보내주셔야 승인처리가 되어 이용이 가능합니다.<br />";
         $contents .= " <p><br />";
-        $contents .= " <p>기타 문의사항은 [이용안내] 게시판에서 먼저 확인해 주시고, " . $op_tel . " 또는 1:1 문의게시판을 이용해주시기 바랍니다.<br>";
+        $contents .= " <p>기타 문의사항은 <a href=\"http://" . $_SERVER['SERVER_NAME'] . "/member/help.php\">[이용안내]</a> 또는 1:1 문의게시판 , " . $op_tel . " 을 이용해주시기 바랍니다.<br>";
         $contents .= " 이용해 주셔서 고맙습니다.</p>";
         $contents = addslashes($contents);
 

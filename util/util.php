@@ -2179,7 +2179,7 @@ function restore_category($mode, $lcode, $mcode)
                                                                 <option value="">선택하세요</option>
 HEREDOC;
 
-    $ca1_qry    = "SELECT * FROM products_category1 ORDER BY code";
+    $ca1_qry    = "SELECT * FROM products_category1 WHERE del='N' ORDER BY code";
     $ca1_result = mysqli_query($connect, $ca1_qry);
 
     // $lcode = set_var($_POST['lcode']);
@@ -2211,7 +2211,7 @@ HEREDOC;
                                                                 <option value="">선택하세요</option>
 HEREDOC;
 
-    $ca2_qry    = "SELECT * FROM products_category2 WHERE up_category='$lcode' ORDER BY code";
+    $ca2_qry    = "SELECT * FROM products_category2 WHERE up_category='$lcode' AND del='N' ORDER BY code";
     $ca2_result = mysqli_query($connect, $ca2_qry);
 
     for ($i = 0; $ca2_row = mysqli_fetch_array($ca2_result); $i++) {

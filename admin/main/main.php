@@ -98,7 +98,7 @@ mysqli_query($connect, 'set names utf8');
                   <h1>
                   <a href="../member/top_member_list.php?mode=nonapproved"><?php echo $newCorpMember; ?></a>
                   </h1>
-                  <p>신규 기업회원</p>
+                  <p>미승인 신규 기업회원</p>
                 </div>
               </section>
             </div>
@@ -109,9 +109,9 @@ mysqli_query($connect, 'set names utf8');
                 </div>
                 <div class="value">
                   <h1>
-                  <a href="../member/top_member_list.php?mode=nonapproved"><?php echo $newPersonalMember; ?></a>
+                  <a href="../member/p_top_member_list.php?mode=nonapproved"><?php echo $newPersonalMember; ?></a>
                   </h1>
-                  <p>신규 개인회원</p>
+                  <p>금일 신규 개인회원</p>
                 </div>
               </section>
             </div>

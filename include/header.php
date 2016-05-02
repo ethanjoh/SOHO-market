@@ -67,14 +67,6 @@ $uri = set_var($_SERVER['HTTP_REFERER']);
                                 <a href="/index.php"><img src="/images/shinsoo-logo.svg" alt="신수상사 로고"></a>
                             </div>
                         </div>
-<!--                         <div class="col-md-6 col-sm-6">
-                            <div class="outlink">
-                                <ul>
-                                    <li><a href="http://www.no1grip.co.kr/" target="_blank"><img src="/images/logo/no1grip-home.jpg" alt="no1grip"></a></li>
-                                    <li><a href="http://www.superstroke.co.kr/" target="_blank"><img src="/images/logo/ss-home.jpg" alt="superstroke"></a></li>
-                                </ul>
-                            </div>
-                        </div> -->
                     </div>
                 </div>
             </div>
@@ -105,8 +97,8 @@ $uri = set_var($_SERVER['HTTP_REFERER']);
             <div class="top-menu">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-3 col-md-4 col-sm-5">
-                            <div class="left-category-menu  hidden-xs">
+                        <div class="col-lg-3 col-md-4 col-xs-12">
+                            <div class="left-category-menu">
                                 <div class="left-product-cat">
                                     <div class="category-heading">
                                         <h2>브랜드</h2>
@@ -117,7 +109,7 @@ $uri = set_var($_SERVER['HTTP_REFERER']);
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-9 col-md-8 col-sm-7">
+                        <div class="col-lg-9 col-md-8 hidden-xs ">
                             <div class="home_menu">
                                 <nav>
                                     <ul>
@@ -139,12 +131,10 @@ $uri = set_var($_SERVER['HTTP_REFERER']);
                             <div class="mobile-menu">
                                 <nav id="dropdown">
                                     <ul>
-                                        <li class="active1"><a href="/">Home</a>
-                                        </li>
+                                        <li class="active1"><a href="/">Home</a></li>
                                         <li><a href="/member/about-us.php">회사 소개</a></li>
-                                        <li><a href="/bbs/list.php?code=fitting">피팅 가이드</a></li>
-                                        <li><a href="#">대리점 안내</a></li>
-                                        <li><a href="/member/contact-us.php">제휴문의</a></li>
+                                        <li><a href="/bbs/list.php?code=fitting">새소식</a></li>
+                                        <li><a href="/member/contact-us.php">문의</a></li>
                                     </ul>
                                 </nav>
                             </div>

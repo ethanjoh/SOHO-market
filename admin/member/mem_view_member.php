@@ -263,7 +263,7 @@ switch ($rows['tax_type']) {
                           <tr>
                             <th>배송지 우편번호</th>
                             <td>
-                              <input type="text" class="form-control" name="d_zipcode1" id="d_zipcode1" size="5" value="<?php echo $d_zipno[0]; ?>" readonly /> -
+                              <input type="text" class="form-control" name="d_zipcode1" id="d_zipcode1" size="5" value="<?php echo $d_zipno[0]; ?>" readonly />
                               <input type="button" class="form-control" onclick="openDaumPostcode1()" value="우편번호 찾기"><br />
                           <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
                           <script>

@@ -32,7 +32,6 @@ $keyword = set_var($_GET['keyword']);
 							  <li><i class="fa fa-info-circle"></i> 특별히 공급가를 변경할 필요가 있을 때에만 공급가 입력 후 [변경] 버튼을 누르세요.</li>
 							  <li><i class="fa fa-info-circle"></i> 배송지는 구매자의 주소를 확인하시고, 수령자란에 내용이 있는 경우에는 해당 주소로 발송하세요.</li>
 							  <li><i class="fa fa-info-circle"></i> 구매자나 수령자의 주소가 제주도 등 도선료가 추가될 경우 붉은 배경색으로 표시됩니다.</li>
-							  <li><i class="fa fa-info-circle"></i> 반품처리방법 : 결제상태-[반품]에 체크하고, 배송상태-[반품회수]에 체크 및 날짜지정 후 [저장하기]</li>
 							  <li><i class="fa fa-info-circle"></i> 상품명을 클릭할 경우 상품정보 수정창이 나타납니다.</li>
 							  <li><i class="fa fa-info-circle"></i> 상품이미지를 클릭할 경우 사이트의 상품 페이지를 엽니다.</li>
 							</ul>
