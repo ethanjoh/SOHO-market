@@ -67,14 +67,6 @@ $uri = set_var($_SERVER['HTTP_REFERER']);
                                 <a href="/index.php"><img src="/images/shinsoo-logo.svg" alt="신수상사 로고"></a>
                             </div>
                         </div>
-<!--                         <div class="col-md-6 col-sm-6">
-                            <div class="outlink">
-                                <ul>
-                                    <li><a href="http://www.no1grip.co.kr/" target="_blank"><img src="/images/logo/no1grip-home.jpg" alt="no1grip"></a></li>
-                                    <li><a href="http://www.superstroke.co.kr/" target="_blank"><img src="/images/logo/ss-home.jpg" alt="superstroke"></a></li>
-                                </ul>
-                            </div>
-                        </div> -->
                     </div>
                 </div>
             </div>

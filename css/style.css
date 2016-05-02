@@ -1269,9 +1269,9 @@ select.select option {
 
 .single-product span.out-text,
 .bit span.out-text {
-    background: #9E9E9E none repeat scroll 0 0;
+    background: #f0ad4e none repeat scroll 0 0;
     border-radius: 10%;
-    box-shadow: 0 3px 0 0 #696767;
+    box-shadow: 0 3px 0 0 #d2943d;
     color: #fff;
     display: block;    /*font-family: Lato;*/
     font-size: 12px;
@@ -1283,7 +1283,7 @@ select.select option {
     text-align: center;
     text-transform: capitalize;
     top: 10px;
-    width: 40px;
+    width: 55px;
     z-index: 1;
     position: absolute;
 }

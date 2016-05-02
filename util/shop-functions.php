@@ -1517,7 +1517,7 @@ function show_items_on_catalog($result, $tabid)
             } elseif ($rows['del_chk'] == "C") {
                 $saleNewTag = '<span class="cut-text">단종</span>';
             } elseif ($rows['del_chk'] == "O") {
-                $saleNewTag = '<span class="out-text">품절</span>';
+                $saleNewTag = '<span class="out-text">일시품절</span>';
             }
 
             if ($tabid == 'home') {
@@ -1555,7 +1555,7 @@ HEREDOC;
                 } elseif ($rows['del_chk'] == "C") {
                     echo '<a href="#" onclick="alert(\'단종입니다.\')"><i class="fa fa-shopping-cart"></i></a>' . "\r\n";
                 } elseif ($rows['del_chk'] == "O") {
-                    echo '<a href="#" onclick="alert(\'품절입니다.\')"><i class="fa fa-shopping-cart"></i></a>' . "\r\n";
+                    echo '<a href="#" onclick="alert(\'일시품절입니다.\')"><i class="fa fa-shopping-cart"></i></a>' . "\r\n";
                 } else {
                     echo '<a href="/member/login.php"><i class="fa fa-shopping-cart"></i></a>' . "\r\n";
                 }
