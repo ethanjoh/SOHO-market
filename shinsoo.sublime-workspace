@@ -694,6 +694,13 @@
 	],
 	"file_history":
 	[
+		"/C/wamp/www/shinsoo/include/footer.php",
+		"/C/wamp/www/shinsoo/bbs/post.php",
+		"/C/wamp/www/shinsoo/include/header.php",
+		"/C/wamp/www/shinsoo/bbs/post_ok.php",
+		"/C/wamp/www/shinsoo/bbs/read.php",
+		"/C/wamp/www/shinsoo/admin/check_login.php",
+		"/C/wamp/www/shinsoo/bbs/list.php",
 		"/C/wamp/www/shinsoo/shop/order-list.php",
 		"/C/wamp/www/shinsoo/shop/order-detail.php",
 		"/C/wamp/www/shinsoo/admin/order/p_or_view.php",
@@ -719,15 +726,9 @@
 		"/C/Users/Seonghyeon/Google 드라이브/git_project/prixe/admin/main.php",
 		"/C/wamp/www/shinsoo/admin/order/print_waybill.php",
 		"/C/wamp/www/shinsoo/admin/order/tracktoexcel_a.php",
-		"/C/wamp/www/shinsoo/bbs/read.php",
-		"/C/wamp/www/shinsoo/bbs/post.php",
-		"/C/wamp/www/shinsoo/bbs/post_ok.php",
 		"/C/wamp/www/shinsoo/css/myshop.css",
-		"/C/wamp/www/shinsoo/include/header.php",
 		"/C/wamp/www/shinsoo/js/wow.min.js",
 		"/C/wamp/www/shinsoo/bbs/login_ok.php",
-		"/C/wamp/www/shinsoo/bbs/list.php",
-		"/C/wamp/www/shinsoo/include/footer.php",
 		"/C/wamp/www/shinsoo/admin/order/print_quot.php",
 		"/C/wamp/www/shinsoo/admin/order/quottoexcel.php",
 		"/C/wamp/www/shinsoo/member/delivery-policy.php",
@@ -803,7 +804,6 @@
 		"/C/wamp/www/shinsoo/admin/css/print.css",
 		"/C/wamp/www/shinsoo/admin/css/screen.css",
 		"/C/wamp/www/shinsoo/admin/products/pro_opt.php",
-		"/C/wamp/www/shinsoo/admin/check_login.php",
 		"/C/wamp/www/shinsoo/admin/index.php",
 		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
 		"/C/wamp/www/shinsoo/admin/setting/banner_setting.php",
@@ -1064,6 +1064,38 @@
 		"selected_items":
 		[
 			[
+				"read",
+				"bbs\\read.php"
+			],
+			[
+				"post",
+				"bbs\\post_ok.php"
+			],
+			[
+				"head",
+				"include\\header.php"
+			],
+			[
+				"foo",
+				"include\\footer.php"
+			],
+			[
+				"psot",
+				"bbs\\post.php"
+			],
+			[
+				"hea",
+				"include\\header.php"
+			],
+			[
+				"chec",
+				"admin\\check_login.php"
+			],
+			[
+				"list",
+				"bbs\\list.php"
+			],
+			[
 				"p_or",
 				"admin\\order\\p_or_view.php"
 			],
@@ -1152,10 +1184,6 @@
 				"admin\\order\\print_waybill.php"
 			],
 			[
-				"hea",
-				"include\\header.php"
-			],
-			[
 				"util",
 				"util\\util.php"
 			],
@@ -1164,28 +1192,12 @@
 				"bbs\\post.php"
 			],
 			[
-				"post",
-				"bbs\\post_ok.php"
-			],
-			[
-				"read",
-				"bbs\\read.php"
-			],
-			[
 				"lis",
 				"bbs\\list.php"
 			],
 			[
-				"foo",
-				"include\\footer.php"
-			],
-			[
 				"quo",
 				"admin\\order\\quottoexcel.php"
-			],
-			[
-				"head",
-				"include\\header.php"
 			],
 			[
 				"deli",
@@ -1270,10 +1282,6 @@
 			[
 				"log",
 				"member\\login-ok.php"
-			],
-			[
-				"list",
-				"bbs\\list.php"
 			],
 			[
 				"sty",
@@ -1480,10 +1488,6 @@
 				"pay\\payreq_crossplatform.php"
 			],
 			[
-				"chec",
-				"shop\\checkout.php"
-			],
-			[
 				"x",
 				"lgpay\\XPayClient.php"
 			],
@@ -1570,10 +1574,6 @@
 			[
 				"crea",
 				"css\\creative.css"
-			],
-			[
-				"set",
-				"admin\\setting.php"
 			]
 		],
 		"width": 0.0
