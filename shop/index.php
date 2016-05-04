@@ -41,7 +41,7 @@
                         <div class="row">
                             <div class="features-carousel indicator-style">
 <?php
-	show_items_on_main('new', 10);
+show_items_on_main('new', 10);
 ?>
                             </div>
                         </div>
@@ -56,6 +56,6 @@
 <?php include_once '../include/brands.php';?>
 
 <?php include_once '../include/footer.php';?>
-
+        <?php echo show_notice(); ?>
     </body>
 </html>

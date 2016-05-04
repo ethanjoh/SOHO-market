@@ -133,9 +133,6 @@ if ($sessionId) {
 		<!-- wow JS
 		============================================ -->
         <script src="/js/wow.min.js"></script>
-		<!-- price-slider JS
-		============================================ -->
-        <script src="/js/jquery-price-slider.js"></script>
         <!-- Img Zoom js -->
 		<script src="/js/img-zoom/jquery.simpleLens.min.js"></script>
 		<!-- meanmenu JS
@@ -160,4 +157,4 @@ if ($sessionId) {
         <script src="/js/member.js"></script>
         <script src="/js/addcart.js"></script>
         <script src="/js/shopping.js"></script>
-        <?php echo show_notice(); ?>
+

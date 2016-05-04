@@ -30,10 +30,8 @@ $LGD_PRODUCTINFO = $_POST["LGD_PRODUCTINFO"];                         //상품�
 // 제품명 표시
 if (count($LGD_PRODUCTINFO) > 1) {
     $LGD_PRODUCTINFO = $LGD_PRODUCTINFO[0] . " 외 " . (count($LGD_PRODUCTINFO) - 1) . " 건";
-    // $LGD_PRODUCTINFO = iconv("EUC-KR", "UTF-8", $LGD_PRODUCTINFO);
 } else {
     $LGD_PRODUCTINFO = $LGD_PRODUCTINFO[0];
-    // $LGD_PRODUCTINFO = iconv("EUC-KR", "UTF-8", $LGD_PRODUCTINFO);
 }
 
 $LGD_BUYEREMAIL           = $_POST["LGD_BUYEREMAIL"];           //구매자 이메일
@@ -92,7 +90,9 @@ $LGD_HASHDATA = md5($LGD_MID . $LGD_OID . $LGD_AMOUNT . $LGD_TIMESTAMP . $xpay->
 
 $payReqMap['CST_PLATFORM']             = $CST_PLATFORM;             // 테스트, 서비스 구분
 // $payReqMap['LGD_WINDOW_TYPE']          = $LGD_WINDOW_TYPE;          // 수정불가
-$payReqMap['LGD_WINDOW_TYPE']          = "iframe";          // 수정불가
+// $payReqMap['LGD_CUSTOM_SWITCHINGTYPE'] = $LGD_CUSTOM_SWITCHINGTYPE; // 신용카드 카드사 인증 페이지 연동 방식
+$payReqMap['LGD_WINDOW_TYPE']          = 'iframe';          // 수정불가
+$payReqMap['LGD_CUSTOM_SWITCHINGTYPE'] = 'IFRAME'; // 신용카드 카드사 인증 페이지 연동 방식
 $payReqMap['CST_MID']                  = $CST_MID;                  // 상점아이디
 $payReqMap['LGD_MID']                  = $LGD_MID;                  // 상점아이디
 $payReqMap['LGD_OID']                  = $LGD_OID;                  // 주문번호
@@ -107,8 +107,6 @@ $payReqMap['LGD_HASHDATA']             = $LGD_HASHDATA;             // MD5 해�
 $payReqMap['LGD_RETURNURL']            = $LGD_RETURNURL;            // 응답수신페이지
 $payReqMap['LGD_VERSION']              = "PHP_2.5";                 // 버전정보 (삭제하지 마세요)
 $payReqMap['LGD_CUSTOM_USABLEPAY']     = $LGD_CUSTOM_USABLEPAY;     // 디폴트 결제수단
-// $payReqMap['LGD_CUSTOM_SWITCHINGTYPE'] = $LGD_CUSTOM_SWITCHINGTYPE; // 신용카드 카드사 인증 페이지 연동 방식
-$payReqMap['LGD_CUSTOM_SWITCHINGTYPE'] = "IFRAME"; // 신용카드 카드사 인증 페이지 연동 방식
 $payReqMap['LGD_WINDOW_VER']           = $LGD_WINDOW_VER;
 
 // 가상계좌(무통장) 결제연동을 하시는 경우  할당/입금 결과를 통보받기 위해 반드시 LGD_CASNOTEURL 정보를 LG 유플러스에 전송해야 합니다 .
@@ -146,13 +144,15 @@ $sessionFlag = $_SESSION['p_flag']; //사용자 구분 플래그, 'c':기업회�
         /*
         * 수정불가.
         */
-        var LGD_window_type = '<?php echo $LGD_WINDOW_TYPE; ?>';
+        // var LGD_window_type = '<?php echo $LGD_WINDOW_TYPE; ?>';
+        var LGD_window_type = 'iframe';
+
         /*
         * 수정불가
         */
         function launchCrossPlatform(){
             // lgdwin = openXpay(document.getElementById('LGD_PAYINFO'), '<?php echo $CST_PLATFORM; ?>', LGD_window_type, null, "", "");
-            lgdwin = openXpay(document.getElementById('LGD_PAYINFO'), '<?php echo $CST_PLATFORM; ?>', "iframe", null, "", "");
+            lgdwin = openXpay(document.getElementById('LGD_PAYINFO'), '<?php echo $CST_PLATFORM; ?>', 'iframe', null, "", "");
         }
         /*
         * FORM 명만  수정 가능
@@ -178,6 +178,7 @@ $sessionFlag = $_SESSION['p_flag']; //사용자 구분 플래그, 'c':기업회�
         }
         </script>
 
+       <form method="post" name="LGD_PAYINFO" id="LGD_PAYINFO" action="payres.php">
         <section class="collapse_area">
             <div class="container">
                 <div class="row">
@@ -188,7 +189,6 @@ $sessionFlag = $_SESSION['p_flag']; //사용자 구분 플래그, 'c':기업회�
 
                         <div class="row" >
                             <div class="col-md-12 payinfo-form">
-                                <form method="post" name="LGD_PAYINFO" id="LGD_PAYINFO" action="payres.php">
                                     <table class="table table-striped">
                                         <tbody>
                                             <tr>
@@ -221,35 +221,39 @@ $sessionFlag = $_SESSION['p_flag']; //사용자 구분 플래그, 'c':기업회�
                         <div class="row payinfo-button" >
                             <div class="col-md-12">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal" id="cancel">취소</button>
-                                <button type="submit" class="btn btn-success" onclick="launchCrossPlatform();">결제하기</button>
+                                <!-- <button type="submit" class="btn btn-success" onclick="launchCrossPlatform();">결제하기</button> -->
+                                <input type="button" class="btn btn-success" onclick="launchCrossPlatform();" value="결제하기">
+
                             </div>
                         </div>
-                        <input type="hidden" name="check_diff_addr" value="<?php echo $check_diff_addr; ?>">
-                        <input type="hidden" name="recipient_name" value="<?php echo $recipient_name; ?>">
-                        <input type="hidden" name="recipient_zipcode" value="<?php echo $recipient_zipcode; ?>">
-                        <input type="hidden" name="recipient_address01" value="<?php echo $recipient_address01; ?>">
-                        <input type="hidden" name="recipient_address02" value="<?php echo $recipient_address02; ?>">
-                        <input type="hidden" name="recipient_phone" value="<?php echo $recipient_phone; ?>">
-                        <input type="hidden" name="recipient_hphone" value="<?php echo $recipient_hphone; ?>">
-                        <input type="hidden" name="memo_to_delivery" value="<?php echo $memo_to_delivery; ?>">
-                        <input type="hidden" name="memo_to_admin" value="<?php echo $memo_to_admin; ?>">
-                        <input type="hidden" name="sessionFlag" id="sessionFlag" value="<?php echo $sessionFlag; ?>">
-                        <input type="hidden" name="LGD_ENCODING" id="LGD_ENCODING" value="UTF-8">
-<?php
-
-foreach ($payReqMap as $key => $value) {
-    echo '                        <input type="hidden" name="' . $key . '" id="' . $key . '" value="' . $value . '">' . "\r\n";
-}
-echo '';
-
-// echo '<pre>';; // var_dump($_SESSION);; // echo '</pre>';
-?>
-
-                        </form>
                     </div>
                 </div>
             </div>
         </section>
+        <input type="hidden" name="check_diff_addr" value="<?php echo $check_diff_addr; ?>">
+        <input type="hidden" name="recipient_name" value="<?php echo $recipient_name; ?>">
+        <input type="hidden" name="recipient_zipcode" value="<?php echo $recipient_zipcode; ?>">
+        <input type="hidden" name="recipient_address01" value="<?php echo $recipient_address01; ?>">
+        <input type="hidden" name="recipient_address02" value="<?php echo $recipient_address02; ?>">
+        <input type="hidden" name="recipient_phone" value="<?php echo $recipient_phone; ?>">
+        <input type="hidden" name="recipient_hphone" value="<?php echo $recipient_hphone; ?>">
+        <input type="hidden" name="memo_to_delivery" value="<?php echo $memo_to_delivery; ?>">
+        <input type="hidden" name="memo_to_admin" value="<?php echo $memo_to_admin; ?>">
+        <input type="hidden" name="sessionFlag" id="sessionFlag" value="<?php echo $sessionFlag; ?>">
+        <input type="hidden" name="LGD_ENCODING" id="LGD_ENCODING" value="UTF-8">
+<?php
+
+foreach ($payReqMap as $key => $value) {
+    echo '        <input type="hidden" name="' . $key . '" id="' . $key . '" value="' . $value . '">' . "\r\n";
+}
+echo '';
+
+// echo '<pre>';
+// var_dump($_SESSION);
+// echo '</pre>';
+
+?>
+        </form>
 
 
 <?php include_once '../include/brands.php';?>
@@ -257,11 +261,6 @@ echo '';
 <?php include_once '../include/footer.php';?>
 
 
-
-
-        <script src="/js/vendor/jquery-2.2.0.min.js"></script>
-        <script src="/js/bootstrap.min.js"></script>
-        <script language="JavaScript" src="/js/shopping.js"></script>
         <script>
             $(document).ready(function() {
                 $( "#cancel" ).click(function() {
@@ -269,6 +268,7 @@ echo '';
                 });
             });
         </script>
+
     </body>
 </html>
 
