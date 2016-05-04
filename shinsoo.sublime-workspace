@@ -689,8 +689,7 @@
 	},
 	"expanded_folders":
 	[
-		"/C/wamp/www/shinsoo",
-		"/C/wamp/www/shinsoo/member"
+		"/C/wamp/www/shinsoo"
 	],
 	"file_history":
 	[
@@ -1608,7 +1607,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 152.0,
+	"side_bar_width": 218.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
