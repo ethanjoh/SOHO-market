@@ -734,7 +734,7 @@ HEREDOC;
                                             <a href="cart-update.php?mode=del&amp;cart_no={$cart_id}&amp;where=cart" onclick="return confirm('해당 상품을 삭제하시겠습니까?')"><i class="fa fa-times"></i></a>
                                         </td>
                                         <td class="sop-cart">
-                                            <a href="detail.php?pnum={$pnum}&amp;lcode={$category_l}&smp;mcode={$category_m}"><img class="primary-image" alt="" src="{$s_image1_name}"></a>
+                                            <a href="detail.php?pnum={$pnum}&amp;lcode={$category_l}&amp;mcode={$category_m}"><img class="primary-image" alt="" src="{$s_image1_name}"></a>
                                         </td>
                                         <td class="sop-cart"><a href="detail.php?pnum={$pnum}&amp;lcode={$category_l}&amp;mcode={$category_m}">{$icon} {$itemName}</a><br>[{$p_opt}]</td>
                                         <td class="sop-cart cost"> {$price}</td>
@@ -958,10 +958,11 @@ HEREDOC;
                                                             <tr>
                                                                 <td colspan="3">총합</td>
                                                                 <td colspan="1">{$commaTotal}</td>
-                                                                <input type="hidden" name="LGD_AMOUNT"   value="{$finalSum}">
                                                             </tr>
                                                         </tfoot>
                                                     </table>
+                                                    <input type="hidden" name="LGD_AMOUNT"   value="{$finalSum}">
+
 HEREDOC;
 
     } // ./else

@@ -64,8 +64,8 @@ require_once 'variables_from_payreq.php';
 //해쉬값 검증이 성공이면
 if ($LGD_HASHDATA2 == $LGD_HASHDATA) {
     //결제가 성공이면
-    if ("0000" == $LGD_RESPCODE) {
-        if ("R" == $LGD_CASFLAG) {
+    if ($LGD_RESPCODE == "0000") {
+        if ($LGD_CASFLAG == "R") {
             /*
              * 무통장 할당 성공 결과 상점 처리(DB) 부분
              * 상점 결과 처리가 정상이면 "OK"
@@ -82,7 +82,7 @@ if ($LGD_HASHDATA2 == $LGD_HASHDATA) {
             // fwrite($file, $txt);
             // fclose($file);
 
-        } else if ("I" == $LGD_CASFLAG) {
+        } else if ($LGD_CASFLAG == "I") {
             /*
              * 무통장 입금 성공 결과 상점 처리(DB) 부분
              * 상점 결과 처리가 정상이면 "OK"
@@ -92,7 +92,7 @@ if ($LGD_HASHDATA2 == $LGD_HASHDATA) {
             //if( 무통장 입금 성공 상점처리결과 성공 )
             // $resultMSG = "OK";
 
-        } else if ("C" == $LGD_CASFLAG) {
+        } else if ($LGD_CASFLAG == "C") {
             /*
              * 무통장 입금취소 성공 결과 상점 처리(DB) 부분
              * 상점 결과 처리가 정상이면 "OK"

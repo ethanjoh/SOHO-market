@@ -1,5 +1,6 @@
 <?php include_once '../include/header.php';?>
 
+        <form name="LGD_PAYINFO" id="LGD_PAYINFO" method="post" action="//<?php echo $_SERVER['SERVER_NAME']; ?>:<?php echo $sslPort; ?>/pay/payreq_crossplatform.php">
         <section class="collapse_area">
             <div class="container">
                 <div class="row">
@@ -7,9 +8,6 @@
                         <div class="check">
                             <h1>주문서 작성</h1>
                         </div>
-                        <!-- <form name="LGD_PAYINFO" id="LGD_PAYINFO" method="post" action="//<?php echo $_SERVER['SERVER_NAME']; ?>:<?php echo $sslPort; ?>/pay/payreq_crossplatform.php"> -->
-                        <form name="LGD_PAYINFO" id="LGD_PAYINFO" method="post" action="/pay/payreq_crossplatform.php">
-
                         <div class="faq-accordion">
                             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                                 <div class="panel panel-default">
@@ -229,21 +227,19 @@
                                                         <option value="SC0030">실시간 계좌이체</option>
                                                         <option value="SC0040">무통장입금(가상계좌 발급)</option>
                                                     </select>
-                                                <!-- </div> -->
 
-                                                    <button class="button2 get" type="submit" >결제하기</button>
-                                                    <input type="hidden" name="CST_MID"      id="CST_MID"      value="shinsoo">
+                                                    <input type="hidden" name="CST_MID" id="CST_MID" value="shinsoo">
                                                     <input type="hidden" name="CST_PLATFORM" id="CST_PLATFORM" value="<?php echo $CST_PLATFORM; ?>">
                                                     <input type="hidden" name="LGD_WINDOW_TYPE" id="LGD_WINDOW_TYPE" value="iframe">
-                                                    <input type="hidden" name="LGD_CUSTOM_SWITCHINGTYPE" id="LGD_CUSTOM_SWITCHINGTYPE" value="iframe">
+                                                    <input type="hidden" name="LGD_CUSTOM_SWITCHINGTYPE" id="LGD_CUSTOM_SWITCHINGTYPE" value="IFRAME">
                                                     <input type="hidden" name="LGD_CUSTOM_FIRSTPAY" id="LGD_CUSTOM_FIRSTPAY" value="SC0010">
 
+                                                    <button class="button2 get" type="submit" >결제하기</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                </form>
                             </div>
                         </div>
                     </div>
@@ -261,6 +257,7 @@
                 </div>
             </div>
         </section>
+        </form>
 
 
 <?php include_once '../include/brands.php';?>
