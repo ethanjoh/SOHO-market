@@ -46,7 +46,7 @@
     /*
      * LGD_RETURNURL 을 설정하여 주시기 바랍니다. 반드시 현재 페이지와 동일한 프로트콜 및  호스트이어야 합니다. 아래 부분을 반드시 수정하십시요.
      */
-    $LGD_RETURNURL = "http://" . $_SERVER['SERVER_NAME'] . "/pay/returnurl.php";
+    $LGD_RETURNURL = "http://" . $_SERVER['SERVER_NAME'] . "/smartpay/returnurl.php";
 
     /*
      * ISP 카드결제 연동중 모바일ISP방식(고객세션을 유지하지않는 비동기방식)의 경우, LGD_KVPMISPNOTEURL/LGD_KVPMISPWAPURL/LGD_KVPMISPCANCELURL를 설정하여 주시기 바랍니다.

@@ -197,17 +197,17 @@ owl active index-3 start
     /*----------------------------
      price-slider active
     ------------------------------ */
-    $("#slider-range").slider({
-        range: true,
-        min: 80,
-        max: 730,
-        values: [88, 721],
-        slide: function(event, ui) {
-            $("#amount").val(ui.values[0] + " - " + ui.values[1]);
-        }
-    });
-    $("#amount").val($("#slider-range").slider("values", 0) +
-        " - " + $("#slider-range").slider("values", 1));
+    // $("#slider-range").slider({
+    //     range: true,
+    //     min: 80,
+    //     max: 730,
+    //     values: [88, 721],
+    //     slide: function(event, ui) {
+    //         $("#amount").val(ui.values[0] + " - " + ui.values[1]);
+    //     }
+    // });
+    // $("#amount").val($("#slider-range").slider("values", 0) +
+    //     " - " + $("#slider-range").slider("values", 1));
     /*--------------------------
      scrollUp
     ---------------------------- */
