@@ -698,9 +698,9 @@
 	],
 	"file_history":
 	[
-		"/C/wamp/www/shinsoo/util/util.php",
 		"/C/wamp/www/shinsoo/shop/checkout.php",
 		"/C/wamp/www/shinsoo/pay/payreq_crossplatform.php",
+		"/C/wamp/www/shinsoo/util/util.php",
 		"/C/wamp/www/shinsoo/include/footer.php",
 		"/C/wamp/www/shinsoo/shop/index.php",
 		"/C/wamp/www/shinsoo/pay/sample_crossplatform.html",
@@ -1009,11 +1009,6 @@
 			"sheets":
 			[
 			]
-		},
-		{
-			"sheets":
-			[
-			]
 		}
 	],
 	"incremental_find":
@@ -1033,18 +1028,11 @@
 				0,
 				1,
 				1
-			],
-			[
-				1,
-				0,
-				2,
-				1
 			]
 		],
 		"cols":
 		[
 			0.0,
-			0.450549990863,
 			1.0
 		],
 		"rows":
@@ -1080,16 +1068,16 @@
 		"selected_items":
 		[
 			[
+				"che",
+				"shop\\checkout.php"
+			],
+			[
 				"inde",
 				"shop\\index.php"
 			],
 			[
 				"foo",
 				"include\\footer.php"
-			],
-			[
-				"che",
-				"shop\\checkout.php"
 			],
 			[
 				"cart",
