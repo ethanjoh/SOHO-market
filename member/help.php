@@ -36,7 +36,7 @@
                                 </p>
                                 <p>[기업회원 승인절차]</p>
                                 <p><i class="fa fa-check-square-o" aria-hidden="true"></i> 회원가입 페이지에서 기업회원 가입을 선택하고 회원 가입 <br>
-                                <i class="fa fa-check-square-o" aria-hidden="true"></i> 사업자 등록증 사본 팩스로 전송 (<?php echo $com_info['tel']; ?>) 또는 사업자 등록증 전체가 잘 나오도록 사진을 찍어서 <?php echo $com_info['email']; ?>으로 파일을 첨부하여 전송. <br>
+                                <i class="fa fa-check-square-o" aria-hidden="true"></i> 사업자 등록증 사본 팩스로 전송 (<?php echo $com_info['fax']; ?>) 또는 사업자 등록증 전체가 잘 나오도록 사진을 찍어서 <?php echo $com_info['email']; ?>으로 파일을 첨부하여 전송. <br>
                                 이때 사업자 등록증 상의 주소가 자택으로 되어있는 경우 매장 사진을 함께 첨부.<br>
                                 </p>
                                 <p>
