@@ -146,23 +146,30 @@ if ($mode == "insert") {
 
                 if (is_dir($smallImgPath)) {
                     make_thumbnail($bigImgFile[$i], 100, 100, $smallImgFile[$i]);
-
                 } else {
                     mkdir($smallImgPath, 0755, true);
                     make_thumbnail($bigImgFile[$i], 100, 100, $smallImgFile[$i]);
-
                 }
+            }
 
+            if (count($error_msg) > 0) {
+                foreach ($error_msg as $msg) {
+                    //////// debug ////////////
+                    $txt  = print_r($msg, true);
+                    $file = fopen("err_log.txt", "w+");
+                    fwrite($file, $txt);
+                    fclose($file);
+                }
             }
 
         }
 
     } else {
-        for ($i = 0; $i < 4; $i++) {
-            $bImg_chk[$i]     = "N";
-            $sImg_chk[$i]     = "N";
-            $bigImgFile[$i]   = 'http://placehold.it/500x500';
-            $smallImgFile[$i] = 'http://placehold.it/100x100';
+        for ($j = 0; $j < 4; $j++) {
+            $bImg_chk[$j]     = "N";
+            $sImg_chk[$j]     = "N";
+            $bigImgFile[$j]   = 'http://placehold.it/500x500';
+            $smallImgFile[$j] = 'http://placehold.it/100x100';
         }
     }
 
@@ -320,7 +327,11 @@ if ($mode == "insert") {
 
             if (count($error_msg) > 0) {
                 foreach ($error_msg as $msg) {
-                    msg($msg . "\n");
+                    //////// debug ////////////
+                    $txt  = print_r($msg, true);
+                    $file = fopen("err_log.txt", "w+");
+                    fwrite($file, $txt);
+                    fclose($file);
                 }
             }
 
@@ -336,7 +347,6 @@ if ($mode == "insert") {
         } else {
             $opt_stock .= ",1";
         }
-
     }
 
     if ($optname != null) {
@@ -376,12 +386,6 @@ if ($mode == "insert") {
 										 del_chk      = '$del_chk'
 					  WHERE num='$p_num' ";
     $result1 = mysqli_query($connect, $dbinsert1);
-
-    // debug
-    // $txt  = print_r($dbinsert1, true);
-    // $file = fopen("log.txt", "w+");
-    // fwrite($file, $txt);
-    // fclose($file);
 
     if ($result1) {
         $url = "top_pro_list.php?lcode=" . $lcode . "&mcode=" . $mcode . "&page=" . $page . "";

@@ -524,11 +524,13 @@ function get_item_image($size, $imageOrderNo, $pnum)
             case '3':
                 if ($rows['b_image3'] == 'Y') {
                     $bImagePath3 = $rows['b_image3_name'];
+                    return $bImagePath3;
                 }
                 break;
             case '4':
                 if ($rows['b_image4'] == 'Y') {
                     $bImagePath4 = $rows['b_image4_name'];
+                    return $bImagePath4;
                 }
                 break;
             default:
