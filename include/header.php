@@ -31,6 +31,11 @@ $uri = set_var($_SERVER['HTTP_REFERER']);
         <meta property="og:description" content="<?php echo $com_info['description']; ?>" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico">
+
+        <!-- FONTS -->
+        <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>
+        <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-jp.css' rel='stylesheet' type='text/css'>
+
         <link rel="stylesheet" href="/css/bootstrap.min.css">
         <link rel="stylesheet" href="/css/jquery-ui.min.css" >
         <link rel="stylesheet" href="/css/font-awesome.min.css">
@@ -43,11 +48,18 @@ $uri = set_var($_SERVER['HTTP_REFERER']);
         <link rel="stylesheet" href="/css/meanmenu.min.css">
         <link rel="stylesheet" href="/css/img-zoom/jquery.simpleLens.css">
         <link rel="stylesheet" href="/css/normalize.css">
+
         <link rel="stylesheet" href="/css/main.css">
         <link rel="stylesheet" href="/css/style.css">
         <link rel="stylesheet" href="/css/myshop.css">
         <link rel="stylesheet" href="/css/responsive.css">
         <script src="/js/vendor/modernizr-2.8.3.min.js"></script>
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
+        <!--[if lt IE 9]>
+        <script src="/admin/js/html5shiv.js"></script>
+        <script src="/admin/js/respond.min.js"></script>
+        <![endif]-->
         <script src="/bbs/ckeditor/ckeditor.js" charset="utf-8"></script>
 
     </head>
