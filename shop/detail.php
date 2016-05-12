@@ -42,7 +42,7 @@ $contents = get_item_contents($pnum);
             <div class="shop-details">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-4 col-sm-6 hidden-xs">
+                        <div class="col-md-4 col-sm-6">
                             <div class="s_big">
                                 <div>
                                     <?php echo show_item_images($pnum); ?>
