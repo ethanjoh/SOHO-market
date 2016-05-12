@@ -270,7 +270,6 @@ HEREDOC;
                         <div class="row text-center">
                         	<div class="col-sm-12">
                             	<input type="hidden" name="mode" value="<?php echo $mode; ?>" />
-                            	<!-- <input type="hidden" name="pmode" value="<?php echo $pmode; ?>" /> -->
                             	<input type="hidden" name="p_num" value="<?php echo $p_num; ?>" />
                             	<input type="hidden" name="page" value="<?php echo $page; ?>" />
                             	<input type="hidden" name="old_l_cate" value="<?php echo $update_row['category_m']; ?>" />

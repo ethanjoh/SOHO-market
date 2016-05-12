@@ -2055,10 +2055,6 @@ function check_uploaded_file($i) // 업로드 파일을 확인하는 함수
         // 업로드 에러의 경우
         if ($error == UPLOAD_ERR_NO_FILE) {
             // 업로드 되지 않은 경우는 에러 처리를 하지 않는다.
-        } elseif ($error == UPLOAD_ERR_INI_SIZE ||
-            $error == UPLOAD_ERR_FORM_SIZE) {
-            // 파일 크기 에러
-            $error_msg[] = '파일 크기는 100KB 이하로 해주세요';
         } else {
             // 그 외의 에러의 경우
             $error_msg[] = '업로드 에러입니다';
@@ -2075,10 +2071,6 @@ function check_uploaded_file($i) // 업로드 파일을 확인하는 함수
             $ext = 'png';
         }
 
-        // 이미지 파일의 MIME 타입을 판별 [레시피 124]합니다.
-        $finfo     = new finfo(FILEINFO_MIME_TYPE);
-        $finfoType = $finfo->file($tmp_name);
-
         // 이미지 파일의 크기 하한을 확인합니다.
         if ($size == 0) {
             $error_msg[] = '파일이 존재하지 않거나 빈 파일입니다.';
@@ -2086,9 +2078,6 @@ function check_uploaded_file($i) // 업로드 파일을 확인하는 함수
         } elseif ($size > MAX_SIZE) {
             $error_msg[] = '파일 크기는 1MB 이하로 해주세요';
             // 전송된 MIME 타입과 이미지 파일의 MIME 타입이 일치하는지 확인합니다.
-        } elseif ($img_type != $finfoType) {
-            $error_msg[] = 'MIME 타입이 일치하지 않습니다.';
-            // 이미지 파일의 확장자를 확인합니다.
         } elseif ($ext != 'gif' && $ext != 'jpg' && $ext != 'png') {
             $error_msg[] = '업로드 가능한 파일은 gif, jpg, png 입니다';
         } else {

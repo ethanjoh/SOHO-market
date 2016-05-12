@@ -18,9 +18,11 @@
 
 <?php
 
-$mode  = set_var($_GET['mode']);
-$date1 = set_var($_GET['date1']);
-$date2 = set_var($_GET['date2']);
+$mode    = set_var($_GET['mode']);
+$date1   = set_var($_GET['date1']);
+$date2   = set_var($_GET['date2']);
+$key     = set_var($_GET['key']);
+$keyword = set_var($_GET['keyword']);
 
 switch ($mode) {
     case 'date':

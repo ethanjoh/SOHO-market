@@ -302,18 +302,18 @@ function send_post(id)
   }
   */
 
-if(!form.shop_price.value) {
-     alert("소비자가를 입력하세요.");
-     form.shop_price.focus();
-     return ;
-  }
+// if(!form.shop_price.value) {
+//      alert("소비자가를 입력하세요.");
+//      form.shop_price.focus();
+//      return ;
+//   }
 
 
- if(!form.retail_price.value) {
-     alert("공급가를 입력하세요.");
-	 form.retail_price.focus();
-	 return ;
-  }
+ // if(!form.retail_price.value) {
+ //     alert("공급가를 입력하세요.");
+	//  form.retail_price.focus();
+	//  return ;
+ //  }
 
  if(form.shop_price.value) {
      if(!IsNumber(form.shop_price.name)){

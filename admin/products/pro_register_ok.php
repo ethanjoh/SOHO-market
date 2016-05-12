@@ -132,6 +132,11 @@ if ($mode == "insert") {
                 $tmp_name       = $_FILES['b_image']['tmp_name'][$i];
                 $move_to        = $bigImgFile[$i];
 
+                $txt  = print_r($move_to, true);
+                $file = fopen("file_log.txt", "w+");
+                fwrite($file, $txt);
+                fclose($file);
+
                 if (is_dir($bigImgPath)) {
                     move_uploaded_file($tmp_name, $move_to);
                 } else {
