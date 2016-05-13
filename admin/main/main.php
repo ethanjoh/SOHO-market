@@ -109,7 +109,7 @@ mysqli_query($connect, 'set names utf8');
                 </div>
                 <div class="value">
                   <h1>
-                  <a href="../member/p_top_member_list.php?mode=nonapproved"><?php echo $newPersonalMember; ?></a>
+                  <a href="../member/p_top_member_list.php?mode=today"><?php echo $newPersonalMember; ?></a>
                   </h1>
                   <p>금일 신규 개인회원</p>
                 </div>

@@ -119,9 +119,9 @@ $total  = mysqli_num_rows($result);
                     <tbody>
                       <tr>
                         <td class="text-center">
-                            <a class="btn btn-default" href="top_member_list.php?mode=nonapproved">미승인 회원</a>
-                            <a class="btn btn-default" href="top_member_list.php?mode=today">금일 가입회원</a>
-                            <a class="btn btn-primary" href="top_member_list.php">전체 목록</a>
+                            <!-- <a class="btn btn-default" href="p_top_member_list.php?mode=nonapproved">미승인 회원</a> -->
+                            <a class="btn btn-default" href="p_top_member_list.php?mode=today">금일 가입회원</a>
+                            <a class="btn btn-primary" href="p_top_member_list.php">전체 목록</a>
                         </td>
                       </tr>
                     </tbody>
