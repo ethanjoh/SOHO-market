@@ -15,25 +15,28 @@
                 <div class="row">
                     <div class="item_all indicator-style">
                         <div class="col-md-12">
-                            <img class="primary-img" src="/images/brand/tigerchoi.jpg" alt="" />
+                            <img class="primary-img" src="/images/brand/superstroke_logo.svg" alt="" />
                         </div>
                         <div class="col-md-12">
-                            <img class="primary-img" src="/images/brand/no1grip.jpg" alt="" />
+                            <img class="primary-img" src="/images/brand/tigerchoi_logo.svg" alt="" />
                         </div>
                         <div class="col-md-12">
-                            <img class="primary-img" src="/images/brand/superstroke.jpg" alt="" />
+                            <img class="primary-img" src="/images/brand/no1_logo.svg" alt="" />
                         </div>
                         <div class="col-md-12">
-                            <img class="primary-img" src="/images/brand/winn.jpg" alt="" />
+                            <img class="primary-img" src="/images/brand/winn_logo.svg" alt="" />
                         </div>
                         <div class="col-md-12">
-                            <img class="primary-img" src="/images/brand/tigershark.jpg" alt="" />
+                            <img class="primary-img" src="/images/brand/golftiger_logo.svg" alt="" />
                         </div>
                         <div class="col-md-12">
-                            <img class="primary-img" src="/images/brand/griptech.jpg" alt="" />
+                            <img class="primary-img" src="/images/brand/griptech_logo.svg" alt="" />
                         </div>
                         <div class="col-md-12">
                             <img class="primary-img" src="/images/brand/golfpride.jpg" alt="" />
+                        </div>
+                        <div class="col-md-12">
+                            <img class="primary-img" src="/images/brand/tigershark.jpg" alt="" />
                         </div>
                     </div>
                 </div>
