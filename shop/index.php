@@ -9,6 +9,8 @@
             <div class="container">
                 <div class="row">
 <?php show_top_banner();?>
+                </div>
+                <div class="row">
                    <div class="col-md-12">
                         <div class="ma-title">
                             <h2>
