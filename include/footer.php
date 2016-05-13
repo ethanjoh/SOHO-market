@@ -10,7 +10,7 @@
 
                                     <div class="f-col f-col2 col-md-6 hidden-sm col-xs-12">
                                         <div class="static_all">
-                                                <?php echo get_bbs_title('fitting', 5); ?>
+<?php echo get_bbs_title('notice', 5); ?>
                                         </div>
                                     </div>
                                     <div class="f-col f-col3 col-md-3 col-sm-4  col-xs-12">

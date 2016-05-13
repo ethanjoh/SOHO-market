@@ -171,6 +171,7 @@ HEREDOC;
     }
     ?>
                                                             <p class="help-block"><i class="fa fa-exclamation-triangle"></i> 구분은 ',(콤마)' 하세요 (예:블루,레드,블랙)</p>
+                                                            <p class="help-block"><i class="fa fa-exclamation-triangle"></i> 하나의 옵션 중간에 ,(콤마) 가 들어가지 않도록 유의하세요</p>
                                                         </td>
         											</tr>
             										<tr>
@@ -401,6 +402,7 @@ HEREDOC;
     													<td>
     														<input name="optname_ins" type="text" class="form-control" value="" size="100" >
     														<p class="help-block"><i class="fa fa-exclamation-triangle"></i> 구분은 ',(콤마)' 하세요 (예:블루,레드,블랙)</p>
+                                <p class="help-block"><i class="fa fa-exclamation-triangle"></i> 하나의 옵션 중간에 ,(콤마)가 들어가지 않도록 유의하세요</p>
     													</td>
     												</tr>
 

@@ -1478,12 +1478,17 @@ HEREDOC;
 // 만약 검색 결과가 없다면,
     if ($total == 0) {
         echo <<<HEREDOC
-                                                  <tr class="danger">
-                                                    <td colspan="2"><p>등록된 글이 없습니다.</p></td>
-                                                  </tr>
-                                                </tbody>
-                                              </table>
+
+                                                      <tr class="danger">
+                                                        <td colspan="2"><p>등록된 글이 없습니다.</p></td>
+                                                      </tr>
+                                                    </tbody>
+                                                  </table>
+                                                <hr>
+                                                </div>
+                                             </section>
                                             </div>
+
 HEREDOC;
 
     } else {
@@ -1495,27 +1500,31 @@ HEREDOC;
             $title = get_short($row['title'], 50);
             $title = stripslashes($title);
             echo <<<HEREDOC
-                    <tr>
-                        <td class="text-left">
-                            <a href="/bbs/read.php?code={$code}&amp;main_no={$row['main_no']}&amp;flag=r" >{$title}</a>
-                        </td>
+
+                                                        <tr>
+                                                            <td class="text-left">
+                                                                <a href="/bbs/read.php?code={$code}&amp;main_no={$row['main_no']}&amp;flag=r" >{$title}</a>
+                                                            </td>
 HEREDOC;
 
 //날짜 형식을 바꾼다.
             $post_date = substr($row['create_date'], 0, 11);
             echo <<<HEREDOC
-                        <td class="text-center">{$post_date}</td>
-                    </tr>
+
+                                                            <td class="text-center">{$post_date}</td>
+                                                        </tr>
 HEREDOC;
         }
 
         echo <<<HEREDOC
+
                                                     </tbody>
                                                   </table>
                                                 <hr>
                                                 </div>
                                              </section>
                                             </div>
+
 HEREDOC;
     }
 }

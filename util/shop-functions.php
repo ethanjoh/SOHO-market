@@ -1380,7 +1380,7 @@ function get_list_page_num($mode, $lcode, $mcode, $key, $keyword, $page, $scale)
     }
 
     if ($mode == "search") {
-        $search_qry .= " AND (name LIKE '%$keyword%' OR prod_code LIKE '$keyword' OR company LIKE '%$keyword%') ";
+        $search_qry .= " AND (name LIKE '%$keyword%' OR opt LIKE '%$keyword%' OR company LIKE '%$keyword%') ";
         $qry = "SELECT * FROM products WHERE approved='Y' AND del_chk != 'Y' $search_qry ";
 
     } else {
@@ -1448,7 +1448,7 @@ function get_list_page_result($mode, $lcode, $mcode, $key, $keyword, $scaleTimes
     }
 
     if ($mode == "search") {
-        $search_qry .= " AND (name LIKE '%" . $keyword . "%' OR prod_code LIKE '" . $keyword . "' OR company LIKE '%" . $keyword . "%') ";
+        $search_qry .= " AND (name LIKE '%" . $keyword . "%' OR opt LIKE '%" . $keyword . "%' OR company LIKE '%" . $keyword . "%') ";
         $qry = "SELECT * FROM products WHERE approved='Y' AND del_chk != 'Y' " . $search_qry . " ORDER BY name DESC LIMIT " . $scaleTimesPageNum . ", " . $numOfLastPage . "";
     } else {
         $qry = "SELECT * FROM products WHERE category_l = '$lcode' AND del_chk !='Y'" . $added_qry . " AND approved = 'Y' ORDER BY name DESC LIMIT " . $scaleTimesPageNum . ", " . $numOfLastPage . "";
@@ -1477,7 +1477,9 @@ function show_items_on_catalog($result, $tabid)
     $sessionFlag  = set_var($_SESSION['p_flag']);
     $isApprovedId = check_approved_id();
 
-    if ($result) {
+    $total = mysqli_num_rows($result);
+
+    if ($total > 0) {
 
         for ($i = 0; $rows = mysqli_fetch_array($result); $i++) {
 
@@ -1630,7 +1632,7 @@ HEREDOC;
         mysqli_free_result($result);
 
     } else {
-        echo "<p>등록된 상품이 없습니다.</p><p>관리자 페이지 > 상품관리에서 상품을 등록해 주세요.</p>\n";
+        echo '<p class="text-center">검색 상품이 없습니다.<br>띄워쓰기 없이 검색하시거나 다른 검색어를 입력해 보세요</p>' . "\r\n";
     }
 
 }

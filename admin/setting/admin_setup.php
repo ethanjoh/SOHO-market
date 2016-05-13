@@ -24,7 +24,6 @@
               </header>
               <ul class="info-body">
                 <li><i class="fa fa-info-circle"></i> 비밀번호를 분실하지 않도록 주의하시기 바랍니다.</li>
-                <li><i class="fa fa-info-circle"></i> 인감이미지는 배경을 투명하게 하십시오.</li>
               </ul>
             </section>
           </div>
@@ -237,7 +236,7 @@ $zipcode = explode("-", $rows['zipcode']);
                           <th></th>
                           <td colspan="3"><input type="text" class="form-control" value="<?php echo $rows['addr2']; ?>" name="o_addr2" id="o_addr2" size="100"></td>
                         </tr>
-                        <tr>
+<!--                         <tr>
                           <th>인감 이미지
                             <p>(세금계산서 발행용)</p></th>
                           <td colspan="3">
@@ -250,7 +249,7 @@ $zipcode = explode("-", $rows['zipcode']);
                           <th>입금계좌</th>
                           <td colspan="3"><?php echo ($rows['bank'] != '') ? "<input type=\"text\" class=\"form-control\" value=\"" . $rows['bank'] . "\" name=\"bank_account\" size=\"50\"/>" : "<input type=\"text\" class=\"form-control\" value=\"계좌번호 입력\" name=\"bank_account\" size=\"50\"/>"; ?>
                           <p class="help-block">예)우리은행 000-0000-0000(예금주:홍길동)</p></td>
-                        </tr>
+                        </tr> -->
                       </tbody>
                     </table>
                   </div>

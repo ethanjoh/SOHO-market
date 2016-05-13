@@ -34,9 +34,9 @@
                                 <p>앞으로 많은 성원과 관심 부탁드리며, 항상 여러분의 가정에 행복이 가득하길 기원합니다.</p>
                                 <p>- 신수상사 임직원일동 - </p>
                                 <ul>
-                                    <li>We love products that work perfectly and look beautiful.</li>
-                                    <li>We create base on a deeply analysis of your project.</li>
-                                    <li>We are create design with really high quality standards.</li>
+                                    <li>Thank you for visiting our web site.</li>
+                                    <li>We truly appriciate for our customers all the time.</li>
+                                    <li>Please support us as usual.</li>
                                 </ul>
                             </div>
                         </div>

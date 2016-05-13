@@ -22,11 +22,11 @@ $uri = set_var($_SERVER['HTTP_REFERER']);
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title><?php echo $com_info['company_name']; ?></title>
+        <title><?php echo $com_info['site_name']; ?></title>
         <meta name="keyword" content="<?php echo $com_info['keywords']; ?>">
         <meta name="description" content="<?php echo $com_info['description']; ?>">
         <meta property="og:title" content="<?php echo $com_info['site_name']; ?>"/>
-        <meta property="og:site_name" content="<?php echo $com_info['company_name']; ?>"/>
+        <meta property="og:site_name" content="<?php echo $com_info['site_name']; ?>"/>
         <meta property="og:url" content="<?php echo $com_info['homepage']; ?>" />
         <meta property="og:description" content="<?php echo $com_info['description']; ?>" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -126,7 +126,7 @@ $uri = set_var($_SERVER['HTTP_REFERER']);
                                 <nav>
                                     <ul>
                                         <li><a href="/member/about-us.php">회사 소개</a></li>
-                                        <li><a href="/bbs/list.php?code=fitting">새소식</a></li>
+                                        <li><a href="/bbs/list.php?code=notice">새소식</a></li>
                                         <li><a href="/member/contact-us.php">문의</a></li>
                                     </ul>
                                 </nav>
@@ -145,7 +145,7 @@ $uri = set_var($_SERVER['HTTP_REFERER']);
                                     <ul>
                                         <li class="active1"><a href="/">Home</a></li>
                                         <li><a href="/member/about-us.php">회사 소개</a></li>
-                                        <li><a href="/bbs/list.php?code=fitting">새소식</a></li>
+                                        <li><a href="/bbs/list.php?code=notice">새소식</a></li>
                                         <li><a href="/member/contact-us.php">문의</a></li>
                                     </ul>
                                 </nav>
