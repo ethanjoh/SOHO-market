@@ -694,22 +694,34 @@
 	"expanded_folders":
 	[
 		"/C/wamp/www/shinsoo",
+		"/C/wamp/www/shinsoo/images",
+		"/C/wamp/www/shinsoo/images/brand",
 		"/C/wamp/www/shinsoo/member"
 	],
 	"file_history":
 	[
-		"/C/wamp/www/shinsoo/include/header.php",
-		"/C/wamp/www/shinsoo/admin/main/main.php",
-		"/C/wamp/www/shinsoo/admin/member/p_top_member_list.php",
-		"/C/wamp/www/shinsoo/util/util.php",
 		"/C/wamp/www/shinsoo/member/p-register-form.php",
+		"/C/wamp/www/shinsoo/member/register-form.php",
+		"/C/wamp/www/shinsoo/admin/main/main.php",
+		"/C/wamp/www/shinsoo/include/footer.php",
+		"/C/wamp/www/shinsoo/shop/index.php",
+		"/C/wamp/www/shinsoo/include/brands.php",
+		"/C/wamp/www/shinsoo/bbs/list.php",
+		"/C/wamp/www/shinsoo/images/brand/tigerchoi_logo.svg",
+		"/C/wamp/www/shinsoo/images/brand/golftiger_logo.svg",
+		"/C/wamp/www/shinsoo/util/util.php",
+		"/C/wamp/www/shinsoo/member/about-us.php",
+		"/C/wamp/www/shinsoo/include/header.php",
+		"/C/wamp/www/shinsoo/shop/catalog-list.php",
+		"/C/wamp/www/shinsoo/admin/products/pro_register.php",
+		"/C/wamp/www/shinsoo/util/shop-functions.php",
+		"/C/wamp/www/shinsoo/admin/setting/admin_setup.php",
+		"/C/wamp/www/shinsoo/admin/member/p_top_member_list.php",
 		"/C/wamp/www/shinsoo/css/style.css",
 		"/C/wamp/www/shinsoo/util/config.ini",
 		"/C/wamp/www/shinsoo/sftp-config.json",
 		"/C/wamp/www/shinsoo/css/main.css",
-		"/C/wamp/www/shinsoo/admin/products/pro_register.php",
 		"/C/wamp/www/shinsoo/shop/detail.php",
-		"/C/wamp/www/shinsoo/util/shop-functions.php",
 		"/C/wamp/www/shinsoo/admin/products/pro_register_ok.php",
 		"/C/wamp/www/shinsoo/pay/save_pginfo_to_db.php",
 		"/C/wamp/www/shinsoo/pay/save_wireinfo_to_db.php",
@@ -719,8 +731,6 @@
 		"/C/wamp/www/shinsoo/member/help.php",
 		"/C/wamp/www/shinsoo/member/register.php",
 		"/C/wamp/www/shinsoo/shop/checkout.php",
-		"/C/wamp/www/shinsoo/include/footer.php",
-		"/C/wamp/www/shinsoo/shop/index.php",
 		"/C/wamp/www/shinsoo/pay/sample_crossplatform.html",
 		"/C/wamp/www/cocokorea/.gitignore",
 		"/C/Users/Seonghyeon/Downloads/LGU+_XPay_Crossplatform/LGU+_XPay_Crossplatform_PHP/payreq_crossplatform.php",
@@ -730,11 +740,9 @@
 		"/C/wamp/www/shinsoo/js/jquery.meanmenu.js",
 		"/C/wamp/www/shinsoo/js/main.js",
 		"/C/wamp/www/shinsoo/member/p-register-ok.php",
-		"/C/wamp/www/shinsoo/shop/catalog-list.php",
 		"/C/wamp/www/shinsoo/member/register-ok.php",
 		"/C/wamp/www/shinsoo/admin/member/p_mem_view_member.php",
 		"/C/wamp/www/shinsoo/admin/order/or_view.php",
-		"/C/wamp/www/shinsoo/member/register-form.php",
 		"/C/wamp/www/shinsoo/admin/member/mem_view_member.php",
 		"/C/wamp/www/shinsoo/get-product.php",
 		"/C/wamp/www/shinsoo/admin/products/top_pro_list.php",
@@ -743,7 +751,6 @@
 		"/C/wamp/www/shinsoo/admin/order/or_delete.php",
 		"/C/wamp/www/shinsoo/lgpay/conf/mall.conf",
 		"/C/wamp/www/shinsoo/admin/setting/banner_setting_ok.php",
-		"/C/wamp/www/shinsoo/bbs/list.php",
 		"/C/wamp/www/shinsoo/admin/include/admin_head.php",
 		"/C/wamp/www/shinsoo/admin/include/header.php",
 		"/C/wamp/www/shinsoo/bbs/upload/upload.php",
@@ -820,12 +827,7 @@
 		"/C/wamp/www/seminar/admin/add-user.php",
 		"/C/wamp/www/shinsoo/admin/member/pmember_list.php",
 		"/C/wamp/www/shinsoo/admin/member/mem_view_pmember.php",
-		"/C/wamp/www/shinsoo/admin/member/mem_sending_mail.php",
-		"/C/wamp/www/shinsoo/admin/member/mem_sendmail_form.php",
-		"/C/Users/Joh/OneDrive/git_project/smedics/admin/member/mem_sendmail_ok.php",
-		"/C/wamp/www/shinsoo/shop/cart-update.php",
-		"/C/wamp/www/shinsoo/admin/order/or_changed.php",
-		"/C/wamp/www/shinsoo/member/p-login-ok.php"
+		"/C/wamp/www/shinsoo/admin/member/mem_sending_mail.php"
 	],
 	"find":
 	{
@@ -1068,8 +1070,60 @@
 		"selected_items":
 		[
 			[
+				"regis",
+				"member\\register-form.php"
+			],
+			[
+				"p-re",
+				"member\\p-register-form.php"
+			],
+			[
+				"bran",
+				"include\\brands.php"
+			],
+			[
+				"in",
+				"shop\\index.php"
+			],
+			[
+				"foo",
+				"include\\footer.php"
+			],
+			[
+				"lis",
+				"bbs\\list.php"
+			],
+			[
 				"main",
 				"admin\\main\\main.php"
+			],
+			[
+				"h",
+				"include\\header.php"
+			],
+			[
+				"abou",
+				"member\\about-us.php"
+			],
+			[
+				"head",
+				"include\\header.php"
+			],
+			[
+				"admin_se",
+				"admin\\setting\\admin_setup.php"
+			],
+			[
+				"pro_re",
+				"admin\\products\\pro_register.php"
+			],
+			[
+				"cata",
+				"shop\\catalog-list.php"
+			],
+			[
+				"index",
+				"shop\\index.php"
 			],
 			[
 				"util",
@@ -1086,10 +1140,6 @@
 			[
 				"he",
 				"include\\header.php"
-			],
-			[
-				"pro_re",
-				"admin\\products\\pro_register.php"
 			],
 			[
 				"detail",
@@ -1112,10 +1162,6 @@
 				"shop\\index.php"
 			],
 			[
-				"foo",
-				"include\\footer.php"
-			],
-			[
 				"cart",
 				"shop\\cart.php"
 			],
@@ -1128,10 +1174,6 @@
 				"pay\\payreq_crossplatform.php"
 			],
 			[
-				"head",
-				"include\\header.php"
-			],
-			[
 				"return",
 				"pay\\returnurl.php"
 			],
@@ -1142,10 +1184,6 @@
 			[
 				"reg",
 				"member\\register-ok.php"
-			],
-			[
-				"cata",
-				"shop\\catalog-list.php"
 			],
 			[
 				"style",
@@ -1164,10 +1202,6 @@
 				"admin\\member\\mem_view_member.php"
 			],
 			[
-				"regis",
-				"member\\register-ok.php"
-			],
-			[
 				"regi",
 				"member\\register-form.php"
 			],
@@ -1182,10 +1216,6 @@
 			[
 				"top_pro",
 				"admin\\products\\top_pro_list.php"
-			],
-			[
-				"index",
-				"shop\\index.php"
 			],
 			[
 				"top_or",
@@ -1210,10 +1240,6 @@
 			[
 				"pro_reg",
 				"admin\\products\\pro_register.php"
-			],
-			[
-				"p-re",
-				"member\\p-register-form.php"
 			],
 			[
 				"shop",
@@ -1334,10 +1360,6 @@
 			[
 				"read",
 				"bbs\\read.php"
-			],
-			[
-				"lis",
-				"bbs\\list.php"
 			],
 			[
 				"quo",
@@ -1488,10 +1510,6 @@
 				"admin\\products\\pro_opt.php"
 			],
 			[
-				"in",
-				"admin\\index.php"
-			],
-			[
 				"",
 				".gitignore"
 			],
@@ -1562,22 +1580,6 @@
 			[
 				"sam",
 				"pay\\sample_crossplatform.html"
-			],
-			[
-				"add",
-				"admin\\add-user.php"
-			],
-			[
-				"wel",
-				"welcome.php"
-			],
-			[
-				"s",
-				"session-3.php"
-			],
-			[
-				"se",
-				"admin\\session-3-comment.php"
 			]
 		],
 		"width": 0.0

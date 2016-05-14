@@ -278,7 +278,7 @@ HEREDOC;
                 } else {
                     ?>
                                 <tr>
-                                  <td class="text-center"><?php echo $j + 1; ?></td>
+                                  <td class="text-center"><?php echo $rows2['main_no']; ?></td>
                                   <td><a href="/bbs/read.php?code=<?php echo $rows['code']; ?>&amp;main_no=<?php echo $rows2['main_no']; ?>" target="_blank"><?php echo stripslashes($rows2['title']); ?></a></td>
                                   <td class="text-center"><?php echo $post_date; ?></td>
                                 </tr>
