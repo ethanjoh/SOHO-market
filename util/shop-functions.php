@@ -1479,6 +1479,10 @@ function show_items_on_catalog($result, $tabid)
 
     $total = mysqli_num_rows($result);
 
+    // $qry  = "SELECT * FROM member WHERE id='$sessionId' ";
+    // $res  = mysqli_query($connect, $qry);
+    // $mrow = mysqli_fetch_array($res);
+
     if ($total > 0) {
 
         for ($i = 0; $rows = mysqli_fetch_array($result); $i++) {
@@ -1548,7 +1552,9 @@ function show_items_on_catalog($result, $tabid)
                                             <div class="product-icon">
 HEREDOC;
 
-                if ($sessionId && $rows['del_chk'] == "N") {
+                if ($sessionId && !$isApprovedId) {
+                    echo '<a href="#" onclick="alert(\'회원 미승인 상태입니다. \\n관리자에게 문의하세요\')"><i class="fa fa-shopping-cart"></i></a>' . "\r\n";
+                } elseif ($sessionId && $rows['del_chk'] == "N") {
                     echo <<<HEREDOC
                                                 <input type="text" name="products_count" id="products_count_{$pnum}" value="{$moq}" size="2">
                                                 <a href="#" id="{$pnum}" class="addCart_submit"><i class="fa fa-shopping-cart"></i></a>
@@ -1604,13 +1610,18 @@ HEREDOC;
                                             </div>
                                             <div class="product-icon">
 HEREDOC;
-                if ($sessionId) {
+                if ($sessionId && !$isApprovedId) {
+                    echo '<a href="#" onclick="alert(\'회원 미승인 상태입니다. \\n관리자에게 문의하세요\')"><i class="fa fa-shopping-cart"></i></a>' . "\r\n";
+                } elseif ($sessionId && $rows['del_chk'] == "N") {
                     echo '                      <input type="text" name="products_count" id="products_count_' . $pnum . '" value="' . $moq . '" size="2">
                                                 <a href="#" id="' . $pnum . '" class="addCart_submit"><i class="fa fa-shopping-cart"></i></a>
                                                 <div id="loadplace' . $pnum . '"></div>
                                                 <input type="hidden" name="amount" id="amount_' . $pnum . '" value="' . $passingPrice . '">
                                                 <input type="hidden" name="from" id="from" value="list">';
-
+                } elseif ($rows['del_chk'] == "C") {
+                    echo '<a href="#" onclick="alert(\'단종입니다.\')"><i class="fa fa-shopping-cart"></i></a>' . "\r\n";
+                } elseif ($rows['del_chk'] == "O") {
+                    echo '<a href="#" onclick="alert(\'일시품절입니다.\')"><i class="fa fa-shopping-cart"></i></a>' . "\r\n";
                 } else {
                     echo '                      <a href="/member/login.php"><i class="fa fa-shopping-cart"></i></a>';
                 }
@@ -2277,7 +2288,19 @@ function show_item_info($pnum)
                                         <div class="add-to-cart">
 HEREDOC;
 
-    if ($sessionId && $rows['del_chk'] == "N") {
+    if ($sessionId && !$isApprovedId) {
+        echo <<<HEREDOC
+                                            <div class="product-icon">
+                                                <div class="input-content">
+                                                    <label for="qty">수량: </label>
+                                                    <input id="qty" name="qty" type="text" class="input-text qty" value="1">
+                                                </div>
+                                                <button class="button2 btn-cart" title="" type="button" onclick="alert('회원 미승인입니다.\\n관리자에게 문의하세요')">
+                                                    <span>주문 불가</span>
+                                                </button>
+                                            </div>
+HEREDOC;
+    } elseif ($sessionId && $rows['del_chk'] == "N") {
         echo <<<HEREDOC
                                             <div class="product-icon">
                                                 <div class="input-content">
