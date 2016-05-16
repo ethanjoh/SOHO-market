@@ -15,13 +15,30 @@
         <section id="main-content">
           <section class="wrapper">
 
+            <!-- info start-->
+            <div class="row">
+              <div class="col-sm-12">
+                <section class="panel">
+                  <header class="panel-heading">
+                    사용방법
+                  </header>
+                  <ul class="info-body">
+                    <li><i class="fa fa-info-circle"></i> 회원 삭제 시 복구가 안되므로 주의하시기 바랍니다.</li>
+                    <li><i class="fa fa-info-circle"></i> 사용에 제한을 두고 구매기록 등을 보존하려면 미승인으로 처리하시기 바랍니다.</li>
+                  </ul>
+                </section>
+              </div>
+            </div>
+            <!-- info end -->
+
 <?php
 
-$mode           = set_var($_POST['mode']);
+$mode = set_var($_GET['mode']);
+
 $search_keyword = '';
-$id             = set_var($_POST['id']);
-$company_name   = set_var($_POST['company_name']);
-$phone          = set_var($_POST['phone']);
+$id             = set_var($_GET['id']);
+$company_name   = set_var($_GET['company_name']);
+$phone          = set_var($_GET['phone']);
 
 if ($mode == "search") {
 
@@ -61,23 +78,23 @@ $total  = mysqli_num_rows($result);
                     </header>
                     <div class="panel-body">
 
-                      <form name="mb" class="form-horizontal" role="form" method="post" action="top_member_list.php">
+                      <form name="mb" class="form-horizontal" role="form" method="get" action="top_member_list.php">
                       <input type="hidden" name="mode" value="search" />
                         <div class="form-group">
                             <label for="id" class="col-lg-2 col-sm-2 control-label">아이디:</label>
-                            <div class="col-sm-3">
+                            <div class="col-sm-4">
                                 <input type="text" class="form-control" name="id" value="<?php echo $id; ?>">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="company_name" class="col-lg-2 col-sm-2 control-label">업체명:</label>
-                            <div class="col-sm-3">
+                            <div class="col-sm-4">
                                 <input type="text" class="form-control" name="company_name" value="<?php echo $company_name; ?>">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="phone" class="col-lg-2 col-sm-2 control-label">연락처:</label>
-                            <div class="col-sm-3">
+                            <div class="col-sm-4">
                                 <input type="text" class="form-control" name="phone" value="<?php echo $phone; ?>" >
                                 <p class="help-block">(예 : 02-123-4567 또는 010-1234-5678)</p>
                             </div>

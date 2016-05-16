@@ -35,11 +35,11 @@
 $mode = set_var($_GET['mode']);
 
 $search_keyword = '';
-$id             = '';
-$name           = '';
-$phone          = '';
+$id             = set_var($_GET['id']);
+$name           = set_var($_GET['name']);
+$phone          = set_var($_GET['phone']);
 
-if ("search" == $mode) {
+if ($mode == "search") {
 
     if ($id) {
         $search_keyword .= " AND id LIKE '%$id%' ";
@@ -77,23 +77,23 @@ $total  = mysqli_num_rows($result);
                     </header>
                     <div class="panel-body">
 
-                      <form name="mb" class="form-horizontal" role="form" method="post" action="top_member_list.php">
+                      <form name="mb" class="form-horizontal" role="form" method="get" action="p_top_member_list.php">
                       <input type="hidden" name="mode" value="search" />
                         <div class="form-group">
                             <label for="id" class="col-lg-2 col-sm-2 control-label">아이디:</label>
-                            <div class="col-sm-3">
+                            <div class="col-sm-4">
                                 <input type="text" class="form-control" name="id" value="<?php echo $id; ?>">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="name" class="col-lg-2 col-sm-2 control-label">회원명:</label>
-                            <div class="col-sm-3">
+                            <div class="col-sm-4">
                                 <input type="text" class="form-control" name="name" value="<?php echo $name; ?>">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="phone" class="col-lg-2 col-sm-2 control-label">연락처:</label>
-                            <div class="col-sm-3">
+                            <div class="col-sm-4">
                                 <input type="text" class="form-control" name="phone" value="<?php echo $phone; ?>" >
                                 <p class="help-block">(예 : 02-123-4567 또는 010-1234-5678)</p>
                             </div>
