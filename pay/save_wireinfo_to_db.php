@@ -1,9 +1,17 @@
 <?php
-if ('N' == $update) {
-    $status = "1"; //주문진행 상태(입금대기)
 
-    $query  = "UPDATE mall_order SET status='" . $status . "' WHERE orderid = '" . $lgd_oid . "' ";
-    $result = mysqli_query($connect, $query);
+if ($update == 'N') {
+
+    // 포장완료 등 처리는 했으나 아직 입금이 안된 경우도 있을 수 있음
+    // 주문처리 상태를 확인해야함
+    // $qry = "SELECT * FROM mall_order WHERE orderid = '" . $lgd_oid . "' ";
+    // $res = mysqli_query($connect, $qry);
+    // $row = mysqli_fetch_array($res);
+
+    // $status = "1"; //주문진행 상태(입금대기)
+
+    // $query  = "UPDATE mall_order SET status='" . $row['status'] . "' WHERE orderid = '" . $lgd_oid . "' ";
+    // $result = mysqli_query($connect, $query);
 
 // 결제정보 DB에 저장
     $query2 = "INSERT INTO pg_info(LGD_RESPCODE, LGD_RESPMSG, LGD_MID, LGD_OID, LGD_AMOUNT, LGD_TID, LGD_PAYTYPE, LGD_PAYDATE,
@@ -22,11 +30,7 @@ if ('N' == $update) {
     } else {
         $resultMSG = "FAIL";
     }
-} elseif ('I' == $update) {
-    $status = "3"; //주문진행 상태(주문 미처리)
-
-    $query  = "UPDATE mall_order SET status='" . $status . "' WHERE orderid = '" . $lgd_oid . "' ";
-    $result = mysqli_query($connect, $query);
+} elseif ($update == 'I') {
 
     $query2 = "UPDATE pg_info SET
                                 LGD_RESPCODE            = '$LGD_RESPCODE',
@@ -50,7 +54,7 @@ if ('N' == $update) {
     } else {
         $resultMSG = "FAIL";
     }
-} elseif ('C' == $update) {
+} elseif ($update == 'C') {
     $query2  = "UPDATE pg_info SET LGD_CASFLAG = 'C' WHERE LGD_OID = '$lgd_oid'";
     $result2 = mysqli_query($connect, $query2);
 

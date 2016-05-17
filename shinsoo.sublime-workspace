@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"mysq",
+				"mysqli_fetch_array($result"
+			],
+			[
+				"my",
+				"mysqli_query($connect"
+			],
+			[
 				"com",
 				"$com_info〔variable〕"
 			],
@@ -506,19 +514,38 @@
 			[
 				"fon",
 				"font-size"
-			],
-			[
-				"wid",
-				"width"
-			],
-			[
-				"fo",
-				"font-size"
 			]
 		]
 	},
 	"buffers":
 	[
+<<<<<<< HEAD
+=======
+		{
+			"file": "util/shop-functions.php",
+			"settings":
+			{
+				"buffer_size": 108008,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "shop/catalog-list.php",
+			"settings":
+			{
+				"buffer_size": 6434,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "shop/detail.php",
+			"settings":
+			{
+				"buffer_size": 6026,
+				"line_ending": "Windows"
+			}
+		}
+>>>>>>> e197126e11aa76ff5b6862a06ebccd48018c1bac
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -694,13 +721,15 @@
 	"expanded_folders":
 	[
 		"/C/wamp/www/shinsoo",
-		"/C/wamp/www/shinsoo/images",
-		"/C/wamp/www/shinsoo/images/brand",
-		"/C/wamp/www/shinsoo/member"
+		"/C/wamp/www/shinsoo/images/brand"
 	],
 	"file_history":
 	[
+<<<<<<< HEAD
 		"/C/wamp/www/shinsoo/member/register.php",
+=======
+		"/C/wamp/www/shinsoo/shop/catalog-list.php",
+>>>>>>> e197126e11aa76ff5b6862a06ebccd48018c1bac
 		"/C/wamp/www/shinsoo/admin/member/p_top_member_list.php",
 		"/C/wamp/www/shinsoo/admin/member/top_member_list.php",
 		"/C/wamp/www/shinsoo/member/p-register-form.php",
@@ -715,7 +744,6 @@
 		"/C/wamp/www/shinsoo/util/util.php",
 		"/C/wamp/www/shinsoo/member/about-us.php",
 		"/C/wamp/www/shinsoo/include/header.php",
-		"/C/wamp/www/shinsoo/shop/catalog-list.php",
 		"/C/wamp/www/shinsoo/admin/products/pro_register.php",
 		"/C/wamp/www/shinsoo/util/shop-functions.php",
 		"/C/wamp/www/shinsoo/admin/setting/admin_setup.php",
@@ -1010,6 +1038,286 @@
 		{
 			"sheets":
 			[
+<<<<<<< HEAD
+=======
+				{
+					"buffer": 0,
+					"file": "util/shop-functions.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 108008,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								92198,
+								92198
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"auto_complete": false,
+							"bh_regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": true,
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 44452.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "shop/catalog-list.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6434,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": true,
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": -0.0,
+						"translation.y": 1800.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "shop/detail.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6026,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2012,
+								2012
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": true,
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": -0.0,
+						"translation.y": 660.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
+>>>>>>> e197126e11aa76ff5b6862a06ebccd48018c1bac
 			]
 		}
 	],
@@ -1070,8 +1378,21 @@
 		"selected_items":
 		[
 			[
+<<<<<<< HEAD
 				"reg",
 				"member\\register.php"
+=======
+				"cata",
+				"shop\\catalog-list.php"
+			],
+			[
+				"de",
+				"shop\\detail.php"
+			],
+			[
+				"shop",
+				"util\\shop-functions.php"
+>>>>>>> e197126e11aa76ff5b6862a06ebccd48018c1bac
 			],
 			[
 				"p_mem",
@@ -1128,10 +1449,6 @@
 			[
 				"pro_re",
 				"admin\\products\\pro_register.php"
-			],
-			[
-				"cata",
-				"shop\\catalog-list.php"
 			],
 			[
 				"index",
@@ -1244,10 +1561,6 @@
 			[
 				"pro_reg",
 				"admin\\products\\pro_register.php"
-			],
-			[
-				"shop",
-				"util\\shop-functions.php"
 			],
 			[
 				"banner",
@@ -1576,10 +1889,6 @@
 			[
 				"x",
 				"lgpay\\XPayClient.php"
-			],
-			[
-				"sam",
-				"pay\\sample_crossplatform.html"
 			]
 		],
 		"width": 0.0
@@ -1614,7 +1923,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 394.0,
+	"side_bar_width": 262.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

@@ -235,7 +235,7 @@ if ("edit" == $mode) {
 															<input class="form-control" type="text" name="o_zipcode1" id="o_zipcode1" value="<?php echo $o_zipno[0]; ?>" readonly />
 														</div>
 														<div class="col-xs-6 col-md-2">
-                                                            <button class="btn btn-primary" type="button" onclick="openDaumPostcode()">우편번호 검색</button>
+                                <button class="btn btn-primary" type="button" onclick="openDaumPostcode()">우편번호 검색</button>
 														</div>
 													</div>
 

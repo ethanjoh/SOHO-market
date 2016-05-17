@@ -79,43 +79,31 @@ $date2   = set_var($_GET['date2']);
 switch ($mode) {
     // case 'search' : $sql_2="SELECT orderid FROM mall_order
     //                         WHERE user_flag = 'c' AND user_id <> 'guest' AND $key LIKE '%$keyword%' "; break;
-    case 'search':$sql_2 = "SELECT * FROM mall_order
-					                          	  WHERE user_flag = 'c' AND user_id <> 'guest' AND (buyer_name LIKE '%$keyword%' OR user_id LIKE '%$keyword%' OR recipient_name LIKE '%$keyword%' OR goods_name LIKE '%$keyword%')";
+    case 'search':$sql_2 = "SELECT * FROM mall_order WHERE user_flag = 'c' AND user_id <> 'guest' AND (buyer_name LIKE '%$keyword%' OR user_id LIKE '%$keyword%' OR recipient_name LIKE '%$keyword%' OR goods_name LIKE '%$keyword%')";
         break;
 
-    case 'date':$sql_2 = "SELECT orderid FROM mall_order
-						                          WHERE user_flag = 'c' AND cancel = 'N' AND date(createdate) BETWEEN '$date1' AND '$date2' AND user_id = '$keyword' ";
+    case 'date':$sql_2 = "SELECT orderid FROM mall_order WHERE user_flag = 'c' AND cancel = 'N' AND date(createdate) BETWEEN '$date1' AND '$date2' AND user_id = '$keyword' ";
         break;
     case 'today':$today = date("Y-m-d");
-        $sql_2              = "SELECT orderid FROM mall_order
-						                          WHERE user_flag = 'c' AND cancel = 'N' AND user_id <> 'guest' AND date(createdate) = '$today' ";
+        $sql_2              = "SELECT orderid FROM mall_order WHERE user_flag = 'c' AND cancel = 'N' AND user_id <> 'guest' AND date(createdate) = '$today' ";
         break;
-    case 'unchk':$sql_2 = "SELECT orderid FROM mall_order
-						                          WHERE user_flag = 'c' AND cancel = 'N' AND user_id <> 'guest' AND status = '3' ";
+    case 'unchk':$sql_2 = "SELECT orderid FROM mall_order WHERE user_flag = 'c' AND cancel = 'N' AND user_id <> 'guest' AND status = '3' ";
         break;
-    case 'chk':$sql_2 = "SELECT orderid FROM mall_order
-						                          WHERE user_flag = 'c' AND cancel = 'N' AND user_id <> 'guest' AND status = '5' ";
+    case 'chk':$sql_2 = "SELECT orderid FROM mall_order WHERE user_flag = 'c' AND cancel = 'N' AND user_id <> 'guest' AND status = '5' ";
         break;
-    case 'paid':$sql_2 = "SELECT orderid FROM mall_order
-						                          WHERE user_flag = 'c' AND cancel = 'N' AND user_id <> 'guest' AND status = '7' ";
+    case 'paid':$sql_2 = "SELECT orderid FROM mall_order WHERE user_flag = 'c' AND cancel = 'N' AND user_id <> 'guest' AND status = '7' ";
         break;
-    case 'nopaid':$sql_2 = "SELECT orderid FROM mall_order
-						                          WHERE user_flag = 'c' AND cancel = 'N' AND user_id <> 'guest' AND pchk = 'N' ";
+    case 'nopaid':$sql_2 = "SELECT orderid FROM mall_order WHERE user_flag = 'c' AND cancel = 'N' AND user_id <> 'guest' AND pchk = 'N' ";
         break;
-    case 'delay':$sql_2 = "SELECT orderid FROM mall_order
-						                          WHERE user_flag = 'c' AND cancel = 'N' AND user_id <> 'guest' AND status = '0' ";
+    case 'delay':$sql_2 = "SELECT orderid FROM mall_order WHERE user_flag = 'c' AND cancel = 'N' AND user_id <> 'guest' AND status = '0' ";
         break;
-    case 'finish':$sql_2 = "SELECT orderid FROM mall_order
-						                          WHERE user_flag = 'c' AND cancel = 'N' AND user_id <> 'guest' AND status = '8' ";
+    case 'finish':$sql_2 = "SELECT orderid FROM mall_order WHERE user_flag = 'c' AND cancel = 'N' AND user_id <> 'guest' AND status = '8' ";
         break;
-    case 'cancel':$sql_2 = "SELECT orderid FROM mall_order
-						                          WHERE user_flag = 'c' AND cancel = 'Y' AND user_id <> 'guest' ";
+    case 'cancel':$sql_2 = "SELECT orderid FROM mall_order WHERE user_flag = 'c' AND cancel = 'Y' AND user_id <> 'guest' ";
         break;
-    case 'return':$sql_2 = "SELECT * FROM mall_order
-						                          WHERE user_flag = 'c' AND cancel = 'N' AND user_id <> 'guest' AND status = '-1' ";
+    case 'return':$sql_2 = "SELECT * FROM mall_order WHERE user_flag = 'c' AND cancel = 'N' AND user_id <> 'guest' AND status = '-1' ";
         break;
-    default:$sql_2 = "SELECT orderid FROM mall_order
-						                          WHERE user_flag = 'c' AND user_id <> 'guest' ";
+    default:$sql_2 = "SELECT orderid FROM mall_order WHERE user_flag = 'c' AND user_id <> 'guest' ";
 }
 
 $res_2 = mysqli_query($connect, $sql_2);
@@ -246,43 +234,32 @@ if ($mode == "search") {
 switch ($mode) {
     // case 'search' : $sql_4 = "SELECT * FROM mall_order
     //                           WHERE user_flag = 'c' AND $key LIKE '%$keyword%' AND user_id <> 'guest' ORDER BY num DESC LIMIT $cline,$scale1 "; break;
-    case 'search':$sql_4 = "SELECT * FROM mall_order
-						                          WHERE user_flag = 'c' AND user_id <> 'guest' AND (buyer_name LIKE '%$keyword%' OR user_id LIKE '%$keyword%' OR recipient_name LIKE '%$keyword%' OR goods_name LIKE '%$keyword%') ORDER BY num DESC LIMIT $cline,$scale1 ";
+    case 'search':$sql_4 = "SELECT * FROM mall_order WHERE user_flag = 'c' AND user_id <> 'guest' AND (buyer_name LIKE '%$keyword%' OR user_id LIKE '%$keyword%' OR recipient_name LIKE '%$keyword%' OR goods_name LIKE '%$keyword%') ORDER BY num DESC LIMIT $cline,$scale1 ";
         break;
 
-    case 'date':$sql_4 = "SELECT * FROM mall_order
-						                          WHERE user_flag = 'c' AND cancel = 'N' AND date(createdate) BETWEEN '$date1' AND '$date2' AND user_id = '$keyword' ORDER BY num DESC LIMIT $cline,$scale1 ";
+    case 'date':$sql_4 = "SELECT * FROM mall_order WHERE user_flag = 'c' AND cancel = 'N' AND date(createdate) BETWEEN '$date1' AND '$date2' AND user_id = '$keyword' ORDER BY num DESC LIMIT $cline,$scale1 ";
         break;
-    case 'today':$today = date("Y-m-d");
-        $sql_4              = "SELECT * FROM mall_order
-						                          WHERE user_flag = 'c' AND cancel = 'N' AND user_id <> 'guest' AND date(createdate) = '$today' ORDER BY num DESC LIMIT $cline,$scale1 ";
+    case 'today':
+        $today = date("Y-m-d");
+        $sql_4 = "SELECT * FROM mall_order WHERE user_flag = 'c' AND cancel = 'N' AND user_id <> 'guest' AND date(createdate) = '$today' ORDER BY num DESC LIMIT $cline,$scale1 ";
         break;
-    case 'unchk':$sql_4 = "SELECT * FROM mall_order
-						                          WHERE user_flag = 'c' AND cancel = 'N' AND status = '3' AND user_id <> 'guest' ORDER BY num DESC LIMIT $cline,$scale1 ";
+    case 'unchk':$sql_4 = "SELECT * FROM mall_order WHERE user_flag = 'c' AND cancel = 'N' AND status = '3' AND user_id <> 'guest' ORDER BY num DESC LIMIT $cline,$scale1 ";
         break;
-    case 'chk':$sql_4 = "SELECT * FROM mall_order
-						                          WHERE user_flag = 'c' AND cancel = 'N' AND user_id <> 'guest' AND status = '5' ORDER BY num DESC LIMIT $cline,$scale1 ";
+    case 'chk':$sql_4 = "SELECT * FROM mall_order WHERE user_flag = 'c' AND cancel = 'N' AND user_id <> 'guest' AND status = '5' ORDER BY num DESC LIMIT $cline,$scale1 ";
         break;
-    case 'paid':$sql_4 = "SELECT * FROM mall_order
-						                          WHERE user_flag = 'c' AND cancel = 'N' AND user_id <> 'guest' AND status = '7' ORDER BY num DESC LIMIT $cline,$scale1 ";
+    case 'paid':$sql_4 = "SELECT * FROM mall_order WHERE user_flag = 'c' AND cancel = 'N' AND user_id <> 'guest' AND status = '7' ORDER BY num DESC LIMIT $cline,$scale1 ";
         break;
-    case 'nopaid':$sql_4 = "SELECT * FROM mall_order
-						                          WHERE user_flag = 'c' AND cancel = 'N' AND user_id <> 'guest' AND pchk = 'N' ORDER BY num DESC LIMIT $cline,$scale1 ";
+    case 'nopaid':$sql_4 = "SELECT * FROM mall_order WHERE user_flag = 'c' AND cancel = 'N' AND user_id <> 'guest' AND pchk = 'N' ORDER BY num DESC LIMIT $cline,$scale1 ";
         break;
-    case 'delay':$sql_4 = "SELECT * FROM mall_order
-						                          WHERE user_flag = 'c' AND cancel = 'N' AND user_id <> 'guest' AND status = '0' ORDER BY num DESC LIMIT $cline,$scale1 ";
+    case 'delay':$sql_4 = "SELECT * FROM mall_order WHERE user_flag = 'c' AND cancel = 'N' AND user_id <> 'guest' AND status = '0' ORDER BY num DESC LIMIT $cline,$scale1 ";
         break;
-    case 'finish':$sql_4 = "SELECT * FROM mall_order
-						                          WHERE user_flag = 'c' AND cancel = 'N' AND user_id <> 'guest' AND status = '8' ORDER BY num DESC LIMIT $cline,$scale1 ";
+    case 'finish':$sql_4 = "SELECT * FROM mall_order WHERE user_flag = 'c' AND cancel = 'N' AND user_id <> 'guest' AND status = '8' ORDER BY num DESC LIMIT $cline,$scale1 ";
         break;
-    case 'cancel':$sql_4 = "SELECT * FROM mall_order
-						                          WHERE user_flag = 'c' AND cancel = 'Y'  AND user_id <> 'guest' ORDER BY num DESC LIMIT $cline,$scale1 ";
+    case 'cancel':$sql_4 = "SELECT * FROM mall_order WHERE user_flag = 'c' AND cancel = 'Y'  AND user_id <> 'guest' ORDER BY num DESC LIMIT $cline,$scale1 ";
         break;
-    case 'return':$sql_4 = "SELECT * FROM mall_order
-						                          WHERE user_flag = 'c' AND cancel = 'N' AND user_id <> 'guest' AND status = '-1' ORDER BY num DESC LIMIT $cline,$scale1 ";
+    case 'return':$sql_4 = "SELECT * FROM mall_order WHERE user_flag = 'c' AND cancel = 'N' AND user_id <> 'guest' AND status = '-1' ORDER BY num DESC LIMIT $cline,$scale1 ";
         break;
-    default:$sql_4 = "SELECT * FROM mall_order
-						                          WHERE user_flag = 'c' AND user_id <> 'guest' ORDER BY num DESC LIMIT $cline,$scale1 ";
+    default:$sql_4 = "SELECT * FROM mall_order WHERE user_flag = 'c' AND user_id <> 'guest' ORDER BY num DESC LIMIT $cline,$scale1 ";
 }
 
 $a_pay_type['1'] = "무통장 입금";
