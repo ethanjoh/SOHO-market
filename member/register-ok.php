@@ -179,7 +179,6 @@ if ("edit" == $mode) {
 								d_phone,
 								d_fax,
 								reg_date,
-								dc_rate,
 								approved
 								)
 			   VALUES ('$id',
@@ -208,7 +207,6 @@ if ("edit" == $mode) {
 						'$d_phone',
 						'$d_fax',
 						now(),
-						'$dc_rate',
 						'$approved' )";
 
     $result = mysqli_query($connect, $query);

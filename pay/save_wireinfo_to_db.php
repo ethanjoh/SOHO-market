@@ -66,10 +66,10 @@ if ($update == 'N') {
 }
 
 //주문상품 장바구니에서 삭제
-// for ($i = 0; $i < sizeof($products_num); $i++) {
-//     $qry2 = "DELETE FROM products_cart WHERE user_id = '$user_id' AND product_code='$products_num[$i]' ";
-//     mysqli_query($connect, $qry2);
-// }
+for ($i = 0; $i < sizeof($products_num); $i++) {
+    $qry2 = "DELETE FROM products_cart WHERE user_id = '$user_id' AND product_code='$products_num[$i]' ";
+    mysqli_query($connect, $qry2);
+}
 
 if (!$result) {
     err_msg('데이터베이스 에러가 났습니다.');

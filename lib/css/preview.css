@@ -180,7 +180,7 @@ preview-2
 }
 .preview-2 .nivo-controlNav {
     position: relative;
-    z-index: 99999;
+    z-index: 1000;
     bottom: 68px;
 }
 .preview-2 .nivo-controlNav a {
