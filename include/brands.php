@@ -15,22 +15,22 @@
                 <div class="row">
                     <div class="item_all indicator-style">
                         <div class="col-md-12">
-                            <img class="primary-img" src="/images/brand/superstroke_logo.svg" alt="" />
+                            <img class="primary-img" src="/images/brand/superstroke_logo.png" alt="" />
                         </div>
                         <div class="col-md-12">
-                            <img class="primary-img" src="/images/brand/tigerchoi_logo.svg" alt="" />
+                            <img class="primary-img" src="/images/brand/tigerchoi_logo.png" alt="" />
                         </div>
                         <div class="col-md-12">
-                            <img class="primary-img" src="/images/brand/no1_logo.svg" alt="" />
+                            <img class="primary-img" src="/images/brand/no1_logo.png" alt="" />
                         </div>
                         <div class="col-md-12">
-                            <img class="primary-img" src="/images/brand/winn_logo.svg" alt="" />
+                            <img class="primary-img" src="/images/brand/winn_logo.png" alt="" />
                         </div>
                         <div class="col-md-12">
-                            <img class="primary-img" src="/images/brand/golftiger_logo.svg" alt="" />
+                            <img class="primary-img" src="/images/brand/golftiger_logo.png" alt="" />
                         </div>
                         <div class="col-md-12">
-                            <img class="primary-img" src="/images/brand/griptech_logo.svg" alt="" />
+                            <img class="primary-img" src="/images/brand/griptech_logo.png" alt="" />
                         </div>
                         <div class="col-md-12">
                             <img class="primary-img" src="/images/brand/golfpride.jpg" alt="" />

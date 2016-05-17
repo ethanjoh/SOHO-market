@@ -76,7 +76,7 @@ $uri = set_var($_SERVER['HTTP_REFERER']);
                     <div class="row">
                         <div class="col-md-6 col-sm-6">
                             <div class="top-logo">
-                                <a href="/index.php"><img src="/images/shinsoo-logo.svg" alt="신수상사 로고"></a>
+                                <a href="/"><img src="/images/shinsoo-logo.png" alt="신수상사 로고"></a>
                             </div>
                         </div>
                     </div>
