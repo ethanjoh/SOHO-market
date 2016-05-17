@@ -220,14 +220,22 @@ $misc    = mysqli_fetch_array($result4);
 
 ?>
 							</form>
+                  <tr>
+                    <td colspan="2">택배비 :</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><i class="fa fa-krw"></i> <?php echo number_format($row['trans_cost']); ?> <i class="fa fa-plus-circle"></i></td>
+                  </tr>
 									<tr>
-									  	<td colspan="2">▶ TOTAL</td>
-									  	<td><?php echo $t_count; ?> 개</td>
+									  <td colspan="2">▶ TOTAL</td>
+									  <td><?php echo $t_count; ?> 개</td>
 										<td><?php echo $mt_count; ?> 개</td>
 										<!-- <td></td> -->
 										<td></td>
 										<td></td>
-									 	<td><?php echo number_format($last_cost); ?> 원</td>
+									 	<td><i class="fa fa-krw"></i> <?php echo number_format($amount_o); ?></td>
 									</tr>
 
 <?php
@@ -379,7 +387,7 @@ show_pay_data($row['orderid']);
 								  <tr>
 								    <th>주문금액</th>
 								    <td>
-								    	<?php echo number_format($last_cost); ?> 원 (VAT 포함) <br />
+								    	<?php echo number_format($amount_o); ?> 원 (VAT 포함) <br />
 								    </td>
 <!-- 								    <th>확정금액</th>
 								    <td  colspan="3">

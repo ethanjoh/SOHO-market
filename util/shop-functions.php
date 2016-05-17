@@ -1473,9 +1473,14 @@ function show_items_on_catalog($result, $tabid)
     global $connect;
 
     // $calcPrice   = 0;
-    $sessionId    = set_var($_SESSION['p_id']);
-    $sessionFlag  = set_var($_SESSION['p_flag']);
-    $isApprovedId = check_approved_id();
+    $sessionId   = set_var($_SESSION['p_id']);
+    $sessionFlag = set_var($_SESSION['p_flag']);
+
+    if ($sessionFlag == 'c') {
+        $isApprovedId = check_approved_id();
+    } elseif ($sessionFlag == 'p') {
+        $isApprovedId = true;
+    }
 
     $total = mysqli_num_rows($result);
 
@@ -1552,8 +1557,8 @@ function show_items_on_catalog($result, $tabid)
                                             <div class="product-icon">
 HEREDOC;
 
-                if ($sessionId && !$isApprovedId) {
-                    echo '<a href="#" onclick="alert(\'회원 미승인 상태입니다. \\n관리자에게 문의하세요\')"><i class="fa fa-shopping-cart"></i></a>' . "\r\n";
+                if ($sessionId && $sessionFlag == 'c' && !$isApprovedId) {
+                    echo '<a href="#" onclick="alert(\'미승인 회원입니다. \\n관리자에게 문의하세요\')"><i class="fa fa-shopping-cart"></i></a>' . "\r\n";
                 } elseif ($sessionId && $rows['del_chk'] == "N") {
                     echo <<<HEREDOC
                                                 <input type="text" name="products_count" id="products_count_{$pnum}" value="{$moq}" size="2">
@@ -1610,8 +1615,8 @@ HEREDOC;
                                             </div>
                                             <div class="product-icon">
 HEREDOC;
-                if ($sessionId && !$isApprovedId) {
-                    echo '<a href="#" onclick="alert(\'회원 미승인 상태입니다. \\n관리자에게 문의하세요\')"><i class="fa fa-shopping-cart"></i></a>' . "\r\n";
+                if ($sessionId && $sessionFlag == 'c' && !$isApprovedId) {
+                    echo '<a href="#" onclick="alert(\'미승인 회원입니다. \\n관리자에게 문의하세요\')"><i class="fa fa-shopping-cart"></i></a>' . "\r\n";
                 } elseif ($sessionId && $rows['del_chk'] == "N") {
                     echo '                      <input type="text" name="products_count" id="products_count_' . $pnum . '" value="' . $moq . '" size="2">
                                                 <a href="#" id="' . $pnum . '" class="addCart_submit"><i class="fa fa-shopping-cart"></i></a>
@@ -1788,7 +1793,7 @@ HEREDOC;
 HEREDOC;
 
                 if ($row['status'] == '8') {
-                    echo '<a href="#" onclick="alert(\'상품이 배송 중에 있어 취소가 되지 않습니다.\n관리자에게 문의하세요.\')"><i class="fa fa-ban"></i></a>';
+                    echo '<a href="#" onclick="alert(\'상품이 발송되어 취소가 되지 않습니다.\n관리자에게 문의하세요.\')"><i class="fa fa-ban"></i></a>';
                 } else {
                     echo '<button type="submit" class="btn btn-xs btn-danger" onclick="return confirm(\'정말 주문을 취소하시겠습니까?\')"><i class="fa fa-remove"></i></button>';
                 }
@@ -2215,9 +2220,14 @@ function show_item_info($pnum)
     $res  = mysqli_query($connect, $qry);
     $rows = mysqli_fetch_array($res);
 
-    $sessionId    = set_var($_SESSION['p_id']);
-    $sessionFlag  = set_var($_SESSION['p_flag']);
-    $isApprovedId = check_approved_id();
+    $sessionId   = set_var($_SESSION['p_id']);
+    $sessionFlag = set_var($_SESSION['p_flag']);
+
+    if ($sessionFlag == 'c') {
+        $isApprovedId = check_approved_id();
+    } elseif ($sessionFlag == 'p') {
+        $isApprovedId = true;
+    }
 
     $itemName  = stripslashes($rows['name']);
     $moq       = $rows['moq'];
@@ -2288,14 +2298,14 @@ function show_item_info($pnum)
                                         <div class="add-to-cart">
 HEREDOC;
 
-    if ($sessionId && !$isApprovedId) {
+    if ($sessionId && $sessionFlag == 'c' && !$isApprovedId) {
         echo <<<HEREDOC
                                             <div class="product-icon">
                                                 <div class="input-content">
                                                     <label for="qty">수량: </label>
                                                     <input id="qty" name="qty" type="text" class="input-text qty" value="1">
                                                 </div>
-                                                <button class="button2 btn-cart" title="" type="button" onclick="alert('회원 미승인입니다.\\n관리자에게 문의하세요')">
+                                                <button class="button2 btn-cart" title="" type="button" onclick="alert('미승인 회원입니다.\\n관리자에게 문의하세요')">
                                                     <span>주문 불가</span>
                                                 </button>
                                             </div>

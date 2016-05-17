@@ -408,13 +408,16 @@ function show_delivery_fee($total)
     $row    = mysqli_fetch_array($result);
 
     if ($total < $row['min_sum'] && $total > 0) {
-        if ($sessionFlag == 'c') {
-            $reMsg = "" . number_format($row['min_sum']) . "원 미만 착불";
-            return array('msg' => $reMsg, 'trans_cost' => 0);
-        } elseif ($sessionFlag == 'p') {
-            $reMsg = '<i class="fa fa-krw"></i> ' . number_format($row['d_charge']) . ' <i class="fa fa-plus-circle"></i>' . "\r\n";
-            return array('msg' => $reMsg, 'trans_cost' => $row['d_charge']);
-        }
+        // if ($sessionFlag == 'c') {
+        //     $reMsg = "" . number_format($row['min_sum']) . "원 미만 착불";
+        //     return array('msg' => $reMsg, 'trans_cost' => 0);
+        // } elseif ($sessionFlag == 'p') {
+        //     $reMsg = '<i class="fa fa-krw"></i> ' . number_format($row['d_charge']) . ' <i class="fa fa-plus-circle"></i>' . "\r\n";
+        //     return array('msg' => $reMsg, 'trans_cost' => $row['d_charge']);
+        // }
+
+        $reMsg = '<i class="fa fa-krw"></i> ' . number_format($row['d_charge']) . ' <i class="fa fa-plus-circle"></i>' . "\r\n";
+        return array('msg' => $reMsg, 'trans_cost' => $row['d_charge']);
 
     } elseif ($total == 0) {
         $reMsg = "-";
@@ -445,6 +448,8 @@ function calc_delivery_fee($orderSum)
     } else {
         $reDeliveryFee = 0;
     }
+
+    return $reDeliveryFee;
 
 }
 

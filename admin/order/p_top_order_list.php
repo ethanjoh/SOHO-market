@@ -31,8 +31,10 @@ $reUrl = urlencode($_SERVER['PHP_SELF'] . "?" . $_SERVER['QUERY_STRING']);
 							  사용방법
 							</header>
 							<ul class="info-body">
-                <li><i class="fa fa-info-circle"></i> 신규주문 확인을 위해 5분마다 화면이 리프레시됩니다.</li>
+                <li><i class="fa fa-info-circle"></i> 신규주문 확인을 위해 5분마다 화면이 자동으로 새로고침됩니다.</li>
+                <li><i class="fa fa-info-circle"></i> 수동으로 신규주문을 확인하시려면 미처리 주문건이나 전체 주문 버튼을 누르세요</li>
 							  <li><i class="fa fa-info-circle"></i> 회원별 기간검색하기 : 1. 하단 검색조건에서 "회원명"으로 검색 -> 2. 검색결과에서 해당 회원명 클릭 -> 3. 날짜검색에서 기간 설정 후 검색</li>
+                <li><i class="fa fa-info-circle"></i> 최소주문금액 이상은 무료배송, 미만은 택배비 추가 후 선불 표시됩니다.</li>
 							</ul>
 		                </section>
 

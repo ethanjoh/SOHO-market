@@ -5,7 +5,6 @@
 $mode    = set_var($_GET['mode']);
 $key     = set_var($_GET['key']);
 $keyword = set_var($_GET['keyword']);
-
 ?>
 	<body>
 	  <section id="container" >
@@ -223,13 +222,12 @@ $misc    = mysqli_fetch_array($result4);
 ?>
 							</form>
                   <tr>
-                      <td colspan="2">택배비 :</td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td><i class="fa fa-krw"></i> <?php echo number_format($row['trans_cost']); ?> <i class="fa fa-plus-circle"></i></td>
-
+                    <td colspan="2">택배비 :</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><i class="fa fa-krw"></i> <?php echo number_format($row['trans_cost']); ?> <i class="fa fa-plus-circle"></i></td>
                   </tr>
 									<tr>
 								  	<td colspan="2">▶ TOTAL</td>
