@@ -16,11 +16,11 @@ $query  = "SELECT * FROM member WHERE seq_num='$num' ";
 $result = mysqli_query($connect, $query);
 $rows   = mysqli_fetch_array($result);
 
-$md_hphone  = explode("-", $rows['md_hphone']);
-$o_zipno    = explode("-", $rows['o_zipcode']);
-$o_phone    = explode("-", $rows['o_phone']);
-$o_fax      = explode("-", $rows['o_fax']);
-$d_zipno    = explode("-", $rows['d_zipcode']);
+$md_hphone = explode("-", $rows['md_hphone']);
+// $o_zipno    = explode("-", $rows['o_zipcode']);
+$o_phone = explode("-", $rows['o_phone']);
+$o_fax   = explode("-", $rows['o_fax']);
+// $d_zipno    = explode("-", $rows['d_zipcode']);
 $d_phone    = explode("-", $rows['d_phone']);
 $d_fax      = explode("-", $rows['d_fax']);
 $license_no = explode("-", $rows['license_no']);
@@ -138,7 +138,7 @@ if ($rows['sms'] == "Y") {
                           <tr>
                             <th>사업장 우편번호</th>
                             <td>
-                              <input type="text" class="form-control" name="o_zipcode1" id="o_zipcode1" size="5"  value="<?php echo $o_zipno[0]; ?>" readonly />
+                              <input type="text" class="form-control" name="o_zipcode1" id="o_zipcode1" size="5"  value="<?php echo $rows['o_zipcode']; ?>" readonly />
                               <input type="button" class="form-control" onclick="openDaumPostcode()" value="우편번호 찾기"><br />
                           <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
                           <script>
@@ -263,7 +263,7 @@ switch ($rows['tax_type']) {
                           <tr>
                             <th>배송지 우편번호</th>
                             <td>
-                              <input type="text" class="form-control" name="d_zipcode1" id="d_zipcode1" size="5" value="<?php echo $d_zipno[0]; ?>" readonly />
+                              <input type="text" class="form-control" name="d_zipcode1" id="d_zipcode1" size="5" value="<?php echo $rows['d_zipcode']; ?>" readonly />
                               <input type="button" class="form-control" onclick="openDaumPostcode1()" value="우편번호 찾기"><br />
                           <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
                           <script>

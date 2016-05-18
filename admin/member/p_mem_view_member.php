@@ -7,6 +7,7 @@
         <!-- <section id="main-content"> -->
           <!-- <section class="wrapper"> -->
           <?php
+
 $num  = set_var($_GET['num']);
 $page = set_var($_GET['page']);
 $from = set_var($_GET['from']);
@@ -15,10 +16,10 @@ $query  = "SELECT * FROM p_member WHERE seq_num='$num' ";
 $result = mysqli_query($connect, $query);
 $rows   = mysqli_fetch_array($result);
 
-$hphone   = explode("-", $rows['hphone']);
-$o_zipno  = explode("-", $rows['o_zipcode']);
-$o_phone  = explode("-", $rows['o_phone']);
-$d_zipno  = explode("-", $rows['d_zipcode']);
+$hphone = explode("-", $rows['hphone']);
+// $o_zipno  = explode("-", $rows['o_zipcode']);
+$o_phone = explode("-", $rows['o_phone']);
+// $d_zipno  = explode("-", $rows['d_zipcode']);
 $d_phone  = explode("-", $rows['d_phone']);
 $d_hphone = explode("-", $rows['d_hphone']);
 ?>
@@ -31,7 +32,7 @@ $d_hphone = explode("-", $rows['d_hphone']);
                       개인회원 정보수정/관리
                   </header>
                   <div class="panel-body">
-                  <form name="form1" role="form" class="form-inline" method="post" action="//<?php echo $_SERVER['SERVER_NAME']; ?>:<?php echo $sslPort; ?>/admin/member/mem_edit_member.php">
+                  <form name="form1" role="form" class="form-inline" method="post" action="//<?php echo $_SERVER['SERVER_NAME']; ?>:<?php echo $sslPort; ?>/admin/member/p_mem_edit_member.php">
                     <input type="hidden" name="num" value="<?php echo $num; ?>">
                     <input type="hidden" name="sms" value="<?php echo $rows['sms']; ?>">
                     <input type="hidden" name="page" value="<?php echo $page; ?>">
@@ -58,7 +59,7 @@ $d_hphone = explode("-", $rows['d_hphone']);
                             </td>
                           </tr>
                           <tr>
-                            <th>담당자 이메일</th>
+                            <th>이메일</th>
                             <td>
                               <input type="text" class="form-control" name="email" size="25" value='<?php echo $rows['email']; ?>' />
                               <?php
@@ -74,7 +75,7 @@ if ($rows['optin'] == "Y") {
                           <tr>
                             <th>기본 주소지 우편번호</th>
                             <td>
-                              <input type="text" class="form-control" name="o_zipcode1" id="o_zipcode1" size="5"  value="<?php echo $o_zipno[0]; ?>" readonly />
+                              <input type="text" class="form-control" name="o_zipcode1" id="o_zipcode1" size="5"  value="<?php echo $rows['o_zipcode']; ?>" readonly />
                               <input type="button" class="form-control" onclick="openDaumPostcode()" value="우편번호 찾기"><br />
                           <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
                           <script>
@@ -189,7 +190,7 @@ if ($rows['sms'] == "Y") {
                           <tr>
                             <th>배송지 우편번호</th>
                             <td>
-                              <input type="text" class="form-control" name="d_zipcode1" id="d_zipcode1" size="5" value="<?php echo $d_zipno[0]; ?>" readonly />
+                              <input type="text" class="form-control" name="d_zipcode1" id="d_zipcode1" size="5" value="<?php echo $rows['d_zipcode']; ?>" readonly />
                               <input type="button" class="form-control" onclick="openDaumPostcode1()" value="우편번호 찾기"><br />
                           <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
                           <script>
