@@ -156,7 +156,7 @@ if ($t_no > 0) {
                           <input type="hidden" name="mode" value="all" />
                           <input type="hidden" name="oid" value="<?php echo $row['num']; ?>" />
                           <input type="hidden" name="last_amount" value="<?php echo $row['last_amount']; ?>" />
-                          <input type="hidden" name="senddate" value="<?php echo date("Y-m-d"); ?>" />
+                          <input type="hidden" name="senddate" value="<?php echo date("Y-m-d H:i:s"); ?>" />
                           <input type="hidden" name="reUrl" value="<?php echo urlencode($_SERVER['PHP_SELF'] . "?" . $_SERVER['QUERY_STRING']); ?>" />
                           <input type="text" class="form-control" name="track_no" value="<?php echo $row['track_no']; ?>" size="80" />
                           &nbsp;

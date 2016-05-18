@@ -7,7 +7,7 @@ include_once "../../util/util.php";
 $uploaddir  = './uploads/';
 $uploadfile = $uploaddir . basename($_FILES['userfile']['name']);
 
-$today = date("Y-m-d");
+$today = date("Y-m-d H:i:s");
 
 if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile)) {
     $msg = "<p>파일이 유효하고, 성공적으로 업로드 되었습니다.</p>";
