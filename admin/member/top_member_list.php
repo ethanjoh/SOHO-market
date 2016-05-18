@@ -25,6 +25,7 @@
                   <ul class="info-body">
                     <li><i class="fa fa-info-circle"></i> 회원 삭제 시 복구가 안되므로 주의하시기 바랍니다.</li>
                     <li><i class="fa fa-info-circle"></i> 사용에 제한을 두고 구매기록 등을 보존하려면 미승인으로 처리하시기 바랍니다.</li>
+                    <li><i class="fa fa-info-circle"></i> 업체 할인율 변경 전에 업체가 카트에 담아둔 상품이 있다면 모두 삭제하도록 합니다. 기존에 담아둔 상품들은 변경 할인율이 적용되지 않습니다. </li>
                   </ul>
                 </section>
               </div>
