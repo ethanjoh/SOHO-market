@@ -335,8 +335,8 @@ $a_status['8'] = '<i class="fa fa-truck"></i> 발송완료(' . $row['senddate'] 
 								    <td  colspan="3">
 <?php
 
-$pay_status = '';
-$pay_status = get_pg_info($row['orderid']);
+$pg_info    = get_pg_info($row['orderid']);
+$pay_status = $pg_info['pay_status'];
 
 $qry   = "SELECT * FROM member WHERE id='$row[user_id]' ";
 $res   = mysqli_query($connect, $qry);
@@ -372,8 +372,17 @@ $mrows = mysqli_fetch_array($res);
 //         break;
 // }
 
+if ($pg_info['apply_receipt'] == '0') {
+    echo '<p>현금영수증 미발행</p>';
+} elseif ($pg_info['apply_receipt'] == '1') {
+    echo '<p>소득공제용 현금영수증 발급</p>';
+} elseif ($pg_info['apply_receipt'] == '2') {
+    echo '<p>지출증빙용 현금영수증 발급</p>';
+}
+
 echo $pay_status;
 
+// 결제수단 상세내역 보여주기
 show_pay_data($row['orderid']);
 ?>
                                     </td>

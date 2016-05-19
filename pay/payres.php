@@ -92,11 +92,12 @@ if ($xpay->TX()) {
     $LGD_FINANCEAUTHNUM   = $xpay->Response("LGD_FINANCEAUTHNUM", 0);   //결제기관승인번호
 
     /**
-     * 계좌이체/무통장
+     * 계좌이체
      */
     $LGD_CASHRECEIPTNUM    = $xpay->Response("LGD_CASHRECEIPTNUM", 0);    //현금영수증 승인번호
     $LGD_CASHRECEIPTSELFYN = $xpay->Response("LGD_CASHRECEIPTSELFYN", 0); //현금영수증 자진발급제유무
     $LGD_CASHRECEIPTKIND   = $xpay->Response("LGD_CASHRECEIPTKIND", 0);   //현금영수증 종류
+    $LGD_DEFAULTCASHRECEIPTUSE   = $xpay->Response("LGD_DEFAULTCASHRECEIPTUSE", 0);   //현금영수증 발급용도
 
     /**
      * 무통장
@@ -197,10 +198,8 @@ HEREDOC;
         /**
          * 최종결제요청 결과 성공 DB처리 실패시 Rollback 처리
          * DB처리 실패시 false로 변경해 주세요.
-         * save_pginfo_to_db.php 에서 처리
          * $isDBOK = true;
          */
-        // require_once 'save_pginfo_to_db.php';
         // echo "최종결제요청 결과 성공 DB처리하시기 바랍니다.<br>";
 
         $query = "INSERT INTO mall_order(orderid,goods_fk,goods_price, mod_price,
@@ -253,11 +252,11 @@ HEREDOC;
         $query2 = "INSERT INTO pg_info(LGD_RESPCODE, LGD_RESPMSG, LGD_MID, LGD_OID, LGD_AMOUNT, LGD_TID, LGD_PAYTYPE, LGD_PAYDATE,
                                             LGD_HASHDATA, LGD_FINANCECODE, LGD_FINANCENAME, LGD_ESCROWYN, LGD_TIMESTAMP, LGD_FINANCEAUTHNUM,
                                             LGD_CARDNUM, LGD_CARDINSTALLMONTH, LGD_CARDNOINTYN, LGD_TRANSAMOUNT, LGD_EXCHANGERATE, LGD_ACCOUNTNUM,
-                                            LGD_CASTAMOUNT, LGD_CASCAMOUNT, LGD_CASFLAG, LGD_CASSEQNO, LGD_CASHRECEIPTNUM, LGD_CASHRECEIPTSELFYN, LGD_CASHRECEIPTKIND)
+                                            LGD_CASTAMOUNT, LGD_CASCAMOUNT, LGD_CASFLAG, LGD_CASSEQNO, LGD_CASHRECEIPTNUM, LGD_CASHRECEIPTSELFYN, LGD_CASHRECEIPTKIND, LGD_DEFAULTCASHRECEIPTUSE)
                                     VALUES ('$LGD_RESPCODE', '$LGD_RESPMSG', '$LGD_MID', '$LGD_OID', '$LGD_AMOUNT', '$LGD_TID', '$LGD_PAYTYPE', '$LGD_PAYDATE',
                                             '$LGD_HASHDATA', '$LGD_FINANCECODE', '$LGD_FINANCENAME', '$LGD_ESCROWYN', '$LGD_TIMESTAMP', '$LGD_FINANCEAUTHNUM',
                                             '$LGD_CARDNUM', '$LGD_CARDINSTALLMONTH', '$LGD_CARDNOINTYN', '$LGD_TRANSAMOUNT', '$LGD_EXCHANGERATE', '$LGD_ACCOUNTNUM',
-                                            '$LGD_CASTAMOUNT', '$LGD_CASCAMOUNT', '$LGD_CASFLAG', '$LGD_CASSEQNO', '$LGD_CASHRECEIPTNUM', '$LGD_CASHRECEIPTSELFYN', '$LGD_CASHRECEIPTKIND' )";
+                                            '$LGD_CASTAMOUNT', '$LGD_CASCAMOUNT', '$LGD_CASFLAG', '$LGD_CASSEQNO', '$LGD_CASHRECEIPTNUM', '$LGD_CASHRECEIPTSELFYN', '$LGD_CASHRECEIPTKIND', '$LGD_DEFAULTCASHRECEIPTUSE' )";
 
         $result2 = mysqli_query($connect, $query2);
 
@@ -289,7 +288,6 @@ HEREDOC;
     } else {
         //최종결제요청 결과 실패 DB처리
         echo "최종결제요청 결과 실패 DB처리하시기 바랍니다.<br>";
-        // require_once 'save_pginfo_to_db.php';
     }
 } else {
     //2)API 요청실패 화면처리
@@ -320,8 +318,6 @@ HEREDOC;
 
     // //최종결제요청 결과 실패 DB처리
     echo "최종결제요청 결과 실패 DB처리하시기 바랍니다.<br>";
-
-    // require_once 'save_pginfo_to_db.php';
 
 }
 

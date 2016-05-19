@@ -1562,7 +1562,8 @@ function get_pg_info($orderid)
                     $pay_status .= '2) 가상계좌의 경우 CD기에서 현금입금 하실 수 없습니다.  CD기에서 이체는 가능합니다.</p>';
 
                 } elseif ($pg_row['LGD_CASFLAG'] == "I") {
-                    $pay_status = '<i class="fa fa-check-circle pay-color"></i> 입금완료';
+                    $pay_status    = '<i class="fa fa-check-circle pay-color"></i> 입금완료';
+                    $apply_receipt = $pg_row['LGD_DEFAULTCASHRECEIPTUSE'];
                 } elseif ($pg_row['LGD_CASFLAG'] == "C") {
                     $pay_status = '<i class="fa fa-times-circle"></i> 입금취소';
                 } else {
@@ -1573,7 +1574,8 @@ function get_pg_info($orderid)
             break;
         case 'SC0030':
             if ($pg_row['LGD_RESPCODE'] == "0000") {
-                $pay_status = '<i class="fa fa-check-circle pay-color"></i> 이체완료';
+                $pay_status    = '<i class="fa fa-check-circle pay-color"></i> 이체완료';
+                $apply_receipt = $pg_row['LGD_DEFAULTCASHRECEIPTUSE'];
             } else {
                 $pay_status = '<i class="fa fa-exclamation-triangle fail-color"></i> 이체실패(' . $pg_row['LGD_RESPCODE'] . ')';
             }
@@ -1590,7 +1592,8 @@ function get_pg_info($orderid)
             break;
     }
 
-    return $pay_status;
+    // return $pay_status;
+    return array('pay_status' => $pay_status, 'apply_receipt' => $apply_receipt);
 }
 
 /**
