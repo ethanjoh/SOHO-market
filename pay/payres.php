@@ -94,9 +94,9 @@ if ($xpay->TX()) {
     /**
      * 계좌이체
      */
-    $LGD_CASHRECEIPTNUM    = $xpay->Response("LGD_CASHRECEIPTNUM", 0);    //현금영수증 승인번호
-    $LGD_CASHRECEIPTSELFYN = $xpay->Response("LGD_CASHRECEIPTSELFYN", 0); //현금영수증 자진발급제유무
-    $LGD_CASHRECEIPTKIND   = $xpay->Response("LGD_CASHRECEIPTKIND", 0);   //현금영수증 종류
+    $LGD_CASHRECEIPTNUM          = $xpay->Response("LGD_CASHRECEIPTNUM", 0);    //현금영수증 승인번호
+    $LGD_CASHRECEIPTSELFYN       = $xpay->Response("LGD_CASHRECEIPTSELFYN", 0); //현금영수증 자진발급제유무
+    $LGD_CASHRECEIPTKIND         = $xpay->Response("LGD_CASHRECEIPTKIND", 0);   //현금영수증 종류
     $LGD_DEFAULTCASHRECEIPTUSE   = $xpay->Response("LGD_DEFAULTCASHRECEIPTUSE", 0);   //현금영수증 발급용도
 
     /**
