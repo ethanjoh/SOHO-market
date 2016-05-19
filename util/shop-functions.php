@@ -2029,7 +2029,8 @@ function show_buyer_detail($oid)
     $res = mysqli_query($connect, $sql);
     $row = mysqli_fetch_array($res);
 
-    $payStatus = get_pg_info($row['orderid']);
+    $pgInfo    = get_pg_info($row['orderid']);
+    $payStatus = $pgInfo['pay_status'];
 
     echo <<<HEREDOC
 

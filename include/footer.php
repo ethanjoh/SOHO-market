@@ -158,3 +158,4 @@ if ($sessionId) {
         <script src="/js/addcart.js"></script>
         <script src="/js/shopping.js"></script>
 
+<?php include_once "analyticstracking.php";?>
