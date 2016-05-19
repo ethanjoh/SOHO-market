@@ -1562,31 +1562,31 @@ function get_pg_info($orderid)
                     $pay_status .= '2) 가상계좌의 경우 CD기에서 현금입금 하실 수 없습니다.  CD기에서 이체는 가능합니다.</p>';
 
                 } elseif ($pg_row['LGD_CASFLAG'] == "I") {
-                    $pay_status    = '<i class="fa fa-check-circle pay-color"></i> 입금완료';
+                    $pay_status    = '              <i class="fa fa-check-circle pay-color"></i> 입금완료' . "\r\n";
                     $apply_receipt = $pg_row['LGD_DEFAULTCASHRECEIPTUSE'];
                 } elseif ($pg_row['LGD_CASFLAG'] == "C") {
-                    $pay_status = '<i class="fa fa-times-circle"></i> 입금취소';
+                    $pay_status = '<i class="fa fa-times-circle"></i> 입금취소' . "\r\n";
                 } else {
-                    $pay_status = '<i class="fa fa-exclamation-triangle fail-color"></i> 입금실패(' . $pg_row['LGD_RESPCODE'] . ')';
+                    $pay_status = '<i class="fa fa-exclamation-triangle fail-color"></i> 입금실패(' . $pg_row['LGD_RESPCODE'] . ')' . "\r\n";
                 }
             }
 
             break;
         case 'SC0030':
             if ($pg_row['LGD_RESPCODE'] == "0000") {
-                $pay_status    = '<i class="fa fa-check-circle pay-color"></i> 이체완료';
+                $pay_status    = '<i class="fa fa-check-circle pay-color"></i> 이체완료' . "\r\n";
                 $apply_receipt = $pg_row['LGD_DEFAULTCASHRECEIPTUSE'];
             } else {
-                $pay_status = '<i class="fa fa-exclamation-triangle fail-color"></i> 이체실패(' . $pg_row['LGD_RESPCODE'] . ')';
+                $pay_status = '<i class="fa fa-exclamation-triangle fail-color"></i> 이체실패(' . $pg_row['LGD_RESPCODE'] . ')' . "\r\n";
             }
 
             break;
 
         case 'SC0010': //SC0010 credit card
             if ($pg_row['LGD_RESPCODE'] == "0000") {
-                $pay_status = '<i class="fa fa-credit-card pay-color"></i> 카드결제 완료';
+                $pay_status = '<i class="fa fa-credit-card pay-color"></i> 카드결제 완료' . "\r\n";
             } else {
-                $pay_status = '<i class="fa fa-exclamation-triangle fail-color"></i> 결제실패(' . $pg_row['LGD_RESPCODE'] . ')';
+                $pay_status = '<i class="fa fa-exclamation-triangle fail-color"></i> 결제실패(' . $pg_row['LGD_RESPCODE'] . ')' . "\r\n";
             }
 
             break;
@@ -1854,8 +1854,8 @@ function show_pay_data($orderid)
     switch ($pg_row['LGD_PAYTYPE']) {
         case 'SC0040':
             if ($pg_row['LGD_RESPCODE'] == "0000") {
-                // 계좌할당: R
-                if ("R" == $pg_row['LGD_CASFLAG']) {
+                // 입금완료: I
+                if ($pg_row['LGD_CASFLAG'] == "I") {
 
                     $bank_finance = array(
                         '003' => '기업은행',
@@ -1891,7 +1891,6 @@ function show_pay_data($orderid)
                             if ($pg_row['LGD_FINANCECODE'] == $key) {
                                 $finance_name = $value;
                             }
-
                         }
                     }
 
@@ -1915,7 +1914,7 @@ function show_pay_data($orderid)
                 '031' => '대구',
             );
 
-            if ($pg_row['LGD_PAYTYPE'] == "SC0010") {
+            if ($pg_row['LGD_PAYTYPE'] == "SC0030") {
                 foreach ($wire_finance as $key => $value) {
                     if ($pg_row['LGD_FINANCECODE'] == $key) {
                         $finance_name = $value;
@@ -1927,32 +1926,50 @@ function show_pay_data($orderid)
 
         case 'SC0010': //SC0010 credit card
             $card_finance = array(
-                '11' => '국민',
-                '21' => '외환',
-                '30' => 'KDB산업체크',
-                '31' => '비씨',
-                '32' => '하나',
-                '33' => '우리(구.평화VISA)',
-                '34' => '수협',
-                '35' => '전북',
-                '36' => '씨티',
-                '37' => '우체국체크',
-                '38' => 'MG새마을금고체크',
-                '39' => '저축은행체크',
-                '41' => '신한(구.LG카드 포함)',
-                '42' => '제주',
-                '46' => '광주',
-                '51' => '삼성',
-                '61' => '현대',
-                '62' => '신협체크',
-                '71' => '롯데',
-                '91' => 'NH',
-                '3C' => '중국은련',
-                '4J' => '해외JCB',
-                '4V' => '해외VISA',
-                '4M' => '해외MASTER',
-                '6D' => '해외DINERS',
-                '6I' => '해외DISCOVER',
+                '11000' => '국민',
+                '11100' => '국민VISA',
+                '11200' => '국민MASTER',
+                '11400' => '국민AMEX',
+                '21'    => '외환',
+                '30'    => 'KDB산업체크',
+                '31000' => '비씨',
+                '31100' => '비씨VISA',
+                '31200' => '비씨MASTER',
+                '31400' => '비씨AMEX',
+                '32000' => '하나',
+                '32100' => '하나VISA',
+                '32200' => '하나MASTER',
+                '32400' => '하나AMEX',
+                '33'    => '우리(구.평화VISA)',
+                '34'    => '수협',
+                '35'    => '전북',
+                '36'    => '씨티',
+                '37'    => '우체국체크',
+                '38'    => 'MG새마을금고체크',
+                '39'    => '저축은행체크',
+                '41000' => '신한(구.LG카드 포함)',
+                '41100' => '신한VISA',
+                '41200' => '신한MASTER',
+                '41400' => '신한AMEX',
+                '42'    => '제주',
+                '46'    => '광주',
+                '51000' => '삼성',
+                '51100' => '삼성VISA',
+                '51200' => '삼성MASTER',
+                '51400' => '삼성AMEX',
+                '61000' => '현대',
+                '61100' => '현대VISA',
+                '61200' => '현대MASTER',
+                '61400' => '현대AMEX',
+                '62'    => '신협체크',
+                '71'    => '롯데',
+                '91'    => 'NH',
+                '3C'    => '중국은련',
+                '4J'    => '해외JCB',
+                '4V'    => '해외VISA',
+                '4M'    => '해외MASTER',
+                '6D'    => '해외DINERS',
+                '6I'    => '해외DISCOVER',
             );
 
             if ($pg_row['LGD_PAYTYPE'] == "SC0010") {
