@@ -28,7 +28,7 @@
                 <li><i class="fa fa-info-circle"></i> 상품명을 클릭하시면 수정이 가능합니다.</li>
                 <li><i class="fa fa-info-circle"></i> 신상품/기획상품/인기상품은 메인화면에 표시 여부입니다.</li>
                 <li><i class="fa fa-info-circle"></i> <i class="fa fa-lock"></i> 표시는 숨김상품입니다.</li>
-
+                <li><i class="fa fa-info-circle"></i>  상품을 삭제하시면 복구가 되지 않으니 오등록 시에만 사용하시고 기존 주문건이 있을 경우 제대로 표시가 되지 않습니다. 가급적 숨김기능을 이용하세요. </li>
               </ul>
             </section>
           </div>
@@ -49,7 +49,7 @@
                     <tbody>
                         <tr>
                           <td>
-                              <select class="form-control" name="lcode" onchange="show_msub();">
+                              <select class="form-control" name="lcode"  onchange="show_msub();">
                                 <option>--- 브랜드 ---</option>
 <?php
 
@@ -196,9 +196,8 @@ if ($lcode) {
                       <th class="text-center">소비자가</th>
                       <th class="text-center">공급가</th>
                       <th class="text-center" colspan="3">메인화면 표시</th>
-<!--                       <th>기획상품</th>
-                      <th>인기상품</th>
- -->                      <th class="text-center">복사</th>
+                      <th class="text-center">복사</th>
+                      <th class="text-center">삭제</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -265,11 +264,11 @@ if ($result1) {
 <?php
 
         if ($prow['main_new'] == 'Y') {
-            echo '<a type="button" class="btn btn-round btn-success" href="pro_opt.php?p_num=' . $prow['num'] . '&mode=unset&lcode=' . $prow['category_l'] . '&mcode=' . $prow['category_m'] . '&ck=new&page=' . $page . '"><i class="fa fa-times"></i> ON</a><p class="help-text">신상품</p>';
-            // echo '<a type="button" class="btn btn-round btn-success" href="pro_opt.php?p_num=' . $prow['num'] . '&mode=unset&ck=main_new&page=' . $page . '"><i class="fa fa-times"></i> ON</a><p class="help-text">신상품</p>';
+            echo '<a type="button" class="btn btn-round btn-xs btn-success" href="pro_opt.php?p_num=' . $prow['num'] . '&mode=unset&lcode=' . $prow['category_l'] . '&mcode=' . $prow['category_m'] . '&ck=new&page=' . $page . '"><i class="fa fa-times"></i> ON</a><p class="help-text">신상품</p>';
+            // echo '<a type="button" class="btn btn-round btn-xs btn-success" href="pro_opt.php?p_num=' . $prow['num'] . '&mode=unset&ck=main_new&page=' . $page . '"><i class="fa fa-times"></i> ON</a><p class="help-text">신상품</p>';
         } else {
-            echo '<a type="button" class="btn btn-round btn-default" href="pro_opt.php?p_num=' . $prow['num'] . '&mode=set&lcode=' . $prow['category_l'] . '&mcode=' . $prow['category_m'] . '&ck=new&page=' . $page . '"><i class="fa fa-check"></i> OFF</a><p class="help-text">신상품</p>';
-            // echo '<a type="button" class="btn btn-round btn-default" href="pro_opt.php?p_num=' . $prow['num'] . '&mode=setert&ck=main_new&page=' . $page . '"><i class="fa fa-check"></i> OFF</a><p class="help-text">신상품</p>';
+            echo '<a type="button" class="btn btn-round btn-xs btn-default" href="pro_opt.php?p_num=' . $prow['num'] . '&mode=set&lcode=' . $prow['category_l'] . '&mcode=' . $prow['category_m'] . '&ck=new&page=' . $page . '"><i class="fa fa-check"></i> OFF</a><p class="help-text">신상품</p>';
+            // echo '<a type="button" class="btn btn-round btn-xs btn-default" href="pro_opt.php?p_num=' . $prow['num'] . '&mode=setert&ck=main_new&page=' . $page . '"><i class="fa fa-check"></i> OFF</a><p class="help-text">신상품</p>';
 
         }
         ?>
@@ -278,9 +277,9 @@ if ($result1) {
 <?php
 
         if ($prow['main_special'] == 'Y') {
-            echo '<a type="button" class="btn btn-round btn-success" href="pro_opt.php?p_num=' . $prow['num'] . '&mode=unset&lcode=' . $prow['category_l'] . '&mcode=' . $prow['category_m'] . '&ck=sp&page=' . $page . '"><i class="fa fa-times"></i> ON</a><p class="help-text">기획상품</p>';
+            echo '<a type="button" class="btn btn-round btn-xs btn-success" href="pro_opt.php?p_num=' . $prow['num'] . '&mode=unset&lcode=' . $prow['category_l'] . '&mcode=' . $prow['category_m'] . '&ck=sp&page=' . $page . '"><i class="fa fa-times"></i> ON</a><p class="help-text">기획상품</p>';
         } else {
-            echo '<a type="button" class="btn btn-round btn-default" href="pro_opt.php?p_num=' . $prow['num'] . '&mode=set&lcode=' . $prow['category_l'] . '&mcode=' . $prow['category_m'] . '&ck=sp&page=' . $page . '"><i class="fa fa-check"></i> OFF</a><p class="help-text">기획상품</p>';
+            echo '<a type="button" class="btn btn-round btn-xs btn-default" href="pro_opt.php?p_num=' . $prow['num'] . '&mode=set&lcode=' . $prow['category_l'] . '&mcode=' . $prow['category_m'] . '&ck=sp&page=' . $page . '"><i class="fa fa-check"></i> OFF</a><p class="help-text">기획상품</p>';
         }
         ?>
                     </td>
@@ -288,20 +287,24 @@ if ($result1) {
 <?php
 
         if ($prow['main_best'] == 'Y') {
-            echo '<a type="button" class="btn btn-round btn-success" href="pro_opt.php?p_num=' . $prow['num'] . '&mode=unset&lcode=' . $prow['category_l'] . '&mcode=' . $prow['category_m'] . '&ck=best&page=' . $page . '"><i class="fa fa-times"></i> ON</a><p class="help-text">인기상품</p>';
+            echo '<a type="button" class="btn btn-round btn-xs btn-success" href="pro_opt.php?p_num=' . $prow['num'] . '&mode=unset&lcode=' . $prow['category_l'] . '&mcode=' . $prow['category_m'] . '&ck=best&page=' . $page . '"><i class="fa fa-times"></i> ON</a><p class="help-text">인기상품</p>';
         } else {
-            echo '<a type="button" class="btn btn-round btn-default" href="pro_opt.php?p_num=' . $prow['num'] . '&mode=set&lcode=' . $prow['category_l'] . '&mcode=' . $prow['category_m'] . '&ck=best&page=' . $page . '"><i class="fa fa-check"></i> OFF</a><p class="help-text">인기상품</p>';
+            echo '<a type="button" class="btn btn-round btn-xs btn-default" href="pro_opt.php?p_num=' . $prow['num'] . '&mode=set&lcode=' . $prow['category_l'] . '&mcode=' . $prow['category_m'] . '&ck=best&page=' . $page . '"><i class="fa fa-check"></i> OFF</a><p class="help-text">인기상품</p>';
         }
         ?>
                     </td>
+                    <td class="text-center">
                       <form name="register" action="pro_register_ok.php" method="post" onsubmit="javascript:return confirm('상품을 복사하시겠습니까?');">
                       <input type="hidden" name="mode" value="copy" />
                       <input type="hidden" name="p_num" value="<?php echo $prow['num']; ?>" />
                       <input type="hidden" name="page" value="<?php echo $page; ?>" />
-                    <td class="text-center">
-                      <button class="btn btn-warning" onclick="register.submit();" /><i class="fa fa-files-o"></i></button>
-                    </td>
+                      <button class="btn btn-xs btn-warning" onclick="register.submit();" /><i class="fa fa-files-o"></i></button>
                       </form>
+                    </td>
+                    <td class="text-center">
+                      <a type="button" class="btn btn-xs btn-danger" href="pro_delete.php?p_num=<?php echo $prow['num']; ?>&amp;lcode=<?php echo $prow['category_l']; ?>&amp;mcode=<?php echo $prow['category_m']; ?>&amp;page=<?php echo $page; ?>" onclick="return confirm('상품을 정말 삭제하시겠습니까?\n복구 불가하고 기존 주문건이 있으면 표시가 되지 않으니 주의하세요.')"><i class="fa fa-trash-o"></i></a>
+                    </td>
+
                   </tr>
 <?php
 
@@ -312,7 +315,7 @@ if ($result1) {
 if ($total == 0) {
     ?>
                   <tr>
-                    <td colspan="10"><p>등록된 상품이 없습니다.</p></td>
+                    <td colspan="11"><p>등록된 상품이 없습니다.</p></td>
                   </tr>
 <?php
 

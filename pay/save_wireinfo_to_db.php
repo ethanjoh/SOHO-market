@@ -17,11 +17,11 @@ if ($update == 'N') {
     $query2 = "INSERT INTO pg_info(LGD_RESPCODE, LGD_RESPMSG, LGD_MID, LGD_OID, LGD_AMOUNT, LGD_TID, LGD_PAYTYPE, LGD_PAYDATE,
                                             LGD_HASHDATA, LGD_FINANCECODE, LGD_FINANCENAME, LGD_ESCROWYN, LGD_TIMESTAMP, LGD_FINANCEAUTHNUM,
                                             LGD_CARDNUM, LGD_CARDINSTALLMONTH, LGD_CARDNOINTYN, LGD_TRANSAMOUNT, LGD_EXCHANGERATE, LGD_ACCOUNTNUM,
-                                            LGD_CASTAMOUNT, LGD_CASCAMOUNT, LGD_CASFLAG, LGD_CASSEQNO, LGD_CASHRECEIPTNUM, LGD_CASHRECEIPTSELFYN, LGD_CASHRECEIPTKIND)
+                                            LGD_CASTAMOUNT, LGD_CASCAMOUNT, LGD_CASFLAG, LGD_CASSEQNO, LGD_CASHRECEIPTNUM, LGD_CASHRECEIPTSELFYN, LGD_CASHRECEIPTKIND, LGD_DEFAULTCASHRECEIPTUSE)
                                     VALUES ('$LGD_RESPCODE', '$LGD_RESPMSG', '$LGD_MID', '$LGD_OID', '$LGD_AMOUNT', '$LGD_TID', '$LGD_PAYTYPE', '$LGD_PAYDATE',
                                             '$LGD_HASHDATA', '$LGD_FINANCECODE', '$LGD_FINANCENAME', '$LGD_ESCROWYN', '$LGD_TIMESTAMP', '$LGD_FINANCEAUTHNUM',
                                             '$LGD_CARDNUM', '$LGD_CARDINSTALLMONTH', '$LGD_CARDNOINTYN', '$LGD_TRANSAMOUNT', '$LGD_EXCHANGERATE', '$LGD_ACCOUNTNUM',
-                                            '$LGD_CASTAMOUNT', '$LGD_CASCAMOUNT', '$LGD_CASFLAG', '$LGD_CASSEQNO', '$LGD_CASHRECEIPTNUM', '$LGD_CASHRECEIPTSELFYN', '$LGD_CASHRECEIPTKIND' )";
+                                            '$LGD_CASTAMOUNT', '$LGD_CASCAMOUNT', '$LGD_CASFLAG', '$LGD_CASSEQNO', '$LGD_CASHRECEIPTNUM', '$LGD_CASHRECEIPTSELFYN', '$LGD_CASHRECEIPTKIND' , '$LGD_DEFAULTCASHRECEIPTUSE')";
 
     $result2 = mysqli_query($connect, $query2);
 
@@ -33,18 +33,19 @@ if ($update == 'N') {
 } elseif ($update == 'I') {
 
     $query2 = "UPDATE pg_info SET
-                                LGD_RESPCODE            = '$LGD_RESPCODE',
-                                LGD_RESPMSG             = '$LGD_RESPMSG',
-                                LGD_PAYDATE             = '$LGD_PAYDATE',
-                                LGD_ESCROWYN            = '$LGD_ESCROWYN',
-                                LGD_TIMESTAMP           = '$LGD_TIMESTAMP',
-                                LGD_CASTAMOUNT          = '$LGD_CASTAMOUNT',
-                                LGD_CASCAMOUNT          = '$LGD_CASCAMOUNT',
-                                LGD_CASFLAG             = '$LGD_CASFLAG',
-                                LGD_CASSEQNO            = '$LGD_CASSEQNO',
-                                LGD_CASHRECEIPTNUM      = '$LGD_CASHRECEIPTNUM',
-                                LGD_CASHRECEIPTSELFYN   = '$LGD_CASHRECEIPTSELFYN',
-                                LGD_CASHRECEIPTKIND     = '$LGD_CASHRECEIPTKIND'
+                                LGD_RESPCODE              = '$LGD_RESPCODE',
+                                LGD_RESPMSG               = '$LGD_RESPMSG',
+                                LGD_PAYDATE               = '$LGD_PAYDATE',
+                                LGD_ESCROWYN              = '$LGD_ESCROWYN',
+                                LGD_TIMESTAMP             = '$LGD_TIMESTAMP',
+                                LGD_CASTAMOUNT            = '$LGD_CASTAMOUNT',
+                                LGD_CASCAMOUNT            = '$LGD_CASCAMOUNT',
+                                LGD_CASFLAG               = '$LGD_CASFLAG',
+                                LGD_CASSEQNO              = '$LGD_CASSEQNO',
+                                LGD_CASHRECEIPTNUM        = '$LGD_CASHRECEIPTNUM',
+                                LGD_CASHRECEIPTSELFYN     = '$LGD_CASHRECEIPTSELFYN',
+                                LGD_CASHRECEIPTKIND       = '$LGD_CASHRECEIPTKIND',
+                                LGD_DEFAULTCASHRECEIPTUSE = '$LGD_DEFAULTCASHRECEIPTUSE'
                             WHERE LGD_OID = '$lgd_oid'";
 
     $result2 = mysqli_query($connect, $query2);

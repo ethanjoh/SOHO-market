@@ -63,7 +63,7 @@ if ($mode == "search") {
 }
 
 //회원 테이블의 리스트를 불러옵니다.
-$query  = "SELECT * FROM member WHERE 1 $search_keyword ORDER BY company_name";
+$query  = "SELECT * FROM member WHERE 1 $search_keyword ORDER BY seq_num";
 $result = mysqli_query($connect, $query);
 $total  = mysqli_num_rows($result);
 
@@ -191,7 +191,7 @@ if ($limit >= $total) {
 
 $scale1 = $limit - $cline;
 
-$sql_2    = "SELECT * FROM member WHERE 1 $search_keyword ORDER BY reg_date DESC LIMIT $cline,$scale1 ";
+$sql_2    = "SELECT * FROM member WHERE 1 $search_keyword ORDER BY seq_num DESC LIMIT $cline,$scale1 ";
 $result_2 = mysqli_query($connect, $sql_2);
 $total_2  = mysqli_num_rows($result_2);
 

@@ -3,7 +3,7 @@
         <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
     </div>
     <!--logo start-->
-    <a href="/admin/main/main.php" class="logo"><img src="/images/shinsoo-logo.svg" class="admin-logo-top"></a>
+    <a href="/admin/main/main.php" class="logo"><img src="/admin/images/top-logo.png" class="admin-logo-top"></a>
     <!--logo end-->
     <div class="nav notify-row" id="top_menu">
         <!--  notification start -->

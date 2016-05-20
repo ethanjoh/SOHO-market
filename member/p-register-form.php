@@ -543,7 +543,7 @@ Start Register Form ============================================================
 														<div class="col-xs-12 col-md-3 register-font">휴대폰</div>
 														<div class="col-xs-12 col-md-3">
 																<label class="sr-only" for="hphone">휴대폰</label>
-																<input class="form-control" type="text" id="hphone" name="hphone" placeholder="010-xxxx-xxxx" required />
+																<input class="form-control" type="text" id="hphone" name="hphone" placeholder="010-xxxx-xxxx (-를 삽입해 주세요)" required />
 														</div>
 													</div>
 
@@ -553,7 +553,7 @@ Start Register Form ============================================================
 														</div>
 														<div class="col-xs-12 col-md-3">
 															<label class="sr-only" for="o_phone">일반 전화번호</label>
-															<input class="form-control" type="text" id="o_phone" name="o_phone" placeholder="02-xxx-xxxx" required /> (없으면 휴대폰 번호를 넣어주세요)
+															<input class="form-control" type="text" id="o_phone" name="o_phone" placeholder="02-xxx-xxxx (-를 삽입해 주세요)" required /> (없으면 휴대폰 번호를 넣어주세요)
 														</div>
 													</div>
 
@@ -647,7 +647,7 @@ Start Register Form ============================================================
 														<div class="col-xs-12 col-md-3 register-font">휴대폰</div>
 														<div class="col-xs-12 col-md-3">
 																<label class="sr-only" for="d_hphone">휴대폰</label>
-																<input class="form-control" type="text" id="d_hphone" name="d_hphone" placeholder="010-xxxx-xxxx" required />
+																<input class="form-control" type="text" id="d_hphone" name="d_hphone" placeholder="010-xxxx-xxxx (-를 삽입해 주세요)" required />
 														</div>
 													</div>
 
@@ -657,7 +657,7 @@ Start Register Form ============================================================
 														</div>
 														<div class="col-sm-12 col-md-3">
 															<label class="sr-only" for="d_phone">배송지 전화번호</label>
-															<input class="form-control" type="text" name="d_phone" placeholder="02-xxx-xxxx" required /> (없으면 휴대폰 번호를 넣어주세요)
+															<input class="form-control" type="text" name="d_phone" placeholder="02-xxx-xxxx (-를 삽입해 주세요)" required /> (없으면 휴대폰 번호를 넣어주세요)
 														</div>
 													</div>
 

@@ -7,28 +7,29 @@ require_once '../util/util.php';
  * 1) 위변조 방지를 위한 hashdata값 검증은 반드시 적용하셔야 합니다.
  *
  */
-$LGD_RESPCODE          = set_var($_POST['LGD_RESPCODE']);          // 응답코드: 0000(성공) 그외 실패
-$LGD_RESPMSG           = set_var($_POST['LGD_RESPMSG']);           // 응답메세지
-$LGD_MID               = set_var($_POST['LGD_MID']);               // 상점아이디
-$LGD_OID               = set_var($_POST['LGD_OID']);               // 주문번호
-$LGD_AMOUNT            = set_var($_POST['LGD_AMOUNT']);            // 거래금액
-$LGD_TID               = set_var($_POST['LGD_TID']);               // LG유플러스에서 부여한 거래번호
-$LGD_PAYTYPE           = set_var($_POST['LGD_PAYTYPE']);           // 결제수단코드
-$LGD_PAYDATE           = set_var($_POST['LGD_PAYDATE']);           // 거래일시(승인일시/이체일시)
-$LGD_HASHDATA          = set_var($_POST['LGD_HASHDATA']);          // 해쉬값
-$LGD_FINANCECODE       = set_var($_POST['LGD_FINANCECODE']);       // 결제기관코드(은행코드)
-$LGD_FINANCENAME       = set_var($_POST['LGD_FINANCENAME']);       // 결제기관이름(은행이름)
-$LGD_ESCROWYN          = set_var($_POST['LGD_ESCROWYN']);          // 에스크로 적용여부
-$LGD_TIMESTAMP         = set_var($_POST['LGD_TIMESTAMP']);         // 타임스탬프
-$LGD_ACCOUNTNUM        = set_var($_POST['LGD_ACCOUNTNUM']);        // 계좌번호(무통장입금)
-$LGD_CASTAMOUNT        = set_var($_POST['LGD_CASTAMOUNT']);        // 입금총액(무통장입금)
-$LGD_CASCAMOUNT        = set_var($_POST['LGD_CASCAMOUNT']);        // 현입금액(무통장입금)
-$LGD_CASFLAG           = set_var($_POST['LGD_CASFLAG']);           // 무통장입금 플래그(무통장입금) - 'R':계좌할당, 'I':입금, 'C':입금취소
-$LGD_CASSEQNO          = set_var($_POST['LGD_CASSEQNO']);          // 입금순서(무통장입금)
-$LGD_CASHRECEIPTNUM    = set_var($_POST['LGD_CASHRECEIPTNUM']);    // 현금영수증 승인번호
-$LGD_CASHRECEIPTSELFYN = set_var($_POST['LGD_CASHRECEIPTSELFYN']); // 현금영수증자진발급제유무 Y: 자진발급제 적용, 그외 : 미적용
-$LGD_CASHRECEIPTKIND   = set_var($_POST['LGD_CASHRECEIPTKIND']);   // 현금영수증 종류 0: 소득공제용 , 1: 지출증빙용
-$LGD_PAYER             = set_var($_POST['LGD_PAYER']);             // 입금자명
+$LGD_RESPCODE              = set_var($_POST['LGD_RESPCODE']);              // 응답코드: 0000(성공) 그외 실패
+$LGD_RESPMSG               = set_var($_POST['LGD_RESPMSG']);               // 응답메세지
+$LGD_MID                   = set_var($_POST['LGD_MID']);                   // 상점아이디
+$LGD_OID                   = set_var($_POST['LGD_OID']);                   // 주문번호
+$LGD_AMOUNT                = set_var($_POST['LGD_AMOUNT']);                // 거래금액
+$LGD_TID                   = set_var($_POST['LGD_TID']);                   // LG유플러스에서 부여한 거래번호
+$LGD_PAYTYPE               = set_var($_POST['LGD_PAYTYPE']);               // 결제수단코드
+$LGD_PAYDATE               = set_var($_POST['LGD_PAYDATE']);               // 거래일시(승인일시/이체일시)
+$LGD_HASHDATA              = set_var($_POST['LGD_HASHDATA']);              // 해쉬값
+$LGD_FINANCECODE           = set_var($_POST['LGD_FINANCECODE']);           // 결제기관코드(은행코드)
+$LGD_FINANCENAME           = set_var($_POST['LGD_FINANCENAME']);           // 결제기관이름(은행이름)
+$LGD_ESCROWYN              = set_var($_POST['LGD_ESCROWYN']);              // 에스크로 적용여부
+$LGD_TIMESTAMP             = set_var($_POST['LGD_TIMESTAMP']);             // 타임스탬프
+$LGD_ACCOUNTNUM            = set_var($_POST['LGD_ACCOUNTNUM']);            // 계좌번호(무통장입금)
+$LGD_CASTAMOUNT            = set_var($_POST['LGD_CASTAMOUNT']);            // 입금총액(무통장입금)
+$LGD_CASCAMOUNT            = set_var($_POST['LGD_CASCAMOUNT']);            // 현입금액(무통장입금)
+$LGD_CASFLAG               = set_var($_POST['LGD_CASFLAG']);               // 무통장입금 플래그(무통장입금) - 'R':계좌할당, 'I':입금, 'C':입금취소
+$LGD_CASSEQNO              = set_var($_POST['LGD_CASSEQNO']);              // 입금순서(무통장입금)
+$LGD_CASHRECEIPTNUM        = set_var($_POST['LGD_CASHRECEIPTNUM']);        // 현금영수증 승인번호
+$LGD_CASHRECEIPTSELFYN     = set_var($_POST['LGD_CASHRECEIPTSELFYN']);     // 현금영수증자진발급제유무 Y: 자진발급제 적용, 그외 : 미적용
+$LGD_CASHRECEIPTKIND       = set_var($_POST['LGD_CASHRECEIPTKIND']);       // 현금영수증 종류 0: 소득공제용 , 1: 지출증빙용
+$LGD_DEFAULTCASHRECEIPTUSE = set_var($_POST['LGD_DEFAULTCASHRECEIPTUSE']); // 현금영수증 발급용도
+$LGD_PAYER                 = set_var($_POST['LGD_PAYER']);                 // 입금자명
 
 /*
  * 구매정보
@@ -48,6 +49,13 @@ $LGD_DELIVERYINFO  = set_var($_POST["LGD_DELIVERYINFO"]);  // 배송지
 //LG유플러스에서 발급한 상점키로 변경해 주시기 바랍니다.
 $LGD_MERTKEY   = $MERTKEY;
 $LGD_HASHDATA2 = md5($LGD_MID . $LGD_OID . $LGD_AMOUNT . $LGD_RESPCODE . $LGD_TIMESTAMP . $LGD_MERTKEY);
+
+// debug 현금영수증 승인번호
+$re   = 'LGD_OID: ' . $LGD_OID . ' - RECEIPT NO: ' . $LGD_CASHRECEIPTNUM . "\n";
+$txt  = print_r($re, true);
+$file = fopen("r_log.txt", "a+b");
+fwrite($file, $txt);
+fclose($file);
 
 /*
  * 상점 처리결과 리턴메세지

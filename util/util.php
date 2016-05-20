@@ -1563,7 +1563,8 @@ function get_pg_info($orderid)
 
                 } elseif ($pg_row['LGD_CASFLAG'] == "I") {
                     $pay_status    = '              <i class="fa fa-check-circle pay-color"></i> 입금완료' . "\r\n";
-                    $apply_receipt = $pg_row['LGD_DEFAULTCASHRECEIPTUSE'];
+                    $apply_receipt = $pg_row['LGD_CASHRECEIPTNUM'];
+                    $pay_type      = 'BANK';
                 } elseif ($pg_row['LGD_CASFLAG'] == "C") {
                     $pay_status = '<i class="fa fa-times-circle"></i> 입금취소' . "\r\n";
                 } else {
@@ -1575,7 +1576,8 @@ function get_pg_info($orderid)
         case 'SC0030':
             if ($pg_row['LGD_RESPCODE'] == "0000") {
                 $pay_status    = '<i class="fa fa-check-circle pay-color"></i> 이체완료' . "\r\n";
-                $apply_receipt = $pg_row['LGD_DEFAULTCASHRECEIPTUSE'];
+                $apply_receipt = $pg_row['LGD_CASHRECEIPTNUM'];
+                $pay_type      = 'WIRE';
             } else {
                 $pay_status = '<i class="fa fa-exclamation-triangle fail-color"></i> 이체실패(' . $pg_row['LGD_RESPCODE'] . ')' . "\r\n";
             }
@@ -1584,7 +1586,9 @@ function get_pg_info($orderid)
 
         case 'SC0010': //SC0010 credit card
             if ($pg_row['LGD_RESPCODE'] == "0000") {
-                $pay_status = '<i class="fa fa-credit-card pay-color"></i> 카드결제 완료' . "\r\n";
+                $pay_status    = '<i class="fa fa-credit-card pay-color"></i> 카드결제 완료' . "\r\n";
+                $apply_receipt = '-';
+                $pay_type      = 'CARD';
             } else {
                 $pay_status = '<i class="fa fa-exclamation-triangle fail-color"></i> 결제실패(' . $pg_row['LGD_RESPCODE'] . ')' . "\r\n";
             }
@@ -1593,7 +1597,7 @@ function get_pg_info($orderid)
     }
 
     // return $pay_status;
-    return array('pay_status' => $pay_status, 'apply_receipt' => $apply_receipt);
+    return array('pay_status' => $pay_status, 'apply_receipt' => $apply_receipt, 'pay_type' => $pay_type);
 }
 
 /**
@@ -2275,4 +2279,27 @@ function check_protocol($port)
     } else {
         return $protocol = "http:";
     }
+}
+
+/**
+ * 이메일 포맷
+ * @param  [type] $info [description]
+ * @return [type]       [description]
+ */
+function format_email($info)
+{
+
+    //grab the template content
+    $template = file_get_contents('../mail/join-confirmation.html');
+
+    //replace all the tags
+    $template = str_replace('{USERNAME}', $info['company_name'], $template);
+    $template = str_replace('{ID}', $info['id'], $template);
+    $template = str_replace('{EMAIL}', $info['email'], $template);
+    $template = str_replace('{FAX}', $info['fax'], $template);
+    $template = str_replace('{SITEPATH}', $info['homepage'], $template);
+
+    //return the html of the template
+    return $template;
+
 }
