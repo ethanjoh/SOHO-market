@@ -41,10 +41,11 @@ $qry = "SELECT * FROM admin_setup";
 $res = mysqli_query($connect, $qry);
 $row = mysqli_fetch_array($res);
 
-$op_company = $row['company_name'];
-$op_email   = $row['email'];
-$op_tel     = $row['tel'];
-$op_fax     = $row['fax'];
+$op_company  = $row['company_name'];
+$op_homepage = $row['homepage'];
+$op_email    = $row['email'];
+$op_tel      = $row['tel'];
+$op_fax      = $row['fax'];
 
 if ("edit" == $mode) {
     // 이름과 아이디에 해당되는 세션이 존재하는지 확인
@@ -223,14 +224,23 @@ if ("edit" == $mode) {
         $subject_c = "=?EUC-KR?B?" . base64_encode(iconv("UTF-8", "EUC-KR", $subject)) . "?=\r\n";
         $subject_c = addslashes($subject_c);
 
-        $contents = "<p><a href=\"http://" . $_SERVER['SERVER_NAME'] . "\">" . $op_company . "</a>에 가입하신 것을 환영합니다.<br />";
-        $contents .= "아래 이용안내를 필히 확인하시고 이용부탁드립니다.</p>";
-        $contents .= "<p>담당자와 연락이 닿지 않는 경우 사용정지될 수 있으니 연락가능한 전화번호를 필히 기재하시기 바랍니다.<br />";
-        $contents .= "기존 거래업체가 아닌 신규 회원가입업체께서는 사업자등록증 사본을 팩스(" . $op_fax . ")로 보내주셔야 승인처리가 되어 이용이 가능합니다.<br />";
-        $contents .= " <p><br />";
-        $contents .= " <p>기타 문의사항은 <a href=\"http://" . $_SERVER['SERVER_NAME'] . "/member/help.php\">[이용안내]</a> 또는 1:1 문의게시판 , " . $op_tel . " 을 이용해주시기 바랍니다.<br>";
-        $contents .= " 이용해 주셔서 고맙습니다.</p>";
-        $contents = addslashes($contents);
+        $info = array(
+            'company_name' => $company_name,
+            'id'           => $id,
+            'email'        => $sender_email,
+            'fax'          => $op_fax,
+            'homepage'     => $op_homepage,
+        );
+
+        // $contents = "<p><a href=\"http://" . $_SERVER['SERVER_NAME'] . "\">" . $op_company . "</a>에 가입하신 것을 환영합니다.<br />";
+        // $contents .= "아래 이용안내를 필히 확인하시고 이용부탁드립니다.</p>";
+        // $contents .= "기존 거래업체가 아닌 신규 회원 가입업체께서는 사업자등록증 사본을 팩스(" . $op_fax . ")로 보내주셔야 승인처리가 되어 이용이 가능합니다.<br />";
+        // $contents .= " <p><br />";
+        // $contents .= " <p>기타 문의사항은 <a href=\"http://" . $_SERVER['SERVER_NAME'] . "/member/help.php\">[이용안내]</a> 또는 1:1 문의게시판 , " . $op_tel . " 을 이용해주시기 바랍니다.<br>";
+        // $contents .= " 이용해 주셔서 고맙습니다.</p>";
+        // $contents = addslashes($contents);
+
+        $contents = format_email($info);
 
         $headers = "Return-Path: $sender_email\r\n";
         $headers .= "From: $sender <$sender_email>\r\n";
@@ -238,7 +248,8 @@ if ("edit" == $mode) {
         $boundary = "----" . uniqid("part");
 
         $headers .= "Content-Type: text/html; charset=utf-8\r\n";
-        $message = stripslashes($contents);
+        // $message = stripslashes($contents);
+        $message = $contents;
 
         $to = $md_email;
 

@@ -2280,3 +2280,26 @@ function check_protocol($port)
         return $protocol = "http:";
     }
 }
+
+/**
+ * 이메일 포맷
+ * @param  [type] $info [description]
+ * @return [type]       [description]
+ */
+function format_email($info)
+{
+
+    //grab the template content
+    $template = file_get_contents('../mail/join-confirmation.html');
+
+    //replace all the tags
+    $template = str_replace('{USERNAME}', $info['company_name'], $template);
+    $template = str_replace('{ID}', $info['id'], $template);
+    $template = str_replace('{EMAIL}', $info['email'], $template);
+    $template = str_replace('{FAX}', $info['fax'], $template);
+    $template = str_replace('{SITEPATH}', $info['homepage'], $template);
+
+    //return the html of the template
+    return $template;
+
+}
