@@ -562,7 +562,7 @@ Start Register Form ============================================================
 													<div class="col-xs-12 col-md-3 register-font">담당자 휴대폰</div>
 													<div class="col-xs-12 col-md-3">
 															<label class="sr-only" for="md_hphone">담당자 휴대폰</label>
-															<input class="form-control" type="text" id="md_hphone" name="md_hphone" placeholder="010-xxxx-xxxx" required />
+															<input class="form-control" type="text" id="md_hphone" name="md_hphone" placeholder="010-xxxx-xxxx (-를 삽입해 주세요)" required />
 													</div>
 												</div>
 
@@ -580,7 +580,7 @@ Start Register Form ============================================================
 														</div>
 														<div class="col-sm-6 col-md-3">
 															<label class="sr-only" for="license_no">사업자 등록번호</label>
-															<input class="form-control" type="text" id="license_no" name="license_no" placeholder="xxx-xx-xxxxx" required />
+															<input class="form-control" type="text" id="license_no" name="license_no" placeholder="xxx-xx-xxxxx (-를 삽입해 주세요)" required />
 														</div>
 													</div>
 
@@ -709,7 +709,7 @@ Start Register Form ============================================================
 														</div>
 														<div class="col-xs-12 col-md-3">
 															<label class="sr-only" for="o_phone">사업장 전화번호</label>
-															<input class="form-control" type="text" id="o_phone" name="o_phone" placeholder="02-xxx-xxxx" required />
+															<input class="form-control" type="text" id="o_phone" name="o_phone" placeholder="02-xxx-xxxx (-를 삽입해 주세요)" required />
 														</div>
 													</div>
 
@@ -719,7 +719,7 @@ Start Register Form ============================================================
 														</div>
 														<div class="col-xs-12 col-md-3">
 															<label class="sr-only" for="o_fax">사업장 팩스</label>
-															<input class="form-control" type="text" id="o_fax" name="o_fax" placeholder="02-xxx-xxxx" />
+															<input class="form-control" type="text" id="o_fax" name="o_fax" placeholder="02-xxx-xxxx (-를 삽입해 주세요)" />
 														</div>
 													</div>
 
@@ -815,7 +815,7 @@ Start Register Form ============================================================
 														</div>
 														<div class="col-sm-12 col-md-3">
 															<label class="sr-only" for="d_phone">배송지 전화번호</label>
-															<input class="form-control" type="text" name="d_phone" placeholder="02-xxx-xxxx" required />
+															<input class="form-control" type="text" name="d_phone" placeholder="02-xxx-xxxx (-를 삽입해 주세요)" required />
 														</div>
 													</div>
 
@@ -825,7 +825,7 @@ Start Register Form ============================================================
 														</div>
 														<div class="col-sm-12 col-md-3">
 															<label class="sr-only" for="d_fax">배송지 팩스</label>
-															<input class="form-control" type="text" name="d_fax" placeholder="02-xxx-xxxx" />
+															<input class="form-control" type="text" name="d_fax" placeholder="02-xxx-xxxx (-를 삽입해 주세요)" />
 														</div>
 													</div>
 
