@@ -49,7 +49,7 @@
                     <tbody>
                         <tr>
                           <td>
-                              <select class="form-control" name="lcode" onchange="show_msub();">
+                              <select class="form-control" name="lcode"  onchange="show_msub();">
                                 <option>--- 브랜드 ---</option>
 <?php
 

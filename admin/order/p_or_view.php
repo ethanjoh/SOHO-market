@@ -345,12 +345,12 @@ $qry   = "SELECT * FROM p_member WHERE id='$row[user_id]' ";
 $res   = mysqli_query($connect, $qry);
 $mrows = mysqli_fetch_array($res);
 
-if ($pg_info['apply_receipt'] == '0') {
-    echo '<p>현금영수증 발급 미발행</p>';
-} elseif ($pg_info['apply_receipt'] == '1') {
-    echo '<p>소득공제용 현금영수증 발급</p>';
-} elseif ($pg_info['apply_receipt'] == '2') {
-    echo '<p>지출증빙용 현금영수증 발급</p>';
+if ($pg_info['pay_type'] == "WIRE" || $pg_info['pay_type'] == "BANK") {
+    if ($pg_info['apply_receipt'] == '') {
+        echo '<p><i class="fa fa-print" aria-hidden="true"></i> 현금영수증 미발행</p>';
+    } else {
+        echo '<p><i class="fa fa-print" aria-hidden="true"></i> 현금영수증 발급됨</p>';
+    }
 }
 
 echo $pay_status;

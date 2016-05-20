@@ -42,7 +42,7 @@ $protocol = check_protocol($sslPort);
             <form role="form" class="form-signin" action="<?php echo $protocol; ?>//<?php echo $_SERVER['SERVER_NAME']; ?>:<?php echo $sslPort; ?>/admin/check_login.php" method="post" name="login" onsubmit="return chkLogin(this);">
                 <!-- <form role="form" class="form-signin" action="http://<?php echo $_SERVER['SERVER_NAME']; ?>/admin/check_login.php" method="post" name="login" onsubmit="return chkLogin(this);"> -->
                 <div class="form-signin-heading">
-                    <img src="/images/shinsoo-logo.svg" class="admin-logo">
+                    <img src="/admin/images/logo.png" class="admin-logo">
                 </div>
                 <h3 class="text-center">ADMIN LOGIN</h3>
                 <div class="login-wrap">
