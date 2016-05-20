@@ -218,18 +218,18 @@ if ("edit" == $mode) {
     } else {
         //가입메일 보내기
         $sender       = "=?EUC-KR?B?" . base64_encode(iconv("UTF-8", "EUC-KR", "" . $op_company . "")) . "?=\r\n";
-        $sender_email = $op_email;
+        $sender_email = 'noreply@' . $_SERVER['SERVER_NAME'];
 
         $subject   = $company_name . "님, 가입을 환영합니다. (이용안내 필독)";
         $subject_c = "=?EUC-KR?B?" . base64_encode(iconv("UTF-8", "EUC-KR", $subject)) . "?=\r\n";
         $subject_c = addslashes($subject_c);
 
         $info = array(
-            'company_name' => $company_name,
-            'id'           => $id,
-            'email'        => $sender_email,
-            'fax'          => $op_fax,
-            'homepage'     => $op_homepage,
+            'name'     => $company_name,
+            'id'       => $id,
+            'email'    => $op_email,
+            'fax'      => $op_fax,
+            'homepage' => $op_homepage,
         );
 
         // $contents = "<p><a href=\"http://" . $_SERVER['SERVER_NAME'] . "\">" . $op_company . "</a>에 가입하신 것을 환영합니다.<br />";
@@ -239,8 +239,8 @@ if ("edit" == $mode) {
         // $contents .= " <p>기타 문의사항은 <a href=\"http://" . $_SERVER['SERVER_NAME'] . "/member/help.php\">[이용안내]</a> 또는 1:1 문의게시판 , " . $op_tel . " 을 이용해주시기 바랍니다.<br>";
         // $contents .= " 이용해 주셔서 고맙습니다.</p>";
         // $contents = addslashes($contents);
-
-        $contents = format_email($info);
+        $file     = 'join-confirmation.html';
+        $contents = format_email($info, $file);
 
         $headers = "Return-Path: $sender_email\r\n";
         $headers .= "From: $sender <$sender_email>\r\n";

@@ -30,10 +30,11 @@ $qry = "SELECT * FROM admin_setup";
 $res = mysqli_query($connect, $qry);
 $row = mysqli_fetch_array($res);
 
-$op_company = $row['company_name'];
-$op_email   = $row['email'];
-$op_tel     = $row['tel'];
-$op_fax     = $row['fax'];
+$op_company  = $row['company_name'];
+$op_homepage = $row['homepage'];
+$op_email    = $row['email'];
+$op_tel      = $row['tel'];
+$op_fax      = $row['fax'];
 
 if ("edit" == $mode) {
     // 이름과 아이디에 해당되는 세션이 존재하는지 확인
@@ -166,18 +167,29 @@ if ("edit" == $mode) {
     } else {
         //가입메일 보내기
         $sender       = "=?EUC-KR?B?" . base64_encode(iconv("UTF-8", "EUC-KR", "" . $op_company . "")) . "?=\r\n";
-        $sender_email = $op_email;
+        $sender_email = 'noreply@' . $_SERVER['SERVER_NAME'];
 
-        $subject   = $name . "님, 가입을 환영합니다. (이용안내 필독)";
+        $subject   = $name . "님, 가입을 환영합니다.";
         $subject_c = "=?EUC-KR?B?" . base64_encode(iconv("UTF-8", "EUC-KR", $subject)) . "?=\r\n";
         $subject_c = addslashes($subject_c);
 
-        $contents = "<p><a href=\"http://www." . $_SERVER['SERVER_NAME'] . "\">" . $op_company . "</a>에 가입하신 것을 환영합니다.<br />";
-        $contents .= "가입하신 회원 정보 확인을 부탁드립니다.</p>";
-        $contents .= "<p>ID:" . $id . "</p>";
-        $contents .= "<p>기타 문의사항은 <a href=\"http://" . $_SERVER['SERVER_NAME'] . "/member/help.php\">[이용안내]</a> 또는 1:1 문의게시판 , " . $op_tel . " 을 이용해주시기 바랍니다.<br>";
-        $contents .= "고맙습니다.</p>";
-        $contents = addslashes($contents);
+        $info = array(
+            'name'     => $name,
+            'id'       => $id,
+            'email'    => $op_email,
+            'fax'      => $op_fax,
+            'homepage' => $op_homepage,
+        );
+
+        // $contents = "<p><a href=\"http://www." . $_SERVER['SERVER_NAME'] . "\">" . $op_company . "</a>에 가입하신 것을 환영합니다.<br />";
+        // $contents .= "가입하신 회원 정보 확인을 부탁드립니다.</p>";
+        // $contents .= "<p>ID:" . $id . "</p>";
+        // $contents .= "<p>기타 문의사항은 <a href=\"http://" . $_SERVER['SERVER_NAME'] . "/member/help.php\">[이용안내]</a> 또는 1:1 문의게시판 , " . $op_tel . " 을 이용해주시기 바랍니다.<br>";
+        // $contents .= "고맙습니다.</p>";
+        // $contents = addslashes($contents);
+
+        $file     = 'p-join-confirmation.html';
+        $contents = format_email($info, $file);
 
         $headers = "Return-Path: $sender_email\r\n";
         $headers .= "From: $sender <$sender_email>\r\n";
@@ -185,7 +197,8 @@ if ("edit" == $mode) {
         $boundary = "----" . uniqid("part");
 
         $headers .= "Content-Type: text/html; charset=utf-8\r\n";
-        $message = stripslashes($contents);
+        // $message = stripslashes($contents);
+        $message = $contents;
 
         $to = $email;
 

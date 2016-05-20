@@ -2286,14 +2286,14 @@ function check_protocol($port)
  * @param  [type] $info [description]
  * @return [type]       [description]
  */
-function format_email($info)
+function format_email($info, $file)
 {
 
     //grab the template content
-    $template = file_get_contents('../mail/join-confirmation.html');
+    $template = file_get_contents('../mail/' . $file . '');
 
     //replace all the tags
-    $template = str_replace('{USERNAME}', $info['company_name'], $template);
+    $template = str_replace('{USERNAME}', $info['name'], $template);
     $template = str_replace('{ID}', $info['id'], $template);
     $template = str_replace('{EMAIL}', $info['email'], $template);
     $template = str_replace('{FAX}', $info['fax'], $template);
