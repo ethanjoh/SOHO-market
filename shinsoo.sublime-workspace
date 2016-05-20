@@ -9,6 +9,10 @@
 			],
 			[
 				"mysq",
+				"mysqli_fetch_array($result"
+			],
+			[
+				"my",
 				"mysqli_query($connect"
 			],
 			[
@@ -519,6 +523,8 @@
 	},
 	"buffers":
 	[
+<<<<<<< HEAD
+=======
 		{
 			"file": "pay/payres.php",
 			"settings":
@@ -543,6 +549,7 @@
 				"line_ending": "Windows"
 			}
 		}
+>>>>>>> ff8503bf1ed28f01040e4499978f69a1bb68af23
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -717,6 +724,12 @@
 	},
 	"expanded_folders":
 	[
+<<<<<<< HEAD
+		"/C/wamp/www/shinsoo"
+	],
+	"file_history":
+	[
+=======
 		"/C/wamp/www/shinsoo",
 		"/C/wamp/www/shinsoo/pay",
 		"/C/wamp/www/shinsoo/util"
@@ -763,20 +776,46 @@
 		"/C/wamp/www/shinsoo/util/admin_auth.php",
 		"/C/wamp/www/shinsoo/pay/cas_noteurl.php",
 		"/C/wamp/www/shinsoo/member/register.php",
+>>>>>>> ff8503bf1ed28f01040e4499978f69a1bb68af23
 		"/C/wamp/www/shinsoo/admin/member/p_top_member_list.php",
 		"/C/wamp/www/shinsoo/admin/member/top_member_list.php",
 		"/C/wamp/www/shinsoo/member/p-register-form.php",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+		"/C/wamp/www/shinsoo/member/register-form.php",
+		"/C/wamp/www/shinsoo/admin/main/main.php",
+=======
+>>>>>>> ff8503bf1ed28f01040e4499978f69a1bb68af23
+		"/C/wamp/www/shinsoo/include/footer.php",
+>>>>>>> 5d6db6023e44687226eb53bae47050ec1196fbc2
 		"/C/wamp/www/shinsoo/shop/index.php",
 		"/C/wamp/www/shinsoo/bbs/list.php",
 		"/C/wamp/www/shinsoo/images/brand/tigerchoi_logo.svg",
 		"/C/wamp/www/shinsoo/images/brand/golftiger_logo.svg",
 		"/C/wamp/www/shinsoo/member/about-us.php",
+<<<<<<< HEAD
+=======
 		"/C/wamp/www/shinsoo/shop/catalog-list.php",
+<<<<<<< HEAD
+=======
+>>>>>>> ff8503bf1ed28f01040e4499978f69a1bb68af23
+		"/C/wamp/www/shinsoo/admin/products/pro_register.php",
+		"/C/wamp/www/shinsoo/util/shop-functions.php",
+>>>>>>> 5d6db6023e44687226eb53bae47050ec1196fbc2
 		"/C/wamp/www/shinsoo/admin/setting/admin_setup.php",
 		"/C/wamp/www/shinsoo/css/style.css",
 		"/C/wamp/www/shinsoo/sftp-config.json",
 		"/C/wamp/www/shinsoo/css/main.css",
 		"/C/wamp/www/shinsoo/shop/detail.php",
+<<<<<<< HEAD
+=======
+		"/C/wamp/www/shinsoo/admin/products/pro_register_ok.php",
+<<<<<<< HEAD
+		"/C/wamp/www/shinsoo/pay/returnurl.php",
+=======
+>>>>>>> ff8503bf1ed28f01040e4499978f69a1bb68af23
+>>>>>>> 5d6db6023e44687226eb53bae47050ec1196fbc2
 		"/C/wamp/www/shinsoo/member/help.php",
 		"/C/wamp/www/shinsoo/shop/checkout.php",
 		"/C/wamp/www/shinsoo/pay/sample_crossplatform.html",
@@ -787,6 +826,13 @@
 		"/C/wamp/www/shinsoo/pay/checkout.php",
 		"/C/wamp/www/shinsoo/js/jquery.meanmenu.js",
 		"/C/wamp/www/shinsoo/js/main.js",
+<<<<<<< HEAD
+		"/C/wamp/www/shinsoo/member/p-register-ok.php",
+		"/C/wamp/www/shinsoo/member/register-ok.php",
+		"/C/wamp/www/shinsoo/admin/member/p_mem_view_member.php",
+		"/C/wamp/www/shinsoo/admin/member/mem_view_member.php",
+=======
+>>>>>>> ff8503bf1ed28f01040e4499978f69a1bb68af23
 		"/C/wamp/www/shinsoo/get-product.php",
 		"/C/wamp/www/shinsoo/admin/member/p_mem_delete_member.php",
 		"/C/wamp/www/shinsoo/admin/order/or_delete.php",
@@ -796,7 +842,14 @@
 		"/C/wamp/www/shinsoo/admin/include/header.php",
 		"/C/wamp/www/shinsoo/bbs/upload/upload.php",
 		"/C/wamp/www/shinsoo/bbs/upload.php",
+<<<<<<< HEAD
+=======
 		"/C/wamp/www/shinsoo/shop/order-list.php",
+<<<<<<< HEAD
+=======
+>>>>>>> ff8503bf1ed28f01040e4499978f69a1bb68af23
+		"/C/wamp/www/shinsoo/admin/js/admin.js",
+>>>>>>> 5d6db6023e44687226eb53bae47050ec1196fbc2
 		"/C/wamp/www/shinsoo/admin/order/print_quot.php",
 		"/C/wamp/www/shinsoo/admin/setting/delivery_setup_ok.php",
 		"/C/wamp/www/shinsoo/admin/setting/delivery_setup.php",
@@ -850,7 +903,19 @@
 		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/User/phpfmt.sublime-settings",
 		"/C/wamp/www/shinsoo/admin/js/showMainChart.js",
 		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/HTML-CSS-JS Prettify/HTMLPrettify.sublime-settings",
+<<<<<<< HEAD
 		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/jsfmt/jsfmt.sublime-settings"
+=======
+		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/jsfmt/jsfmt.sublime-settings",
+		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/Javascript Beautify/JavascriptBeautify.sublime-settings",
+<<<<<<< HEAD
+		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/CSS Format/CSS Format.sublime-settings",
+		"/C/wamp/www/shinsoo/admin/include/admin_sidebar.php",
+		"/C/wamp/www/shinsoo/admin/member/mem_sendmail_ok.php"
+=======
+		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/CSS Format/CSS Format.sublime-settings"
+>>>>>>> ff8503bf1ed28f01040e4499978f69a1bb68af23
+>>>>>>> 5d6db6023e44687226eb53bae47050ec1196fbc2
 	],
 	"find":
 	{
@@ -883,12 +948,18 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+<<<<<<< HEAD
 			"LGD_DEFAULTCASHRECEIPTUSE",
 			"LGD_CASHRECEIPTKIND",
 			"$LGD_CASHRECEIPTKIND",
 			"$tot_amount",
 			"$pmode",
 			"$o_total",
+=======
+<<<<<<< HEAD
+			"user_id",
+=======
+>>>>>>> 5d6db6023e44687226eb53bae47050ec1196fbc2
 			"$lcode",
 			"LGD_CASHRECEIPTNUM",
 			"LGD_CASHRECEIPTSELFYN",
@@ -920,6 +991,7 @@
 			"o_zipno",
 			"$o_zipcode1",
 			"pay_status",
+>>>>>>> ff8503bf1ed28f01040e4499978f69a1bb68af23
 			"col-sm-3",
 			"_POST",
 			"$mode",
@@ -1010,7 +1082,51 @@
 			"$file",
 			"file",
 			"$date1",
+<<<<<<< HEAD
 			"$mode"
+=======
+			"$mode",
+			"$key",
+			"$pmode",
+			"$mode ",
+			"mode",
+			"$reUrl",
+<<<<<<< HEAD
+			"$lcode",
+			"$date1",
+			"$page",
+			"$key",
+			"$pmode",
+			"$mode",
+			"$page",
+			"\" . $wholesalePrice . \"",
+			"removeComma",
+			"a",
+			"detailImgFile",
+			"bigImg1Path",
+			"\\",
+			"=\\\"",
+			"fax",
+			"md_email",
+			"md_name",
+			"md_hphone",
+			"company_name",
+			"\\r\\n",
+			"pageItSelf",
+			"$_SERVER['PHP_SELF']",
+			"or_view.php",
+			"key_value",
+			"top_order_list",
+			"top_order",
+			";",
+			"$port",
+			"$port;?>",
+			"$port;",
+			"$port"
+=======
+			"$lcode"
+>>>>>>> ff8503bf1ed28f01040e4499978f69a1bb68af23
+>>>>>>> 5d6db6023e44687226eb53bae47050ec1196fbc2
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1031,7 +1147,15 @@
 	"groups":
 	[
 		{
+<<<<<<< HEAD
 			"selected": 0,
+=======
+<<<<<<< HEAD
+			"sheets":
+			[
+=======
+			"selected": 5,
+>>>>>>> 5d6db6023e44687226eb53bae47050ec1196fbc2
 			"sheets":
 			[
 				{
@@ -1311,6 +1435,7 @@
 					"stack_index": 2,
 					"type": "text"
 				}
+>>>>>>> ff8503bf1ed28f01040e4499978f69a1bb68af23
 			]
 		}
 	],
@@ -1371,6 +1496,7 @@
 		"selected_items":
 		[
 			[
+<<<<<<< HEAD
 				"or_view",
 				"admin\\order\\or_view.php"
 			],
@@ -1411,8 +1537,15 @@
 				"admin\\products\\pro_register_ok.php"
 			],
 			[
+=======
+<<<<<<< HEAD
+				"p_top",
+				"admin\\member\\p_top_member_list.php"
+=======
+>>>>>>> 5d6db6023e44687226eb53bae47050ec1196fbc2
 				"pro_regi",
 				"admin\\products\\pro_register.php"
+>>>>>>> ff8503bf1ed28f01040e4499978f69a1bb68af23
 			],
 			[
 				"main",
@@ -1479,6 +1612,18 @@
 				"include\\brands.php"
 			],
 			[
+<<<<<<< HEAD
+				"shop",
+				"util\\shop-functions.php"
+			],
+			[
+				"p_mem",
+				"admin\\member\\p_top_member_list.php"
+			],
+			[
+				"regis",
+				"member\\register-form.php"
+=======
 				"hea",
 				"include\\header.php"
 			],
@@ -1521,6 +1666,7 @@
 			[
 				"top_mem",
 				"admin\\member\\top_member_list.php"
+>>>>>>> ff8503bf1ed28f01040e4499978f69a1bb68af23
 			],
 			[
 				"p-re",
@@ -1561,10 +1707,6 @@
 			[
 				"pro_re",
 				"admin\\products\\pro_register.php"
-			],
-			[
-				"cata",
-				"shop\\catalog-list.php"
 			],
 			[
 				"index",
@@ -1623,10 +1765,24 @@
 				"include\\footer.php"
 			],
 			[
+<<<<<<< HEAD
+				"reg",
+				"member\\register-ok.php"
+			],
+			[
+=======
+>>>>>>> ff8503bf1ed28f01040e4499978f69a1bb68af23
 				"style",
 				"css\\style.css"
 			],
 			[
+<<<<<<< HEAD
+				"mem_view",
+				"admin\\member\\mem_view_member.php"
+			],
+			[
+=======
+>>>>>>> ff8503bf1ed28f01040e4499978f69a1bb68af23
 				"regi",
 				"member\\register-form.php"
 			],
@@ -1655,8 +1811,13 @@
 				"admin\\products\\pro_register.php"
 			],
 			[
+<<<<<<< HEAD
 				"shop",
 				"util\\shop-functions.php"
+=======
+				"pro_reg",
+				"admin\\products\\pro_register.php"
+>>>>>>> 5d6db6023e44687226eb53bae47050ec1196fbc2
 			],
 			[
 				"banner",
@@ -1881,6 +2042,68 @@
 			[
 				"scre",
 				"admin\\css\\screen.css"
+<<<<<<< HEAD
+=======
+			],
+			[
+				"pro_op",
+				"admin\\products\\pro_opt.php"
+			],
+			[
+				"",
+				".gitignore"
+<<<<<<< HEAD
+			],
+			[
+				"order-st",
+				"shop\\order-stat-list.php"
+			],
+			[
+				"my",
+				"css\\myshop.css"
+			],
+			[
+				"res",
+				"css\\responsive.css"
+			],
+			[
+				"admin_f",
+				"admin\\include\\admin_footer.php"
+			],
+			[
+				"sal",
+				"admin\\order\\sale_list.php"
+			],
+			[
+				"confi",
+				"util\\config.ini"
+			],
+			[
+				"con",
+				"util\\config.ini"
+			],
+			[
+				"main_ba",
+				"admin\\setting\\main_banner_setting.php"
+			],
+			[
+				"cas",
+				"pay\\cas_noteurl.php"
+			],
+			[
+				"top_",
+				"admin\\order\\top_order_list.php"
+			],
+			[
+				"catalo",
+				"shop\\catalog-list.php"
+			],
+			[
+				"config",
+				"util\\config.php"
+=======
+>>>>>>> ff8503bf1ed28f01040e4499978f69a1bb68af23
+>>>>>>> 5d6db6023e44687226eb53bae47050ec1196fbc2
 			]
 		],
 		"width": 0.0
@@ -1915,7 +2138,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 394.0,
+	"side_bar_width": 262.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
