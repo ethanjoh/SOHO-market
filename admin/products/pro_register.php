@@ -124,7 +124,7 @@ if ($mode == "update") {
 														<th><img src="../images/icn_04.gif" width="24" height="14" alt="필수" /> 상품명</th>
 														<td>
 															<div align="left">
-																<input type="text" class="form-control" name="name" value="<?php echo stripslashes($update_row['name']); ?>" size="100" />
+																<input type="text" class="form-control" name="name" style="width: 100%;" value="<?php echo stripslashes($update_row['name']); ?>" />
 															</div>
 														</td>
 													</tr>

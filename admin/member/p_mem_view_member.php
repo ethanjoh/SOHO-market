@@ -135,10 +135,10 @@ if ($rows['optin'] == "Y") {
                           <tr>
                             <th rowspan="2">기본 주소지</th>
                             <td>
-                              <input type="text" class="form-control" name="o_addr1" id="o_addr1" size="50" value='<?php echo $rows['o_addr1']; ?>' readonly /></td>
+                              <input type="text" class="form-control" name="o_addr1" id="o_addr1" style="width: 80%;" value='<?php echo $rows['o_addr1']; ?>' readonly /></td>
                           </tr>
                           <tr>
-                            <td><input type="text" class="form-control" name="o_addr2" id="o_addr2" size="50" value='<?php echo $rows['o_addr2']; ?>' /></td>
+                            <td><input type="text" class="form-control" name="o_addr2" id="o_addr2" style="width: 80%;" value='<?php echo $rows['o_addr2']; ?>' /></td>
                           </tr>
                           <tr>
                             <th>기본 주소지 전화번호</th>
@@ -246,12 +246,12 @@ if ($rows['sms'] == "Y") {
                           <tr>
                             <th rowspan="2">배송지</th>
                             <td>
-                              <input type="text" class="form-control" name="d_addr1" id="d_addr1" size="50" value='<?php echo $rows['d_addr1']; ?>' readonly />
+                              <input type="text" class="form-control" name="d_addr1" id="d_addr1" style="width: 80%;" value='<?php echo $rows['d_addr1']; ?>' readonly />
                             </td>
                           </tr>
                           <tr>
                             <td>
-                              <input type="text" class="form-control" name="d_addr2" id="d_addr2" size="50" value='<?php echo $rows['d_addr2']; ?>' />
+                              <input type="text" class="form-control" name="d_addr2" id="d_addr2" style="width: 80%;" value='<?php echo $rows['d_addr2']; ?>' />
                             </td>
                           </tr>
                           <tr>
