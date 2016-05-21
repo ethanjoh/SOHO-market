@@ -135,14 +135,14 @@ HEREDOC;
         //신용카드 결제시
         echo <<<HEREDOC
 
-                            <tr>
-                              <th>카드사명 :</th>
-                              <td>{$LGD_FINANCENAME}</td>
-                            </tr>
-                            <tr>
-                              <th>승인번호 :</th>
-                              <td>{$LGD_FINANCEAUTHNUM}</td>
-                            </tr>
+            			    <tr>
+                	          <th>카드사명 :</th>
+                	          <td>{$LGD_FINANCENAME}</td>
+                	        </tr>
+                	        <tr>
+                	          <th>승인번호 :</th>
+                	          <td>{$LGD_FINANCEAUTHNUM}</td>
+                	        </tr>
 
 HEREDOC;
 
@@ -150,10 +150,10 @@ HEREDOC;
         //계좌이체 결제시
         echo <<<HEREDOC
 
-                            <tr>
-                              <th>결제은행 :</th>
-                              <td>{$LGD_FINANCENAME}</td>
-                            </tr>
+                	        <tr>
+                	          <th>결제은행 :</th>
+                	          <td>{$LGD_FINANCENAME}</td>
+                	        </tr>
 
 HEREDOC;
 
@@ -161,14 +161,14 @@ HEREDOC;
         //가상계좌 결제시 (할당)
         echo <<<HEREDOC
 
-                            <tr>
-                              <th>입금은행 :</th>
-                              <td>{$LGD_FINANCENAME}</td>
-                            </tr>
-                            <tr>
-                              <th>입금계좌번호 :</th>
-                              <td>{$LGD_ACCOUNTNUM} <i class="fa fa-info-circle"></i> 주문조회에서도 확인이 가능합니다.</td>
-                            </tr>
+                	        <tr>
+                	          <th>입금은행 :</th>
+                	          <td>{$LGD_FINANCENAME}</td>
+                	        </tr>
+                	        <tr>
+                	          <th>입금계좌번호 :</th>
+                	          <td>{$LGD_ACCOUNTNUM} <i class="fa fa-info-circle"></i> 주문조회에서도 확인이 가능합니다.</td>
+                	        </tr>
 
 HEREDOC;
 
@@ -176,10 +176,10 @@ HEREDOC;
         //기타 결제시
         echo <<<HEREDOC
 
-                            <tr>
-                              <th>결제사명 :</th>
-                              <td>{$LGD_FINANCENAME}</td>
-                            </tr>
+			                <tr>
+                	          <th>결제사명 :</th>
+                	          <td>{$LGD_FINANCENAME}</td>
+                	        </tr>
 
 HEREDOC;
 
@@ -332,9 +332,9 @@ HEREDOC;
                                                         <table cellspacing="0" cellpadding="0" border="0" width="100%">
                                                             <tbody>
                                                                 <tr>
-                                                                    <td style="width:100px;background-color:#f7f7f7;border-top:2px solid #222;border-bottom:1px solid #d1d1d1;height:42px;vertical-align:middle;text-align:center;font-weight:bold;color:#444;font-size:12px;">이미지</td>
-                                                                    <td style="width:150px;background-color:#f7f7f7;border-top:2px solid #222;border-bottom:1px solid #d1d1d1;height:42px;vertical-align:middle;text-align:center;font-weight:bold;color:#444;font-size:12px;">상품명</td>
-                                                                    <td style="background-color:#f7f7f7;border-top:2px solid #222;border-bottom:1px solid #d1d1d1;height:42px;vertical-align:middle;text-align:center;font-weight:bold;color:#444;font-size:12px;">옵션</td>
+                                                                    <td style="width:99px;background-color:#f7f7f7;border-top:2px solid #222;border-bottom:1px solid #d1d1d1;height:42px;vertical-align:middle;text-align:center;font-weight:bold;color:#444;font-size:12px;">이미지</td>
+                                                                    <td style="background-color:#f7f7f7;border-top:2px solid #222;border-bottom:1px solid #d1d1d1;height:42px;vertical-align:middle;text-align:center;font-weight:bold;color:#444;font-size:12px;">상품명</td>
+                                                                    <td style="width:51px;background-color:#f7f7f7;border-top:2px solid #222;border-bottom:1px solid #d1d1d1;height:42px;vertical-align:middle;text-align:center;font-weight:bold;color:#444;font-size:12px;">옵션</td>
                                                                     <td style="width:77px;background-color:#f7f7f7;border-top:2px solid #222;border-bottom:1px solid #d1d1d1;height:42px;vertical-align:middle;text-align:center;font-weight:bold;color:#444;font-size:12px;">수량</td>
                                                                     <td style="width:78px;background-color:#f7f7f7;border-top:2px solid #222;border-bottom:1px solid #d1d1d1;height:42px;vertical-align:middle;text-align:center;font-weight:bold;color:#444;font-size:12px;">상품단가</td>
                                                                     <td style="width:104px;background-color:#f7f7f7;border-top:2px solid #222;border-bottom:1px solid #d1d1d1;height:42px;vertical-align:middle;text-align:center;font-weight:bold;color:#444;font-size:12px;">소계</td>
@@ -361,7 +361,7 @@ HEREDOC;
                                                             <tbody>
                                                                 <tr>
                                                                     <td style="width:99px;background-color:#f7f7f7;border-top:2px solid #222;border-bottom:1px solid #d1d1d1;height:41px;vertical-align:middle;text-align:center;font-weight:bold;color:#444;font-size:12px;">총 상품금액</td>
-                                                                    <td style="color:#444;font-size:12px;padding-left:20px;width:246px;text-align:left;vertical-align:middle;border-top:2px solid #222;border-bottom:1px solid #d1d1d1;height:41px;">{$show_total} 원</td>
+                                                                    <td style="color:#444;font-size:12px;padding-left:20px;width:246px;text-align:left;vertical-align:middle;border-top:2px solid #222;border-bottom:1px solid #d1d1d1;height:41px;">{$tot_money} 원</td>
                                                                     <td style="width:99px;width:99px;background-color:#f7f7f7;border-top:2px solid #222;border-bottom:1px solid #d1d1d1;height:41px;vertical-align:middle;text-align:center;font-weight:bold;color:#444;font-size:12px;">배송금액</td>
                                                                     <td style="color:#444;font-size:12px;text-align:left;padding-left:20px;vertical-align:middle;border-bottom:1px solid #d1d1d1;border-top:2px solid #222;height:41px;">{$show_trans_cost} 원</td>
                                                                 </tr>
@@ -400,7 +400,7 @@ HEREDOC;
                                                                 </tr>
                                                                 <tr>
                                                                     <td style="background-color:#f7f7f7;border-bottom:1px solid #d1d1d1;height:41px;vertical-align:middle;text-align:center;font-weight:bold;color:#444;font-size:12px;">주소</td>
-                                                                    <td style="color:#444;font-size:12px;padding-left:20px;text-align:left;vertical-align:middle;border-bottom:1px solid #d1d1d1;height:41px;">{$buyer_zipcode} {$buyer_address}</td>
+                                                                    <td style="color:#444;font-size:12px;padding-left:20px;text-align:left;vertical-align:middle;border-bottom:1px solid #d1d1d1;height:41px;">[{$buyer_zipcode}] {$buyer_address}</td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -423,7 +423,7 @@ HEREDOC;
                                                                 </tr>
                                                                 <tr>
                                                                     <td style="background-color:#f7f7f7;border-bottom:1px solid #d1d1d1;height:41px;vertical-align:middle;text-align:center;font-weight:bold;color:#444;font-size:12px;">주소</td>
-                                                                    <td style="color:#444;font-size:12px;padding-left:20px;text-align:left;vertical-align:middle;border-bottom:1px solid #d1d1d1;height:41px;">{$recipient_zipcode} {$recipient_address}</td>
+                                                                    <td style="color:#444;font-size:12px;padding-left:20px;text-align:left;vertical-align:middle;border-bottom:1px solid #d1d1d1;height:41px;">[{$recipient_zipcode}] {$recipient_address}</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td style="background-color:#f7f7f7;border-bottom:1px solid #d1d1d1;height:41px;vertical-align:middle;text-align:center;font-weight:bold;color:#444;font-size:12px;">배송메모</td>

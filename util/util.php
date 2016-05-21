@@ -2294,6 +2294,7 @@ function format_email($info, $file)
 
     //replace all the tags
     $template = str_replace('{USERNAME}', $info['name'], $template);
+    $template = str_replace('{RECEIVER}', $info['receiver_name'], $template);
     $template = str_replace('{ID}', $info['id'], $template);
     $template = str_replace('{EMAIL}', $info['email'], $template);
     $template = str_replace('{FAX}', $info['fax'], $template);

@@ -1968,6 +1968,111 @@ HEREDOC;
 }
 
 /**
+ * 메일에서 주문내역 보여주기
+ * @param  [type] $oid [description]
+ * @return [type]      [description]
+ */
+function show_order_item_on_mail($oid)
+{
+
+    global $connect;
+
+    $sql = "SELECT * FROM mall_order WHERE orderid = '$oid' ";
+    $res = mysqli_query($connect, $sql);
+    $row = mysqli_fetch_array($res);
+
+    $a_goods_fk       = explode(",", $row['goods_fk']);
+    $unit_price       = explode(",", $row['goods_price']);
+    $ordered_item_num = explode(",", $row['goods_count']);
+    $option           = explode(",", $row['goods_kind']);
+
+    $final_order_sum = 0;
+
+    //주문 상품 정보를 불러옵니다.
+    for ($i = 0; $i < sizeof($a_goods_fk); $i++) {
+        $pro_sql    = "SELECT * FROM products WHERE num='$a_goods_fk[$i]'";
+        $pro_result = mysqli_query($connect, $pro_sql);
+        $pro_row    = mysqli_fetch_array($pro_result);
+
+        $goods_name = $pro_row['name'];
+        $img_char   = str_replace('../', '', $pro_row['s_image1_name']);
+        $pnum       = $pro_row['num'];
+        $company    = $pro_row['company'];
+
+        //상품옵션 품절표시
+        //상품 옵션이 있는지 확인 후 진행
+        if ($option[$i] != "" || $option2[$i] != "") {
+                                                                //장바구니의 옵션과 제품정보를 비교하여 품절옵션이 있는지 확인
+            $t_opt       = explode(",", $pro_row['opt']);       //제품의 옵션명을 배열로 만들어준다
+            $t_opt_stock = explode(",", $pro_row['opt_stock']); //제품의 옵션재고를 배열로 만들어준다
+
+            //옵션의 문자열 비교
+            for ($j = 0; $j < count($t_opt); $j++) {
+                $str = strcmp($t_opt[$j], $option[$i]);
+
+                if (!$str) {
+                    //문자열이 같다면 문자열 대체
+                    if ($t_opt_stock[$j] == "0") {
+                        $option[$i] .= " (품절)";
+                    } elseif ($t_opt_stock[$j] == "-1") {
+                        $option[$i] .= " (단종)";
+                    } else {
+                        $option[$i] = $t_opt[$j];
+                    }
+
+                }
+            } // ./for ($j = 0; $j < count($t_opt); $j++)
+
+        } // ./if ($option[$i] != "" || $option2[$i] != "")
+
+        $goods_name = stripslashes($goods_name);
+
+        $contents .= <<<HEREDOC
+
+                                <tr>
+                                    <td rowspan="1" style="color:#444;font-size:11px;text-align:center;vertical-align:middle;border-bottom:1px solid #d1d1d1;"><a href="http://{$_SERVER['SERVER_NAME']}/shop/detail.php?pnum={$pnum}" target="_blank"><img src="http://{$_SERVER['SERVER_NAME']}/{$img_char}" /></a></td>
+                                    <td style="color:#444;font-size:11px;text-align:left;padding-left:20px;vertical-align:middle;border-bottom:1px solid #d1d1d1;border-left:1px solid #d1d1d1;height:40px;"><div class="brand">[{$company}]</div>&nbsp;<a href="http://{$_SERVER['SERVER_NAME']}/shop/detail.php?pnum={$pnum}" target="_blank">{$goods_name}</a></td>
+                                    <td style="color:#444;font-size:11px;text-align:center;vertical-align:middle;border-bottom:1px solid #d1d1d1;border-left:1px solid #d1d1d1;height:40px;">
+HEREDOC;
+
+        if ($option[$i]) {
+            $contents .= $option[$i];
+        }
+
+        $contents .= <<<HEREDOC
+                                    </td>
+                                    <td style="color:#444;font-size:11px;text-align:center;vertical-align:middle;border-bottom:1px solid #d1d1d1;border-left:1px solid #d1d1d1;height:40px;">{$ordered_item_num[$i]}</td>
+HEREDOC;
+
+        $contents .= '              <td style="color:#444;font-size:11px;text-align:center;vertical-align:middle;border-bottom:1px solid #d1d1d1;border-left:1px solid #d1d1d1;height:40px;">' . number_format($unit_price[$i]) . '</td>';
+
+        $sub_amount      = (int) $ordered_item_num[$i] * (int) $unit_price[$i];
+        $show_sub_amount = number_format($sub_amount);
+
+        $contents .= <<<HEREDOC
+                                    <td style="color:#444;font-size:11px;text-align:center;vertical-align:middle;border-bottom:1px solid #d1d1d1;border-left:1px solid #d1d1d1;height:40px;">{$show_sub_amount}</td>
+                                </tr>
+HEREDOC;
+
+        $final_order_sum = $final_order_sum + ((int) $unit_price[$i] * (int) $ordered_item_num[$i]);
+
+    } // ./ for ($i = 0; $i < sizeof($a_goods_fk); $i++)
+
+    // $last_cost  = $final_order_sum;
+    $show_total = number_format($final_order_sum);
+
+    $contents .= <<<HEREDOC
+                                <tr>
+                                    <td colspan="6" style="background-color:#f2f2f2;border-bottom:1px solid #d1d1d1;height:40px;vertical-align:middle;text-align:right;padding-right:20px;font-size:11px;color:#444;">
+                                        총 상품금액<span style="padding-left:20px;vertical-align:middle;font-weight:bold;font-size:20px;color:#0068b7;">{$show_total}</span> 원
+                                    </td>
+                                </tr>
+HEREDOC;
+
+    return $contents;
+}
+
+/**
  * [show_order_status 주문진행상황]
  * @param  [type] $oid            [description]
  * @param  [type] $order_status   [description]
