@@ -126,16 +126,18 @@ if ($mode == "insert") {
             list($result, $ext, $error_msg) = check_uploaded_file($i);
 
             if ($result) {
-                $bImg_chk[$i]   = "Y";
-                $bigImgPath     = $saveDir . $name . "/b/";
+                $bImg_chk[$i] = "Y";
+                //상품명 공백을 +로 대치, 이메일 등에서 이미지 안보이는 현상 해결
+                $dir_name       = str_replace(" ", "+", $name);
+                $bigImgPath     = $saveDir . $dir_name . "/b/";
                 $bigImgFile[$i] = $bigImgPath . md5(microtime()) . '_' . $_FILES['b_image']['name'][$i];
                 $tmp_name       = $_FILES['b_image']['tmp_name'][$i];
                 $move_to        = $bigImgFile[$i];
 
-                $txt  = print_r($move_to, true);
-                $file = fopen("file_log.txt", "w+");
-                fwrite($file, $txt);
-                fclose($file);
+                // $txt  = print_r($move_to, true);
+                // $file = fopen("file_log.txt", "w+");
+                // fwrite($file, $txt);
+                // fclose($file);
 
                 if (is_dir($bigImgPath)) {
                     move_uploaded_file($tmp_name, $move_to);
@@ -146,7 +148,7 @@ if ($mode == "insert") {
 
                 //썸네일 자동생성
                 $sImg_chk[$i]     = "Y";
-                $smallImgPath     = $saveDir . $name . "/s/";
+                $smallImgPath     = $saveDir . $dir_name . "/s/";
                 $smallImgFile[$i] = $smallImgPath . md5(microtime()) . '_' . $_FILES['b_image']['name'][$i];
 
                 if (is_dir($smallImgPath)) {

@@ -277,6 +277,21 @@ HEREDOC;
         ///////////////////////////////////
         $com_info = get_company_info();
 
+        switch ($LGD_PAYTYPE) {
+            case 'SC0010':
+                $pay_type = "신용카드 - " . $LGD_FINANCENAME;
+                break;
+            case 'SC0030':
+                $pay_type = "실시간 계좌이체 - " . $LGD_FINANCENAME;
+                break;
+            case 'SC0040':
+                $pay_type = "무통장입금(가상계좌) - " . $LGD_FINANCENAME;
+                break;
+            default:
+                $pay_type = "기타 - " . $LGD_FINANCENAME;
+                break;
+        }
+
         $sender       = "=?EUC-KR?B?" . base64_encode(iconv("UTF-8", "EUC-KR", "" . $com_info['company_name'] . "")) . "?=\r\n";
         $sender_email = 'noreply@' . $_SERVER['SERVER_NAME'];
 
@@ -367,7 +382,7 @@ HEREDOC;
                                                                 </tr>
                                                                 <tr>
                                                                     <td style="background-color:#f7f7f7;border-bottom:1px solid #d1d1d1;height:41px;vertical-align:middle;text-align:center;font-weight:bold;color:#444;font-size:12px;">결제수단</td>
-                                                                    <td colspan="3" style="color:#444;font-size:12px;padding-left:20px;width:246px;text-align:left;vertical-align:middle;border-bottom:1px solid #d1d1d1;height:41px;">{$LGD_FINANCENAME}</td>
+                                                                    <td colspan="3" style="color:#444;font-size:12px;padding-left:20px;width:246px;text-align:left;vertical-align:middle;border-bottom:1px solid #d1d1d1;height:41px;">{$pay_type}</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td style="background-color:#f2f2f2;border-bottom:1px solid #d1d1d1;height:40px;vertical-align:middle;text-align:center;font-weight:bold;color:#444;font-size:12px;">총 결제금액</td>
