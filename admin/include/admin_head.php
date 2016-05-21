@@ -22,10 +22,13 @@
                         <a href="/index.php" target="_blank"><i class="fa fa-home"></i> 쇼핑몰 가기</a>
                     </li>
                     <li class="external">
-                        <a href="http://pgweb.uplus.co.kr/" target="_blank"><i class="fa fa-external-link-square"></i> PG 상점관리자</a>
+                        <a href="http://pgweb.uplus.co.kr/" target="_blank"><i class="fa fa-cogs" aria-hidden="true"></i> PG 상점관리자</a>
                     </li>
                     <li class="external">
-                        <a href="https://www.hometax.go.kr/" target="_blank"><i class="fa fa-external-link-square"></i> 국세청 홈택스</a>
+                        <a href="https://www.google.com/analytics/" target="_blank"><i class="fa fa-line-chart" aria-hidden="true"></i> 구글 웹로그분석</a>
+                    </li>
+                     <li class="external">
+                        <a href="https://www.hometax.go.kr/" target="_blank"><i class="fa fa-university" aria-hidden="true"></i> 국세청 홈택스</a>
                     </li>
                 </ul>
             </li>
@@ -48,7 +51,7 @@
                 </a>
                 <ul class="dropdown-menu extended logout">
                     <div class="log-arrow-up"></div>
-                    <li><a href="/admin/setting/admin_setup.php"><i class=" fa fa-suitcase"></i> 정보설정</a></li>
+                    <li><a href="/admin/setting/admin_setup.php"><i class="fa fa-cog" aria-hidden="true"></i> 정보설정</a></li>
                     <li><a href="/admin/"><i class="fa fa-key"></i> Log Out</a></li>
                 </ul>
             </li>

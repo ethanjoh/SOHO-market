@@ -48,7 +48,7 @@ if (!defined("PHP_EOL")) {
                       <table class="table table-striped">
                         <tbody>
                           <tr>
-                            <th>아이디</th>
+                            <th width="20%">아이디</th>
                             <td><?php echo $rows['id']; ?> (변경 불가)</td>
                           </tr>
                           <tr>
@@ -62,8 +62,8 @@ if (!defined("PHP_EOL")) {
                             <th>담당자 성명 (직함)</th>
                             <td>
                               <div class="form-group">
-                                <input type="text" class="form-control" name="md_name" value="<?php echo $rows['md_name']; ?>" />
-                                <input type="text" class="form-control" name="job_title" value="<?php echo $rows['job_title']; ?>" />
+                                <input type="text" class="form-control" name="md_name" style="width: 50%;" value="<?php echo $rows['md_name']; ?>" />
+                                <input type="text" class="form-control" name="job_title" style="width: 30%;"value="<?php echo $rows['job_title']; ?>" />
                               </div>
                             </td>
                           </tr>
@@ -198,10 +198,10 @@ if ($rows['sms'] == "Y") {
                           <tr>
                             <th rowspan="2">사업장 소재지</th>
                             <td>
-                              <input type="text" class="form-control" name="o_addr1" id="o_addr1" size="50" value='<?php echo $rows['o_addr1']; ?>' readonly /></td>
+                              <input type="text" class="form-control" name="o_addr1" id="o_addr1" style="width: 80%;" value='<?php echo $rows['o_addr1']; ?>' readonly /></td>
                           </tr>
                           <tr>
-                            <td><input type="text" class="form-control" name="o_addr2" id="o_addr2" size="50" value='<?php echo $rows['o_addr2']; ?>' /></td>
+                            <td><input type="text" class="form-control" name="o_addr2" id="o_addr2" style="width: 80%;" value='<?php echo $rows['o_addr2']; ?>' /></td>
                           </tr>
                           <tr>
                             <th>업태</th>
@@ -319,12 +319,12 @@ switch ($rows['tax_type']) {
                           <tr>
                             <th rowspan="2">배송지</th>
                             <td>
-                              <input type="text" class="form-control" name="d_addr1" id="d_addr1" size="50" value='<?php echo $rows['d_addr1']; ?>' readonly />
+                              <input type="text" class="form-control" name="d_addr1" id="d_addr1" style="width: 80%;" value='<?php echo $rows['d_addr1']; ?>' readonly />
                             </td>
                           </tr>
                           <tr>
                             <td>
-                              <input type="text" class="form-control" name="d_addr2" id="d_addr2" size="50" value='<?php echo $rows['d_addr2']; ?>' />
+                              <input type="text" class="form-control" name="d_addr2" id="d_addr2" style="width: 80%;" value='<?php echo $rows['d_addr2']; ?>' />
                             </td>
                           </tr>
                           <tr>
