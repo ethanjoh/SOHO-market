@@ -397,7 +397,7 @@ function useSameAddr(){
 
 	if(form.same_info.checked == true){
 			form.d_zipcode1.value = form.o_zipcode1.value;
-			form.d_zipcode2.value = form.o_zipcode2.value;
+			// form.d_zipcode2.value = form.o_zipcode2.value;
 			form.d_addr1.value = form.o_addr1.value;
 			form.d_addr2.value = form.o_addr2.value;
 			form.d_phone1.value = form.o_phone1.value;
@@ -408,7 +408,7 @@ function useSameAddr(){
 			form.d_fax3.value = form.o_fax3.value;
 	}else{
 			form.d_zipcode1.value ="";
-			form.d_zipcode2.value = "";
+			// form.d_zipcode2.value = "";
 			form.d_addr1.value = "";
 			form.d_addr2.value = "";
 			form.d_phone1.value = "";

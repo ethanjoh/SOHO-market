@@ -1,22 +1,27 @@
-<!--
 //사업장 주소 사용하기
 function useSameAddr() {
     var form = document.form1;
 
     if (form.same_info.checked == true) {
         form.d_zipcode1.value = form.o_zipcode1.value;
-        // form.d_zipcode2.value = form.o_zipcode2.value;
         form.d_addr1.value = form.o_addr1.value;
         form.d_addr2.value = form.o_addr2.value;
-        form.d_phone.value = form.o_phone.value;
-        form.d_fax.value = form.o_fax.value;
+        form.d_phone1.value = form.o_phone1.value;
+        form.d_phone2.value = form.o_phone2.value;
+        form.d_phone3.value = form.o_phone3.value;
+        form.d_fax1.value = form.o_fax1.value;
+        form.d_fax2.value = form.o_fax2.value;
+        form.d_fax3.value = form.o_fax3.value;
     } else {
         form.d_zipcode1.value = "";
-        // form.d_zipcode2.value = "";
         form.d_addr1.value = "";
         form.d_addr2.value = "";
-        form.d_phone.value = "";
-        form.d_fax.value = "";
+        form.d_phone1.value = "";
+        form.d_phone2.value = "";
+        form.d_phone3.value = "";
+        form.d_fax1.value = "";
+        form.d_fax2.value = "";
+        form.d_fax3.value = "";
     }
 }
 
@@ -25,18 +30,24 @@ function usePmemberSameAddr() {
 
     if (form.same_info.checked == true) {
         form.d_zipcode1.value = form.o_zipcode1.value;
-        // form.d_zipcode2.value = form.o_zipcode2.value;
         form.d_addr1.value = form.o_addr1.value;
         form.d_addr2.value = form.o_addr2.value;
-        form.d_phone.value = form.o_phone.value;
-        form.d_hphone.value = form.hphone.value;
+        form.d_phone1.value = form.o_phone1.value;
+        form.d_phone2.value = form.o_phone2.value;
+        form.d_phone3.value = form.o_phone3.value;
+        form.d_hphone1.value = form.hphone1.value;
+        form.d_hphone2.value = form.hphone2.value;
+        form.d_hphone3.value = form.hphone3.value;
     } else {
         form.d_zipcode1.value = "";
-        // form.d_zipcode2.value = "";
         form.d_addr1.value = "";
         form.d_addr2.value = "";
-        form.d_phone.value = "";
-        form.d_hphone.value = "";
+        form.d_phone1.value = "";
+        form.d_phone2.value = "";
+        form.d_phone3.value = "";
+        form.d_hphone1.value = "";
+        form.d_hphone2.value = "";
+        form.d_hphone3.value = "";
     }
 }
 

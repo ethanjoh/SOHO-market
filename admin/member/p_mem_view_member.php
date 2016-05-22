@@ -313,7 +313,7 @@ switch ($rows['approved']) {
                     <div class="row text-center">
                       <div class="col-sm-12">
                         <a type="button" class="btn btn-warning" href="#" onclick="document.form1.submit();">수정</a>
-                        <a type="button" class="btn btn-danger" href="mem_delete_member.php?m_num=<?php echo $num; ?>&amp;from=mail" onclick="return confirm('이 회원의 모든 정보가 즉시 삭제되며 복구할 수 없습니다. \n삭제하시겠습니까?')">삭제</a>
+                        <a type="button" class="btn btn-danger" href="p_mem_delete_member.php?m_num=<?php echo $num; ?>&amp;from=mail" onclick="return confirm('이 회원의 모든 정보가 즉시 삭제되며 복구할 수 없습니다. \n삭제하시겠습니까?')">삭제</a>
 <?php
 
 if ($from == "mail") {

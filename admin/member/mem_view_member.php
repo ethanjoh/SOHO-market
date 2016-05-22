@@ -16,15 +16,12 @@ $query  = "SELECT * FROM member WHERE seq_num='$num' ";
 $result = mysqli_query($connect, $query);
 $rows   = mysqli_fetch_array($result);
 
-$md_hphone = explode("-", $rows['md_hphone']);
-// $o_zipno    = explode("-", $rows['o_zipcode']);
-$o_phone = explode("-", $rows['o_phone']);
-$o_fax   = explode("-", $rows['o_fax']);
-// $d_zipno    = explode("-", $rows['d_zipcode']);
+$md_hphone  = explode("-", $rows['md_hphone']);
+$o_phone    = explode("-", $rows['o_phone']);
+$o_fax      = explode("-", $rows['o_fax']);
 $d_phone    = explode("-", $rows['d_phone']);
 $d_fax      = explode("-", $rows['d_fax']);
 $license_no = explode("-", $rows['license_no']);
-// $open_date  = explode("-", $rows['open_date']);
 
 if (!defined("PHP_EOL")) {
     define("PHP_EOL", "\r\n");

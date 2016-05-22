@@ -51,14 +51,12 @@ if ("edit" == $mode) {
         $res  = mysqli_query($connect, $qry);
         $rows = mysqli_fetch_array($res);
 
-        // $md_hphone = explode("-",$rows['md_hphone']);
-        // $license_no = explode("-",$rows['license_no']);
-        $o_zipno = explode("-", $rows['o_zipcode']);
-        // $o_phone = explode("-",$rows['o_phone']);
-        // $o_fax = explode("-",$rows['o_fax']);
-        $d_zipno = explode("-", $rows['d_zipcode']);
-        // $d_phone = explode("-",$rows['d_phone']);
-        // $d_fax = explode("-",$rows['d_fax']);
+        $md_hphone  = explode("-", $rows['md_hphone']);
+        $license_no = explode("-", $rows['license_no']);
+        $o_phone    = explode("-", $rows['o_phone']);
+        $o_fax      = explode("-", $rows['o_fax']);
+        $d_phone    = explode("-", $rows['d_phone']);
+        $d_fax      = explode("-", $rows['d_fax']);
     }
 
 }
@@ -176,9 +174,11 @@ if ("edit" == $mode) {
 
 												<div class="row">
 													<div class="col-xs-12 col-md-3 register-font">담당자 휴대폰</div>
-													<div class="col-xs-12 col-md-3">
+													<div class="col-xs-12 col-md-8 form-inline">
 														<label class="sr-only" for="md_hphone">담당자 휴대폰</label>
-														<input class="form-control" type="text" id="md_hphone" name="md_hphone" value="<?php echo $rows['md_hphone']; ?>" required />
+														<input class="form-control" type="text" id="md_hphone1" name="md_hphone1" value="<?php echo $md_hphone[0]; ?>" required /> -
+														<input class="form-control" type="text" id="md_hphone2" name="md_hphone2" value="<?php echo $md_hphone[1]; ?>" required /> -
+														<input class="form-control" type="text" id="md_hphone3" name="md_hphone3" value="<?php echo $md_hphone[2]; ?>" required />
 													</div>
 												</div>
 
@@ -198,9 +198,11 @@ if ("edit" == $mode) {
 														<div class="col-xs-12 col-md-3 register-font">
 															사업자 등록번호
 														</div>
-														<div class="col-sm-6 col-md-3">
+														<div class="col-sm-6 col-md-8 form-inline">
 															<label class="sr-only" for="license_no">사업자 등록번호</label>
-															<input class="form-control" type="text" id="license_no" name="license_no" value="<?php echo $rows['license_no']; ?>" readonly />
+															<input class="form-control" type="text" id="license_no1" name="license_no1" value="<?php echo $license_no[0]; ?>" readonly /> -
+															<input class="form-control" type="text" id="license_no2" name="license_no2" value="<?php echo $license_no[1]; ?>" readonly /> -
+															<input class="form-control" type="text" id="license_no3" name="license_no3" value="<?php echo $license_no[2]; ?>" readonly />
 														</div>
 														<div class="col-md-6">
 															<p class="text-danger">(사업자 등록번호 수정불가)</p>
@@ -232,7 +234,7 @@ if ("edit" == $mode) {
 															사업장 소재지
 														</div>
 														<div class="col-xs-6 col-md-2">
-															<input class="form-control" type="text" name="o_zipcode1" id="o_zipcode1" value="<?php echo $o_zipno[0]; ?>" readonly />
+															<input class="form-control" type="text" name="o_zipcode1" id="o_zipcode1" value="<?php echo $rows['o_zipcode']; ?>" readonly />
 														</div>
 														<div class="col-xs-6 col-md-2">
                                 <button class="btn btn-primary" type="button" onclick="openDaumPostcode()">우편번호 검색</button>
@@ -354,9 +356,11 @@ if ("edit" == $mode) {
 														<div class="col-xs-12 col-md-3 register-font">
 															사업장 전화번호
 														</div>
-														<div class="col-xs-12 col-md-3">
+														<div class="col-xs-12 col-md-8 form-inline">
 															<label class="sr-only" for="o_phone">사업장 전화번호</label>
-															<input class="form-control" type="text" id="o_phone" name="o_phone" value="<?php echo $rows['o_phone']; ?>" required />
+															<input class="form-control" type="text" id="o_phone1" name="o_phone1" value="<?php echo $o_phone[0]; ?>" required /> -
+															<input class="form-control" type="text" id="o_phone2" name="o_phone2" value="<?php echo $o_phone[1]; ?>" required /> -
+															<input class="form-control" type="text" id="o_phone3" name="o_phone3" value="<?php echo $o_phone[2]; ?>" required />
 														</div>
 													</div>
 
@@ -364,9 +368,11 @@ if ("edit" == $mode) {
 														<div class="col-xs-12 col-md-3 register-font">
 															사업장 팩스
 														</div>
-														<div class="col-xs-12 col-md-3">
+														<div class="col-xs-12 col-md-8 form-inline">
 															<label class="sr-only" for="o_fax">사업장 팩스</label>
-															<input class="form-control" type="text" id="o_fax" name="o_fax" value="<?php echo $rows['o_fax']; ?>" />
+															<input class="form-control" type="text" id="o_fax1" name="o_fax1" value="<?php echo $o_fax[0]; ?>" /> -
+															<input class="form-control" type="text" id="o_fax2" name="o_fax2" value="<?php echo $o_fax[1]; ?>" /> -
+															<input class="form-control" type="text" id="o_fax3" name="o_fax3" value="<?php echo $o_fax[2]; ?>" />
 														</div>
 													</div>
 
@@ -390,7 +396,7 @@ if ("edit" == $mode) {
 															배송지 주소
 														</div>
 														<div class="col-xs-6 col-md-2">
-															<input class="form-control" type="text" name="d_zipcode1" id="d_zipcode1" value="<?php echo $d_zipno[0]; ?>" readonly="readonly" />
+															<input class="form-control" type="text" name="d_zipcode1" id="d_zipcode1" value="<?php echo $rows['d_zipcode']; ?>" readonly="readonly" />
 														</div>
 														<div class="col-xs-6 col-md-2">
 															<button class="btn btn-primary" type="button" onclick="openDaumPostcode2()">우편번호 검색</button>
@@ -462,9 +468,11 @@ if ("edit" == $mode) {
 														<div class="col-xs-12 col-md-3 register-font">
 															배송지 전화번호
 														</div>
-														<div class="col-sm-12 col-md-3">
+														<div class="col-sm-12 col-md-8 form-inline">
 															<label class="sr-only" for="d_phone">배송지 전화번호</label>
-															<input class="form-control" type="text" name="d_phone" value="<?php echo $rows['d_phone']; ?>" required />
+															<input class="form-control" type="text" id="d_phone1" name="d_phone1" value="<?php echo $d_phone[0]; ?>" required /> -
+															<input class="form-control" type="text" id="d_phone2" name="d_phone2" value="<?php echo $d_phone[1]; ?>" required /> -
+															<input class="form-control" type="text" id="d_phone3" name="d_phone3" value="<?php echo $d_phone[2]; ?>" required />
 														</div>
 													</div>
 
@@ -472,9 +480,11 @@ if ("edit" == $mode) {
 														<div class="col-xs-12 col-md-3 register-font">
 															배송지 팩스
 														</div>
-														<div class="col-sm-12 col-md-3">
+														<div class="col-sm-12 col-md-8 form-inline">
 															<label class="sr-only" for="d_fax">배송지 팩스</label>
-															<input class="form-control" type="text" name="d_fax" value="<?php echo $rows['d_fax']; ?>" />
+															<input class="form-control" type="text" id="d_fax1" name="d_fax1" value="<?php echo $d_fax[0]; ?>" required /> -
+															<input class="form-control" type="text" id="d_fax2" name="d_fax2" value="<?php echo $d_fax[1]; ?>" required /> -
+															<input class="form-control" type="text" id="d_fax3" name="d_fax3" value="<?php echo $d_fax[2]; ?>" required />
 														</div>
 													</div>
 
@@ -560,9 +570,11 @@ Start Register Form ============================================================
 
 												<div class="row">
 													<div class="col-xs-12 col-md-3 register-font">담당자 휴대폰</div>
-													<div class="col-xs-12 col-md-3">
+													<div class="col-xs-12 col-md-8 form-inline">
 															<label class="sr-only" for="md_hphone">담당자 휴대폰</label>
-															<input class="form-control" type="text" id="md_hphone" name="md_hphone" placeholder="010-xxxx-xxxx (-를 삽입해 주세요)" required />
+															<input class="form-control" type="text" id="md_hphone1" name="md_hphone1" placeholder="xxx" required /> -
+															<input class="form-control" type="text" id="md_hphone2" name="md_hphone2" placeholder="xxxx" required /> -
+															<input class="form-control" type="text" id="md_hphone3" name="md_hphone3" placeholder="xxxx" required />
 													</div>
 												</div>
 
@@ -578,9 +590,11 @@ Start Register Form ============================================================
 														<div class="col-xs-12 col-md-3 register-font">
 															사업자 등록번호
 														</div>
-														<div class="col-sm-6 col-md-3">
+														<div class="col-xs-12 col-md-8 form-inline">
 															<label class="sr-only" for="license_no">사업자 등록번호</label>
-															<input class="form-control" type="text" id="license_no" name="license_no" placeholder="xxx-xx-xxxxx (-를 삽입해 주세요)" required />
+															<input class="form-control" type="text" id="license_no1" name="license_no1" placeholder="xxx" required /> -
+															<input class="form-control" type="text" id="license_no2" name="license_no2" placeholder="xx" required /> -
+															<input class="form-control" type="text" id="license_no3" name="license_no3" placeholder="xxxxx" required />
 														</div>
 													</div>
 
@@ -707,9 +721,11 @@ Start Register Form ============================================================
 														<div class="col-xs-12 col-md-3 register-font">
 															사업장 전화번호
 														</div>
-														<div class="col-xs-12 col-md-3">
+														<div class="col-xs-12 col-md-8 form-inline">
 															<label class="sr-only" for="o_phone">사업장 전화번호</label>
-															<input class="form-control" type="text" id="o_phone" name="o_phone" placeholder="02-xxx-xxxx (-를 삽입해 주세요)" required />
+															<input class="form-control" type="text" id="o_phone1" name="o_phone1" placeholder="xxx" required /> -
+															<input class="form-control" type="text" id="o_phone2" name="o_phone2" placeholder="xxx" required /> -
+															<input class="form-control" type="text" id="o_phone3" name="o_phone3" placeholder="xxxx" required />
 														</div>
 													</div>
 
@@ -717,9 +733,11 @@ Start Register Form ============================================================
 														<div class="col-xs-12 col-md-3 register-font">
 															사업장 팩스
 														</div>
-														<div class="col-xs-12 col-md-3">
+														<div class="col-xs-12 col-md-8 form-inline">
 															<label class="sr-only" for="o_fax">사업장 팩스</label>
-															<input class="form-control" type="text" id="o_fax" name="o_fax" placeholder="02-xxx-xxxx (-를 삽입해 주세요)" />
+															<input class="form-control" type="text" id="o_fax1" name="o_fax1" placeholder="xxx" /> -
+															<input class="form-control" type="text" id="o_fax2" name="o_fax2" placeholder="xxx" /> -
+															<input class="form-control" type="text" id="o_fax3" name="o_fax3" placeholder="xxxx" />
 														</div>
 													</div>
 
@@ -813,9 +831,11 @@ Start Register Form ============================================================
 														<div class="col-xs-12 col-md-3 register-font">
 															배송지 전화번호
 														</div>
-														<div class="col-sm-12 col-md-3">
+														<div class="col-sm-12 col-md-8 form-inline">
 															<label class="sr-only" for="d_phone">배송지 전화번호</label>
-															<input class="form-control" type="text" name="d_phone" placeholder="02-xxx-xxxx (-를 삽입해 주세요)" required />
+															<input class="form-control" type="text" id="d_phone1" name="d_phone1" placeholder="xxx" required /> -
+															<input class="form-control" type="text" id="d_phone2" name="d_phone2" placeholder="xxx" required /> -
+															<input class="form-control" type="text" id="d_phone3" name="d_phone3" placeholder="xxxx" required />
 														</div>
 													</div>
 
@@ -823,9 +843,11 @@ Start Register Form ============================================================
 														<div class="col-xs-12 col-md-3 register-font">
 															배송지 팩스
 														</div>
-														<div class="col-sm-12 col-md-3">
+														<div class="col-sm-12 col-md-8 form-inline">
 															<label class="sr-only" for="d_fax">배송지 팩스</label>
-															<input class="form-control" type="text" name="d_fax" placeholder="02-xxx-xxxx (-를 삽입해 주세요)" />
+															<input class="form-control" type="text" id="d_fax1" name="d_fax1" placeholder="xxx" /> -
+															<input class="form-control" type="text" id="d_fax2" name="d_fax2" placeholder="xxx" /> -
+															<input class="form-control" type="text" id="d_fax3" name="d_fax3" placeholder="xxxx" />
 														</div>
 													</div>
 
