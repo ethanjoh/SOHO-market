@@ -191,7 +191,9 @@ if ("edit" == $mode) {
 
 
 										<div class="panel panel-warning">
-											<div class="panel-heading"><h4>사업자 정보</h4> <p>(세금계산서 발행 등을 위해 사업자등록증과 동일하게 작성하시면 됩니다.)</p></div>
+											<div class="panel-heading"><h4>사업자 정보</h4>
+												<p><i class="fa fa-exclamation-circle" aria-hidden="true"></i> 세금계산서 발행 등을 위해 사업자등록증과 동일하게 작성하시면 됩니다.<br>
+												<i class="fa fa-exclamation-circle" aria-hidden="true"></i> 기존 거래업체가 아닌 신규가입업체는 사업자등록증 사본을 보내 주셔야 승인 후 주문이 가능합니다.</p></div>
 												<div class="panel-body">
 
 													<div class="row">
@@ -583,7 +585,9 @@ Start Register Form ============================================================
 
 
 										<div class="panel panel-info">
-											<div class="panel-heading"><h4>사업자 정보</h4> <p>(세금계산서 발행 등을 위해 사업자등록증과 동일하게 작성하시면 됩니다.)</p></div>
+											<div class="panel-heading"><h4>사업자 정보</h4>
+												<p><i class="fa fa-exclamation-circle" aria-hidden="true"></i> 세금계산서 발행 등을 위해 사업자등록증과 동일하게 작성하시면 됩니다.<br>
+												<i class="fa fa-exclamation-circle" aria-hidden="true"></i> 기존 거래업체가 아닌 신규가입업체는 사업자등록증 사본을 보내 주셔야 승인 후 주문이 가능합니다.</p></div>
 												<div class="panel-body">
 
 													<div class="row">

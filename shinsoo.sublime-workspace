@@ -4,47 +4,19 @@
 		"selected_items":
 		[
 			[
-				"reci",
-				"recipient_address"
+				"form-",
+				"form-inline"
 			],
 			[
-				"rec",
-				"recipient_zipcode"
-			],
-			[
-				"buye",
-				"buyer_zipcode"
-			],
-			[
-				"buy",
-				"buyer_address"
-			],
-			[
-				"buyer",
-				"buyer_hphone"
-			],
-			[
-				"receiver",
-				"receiver_name	(payres.php)"
-			],
-			[
-				"te",
-				"template	(util.php)"
-			],
-			[
-				"cate",
-				"category_m"
-			],
-			[
-				"catego",
-				"category_l"
-			],
-			[
-				"app",
-				"apply_receipt"
+				"col-xs-",
+				"col-xs-12"
 			],
 			[
 				"mysq",
+				"mysqli_fetch_array($result"
+			],
+			[
+				"my",
 				"mysqli_query($connect"
 			],
 			[
@@ -296,6 +268,10 @@
 				"opacity"
 			],
 			[
+				"te",
+				"text-align"
+			],
+			[
 				"padd",
 				"padding"
 			],
@@ -386,6 +362,10 @@
 			[
 				"strto",
 				"strtotime"
+			],
+			[
+				"cate",
+				"category2"
 			],
 			[
 				"categ",
@@ -514,47 +494,39 @@
 			[
 				"s",
 				"style	Attr"
+			],
+			[
+				"sum",
+				"sumNum"
+			],
+			[
+				"tota",
+				"totalSum"
+			],
+			[
+				"compa",
+				"company"
+			],
+			[
+				"al",
+				"vertical-align"
+			],
+			[
+				"in",
+				"inline-block"
 			]
 		]
 	},
 	"buffers":
 	[
-<<<<<<< HEAD
-=======
 		{
-			"file": "mail/order-detail.html",
+			"file": "member/register-form.php",
 			"settings":
 			{
-				"buffer_size": 19688,
-				"line_ending": "Windows",
-				"name": "<div id=\"readFrame\"><!-- 본문 -->"
-			}
-		},
-		{
-			"file": "admin/include/admin_head.php",
-			"settings":
-			{
-				"buffer_size": 2893,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "pay/payres_org.php",
-			"settings":
-			{
-				"buffer_size": 32923,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "util/shop-functions.php",
-			"settings":
-			{
-				"buffer_size": 113731,
+				"buffer_size": 40191,
 				"line_ending": "Windows"
 			}
 		}
->>>>>>> 07a187f01b663faa5474f907bc35260d733651fe
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -729,17 +701,23 @@
 	},
 	"expanded_folders":
 	[
-		"/C/wamp/www/shinsoo",
-<<<<<<< HEAD
-		"/C/wamp/www/shinsoo/mail/images"
+		"/C/wamp/www/shinsoo"
 	],
 	"file_history":
 	[
-		"/C/wamp/www/shinsoo/member/p-register-ok.php",
-		"/C/wamp/www/shinsoo/mail/join-confirmation.html",
-		"/C/wamp/www/shinsoo/mail/p-join-confirmation.html",
-		"/C/wamp/www/shinsoo/member/register-ok.php",
 		"/C/wamp/www/shinsoo/util/util.php",
+		"/C/wamp/www/shinsoo/member/p-register-ok.php",
+		"/C/wamp/www/shinsoo/member/p-register-form.php",
+		"/C/wamp/www/shinsoo/member/register-ok.php",
+		"/C/wamp/www/shinsoo/admin/js/admin.js",
+		"/C/wamp/www/shinsoo/admin/member/p_mem_delete_member.php",
+		"/C/wamp/www/shinsoo/member/register-form.php",
+		"/C/wamp/www/shinsoo/admin/member/mem_view_member.php",
+		"/C/wamp/www/shinsoo/js/member.js",
+		"/C/wamp/www/shinsoo/admin/member/p_mem_view_member.php",
+		"/C/wamp/www/shinsoo/admin/member/mem_delete_member.php",
+		"/C/wamp/www/shinsoo/mail/p-join-confirmation.html",
+		"/C/wamp/www/shinsoo/mail/join-confirmation.html",
 		"/C/wamp/www/shinsoo/pay/payres.php",
 		"/C/wamp/www/shinsoo/admin/order/or_view.php",
 		"/C/wamp/www/shinsoo/lgpay/XPayClient.php",
@@ -764,130 +742,48 @@
 		"/C/wamp/www/shinsoo/web/index.html",
 		"/C/Users/Joh/Google 드라이브/홈페이지 템플릿/코코로봇 템플릿/download/html/error.html",
 		"/C/wamp/www/shinsoo/pay/save_pginfo_to_db.php",
-		"/C/wamp/www/shinsoo/member/p-register-form.php",
-		"/C/wamp/www/shinsoo/member/register-form.php",
 		"/C/wamp/www/shinsoo/admin/main/main.php",
 		"/C/wamp/www/shinsoo/include/footer.php",
-=======
-		"/C/wamp/www/shinsoo/mail",
-		"/C/wamp/www/shinsoo/mail/images",
-		"/C/wamp/www/shinsoo/pay",
-		"/C/wamp/www/shinsoo/util"
-	],
-	"file_history":
-	[
-		"/C/wamp/www/shinsoo/pay/payres.php",
-		"/C/wamp/www/shinsoo/util/util.php",
-		"/C/wamp/www/shinsoo/util/shop-functions.php",
-		"/C/wamp/www/shinsoo/shop/order-detail.php",
-		"/C/wamp/www/shinsoo/mail/join-confirmation.html",
-		"/C/wamp/www/shinsoo/member/register-ok.php",
-		"/C/wamp/www/shinsoo/admin/products/pro_register.php",
-		"/C/wamp/www/shinsoo/admin/member/mem_view_member.php",
-		"/C/wamp/www/shinsoo/admin/member/p_mem_view_member.php",
-		"/C/wamp/www/shinsoo/admin/member/top_member_list.php",
-		"/C/wamp/www/shinsoo/util/test.php",
-		"/C/wamp/www/shinsoo/mail/join-confirmation.txt",
-		"/C/wamp/www/shinsoo/pay/cas_noteurl.php",
-		"/C/Users/Seonghyeon/Downloads/source/inc/php/functions.php",
-		"/C/wamp/www/shinsoo/admin/member/p_top_member_list.php",
-		"/C/Users/Seonghyeon/Downloads/source/signup_template.html",
-		"/C/wamp/www/shinsoo/pay/save_wireinfo_to_db.php",
-		"/C/wamp/www/shinsoo/member/p-register-form.php",
-		"/C/wamp/www/shinsoo/member/register-form.php",
-		"/C/wamp/www/shinsoo/admin/products/top_pro_list.php",
-		"/C/wamp/www/shinsoo/admin/products/pro_delete.php",
-		"/C/wamp/www/shinsoo/admin/order/top_order_list.php",
-		"/C/wamp/www/shinsoo/admin/order/or_view.php",
-		"/C/wamp/www/shinsoo/admin/order/p_or_view.php",
-		"/C/wamp/www/shinsoo/admin/index.php",
-		"/C/wamp/www/shinsoo/admin/include/admin_head.php",
-		"/C/wamp/www/shinsoo/admin/include/header.php",
-		"/C/Users/Seonghyeon/Downloads/LGU+_XPay_Crossplatform/LGU+_XPay_Crossplatform_PHP/cas_noteurl.php",
-		"/C/wamp/www/shinsoo/googlea4fc45099672e28e.html",
-		"/C/Users/Seonghyeon/Google 드라이브/git_project/prixe/robots.txt",
-		"/C/wamp/www/shinsoo/pay/variables_from_payreq.php",
-		"/C/wamp/www/shinsoo/admin/order/or_changed.php",
-		"/C/wamp/www/shinsoo/admin/stats/mem_stat_list.php",
-		"/C/wamp/www/shinsoo/include/analyticstracking.php",
-		"/C/wamp/www/shinsoo/include/footer.php",
-		"/C/wamp/www/shinsoo/admin/products/pro_register_ok.php",
-		"/C/wamp/www/shinsoo/admin/js/admin.js",
-		"/C/wamp/www/shinsoo/pay/save_pginfo_to_db.php",
-		"/C/wamp/www/shinsoo/pay/payreq_crossplatform.php",
-		"/C/wamp/www/shinsoo/pay/returnurl.php",
-		"/C/wamp/www/shinsoo/util/config.ini",
-		"/C/wamp/www/shinsoo/admin/main/main.php",
-		"/C/wamp/www/shinsoo/admin/member/p_mem_edit_member.php",
-		"/C/wamp/www/shinsoo/admin/member/mem_edit_member.php",
-		"/C/wamp/www/shinsoo/admin/order/p_top_order_list.php",
-		"/C/wamp/www/shinsoo/admin/order/insert_waybill.php",
-		"/C/wamp/www/shinsoo/admin/order/upload_waybill.php",
-		"/C/wamp/www/shinsoo/admin/order/upload_waybill_process.php",
-		"/C/wamp/www/shinsoo/include/header.php",
-		"/C/wamp/www/shinsoo/include/brands.php",
-		"/C/wamp/www/shinsoo/member/p-register-ok.php",
-		"/C/wamp/www/shinsoo/lib/css/preview.css",
-		"/C/wamp/www/shinsoo/util/admin_auth.php",
-		"/C/wamp/www/shinsoo/member/register.php",
->>>>>>> 07a187f01b663faa5474f907bc35260d733651fe
 		"/C/wamp/www/shinsoo/shop/index.php",
+		"/C/wamp/www/shinsoo/include/brands.php",
 		"/C/wamp/www/shinsoo/bbs/list.php",
 		"/C/wamp/www/shinsoo/images/brand/tigerchoi_logo.svg",
 		"/C/wamp/www/shinsoo/images/brand/golftiger_logo.svg",
 		"/C/wamp/www/shinsoo/member/about-us.php",
-<<<<<<< HEAD
 		"/C/wamp/www/shinsoo/admin/products/pro_register.php",
-=======
-		"/C/wamp/www/shinsoo/shop/catalog-list.php",
->>>>>>> 07a187f01b663faa5474f907bc35260d733651fe
 		"/C/wamp/www/shinsoo/admin/setting/admin_setup.php",
 		"/C/wamp/www/shinsoo/css/style.css",
 		"/C/wamp/www/shinsoo/sftp-config.json",
 		"/C/wamp/www/shinsoo/css/main.css",
-<<<<<<< HEAD
 		"/C/wamp/www/shinsoo/admin/products/pro_register_ok.php",
 		"/C/wamp/www/shinsoo/pay/returnurl.php",
-=======
-		"/C/wamp/www/shinsoo/shop/detail.php",
->>>>>>> 07a187f01b663faa5474f907bc35260d733651fe
 		"/C/wamp/www/shinsoo/member/help.php",
-		"/C/wamp/www/shinsoo/shop/checkout.php",
+		"/C/wamp/www/shinsoo/member/register.php",
 		"/C/wamp/www/shinsoo/pay/sample_crossplatform.html",
 		"/C/wamp/www/cocokorea/.gitignore",
 		"/C/Users/Seonghyeon/Downloads/LGU+_XPay_Crossplatform/LGU+_XPay_Crossplatform_PHP/payreq_crossplatform.php",
 		"/C/wamp/www/shinsoo/pay/payreq_crossplatform.org.php",
-		"/C/wamp/www/shinsoo/shop/cart.php",
 		"/C/wamp/www/shinsoo/pay/checkout.php",
 		"/C/wamp/www/shinsoo/js/jquery.meanmenu.js",
 		"/C/wamp/www/shinsoo/js/main.js",
-<<<<<<< HEAD
-		"/C/wamp/www/shinsoo/admin/member/p_mem_view_member.php",
-		"/C/wamp/www/shinsoo/admin/member/mem_view_member.php",
-=======
->>>>>>> 07a187f01b663faa5474f907bc35260d733651fe
 		"/C/wamp/www/shinsoo/get-product.php",
 		"/C/wamp/www/shinsoo/admin/products/top_pro_list.php",
-		"/C/wamp/www/shinsoo/admin/member/p_mem_delete_member.php",
 		"/C/wamp/www/shinsoo/admin/order/or_delete.php",
 		"/C/wamp/www/shinsoo/lgpay/conf/mall.conf",
 		"/C/wamp/www/shinsoo/admin/setting/banner_setting_ok.php",
+		"/C/wamp/www/shinsoo/admin/include/admin_head.php",
+		"/C/wamp/www/shinsoo/admin/include/header.php",
 		"/C/wamp/www/shinsoo/bbs/upload/upload.php",
 		"/C/wamp/www/shinsoo/bbs/upload.php",
-<<<<<<< HEAD
-		"/C/wamp/www/shinsoo/admin/js/admin.js",
 		"/C/wamp/www/shinsoo/admin/order/print_quot.php",
 		"/C/wamp/www/shinsoo/admin/setting/delivery_setup_ok.php",
 		"/C/wamp/www/shinsoo/admin/setting/delivery_setup.php",
 		"/C/wamp/www/shinsoo/shop/order-detail.php",
-=======
-		"/C/wamp/www/shinsoo/shop/order-list.php",
-		"/C/wamp/www/shinsoo/admin/order/print_quot.php",
-		"/C/wamp/www/shinsoo/admin/setting/delivery_setup_ok.php",
-		"/C/wamp/www/shinsoo/admin/setting/delivery_setup.php",
->>>>>>> 07a187f01b663faa5474f907bc35260d733651fe
 		"/C/wamp/www/shinsoo/css/myshop.css",
 		"/C/wamp/www/shinsoo/admin/order/edit_pro.php",
+		"/C/wamp/www/shinsoo/admin/member/mem_edit_member.php",
+		"/C/wamp/www/shinsoo/admin/order/upload_waybill.php",
+		"/C/wamp/www/shinsoo/admin/order/upload_waybill_process.php",
 		"/C/wamp/www/shinsoo/admin/css/style.css",
 		"/C/Users/Seonghyeon/Google 드라이브/git_project/prixe/admin/main.php",
 		"/C/wamp/www/shinsoo/admin/order/print_waybill.php",
@@ -928,7 +824,6 @@
 		"/C/Users/Joh/Google 드라이브/홈페이지 템플릿/신수상사 템플릿/hitstore/index.html",
 		"/C/wamp/www/shinsoo/admin/category/ca_hide.php",
 		"/C/wamp/bin/apache/apache2.4.9/conf/extra/httpd-vhosts.conf",
-<<<<<<< HEAD
 		"/C/Users/Joh/Downloads/hosts",
 		"/C/wamp/www/shinsoo/upload/tigerchoi.csv",
 		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/SublimeLinter/SublimeLinter.sublime-settings",
@@ -937,16 +832,11 @@
 		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/phpfmt/phpfmt.sublime-settings",
 		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/User/phpfmt.sublime-settings",
 		"/C/wamp/www/shinsoo/admin/js/showMainChart.js",
-		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/HTML-CSS-JS Prettify/HTMLPrettify.sublime-settings",
-		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/jsfmt/jsfmt.sublime-settings",
-		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/Javascript Beautify/JavascriptBeautify.sublime-settings"
-=======
-		"/C/Users/Joh/Downloads/hosts"
->>>>>>> 07a187f01b663faa5474f907bc35260d733651fe
+		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/HTML-CSS-JS Prettify/HTMLPrettify.sublime-settings"
 	],
 	"find":
 	{
-		"height": 55.0
+		"height": 38.0
 	},
 	"find_in_files":
 	{
@@ -975,60 +865,43 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-<<<<<<< HEAD
+			"id",
+			"(없으면 휴대폰 번호를 넣어주세요)",
+			"rows['hphone']",
+			"o_phone1",
+			"$rows['hphone'];",
+			"rows['",
+			"d_phone",
+			"d_phone1",
+			"rows['",
+			"$rows['",
+			"rows['",
+			"md_",
+			"hphone",
+			"02-xxx-xxxx (-를 삽입해 주세요)",
+			"id=\"d_phone1\" ",
+			"010-xxxx-xxxx (-를 삽입해 주세요)",
+			"02-xxx-xxxx (-를 삽입해 주세요)",
+			"010-xxxx-xxxx (-를 삽입해 주세요)",
+			"[2]",
+			"[1]",
+			"t_",
+			"[1]",
+			"[0]",
+			"d_fax",
+			"d_phone",
+			"o_fax",
+			"o_phone",
+			"license_no",
+			"md_hphone",
+			"o_fax",
+			"o_phone",
+			"license_no",
+			"md_hphone",
+			"02-xxx-xxxx (-를 삽입해 주세요)",
+			"-xxx-xxxx (-를 삽입해 주세요)",
+			"-xx-xxxxx (-를 삽입해 주세요)",
 			"user_id",
-=======
-			"contents",
-			"HEREDOC",
-			"trade_code",
-			"echo",
-			"SITEPATH",
-			"size=\"50\"",
-			"content",
-			"ereg_replace",
-			"op_fax",
-			"contents",
-			"http://shinsoo.co.kr",
-			"p_num",
-			"btn btn-round",
-			"LGD_DEFAULTCASHRECEIPTUSE",
-			"LGD_CASHRECEIPTKIND",
-			"$LGD_CASHRECEIPTKIND",
-			"$tot_amount",
-			"$pmode",
-			"$o_total",
-			"$lcode",
-			"LGD_CASHRECEIPTNUM",
-			"LGD_CASHRECEIPTSELFYN",
-			"mrows",
-			"$row",
-			"pg_info",
-			"pay_status",
-			"payment_type",
-			"$payment_type",
-			"num",
-			"md_",
-			"md_email",
-			"md_",
-			"d_zipno",
-			"o_zipno",
-			"o_zipcode",
-			"o_zipcode1",
-			"o_zipcode2",
-			"o_zipcode",
-			"o_zipcode1",
-			"d_zipno",
-			"o_zipno",
-			"today",
-			"senddate",
-			"status_now",
-			"svg",
-			"$dc_rate",
-			"$o_zipcode",
-			"o_zipno",
-			"$o_zipcode1",
-			"pay_status",
->>>>>>> 07a187f01b663faa5474f907bc35260d733651fe
 			"col-sm-3",
 			"_POST",
 			"$mode",
@@ -1106,7 +979,6 @@
 			"$data['6']",
 			"$data['4']",
 			"$data['6']",
-<<<<<<< HEAD
 			"$data['4']",
 			"카테고리",
 			"munjadang",
@@ -1120,46 +992,7 @@
 			"$file",
 			"file",
 			"$date1",
-			"$mode",
-			"$key",
-			"$pmode",
-			"$mode ",
-			"mode",
-			"$reUrl",
-			"$lcode",
-			"$date1",
-			"$page",
-			"$key",
-			"$pmode",
-			"$mode",
-			"$page",
-			"\" . $wholesalePrice . \"",
-			"removeComma",
-			"a",
-			"detailImgFile",
-			"bigImg1Path",
-			"\\",
-			"=\\\"",
-			"fax",
-			"md_email",
-			"md_name",
-			"md_hphone",
-			"company_name",
-			"\\r\\n",
-			"pageItSelf",
-			"$_SERVER['PHP_SELF']",
-			"or_view.php",
-			"key_value",
-			"top_order_list",
-			"top_order",
-			";",
-			"$port",
-			"$port;?>",
-			"$port;",
-			"$port"
-=======
-			"$data['4']"
->>>>>>> 07a187f01b663faa5474f907bc35260d733651fe
+			"$mode"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1180,248 +1013,47 @@
 	"groups":
 	[
 		{
-<<<<<<< HEAD
-			"sheets":
-			[
-=======
-			"selected": 2,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "mail/order-detail.html",
+					"file": "member/register-form.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 19688,
+						"buffer_size": 40191,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								15019,
-								15019
+								25891,
+								25891
 							]
 						],
 						"settings":
 						{
 							"BracketHighlighterBusy": false,
 							"auto_complete": false,
-							"auto_name": "<div id=\"readFrame\"><!-- 본문 -->",
 							"bh_regions":
 							[
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
 								"bh_angle",
 								"bh_angle_center",
 								"bh_angle_open",
 								"bh_angle_close",
 								"bh_angle_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content"
-							],
-							"color_scheme": "Packages/User/Color Highlighter/themes/Material-Theme-OceanicNext (SL).tmTheme",
-							"incomplete_sync": null,
-							"synced": true,
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 2176.0,
-						"translation.y": 2104.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "admin/include/admin_head.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2893,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1471,
-								1471
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"auto_complete": false,
-							"bh_regions":
-							[
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
 								"bh_default",
 								"bh_default_center",
 								"bh_default_open",
 								"bh_default_close",
 								"bh_default_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content"
-							],
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": true,
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 279.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "pay/payres_org.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 32923,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								10834,
-								10834
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"auto_complete": false,
-							"bh_regions":
-							[
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
 								"bh_unmatched",
 								"bh_unmatched_center",
 								"bh_unmatched_open",
 								"bh_unmatched_close",
 								"bh_unmatched_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
 								"bh_square",
 								"bh_square_center",
 								"bh_square_open",
@@ -1437,65 +1069,6 @@
 								"bh_regex_open",
 								"bh_regex_close",
 								"bh_regex_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content"
-							],
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": true,
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 7701.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 0,
-			"sheets":
-			[
-				{
-					"buffer": 3,
-					"file": "util/shop-functions.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 113731,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								84264,
-								84264
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"auto_complete": false,
-							"bh_regions":
-							[
 								"bh_c_define",
 								"bh_c_define_center",
 								"bh_c_define_open",
@@ -1516,59 +1089,25 @@
 								"bh_double_quote_open",
 								"bh_double_quote_close",
 								"bh_double_quote_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
 								"bh_tag",
 								"bh_tag_center",
 								"bh_tag_open",
 								"bh_tag_close",
-								"bh_tag_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content"
+								"bh_tag_content"
 							],
-							"history_list_is_closing": true,
 							"incomplete_sync": null,
 							"remote_loading": false,
-							"sftp_duplicate_views": 0,
 							"synced": true,
 							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"translate_tabs_to_spaces": false
 						},
-						"translation.x": 0.0,
-						"translation.y": 63349.0,
+						"translation.x": 166.0,
+						"translation.y": 11221.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 0,
 					"type": "text"
 				}
->>>>>>> 07a187f01b663faa5474f907bc35260d733651fe
 			]
 		}
 	],
@@ -1589,18 +1128,11 @@
 				0,
 				1,
 				1
-			],
-			[
-				1,
-				0,
-				2,
-				1
 			]
 		],
 		"cols":
 		[
 			0.0,
-			0.917874299893,
 			1.0
 		],
 		"rows":
@@ -1636,42 +1168,59 @@
 		"selected_items":
 		[
 			[
-<<<<<<< HEAD
+				"reg",
+				"member\\register-form.php"
+			],
+			[
+				"p_mem",
+				"admin\\member\\p_mem_delete_member.php"
+			],
+			[
+				"mem_de",
+				"admin\\member\\mem_delete_member.php"
+			],
+			[
+				"admin.js",
+				"admin\\js\\admin.js"
+			],
+			[
+				"p-join",
+				"mail\\p-join-confirmation.html"
+			],
+			[
+				"mem_ve",
+				"admin\\member\\mem_view_member.php"
+			],
+			[
+				"p-regi",
+				"member\\p-register-ok.php"
+			],
+			[
+				"p-re",
+				"member\\p-register-form.php"
+			],
+			[
+				"mem_view",
+				"admin\\member\\mem_view_member.php"
+			],
+			[
+				"regis",
+				"member\\register-ok.php"
+			],
+			[
+				"util",
+				"util\\util.php"
+			],
+			[
 				"p-reg",
 				"member\\p-register-ok.php"
 			],
 			[
-				"regis",
-				"member\\register-ok.php"
-			],
-			[
 				"or_vie",
-=======
-				"order-de",
-				"shop\\order-detail.php"
+				"admin\\order\\or_view.php"
 			],
 			[
-				"admin",
-				"admin\\include\\admin_head.php"
-			],
-			[
-				"regis",
-				"member\\register-ok.php"
-			],
-			[
-				"pro_re",
-				"admin\\products\\pro_register.php"
-			],
-			[
-				"p_mem",
-				"admin\\member\\p_mem_view_member.php"
-			],
-			[
-				"mem_vie",
-				"admin\\member\\mem_view_member.php"
-			],
-			[
-				"pa",
+				"pay",
 				"pay\\payres.php"
 			],
 			[
@@ -1683,178 +1232,64 @@
 				"admin\\member\\top_member_list.php"
 			],
 			[
-				"util",
+				"uti",
 				"util\\util.php"
 			],
 			[
-				"reg",
-				"member\\register-ok.php"
+				"deta",
+				"shop\\detail.php"
 			],
 			[
-				"p-re",
-				"member\\p-register-form.php"
+				"p_orde",
+				"admin\\order\\p_top_order_list.php"
 			],
 			[
-				"top_pr",
-				"admin\\products\\top_pro_list.php"
-			],
-			[
-				"pro_de",
-				"admin\\products\\pro_delete.php"
-			],
-			[
-				"top_or",
+				"top_oder",
 				"admin\\order\\top_order_list.php"
 			],
 			[
-				"top_pro",
-				"admin\\products\\top_pro_list.php"
+				"or-li",
+				"shop\\order-list.php"
+			],
+			[
+				"or_v",
+				"admin\\order\\or_view.php"
 			],
 			[
 				"p_or",
 				"admin\\order\\p_or_view.php"
 			],
 			[
-				"or_",
-				"admin\\order\\or_view.php"
+				"cata",
+				"shop\\catalog-list.php"
 			],
 			[
-				"tpo_pr",
-				"admin\\products\\top_pro_list.php"
+				"order",
+				"shop\\order-list.php"
 			],
 			[
 				"hea",
-				"admin\\include\\header.php"
+				"include\\header.php"
 			],
 			[
-				"index",
-				"admin\\index.php"
+				"check",
+				"shop\\checkout.php"
 			],
 			[
-				"or_view",
-				"admin\\order\\or_view.php"
+				"cart",
+				"shop\\cart.php"
 			],
 			[
-				"pay",
-				"pay\\payres.php"
-			],
-			[
-				"or_cha",
-				"admin\\order\\or_changed.php"
-			],
-			[
-				"mem_stat",
-				"admin\\stats\\mem_stat_list.php"
-			],
-			[
-				"top_ord",
+				"top_or",
 				"admin\\order\\top_order_list.php"
 			],
 			[
-				"pro_",
-				"admin\\products\\pro_register.php"
+				"de",
+				"shop\\detail.php"
 			],
 			[
-				"footer",
-				"include\\footer.php"
-			],
-			[
-				"pro_reg",
-				"admin\\products\\pro_register_ok.php"
-			],
-			[
-				"pro_regi",
-				"admin\\products\\pro_register.php"
-			],
-			[
-				"main",
-				"admin\\main\\main.php"
-			],
-			[
-				"orde",
-				"shop\\order-detail.php"
-			],
-			[
-				"or",
->>>>>>> 07a187f01b663faa5474f907bc35260d733651fe
-				"admin\\order\\or_view.php"
-			],
-			[
-				"top",
-				"admin\\order\\top_order_list.php"
-			],
-			[
-				"mem_ed",
-				"admin\\member\\mem_edit_member.php"
-			],
-			[
-				"mem_edit",
-				"admin\\member\\mem_edit_member.php"
-			],
-			[
-				"mem_view",
-				"admin\\member\\mem_view_member.php"
-			],
-			[
-				"uplo",
-				"admin\\order\\upload_waybill_process.php"
-			],
-			[
-				"uploa",
-				"admin\\order\\upload_waybill.php"
-			],
-			[
-				"inser",
-				"admin\\order\\insert_waybill.php"
-			],
-			[
-				"or_vi",
-				"admin\\order\\or_view.php"
-			],
-			[
-				"p_t",
-				"admin\\order\\p_top_order_list.php"
-			],
-			[
-				"top_",
-				"admin\\order\\top_order_list.php"
-			],
-			[
-				"bra",
-				"include\\brands.php"
-			],
-			[
-				"previ",
-				"lib\\css\\preview.css"
-			],
-			[
-				"u",
-				"util\\util.php"
-			],
-			[
-				"util/",
-				"util\\admin_auth.php"
-			],
-			[
-				"or_vie",
-				"admin\\order\\or_view.php"
-			],
-			[
-				"p-reg",
-				"member\\p-register-ok.php"
-			],
-			[
-				"top_orde",
-				"admin\\order\\top_order_list.php"
-			],
-			[
-<<<<<<< HEAD
-				"p-re",
-				"member\\p-register-form.php"
-=======
-				"register",
-				"member\\register-form.php"
->>>>>>> 07a187f01b663faa5474f907bc35260d733651fe
+				"shop",
+				"util\\shop-functions.php"
 			],
 			[
 				"bran",
@@ -1873,6 +1308,10 @@
 				"bbs\\list.php"
 			],
 			[
+				"main",
+				"admin\\main\\main.php"
+			],
+			[
 				"h",
 				"include\\header.php"
 			],
@@ -1889,8 +1328,12 @@
 				"admin\\setting\\admin_setup.php"
 			],
 			[
-				"cata",
-				"shop\\catalog-list.php"
+				"pro_re",
+				"admin\\products\\pro_register.php"
+			],
+			[
+				"index",
+				"shop\\index.php"
 			],
 			[
 				"sty",
@@ -1905,10 +1348,6 @@
 				"shop\\detail.php"
 			],
 			[
-				"deta",
-				"shop\\detail.php"
-			],
-			[
 				"hel",
 				"member\\help.php"
 			],
@@ -1919,10 +1358,6 @@
 			[
 				"inde",
 				"shop\\index.php"
-			],
-			[
-				"cart",
-				"shop\\cart.php"
 			],
 			[
 				"chec",
@@ -1953,8 +1388,8 @@
 				"get-product.php"
 			],
 			[
-				"mem_de",
-				"admin\\member\\mem_delete_member.php"
+				"top_pro",
+				"admin\\products\\top_pro_list.php"
 			],
 			[
 				"or_dele",
@@ -1969,13 +1404,8 @@
 				"admin\\products\\pro_register.php"
 			],
 			[
-<<<<<<< HEAD
 				"pro_reg",
 				"admin\\products\\pro_register.php"
-=======
-				"shop",
-				"util\\shop-functions.php"
->>>>>>> 07a187f01b663faa5474f907bc35260d733651fe
 			],
 			[
 				"banner",
@@ -1986,6 +1416,10 @@
 				"bbs\\list.php"
 			],
 			[
+				"admin",
+				"admin\\include\\admin_head.php"
+			],
+			[
 				"mai",
 				"admin\\main\\main.php"
 			],
@@ -1994,8 +1428,8 @@
 				"bbs\\upload.php"
 			],
 			[
-				"check",
-				"shop\\checkout.php"
+				"orde",
+				"shop\\order-list.php"
 			],
 			[
 				"help",
@@ -2026,16 +1460,8 @@
 				"admin\\setting\\delivery_setup.php"
 			],
 			[
-				"order",
-				"shop\\order-list.php"
-			],
-			[
 				"top_order",
 				"admin\\order\\top_order_list.php"
-			],
-			[
-				"or_v",
-				"admin\\order\\or_view.php"
 			],
 			[
 				"edit",
@@ -2048,6 +1474,10 @@
 			[
 				"delivey",
 				"admin\\setting\\delivery_setup.php"
+			],
+			[
+				"uploa",
+				"admin\\order\\upload_waybill.php"
 			],
 			[
 				"styl",
@@ -2186,11 +1616,6 @@
 				"admin\\member\\mem_sendmail_ok.php"
 			],
 			[
-				"mem_ve",
-				"admin\\member\\mem_view_member.php"
-<<<<<<< HEAD
-			],
-			[
 				"admin_s",
 				"admin\\include\\admin_sidebar.php"
 			],
@@ -2253,20 +1678,6 @@
 			[
 				"con",
 				"util\\config.ini"
-			],
-			[
-				"main_ba",
-				"admin\\setting\\main_banner_setting.php"
-			],
-			[
-				"cas",
-				"pay\\cas_noteurl.php"
-			],
-			[
-				"top_",
-				"admin\\order\\top_order_list.php"
-=======
->>>>>>> 07a187f01b663faa5474f907bc35260d733651fe
 			]
 		],
 		"width": 0.0
@@ -2301,7 +1712,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 233.0,
+	"side_bar_width": 262.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
