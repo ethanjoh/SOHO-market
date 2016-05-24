@@ -60,6 +60,16 @@ $uri = set_var($_SERVER['HTTP_REFERER']);
         <script src="/admin/js/html5shiv.js"></script>
         <script src="/admin/js/respond.min.js"></script>
         <![endif]-->
+
+        <!--[if !IE]> -->
+        <script src="/js/vendor/jquery-2.2.0.min.js"></script>
+        <!-- <![endif]-->
+        <!--[if lt IE 9]>
+        <script src="/js/vendor/jquery-1.9.1.min.js"></script>
+        <![endif]-->
+        <!--[if gte IE 9]>
+        <script src="/js/vendor/jquery-2.2.0.min.js"></script>
+        <![endif]-->
         <script src="/bbs/ckeditor/ckeditor.js" charset="utf-8"></script>
 
     </head>

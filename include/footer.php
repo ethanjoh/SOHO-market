@@ -127,6 +127,7 @@ if ($sessionId) {
 		<!-- jquery
 		============================================ -->
         <script src="/js/vendor/jquery-2.2.0.min.js"></script>
+        <script src="/js/vendor/jquery-migrate-1.4.1.min.js"></script>
 		<!-- bootstrap JS
 		============================================ -->
         <script src="/js/bootstrap.min.js"></script>
