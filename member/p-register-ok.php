@@ -5,25 +5,40 @@ include "../util/util.php";
 $sid   = set_var($_POST['session_id']);
 $sname = set_var($_POST['session_name']);
 
-$mode       = set_var($_POST['mode']);
-$id         = set_var($_POST['userid']);
-$id         = trim($id); //remove blank front and back
-$passwd     = set_var($_POST['passwd']);
-$email      = set_var($_POST['email']);
-$optin      = set_var($_POST['optin']);
-$name       = set_var($_POST['name']);
-$hphone     = set_var($_POST['hphone']);
-$sms        = set_var($_POST['sms']);
+$mode    = set_var($_POST['mode']);
+$id      = set_var($_POST['userid']);
+$id      = trim($id); //remove blank front and back
+$passwd  = set_var($_POST['passwd']);
+$email   = set_var($_POST['email']);
+$optin   = set_var($_POST['optin']);
+$name    = set_var($_POST['name']);
+$hphone1 = set_var($_POST['hphone1']);
+$hphone2 = set_var($_POST['hphone2']);
+$hphone3 = set_var($_POST['hphone3']);
+$sms     = set_var($_POST['sms']);
+
 $o_zipcode1 = set_var($_POST['o_zipcode1']);
 $o_addr1    = set_var($_POST['o_addr1']);
 $o_addr2    = set_var($_POST['o_addr2']);
-$o_phone    = set_var($_POST['o_phone']);
+$o_phone1   = set_var($_POST['o_phone1']);
+$o_phone2   = set_var($_POST['o_phone2']);
+$o_phone3   = set_var($_POST['o_phone3']);
+
 $d_zipcode1 = set_var($_POST['d_zipcode1']);
 $d_addr1    = set_var($_POST['d_addr1']);
 $d_addr2    = set_var($_POST['d_addr2']);
-$d_phone    = set_var($_POST['d_phone']);
-$d_hphone   = set_var($_POST['d_hphone']);
+$d_phone1   = set_var($_POST['d_phone1']);
+$d_phone2   = set_var($_POST['d_phone2']);
+$d_phone3   = set_var($_POST['d_phone3']);
+$d_hphone1  = set_var($_POST['d_hphone1']);
+$d_hphone2  = set_var($_POST['d_hphone2']);
+$d_hphone3  = set_var($_POST['d_hphone3']);
 $dc_rate    = set_var($_POST['dc_rate']);
+
+$hphone   = $hphone1 . '-' . $hphone2 . '-' . $hphone3;
+$o_phone  = $o_phone1 . '-' . $o_phone2 . '-' . $o_phone3;
+$d_phone  = $d_phone1 . '-' . $d_phone2 . '-' . $d_phone3;
+$d_hphone = $d_hphone1 . '-' . $d_hphone2 . '-' . $d_hphone3;
 
 // 관리자 정보 가져오기
 $qry = "SELECT * FROM admin_setup";

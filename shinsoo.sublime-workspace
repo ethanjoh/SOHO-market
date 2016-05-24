@@ -4,6 +4,7 @@
 		"selected_items":
 		[
 			[
+<<<<<<< HEAD
 				"bigImg",
 				"bigImgPath"
 			],
@@ -18,45 +19,21 @@
 			[
 				"reci",
 				"recipient_address"
+=======
+				"form-",
+				"form-inline"
+>>>>>>> fe47051fda9ed3ad2f84f86ede7734626db891e8
 			],
 			[
-				"rec",
-				"recipient_zipcode"
-			],
-			[
-				"buye",
-				"buyer_zipcode"
-			],
-			[
-				"buy",
-				"buyer_address"
-			],
-			[
-				"buyer",
-				"buyer_hphone"
-			],
-			[
-				"receiver",
-				"receiver_name	(payres.php)"
-			],
-			[
-				"te",
-				"template	(util.php)"
-			],
-			[
-				"cate",
-				"category_m"
-			],
-			[
-				"catego",
-				"category_l"
-			],
-			[
-				"app",
-				"apply_receipt"
+				"col-xs-",
+				"col-xs-12"
 			],
 			[
 				"mysq",
+				"mysqli_fetch_array($result"
+			],
+			[
+				"my",
 				"mysqli_query($connect"
 			],
 			[
@@ -308,6 +285,10 @@
 				"opacity"
 			],
 			[
+				"te",
+				"text-align"
+			],
+			[
 				"padd",
 				"padding"
 			],
@@ -398,6 +379,10 @@
 			[
 				"strto",
 				"strtotime"
+			],
+			[
+				"cate",
+				"category2"
 			],
 			[
 				"categ",
@@ -514,11 +499,57 @@
 			[
 				"offe",
 				"offset"
+<<<<<<< HEAD
+=======
+			],
+			[
+				"check",
+				"checked"
+			],
+			[
+				"show",
+				"show_msg"
+			],
+			[
+				"s",
+				"style	Attr"
+			],
+			[
+				"sum",
+				"sumNum"
+			],
+			[
+				"tota",
+				"totalSum"
+			],
+			[
+				"compa",
+				"company"
+			],
+			[
+				"al",
+				"vertical-align"
+			],
+			[
+				"in",
+				"inline-block"
+>>>>>>> fe47051fda9ed3ad2f84f86ede7734626db891e8
 			]
 		]
 	},
 	"buffers":
 	[
+<<<<<<< HEAD
+=======
+		{
+			"file": "member/register-form.php",
+			"settings":
+			{
+				"buffer_size": 40191,
+				"line_ending": "Windows"
+			}
+		}
+>>>>>>> fe47051fda9ed3ad2f84f86ede7734626db891e8
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -693,14 +724,19 @@
 	},
 	"expanded_folders":
 	[
+<<<<<<< HEAD
 		"/C/wamp/www/shinsoo",
 		"/C/wamp/www/shinsoo/mail/images",
 		"/C/wamp/www/shinsoo/pay",
 		"/C/wamp/www/shinsoo/util"
+=======
+		"/C/wamp/www/shinsoo"
+>>>>>>> fe47051fda9ed3ad2f84f86ede7734626db891e8
 	],
 	"file_history":
 	[
 		"/C/wamp/www/shinsoo/util/util.php",
+<<<<<<< HEAD
 		"/C/wamp/www/shinsoo/upload/upload.php",
 		"/C/wamp/www/shinsoo/util/shop-functions.php",
 		"/C/wamp/www/shinsoo/mail/order-detail.html",
@@ -713,25 +749,32 @@
 		"/C/wamp/www/shinsoo/admin/include/admin_head.php",
 		"/C/wamp/www/shinsoo/shop/order-detail.php",
 		"/C/wamp/www/shinsoo/mail/join-confirmation.html",
-		"/C/wamp/www/shinsoo/member/register-ok.php",
-		"/C/wamp/www/shinsoo/admin/products/pro_register.php",
-		"/C/wamp/www/shinsoo/admin/member/mem_view_member.php",
-		"/C/wamp/www/shinsoo/admin/member/p_mem_view_member.php",
-		"/C/wamp/www/shinsoo/admin/member/top_member_list.php",
-		"/C/wamp/www/shinsoo/util/test.php",
-		"/C/wamp/www/shinsoo/mail/join-confirmation.txt",
-		"/C/wamp/www/shinsoo/pay/cas_noteurl.php",
-		"/C/Users/Seonghyeon/Downloads/source/inc/php/functions.php",
-		"/C/wamp/www/shinsoo/admin/member/p_top_member_list.php",
-		"/C/Users/Seonghyeon/Downloads/source/signup_template.html",
-		"/C/wamp/www/shinsoo/pay/save_wireinfo_to_db.php",
+=======
+		"/C/wamp/www/shinsoo/member/p-register-ok.php",
 		"/C/wamp/www/shinsoo/member/p-register-form.php",
+>>>>>>> fe47051fda9ed3ad2f84f86ede7734626db891e8
+		"/C/wamp/www/shinsoo/member/register-ok.php",
+		"/C/wamp/www/shinsoo/admin/js/admin.js",
+		"/C/wamp/www/shinsoo/admin/member/p_mem_delete_member.php",
 		"/C/wamp/www/shinsoo/member/register-form.php",
-		"/C/wamp/www/shinsoo/admin/products/top_pro_list.php",
-		"/C/wamp/www/shinsoo/admin/products/pro_delete.php",
-		"/C/wamp/www/shinsoo/admin/order/top_order_list.php",
+		"/C/wamp/www/shinsoo/admin/member/mem_view_member.php",
+		"/C/wamp/www/shinsoo/js/member.js",
+		"/C/wamp/www/shinsoo/admin/member/p_mem_view_member.php",
+		"/C/wamp/www/shinsoo/admin/member/mem_delete_member.php",
+		"/C/wamp/www/shinsoo/mail/p-join-confirmation.html",
+		"/C/wamp/www/shinsoo/mail/join-confirmation.html",
+		"/C/wamp/www/shinsoo/pay/payres.php",
 		"/C/wamp/www/shinsoo/admin/order/or_view.php",
+		"/C/wamp/www/shinsoo/lgpay/XPayClient.php",
+		"/C/wamp/www/shinsoo/admin/member/p_top_member_list.php",
+		"/C/wamp/www/shinsoo/util/config.ini",
+		"/C/wamp/www/shinsoo/index.php",
+		"/C/wamp/www/shinsoo/admin/member/top_member_list.php",
+		"/C/wamp/www/shinsoo/admin/order/p_top_order_list.php",
+		"/C/wamp/www/shinsoo/admin/order/top_order_list.php",
+		"/C/wamp/www/shinsoo/shop/detail.php",
 		"/C/wamp/www/shinsoo/admin/order/p_or_view.php",
+<<<<<<< HEAD
 		"/C/wamp/www/shinsoo/admin/index.php",
 		"/C/wamp/www/shinsoo/admin/include/header.php",
 		"/C/Users/Seonghyeon/Downloads/LGU+_XPay_Crossplatform/LGU+_XPay_Crossplatform_PHP/cas_noteurl.php",
@@ -745,53 +788,63 @@
 		"/C/wamp/www/shinsoo/pay/save_pginfo_to_db.php",
 		"/C/wamp/www/shinsoo/pay/returnurl.php",
 		"/C/wamp/www/shinsoo/util/config.ini",
-		"/C/wamp/www/shinsoo/admin/main/main.php",
-		"/C/wamp/www/shinsoo/admin/member/p_mem_edit_member.php",
-		"/C/wamp/www/shinsoo/admin/member/mem_edit_member.php",
-		"/C/wamp/www/shinsoo/admin/order/p_top_order_list.php",
-		"/C/wamp/www/shinsoo/admin/order/insert_waybill.php",
-		"/C/wamp/www/shinsoo/admin/order/upload_waybill.php",
-		"/C/wamp/www/shinsoo/admin/order/upload_waybill_process.php",
+=======
+		"/C/wamp/www/shinsoo/shop/order-list.php",
+		"/C/wamp/www/shinsoo/util/shop-functions.php",
+		"/C/wamp/www/shinsoo/shop/cart.php",
+		"/C/wamp/www/shinsoo/shop/catalog-list.php",
+		"/C/wamp/www/shinsoo/shop/checkout.php",
+		"/C/wamp/www/shinsoo/pay/payreq_crossplatform.php",
+		"/C/wamp/www/shinsoo/pay/variables_from_payreq.php",
 		"/C/wamp/www/shinsoo/include/header.php",
-		"/C/wamp/www/shinsoo/include/brands.php",
-		"/C/wamp/www/shinsoo/member/p-register-ok.php",
-		"/C/wamp/www/shinsoo/lib/css/preview.css",
-		"/C/wamp/www/shinsoo/util/admin_auth.php",
-		"/C/wamp/www/shinsoo/member/register.php",
+		"/C/wamp/www/shinsoo/pay/save_wireinfo_to_db.php",
+		"/C/wamp/www/shinsoo/pay/cas_noteurl.php",
+		"/C/wamp/www/shinsoo/web/index.html",
+		"/C/Users/Joh/Google 드라이브/홈페이지 템플릿/코코로봇 템플릿/download/html/error.html",
+		"/C/wamp/www/shinsoo/pay/save_pginfo_to_db.php",
+>>>>>>> fe47051fda9ed3ad2f84f86ede7734626db891e8
+		"/C/wamp/www/shinsoo/admin/main/main.php",
+		"/C/wamp/www/shinsoo/include/footer.php",
 		"/C/wamp/www/shinsoo/shop/index.php",
+		"/C/wamp/www/shinsoo/include/brands.php",
 		"/C/wamp/www/shinsoo/bbs/list.php",
 		"/C/wamp/www/shinsoo/images/brand/tigerchoi_logo.svg",
 		"/C/wamp/www/shinsoo/images/brand/golftiger_logo.svg",
 		"/C/wamp/www/shinsoo/member/about-us.php",
-		"/C/wamp/www/shinsoo/shop/catalog-list.php",
+		"/C/wamp/www/shinsoo/admin/products/pro_register.php",
 		"/C/wamp/www/shinsoo/admin/setting/admin_setup.php",
 		"/C/wamp/www/shinsoo/css/style.css",
 		"/C/wamp/www/shinsoo/sftp-config.json",
 		"/C/wamp/www/shinsoo/css/main.css",
-		"/C/wamp/www/shinsoo/shop/detail.php",
+		"/C/wamp/www/shinsoo/admin/products/pro_register_ok.php",
+		"/C/wamp/www/shinsoo/pay/returnurl.php",
 		"/C/wamp/www/shinsoo/member/help.php",
-		"/C/wamp/www/shinsoo/shop/checkout.php",
+		"/C/wamp/www/shinsoo/member/register.php",
 		"/C/wamp/www/shinsoo/pay/sample_crossplatform.html",
 		"/C/wamp/www/cocokorea/.gitignore",
 		"/C/Users/Seonghyeon/Downloads/LGU+_XPay_Crossplatform/LGU+_XPay_Crossplatform_PHP/payreq_crossplatform.php",
 		"/C/wamp/www/shinsoo/pay/payreq_crossplatform.org.php",
-		"/C/wamp/www/shinsoo/shop/cart.php",
 		"/C/wamp/www/shinsoo/pay/checkout.php",
 		"/C/wamp/www/shinsoo/js/jquery.meanmenu.js",
 		"/C/wamp/www/shinsoo/js/main.js",
 		"/C/wamp/www/shinsoo/get-product.php",
-		"/C/wamp/www/shinsoo/admin/member/p_mem_delete_member.php",
+		"/C/wamp/www/shinsoo/admin/products/top_pro_list.php",
 		"/C/wamp/www/shinsoo/admin/order/or_delete.php",
 		"/C/wamp/www/shinsoo/lgpay/conf/mall.conf",
 		"/C/wamp/www/shinsoo/admin/setting/banner_setting_ok.php",
+		"/C/wamp/www/shinsoo/admin/include/admin_head.php",
+		"/C/wamp/www/shinsoo/admin/include/header.php",
 		"/C/wamp/www/shinsoo/bbs/upload/upload.php",
 		"/C/wamp/www/shinsoo/bbs/upload.php",
-		"/C/wamp/www/shinsoo/shop/order-list.php",
 		"/C/wamp/www/shinsoo/admin/order/print_quot.php",
 		"/C/wamp/www/shinsoo/admin/setting/delivery_setup_ok.php",
 		"/C/wamp/www/shinsoo/admin/setting/delivery_setup.php",
+		"/C/wamp/www/shinsoo/shop/order-detail.php",
 		"/C/wamp/www/shinsoo/css/myshop.css",
 		"/C/wamp/www/shinsoo/admin/order/edit_pro.php",
+		"/C/wamp/www/shinsoo/admin/member/mem_edit_member.php",
+		"/C/wamp/www/shinsoo/admin/order/upload_waybill.php",
+		"/C/wamp/www/shinsoo/admin/order/upload_waybill_process.php",
 		"/C/wamp/www/shinsoo/admin/css/style.css",
 		"/C/Users/Seonghyeon/Google 드라이브/git_project/prixe/admin/main.php",
 		"/C/wamp/www/shinsoo/admin/order/print_waybill.php",
@@ -807,6 +860,7 @@
 		"/C/wamp/www/shinsoo/member/privacy-policy.php",
 		"/C/wamp/www/shinsoo/member/inc/contract1.html",
 		"/C/wamp/www/shinsoo/member/inc/rule.html",
+		"/C/wamp/www/shinsoo/admin/products/pro_delete.php",
 		"/C/wamp/www/shinsoo/member/php/contact-form.php",
 		"/C/wamp/www/shinsoo/member/contact-us.php",
 		"/C/wamp/www/shinsoo/js/addcart.js",
@@ -827,11 +881,27 @@
 		"/C/wamp/www/shinsoo/admin/category/ca_msub_delete.php",
 		"/C/wamp/www/shinsoo/admin/category/ca_msub_list.php",
 		"/C/wamp/www/shinsoo/admin/bbs/update_bbs.php",
+<<<<<<< HEAD
 		"/C/wamp/www/shinsoo/admin/bbs/bbs_list.php"
+=======
+		"/C/wamp/www/shinsoo/admin/bbs/bbs_list.php",
+		"/C/Users/Joh/Google 드라이브/홈페이지 템플릿/신수상사 템플릿/hitstore/index.html",
+		"/C/wamp/www/shinsoo/admin/category/ca_hide.php",
+		"/C/wamp/bin/apache/apache2.4.9/conf/extra/httpd-vhosts.conf",
+		"/C/Users/Joh/Downloads/hosts",
+		"/C/wamp/www/shinsoo/upload/tigerchoi.csv",
+		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/SublimeLinter/SublimeLinter.sublime-settings",
+		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/User/SublimeLinter.sublime-settings",
+		"/C/wamp/bin/mysql/mysql5.6.17/data/asus-slow.log",
+		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/phpfmt/phpfmt.sublime-settings",
+		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/User/phpfmt.sublime-settings",
+		"/C/wamp/www/shinsoo/admin/js/showMainChart.js",
+		"/C/Users/Joh/AppData/Roaming/Sublime Text 3/Packages/HTML-CSS-JS Prettify/HTMLPrettify.sublime-settings"
+>>>>>>> fe47051fda9ed3ad2f84f86ede7734626db891e8
 	],
 	"find":
 	{
-		"height": 55.0
+		"height": 38.0
 	},
 	"find_in_files":
 	{
@@ -860,6 +930,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+<<<<<<< HEAD
 			"$name",
 			"name",
 			"payStatus",
@@ -896,25 +967,45 @@
 			"num",
 			"md_",
 			"md_email",
+=======
+			"id",
+			"(없으면 휴대폰 번호를 넣어주세요)",
+			"rows['hphone']",
+			"o_phone1",
+			"$rows['hphone'];",
+			"rows['",
+			"d_phone",
+			"d_phone1",
+			"rows['",
+			"$rows['",
+			"rows['",
+>>>>>>> fe47051fda9ed3ad2f84f86ede7734626db891e8
 			"md_",
-			"d_zipno",
-			"o_zipno",
-			"o_zipcode",
-			"o_zipcode1",
-			"o_zipcode2",
-			"o_zipcode",
-			"o_zipcode1",
-			"d_zipno",
-			"o_zipno",
-			"today",
-			"senddate",
-			"status_now",
-			"svg",
-			"$dc_rate",
-			"$o_zipcode",
-			"o_zipno",
-			"$o_zipcode1",
-			"pay_status",
+			"hphone",
+			"02-xxx-xxxx (-를 삽입해 주세요)",
+			"id=\"d_phone1\" ",
+			"010-xxxx-xxxx (-를 삽입해 주세요)",
+			"02-xxx-xxxx (-를 삽입해 주세요)",
+			"010-xxxx-xxxx (-를 삽입해 주세요)",
+			"[2]",
+			"[1]",
+			"t_",
+			"[1]",
+			"[0]",
+			"d_fax",
+			"d_phone",
+			"o_fax",
+			"o_phone",
+			"license_no",
+			"md_hphone",
+			"o_fax",
+			"o_phone",
+			"license_no",
+			"md_hphone",
+			"02-xxx-xxxx (-를 삽입해 주세요)",
+			"-xxx-xxxx (-를 삽입해 주세요)",
+			"-xx-xxxxx (-를 삽입해 주세요)",
+			"user_id",
 			"col-sm-3",
 			"_POST",
 			"$mode",
@@ -987,7 +1078,29 @@
 			"detailImgFile",
 			"saveDir",
 			"$data['4']",
+<<<<<<< HEAD
 			"$data['6']"
+=======
+			"$data['6']",
+			"$data['4']",
+			"$data['6']",
+			"$data['4']",
+			"$data['6']",
+			"$data['4']",
+			"카테고리",
+			"munjadang",
+			"lcode",
+			"_GET",
+			"<?php echo ",
+			"update_row",
+			"show_option",
+			"trade_code",
+			"maxid",
+			"$file",
+			"file",
+			"$date1",
+			"$mode"
+>>>>>>> fe47051fda9ed3ad2f84f86ede7734626db891e8
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1008,8 +1121,106 @@
 	"groups":
 	[
 		{
+<<<<<<< HEAD
 			"sheets":
 			[
+=======
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "member/register-form.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 40191,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								25891,
+								25891
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"auto_complete": false,
+							"bh_regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content"
+							],
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": true,
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 166.0,
+						"translation.y": 11221.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+>>>>>>> fe47051fda9ed3ad2f84f86ede7734626db891e8
 			]
 		}
 	],
@@ -1070,6 +1281,7 @@
 		"selected_items":
 		[
 			[
+<<<<<<< HEAD
 				"util",
 				"util\\util.php"
 			],
@@ -1100,76 +1312,66 @@
 			[
 				"pro_re",
 				"admin\\products\\pro_register.php"
+=======
+				"reg",
+				"member\\register-form.php"
+>>>>>>> fe47051fda9ed3ad2f84f86ede7734626db891e8
 			],
 			[
 				"p_mem",
-				"admin\\member\\p_mem_view_member.php"
+				"admin\\member\\p_mem_delete_member.php"
 			],
 			[
-				"mem_vie",
+				"mem_de",
+				"admin\\member\\mem_delete_member.php"
+			],
+			[
+				"admin.js",
+				"admin\\js\\admin.js"
+			],
+			[
+				"p-join",
+				"mail\\p-join-confirmation.html"
+			],
+			[
+<<<<<<< HEAD
+				"reg",
+				"member\\register-ok.php"
+=======
+				"mem_ve",
 				"admin\\member\\mem_view_member.php"
 			],
 			[
-				"pa",
-				"pay\\payres.php"
-			],
-			[
-				"p_top",
-				"admin\\member\\p_top_member_list.php"
-			],
-			[
-				"top_mem",
-				"admin\\member\\top_member_list.php"
-			],
-			[
-				"reg",
-				"member\\register-ok.php"
+				"p-regi",
+				"member\\p-register-ok.php"
+>>>>>>> fe47051fda9ed3ad2f84f86ede7734626db891e8
 			],
 			[
 				"p-re",
 				"member\\p-register-form.php"
 			],
 			[
-				"top_pr",
-				"admin\\products\\top_pro_list.php"
+				"mem_view",
+				"admin\\member\\mem_view_member.php"
 			],
 			[
-				"pro_de",
-				"admin\\products\\pro_delete.php"
+				"regis",
+				"member\\register-ok.php"
 			],
 			[
-				"top_or",
-				"admin\\order\\top_order_list.php"
+				"util",
+				"util\\util.php"
 			],
 			[
-				"top_pro",
-				"admin\\products\\top_pro_list.php"
+				"p-reg",
+				"member\\p-register-ok.php"
 			],
 			[
-				"p_or",
-				"admin\\order\\p_or_view.php"
-			],
-			[
-				"or_",
+				"or_vie",
 				"admin\\order\\or_view.php"
 			],
 			[
-				"tpo_pr",
-				"admin\\products\\top_pro_list.php"
-			],
-			[
-				"hea",
-				"admin\\include\\header.php"
-			],
-			[
-				"index",
-				"admin\\index.php"
-			],
-			[
-				"or_view",
-				"admin\\order\\or_view.php"
-			],
-			[
+<<<<<<< HEAD
 				"or_cha",
 				"admin\\order\\or_changed.php"
 			],
@@ -1192,94 +1394,78 @@
 			[
 				"pro_reg",
 				"admin\\products\\pro_register_ok.php"
+=======
+				"pay",
+				"pay\\payres.php"
 			],
 			[
-				"pro_regi",
-				"admin\\products\\pro_register.php"
+				"p_top",
+				"admin\\member\\p_top_member_list.php"
+>>>>>>> fe47051fda9ed3ad2f84f86ede7734626db891e8
 			],
 			[
-				"main",
-				"admin\\main\\main.php"
+				"top_mem",
+				"admin\\member\\top_member_list.php"
 			],
 			[
-				"orde",
-				"shop\\order-detail.php"
-			],
-			[
-				"or",
-				"admin\\order\\or_view.php"
-			],
-			[
-				"top",
-				"admin\\order\\top_order_list.php"
-			],
-			[
-				"mem_ed",
-				"admin\\member\\mem_edit_member.php"
-			],
-			[
-				"mem_edit",
-				"admin\\member\\mem_edit_member.php"
-			],
-			[
-				"mem_view",
-				"admin\\member\\mem_view_member.php"
-			],
-			[
-				"uplo",
-				"admin\\order\\upload_waybill_process.php"
-			],
-			[
-				"uploa",
-				"admin\\order\\upload_waybill.php"
-			],
-			[
-				"inser",
-				"admin\\order\\insert_waybill.php"
-			],
-			[
-				"or_vi",
-				"admin\\order\\or_view.php"
-			],
-			[
-				"p_t",
-				"admin\\order\\p_top_order_list.php"
-			],
-			[
-				"top_",
-				"admin\\order\\top_order_list.php"
-			],
-			[
-				"bra",
-				"include\\brands.php"
-			],
-			[
-				"previ",
-				"lib\\css\\preview.css"
-			],
-			[
-				"u",
+				"uti",
 				"util\\util.php"
 			],
 			[
-				"util/",
-				"util\\admin_auth.php"
+				"deta",
+				"shop\\detail.php"
 			],
 			[
-				"or_vie",
-				"admin\\order\\or_view.php"
+				"p_orde",
+				"admin\\order\\p_top_order_list.php"
 			],
 			[
-				"p-reg",
-				"member\\p-register-ok.php"
-			],
-			[
-				"top_orde",
+				"top_oder",
 				"admin\\order\\top_order_list.php"
 			],
 			[
-				"register",
-				"member\\register-form.php"
+				"or-li",
+				"shop\\order-list.php"
+			],
+			[
+				"or_v",
+				"admin\\order\\or_view.php"
+			],
+			[
+				"p_or",
+				"admin\\order\\p_or_view.php"
+			],
+			[
+				"cata",
+				"shop\\catalog-list.php"
+			],
+			[
+				"order",
+				"shop\\order-list.php"
+			],
+			[
+				"hea",
+				"include\\header.php"
+			],
+			[
+				"check",
+				"shop\\checkout.php"
+			],
+			[
+				"cart",
+				"shop\\cart.php"
+			],
+			[
+				"top_or",
+				"admin\\order\\top_order_list.php"
+			],
+			[
+				"de",
+				"shop\\detail.php"
+			],
+			[
+				"shop",
+				"util\\shop-functions.php"
 			],
 			[
 				"bran",
@@ -1298,6 +1484,10 @@
 				"bbs\\list.php"
 			],
 			[
+				"main",
+				"admin\\main\\main.php"
+			],
+			[
 				"h",
 				"include\\header.php"
 			],
@@ -1314,8 +1504,12 @@
 				"admin\\setting\\admin_setup.php"
 			],
 			[
-				"cata",
-				"shop\\catalog-list.php"
+				"pro_re",
+				"admin\\products\\pro_register.php"
+			],
+			[
+				"index",
+				"shop\\index.php"
 			],
 			[
 				"sty",
@@ -1330,10 +1524,6 @@
 				"shop\\detail.php"
 			],
 			[
-				"deta",
-				"shop\\detail.php"
-			],
-			[
 				"hel",
 				"member\\help.php"
 			],
@@ -1344,10 +1534,6 @@
 			[
 				"inde",
 				"shop\\index.php"
-			],
-			[
-				"cart",
-				"shop\\cart.php"
 			],
 			[
 				"chec",
@@ -1370,24 +1556,32 @@
 				"member\\register-form.php"
 			],
 			[
+				"or_view",
+				"admin\\order\\or_view.php"
+			],
+			[
 				"get",
 				"get-product.php"
 			],
 			[
-				"mem_de",
-				"admin\\member\\mem_delete_member.php"
+				"top_pro",
+				"admin\\products\\top_pro_list.php"
 			],
 			[
 				"or_dele",
 				"admin\\order\\or_delete.php"
 			],
 			[
+				"top_ord",
+				"admin\\order\\top_order_list.php"
+			],
+			[
 				"pro_r",
 				"admin\\products\\pro_register.php"
 			],
 			[
-				"shop",
-				"util\\shop-functions.php"
+				"pro_reg",
+				"admin\\products\\pro_register.php"
 			],
 			[
 				"banner",
@@ -1398,12 +1592,25 @@
 				"bbs\\list.php"
 			],
 			[
+				"admin",
+				"admin\\include\\admin_head.php"
+			],
+			[
 				"mai",
 				"admin\\main\\main.php"
 			],
 			[
+<<<<<<< HEAD
 				"check",
 				"shop\\checkout.php"
+=======
+				"upload",
+				"bbs\\upload.php"
+			],
+			[
+				"orde",
+				"shop\\order-list.php"
+>>>>>>> fe47051fda9ed3ad2f84f86ede7734626db891e8
 			],
 			[
 				"help",
@@ -1418,6 +1625,10 @@
 				"shop\\detail.php"
 			],
 			[
+				"footer",
+				"include\\footer.php"
+			],
+			[
 				"deli",
 				"member\\delivery-policy.php"
 			],
@@ -1430,16 +1641,8 @@
 				"admin\\setting\\delivery_setup.php"
 			],
 			[
-				"order",
-				"shop\\order-list.php"
-			],
-			[
 				"top_order",
 				"admin\\order\\top_order_list.php"
-			],
-			[
-				"or_v",
-				"admin\\order\\or_view.php"
 			],
 			[
 				"edit",
@@ -1452,6 +1655,10 @@
 			[
 				"delivey",
 				"admin\\setting\\delivery_setup.php"
+			],
+			[
+				"uploa",
+				"admin\\order\\upload_waybill.php"
 			],
 			[
 				"styl",
@@ -1492,6 +1699,10 @@
 			[
 				"priva",
 				"member\\privacy-policy.php"
+			],
+			[
+				"pro_de",
+				"admin\\products\\pro_delete.php"
 			],
 			[
 				"ca_msub",
@@ -1550,6 +1761,10 @@
 				"admin\\category\\ca_hide.php"
 			],
 			[
+				"top_pr",
+				"admin\\products\\top_pro_list.php"
+			],
+			[
 				"main.",
 				"css\\main.css"
 			],
@@ -1578,8 +1793,68 @@
 				"admin\\member\\mem_sendmail_ok.php"
 			],
 			[
-				"mem_ve",
-				"admin\\member\\mem_view_member.php"
+				"admin_s",
+				"admin\\include\\admin_sidebar.php"
+			],
+			[
+				"mem_sned",
+				"admin\\member\\mem_sendmail_form.php"
+			],
+			[
+				"mem_send",
+				"admin\\member\\mem_sendmail_ok.php"
+			],
+			[
+				"or",
+				"admin\\order\\or_changed.php"
+			],
+			[
+				"or_cha",
+				"admin\\order\\or_changed.php"
+			],
+			[
+				"p-lo",
+				"member\\p-login-ok.php"
+			],
+			[
+				"scre",
+				"admin\\css\\screen.css"
+			],
+			[
+				"pro_op",
+				"admin\\products\\pro_opt.php"
+			],
+			[
+				"",
+				".gitignore"
+			],
+			[
+				"order-st",
+				"shop\\order-stat-list.php"
+			],
+			[
+				"my",
+				"css\\myshop.css"
+			],
+			[
+				"res",
+				"css\\responsive.css"
+			],
+			[
+				"admin_f",
+				"admin\\include\\admin_footer.php"
+			],
+			[
+				"sal",
+				"admin\\order\\sale_list.php"
+			],
+			[
+				"confi",
+				"util\\config.ini"
+			],
+			[
+				"con",
+				"util\\config.ini"
 			]
 		],
 		"width": 0.0
@@ -1614,7 +1889,11 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
+<<<<<<< HEAD
 	"side_bar_width": 488.0,
+=======
+	"side_bar_width": 262.0,
+>>>>>>> fe47051fda9ed3ad2f84f86ede7734626db891e8
 	"status_bar_visible": true,
 	"template_settings":
 	{

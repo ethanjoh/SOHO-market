@@ -5,36 +5,59 @@ include "../util/util.php";
 $sid   = set_var($_POST['session_id']);
 $sname = set_var($_POST['session_name']);
 
-$mode         = set_var($_POST['mode']);
-$id           = set_var($_POST['userid']);
-$id           = trim($id); //remove blank front and back
-$passwd       = set_var($_POST['passwd']);
-$md_email     = set_var($_POST['md_email']);
-$optin        = set_var($_POST['optin']);
-$md_name      = set_var($_POST['md_name']);
-$job_title    = set_var($_POST['job_title']);
-$md_hphone    = set_var($_POST['md_hphone']);
-$sms          = set_var($_POST['sms']);
+$mode       = set_var($_POST['mode']);
+$id         = set_var($_POST['userid']);
+$id         = trim($id); //remove blank front and back
+$passwd     = set_var($_POST['passwd']);
+$md_email   = set_var($_POST['md_email']);
+$optin      = set_var($_POST['optin']);
+$md_name    = set_var($_POST['md_name']);
+$job_title  = set_var($_POST['job_title']);
+$md_hphone1 = set_var($_POST['md_hphone1']);
+$md_hphone2 = set_var($_POST['md_hphone2']);
+$md_hphone3 = set_var($_POST['md_hphone3']);
+$sms        = set_var($_POST['sms']);
+
 $company_name = set_var($_POST['company_name']);
-$license_no   = set_var($_POST['license_no']);
+$license_no1  = set_var($_POST['license_no1']);
+$license_no2  = set_var($_POST['license_no2']);
+$license_no3  = set_var($_POST['license_no3']);
 $ceo          = set_var($_POST['ceo']);
-$o_zipcode1   = set_var($_POST['o_zipcode1']);
-// $o_zipcode2   = set_var($_POST['o_zipcode2']);
+
+$o_zipcode1 = set_var($_POST['o_zipcode1']);
 $o_addr1    = set_var($_POST['o_addr1']);
 $o_addr2    = set_var($_POST['o_addr2']);
-$o_phone    = set_var($_POST['o_phone']);
-$o_fax      = set_var($_POST['o_fax']);
-$category1  = set_var($_POST['category1']);
-$category2  = set_var($_POST['category2']);
-$taxtype    = set_var($_POST['tax_type']);
-$homepage   = set_var($_POST['homepage']);
+$o_phone1   = set_var($_POST['o_phone1']);
+$o_phone2   = set_var($_POST['o_phone2']);
+$o_phone3   = set_var($_POST['o_phone3']);
+$o_fax1     = set_var($_POST['o_fax1']);
+$o_fax2     = set_var($_POST['o_fax2']);
+$o_fax3     = set_var($_POST['o_fax3']);
+
+$category1 = set_var($_POST['category1']);
+$category2 = set_var($_POST['category2']);
+
+$taxtype  = set_var($_POST['tax_type']);
+$homepage = set_var($_POST['homepage']);
+
 $d_zipcode1 = set_var($_POST['d_zipcode1']);
-$d_zipcode2 = set_var($_POST['d_zipcode2']);
 $d_addr1    = set_var($_POST['d_addr1']);
 $d_addr2    = set_var($_POST['d_addr2']);
-$d_phone    = set_var($_POST['d_phone']);
-$d_fax      = set_var($_POST['d_fax']);
+$d_phone1   = set_var($_POST['d_phone1']);
+$d_phone2   = set_var($_POST['d_phone2']);
+$d_phone3   = set_var($_POST['d_phone3']);
+$d_fax1     = set_var($_POST['d_fax1']);
+$d_fax2     = set_var($_POST['d_fax2']);
+$d_fax3     = set_var($_POST['d_fax3']);
+
 // $seller         = set_var($_POST['seller']);
+
+$md_hphone  = $md_hphone1 . '-' . $md_hphone2 . '-' . $md_hphone3;
+$license_no = $license_no1 . '-' . $license_no2 . '-' . $license_no3;
+$o_phone    = $o_phone1 . '-' . $o_phone2 . '-' . $o_phone3;
+$o_fax      = $o_fax1 . '-' . $o_fax2 . '-' . $o_fax3;
+$d_phone    = $d_phone1 . '-' . $d_phone2 . '-' . $d_phone3;
+$d_fax      = $d_fax1 . '-' . $d_fax2 . '-' . $d_fax3;
 
 // 관리자 정보 가져오기
 $qry = "SELECT * FROM admin_setup";

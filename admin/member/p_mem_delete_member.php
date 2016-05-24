@@ -20,12 +20,12 @@ $rows1   = mysqli_fetch_array($result1);
 $query2 = "DELETE FROM p_member WHERE seq_num='$m_num' ";
 mysqli_query($connect, $query2);
 
-msg('업체정보를 삭제했습니다.');
+msg('회원정보를 삭제했습니다.');
 
 if ($from == "mail") {
     echo "<meta http-equiv='content-type' content='text/html; charset=UTF-8' />
     <script>
-      window.close()
+      window.close();
     </script>";
 } else {
     header("Location: p_top_member_list.php?page=" . $page . "");
