@@ -32,7 +32,7 @@ if ('main' == $pos) {
     $j     = 5;
     $title = '메인배너 업로드 (1920x650px)';
 } elseif ('top' == $pos) {
-    $j     = 3;
+    $j     = 6;
     $title = '상단배너 업로드 (370x243px)';
 } elseif ('middle' == $pos) {
     $j     = 2;

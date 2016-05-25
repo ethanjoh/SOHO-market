@@ -2673,10 +2673,10 @@ function show_top_banner()
     if ($res) {
         $row = mysqli_fetch_array($res);
 
-        for ($i = 1; $i <= 3; $i++) {
+        for ($i = 1; $i <= 6; $i++) {
 
-            $imagePath = 'm_banner' . $i . '_image';
             $isYes     = 'm_banner' . $i . '';
+            $imagePath = 'm_banner' . $i . '_image';
             $link      = 'm_link' . $i . '';
 
             if ($row[$link] != "") {
@@ -2702,9 +2702,17 @@ HEREDOC;
 
 HEREDOC;
             }
+
+            if ($i % 3 == 0 && $i < 6) {
+                echo <<<HEREDOC
+                </div>
+                <div class="row margin-top-10">
+HEREDOC;
+
+            }
         }
     } else {
-        for ($i = 1; $i <= 3; $i++) {
+        for ($i = 1; $i <= 6; $i++) {
             echo <<<HEREDOC
 
                         <div class="product col-md-4 col-sm-4 col-xs-12">
