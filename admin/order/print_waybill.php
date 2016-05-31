@@ -207,21 +207,12 @@ if ($t_no > 0) {
             $goods_name = cut_string_utf8($pro_row['name'], 30, '...');
         }
 
-        //배송정책 가져옴
-        // $query4  = "SELECT * FROM misc_setup WHERE id='admin' ";
-        // $result4 = mysqli_query($connect, $query4);
-        // $misc    = mysqli_fetch_array($result4);
-
-        //if($row['last_amount'] >=$misc['min_sum'] || $row['trans_cost'] == '0')
-        // if ($row['trans_cost'] == '0') {
-        //     $str    = "3"; //신용
-        //     $t_cost = "2200";
-        // } else {
-        //     $str    = "2"; //착불
-        //     $t_cost = "2500";
-        // }
-
-        $re = define_delivery_fee($row['trans_cost']);
+        // 택배비 결정 및 제주도 택배비 설정
+        if ($row['recipient_name']) {
+            $re = define_delivery_fee($row['trans_cost'], $row['recipient_zipcode']);
+        } else {
+            $re = define_delivery_fee($row['trans_cost'], $row['buyer_zipcode']);
+        }
 
         ?>
                         <td><?php echo $goods_name; ?></td>
