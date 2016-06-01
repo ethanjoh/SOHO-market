@@ -92,30 +92,17 @@ if (isset($result)) {
 
     ?>
             <div class="row">
-                <div class="table-responsive">
-                    <table class="table" id="bbs_contents">
-                        <tbody>
-                            <tr>
-                                <th>제목</th><td class="left bbs_wordwrap">[<?php echo $row['main_no']; ?>] <?php echo stripslashes($row['title']); ?></td>
-                            </tr>
-                            <tr>
-                                <th>작성자</th><td><a href="mailto:<?php echo $row['email']; ?>"><?php echo $row['name']; ?></a></td>
-                            </tr>
-                            <tr>
-                                <th>작성일</th><td><?php echo $row['create_date']; ?></td>
-                            </tr>
-                            <tr>
-                                <th>조회</th><td><?php echo $row['count']; ?></td>
-                            </tr>
-                            <tr>
-                                <td colspan="2" class="bbs_wordwrap" style="text-align:left" >
-                                    <p><?php echo stripslashes($row['contents']); ?></p>
-                                    <p class="mod_date_padding">[ 최종수정일 :                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       <?php echo $row['mod_date']; ?> ]</p>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-
+                <div id="bbs_contents">
+                   <div class="bbs_wordwrap bbs_underline">제 목: [<?php echo $row['main_no']; ?>] <?php echo stripslashes($row['title']); ?></div>
+                   <div class="bbs_underline">작성자: <a href="mailto:<?php echo $row['email']; ?>"><?php echo $row['name']; ?></a></div>
+                   <div class="bbs_underline">작성일: <?php echo $row['create_date']; ?></div>
+                   <div class="bbs_underline">조 회:<?php echo $row['count']; ?></div>
+                   <div class="bbs_wordwrap bbs_underline">
+                    <p><?php echo stripcslashes($row['contents']); ?></p>
+                    <p class="mod_date_padding">[ 최종수정일 :                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       <?php echo $row['mod_date']; ?> ]</p>
+                   </div>
+                </div>
+            </div>
 <?php
 
                        ////////////////////////첨부파일 표시//////////////////////////////////

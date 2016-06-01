@@ -94,6 +94,10 @@ textarea {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
+.bbs_underline {
+    border-bottom: 1px dotted #000;
+    padding: 10px;
+}
 .bbs_wordwrap {
     word-wrap: break-word;
 }
