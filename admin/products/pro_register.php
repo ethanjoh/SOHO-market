@@ -177,7 +177,7 @@ HEREDOC;
             										<tr>
             											<th colspan="2">
             												<i class="fa fa-picture-o"></i> 상품 이미지(소 이미지는 대1 이미지를 사용해 자동생성됩니다.)
-            												<p class="help-block"><i class="fa fa-exclamation-triangle"></i>  이미지 해상도는 최대 800x800px / 이미지 크기는 1MB 이하로 하셔야 합니다.</p>
+            												<p class="help-block"><i class="fa fa-exclamation-triangle"></i>  이미지 해상도는 최대 800x800px(픽셀) / 이미지 크기는 1MB 이하로 하셔야 합니다.</p>
             											</th>
             										</tr>
             										<tr >
@@ -255,6 +255,7 @@ HEREDOC;
                                 					<tr>
                                 						<th><img src="../images/icn_04.gif" width="24" height="14" alt="필수" /> 상세설명</th>
                                 						<td>
+                                              <p class="help-block"><i class="fa fa-exclamation-triangle"></i> 상세설명에 삽입되는 이미지는 가로 최대 800px(픽셀) </p>
                                 							<textarea name="contents" class="form-control" id="contents"><?php echo stripslashes($update_row['contents']); ?></textarea>
                                 							<script type="text/javascript">
                                 				                CKEDITOR.replace( 'contents' );
@@ -409,7 +410,7 @@ HEREDOC;
             										<tr>
             											<th colspan="2">
             												<i class="fa fa-picture-o"></i> 상품 이미지(소 이미지는 대1 이미지를 사용해 자동생성됩니다.)
-            												<p class="help-block"><i class="fa fa-exclamation-triangle"></i>  이미지 해상도는 최대 800x800px / 이미지 크기는 1MB 이하로 하셔야 합니다.</p>
+            												<p class="help-block"><i class="fa fa-exclamation-triangle"></i>  이미지 해상도는 최대 800x800px(픽셀) / 이미지 크기는 1MB 이하로 하셔야 합니다.</p>
             											</th>
             										</tr>
             										<tr >
@@ -431,6 +432,7 @@ HEREDOC;
             										<tr>
             											<th><img src="../images/icn_04.gif" width="24" height="14" alt="필수" /> 상세설명</th>
             											<td>
+                                    <p class="help-block"><i class="fa fa-exclamation-triangle"></i> 상세설명에 삽입되는 이미지는 가로 최대 800px(픽셀) </p>
             												<textarea name="contents" class="form-control" id="contents"></textarea>
             												<script type="text/javascript">
             									                CKEDITOR.replace( 'contents' );

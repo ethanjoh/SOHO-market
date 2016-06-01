@@ -180,7 +180,7 @@
 /* small mobile :320px. */
 @media (max-width: 767px) {
     .container {
-        width:300px;
+        width:350px;
     }
     .home-1 .call_us {
         display: none;

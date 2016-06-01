@@ -55,6 +55,12 @@ img {
     height: auto;
 }
 
+#desc img, #bbs_contents img {
+    width: 100% !important;
+    height: auto !important;
+
+}
+
 .fix {
     overflow: hidden;
 }
@@ -104,8 +110,6 @@ ul {
 
 body {
 
-    /*font-family: 'Open Sans', sans-serif;*/
-    /*font-family: 'Noto Sans KR', sans-serif;*/
     font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif';
     margin: 0px;
     padding: 0px;

@@ -93,26 +93,22 @@ if (isset($result)) {
     ?>
             <div class="row">
                 <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>번호</th>
-                                <th>제목</th>
-                                <th>작성자</th>
-                                <th>작성일</th>
-                                <th>조회</th>
-                            </tr>
-                        </thead>
+                    <table class="table" id="bbs_contents">
                         <tbody>
                             <tr>
-                                <td><?php echo $row['main_no']; ?></td>
-                                <td class="left"><?php echo stripslashes($row['title']); ?></td>
-                                <td><a href="mailto:<?php echo $row['email']; ?>"><?php echo $row['name']; ?></a></td>
-                                <td><?php echo $row['create_date']; ?></td>
-                                <td><?php echo $row['count']; ?></td>
+                                <th>제목</th><td class="left bbs_wordwrap">[<?php echo $row['main_no']; ?>] <?php echo stripslashes($row['title']); ?></td>
                             </tr>
                             <tr>
-                                <td colspan="5" style="text-align:left">
+                                <th>작성자</th><td><a href="mailto:<?php echo $row['email']; ?>"><?php echo $row['name']; ?></a></td>
+                            </tr>
+                            <tr>
+                                <th>작성일</th><td><?php echo $row['create_date']; ?></td>
+                            </tr>
+                            <tr>
+                                <th>조회</th><td><?php echo $row['count']; ?></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="bbs_wordwrap" style="text-align:left" >
                                     <p><?php echo stripslashes($row['contents']); ?></p>
                                     <p class="mod_date_padding">[ 최종수정일 :                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       <?php echo $row['mod_date']; ?> ]</p>
                                 </td>
