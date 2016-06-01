@@ -238,7 +238,7 @@ if ($t_no > 0) {
 } else {
     ?>
                       <tr>
-                        <td colspan="12"><p class="text-center">해당 주문내역이 없습니다.</p></td>
+                        <td colspan="13"><p class="text-center">해당 주문내역이 없습니다.</p></td>
                       </tr>
 <?php
 
