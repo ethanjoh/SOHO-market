@@ -453,7 +453,7 @@ function calc_delivery_fee($orderSum)
 
 }
 
-function define_delivery_fee($transCost)
+function define_delivery_fee($transCost, $zipCode)
 {
 
     global $connect;
@@ -469,7 +469,16 @@ function define_delivery_fee($transCost)
         $credit = "2"; //착불
     }
 
-    return array('credit' => $credit, 't_cost' => $t_cost);
+    //제주도 우편번호 확인
+    $jejuZipCode = substr($zipCode, 0, 2);
+
+    if ($jejuZipCode == 63) {
+        $jeju = "제주선착불";
+    } else {
+        $jeju = "";
+    }
+
+    return array('credit' => $credit, 't_cost' => $t_cost, 'jeju' => $jeju);
 }
 
 /**

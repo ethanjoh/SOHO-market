@@ -147,11 +147,8 @@ $scale1 = $limit - $cline;
                         <th>휴대폰번호</th>
                         <th>운임구분<br>(선불: 3)</th>
                         <th>운임</th>
-                        <th>특기사항</th>
-                        <!--
-                        <th class="member" scope="col">주문자</th>
-                        <th class="member" scope="col">주문자전화번호</th>
-                        -->
+                        <th>특기사항<br>(배송메시지)</th>
+                        <th>제주배송</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -207,21 +204,12 @@ if ($t_no > 0) {
             $goods_name = cut_string_utf8($pro_row['name'], 30, '...');
         }
 
-        //배송정책 가져옴
-        // $query4  = "SELECT * FROM misc_setup WHERE id='admin' ";
-        // $result4 = mysqli_query($connect, $query4);
-        // $misc    = mysqli_fetch_array($result4);
-
-        //if($row['last_amount'] >=$misc['min_sum'] || $row['trans_cost'] == '0')
-        // if ($row['trans_cost'] == '0') {
-        //     $str    = "3"; //신용
-        //     $t_cost = "2200";
-        // } else {
-        //     $str    = "2"; //착불
-        //     $t_cost = "2500";
-        // }
-
-        $re = define_delivery_fee($row['trans_cost']);
+        // 택배비 결정 및 제주도 택배비 설정
+        if ($row['recipient_name']) {
+            $re = define_delivery_fee($row['trans_cost'], $row['recipient_zipcode']);
+        } else {
+            $re = define_delivery_fee($row['trans_cost'], $row['buyer_zipcode']);
+        }
 
         ?>
                         <td><?php echo $goods_name; ?></td>
@@ -241,10 +229,7 @@ if ($t_no > 0) {
 
         ?>
                         </td>
-                      <!--
-                      <td><?php echo $row['recipient_name'] ? $row['buyer_name'] : ""; ?></td>
-                      <td><?php echo $row['recipient_name'] ? $row['buyer_phone'] : ""; ?></td>
-                      -->
+                        <td><?php echo $re['jeju']; ?></td>
                       </tr>
 <?php
 
@@ -253,7 +238,7 @@ if ($t_no > 0) {
 } else {
     ?>
                       <tr>
-                        <td colspan="12"><p class="text-center">해당 주문내역이 없습니다.</p></td>
+                        <td colspan="13"><p class="text-center">해당 주문내역이 없습니다.</p></td>
                       </tr>
 <?php
 

@@ -98,7 +98,7 @@ if ($result) {
           <div class="col-sm-6">
             <section class="panel">
               <header class="panel-heading table-head">
-                  <h4>상단 배너 등록 (370 x 243px) * 3</h4>
+                  <h4>상단 배너 등록 (370 x 243px) * 6</h4>
                 </header>
                 <div class="panel-body">
                   <div class="table-responsive">

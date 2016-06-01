@@ -177,7 +177,7 @@ HEREDOC;
             										<tr>
             											<th colspan="2">
             												<i class="fa fa-picture-o"></i> 상품 이미지(소 이미지는 대1 이미지를 사용해 자동생성됩니다.)
-            												<p class="help-block"><i class="fa fa-exclamation-triangle"></i>  이미지 해상도는 최대 500x500px / 이미지 크기는 1MB 이하로 하셔야 합니다.</p>
+            												<p class="help-block"><i class="fa fa-exclamation-triangle"></i>  이미지 해상도는 최대 800x800px / 이미지 크기는 1MB 이하로 하셔야 합니다.</p>
             											</th>
             										</tr>
             										<tr >
@@ -409,7 +409,7 @@ HEREDOC;
             										<tr>
             											<th colspan="2">
             												<i class="fa fa-picture-o"></i> 상품 이미지(소 이미지는 대1 이미지를 사용해 자동생성됩니다.)
-            												<p class="help-block"><i class="fa fa-exclamation-triangle"></i>  이미지 해상도는 최대 500x500px / 이미지 크기는 1MB 이하로 하셔야 합니다.</p>
+            												<p class="help-block"><i class="fa fa-exclamation-triangle"></i>  이미지 해상도는 최대 800x800px / 이미지 크기는 1MB 이하로 하셔야 합니다.</p>
             											</th>
             										</tr>
             										<tr >

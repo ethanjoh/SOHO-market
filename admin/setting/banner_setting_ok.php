@@ -75,7 +75,7 @@ if ($mode == 'insert') {
         }
 
     } else {
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 0; $i < 6; $i++) {
             $mimg_chk[$i] = "N";
             $file[$i]     = "";
             $mlink[$i]    = "";
@@ -84,8 +84,8 @@ if ($mode == 'insert') {
         // err_msg('업로드 이미지가 없습니다.');
     }
 
-    if ($fileNums < 5) {
-        $limit = 5 - $fileNums;
+    if ($fileNums < 6) {
+        $limit = 6 - $fileNums;
         $j     = $fileNums;
 
         for ($i = 0; $i < $limit; $i++) {
@@ -104,6 +104,7 @@ if ($mode == 'insert') {
                                   m_banner3,  m_banner3_image, m_link3,
                                   m_banner4,  m_banner4_image, m_link4,
                                   m_banner5,  m_banner5_image, m_link5,
+                                  m_banner6,  m_banner6_image, m_link6,
                                   created)
               VALUES( '$pos',
                       '$mimg_chk[0]', '$file[0]', '$mlink[0]',
@@ -111,6 +112,7 @@ if ($mode == 'insert') {
                       '$mimg_chk[2]', '$file[2]', '$mlink[2]',
                       '$mimg_chk[3]', '$file[3]', '$mlink[3]',
                       '$mimg_chk[4]', '$file[4]', '$mlink[4]',
+                      '$mimg_chk[5]', '$file[5]', '$mlink[5]',
                       now() )";
     $res = mysqli_query($connect, $qry);
 
