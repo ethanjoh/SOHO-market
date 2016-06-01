@@ -147,11 +147,8 @@ $scale1 = $limit - $cline;
                         <th>휴대폰번호</th>
                         <th>운임구분<br>(선불: 3)</th>
                         <th>운임</th>
-                        <th>특기사항</th>
-                        <!--
-                        <th class="member" scope="col">주문자</th>
-                        <th class="member" scope="col">주문자전화번호</th>
-                        -->
+                        <th>특기사항<br>(배송메시지)</th>
+                        <th>제주배송</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -232,10 +229,7 @@ if ($t_no > 0) {
 
         ?>
                         </td>
-                      <!--
-                      <td><?php echo $row['recipient_name'] ? $row['buyer_name'] : ""; ?></td>
-                      <td><?php echo $row['recipient_name'] ? $row['buyer_phone'] : ""; ?></td>
-                      -->
+                        <td><?php echo $re['jeju']; ?></td>
                       </tr>
 <?php
 

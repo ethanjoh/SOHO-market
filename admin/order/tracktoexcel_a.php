@@ -42,6 +42,7 @@ ORDER BY num DESC ";
  */
 $res  = mysqli_query($connect, $sql);
 $t_no = mysqli_num_rows($res);
+
 if ($t_no > 0) {
     for ($i = 0; $row = mysqli_fetch_array($res); $i++) {
         ?>
@@ -64,7 +65,14 @@ if ($t_no > 0) {
         }
 
         //배송정책 가져옴
-        $re = define_delivery_fee($row['trans_cost']);
+        // $re = define_delivery_fee($row['trans_cost']);
+        //
+        // 택배비 결정 및 제주도 택배비 설정
+        if ($row['recipient_name']) {
+            $re = define_delivery_fee($row['trans_cost'], $row['recipient_zipcode']);
+        } else {
+            $re = define_delivery_fee($row['trans_cost'], $row['buyer_zipcode']);
+        }
         ?>
           <td><?php echo $goods_name; ?></td>
           <td>1</td>
@@ -81,10 +89,7 @@ if ($t_no > 0) {
             echo $row['memo_to_delivery'];
         }
         ?></td>
-          <!--
-          <td><?php echo $row['recipient_name'] ? $row['buyer_name'] : ""; ?></td>
-          <td><?php echo $row['recipient_name'] ? $row['buyer_phone'] : ""; ?></td>
-          -->
+          <td><?php echo $re['jeju']; ?></td>
         </tr>
 <?php
 
