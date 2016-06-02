@@ -227,7 +227,7 @@ if ($numOfBbs == 0) {
 
     for ($i = 0; $rows = mysqli_fetch_array($result); $i++) {
         $board   = 'bbs_' . $rows['code'];
-        $query2  = "SELECT * FROM $board WHERE 1 ORDER BY mod_date DESC LIMIT 5";
+        $query2  = "SELECT * FROM $board WHERE 1 ORDER BY main_no DESC LIMIT 5";
         $result2 = mysqli_query($connect, $query2);
 
         if ($result2) {

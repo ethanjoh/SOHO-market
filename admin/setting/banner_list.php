@@ -36,7 +36,7 @@
           <div class="col-sm-6">
             <section class="panel">
               <header class="panel-heading table-head">
-                  <h4>메인 배너 등록 (1920 x 650px) * MAX 5</h4>
+                  <h4>메인 배너 등록 (1920 x 650px) * MAX 6</h4>
                 </header>
                 <div class="panel-body">
                   <div class="table-responsive">

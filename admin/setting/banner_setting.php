@@ -29,7 +29,7 @@ if ("update" == $mode) {
 }
 
 if ('main' == $pos) {
-    $j     = 5;
+    $j     = 6;
     $title = '메인배너 업로드 (1920x650px)';
 } elseif ('top' == $pos) {
     $j     = 6;

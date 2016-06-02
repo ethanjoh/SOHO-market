@@ -2589,7 +2589,7 @@ function show_main_banner()
 
 HEREDOC;
 
-        for ($i = 1; $i <= 5; $i++) {
+        for ($i = 1; $i <= 6; $i++) {
             $imagePath = 'm_banner' . $i . '_image';
             $isYes     = 'm_banner' . $i . '';
 
