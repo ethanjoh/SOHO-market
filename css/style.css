@@ -61,12 +61,6 @@ img {
 
 }
 
-#bbs_contents iframe {
-    width: 100% !important;
-    height: auto !important;
-
-}
-
 .fix {
     overflow: hidden;
 }

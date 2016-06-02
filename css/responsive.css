@@ -480,6 +480,10 @@
     .search-form button {
         margin-top: 10px
     }
+    #bbs_contents iframe {
+        width: 100% !important;
+        height: auto !important;
+    }
 }
 /* Large Mobile :480px. */
 @media only screen and (min-width: 480px) and (max-width: 767px) {
