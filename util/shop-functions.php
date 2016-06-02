@@ -2603,7 +2603,7 @@ HEREDOC;
 
         echo '              </div>' . "\r\n";
 
-        for ($j = 1; $j <= 5; $j++) {
+        for ($j = 1; $j <= 6; $j++) {
             $isYes = 'm_banner' . $j . '';
             $link  = 'm_link' . $j . '';
 
