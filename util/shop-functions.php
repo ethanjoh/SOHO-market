@@ -387,7 +387,7 @@ function show_brands()
     $l_res = mysqli_query($connect, $l_qry);
     $total = mysqli_num_rows($l_res);
 
-    echo "                               <ul>\n";
+    echo '  <ul>' . "\r\n";
 
     if ($total > 0) {
 
@@ -419,11 +419,75 @@ function show_brands()
 HEREDOC;
 
         }
+
     } else {
         echo '<li>브랜드를 등록해주세요</li>';
     }
 
-    echo "                               </ul>\n";
+    echo "                                 </ul>\n";
+
+}
+
+function show_horizon_brands()
+{
+
+    global $connect;
+
+    // 쇼핑몰 대분류
+    $l_qry = "SELECT * FROM products_category1 WHERE hide='N' AND del='N' ORDER BY num ";
+    $l_res = mysqli_query($connect, $l_qry);
+    $total = mysqli_num_rows($l_res);
+
+    echo '<div class="brand_list col-md-3">' . "\r\n";
+    echo '                                          <ul>' . "\r\n";
+
+    if ($total > 0) {
+
+        // 대분류 표시
+        for ($i = 1; $l_rows = mysqli_fetch_array($l_res); $i++) {
+            // 신제품 표시
+            // $newq   = "SELECT * FROM products WHERE category_l = '$l_rows[code]' ORDER BY num DESC LIMIT 1";
+            // $newr   = mysqli_query($connect, $newq);
+            // $newrow = mysqli_fetch_array($newr);
+
+            // if ($newrow['main_new'] == 'Y' && $newrow['del_chk'] != "Y") {
+            //     $categoryName = $l_rows['name'] . ' <span class="label label-success">NEW</span>';
+            // } else {
+            //     $categoryName = $l_rows['name'];
+            // }
+
+            $categoryName = $l_rows['name'];
+
+            echo <<<HEREDOC
+                                            <li>
+                                                <a href="/shop/catalog-list.php?lcode={$l_rows['code']}">
+                                                    <span class="cat-thumb">
+                                                        <i class="fa fa-hashtag"></i>
+                                                    </span>
+                                                    {$categoryName}
+                                                </a>
+                                            </li>
+
+HEREDOC;
+
+            if ($i % 4 == 0) {
+                echo <<<HEREDOC
+                                        </ul>
+                                    </div>
+                                    <div class="brand_list col-md-3">
+                                        <ul>
+
+HEREDOC;
+            }
+
+        }
+
+    } else {
+        echo '<li>브랜드를 등록해주세요</li>';
+    }
+
+    echo '                                        </ul>' . "\r\n";
+    echo '                                    </div>' . "\r\n";
 
 }
 

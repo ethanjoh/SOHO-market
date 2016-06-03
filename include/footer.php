@@ -21,6 +21,10 @@
                                             <div class="footer-static-content">
                                                 <ul>
                                                     <li>
+                                                        <a href="/member/about-us.php">회사 소개</a>
+                                                    </li>
+
+                                                    <li>
 <?php
 
 $sessionId = set_var($_SESSION['p_id']);
@@ -39,10 +43,13 @@ if ($sessionId) {
                                                     <li>
                                                         <a href="/member/privacy-policy.php">이용약관/정보보호정책</a>
                                                     </li>
+                                                    <li>
+                                                        <a href="/member/contact-us.php">찾아오시는 길</a>
+                                                    </li>
                                                 </ul>
                                             </div>
 
-                                            <div class="footer-escrow">
+<!--                                             <div class="footer-escrow">
                                                 <div class="escrowWrap">
                                                     <div class="escrow">
                                                         <script language="javascript" src="https://pgweb.dacom.net/WEB_SERVER/js/escrowValid.js"></script>
@@ -54,7 +61,8 @@ if ($sessionId) {
                                                         안전서비스를 받으실 수 있습니다.
                                                     </div>
                                                 </div>
-                                            </div> <!-- end footer_escrow -->
+                                            </div> -->
+                                            <!-- end footer_escrow -->
 
                                         </div>
                                     </div>

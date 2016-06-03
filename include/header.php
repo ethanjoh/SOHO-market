@@ -116,21 +116,9 @@ $uri = set_var($_SERVER['HTTP_REFERER']);
                 </div> <!-- /.container -->
             </div> <!-- /.header -->
 
-            <div class="top-menu">
+<!--             <div class="top-menu">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-3 col-md-4 col-xs-12">
-                            <div class="left-category-menu">
-                                <div class="left-product-cat">
-                                    <div class="category-heading">
-                                        <h2>브랜드별 보기</h2>
-                                    </div>
-                                    <div class="category-menu-list">
-                                        <?php show_brands();?>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <div class="col-lg-9 col-md-8 hidden-xs ">
                             <div class="home_menu">
                                 <nav>
@@ -143,10 +131,24 @@ $uri = set_var($_SERVER['HTTP_REFERER']);
                             </div>
                         </div>
                     </div>
+
                 </div>
+            </div> -->
+            <div class="brand_area">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-xs-12">
+                            <!-- <div class="left-category-menu"> -->
+                                <!-- <div class="left-product-cat"> -->
+                                    <!-- <div class="brand_list"> -->
+                                        <?php show_horizon_brands();?>
+                                    <!-- </div> -->
+                                <!-- </div> -->
+                            <!-- </div> -->
+                        </div>
+                    </div>
             </div>
             <!-- mobile-menu-area start -->
-            <div class="mobile-menu-area">
+<!--             <div class="mobile-menu-area">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
@@ -163,7 +165,7 @@ $uri = set_var($_SERVER['HTTP_REFERER']);
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <!-- mobile-menu-area end -->
         </header>
         <!-- end header_area
