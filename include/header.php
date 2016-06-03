@@ -123,7 +123,7 @@ $uri = set_var($_SERVER['HTTP_REFERER']);
                             <div class="left-category-menu">
                                 <div class="left-product-cat">
                                     <div class="category-heading">
-                                        <h2>브랜드</h2>
+                                        <h2>브랜드별 보기</h2>
                                     </div>
                                     <div class="category-menu-list">
                                         <?php show_brands();?>

@@ -701,8 +701,9 @@
 	],
 	"file_history":
 	[
-		"/C/wamp/www/shinsoo/admin/main/main.php",
 		"/C/wamp/www/shinsoo/shop/index.php",
+		"/C/wamp/www/shinsoo/include/header.php",
+		"/C/wamp/www/shinsoo/admin/main/main.php",
 		"/C/wamp/www/shinsoo/util/shop-functions.php",
 		"/C/wamp/www/shinsoo/admin/setting/banner_setting.php",
 		"/C/wamp/www/shinsoo/admin/setting/banner_list.php",
@@ -722,7 +723,6 @@
 		"/C/wamp/www/shinsoo/index.php",
 		"/C/wamp/www/shinsoo/util/config.ini",
 		"/C/wamp/www/shinsoo/include/footer.php",
-		"/C/wamp/www/shinsoo/include/header.php",
 		"/C/wamp/www/shinsoo/js/vendor/jquery-1.9.1.min.js",
 		"/C/wamp/www/shinsoo/js/vendor/jquery-migrate-1.4.1.min.js",
 		"/C/wamp/www/shinsoo/js/vendor/jquery-migrate-1.4.1.js",
@@ -1071,16 +1071,20 @@
 		"selected_items":
 		[
 			[
+				"hea",
+				"include\\header.php"
+			],
+			[
+				"inde",
+				"shop\\index.php"
+			],
+			[
 				"in",
 				"shop\\index.php"
 			],
 			[
 				"main",
 				"admin\\main\\main.php"
-			],
-			[
-				"inde",
-				"shop\\index.php"
 			],
 			[
 				"util",
@@ -1129,10 +1133,6 @@
 			[
 				"banner",
 				"admin\\setting\\banner_setting.php"
-			],
-			[
-				"hea",
-				"include\\header.php"
 			],
 			[
 				"foot",
