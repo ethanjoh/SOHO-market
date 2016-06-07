@@ -116,34 +116,10 @@ $uri = set_var($_SERVER['HTTP_REFERER']);
                 </div> <!-- /.container -->
             </div> <!-- /.header -->
 
-<!--             <div class="top-menu">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-9 col-md-8 hidden-xs ">
-                            <div class="home_menu">
-                                <nav>
-                                    <ul>
-                                        <li><a href="/member/about-us.php">회사 소개</a></li>
-                                        <li><a href="/bbs/list.php?code=notice">새소식</a></li>
-                                        <li><a href="/member/contact-us.php">문의</a></li>
-                                    </ul>
-                                </nav>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div> -->
             <div class="brand_area">
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-xs-12">
-                            <!-- <div class="left-category-menu"> -->
-                                <!-- <div class="left-product-cat"> -->
-                                    <!-- <div class="brand_list"> -->
-                                        <?php show_horizon_brands();?>
-                                    <!-- </div> -->
-                                <!-- </div> -->
-                            <!-- </div> -->
+                            <?php show_horizon_brands();?>
                         </div>
                     </div>
             </div>
