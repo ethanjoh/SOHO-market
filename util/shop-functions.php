@@ -438,6 +438,12 @@ function show_horizon_brands()
     $l_res = mysqli_query($connect, $l_qry);
     $total = mysqli_num_rows($l_res);
 
+    // if ($total % 4 == 0) {
+    $idx = ceil($total / 4);
+    // }
+
+    // echo $idx;
+
     echo '<div class="brand_list col-md-3 col-sm-6 hidden-xs">' . "\r\n";
     echo '                                          <ul>' . "\r\n";
 
@@ -450,7 +456,7 @@ function show_horizon_brands()
             // $newr   = mysqli_query($connect, $newq);
             // $newrow = mysqli_fetch_array($newr);
 
-            // if ($newrow['main_new'] == 'Y' && $newrow['del_chk'] != "Y") {
+            // if ($newrow['main_new'] == 'Y' && $newrow['del_chk'] != 'Y') {
             //     $categoryName = $l_rows['name'] . ' <span class="label label-success">NEW</span>';
             // } else {
             //     $categoryName = $l_rows['name'];
@@ -470,7 +476,7 @@ function show_horizon_brands()
 
 HEREDOC;
 
-            if ($i % 4 == 0) {
+            if ($i % $idx == 0) {
                 echo <<<HEREDOC
                                         </ul>
                                     </div>
