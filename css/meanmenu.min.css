@@ -78,7 +78,7 @@ a.meanmenu-reveal{display:none}
 .mean-remove{display:none!important}
 .mean-container .mean-bar::after {
   color: #ffffff;
-  content: "MENU";
+  content: "브랜드 보기";
   font-size: 21px;
   left: 5%;
   position: absolute;

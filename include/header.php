@@ -148,24 +148,19 @@ $uri = set_var($_SERVER['HTTP_REFERER']);
                     </div>
             </div>
             <!-- mobile-menu-area start -->
-<!--             <div class="mobile-menu-area">
+            <div class="mobile-menu-area">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="mobile-menu">
                                 <nav id="dropdown">
-                                    <ul>
-                                        <li class="active1"><a href="/">Home</a></li>
-                                        <li><a href="/member/about-us.php">회사 소개</a></li>
-                                        <li><a href="/bbs/list.php?code=notice">새소식</a></li>
-                                        <li><a href="/member/contact-us.php">문의</a></li>
-                                    </ul>
+                                    <?php show_brands();?>
                                 </nav>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div> -->
+            </div>
             <!-- mobile-menu-area end -->
         </header>
         <!-- end header_area

@@ -438,7 +438,7 @@ function show_horizon_brands()
     $l_res = mysqli_query($connect, $l_qry);
     $total = mysqli_num_rows($l_res);
 
-    echo '<div class="brand_list col-md-3">' . "\r\n";
+    echo '<div class="brand_list col-md-3 col-sm-6 hidden-xs">' . "\r\n";
     echo '                                          <ul>' . "\r\n";
 
     if ($total > 0) {
@@ -474,7 +474,7 @@ HEREDOC;
                 echo <<<HEREDOC
                                         </ul>
                                     </div>
-                                    <div class="brand_list col-md-3">
+                                    <div class="brand_list col-md-3 col-sm-6 hidden-xs">
                                         <ul>
 
 HEREDOC;
