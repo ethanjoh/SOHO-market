@@ -702,10 +702,10 @@
 	[
 		"/C/wamp/www/shinsoo/util/util.php",
 		"/C/wamp/www/shinsoo/include/header.php",
-		"/C/wamp/www/shinsoo/include/footer.php",
-		"/C/wamp/www/shinsoo/css/meanmenu.min.css",
 		"/C/wamp/www/shinsoo/util/shop-functions.php",
 		"/C/wamp/www/shinsoo/css/style.css",
+		"/C/wamp/www/shinsoo/include/footer.php",
+		"/C/wamp/www/shinsoo/css/meanmenu.min.css",
 		"/C/wamp/www/shinsoo/include/header_org.php",
 		"/C/wamp/www/shinsoo/js/main.js",
 		"/C/wamp/www/shinsoo/admin/js/custom.js",
@@ -1070,6 +1070,18 @@
 		"selected_items":
 		[
 			[
+				"styl",
+				"css\\style.css"
+			],
+			[
+				"hea",
+				"include\\header.php"
+			],
+			[
+				"uti",
+				"util\\util.php"
+			],
+			[
 				"mean",
 				"css\\meanmenu.min.css"
 			],
@@ -1092,10 +1104,6 @@
 			[
 				"util",
 				"util\\util.php"
-			],
-			[
-				"hea",
-				"include\\header.php"
 			],
 			[
 				"in",
@@ -1478,10 +1486,6 @@
 				"admin\\setting\\delivery_setup.php"
 			],
 			[
-				"styl",
-				"css\\style.css"
-			],
-			[
 				"track",
 				"admin\\order\\tracktoexcel_a.php"
 			],
@@ -1576,10 +1580,6 @@
 			[
 				"main.",
 				"css\\main.css"
-			],
-			[
-				"adm",
-				"admin\\js\\admin.js"
 			]
 		],
 		"width": 0.0

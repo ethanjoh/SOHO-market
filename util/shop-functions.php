@@ -476,7 +476,13 @@ function show_horizon_brands()
 
 HEREDOC;
 
-            if ($i % $idx == 0) {
+            if ($i == $total) {
+                echo <<<HEREDOC
+                                        </ul>
+                                    </div>
+
+HEREDOC;
+            } elseif ($i % $idx == 0) {
                 echo <<<HEREDOC
                                         </ul>
                                     </div>

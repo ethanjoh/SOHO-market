@@ -1,7 +1,7 @@
 <?php
 
-// $config = parse_ini_file('/home/hosting_users/ssss01047271791/config/config.ini');
-$config = parse_ini_file('config.ini');
+$config = parse_ini_file('/home/hosting_users/ssss01047271791/config/config.ini');
+// $config = parse_ini_file('config.ini');
 
 $host         = $config['host'];
 $dbid         = $config['dbid'];
