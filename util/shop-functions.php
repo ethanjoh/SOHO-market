@@ -53,9 +53,24 @@ function show_payment($type, $company_name, $bank)
  */
 function show_login_menu()
 {
+    global $connect;
+
     $sessionId   = set_var($_SESSION['p_id']);
     $sessionName = set_var($_SESSION['p_name']);
     $sessionFlag = set_var($_SESSION['p_flag']);
+
+    $checkNewIcon = check_new_last_post($connect, 'notice', 7);
+
+    echo <<<HEREDOC
+                                <div class="top-bbs">
+                                    <div class=" block-compare">
+                                        <div class="bbs-top-title">
+                                            <a href="/bbs/list.php?code=notice"><i class="fa fa-bullhorn" aria-hidden="true"></i> 새소식 </a> {$checkNewIcon}
+                                        </div>
+                                    </div>
+                                </div>
+
+HEREDOC;
 
 // 미로그인
     if (!$sessionId || !$sessionName || !$sessionFlag) {

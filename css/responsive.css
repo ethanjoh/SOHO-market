@@ -4,7 +4,10 @@
         float: left;
         margin-right: 10px;
     }
-
+    .top-bbs {
+        float: left;
+        margin-right: 100px;
+    }
 }
 
 /* Normal desktop :992px. */

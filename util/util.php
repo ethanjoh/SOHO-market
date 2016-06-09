@@ -1365,16 +1365,18 @@ function check_new_last_post($connect, $code, $day)
         $today = date("Y-m-d");
 
         $row       = mysqli_fetch_array($result);
-        $post_date = substr($row['date'], 0, 11);
+        $post_date = substr($row['create_date'], 0, 11);
         $diff      = intval((strtotime($today) - strtotime($post_date)) / 86400);
         // echo $diff;
 
         if ($diff <= $day) {
-            echo "<img src=\"/images/new.gif\">";
+            $newIcon = '<span class="label label-success">NEW</span>';
         }
     } else {
-        echo "NO DATA";
+        $newIcon = "NO DATA";
     }
+
+    return $newIcon;
 }
 
 /**

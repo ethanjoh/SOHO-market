@@ -2023,6 +2023,12 @@ address {
     margin-top: 12px;
 }
 
+.home-1 .top-right-logo {
+    float: right;
+    width: 130px;
+    margin-top: 12px;
+}
+
 .home-1 .home_menu {
     float: left;
     margin-left: 40px;
@@ -2113,6 +2119,10 @@ address {
     color: #444444;
 }
 
+.home-1 .bbs-top-title a {
+    color: #7F3F3F;
+}
+
 .home-1 .compare a small {
     color: #444444;
 }
@@ -2163,7 +2173,8 @@ address {
 }
 
 .home-1 .top-login,
-.home-1 .top-register {
+.home-1 .top-register,
+.home-1 .top-bbs {
     margin-top: 15px;
 }
 

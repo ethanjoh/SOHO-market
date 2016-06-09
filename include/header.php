@@ -89,13 +89,18 @@ $uri = set_var($_SERVER['HTTP_REFERER']);
                                 <a href="/"><img src="/images/shinsoo-logo.png" alt="신수상사 로고"></a>
                             </div>
                         </div>
+                        <div class="col-md-6 col-sm-6">
+                            <div class="top-right-logo">
+                                <img src="/images/logo/superstroke-top-logo.png" alt="super stroke logo">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="header">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-8 col-sm-8 col-xs-12">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
                             <form action="/shop/catalog-list.php" method="get" id="search_mini_form">
                             <input type="hidden" name="mode" value="search" />
                                 <div class="form-search s-same" >
@@ -106,7 +111,7 @@ $uri = set_var($_SERVER['HTTP_REFERER']);
                                 </div>
                             </form>
                         </div>
-                        <div class="col-md-4 col-sm-4 col-xs-12">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
                             <div class="header-wrapper">
                                 <?php echo show_login_menu(); ?>
                             </div> <!-- /.header-wrapper -->
