@@ -480,7 +480,7 @@
     .search-form button {
         margin-top: 10px
     }
-    #bbs_contents iframe {
+    #bbs_contents iframe, table {
         width: 100% !important;
         height: auto !important;
     }

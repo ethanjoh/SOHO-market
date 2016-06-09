@@ -694,16 +694,20 @@
 	"expanded_folders":
 	[
 		"/C/wamp/www/shinsoo",
-		"/C/wamp/www/shinsoo/include",
+		"/C/wamp/www/shinsoo/css",
 		"/C/wamp/www/shinsoo/web",
 		"/C/wamp/www/shinsoo/web/css"
 	],
 	"file_history":
 	[
+		"/C/wamp/www/shinsoo/bbs/read.php",
+		"/C/wamp/www/shinsoo/css/style.css",
+		"/C/wamp/www/shinsoo/css/main.css",
+		"/C/wamp/www/shinsoo/css/responsive.css",
+		"/C/wamp/www/shinsoo/css/myshop.css",
 		"/C/wamp/www/shinsoo/util/util.php",
 		"/C/wamp/www/shinsoo/include/header.php",
 		"/C/wamp/www/shinsoo/util/shop-functions.php",
-		"/C/wamp/www/shinsoo/css/style.css",
 		"/C/wamp/www/shinsoo/include/footer.php",
 		"/C/wamp/www/shinsoo/css/meanmenu.min.css",
 		"/C/wamp/www/shinsoo/include/header_org.php",
@@ -714,7 +718,6 @@
 		"/C/wamp/www/shinsoo/admin/setting/banner_setting.php",
 		"/C/wamp/www/shinsoo/admin/setting/banner_list.php",
 		"/C/wamp/www/shinsoo/admin/setting/banner_setting_ok.php",
-		"/C/wamp/www/shinsoo/css/responsive.css",
 		"/C/wamp/www/shinsoo/admin/order/tracktoexcel_a.php",
 		"/C/wamp/www/shinsoo/admin/order/print_waybill.php",
 		"/C/Users/Seonghyeon/Downloads/util.php",
@@ -783,7 +786,6 @@
 		"/C/wamp/www/shinsoo/shop/catalog-list.php",
 		"/C/wamp/www/shinsoo/admin/setting/admin_setup.php",
 		"/C/wamp/www/shinsoo/sftp-config.json",
-		"/C/wamp/www/shinsoo/css/main.css",
 		"/C/wamp/www/shinsoo/shop/detail.php",
 		"/C/wamp/www/shinsoo/member/help.php",
 		"/C/wamp/www/shinsoo/shop/checkout.php",
@@ -804,11 +806,9 @@
 		"/C/wamp/www/shinsoo/admin/order/print_quot.php",
 		"/C/wamp/www/shinsoo/admin/setting/delivery_setup_ok.php",
 		"/C/wamp/www/shinsoo/admin/setting/delivery_setup.php",
-		"/C/wamp/www/shinsoo/css/myshop.css",
 		"/C/wamp/www/shinsoo/admin/order/edit_pro.php",
 		"/C/wamp/www/shinsoo/admin/css/style.css",
 		"/C/Users/Seonghyeon/Google 드라이브/git_project/prixe/admin/main.php",
-		"/C/wamp/www/shinsoo/bbs/read.php",
 		"/C/wamp/www/shinsoo/bbs/post.php",
 		"/C/wamp/www/shinsoo/bbs/post_ok.php",
 		"/C/wamp/www/shinsoo/member/login-ok.php",
@@ -1070,6 +1070,18 @@
 		"selected_items":
 		[
 			[
+				"main",
+				"css\\main.css"
+			],
+			[
+				"sty",
+				"css\\style.css"
+			],
+			[
+				"rea",
+				"bbs\\read.php"
+			],
+			[
 				"styl",
 				"css\\style.css"
 			],
@@ -1090,10 +1102,6 @@
 				"include\\footer.php"
 			],
 			[
-				"sty",
-				"css\\style.css"
-			],
-			[
 				"head",
 				"include\\header.php"
 			],
@@ -1108,10 +1116,6 @@
 			[
 				"in",
 				"shop\\index.php"
-			],
-			[
-				"main",
-				"admin\\main\\main.php"
 			],
 			[
 				"res",
@@ -1576,10 +1580,6 @@
 			[
 				"ca_hi",
 				"admin\\category\\ca_hide.php"
-			],
-			[
-				"main.",
-				"css\\main.css"
 			]
 		],
 		"width": 0.0
