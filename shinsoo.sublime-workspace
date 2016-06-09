@@ -694,26 +694,29 @@
 	"expanded_folders":
 	[
 		"/C/wamp/www/shinsoo",
-		"/C/wamp/www/shinsoo/css",
+		"/C/wamp/www/shinsoo/images",
 		"/C/wamp/www/shinsoo/web",
 		"/C/wamp/www/shinsoo/web/css"
 	],
 	"file_history":
 	[
-		"/C/wamp/www/shinsoo/bbs/read.php",
-		"/C/wamp/www/shinsoo/css/style.css",
-		"/C/wamp/www/shinsoo/css/main.css",
-		"/C/wamp/www/shinsoo/css/responsive.css",
-		"/C/wamp/www/shinsoo/css/myshop.css",
 		"/C/wamp/www/shinsoo/util/util.php",
 		"/C/wamp/www/shinsoo/include/header.php",
 		"/C/wamp/www/shinsoo/util/shop-functions.php",
+		"/C/wamp/www/shinsoo/css/style.css",
+		"/C/wamp/www/shinsoo/css/responsive.css",
+		"/C/wamp/www/shinsoo/shop/index.php",
+		"/C/wamp/www/shinsoo/bbs/list.php",
+		"/C/wamp/www/smedics/include/header.php",
+		"/C/wamp/www/smedics/util/util.php",
+		"/C/wamp/www/shinsoo/bbs/read.php",
+		"/C/wamp/www/shinsoo/css/main.css",
+		"/C/wamp/www/shinsoo/css/myshop.css",
 		"/C/wamp/www/shinsoo/include/footer.php",
 		"/C/wamp/www/shinsoo/css/meanmenu.min.css",
 		"/C/wamp/www/shinsoo/include/header_org.php",
 		"/C/wamp/www/shinsoo/js/main.js",
 		"/C/wamp/www/shinsoo/admin/js/custom.js",
-		"/C/wamp/www/shinsoo/shop/index.php",
 		"/C/wamp/www/shinsoo/admin/main/main.php",
 		"/C/wamp/www/shinsoo/admin/setting/banner_setting.php",
 		"/C/wamp/www/shinsoo/admin/setting/banner_list.php",
@@ -779,7 +782,6 @@
 		"/C/wamp/www/shinsoo/lib/css/preview.css",
 		"/C/wamp/www/shinsoo/util/admin_auth.php",
 		"/C/wamp/www/shinsoo/member/register.php",
-		"/C/wamp/www/shinsoo/bbs/list.php",
 		"/C/wamp/www/shinsoo/images/brand/tigerchoi_logo.svg",
 		"/C/wamp/www/shinsoo/images/brand/golftiger_logo.svg",
 		"/C/wamp/www/shinsoo/member/about-us.php",
@@ -825,9 +827,7 @@
 		"/C/wamp/www/shinsoo/js/view.contact.js",
 		"/C/Users/Seonghyeon/Google 드라이브/홈페이지 템플릿/위 인베스트먼트 템플릿/HTML/contact-us.html",
 		"/C/Users/Seonghyeon/Google 드라이브/홈페이지 템플릿/위 인베스트먼트 템플릿/HTML/js/custom.js",
-		"/C/wamp/www/shinsoo/member/php/php-mailer/docs/faq.html",
-		"/C/wamp/www/shinsoo/member/php/php-mailer/docs/Callback_function_notes.txt",
-		"/C/wamp/www/shinsoo/php/contact-form.php"
+		"/C/wamp/www/shinsoo/member/php/php-mailer/docs/faq.html"
 	],
 	"find":
 	{
@@ -1070,6 +1070,38 @@
 		"selected_items":
 		[
 			[
+				"ind",
+				"shop\\index.php"
+			],
+			[
+				"util",
+				"util\\util.php"
+			],
+			[
+				"list",
+				"bbs\\list.php"
+			],
+			[
+				"st",
+				"css\\style.css"
+			],
+			[
+				"res",
+				"css\\responsive.css"
+			],
+			[
+				"uti",
+				"util\\util.php"
+			],
+			[
+				"hea",
+				"include\\header.php"
+			],
+			[
+				"in",
+				"shop\\index.php"
+			],
+			[
 				"main",
 				"css\\main.css"
 			],
@@ -1086,14 +1118,6 @@
 				"css\\style.css"
 			],
 			[
-				"hea",
-				"include\\header.php"
-			],
-			[
-				"uti",
-				"util\\util.php"
-			],
-			[
 				"mean",
 				"css\\meanmenu.min.css"
 			],
@@ -1108,18 +1132,6 @@
 			[
 				"inde",
 				"shop\\index.php"
-			],
-			[
-				"util",
-				"util\\util.php"
-			],
-			[
-				"in",
-				"shop\\index.php"
-			],
-			[
-				"res",
-				"css\\responsive.css"
 			],
 			[
 				"trak",
@@ -1430,10 +1442,6 @@
 				"util\\shop-functions.php"
 			],
 			[
-				"list",
-				"bbs\\list.php"
-			],
-			[
 				"mai",
 				"admin\\main\\main.php"
 			],
@@ -1572,14 +1580,6 @@
 			[
 				"log",
 				"member\\login-ok.php"
-			],
-			[
-				"detai",
-				"shop\\detail.php"
-			],
-			[
-				"ca_hi",
-				"admin\\category\\ca_hide.php"
 			]
 		],
 		"width": 0.0

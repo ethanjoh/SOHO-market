@@ -90,10 +90,19 @@ if (isset($result)) {
     // $result = mysqli_query($connect, $sql);
     $row = mysqli_fetch_array($result);
 
+    //게시판 글번호를 실제 DB 저장번호와 관계없이 역순으로 표시
+    if ($page > 1 && $page < $totalpage) {
+        $postNo = $total - $scale;
+    } elseif ($page == $totalpage) {
+        $postNo = $total - $scale * ($page - 1);
+    } else {
+        $postNo = $total;
+    }
+
     ?>
             <div class="row">
                 <div id="bbs_contents">
-                   <div class="bbs_wordwrap bbs_underline">제 목: [<?php echo $row['main_no']; ?>] <?php echo stripslashes($row['title']); ?></div>
+                   <div class="bbs_wordwrap bbs_underline">[ <?php echo stripslashes($row['title']); ?> ]</div>
                    <div class="bbs_underline">작성자: <a href="mailto:<?php echo $row['email']; ?>"><?php echo $row['name']; ?></a></div>
                    <div class="bbs_underline">작성일: <?php echo $row['create_date']; ?></div>
                    <div class="bbs_underline">조 회:<?php echo $row['count']; ?></div>

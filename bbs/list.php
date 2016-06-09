@@ -74,7 +74,7 @@ if ($code) {
 <?php
 
 $page  = set_var($_GET['page']);
-$scale = 20;
+$scale = 10;
 
 if ($page == '') {
     $page = 1;
@@ -181,6 +181,15 @@ if ($total == 0) {
     //쿼리 후 결과를 저장한다.
     $result = mysqli_query($connect, $sql);
 
+    //게시판 글번호를 실제 DB 저장번호와 관계없이 역순으로 표시
+    if ($page > 1 && $page < $totalpage) {
+        $postNo = $total - $scale;
+    } elseif ($page == $totalpage) {
+        $postNo = $total - $scale * ($page - 1);
+    } else {
+        $postNo = $total;
+    }
+
     for ($i = 0; $row = mysqli_fetch_array($result); $i++) {
 
         echo "<tr>\n";
@@ -189,7 +198,7 @@ if ($total == 0) {
             echo '<td><input type="checkbox" name="chk[]" value="' . $row['main_no'] . '"></td>' . "\r\n";
         }
         ?>
-                              <td><?php echo $row['main_no']; ?></td>
+                              <td><?php echo ($postNo - $i); ?></td>
 
 <?php
 
