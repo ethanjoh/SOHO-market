@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"mysqli_fet",
+				"mysqli_fetch_array"
+			],
+			[
 				"text",
 				"text-align"
 			],
@@ -510,10 +514,6 @@
 			[
 				"json",
 				"json_encode"
-			],
-			[
-				"key",
-				"key_value"
 			]
 		]
 	},
@@ -694,22 +694,35 @@
 	"expanded_folders":
 	[
 		"/C/wamp/www/shinsoo",
-		"/C/wamp/www/shinsoo/images",
-		"/C/wamp/www/shinsoo/web",
-		"/C/wamp/www/shinsoo/web/css"
+		"/C/wamp/www/shinsoo/bbs/upload",
+		"/C/wamp/www/shinsoo/member",
+		"/C/wamp/www/shinsoo/util"
 	],
 	"file_history":
 	[
-		"/C/wamp/www/shinsoo/util/util.php",
-		"/C/wamp/www/shinsoo/include/header.php",
+		"/C/Users/Seonghyeon/Google 드라이브/git_project/prixe/member/register_ok.php",
+		"/C/wamp/www/shinsoo/member/register-ok.php",
+		"/C/wamp/www/shinsoo/member/checkAvail.php",
+		"/C/wamp/www/shinsoo/member/register-form.php",
+		"/C/wamp/www/shinsoo/bbs/upload/upload.php",
+		"/C/wamp/www/shinsoo/shop/index.php",
+		"/C/wamp/www/shinsoo/bbs/post.php",
+		"/C/wamp/www/shinsoo/util/config.ini",
+		"/C/wamp/www/shinsoo/js/shopping.js",
 		"/C/wamp/www/shinsoo/util/shop-functions.php",
+		"/C/wamp/www/shinsoo/util/util.php",
+		"/C/wamp/www/shinsoo/admin/setting/popup_setup_ok.php",
+		"/C/wamp/www/shinsoo/admin/include/admin_footer.php",
+		"/C/wamp/www/shinsoo/admin/setting/popup_setup.php",
+		"/C/wamp/www/shinsoo/admin/js/admin.js",
+		"/C/wamp/www/shinsoo/include/header.php",
+		"/C/wamp/www/shinsoo/member/p-register-form.php",
+		"/C/wamp/www/shinsoo/bbs/list.php",
+		"/C/wamp/www/shinsoo/bbs/read.php",
 		"/C/wamp/www/shinsoo/css/style.css",
 		"/C/wamp/www/shinsoo/css/responsive.css",
-		"/C/wamp/www/shinsoo/shop/index.php",
-		"/C/wamp/www/shinsoo/bbs/list.php",
 		"/C/wamp/www/smedics/include/header.php",
 		"/C/wamp/www/smedics/util/util.php",
-		"/C/wamp/www/shinsoo/bbs/read.php",
 		"/C/wamp/www/shinsoo/css/main.css",
 		"/C/wamp/www/shinsoo/css/myshop.css",
 		"/C/wamp/www/shinsoo/include/footer.php",
@@ -725,13 +738,11 @@
 		"/C/wamp/www/shinsoo/admin/order/print_waybill.php",
 		"/C/Users/Seonghyeon/Downloads/util.php",
 		"/C/wamp/www/shinsoo/admin/products/pro_register_ok.php",
-		"/C/wamp/www/shinsoo/member/register-ok.php",
 		"/C/wamp/www/shinsoo/admin/products/pro_register.php",
 		"/C/wamp/www/shinsoo/admin/products/pro_delete.php",
 		"/C/wamp/www/shinsoo/googlea4fc45099672e28e.html",
 		"/C/wamp/www/shinsoo/web/css/be_style.css",
 		"/C/wamp/www/shinsoo/index.php",
-		"/C/wamp/www/shinsoo/util/config.ini",
 		"/C/wamp/www/shinsoo/js/vendor/jquery-1.9.1.min.js",
 		"/C/wamp/www/shinsoo/js/vendor/jquery-migrate-1.4.1.min.js",
 		"/C/wamp/www/shinsoo/js/vendor/jquery-migrate-1.4.1.js",
@@ -755,8 +766,6 @@
 		"/C/wamp/www/shinsoo/admin/member/p_top_member_list.php",
 		"/C/Users/Seonghyeon/Downloads/source/signup_template.html",
 		"/C/wamp/www/shinsoo/pay/save_wireinfo_to_db.php",
-		"/C/wamp/www/shinsoo/member/p-register-form.php",
-		"/C/wamp/www/shinsoo/member/register-form.php",
 		"/C/wamp/www/shinsoo/admin/products/top_pro_list.php",
 		"/C/wamp/www/shinsoo/admin/order/top_order_list.php",
 		"/C/wamp/www/shinsoo/admin/order/or_view.php",
@@ -768,7 +777,6 @@
 		"/C/wamp/www/shinsoo/admin/order/or_changed.php",
 		"/C/wamp/www/shinsoo/admin/stats/mem_stat_list.php",
 		"/C/wamp/www/shinsoo/include/analyticstracking.php",
-		"/C/wamp/www/shinsoo/admin/js/admin.js",
 		"/C/wamp/www/shinsoo/pay/save_pginfo_to_db.php",
 		"/C/wamp/www/shinsoo/pay/returnurl.php",
 		"/C/wamp/www/shinsoo/admin/member/p_mem_edit_member.php",
@@ -802,7 +810,6 @@
 		"/C/wamp/www/shinsoo/admin/member/p_mem_delete_member.php",
 		"/C/wamp/www/shinsoo/admin/order/or_delete.php",
 		"/C/wamp/www/shinsoo/lgpay/conf/mall.conf",
-		"/C/wamp/www/shinsoo/bbs/upload/upload.php",
 		"/C/wamp/www/shinsoo/bbs/upload.php",
 		"/C/wamp/www/shinsoo/shop/order-list.php",
 		"/C/wamp/www/shinsoo/admin/order/print_quot.php",
@@ -811,7 +818,6 @@
 		"/C/wamp/www/shinsoo/admin/order/edit_pro.php",
 		"/C/wamp/www/shinsoo/admin/css/style.css",
 		"/C/Users/Seonghyeon/Google 드라이브/git_project/prixe/admin/main.php",
-		"/C/wamp/www/shinsoo/bbs/post.php",
 		"/C/wamp/www/shinsoo/bbs/post_ok.php",
 		"/C/wamp/www/shinsoo/member/login-ok.php",
 		"/C/wamp/www/shinsoo/js/wow.min.js",
@@ -821,13 +827,7 @@
 		"/C/wamp/www/shinsoo/member/privacy-policy.php",
 		"/C/wamp/www/shinsoo/member/inc/contract1.html",
 		"/C/wamp/www/shinsoo/member/inc/rule.html",
-		"/C/wamp/www/shinsoo/member/php/contact-form.php",
-		"/C/wamp/www/shinsoo/member/contact-us.php",
-		"/C/wamp/www/shinsoo/js/addcart.js",
-		"/C/wamp/www/shinsoo/js/view.contact.js",
-		"/C/Users/Seonghyeon/Google 드라이브/홈페이지 템플릿/위 인베스트먼트 템플릿/HTML/contact-us.html",
-		"/C/Users/Seonghyeon/Google 드라이브/홈페이지 템플릿/위 인베스트먼트 템플릿/HTML/js/custom.js",
-		"/C/wamp/www/shinsoo/member/php/php-mailer/docs/faq.html"
+		"/C/wamp/www/shinsoo/member/php/contact-form.php"
 	],
 	"find":
 	{
@@ -1070,6 +1070,38 @@
 		"selected_items":
 		[
 			[
+				"regis",
+				"member\\register-ok.php"
+			],
+			[
+				"regi",
+				"member\\register-form.php"
+			],
+			[
+				"admin",
+				"admin\\include\\admin_footer.php"
+			],
+			[
+				"pop",
+				"admin\\setting\\popup_setup_ok.php"
+			],
+			[
+				"head",
+				"include\\header.php"
+			],
+			[
+				"con",
+				"util\\config.ini"
+			],
+			[
+				"p-re",
+				"member\\p-register-form.php"
+			],
+			[
+				"rea",
+				"bbs\\read.php"
+			],
+			[
 				"ind",
 				"shop\\index.php"
 			],
@@ -1110,10 +1142,6 @@
 				"css\\style.css"
 			],
 			[
-				"rea",
-				"bbs\\read.php"
-			],
-			[
 				"styl",
 				"css\\style.css"
 			],
@@ -1124,10 +1152,6 @@
 			[
 				"foo",
 				"include\\footer.php"
-			],
-			[
-				"head",
-				"include\\header.php"
 			],
 			[
 				"inde",
@@ -1144,10 +1168,6 @@
 			[
 				"pro_re",
 				"admin\\products\\pro_register_ok.php"
-			],
-			[
-				"regis",
-				"member\\register-ok.php"
 			],
 			[
 				"pro_de",
@@ -1190,10 +1210,6 @@
 				"shop\\order-detail.php"
 			],
 			[
-				"admin",
-				"admin\\include\\admin_head.php"
-			],
-			[
 				"p_mem",
 				"admin\\member\\p_mem_view_member.php"
 			],
@@ -1216,10 +1232,6 @@
 			[
 				"reg",
 				"member\\register-ok.php"
-			],
-			[
-				"p-re",
-				"member\\p-register-form.php"
 			],
 			[
 				"top_pr",
@@ -1418,10 +1430,6 @@
 				"css\\style.css"
 			],
 			[
-				"regi",
-				"member\\register-form.php"
-			],
-			[
 				"get",
 				"get-product.php"
 			],
@@ -1572,14 +1580,6 @@
 			[
 				"upda",
 				"admin\\bbs\\update_bbs.php"
-			],
-			[
-				"bbs_li",
-				"admin\\bbs\\bbs_list.php"
-			],
-			[
-				"log",
-				"member\\login-ok.php"
 			]
 		],
 		"width": 0.0
