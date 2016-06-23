@@ -150,6 +150,27 @@ if ("edit" == $mode) {
 } else {
     // new member register
 
+    ########## 동일 정보 존재여부 확인. ##########
+    $query  = "SELECT * FROM member WHERE 1 ";
+    $result = mysqli_query($connect, $query);
+    $chkRow = mysqli_fetch_array($result);
+
+    if ($chkRow['license_no'] == $license_no) {
+        echo "<meta http-equiv='content-type' content='text/html; charset=UTF-8' />
+          <script>
+          window.alert('이미 등록된 사업자등록번호가 있습니다.');
+          history.go(-1);
+          </script>";
+        exit;
+    } elseif ($chkRow['id'] == $id) {
+        echo "<meta http-equiv='content-type' content='text/html; charset=UTF-8' />
+          <script>
+          window.alert('이미 등록된 ID가 있습니다.');
+          history.go(-1);
+          </script>";
+        exit;
+    }
+
     // $md_email = addslashes($md_email);
     // $o_addr1  = addslashes($o_addr1);
     // $o_addr2  = addslashes($o_addr2);
