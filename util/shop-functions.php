@@ -529,7 +529,7 @@ function show_sub_category($lcode)
     global $connect;
     $mode = set_var($_GET['mode']);
 
-    $m_qry     = "SELECT * FROM products_category2 WHERE up_category = '$lcode' ORDER BY name";
+    $m_qry     = "SELECT * FROM products_category2 WHERE up_category = '$lcode' AND del='N' ORDER BY name";
     $m_res     = mysqli_query($connect, $m_qry);
     $numOfRows = mysqli_num_rows($m_res);
 
