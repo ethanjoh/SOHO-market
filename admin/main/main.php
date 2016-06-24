@@ -262,6 +262,7 @@ if ($numOfBbs == 0) {
                               </tr>
 HEREDOC;
         } else {
+
             for ($j = 0; $rows2 = mysqli_fetch_array($result2); $j++) {
                 //날짜 형식을 바꾼다.
                 $post_date = substr($rows2['create_date'], 0, 10);
