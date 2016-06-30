@@ -699,11 +699,11 @@
 	],
 	"file_history":
 	[
+		"/C/wamp/www/shinsoo/admin/order/or_view.php",
 		"/C/wamp/www/shinsoo/util/util.php",
 		"/C/wamp/www/shinsoo/admin/include/header.php",
 		"/C/wamp/www/shinsoo/shop/order-list.php",
 		"/C/wamp/www/shinsoo/util/shop-functions.php",
-		"/C/wamp/www/shinsoo/admin/order/or_view.php",
 		"/C/wamp/www/shinsoo/member/register-ok.php",
 		"/C/wamp/www/shinsoo/member/login.php",
 		"/C/wamp/www/shinsoo/util/config.ini",
@@ -1069,6 +1069,10 @@
 		"selected_items":
 		[
 			[
+				"or",
+				"admin\\order\\or_view.php"
+			],
+			[
 				"ut",
 				"util\\util.php"
 			],
@@ -1311,10 +1315,6 @@
 			[
 				"orde",
 				"shop\\order-detail.php"
-			],
-			[
-				"or",
-				"admin\\order\\or_view.php"
 			],
 			[
 				"top",
