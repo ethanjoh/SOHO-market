@@ -384,6 +384,34 @@ echo $pay_status;
 
 // 결제수단 상세내역 보여주기
 show_pay_data($row['orderid']);
+
+//영수증 출력버튼
+// retrieve PG data
+$pg_sql    = "SELECT * FROM pg_info WHERE LGD_OID='$row[orderid]' ";
+$pg_result = mysqli_query($connect, $pg_sql);
+$pg_row    = mysqli_fetch_array($pg_result);
+
+$print_receipt = '';
+
+if ($row['status'] == '8') {
+
+    $authdata = md5($pg_row['LGD_MID'] . $pg_row['LGD_TID'] . $MERTKEY);
+
+    if ($pg_row['LGD_PAYTYPE'] == "SC0010") {
+        //신용카드 결제일 때
+        $print_receipt = '<a href="javascript:showReceiptByTID(\'' . $pg_row['LGD_MID'] . '\', \'' . $pg_row['LGD_TID'] . '\', \'' . $authdata . '\')"><i class="fa fa-print"></i> 카드전표 출력</a>';
+    } elseif ("SC0030" == $pg_row['LGD_PAYTYPE']) {
+                                //계좌이체일 때
+        $seqno         = "t/t"; //계좌이체는 임의의 정보 입력
+        $print_receipt = '<a href="javascript:showCashReceipts(\'' . $pg_row['LGD_MID'] . '\',\'' . $pg_row['LGD_OID'] . '\',\'' . $seqno . '\',\'BANK\',\'' . $CST_PLATFORM . '\')"><i class="fa fa-print"></i> 영수증 출력</a>';
+    } elseif ("SC0040" == $pg_row['LGD_PAYTYPE']) {
+        $seqno         = $pg_row['LGD_CASSEQNO'];
+        $print_receipt = '<a href="javascript:showCashReceipts(\'' . $pg_row['LGD_MID'] . '\',\'' . $pg_row['LGD_OID'] . '\',\'' . $seqno . '\',\'CAS\',\'' . $CST_PLATFORM . '\')"><i class="fa fa-print"></i> 영수증 출력</a>';
+    }
+
+    echo $print_receipt;
+}
+
 ?>
                                     </td>
 								  </tr>
@@ -542,17 +570,18 @@ if ($row['status'] == "8" || $row['status'] == "-1" && $row['delivery_type'] == 
 
     <script src="/admin/js/jquery-ui.min.js"></script>
     <script src="/admin/js/jq_datepicker.js" ></script>
-	<script>
-		 $("textarea").keyup(function() {
-		 	 $.post("add_memo.php", {
-		 	 	add_memo:$("textarea").val(),
-		 	 	oid:"<?php echo $oid; ?>",
-		 	 	key:"<?php echo $key; ?>",
-		 	 	keyword:"<?php echo $keyword; ?>",
-		 	 	page:"<?php echo $page; ?>"
-		 	 });
-		 });
-	</script>
+  	<script>
+  		 $("textarea").keyup(function() {
+  		 	 $.post("add_memo.php", {
+  		 	 	add_memo:$("textarea").val(),
+  		 	 	oid:"<?php echo $oid; ?>",
+  		 	 	key:"<?php echo $key; ?>",
+  		 	 	keyword:"<?php echo $keyword; ?>",
+  		 	 	page:"<?php echo $page; ?>"
+  		 	 });
+  		 });
+  	</script>
+    <script language="JavaScript" src="http://pgweb.uplus.co.kr/WEB_SERVER/js/receipt_link.js"></script>
   </body>
 </html>
 
