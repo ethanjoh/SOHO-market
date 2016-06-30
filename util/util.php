@@ -1575,7 +1575,7 @@ function get_pg_info($orderid)
 
                 } elseif ($pg_row['LGD_CASFLAG'] == "I") {
                     $pay_status    = '              <i class="fa fa-check-circle pay-color"></i> 입금완료' . "\r\n";
-                    $apply_receipt = $pg_row['LGD_CASHRECEIPTNUM'];
+                    $apply_receipt = $pg_row['LGD_CASHRECEIPTKIND'];
                     $pay_type      = 'BANK';
                 } elseif ($pg_row['LGD_CASFLAG'] == "C") {
                     $pay_status = '<i class="fa fa-times-circle"></i> 입금취소' . "\r\n";
@@ -1588,7 +1588,7 @@ function get_pg_info($orderid)
         case 'SC0030':
             if ($pg_row['LGD_RESPCODE'] == "0000") {
                 $pay_status    = '<i class="fa fa-check-circle pay-color"></i> 이체완료' . "\r\n";
-                $apply_receipt = $pg_row['LGD_CASHRECEIPTNUM'];
+                $apply_receipt = $pg_row['LGD_CASHRECEIPTKIND'];
                 $pay_type      = 'WIRE';
             } else {
                 $pay_status = '<i class="fa fa-exclamation-triangle fail-color"></i> 이체실패(' . $pg_row['LGD_RESPCODE'] . ')' . "\r\n";

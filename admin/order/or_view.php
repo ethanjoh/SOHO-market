@@ -373,7 +373,7 @@ $mrows = mysqli_fetch_array($res);
 // }
 
 if ($pg_info['pay_type'] == "WIRE" || $pg_info['pay_type'] == "BANK") {
-    if ($pg_info['apply_receipt'] == '') {
+    if ($pg_info['apply_receipt'] != '0' && $pg_info['apply_receipt'] != '1') {
         echo '<p><i class="fa fa-print" aria-hidden="true"></i> 현금영수증 미발행</p>';
     } else {
         echo '<p><i class="fa fa-print" aria-hidden="true"></i> 현금영수증 발급됨</p>';
@@ -393,7 +393,8 @@ $pg_row    = mysqli_fetch_array($pg_result);
 
 $print_receipt = '';
 
-if ($row['status'] == '8') {
+// if ($row['status'] == '8') {
+if ($pg_row['LGD_RESPCODE'] == '0000') {
 
     $authdata = md5($pg_row['LGD_MID'] . $pg_row['LGD_TID'] . $MERTKEY);
 
