@@ -1191,7 +1191,8 @@ function check_readyToSend_order()
 function show_login_form()
 {
     global $sslPort;
-    $uri = set_var($_POST['uri']);
+    $uri      = set_var($_POST['uri']);
+    $protocol = check_protocol($sslPort);
 
     echo <<<HEREDOC
         <!-- start login_form_area
@@ -1202,7 +1203,7 @@ function show_login_form()
                     <div class="col-md-6 client-say">
                         <div class="login-form-head">
                             <h2>기업회원 로그인</h2>
-                            <form method="post" name="login" action="//{$_SERVER['SERVER_NAME']}:{$sslPort}/member/login-ok.php" onsubmit="return(login_check());">
+                            <form method="post" name="login" action="{$protocol}//{$_SERVER['SERVER_NAME']}:{$sslPort}/member/login-ok.php" onsubmit="return(login_check());">
                             <input type="hidden" name="uri" value="{$uri}">
 
                             <div class="login-form">
@@ -1232,7 +1233,7 @@ function show_login_form()
                     <div class="col-md-6 client-say">
                         <div class="login-form-head">
                             <h2>개인회원 로그인</h2>
-                            <form method="post" name="p_login" action="//{$_SERVER['SERVER_NAME']}:{$sslPort}/member/p-login-ok.php" onsubmit="return(p_login_check());">
+                            <form method="post" name="p_login" action="{$protocol}//{$_SERVER['SERVER_NAME']}:{$sslPort}/member/p-login-ok.php" onsubmit="return(p_login_check());">
                             <input type="hidden" name="uri" value="{$uri}">
 
                             <div class="login-form">

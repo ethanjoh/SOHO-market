@@ -102,7 +102,7 @@ if ($sessionId) {
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <address>
                                 Copyright ©
-                                <a href="#">신수상사</a>
+                                <?php echo $com_info['company_name']; ?>
                                 All Rights Reserved
                             </address>
                         </div>
@@ -128,9 +128,6 @@ if ($sessionId) {
         </div>
         <!-- end scrollUp
 		============================================ -->
-
-
-
 
 		<!-- jquery
 		============================================ -->
