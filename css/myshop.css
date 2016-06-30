@@ -70,7 +70,7 @@ custom style
 }
 
 .product-content span.product-option {
-    background: #B2B2B2 none repeat scroll 0 0;
+    /*background: #B2B2B2 none repeat scroll 0 0;*/
     border-radius: 2px;
     padding: 0 5px;
     color: #fff;

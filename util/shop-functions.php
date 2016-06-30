@@ -255,8 +255,9 @@ function show_items_on_main($newOrBest, $howManyItems)
             $pnum       = $rows['num'];
             $category_l = $rows['category_l'];
             $category_m = $rows['category_m'];
-            $option     = $rows['opt'];
-            $moq        = $rows['moq'];
+            // $option     = $rows['opt'];
+            $option = show_option($pnum);
+            $moq    = $rows['moq'];
 
             $calcWholesalePrice = show_me_wholesale_price($pnum);
 
@@ -291,7 +292,7 @@ HEREDOC;
 
             echo <<<HEREDOC
                                             </div>
-                                            <h2 class="product-name"><a href="detail.php?pnum={$pnum}&lcode={$category_l}&mcode={$category_m}">{$itemName}</a> <span class="product-option">[{$option}]</span></h2>
+                                            <h2 class="product-name"><a href="detail.php?pnum={$pnum}&lcode={$category_l}&mcode={$category_m}">{$itemName}</a> <span class="product-option">{$option}</span></h2>
                                             <div class="product-icon">
 HEREDOC;
 
