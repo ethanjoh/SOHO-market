@@ -1,4 +1,5 @@
 <?php
+
 include_once "../../util/util.php";
 
 $mode     = set_var($_POST['mode']);

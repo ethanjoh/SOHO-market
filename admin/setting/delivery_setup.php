@@ -32,6 +32,7 @@
 
 
           <?php
+
 $qry   = "SELECT * FROM misc_setup ";
 $res   = mysqli_query($connect, $qry);
 $total = mysqli_num_rows($res);
