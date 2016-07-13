@@ -695,27 +695,32 @@
 	[
 		"/C/wamp/www/shinsoo",
 		"/C/wamp/www/shinsoo/images",
+		"/C/wamp/www/shinsoo/images/brand",
 		"/C/wamp/www/shinsoo/member",
 		"/C/wamp/www/shinsoo/util"
 	],
 	"file_history":
 	[
+		"/C/wamp/www/shinsoo/include/brands.php",
+		"/C/wamp/www/shinsoo/css/style.css",
+		"/C/wamp/www/shinsoo/util/util.php",
+		"/C/Users/Seonghyeon/AppData/Roaming/Sublime Text 3/Packages/User/SFTP.errors.log",
+		"/C/wamp/www/shinsoo/sftp-config.json",
+		"/C/wamp/www/shinsoo/admin/member/mem_view_member.php",
+		"/C/wamp/www/shinsoo/admin/member/p_mem_view_member.php",
 		"/C/wamp/bin/apache/apache2.4.9/conf/extra/httpd-vhosts.conf",
 		"/C/Users/Seonghyeon/Downloads/hosts",
 		"/C/wamp/www/shinsoo/member/register-form.php",
-		"/C/wamp/www/shinsoo/admin/member/mem_view_member.php",
 		"/C/wamp/www/shinsoo/admin/setting/delivery_setup.php",
 		"/C/wamp/www/shinsoo/admin/bbs/bbs_list.php",
 		"/C/wamp/www/shinsoo/bbs/post.php",
 		"/C/wamp/www/shinsoo/admin/bbs/update_bbs.php",
 		"/C/wamp/www/shinsoo/admin/setting/admin_setup.php",
 		"/C/wamp/www/shinsoo/shop/detail.php",
-		"/C/wamp/www/shinsoo/util/util.php",
 		"/C/wamp/www/shinsoo/css/myshop.css",
 		"/C/wamp/www/shinsoo/util/shop-functions.php",
 		"/C/wamp/www/shinsoo/shop/index.php",
 		"/C/wamp/www/shinsoo/css/owl.carousel.css",
-		"/C/wamp/www/shinsoo/include/brands.php",
 		"/C/wamp/www/shinsoo/js/main.js",
 		"/C/wamp/www/shinsoo/include/footer.php",
 		"/C/wamp/www/shinsoo/admin/index.php",
@@ -742,7 +747,6 @@
 		"/C/wamp/www/shinsoo/include/header.php",
 		"/C/wamp/www/shinsoo/member/p-register-form.php",
 		"/C/wamp/www/shinsoo/bbs/read.php",
-		"/C/wamp/www/shinsoo/css/style.css",
 		"/C/wamp/www/shinsoo/css/responsive.css",
 		"/C/wamp/www/smedics/include/header.php",
 		"/C/wamp/www/smedics/util/util.php",
@@ -774,7 +778,6 @@
 		"/C/wamp/www/shinsoo/admin/include/admin_head.php",
 		"/C/wamp/www/shinsoo/shop/order-detail.php",
 		"/C/wamp/www/shinsoo/mail/join-confirmation.html",
-		"/C/wamp/www/shinsoo/admin/member/p_mem_view_member.php",
 		"/C/wamp/www/shinsoo/admin/member/top_member_list.php",
 		"/C/wamp/www/shinsoo/util/test.php",
 		"/C/wamp/www/shinsoo/mail/join-confirmation.txt",
@@ -807,7 +810,6 @@
 		"/C/wamp/www/shinsoo/images/brand/golftiger_logo.svg",
 		"/C/wamp/www/shinsoo/member/about-us.php",
 		"/C/wamp/www/shinsoo/shop/catalog-list.php",
-		"/C/wamp/www/shinsoo/sftp-config.json",
 		"/C/wamp/www/shinsoo/member/help.php",
 		"/C/wamp/www/shinsoo/pay/sample_crossplatform.html",
 		"/C/wamp/www/cocokorea/.gitignore",
@@ -826,8 +828,7 @@
 		"/C/wamp/www/shinsoo/admin/order/edit_pro.php",
 		"/C/wamp/www/shinsoo/admin/css/style.css",
 		"/C/Users/Seonghyeon/Google 드라이브/git_project/prixe/admin/main.php",
-		"/C/wamp/www/shinsoo/member/login-ok.php",
-		"/C/wamp/www/shinsoo/js/wow.min.js"
+		"/C/wamp/www/shinsoo/member/login-ok.php"
 	],
 	"find":
 	{
@@ -1070,6 +1071,26 @@
 		"selected_items":
 		[
 			[
+				"style",
+				"css\\style.css"
+			],
+			[
+				"util",
+				"util\\util.php"
+			],
+			[
+				"bra",
+				"include\\brands.php"
+			],
+			[
+				"mem_vi",
+				"admin\\member\\mem_view_member.php"
+			],
+			[
+				"p_mem",
+				"admin\\member\\p_mem_view_member.php"
+			],
+			[
 				"post",
 				"bbs\\post.php"
 			],
@@ -1176,10 +1197,6 @@
 			[
 				"order",
 				"shop\\order-list.php"
-			],
-			[
-				"util",
-				"util\\util.php"
 			],
 			[
 				"conf",
@@ -1294,10 +1311,6 @@
 				"shop\\order-detail.php"
 			],
 			[
-				"p_mem",
-				"admin\\member\\p_mem_view_member.php"
-			],
-			[
 				"mem_vie",
 				"admin\\member\\mem_view_member.php"
 			],
@@ -1410,10 +1423,6 @@
 				"admin\\order\\top_order_list.php"
 			],
 			[
-				"bra",
-				"include\\brands.php"
-			],
-			[
 				"previ",
 				"lib\\css\\preview.css"
 			],
@@ -1484,10 +1493,6 @@
 			[
 				"return",
 				"pay\\returnurl.php"
-			],
-			[
-				"style",
-				"css\\style.css"
 			],
 			[
 				"get",
@@ -1576,10 +1581,6 @@
 			[
 				"conta",
 				"member\\inc\\contract1.html"
-			],
-			[
-				"priva",
-				"member\\privacy-policy.php"
 			]
 		],
 		"width": 0.0
