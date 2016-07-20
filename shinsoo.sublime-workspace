@@ -701,8 +701,9 @@
 	],
 	"file_history":
 	[
-		"/C/wamp/www/shinsoo/include/brands.php",
 		"/C/wamp/www/shinsoo/css/style.css",
+		"/C/wamp/www/shinsoo/shop/detail.php",
+		"/C/wamp/www/shinsoo/include/brands.php",
 		"/C/wamp/www/shinsoo/util/util.php",
 		"/C/Users/Seonghyeon/AppData/Roaming/Sublime Text 3/Packages/User/SFTP.errors.log",
 		"/C/wamp/www/shinsoo/sftp-config.json",
@@ -716,7 +717,6 @@
 		"/C/wamp/www/shinsoo/bbs/post.php",
 		"/C/wamp/www/shinsoo/admin/bbs/update_bbs.php",
 		"/C/wamp/www/shinsoo/admin/setting/admin_setup.php",
-		"/C/wamp/www/shinsoo/shop/detail.php",
 		"/C/wamp/www/shinsoo/css/myshop.css",
 		"/C/wamp/www/shinsoo/util/shop-functions.php",
 		"/C/wamp/www/shinsoo/shop/index.php",
@@ -832,7 +832,7 @@
 	],
 	"find":
 	{
-		"height": 55.0
+		"height": 54.0
 	},
 	"find_in_files":
 	{
@@ -861,6 +861,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"width",
 			"makecard",
 			"pg_row",
 			"$name",
@@ -987,8 +988,7 @@
 			"calcWholesalePrice",
 			"show_me_wholesale_price",
 			"show_item_info",
-			"img",
-			"simg1_chk"
+			"img"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1071,6 +1071,14 @@
 		"selected_items":
 		[
 			[
+				"deta",
+				"shop\\detail.php"
+			],
+			[
+				"sty",
+				"css\\style.css"
+			],
+			[
 				"style",
 				"css\\style.css"
 			],
@@ -1121,10 +1129,6 @@
 			[
 				"my",
 				"css\\myshop.css"
-			],
-			[
-				"deta",
-				"shop\\detail.php"
 			],
 			[
 				"owl",
@@ -1253,10 +1257,6 @@
 			[
 				"in",
 				"shop\\index.php"
-			],
-			[
-				"sty",
-				"css\\style.css"
 			],
 			[
 				"styl",

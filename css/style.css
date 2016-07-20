@@ -55,8 +55,9 @@ img {
     height: auto;
 }
 
-#desc img, #bbs_contents img {
-    width: 100% !important;
+#desc img,
+#bbs_contents img {
+    max-width: 100% !important;
     height: auto !important;
 
 }
