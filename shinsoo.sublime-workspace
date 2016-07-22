@@ -694,12 +694,14 @@
 	"expanded_folders":
 	[
 		"/C/wamp/www/shinsoo",
-		"/C/wamp/www/shinsoo/bbs/upload",
 		"/C/wamp/www/shinsoo/member",
 		"/C/wamp/www/shinsoo/util"
 	],
 	"file_history":
 	[
+		"/C/wamp/www/shinsoo/admin/category/ca_msub_list.php",
+		"/C/wamp/www/shinsoo/shop/catalog-list.php",
+		"/C/wamp/www/shinsoo/util/shop-functions.php",
 		"/C/Users/Seonghyeon/Google 드라이브/git_project/prixe/member/register_ok.php",
 		"/C/wamp/www/shinsoo/member/register-ok.php",
 		"/C/wamp/www/shinsoo/member/checkAvail.php",
@@ -709,7 +711,6 @@
 		"/C/wamp/www/shinsoo/bbs/post.php",
 		"/C/wamp/www/shinsoo/util/config.ini",
 		"/C/wamp/www/shinsoo/js/shopping.js",
-		"/C/wamp/www/shinsoo/util/shop-functions.php",
 		"/C/wamp/www/shinsoo/util/util.php",
 		"/C/wamp/www/shinsoo/admin/setting/popup_setup_ok.php",
 		"/C/wamp/www/shinsoo/admin/include/admin_footer.php",
@@ -793,7 +794,6 @@
 		"/C/wamp/www/shinsoo/images/brand/tigerchoi_logo.svg",
 		"/C/wamp/www/shinsoo/images/brand/golftiger_logo.svg",
 		"/C/wamp/www/shinsoo/member/about-us.php",
-		"/C/wamp/www/shinsoo/shop/catalog-list.php",
 		"/C/wamp/www/shinsoo/admin/setting/admin_setup.php",
 		"/C/wamp/www/shinsoo/sftp-config.json",
 		"/C/wamp/www/shinsoo/shop/detail.php",
@@ -826,8 +826,7 @@
 		"/C/wamp/www/shinsoo/member/delivery-policy.php",
 		"/C/wamp/www/shinsoo/member/privacy-policy.php",
 		"/C/wamp/www/shinsoo/member/inc/contract1.html",
-		"/C/wamp/www/shinsoo/member/inc/rule.html",
-		"/C/wamp/www/shinsoo/member/php/contact-form.php"
+		"/C/wamp/www/shinsoo/member/inc/rule.html"
 	],
 	"find":
 	{
@@ -1069,6 +1068,14 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"ca_msu",
+				"admin\\category\\ca_msub_list.php"
+			],
+			[
+				"cata",
+				"shop\\catalog-list.php"
+			],
 			[
 				"regis",
 				"member\\register-ok.php"
@@ -1390,10 +1397,6 @@
 				"admin\\setting\\admin_setup.php"
 			],
 			[
-				"cata",
-				"shop\\catalog-list.php"
-			],
-			[
 				"he",
 				"include\\header.php"
 			],
@@ -1546,10 +1549,6 @@
 				"admin\\category\\ca_msub_list.php"
 			],
 			[
-				"ca_msu",
-				"admin\\category\\ca_msub_delete.php"
-			],
-			[
 				"ca_inse",
 				"admin\\category\\ca_insert.php"
 			],
@@ -1614,7 +1613,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 383.0,
+	"side_bar_width": 243.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
