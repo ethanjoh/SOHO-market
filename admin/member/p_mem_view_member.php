@@ -16,12 +16,12 @@ $query  = "SELECT * FROM p_member WHERE seq_num='$num' ";
 $result = mysqli_query($connect, $query);
 $rows   = mysqli_fetch_array($result);
 
-$hphone = explode("-", $rows['hphone']);
-// $o_zipno  = explode("-", $rows['o_zipcode']);
-$o_phone = explode("-", $rows['o_phone']);
-// $d_zipno  = explode("-", $rows['d_zipcode']);
+$hphone   = explode("-", $rows['hphone']);
+$o_phone  = explode("-", $rows['o_phone']);
 $d_phone  = explode("-", $rows['d_phone']);
 $d_hphone = explode("-", $rows['d_hphone']);
+
+$protocol = check_protocol($sslPort);
 ?>
 
             <!-- member info start -->
@@ -32,7 +32,7 @@ $d_hphone = explode("-", $rows['d_hphone']);
                       개인회원 정보수정/관리
                   </header>
                   <div class="panel-body">
-                  <form name="form1" role="form" class="form-inline" method="post" action="//<?php echo $_SERVER['SERVER_NAME']; ?>:<?php echo $sslPort; ?>/admin/member/p_mem_edit_member.php">
+                  <form name="form1" role="form" class="form-inline" method="post" action="<?php echo $protocol; ?>//<?php echo $_SERVER['SERVER_NAME']; ?>:<?php echo $sslPort; ?>/admin/member/p_mem_edit_member.php">
                     <input type="hidden" name="num" value="<?php echo $num; ?>">
                     <input type="hidden" name="sms" value="<?php echo $rows['sms']; ?>">
                     <input type="hidden" name="page" value="<?php echo $page; ?>">
@@ -274,7 +274,8 @@ if ($rows['sms'] == "Y") {
                             <th>기본할인율</th>
                             <td>
                               <input type="text" class="form-control" name="dc_rate" value="<?php echo $rows['dc_rate']; ?>" size="3"/> % DC
-                              <?php
+<?php
+
 switch ($rows['tax']) {
     case "E":
         echo '<input type="radio" name="tax" value="E" checked >(VAT 별도)
@@ -291,7 +292,8 @@ switch ($rows['tax']) {
                           <tr>
                             <th> 승인상태 </th>
                             <td>
-                              <?php
+<?php
+
 switch ($rows['approved']) {
     case "Y":
         echo "<input type=\"radio\" name=\"approved\" value=\"Y\" checked />승인

@@ -10,7 +10,8 @@ $reply_no = set_var($_POST['reply_no']);
 $p_id   = set_var($_SESSION['p_id']);
 $p_name = set_var($_SESSION['p_name']);
 
-$s_sql = '';
+$s_sql    = '';
+$protocol = check_protocol($sslPort);
 
 if ($mode == "search") {
     switch ($key) {
@@ -327,7 +328,7 @@ switch ($writable) {
                 <h4 class="modal-title" id="myModalLabel">게시판 관리자 로그인</h4>
               </div>
               <div class="modal-body">
-                  <form method="post" name="login" class="loginform" action="//<?php echo $_SERVER['SERVER_NAME']; ?>:<?php echo $sslPort; ?>/bbs/login_ok.php" onsubmit="JavaScript:return(admin_login_check());">
+                  <form method="post" name="login" class="loginform" action="<?php echo $protocol; ?>//<?php echo $_SERVER['SERVER_NAME']; ?>:<?php echo $sslPort; ?>/bbs/login_ok.php" onsubmit="JavaScript:return(admin_login_check());">
                   <input type="hidden" name="main_no"  value="<?php echo $main_no; ?>">
                   <input type="hidden" name="reply_no" value="<?php echo $reply_no; ?>">
                   <input type="hidden" name="code"     value="<?php echo $code; ?>">

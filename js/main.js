@@ -74,9 +74,9 @@
 owl active index-3 start
 ------------------------------ */
     $(".item_all").owlCarousel({
-        autoPlay: false,
-        slideSpeed: 2000,
-        items: 6,
+        autoPlay: true,
+        slideSpeed: 1500,
+        items: 5,
         pagination: false,
         navigation: true,
         navigationText: ["<i class='fa fa-chevron-left'></i>", "<i class='fa fa-chevron-right'></i>"],

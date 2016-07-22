@@ -624,13 +624,13 @@ function show_option($pnum)
 
         if ($opt_stock[$i] == 0) {
             if ($rows['restock_date'] == "1111-00-00") {
-                $opt[$i] .= "(품절 - 재입고 미정)";
+                $opt[$i] .= " (품절)";
                 $dis[$i] .= "disabled";
             } else if ($rows['restock_date'] == "0000-00-00") {
-                $opt[$i] .= "<br/>(품절 - 재입고일 미입력)";
+                $opt[$i] .= "<br/>(품절)";
                 $dis[$i] .= "disabled";
             } else {
-                $opt[$i] .= "(품절 - " . $rows['restock_date'] . " 재입고 예정)";
+                $opt[$i] .= " (품절)";
                 $dis[$i] .= "disabled";
             }
         } else if ($opt_stock[$i] == -1) {
@@ -650,7 +650,7 @@ function show_option($pnum)
             $selected = "";
         }
 
-        $ret .= '<option value="' . trim($opt[$i]) . '' . $selected . '' . $dis[$i] . '">' . $opt[$i] . '</option>';
+        $ret .= '<option value="' . trim($opt[$i]) . ' ' . $selected . '". ' . $dis[$i] . '>' . $opt[$i] . '</option>';
     } // for end
     $ret .= '</select>';
 
@@ -1356,6 +1356,7 @@ function check_new_post($code, $main_no, $day)
 /* 메뉴에서 사용하는 함수 */
 function check_new_last_post($connect, $code, $day)
 {
+    $newIcon  = '';
     $bbs_name = "bbs_" . $code;
 
     $sql    = "SELECT * FROM $bbs_name ORDER BY main_no DESC LIMIT 1";
@@ -1574,7 +1575,7 @@ function get_pg_info($orderid)
 
                 } elseif ($pg_row['LGD_CASFLAG'] == "I") {
                     $pay_status    = '              <i class="fa fa-check-circle pay-color"></i> 입금완료' . "\r\n";
-                    $apply_receipt = $pg_row['LGD_CASHRECEIPTNUM'];
+                    $apply_receipt = $pg_row['LGD_CASHRECEIPTKIND'];
                     $pay_type      = 'BANK';
                 } elseif ($pg_row['LGD_CASFLAG'] == "C") {
                     $pay_status = '<i class="fa fa-times-circle"></i> 입금취소' . "\r\n";
@@ -1587,7 +1588,7 @@ function get_pg_info($orderid)
         case 'SC0030':
             if ($pg_row['LGD_RESPCODE'] == "0000") {
                 $pay_status    = '<i class="fa fa-check-circle pay-color"></i> 이체완료' . "\r\n";
-                $apply_receipt = $pg_row['LGD_CASHRECEIPTNUM'];
+                $apply_receipt = $pg_row['LGD_CASHRECEIPTKIND'];
                 $pay_type      = 'WIRE';
             } else {
                 $pay_status = '<i class="fa fa-exclamation-triangle fail-color"></i> 이체실패(' . $pg_row['LGD_RESPCODE'] . ')' . "\r\n";
@@ -2191,7 +2192,10 @@ function restore_option($row)
         <input name="opt_stock['{$i}']" type="radio" value="1" {$a} />재고 있음&nbsp;
         <input name="opt_stock['{$i}']" type="radio" value="0" {$b} />품절&nbsp;
         <input name="opt_stock['{$i}']" type="radio" value="-1" {$c} />단종
+
 HEREDOC;
+
+        echo "<br>";
     }
 }
 

@@ -11,7 +11,9 @@ if (preg_match('/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|
 
 <?php include_once '../include/header.php';?>
 
-        <form name="LGD_PAYINFO" id="LGD_PAYINFO" method="post" action="http://<?php echo $_SERVER['SERVER_NAME']; ?>:<?php echo $sslPort; ?><?php echo $payUrl; ?>">
+<?php $protocol = check_protocol($sslPort);?>
+
+        <form name="LGD_PAYINFO" id="LGD_PAYINFO" method="post" action="<?php echo $payUrl; ?>">
         <section class="collapse_area">
             <div class="container">
                 <div class="row">
