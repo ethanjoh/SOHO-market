@@ -53,11 +53,11 @@
 			],
 			[
 				"receiver",
-				"receiver_name	(payres.php)"
+				"receiver_name\t(payres.php)"
 			],
 			[
 				"te",
-				"template	(util.php)"
+				"template\t(util.php)"
 			],
 			[
 				"cate",
@@ -105,7 +105,7 @@
 			],
 			[
 				"site",
-				"site_name	(util.php)"
+				"site_name\t(util.php)"
 			],
 			[
 				"pass",
@@ -149,7 +149,7 @@
 			],
 			[
 				"dat",
-				"dataType	(addcart.js)"
+				"dataType\t(addcart.js)"
 			],
 			[
 				"PHP",
@@ -297,7 +297,7 @@
 			],
 			[
 				"ac",
-				"action	Attr"
+				"action\tAttr"
 			],
 			[
 				"font",
@@ -329,7 +329,7 @@
 			],
 			[
 				"se",
-				"section	Tag"
+				"section\tTag"
 			],
 			[
 				"new",
@@ -449,7 +449,7 @@
 			],
 			[
 				"ta",
-				"target	Attr"
+				"target\tAttr"
 			],
 			[
 				"res_1",
@@ -461,7 +461,7 @@
 			],
 			[
 				"on",
-				"onclick	Attr"
+				"onclick\tAttr"
 			],
 			[
 				"da",
@@ -694,13 +694,19 @@
 	"expanded_folders":
 	[
 		"/C/wamp/www/shinsoo",
-		"/C/wamp/www/shinsoo/images",
-		"/C/wamp/www/shinsoo/images/brand",
-		"/C/wamp/www/shinsoo/member",
-		"/C/wamp/www/shinsoo/util"
+		"/C/wamp/www/shinsoo/pay"
 	],
 	"file_history":
 	[
+		"/C/wamp/www/shinsoo/pay/cas_noteurl.php",
+		"/C/wamp/www/shinsoo/pay/r_log.txt",
+		"/C/wamp/www/shinsoo/pay/save_wireinfo_to_db.php",
+		"/C/Users/Seonghyeon/Downloads/LGU+_XPay_Crossplatform/LGU+_XPay_Crossplatform_PHP/cas_noteurl.php",
+		"/C/wamp/www/shinsoo/pay/result_log.txt",
+		"/C/wamp/www/shinsoo/pay/variables_from_payreq.php",
+		"/C/wamp/www/shinsoo/pay/returnurl.php",
+		"/C/wamp/www/shinsoo/pay/save_pginfo_to_db.php",
+		"/C/wamp/www/shinsoo/pay/payres.php",
 		"/C/wamp/www/shinsoo/css/style.css",
 		"/C/wamp/www/shinsoo/shop/detail.php",
 		"/C/wamp/www/shinsoo/include/brands.php",
@@ -773,29 +779,22 @@
 		"/C/wamp/www/shinsoo/mail/order-detail.html",
 		"/C/wamp/www/shinsoo/pay/payres_email.php",
 		"/C/wamp/www/shinsoo/pay/payres_org.php",
-		"/C/wamp/www/shinsoo/pay/payres.php",
-		"/C/wamp/www/shinsoo/pay/variables_from_payreq.php",
 		"/C/wamp/www/shinsoo/admin/include/admin_head.php",
 		"/C/wamp/www/shinsoo/shop/order-detail.php",
 		"/C/wamp/www/shinsoo/mail/join-confirmation.html",
 		"/C/wamp/www/shinsoo/admin/member/top_member_list.php",
 		"/C/wamp/www/shinsoo/util/test.php",
 		"/C/wamp/www/shinsoo/mail/join-confirmation.txt",
-		"/C/wamp/www/shinsoo/pay/cas_noteurl.php",
 		"/C/Users/Seonghyeon/Downloads/source/inc/php/functions.php",
 		"/C/wamp/www/shinsoo/admin/member/p_top_member_list.php",
 		"/C/Users/Seonghyeon/Downloads/source/signup_template.html",
-		"/C/wamp/www/shinsoo/pay/save_wireinfo_to_db.php",
 		"/C/wamp/www/shinsoo/admin/products/top_pro_list.php",
 		"/C/wamp/www/shinsoo/admin/order/top_order_list.php",
 		"/C/wamp/www/shinsoo/admin/order/p_or_view.php",
-		"/C/Users/Seonghyeon/Downloads/LGU+_XPay_Crossplatform/LGU+_XPay_Crossplatform_PHP/cas_noteurl.php",
 		"/C/Users/Seonghyeon/Google 드라이브/git_project/prixe/robots.txt",
 		"/C/wamp/www/shinsoo/admin/order/or_changed.php",
 		"/C/wamp/www/shinsoo/admin/stats/mem_stat_list.php",
 		"/C/wamp/www/shinsoo/include/analyticstracking.php",
-		"/C/wamp/www/shinsoo/pay/save_pginfo_to_db.php",
-		"/C/wamp/www/shinsoo/pay/returnurl.php",
 		"/C/wamp/www/shinsoo/admin/member/p_mem_edit_member.php",
 		"/C/wamp/www/shinsoo/admin/member/mem_edit_member.php",
 		"/C/wamp/www/shinsoo/admin/order/p_top_order_list.php",
@@ -826,9 +825,7 @@
 		"/C/wamp/www/shinsoo/admin/order/print_quot.php",
 		"/C/wamp/www/shinsoo/admin/setting/delivery_setup_ok.php",
 		"/C/wamp/www/shinsoo/admin/order/edit_pro.php",
-		"/C/wamp/www/shinsoo/admin/css/style.css",
-		"/C/Users/Seonghyeon/Google 드라이브/git_project/prixe/admin/main.php",
-		"/C/wamp/www/shinsoo/member/login-ok.php"
+		"/C/wamp/www/shinsoo/admin/css/style.css"
 	],
 	"find":
 	{
@@ -861,6 +858,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"OK",
+			"$resultMSG = \"OK\";",
 			"width",
 			"makecard",
 			"pg_row",
@@ -986,9 +985,7 @@
 			"show_me_wholesale_price",
 			"hiddenPrice",
 			"calcWholesalePrice",
-			"show_me_wholesale_price",
-			"show_item_info",
-			"img"
+			"show_me_wholesale_price"
 		],
 		"highlight": true,
 		"in_selection": false,

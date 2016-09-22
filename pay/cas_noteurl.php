@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 require_once '../util/util.php';
 
 /*
@@ -51,11 +51,11 @@ $LGD_MERTKEY   = $MERTKEY;
 $LGD_HASHDATA2 = md5($LGD_MID . $LGD_OID . $LGD_AMOUNT . $LGD_RESPCODE . $LGD_TIMESTAMP . $LGD_MERTKEY);
 
 // debug 현금영수증 승인번호
-$re   = 'LGD_OID: ' . $LGD_OID . ' - RECEIPT NO: ' . $LGD_CASHRECEIPTNUM . "\n";
-$txt  = print_r($re, true);
-$file = fopen("r_log.txt", "a+b");
-fwrite($file, $txt);
-fclose($file);
+// $re   = 'LGD_OID: ' . $LGD_OID . ' - RECEIPT NO: ' . $LGD_CASHRECEIPTNUM . "\n";
+// $txt  = print_r($re, true);
+// $file = fopen("r_log.txt", "a+b");
+// fwrite($file, $txt);
+// fclose($file);
 
 /*
  * 상점 처리결과 리턴메세지
@@ -99,6 +99,13 @@ if ($LGD_HASHDATA2 == $LGD_HASHDATA) {
             require_once 'save_wireinfo_to_db.php';
             //if( 무통장 입금 성공 상점처리결과 성공 )
             // $resultMSG = "OK";
+
+            // debug
+            // $re   = '$LGD_CASFLAG: ' . $LGD_CASFLAG . ' - $resultMSG: ' . $resultMSG . "\n";
+            // $txt  = print_r($re, true);
+            // $file = fopen("r_log.txt", "a+b");
+            // fwrite($file, $txt);
+            // fclose($file);
 
         } else if ($LGD_CASFLAG == "C") {
             /*
