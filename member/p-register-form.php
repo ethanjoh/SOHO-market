@@ -1,10 +1,11 @@
 <?php include_once '../include/header.php';?>
 
 <?php
-
 $p_id   = set_var($_SESSION['p_id']);
 $p_name = set_var($_SESSION['p_name']);
 $mode   = set_var($_GET['mode']);
+
+$protocol = check_protocol($sslPort);
 ?>
 				<section class="main_shop_area">
 						<div class="breadcrumbs">
@@ -76,7 +77,7 @@ if ($mode == "edit") {
 										<div class="panel panel-danger">
 										<div class="panel-heading"><h4>비밀번호 변경</h4></div>
 											<div class="panel-body">
-												<form name="pw_form" id="pw_form" role="form" class="form-group" method="post" action="//<?php echo $_SERVER['SERVER_NAME']; ?>:<?php echo $sslPort; ?>/member/p-change-passwd-ok.php">
+												<form name="pw_form" id="pw_form" role="form" class="form-group" method="post" action="<?php echo $protocol; ?>//<?php echo $_SERVER['SERVER_NAME']; ?>:<?php echo $sslPort; ?>/member/p-change-passwd-ok.php">
 												<input type="hidden" name="session_id" value="<?php echo $p_id; ?>">
 												<input type="hidden" name="session_name" value="<?php echo $p_name; ?>">
 
@@ -110,7 +111,7 @@ if ($mode == "edit") {
 										</div>
 												</form>
 
-									<form name="form1" id="form1" role="form" class="form-group" method="post" action="//<?php echo $_SERVER['SERVER_NAME']; ?>:<?php echo $sslPort; ?>/member/register-ok.php">
+									<form name="form1" id="form1" role="form" class="form-group" method="post" action="<?php echo $protocol; ?>//<?php echo $_SERVER['SERVER_NAME']; ?>:<?php echo $sslPort; ?>/member/register-ok.php">
 									<input type="hidden" name="mode" value="edit">
 									<input type="hidden" name="session_id" value="<?php echo $p_id; ?>">
 									<input type="hidden" name="session_name" value="<?php echo $p_name; ?>">
@@ -413,7 +414,7 @@ if ($mode == "edit") {
 Start Register Form =============================================================
  -->
 
-							<form name="form1" id="form1" role="form" class="form-group" method="post" action="//<?php echo $_SERVER['SERVER_NAME']; ?>:<?php echo $sslPort; ?>/member/p-register-ok.php">
+							<form name="form1" id="form1" role="form" class="form-group" method="post" action="<?php echo $protocol; ?>//<?php echo $_SERVER['SERVER_NAME']; ?>:<?php echo $sslPort; ?>/member/p-register-ok.php">
 									<div class="panel panel-info margin-top-10">
 										<div class="panel-heading"><h4>기본정보</h4></div>
 											<div class="panel-body">
