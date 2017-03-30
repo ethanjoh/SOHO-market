@@ -519,33 +519,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "member/p-register-form.php",
-			"settings":
-			{
-				"buffer_size": 31521,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "member/register-form.php",
-			"settings":
-			{
-				"buffer_size": 40302,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "member/p-register-ok.php",
-			"settings":
-			{
-				"buffer_size": 6533,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -720,11 +693,24 @@
 	},
 	"expanded_folders":
 	[
-		"/C/wamp/www/shinsoo",
-		"/C/wamp/www/shinsoo/member"
+		"/C/wamp64/www/shinsoo",
+		"/C/wamp64/www/shinsoo/bbs",
+		"/C/wamp64/www/shinsoo/js",
+		"/C/wamp64/www/shinsoo/smartpay"
 	],
 	"file_history":
 	[
+		"/C/wamp64/www/shinsoo/util/util.php",
+		"/C/wamp64/www/shinsoo/css/main.css",
+		"/C/wamp64/www/shinsoo/bbs/read.php",
+		"/C/wamp64/www/shinsoo/css/responsive.css",
+		"/C/wamp64/www/shinsoo/include/footer.php",
+		"/C/wamp64/www/shinsoo/js/shopping.js",
+		"/C/wamp64/www/shinsoo/member/contact-us.php",
+		"/C/wamp64/www/shinsoo/shop/index.php",
+		"/C/wamp64/www/shinsoo/member/p-register-form.php",
+		"/C/wamp64/www/shinsoo/member/register-form.php",
+		"/C/wamp64/www/shinsoo/member/p-register-ok.php",
 		"/C/wamp/www/shinsoo/pay/cas_noteurl.php",
 		"/C/wamp/www/shinsoo/pay/r_log.txt",
 		"/C/wamp/www/shinsoo/pay/save_wireinfo_to_db.php",
@@ -841,22 +827,11 @@
 		"/C/wamp/www/cocokorea/.gitignore",
 		"/C/Users/Seonghyeon/Downloads/LGU+_XPay_Crossplatform/LGU+_XPay_Crossplatform_PHP/payreq_crossplatform.php",
 		"/C/wamp/www/shinsoo/pay/payreq_crossplatform.org.php",
-		"/C/wamp/www/shinsoo/shop/cart.php",
-		"/C/wamp/www/shinsoo/pay/checkout.php",
-		"/C/wamp/www/shinsoo/js/jquery.meanmenu.js",
-		"/C/wamp/www/shinsoo/get-product.php",
-		"/C/wamp/www/shinsoo/admin/member/p_mem_delete_member.php",
-		"/C/wamp/www/shinsoo/admin/order/or_delete.php",
-		"/C/wamp/www/shinsoo/lgpay/conf/mall.conf",
-		"/C/wamp/www/shinsoo/bbs/upload.php",
-		"/C/wamp/www/shinsoo/admin/order/print_quot.php",
-		"/C/wamp/www/shinsoo/admin/setting/delivery_setup_ok.php",
-		"/C/wamp/www/shinsoo/admin/order/edit_pro.php",
-		"/C/wamp/www/shinsoo/admin/css/style.css"
+		"/C/wamp/www/shinsoo/shop/cart.php"
 	],
 	"find":
 	{
-		"height": 54.0
+		"height": 101.0
 	},
 	"find_in_files":
 	{
@@ -885,6 +860,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"closeWin",
 			"OK",
 			"$resultMSG = \"OK\";",
 			"width",
@@ -1011,8 +987,7 @@
 			"calcWholesalePrice",
 			"show_me_wholesale_price",
 			"hiddenPrice",
-			"calcWholesalePrice",
-			"show_me_wholesale_price"
+			"calcWholesalePrice"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1033,344 +1008,8 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "member/p-register-form.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 31521,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								810,
-								810
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"bracket_highlighter.busy": false,
-							"bracket_highlighter.locations":
-							{
-								"close":
-								{
-									"1":
-									[
-										809,
-										810
-									]
-								},
-								"icon":
-								{
-									"1":
-									[
-										"Packages/BracketHighlighter/icons/curly_bracket.png",
-										"brackethighlighter.default"
-									]
-								},
-								"open":
-								{
-									"1":
-									[
-										766,
-										767
-									]
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.regions":
-							[
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content"
-							],
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": true,
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 90.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "member/register-form.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 40302,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								694,
-								694
-							]
-						],
-						"settings":
-						{
-							"bracket_highlighter.busy": false,
-							"bracket_highlighter.locations":
-							{
-								"close":
-								{
-								},
-								"icon":
-								{
-								},
-								"open":
-								{
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.regions":
-							[
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content"
-							],
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": true,
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "member/p-register-ok.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 6533,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"bracket_highlighter.busy": false,
-							"bracket_highlighter.locations":
-							{
-								"close":
-								{
-								},
-								"icon":
-								{
-								},
-								"open":
-								{
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.regions":
-							[
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content"
-							],
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": true,
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -1431,6 +1070,30 @@
 		"selected_items":
 		[
 			[
+				"util",
+				"util\\util.php"
+			],
+			[
+				"shop",
+				"js\\shopping.js"
+			],
+			[
+				"foo",
+				"include\\footer.php"
+			],
+			[
+				"cont",
+				"member\\contact-us.php"
+			],
+			[
+				"inde",
+				"shop\\index.php"
+			],
+			[
+				"foot",
+				"include\\footer.php"
+			],
+			[
 				"deta",
 				"shop\\detail.php"
 			],
@@ -1441,10 +1104,6 @@
 			[
 				"style",
 				"css\\style.css"
-			],
-			[
-				"util",
-				"util\\util.php"
 			],
 			[
 				"bra",
@@ -1499,16 +1158,8 @@
 				"js\\main.js"
 			],
 			[
-				"foot",
-				"include\\footer.php"
-			],
-			[
 				"brand",
 				"include\\brands.php"
-			],
-			[
-				"inde",
-				"shop\\index.php"
 			],
 			[
 				"pos",
@@ -1625,10 +1276,6 @@
 			[
 				"mean",
 				"css\\meanmenu.min.css"
-			],
-			[
-				"foo",
-				"include\\footer.php"
 			],
 			[
 				"trak",
@@ -1871,10 +1518,6 @@
 				"admin\\products\\pro_register.php"
 			],
 			[
-				"shop",
-				"util\\shop-functions.php"
-			],
-			[
 				"mai",
 				"admin\\main\\main.php"
 			],
@@ -1937,10 +1580,6 @@
 			[
 				"quo",
 				"admin\\order\\quottoexcel.php"
-			],
-			[
-				"conta",
-				"member\\inc\\contract1.html"
 			]
 		],
 		"width": 0.0
