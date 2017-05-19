@@ -63,16 +63,15 @@ $protocol = check_protocol($sslPort);
 
     <!-- CONTENT -->
         <div class="container">
+            <form name="write_form" method="post" ENCTYPE="multipart/form-data" action="<?php echo $protocol; ?>//<?php echo $_SERVER['SERVER_NAME']; ?>:<?php echo $sslPort; ?>/bbs/post_ok.php">
+            <input type="hidden" name="mode"    value="<?php echo $mode; ?>" />
+            <input type="hidden" name="main_no" value="<?php echo $main_no; ?>" />
+            <input type="hidden" name="code"    value="<?php echo $code; ?>" />
+            <input type="hidden" name="id"      value="<?php echo $p_id; ?>" />
+            <input type="hidden" name="name"    value="<?php echo $p_name; ?>" />
             <div class="row">
                 <div class="table-responsive">
-
-                  <form name="write_form" method="post" ENCTYPE="multipart/form-data" action="<?php echo $protocol; ?>//<?php echo $_SERVER['SERVER_NAME']; ?>:<?php echo $sslPort; ?>/bbs/post_ok.php">
-                    <input type="hidden" name="mode"    value="<?php echo $mode; ?>" />
-                    <input type="hidden" name="main_no" value="<?php echo $main_no; ?>" />
-                    <input type="hidden" name="code"    value="<?php echo $code; ?>" />
-                    <input type="hidden" name="id"      value="<?php echo $p_id; ?>" />
-                    <input type="hidden" name="name"    value="<?php echo $p_name; ?>" />
-                    <table class="table">
+                    <table class="table table-striped">
                       <tbody>
                         <tr>
                           <td>이 름</td>
@@ -80,7 +79,7 @@ $protocol = check_protocol($sslPort);
                         </tr>
                         <tr>
                           <td>이메일</td>
-                          <td><input type="text" name="email" size="30" maxlength="30"  value="<?php echo $_SESSION['p_email']; ?>"></td>
+                          <td><input type="text" class="form-control" name="email" size="30" maxlength="30"  value="<?php echo $_SESSION['p_email']; ?>"></td>
                         </tr>
                         <tr>
                           <td>제 목</td>
@@ -88,14 +87,14 @@ $protocol = check_protocol($sslPort);
 <?php
 
 if ($mode == 'edit') {
-    echo '<input type="text" name="title" size="50" maxlength="50" value="' . stripcslashes($row['title']) . '" /></td>';
+    echo '                         <input type="text" class="form-control" name="title" size="50" maxlength="50" value="' . stripcslashes($row['title']) . '" /></td>' . "\r\n";
 } else {
-    echo '<input type="text" name="title" size="50" maxlength="50" /></td>';
+    echo '                         <input type="text" class="form-control" name="title" size="50" maxlength="50" /></td>' . "\r\n";
 }
 ?>
                         </tr>
                         <tr>
-                          <td colspan="2">
+                            <td colspan="2">
 <?php
 
 if ($mode == 'edit') {
@@ -103,7 +102,23 @@ if ($mode == 'edit') {
     echo <<<HEREDOC
 		                    <textarea name="contents" class="form-control" id="contents">{$contents}</textarea>
                             <script type="text/javascript">
-                                CKEDITOR.replace( 'contents' );
+                                CKEDITOR.replace( 'contents', {
+                                    disallowedContent: 'img{width,height};'
+                                });
+
+                                // Show upload tab first
+                                CKEDITOR.on('dialogDefinition', function(ev) {
+                                  // Take the dialog window name and its definition from the event data.
+                                  var dialogName = ev.data.name;
+                                  var dialogDefinition = ev.data.definition;
+
+                                  if (dialogName == 'image') {
+                                    dialogDefinition.onShow = function () {
+                                      // This code will open the Advanced tab.
+                                      this.selectPage('Upload');
+                                    };
+                                  }
+                                });
                             </script>
                             <div class="margin-top-30">
                                 <i class="fa fa-paperclip"></i>파일 첨부 (20MB 이하)
@@ -116,7 +131,23 @@ HEREDOC;
     echo <<<HEREDOC
 		                    <textarea name="contents" class="form-control" id="contents"></textarea>
                             <script type="text/javascript">
-                                CKEDITOR.replace( 'contents' );
+                                CKEDITOR.replace( 'contents', {
+                                    disallowedContent: 'img{width,height};'
+                                });
+
+                                // Show upload tab first
+                                CKEDITOR.on('dialogDefinition', function(ev) {
+                                  // Take the dialog window name and its definition from the event data.
+                                  var dialogName = ev.data.name;
+                                  var dialogDefinition = ev.data.definition;
+
+                                  if (dialogName == 'image') {
+                                    dialogDefinition.onShow = function () {
+                                      // This code will open the Advanced tab.
+                                      this.selectPage('Upload');
+                                    };
+                                  }
+                                });
                             </script>
                             <div class="margin-top-30">
                                 <i class="fa fa-paperclip"></i>파일 첨부 (20MB 이하)
@@ -124,23 +155,22 @@ HEREDOC;
                             </div>
 HEREDOC;
 }
-?></td>
+?>
+
+                            </td>
                         </tr>
                       </tbody>
                     </table>
-
-                    <!-- 글쓰기 버튼 -->
-                    <div class="row text-center">
-                        <a class="btn btn-success" href="#" onClick="send('contents');">작성하기</a> &nbsp;
-                        <a class="btn btn-primary" href="list.php?code=<?php echo $code; ?>">목 록</a>
-                    </div>
-
-                  </form>
-
-          </div>
+                </div>
+            </div>
+            <!-- 글쓰기 버튼 -->
+            <div class="row text-center">
+                <a class="btn btn-success" href="#" onClick="send('contents');">작성하기</a> &nbsp;
+                <a class="btn btn-primary" href="list.php?code=<?php echo $code; ?>">목 록</a>
+            </div>
+            </form>
         </div>
-      </div>
-    <!-- /.content -->
+        <!-- /.content -->
 
 
 

@@ -519,6 +519,7 @@
 	},
 	"buffers":
 	[
+<<<<<<< HEAD
 		{
 			"file": "css/responsive.css",
 			"settings":
@@ -528,6 +529,8 @@
 				"line_ending": "Windows"
 			}
 		}
+=======
+>>>>>>> 4010ac936068f82f579193426d0f6210e1459e12
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -702,6 +705,7 @@
 	},
 	"expanded_folders":
 	[
+<<<<<<< HEAD
 		"/C/wamp64/www/shinsoo"
 	],
 	"file_history":
@@ -709,6 +713,26 @@
 		"/C/wamp64/www/shinsoo/member/p-register-ok.php",
 		"/C/wamp64/www/shinsoo/member/register-form.php",
 		"/C/wamp64/www/shinsoo/member/p-register-form.php",
+=======
+		"/C/wamp64/www/shinsoo",
+		"/C/wamp64/www/shinsoo/bbs",
+		"/C/wamp64/www/shinsoo/js",
+		"/C/wamp64/www/shinsoo/smartpay"
+	],
+	"file_history":
+	[
+		"/C/wamp64/www/shinsoo/util/util.php",
+		"/C/wamp64/www/shinsoo/css/main.css",
+		"/C/wamp64/www/shinsoo/bbs/read.php",
+		"/C/wamp64/www/shinsoo/css/responsive.css",
+		"/C/wamp64/www/shinsoo/include/footer.php",
+		"/C/wamp64/www/shinsoo/js/shopping.js",
+		"/C/wamp64/www/shinsoo/member/contact-us.php",
+		"/C/wamp64/www/shinsoo/shop/index.php",
+		"/C/wamp64/www/shinsoo/member/p-register-form.php",
+		"/C/wamp64/www/shinsoo/member/register-form.php",
+		"/C/wamp64/www/shinsoo/member/p-register-ok.php",
+>>>>>>> 4010ac936068f82f579193426d0f6210e1459e12
 		"/C/wamp/www/shinsoo/pay/cas_noteurl.php",
 		"/C/wamp/www/shinsoo/pay/r_log.txt",
 		"/C/wamp/www/shinsoo/pay/save_wireinfo_to_db.php",
@@ -825,6 +849,7 @@
 		"/C/wamp/www/cocokorea/.gitignore",
 		"/C/Users/Seonghyeon/Downloads/LGU+_XPay_Crossplatform/LGU+_XPay_Crossplatform_PHP/payreq_crossplatform.php",
 		"/C/wamp/www/shinsoo/pay/payreq_crossplatform.org.php",
+<<<<<<< HEAD
 		"/C/wamp/www/shinsoo/shop/cart.php",
 		"/C/wamp/www/shinsoo/pay/checkout.php",
 		"/C/wamp/www/shinsoo/js/jquery.meanmenu.js",
@@ -834,10 +859,13 @@
 		"/C/wamp/www/shinsoo/lgpay/conf/mall.conf",
 		"/C/wamp/www/shinsoo/bbs/upload.php",
 		"/C/wamp/www/shinsoo/admin/order/print_quot.php"
+=======
+		"/C/wamp/www/shinsoo/shop/cart.php"
+>>>>>>> 4010ac936068f82f579193426d0f6210e1459e12
 	],
 	"find":
 	{
-		"height": 54.0
+		"height": 101.0
 	},
 	"find_in_files":
 	{
@@ -866,6 +894,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"closeWin",
 			"OK",
 			"$resultMSG = \"OK\";",
 			"width",
@@ -992,8 +1021,7 @@
 			"calcWholesalePrice",
 			"show_me_wholesale_price",
 			"hiddenPrice",
-			"calcWholesalePrice",
-			"show_me_wholesale_price"
+			"calcWholesalePrice"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1014,9 +1042,9 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
+<<<<<<< HEAD
 				{
 					"buffer": 0,
 					"file": "css/responsive.css",
@@ -1140,6 +1168,8 @@
 					"stack_index": 0,
 					"type": "text"
 				}
+=======
+>>>>>>> 4010ac936068f82f579193426d0f6210e1459e12
 			]
 		}
 	],
@@ -1200,8 +1230,33 @@
 		"selected_items":
 		[
 			[
+<<<<<<< HEAD
 				"res",
 				"css\\responsive.css"
+=======
+				"util",
+				"util\\util.php"
+			],
+			[
+				"shop",
+				"js\\shopping.js"
+			],
+			[
+				"foo",
+				"include\\footer.php"
+			],
+			[
+				"cont",
+				"member\\contact-us.php"
+			],
+			[
+				"inde",
+				"shop\\index.php"
+			],
+			[
+				"foot",
+				"include\\footer.php"
+>>>>>>> 4010ac936068f82f579193426d0f6210e1459e12
 			],
 			[
 				"deta",
@@ -1214,10 +1269,6 @@
 			[
 				"style",
 				"css\\style.css"
-			],
-			[
-				"util",
-				"util\\util.php"
 			],
 			[
 				"bra",
@@ -1272,16 +1323,8 @@
 				"js\\main.js"
 			],
 			[
-				"foot",
-				"include\\footer.php"
-			],
-			[
 				"brand",
 				"include\\brands.php"
-			],
-			[
-				"inde",
-				"shop\\index.php"
 			],
 			[
 				"pos",
@@ -1394,10 +1437,6 @@
 			[
 				"mean",
 				"css\\meanmenu.min.css"
-			],
-			[
-				"foo",
-				"include\\footer.php"
 			],
 			[
 				"trak",
@@ -1640,10 +1679,6 @@
 				"admin\\products\\pro_register.php"
 			],
 			[
-				"shop",
-				"util\\shop-functions.php"
-			],
-			[
 				"mai",
 				"admin\\main\\main.php"
 			],
@@ -1706,10 +1741,6 @@
 			[
 				"quo",
 				"admin\\order\\quottoexcel.php"
-			],
-			[
-				"conta",
-				"member\\inc\\contract1.html"
 			]
 		],
 		"width": 0.0

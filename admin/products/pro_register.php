@@ -257,9 +257,25 @@ HEREDOC;
                                 						<td>
                                               <p class="help-block"><i class="fa fa-exclamation-triangle"></i> 상세설명에 삽입되는 이미지는 가로 최대 800px(픽셀) </p>
                                 							<textarea name="contents" class="form-control" id="contents"><?php echo stripslashes($update_row['contents']); ?></textarea>
-                                							<script type="text/javascript">
-                                				                CKEDITOR.replace( 'contents' );
-                                				            </script>
+                                              <script type="text/javascript">
+                                                  CKEDITOR.replace( 'contents', {
+                                                      disallowedContent: 'img{width,height};'
+                                                  });
+
+                                                  // Show upload tab first
+                                                  CKEDITOR.on('dialogDefinition', function(ev) {
+                                                    // Take the dialog window name and its definition from the event data.
+                                                    var dialogName = ev.data.name;
+                                                    var dialogDefinition = ev.data.definition;
+
+                                                    if (dialogName == 'image') {
+                                                      dialogDefinition.onShow = function () {
+                                                        // This code will open the Advanced tab.
+                                                        this.selectPage('Upload');
+                                                      };
+                                                    }
+                                                  });
+                                              </script>
                                 						</td>
                                 					</tr>
                                 				</tbody>
@@ -434,9 +450,25 @@ HEREDOC;
             											<td>
                                     <p class="help-block"><i class="fa fa-exclamation-triangle"></i> 상세설명에 삽입되는 이미지는 가로 최대 800px(픽셀) </p>
             												<textarea name="contents" class="form-control" id="contents"></textarea>
-            												<script type="text/javascript">
-            									                CKEDITOR.replace( 'contents' );
-            									            </script>
+                                    <script type="text/javascript">
+                                        CKEDITOR.replace( 'contents', {
+                                            disallowedContent: 'img{width,height};'
+                                        });
+
+                                        // Show upload tab first
+                                        CKEDITOR.on('dialogDefinition', function(ev) {
+                                          // Take the dialog window name and its definition from the event data.
+                                          var dialogName = ev.data.name;
+                                          var dialogDefinition = ev.data.definition;
+
+                                          if (dialogName == 'image') {
+                                            dialogDefinition.onShow = function () {
+                                              // This code will open the Advanced tab.
+                                              this.selectPage('Upload');
+                                            };
+                                          }
+                                        });
+                                    </script>
             											</td>
             										</tr>
             									</tbody>
