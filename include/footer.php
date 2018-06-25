@@ -41,7 +41,7 @@ if ($sessionId) {
                                                         <a href="/member/help.php">이용 안내</a>
                                                     </li>
                                                     <li>
-                                                        <a href="/member/privacy-policy.php">이용약관/정보보호정책</a>
+                                                        <a href="/member/privacy-policy.php">이용약관/<span style="color: #E6D018;">개인정보 처리방침</span></a>
                                                     </li>
                                                     <li>
                                                         <a href="/member/contact-us.php">찾아오시는 길</a>

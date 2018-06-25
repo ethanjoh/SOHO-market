@@ -16,7 +16,7 @@
                                         </span>
                                     </li>
                                     <li class="category3">
-                                        <strong>이용약관 및 개인정보보호 정책</strong>
+                                        <strong>이용약관 및 개인정보 처리방침</strong>
                                     </li>
                                 </ul>
                             </div>
@@ -36,7 +36,7 @@
                             <div class="about-optima-text">
                                 <h1>
                                     About
-                                    <strong>개인정보 보호정책</strong>
+                                    <strong>개인정보 처리방침</strong>
                                 </h1>
                                 <p><iframe class="iframe-page" seamless src="inc/privacy.html"></iframe></p>
                             </div>
