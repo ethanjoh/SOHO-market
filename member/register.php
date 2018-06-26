@@ -47,9 +47,19 @@
                                 <div class="register-intro">
                                     <p><span class="text-left"><i class="fa fa-arrow-circle-right"></i> 일반 소비자분들을 위한 개인회원 가입입니다.</span></p>
                                     <p><span class="text-left"><i class="fa fa-arrow-circle-right"></i> 판매자분들은 기업회원 가입을 이용해 주세요.</span></p>
+                                    <div class="form-group" style="font-size: 12px;">
+                                        <h5>개인정보 수집 및 이용동의</h5>
+                                        <div class="col-md-12" style="margin-bottom: 10px; border: 1px dashed; padding: 10px;">
+                                            이용자 식별 및 본인확인을 위해 성명, 아이디, 비밀번호를,
+                                            계약이행을 위한 연락, 민원 등 고객의 고충처리를 위해 연락처(이메일, 휴대전화번호)를 수집하고 있으며, 보유기간은 회원탈퇴 시까지입니다.
+                                        </div>
+                                        <div class="checkbox">
+                                            <label><input type="checkbox" id="agree" value="yes"> 개인정보 수집 및 이용에 동의합니다 </label>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="form-bottom-line about-optima-text">
-                                    <button class="button2 elit" type="button" onclick="goto('/member/p-register-form.php');"><strong>가입하기</strong></button>
+                                    <button class="button2 elit" type="button" id="submit-btn"><strong>가입하기</strong></button>
                                 </div>
 
                             </div>
@@ -72,6 +82,19 @@
 <?php include_once '../include/footer.php';?>
 
         <script src="/js/member.js"></script>
-
+        <script type="text/javascript">
+        $(function(){
+             $("#submit-btn").click(function () {
+                var chk = $('#agree').is(":checked");//.attr('checked');
+                if(!chk) {
+                    alert("개인정보 수집 및 이용에 체크해 주세요");
+                    return false;
+                }else {
+                    location.href = '/member/p-register-form.php';
+                }
+            });
+        });
+        </script>
+        <!-- END: PAGE SCRIPTS -->
     </body>
 </html>
