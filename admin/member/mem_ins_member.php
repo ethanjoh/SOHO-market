@@ -28,6 +28,7 @@
 <?php
 
 $num = set_var($_GET['num']);
+$protocol = check_protocol($sslPort);
 ?>
                 <div class="row">
                     <div class="col-md-12">
@@ -36,7 +37,7 @@ $num = set_var($_GET['num']);
                                 회원등록
                             </header>
                             <div class="panel-body">
-                                <form name="primary" method="post" onsubmit="return adminAddMember()" action="//<?php echo $_SERVER['SERVER_NAME']; ?>:<?php echo $sslPort; ?>/admin/member/mem_ins_ok.php">
+                                <form name="primary" method="post" onsubmit="return adminAddMember()" action="<?php echo $protocol; ?>//<?php echo $_SERVER['SERVER_NAME']; ?>:<?php echo $sslPort; ?>/admin/member/mem_ins_ok.php">
                                     <div class="form-group col-md-6">
                                         <label for="id" class="col-lg-3 col-sm-3 control-label">아이디 :</label>
                                         <div class="col-sm-9">

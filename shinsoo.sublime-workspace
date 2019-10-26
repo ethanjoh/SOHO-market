@@ -316,11 +316,20 @@
 	"buffers":
 	[
 		{
-			"file": "shop/order-stat-list.php",
+			"file": "pay/payreq_crossplatform.php",
 			"settings":
 			{
-				"buffer_size": 9617,
-				"encoding": "UTF-8",
+				"buffer_size": 11656,
+				"encoding": "UTF-8 with BOM",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "smartpay/payreq_crossplatform.php",
+			"settings":
+			{
+				"buffer_size": 11565,
+				"encoding": "UTF-8 with BOM",
 				"line_ending": "Windows"
 			}
 		}
@@ -410,16 +419,29 @@
 	},
 	"expanded_folders":
 	[
-		"/C/wamp64/www/shinsoo",
-		"/C/wamp64/www/shinsoo/member",
-		"/C/wamp64/www/shinsoo/shop"
+		"/C/www/shinsoo",
+		"/C/www/shinsoo/shop"
 	],
 	"file_history":
 	[
+		"/C/www/shinsoo/admin/member/mem_ins_member.php",
+		"/C/www/shinsoo/include/header.php",
+		"/C/www/shinsoo/shop/checkout.php",
+		"/C/www/shinsoo/util/util.php",
+		"/C/www/shinsoo/include/footer.php",
+		"/C/www/shinsoo/js/shopping.js",
+		"/C/www/shinsoo/js/addcart.js",
+		"/C/www/shinsoo/util/shop-functions.php",
+		"/C/www/shinsoo/shop/catalog-list.php",
+		"/C/www/shinsoo/member/register-ok.php",
+		"/C/wamp64/www/shinsoo/bbs/read.php",
+		"/C/wamp64/www/shinsoo/bbs/post_ok.php",
+		"/C/wamp64/www/shinsoo/bbs/post.php",
+		"/C/wamp64/www/shinsoo/shop/order-stat-list.php",
+		"/C/wamp64/www/shinsoo/admin/order/add_memo.php",
 		"/C/wamp64/www/shinsoo/shop/checkout-ok.php",
 		"/C/wamp64/www/shinsoo/admin/setting/delivery_setup.php",
 		"/C/wamp64/www/shinsoo/util/util.php",
-		"/C/wamp64/www/shinsoo/shop/order-stat-list.php",
 		"/C/wamp64/www/shinsoo/shop/order-list.php",
 		"/C/wamp64/www/shinsoo/util/shop-functions.php",
 		"/C/wamp64/www/shinsoo/member/register-form.php",
@@ -529,25 +551,11 @@
 		"/Users/ethanjoh/Desktop/git_project/smedics/scm/products/pro_register.php",
 		"/Users/ethanjoh/Desktop/git_project/smedics/scm/products/top_pro_list.php",
 		"/Users/ethanjoh/Desktop/git_project/smedics/scm/setting/admin_setup.php",
-		"/Users/ethanjoh/Desktop/git_project/smedics/shop/confirmation.php",
-		"/Users/ethanjoh/Desktop/git_project/smedics/shop/detail.php",
-		"/Users/ethanjoh/Desktop/git_project/smedics/shop/order-stat-list.php",
-		"/Users/ethanjoh/Desktop/git_project/smedics/admin/supplier/view_supplier.php",
-		"/Users/ethanjoh/Desktop/git_project/smedics/admin/supplier/view_offer.php",
-		"/Users/ethanjoh/Desktop/git_project/smedics/admin/supplier/view_cart.php",
-		"/Users/ethanjoh/Desktop/git_project/smedics/admin/supplier/top_supplier_list.php",
-		"/Users/ethanjoh/Desktop/git_project/smedics/admin/supplier/pre_offer.php",
-		"/Users/ethanjoh/Desktop/git_project/smedics/admin/supplier/ins_supplier.php",
-		"/Users/ethanjoh/Desktop/git_project/smedics/admin/supplier/edit_pro.php",
-		"/Users/ethanjoh/Desktop/git_project/smedics/admin/stats/top_stat_list.php",
-		"/Users/ethanjoh/Desktop/git_project/smedics/admin/stats/tax_list.php",
-		"/Users/ethanjoh/Desktop/git_project/smedics/admin/stats/mem_stat_list.php",
-		"/Users/ethanjoh/Desktop/git_project/smedics/admin/stats/hometax_excel.php",
-		"/Users/ethanjoh/Desktop/git_project/smedics/admin/setting/sms.php"
+		"/Users/ethanjoh/Desktop/git_project/smedics/shop/confirmation.php"
 	],
 	"find":
 	{
-		"height": 30.0
+		"height": 26.0
 	},
 	"find_in_files":
 	{
@@ -561,6 +569,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"protocol",
 			"recipient_zipcode",
 			"tot_money",
 			"amount"
@@ -581,32 +590,31 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "shop/order-stat-list.php",
+					"file": "pay/payreq_crossplatform.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 9617,
+						"buffer_size": 11656,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4830,
-								4830
+								5283,
+								5283
 							]
 						],
 						"settings":
 						{
-							"SL.186.region_keys":
+							"SL.44.region_keys":
 							[
 							],
-							"auto_complete": false,
 							"bracket_highlighter.busy": false,
 							"bracket_highlighter.clone": -1,
 							"bracket_highlighter.clone_locations":
@@ -615,24 +623,24 @@
 								{
 									"1":
 									[
-										5740,
-										5741
+										5482,
+										5488
 									]
 								},
 								"icon":
 								{
 									"1":
 									[
-										"Packages/BracketHighlighter/icons/curly_bracket.png",
-										"region.purplish"
+										"Packages/BracketHighlighter/icons/tag.png",
+										"region.orangish"
 									]
 								},
 								"open":
 								{
 									"1":
 									[
-										4387,
-										4388
+										5368,
+										5374
 									]
 								},
 								"unmatched":
@@ -641,56 +649,56 @@
 							},
 							"bracket_highlighter.clone_regions":
 							[
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
 								"bh_c_define",
 								"bh_c_define_center",
 								"bh_c_define_open",
 								"bh_c_define_close",
 								"bh_c_define_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
 								"bh_double_quote",
 								"bh_double_quote_center",
 								"bh_double_quote_open",
 								"bh_double_quote_close",
 								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
 								"bh_single_quote",
 								"bh_single_quote_center",
 								"bh_single_quote_open",
 								"bh_single_quote_close",
 								"bh_single_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
 								"bh_angle",
 								"bh_angle_center",
 								"bh_angle_open",
@@ -701,27 +709,12 @@
 							{
 								"close":
 								{
-									"1":
-									[
-										4879,
-										4880
-									]
 								},
 								"icon":
 								{
-									"1":
-									[
-										"Packages/BracketHighlighter/icons/round_bracket.png",
-										"region.yellowish"
-									]
 								},
 								"open":
 								{
-									"1":
-									[
-										4754,
-										4755
-									]
 								},
 								"unmatched":
 								{
@@ -729,56 +722,56 @@
 							},
 							"bracket_highlighter.regions":
 							[
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
 								"bh_c_define",
 								"bh_c_define_center",
 								"bh_c_define_open",
 								"bh_c_define_close",
 								"bh_c_define_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
 								"bh_double_quote",
 								"bh_double_quote_center",
 								"bh_double_quote_open",
 								"bh_double_quote_close",
 								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
 								"bh_single_quote",
 								"bh_single_quote_center",
 								"bh_single_quote_open",
 								"bh_single_quote_close",
 								"bh_single_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
 								"bh_angle",
 								"bh_angle_center",
 								"bh_angle_open",
@@ -789,11 +782,137 @@
 							"remote_loading": false,
 							"synced": true,
 							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 2,
+							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1386.0,
+						"translation.y": 1785.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "smartpay/payreq_crossplatform.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 11565,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6426,
+								6426
+							]
+						],
+						"settings":
+						{
+							"SL.65.region_keys":
+							[
+							],
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.clone": -1,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										6475,
+										6476
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/double_quote.png",
+										"region.greenish"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										6420,
+										6421
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content"
+							],
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": true,
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2142.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -804,7 +923,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 30.0
+		"height": 26.0
 	},
 	"input":
 	{
@@ -853,7 +972,7 @@
 	"project": "shinsoo.sublime-project",
 	"replace":
 	{
-		"height": 56.0
+		"height": 48.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -862,6 +981,62 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"payreq",
+				"smartpay\\payreq_crossplatform.php"
+			],
+			[
+				"hea",
+				"include\\header.php"
+			],
+			[
+				"shop",
+				"js\\shopping.js"
+			],
+			[
+				"add",
+				"js\\addcart.js"
+			],
+			[
+				"sho",
+				"js\\shopping.js"
+			],
+			[
+				"foot",
+				"include\\footer.php"
+			],
+			[
+				"head",
+				"include\\header.php"
+			],
+			[
+				"mem_ins",
+				"admin\\member\\mem_ins_member.php"
+			],
+			[
+				"catalo",
+				"shop\\catalog-list.php"
+			],
+			[
+				"regis",
+				"member\\register-ok.php"
+			],
+			[
+				"read",
+				"bbs\\read.php"
+			],
+			[
+				"pos",
+				"bbs\\post_ok.php"
+			],
+			[
+				"post",
+				"bbs\\post.php"
+			],
+			[
+				"add_mem",
+				"admin\\order\\add_memo.php"
+			],
 			[
 				"order",
 				"shop\\order-stat-list.php"
@@ -887,20 +1062,12 @@
 				"css\\myshop.css"
 			],
 			[
-				"regis",
-				"member\\register.php"
-			],
-			[
 				"pr",
 				"member\\inc\\privacy.html"
 			],
 			[
 				"rul",
 				"member\\inc\\rule.html"
-			],
-			[
-				"foot",
-				"include\\footer.php"
 			],
 			[
 				"foo",
@@ -925,22 +1092,6 @@
 			[
 				"index",
 				"index.php"
-			],
-			[
-				"hea",
-				"header.php"
-			],
-			[
-				"head",
-				"header.php"
-			],
-			[
-				"pos",
-				"bbs\\post.php"
-			],
-			[
-				"post",
-				"bbs\\post_ok.php"
 			],
 			[
 				"ly",
@@ -1059,10 +1210,6 @@
 				"member/register_form.php"
 			],
 			[
-				"read",
-				"bbs/read.php"
-			],
-			[
 				"dele",
 				"bbs/delete.php"
 			],
@@ -1077,10 +1224,6 @@
 			[
 				"ordr",
 				"shop/order-detail.php"
-			],
-			[
-				"catalo",
-				"shop/catalog-list.php"
 			],
 			[
 				"prod",
@@ -1117,10 +1260,6 @@
 			[
 				"inde",
 				"admin/index.php"
-			],
-			[
-				"shop",
-				"js/shopping.js"
 			],
 			[
 				"admin.",
@@ -1353,26 +1492,6 @@
 			[
 				"scm_o",
 				"scm/offer/scm_offer_list.php"
-			],
-			[
-				"sid",
-				"scm/include/admin_sidebar.php"
-			],
-			[
-				"check_lo",
-				"admin/check_login.php"
-			],
-			[
-				"check_log",
-				"scm/check_login.php"
-			],
-			[
-				"jquery.c",
-				"admin/js/jquery.customSelect.min.js"
-			],
-			[
-				"top_ca",
-				"admin/category/top_ca_list.php"
 			]
 		],
 		"width": 0.0
@@ -1410,7 +1529,7 @@
 	"show_minimap": true,
 	"show_open_files": true,
 	"show_tabs": true,
-	"side_bar_visible": false,
+	"side_bar_visible": true,
 	"side_bar_width": 257.0,
 	"status_bar_visible": true,
 	"template_settings":
