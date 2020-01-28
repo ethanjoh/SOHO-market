@@ -35,17 +35,17 @@ $page = set_var($_GET['page']);
 
 // $today = date("Y-m-d");
 // $p_id      = set_var($_SESSION['p_id']);
-$key     = set_var($_GET['key']);
+$key = set_var($_GET['key']);
 $keyword = set_var($_GET['keyword']);
-$date1   = set_var($_GET['date1']);
-$date2   = set_var($_GET['date2']);
+$date1 = set_var($_GET['date1']);
+$date2 = set_var($_GET['date2']);
 
 //페이징을 위한 페이지수 구하기
-$scale         = get_page_num($mode, $key, $keyword, $date1, $date2, $page, 20);
-$cline         = $scale[0];
+$scale = get_page_num($mode, $key, $keyword, $date1, $date2, $page, 20);
+$cline = $scale[0];
 $last_page_num = $scale[1];
-$cpage         = $scale[2];
-$totalpage     = $scale[3];
+$cpage = $scale[2];
+$totalpage = $scale[3];
 
 ?>
           <div class="row">
@@ -112,9 +112,9 @@ $totalpage     = $scale[3];
 <?php
 
 //페이징을 위한 페이지수 구하기
-$ret  = get_page_result($mode, $key, $keyword, $date1, $date2, $cline, $last_page_num);
+$ret = get_page_result($mode, $key, $keyword, $date1, $date2, $cline, $last_page_num);
 $t_no = $ret[0];
-$res  = $ret[1];
+$res = $ret[1];
 
 // 주문리스트 보여주기
 echo show_order_list($t_no, $res, $cpage);
@@ -176,6 +176,8 @@ page_nav($totalpage, $cpage, $url);
               });
 
               $("#guestModal0").modal("show");
+
+              setTimeout("location.reload();",60000);
 
           });
       </script>
