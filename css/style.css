@@ -1445,6 +1445,7 @@ select.select option {
 .product-icon,
 .product-name {
     text-align: center;
+    height: 80px;
 }
 
 .product-icon a i {

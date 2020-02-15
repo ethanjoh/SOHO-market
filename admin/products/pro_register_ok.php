@@ -29,11 +29,16 @@ $retail_price = set_var($_POST['retail_price']);
 $retail_price = trim($retail_price);
 
 $moq           = set_var($_POST['moq']);
-$optname_ins   = set_var($_POST['optname_ins']);
-$opt           = addslashes($optname_ins);
-$opt_stock_ins = set_var($_POST['opt_stock_ins']);
-$optname       = set_var($_POST['optname']);
+$opt_name_ins  = set_var($_POST['opt_name_ins']);
+$opt           = addslashes($opt_name_ins);// DB 입력용
+//$opt_stock_ins = set_var($_POST['opt_stock_ins']);
+$opt_count      = set_var($_POST['opt_count_ins']);
+
+// 업데이트할 때
+$optname       = set_var($_POST['opt_name']);
+$optcount      = set_var($_POST['opt_count']);
 $optstock      = set_var($_POST['opt_stock']);
+
 
 $option1_chk = set_var($_POST['option1_chk']);
 $option2_chk = set_var($_POST['option2_chk']);
@@ -180,7 +185,7 @@ if ($mode == "insert") {
         }
     }
 
-    $t_opt = explode(",", $optname_ins); //배열로 만들어준다
+    $t_opt = explode(",", $opt_name_ins); //배열로 만들어준다
 
     //옵션 갯수만큼 옵션재고관리 자동입력
     for ($i = 0; $i < count($t_opt); $i++) {
@@ -201,7 +206,7 @@ if ($mode == "insert") {
 
     $dbinsert1 = "INSERT INTO products(prod_code, category_l, category_m,
 										name, short_desc, company, id, shop_price, retail_price,
-										moq, opt, opt_stock,
+										moq, opt, opt_count, opt_stock,
 										contents,
 										s_image1, s_image1_name,
                                         s_image2, s_image2_name,
@@ -216,7 +221,7 @@ if ($mode == "insert") {
                                         del_chk)
 			    		VALUES('$item_code', '$lcode', '$mcode',
 					  		 		'$name', '$short_desc', '$company', '$id', '$shop_price', '$retail_price',
-				      		 		'$moq',  '$opt', '$opt_stock',
+				      		 		'$moq',  '$opt', '$opt_count', '$opt_stock',
 									'$contents',
 					  		 		'$sImg_chk[0]', '$smallImgFile[0]',
                                     '$sImg_chk[1]', '$smallImgFile[1]',
@@ -345,7 +350,7 @@ if ($mode == "insert") {
         }
     }
 
-    $t_opt = explode(",", $optname_ins); //배열로 만들어준다
+    $t_opt = explode(",", $opt_name_ins); //배열로 만들어준다
 
     //옵션 갯수만큼 옵션재고관리 자동입력
     for ($i = 0; $i < count($t_opt); $i++) {
@@ -358,6 +363,7 @@ if ($mode == "insert") {
 
     if ($optname != null) {
         $opt       = implode(",", $optname);
+        $opt_count = implode(",", $optcount);
         $opt_stock = implode(",", $optstock);
         // $barcode = implode(",", $barcode);
     }
@@ -372,7 +378,8 @@ if ($mode == "insert") {
 										 retail_price = '$retail_price',
 										 moq          = '$moq',
 										 opt          = '$opt',
-										 opt_stock    = '$opt_stock',
+										 opt_count    = '$opt_count',
+                                         opt_stock    = '$opt_stock',
 										 contents     = '$contents'
 										 $s_temp_str[0]
                                          $s_temp_str[1]

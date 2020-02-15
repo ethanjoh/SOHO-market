@@ -12,11 +12,11 @@ $page = set_var($_POST['page']);
  * LG유플러스으로 부터 내려받은 거래번호(LGD_TID)를 가지고 취소 요청을 합니다.(파라미터 전달시 POST를 사용하세요)
  * (승인시 LG유플러스으로 부터 내려받은 PAYKEY와 혼동하지 마세요.)
  */
-$CST_PLATFORM = $_POST['CST_PLATFORM'];                       //LG유플러스 결제 서비스 선택(test:테스트, service:서비스)
-$CST_MID      = $_POST['CST_MID'];                            //상점아이디(LG유플러스으로 부터 발급받으신 상점아이디를 입력하세요)
-                                                              //테스트 아이디는 't'를 반드시 제외하고 입력하세요.
+$CST_PLATFORM = $_POST['CST_PLATFORM']; //LG유플러스 결제 서비스 선택(test:테스트, service:서비스)
+$CST_MID      = $_POST['CST_MID']; //상점아이디(LG유플러스으로 부터 발급받으신 상점아이디를 입력하세요)
+//테스트 아이디는 't'를 반드시 제외하고 입력하세요.
 $LGD_MID = (("test" == $CST_PLATFORM) ? "t" : "") . $CST_MID; //상점아이디(자동생성)
-$LGD_TID = $_POST['LGD_TID'];                                 //LG유플러스으로 부터 내려받은 거래번호(LGD_TID)
+$LGD_TID = $_POST['LGD_TID']; //LG유플러스으로 부터 내려받은 거래번호(LGD_TID)
 
 $configPath = "/home/hosting_users/ssss01047271791/lgpay"; //LG유플러스에서 제공한 환경파일("/conf/lgdacom.conf") 위치 지정.
 
@@ -31,22 +31,37 @@ $xpay->Set("LGD_TID", $LGD_TID);
  * 주문취소 처리
  */
 //주문 취소에 따른 재고 복구
-$sql = "SELECT * FROM mall_order WHERE num = '" . $oid . "' ";
-$res = mysqli_query($connect, $sql);
+$qry = "SELECT * FROM mall_order WHERE num = '$oid' ";
+$res = mysqli_query($connect, $qry);
 $row = mysqli_fetch_array($res);
 
-$a_goods_fk = explode(",", $row['goods_fk']);  //상품 코드
-$mod_volume = explode(",", $row['mod_count']); //변경된 수량
+$a_goods_fk     = explode(",", $row['goods_fk']); //상품 코드
+$a_goods_kind   = explode(",", $row['goods_kind']); //주문상품 옵션
+$a_goods_volume = explode(",", $row['goods_count']); //변경된 수량
+$new_opt_count  = array();
 
 for ($i = 0; $i < sizeof($a_goods_fk); $i++) {
-    $pro_sql    = "SELECT * FROM products WHERE num='" . $a_goods_fk[$i] . "' ";
+    $pro_sql    = "SELECT * FROM products WHERE num = '$a_goods_fk[$i]' ";
     $pro_result = mysqli_query($connect, $pro_sql);
     $pro_row    = mysqli_fetch_array($pro_result);
 
-    $stock = $pro_row['stock'] + $mod_volume[$i];
+    /**
+    취소 옵션 재고 업데이트
+     **/
+    // 주문제품의 옵션을 가져옴
+    $products_opt       = explode(",", $pro_row['opt']); // 제품의 옵션을 배열로 저장
+    $products_opt_count = explode(",", $pro_row['opt_count']); // 제품의 옵션을 배열로 저장
 
-    $update1 = "UPDATE products SET stock='$stock' WHERE num='" . $a_goods_fk[$i] . "' ";
-    mysqli_query($connect, $update1);
+    // 옵션별 재고 업데이트
+    for ($j = 0; $j < sizeof($products_opt); $j++) {
+        if ($products_opt[$j] == $a_goods_kind[$i]) {
+            $products_opt_count[$j] = $products_opt_count[$j] + $a_goods_volume[$i]; // 취소 주문수량 가감 후 전체재고 업데이트
+            $final_opt_count        = implode(",", $products_opt_count);
+
+            $qry2 = "UPDATE products SET opt_count='$final_opt_count' WHERE num = '$a_goods_fk[$i]' ";
+            mysqli_query($connect, $qry2);
+        }
+    }
 }
 
 // 해당 주문정보를 취소처리 합니다.

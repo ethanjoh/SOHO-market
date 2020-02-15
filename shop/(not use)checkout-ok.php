@@ -65,13 +65,15 @@ $memo_to_delivery = addslashes($memo_to_delivery);
 $memo_to_admin    = addslashes($memo_to_admin);
 $status           = '3'; //입금 확인 전
 
-$products_num   = array();
-$products_name  = array();
-$products_price = array();
-$products_count = array();
-$products_kind  = array();
-$products_stock = array();
-$trans_cost     = null;
+$products_num       = array();
+$products_name      = array();
+$products_price     = array();
+$products_count     = array();
+$products_kind      = array();
+$products_stock     = array();
+$products_opt       = array();
+$products_opt_count = array();
+$trans_cost         = null;
 
 //JOIN문을 사용해 장바구니와 제품정보에서 데이터를 가져옴
 // 카테고리와 등록 순서로 정렬
@@ -83,15 +85,30 @@ if ($result) {
     $tot_money = 0;
 
     for ($i = 0; $rows = mysqli_fetch_array($result); $i++) {
-        $s_tot          = (int) $rows['volume'] * (int) $rows['amount']; // 소계
-        $tot_money      = $tot_money + $s_tot; //총합
-        $products_stock = $rows['stock'] - $rows['volume']; // 제품재고에서 카트 재고 뺌
+        $s_tot     = (int) $rows['volume'] * (int) $rows['amount']; // 소계 = volume(주문수량) X amount(단가)
+        $tot_money = $tot_money + $s_tot; //총합
+        //$products_stock = $rows['stock'] - $rows['volume']; // 제품 전체재고에서 카트 재고 뺌
 
         $products_num[$i]   = $rows['num'];
         $products_name[$i]  = stripslashes($rows['name']);
         $products_price[$i] = calc_offer_price($rows['retail_price'], $p_id); // 업체별 공급가 확인
         $products_count[$i] = $rows['volume'];
-        $products_kind[$i]  = $rows['p_opt'];
+        $products_kind[$i]  = $rows['p_opt']; // 카트에 담긴 옵션명
+
+        // 주문제품의 옵션을 가져옴
+        $products_opt       = explode(",", $rows['opt']); // 제품의 옵션을 배열로 저장
+        $products_opt_count = explode(",", $rows['opt_count']); // 제품의 옵션을 배열로 저장
+
+        // 옵션별 재고 업데이트
+        if ($products_opt[$i] == $rows['p_opt']) {
+            $products_opt_count[$i] -= $rows['volume']; // 전체재고에서 주문수량 차감 후 업데이트
+        }
+
+        //DB에 재고 업데이트
+        $final_opt_count = implode(",", $products_opt_count);
+        $qry2            = "UPDATE products SET opt_count='$final_opt_count' WHERE num='$products_num[$i]' ";
+        mysqli_query($connect, $qry2);
+
     }
 
     $trans_cost = calc_delivery_fee($tot_money); //택배비 계산
@@ -144,21 +161,21 @@ for ($i = 0; $i < sizeof($products_count); $i++) {
 }
 
 $query = "INSERT INTO mall_order(orderid,goods_fk,goods_price, mod_price,
-								goods_name,goods_kind,goods_count,mod_count,
-								user_id, amount, volume, trans_cost, createdate,
-								buyer_name,buyer_zipcode,buyer_address,buyer_phone,
-								buyer_hphone,buyer_email,
-								recipient_name,recipient_zipcode,recipient_address,
-								recipient_phone,recipient_hphone,status,
-								delivery_type, memo_to_delivery, memo_to_admin )
-		 VALUES ('$trade_code','$temp_code','$temp_price', '$temp_price',
-				'$temp_name','$temp_kind', '$temp_count', '$temp_count',
-				'$user_id', '$tot_money', '$temp_count','$trans_cost', now(),
-				'$buyer_name','$buyer_zipcode', '$buyer_address', '$buyer_phone',
-				'$buyer_hphone', '$buyer_email',
-				'$recipient_name', '$recipient_zipcode','$recipient_address',
-				'$recipient_phone','$recipient_hphone', '$status',
-				'$delivery_type', '$memo_to_delivery', '$memo_to_admin')";
+                                goods_name,goods_kind,goods_count,mod_count,
+                                user_id, amount, volume, trans_cost, createdate,
+                                buyer_name,buyer_zipcode,buyer_address,buyer_phone,
+                                buyer_hphone,buyer_email,
+                                recipient_name,recipient_zipcode,recipient_address,
+                                recipient_phone,recipient_hphone,status,
+                                delivery_type, memo_to_delivery, memo_to_admin )
+         VALUES ('$trade_code','$temp_code','$temp_price', '$temp_price',
+                '$temp_name','$temp_kind', '$temp_count', '$temp_count',
+                '$user_id', '$tot_money', '$temp_count','$trans_cost', now(),
+                '$buyer_name','$buyer_zipcode', '$buyer_address', '$buyer_phone',
+                '$buyer_hphone', '$buyer_email',
+                '$recipient_name', '$recipient_zipcode','$recipient_address',
+                '$recipient_phone','$recipient_hphone', '$status',
+                '$delivery_type', '$memo_to_delivery', '$memo_to_admin')";
 
 $result = mysqli_query($connect, $query);
 

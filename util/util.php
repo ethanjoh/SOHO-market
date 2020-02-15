@@ -617,6 +617,7 @@ function show_option($pnum)
     $rows   = mysqli_fetch_array($result);
 
     $opt       = explode(',', $rows['opt']);
+    $opt_count = explode(',', $rows['opt_count']);
     $opt_stock = explode(',', $rows['opt_stock']);
 
     for ($i = 0; $i < sizeof($opt); $i++) {
@@ -624,18 +625,20 @@ function show_option($pnum)
 
         if ($opt_stock[$i] == 0) {
             if ($rows['restock_date'] == "1111-00-00") {
-                $opt[$i] .= " (품절)";
+                $chk[$i] .= " (품절)";
                 $dis[$i] .= "disabled";
             } else if ($rows['restock_date'] == "0000-00-00") {
-                $opt[$i] .= "<br/>(품절)";
+                $chk[$i] .= "<br/>(품절)";
                 $dis[$i] .= "disabled";
             } else {
-                $opt[$i] .= " (품절)";
+                $chk[$i] .= " (품절)";
                 $dis[$i] .= "disabled";
             }
         } else if ($opt_stock[$i] == -1) {
             $opt[$i] .= "(단종)";
             $dis[$i] .= "disabled";
+        } else {
+            $chk[$i] .= ' [재고: '. $opt_count[$i] .' 개]';
         }
     }
 
@@ -650,7 +653,7 @@ function show_option($pnum)
             $selected = "";
         }
 
-        $ret .= '<option value="' . trim($opt[$i]) . ' ' . $selected . '". ' . $dis[$i] . '>' . $opt[$i] . '</option>';
+        $ret .= '<option value="' . trim($opt[$i]) . ' ' . $selected . '" ' . $dis[$i] . '>' . $opt[$i] . $chk[$i] . '</option>';
     } // for end
     $ret .= '</select>';
 
@@ -2164,10 +2167,12 @@ function generate_item_code()
 function restore_option($row)
 {
     $optname  = explode(",", $row['opt']);
+    $optcount = explode(",", $row['opt_count']);
     $optstock = explode(",", $row['opt_stock']);
 
     for ($i = 0; $i < count($optname); $i++) {
-        echo '<input name="optname[]" type="text" class="form-control" value="' . $optname[$i] . '" size="50" >&nbsp;';
+        echo '<input name="opt_name[]" type="text" class="form-control" value="' . $optname[$i] . '" size="50" >&nbsp;';
+        echo '<input name="opt_count[]" type="text" class="form-control" value="' . $optcount[$i] . '" size="5" >&nbsp;';
 
         if ($optstock[$i] == 1) {
             $a = "checked";
@@ -2198,6 +2203,7 @@ HEREDOC;
         echo "<br>";
     }
 }
+
 
 /**
  * 어드민 카테고리 분류

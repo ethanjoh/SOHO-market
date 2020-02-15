@@ -40,6 +40,7 @@
 	                      <ul class="sub">
 	                          <li><a  href="/admin/products/top_pro_list.php">상품 목록</a></li>
 	                          <li><a  href="/admin/products/pro_register.php?mode=insert">상품 등록</a></li>
+	                          <!-- <li><a  href="/admin/products/export-excel.php">상품목록 다운로드</a></li> -->
 	                      </ul>
 	                  </li>
 	                  <li class="sub-menu">

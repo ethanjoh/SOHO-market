@@ -61,7 +61,7 @@ $key     = set_var($_GET['key']);
 $keyword = set_var($_GET['keyword']);
 $page    = set_var($_GET['page']);
 
-$query   = "SELECT * FROM products_category1 WHERE del='N' ORDER BY num ";
+$query   = "SELECT * FROM products_category1 WHERE del='N' ORDER BY num";
 $result2 = mysqli_query($connect, $query);
 // 현재위치 표시
 for ($i = 1; $row2 = mysqli_fetch_array($result2); $i++) {
@@ -139,6 +139,10 @@ if ($pmode == "out") {
     $qry_char = "del_chk = 'Y' ";
 }
 
+if (!isset($lcode)) {
+    $qry_char = "del_chk <> 'Y' ";
+}
+
 // 상품의 정보를 모두 가져옴
 $query  = "SELECT * FROM products WHERE $qry_char ";
 $result = mysqli_query($connect, $query);
@@ -146,6 +150,14 @@ $result = mysqli_query($connect, $query);
 if ($result) {
     $total = mysqli_num_rows($result);
     mysqli_free_result($result);
+}
+
+$query1  = "SELECT * FROM products ";
+$result1 = mysqli_query($connect, $query1);
+
+if ($result1) {
+    $real_total = mysqli_num_rows($result1);
+    mysqli_free_result($result1);
 }
 ?>
 
@@ -176,14 +188,7 @@ if ($result) {
           <div class="col-sm-12">
             <section class="panel">
               <header class="panel-heading table-head">
-                  상품 리스트 (총 등록상품 수:                                                                                                                                                                            <?php echo $total; ?> 개)
-<?php
-
-if ($lcode) {
-    echo '<a href="pro_list.php?lcode=' . $lcode . '"><i class="fa fa-file-excel-o"></i> 엑셀로 상품목록 다운로드</a>';
-}
-
-?>
+                  상품 리스트 (표시상품 수 <?php echo $total; ?> / <?php echo $real_total; ?>개)
               </header>
               <div class="panel-body">
               <div class="table-responsive">
@@ -230,7 +235,7 @@ if ($limit >= $total) {
 
 $scale1 = $limit - $cline;
 
-$query1 = "SELECT * FROM products WHERE $qry_char ORDER BY name DESC LIMIT $cline,$scale1";
+$query1 = "SELECT * FROM products WHERE $qry_char ORDER BY num DESC LIMIT $cline,$scale1";
 //echo $query1;
 $result1 = mysqli_query($connect, $query1);
 
