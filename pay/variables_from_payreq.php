@@ -106,7 +106,16 @@ if ($result) {
     $tot_money     = 0;
     $new_opt_count = array();
 
+    $row = mysqli_fetch_array($result);
+    //  배열 초기화
+    $products_opt_count = explode(",", $row['opt_count']); // 제품의 옵션수량을 배열로 저장
+    // 주문제품의 옵션을 가져옴
+    $products_opt = explode(",", $row['opt']); // 제품의 옵션을 배열로 저장
+
+    $new_opt_count = $products_opt_count;
+
     for ($i = 0; $rows = mysqli_fetch_array($result); $i++) {
+
         if ($sessionFlag == "c") {
             $calcPrice = $rows['retail_price'];
         } elseif ($sessionFlag == "p") {
@@ -123,17 +132,18 @@ if ($result) {
         $products_count[$i] = $rows['volume'];
         $products_kind[$i]  = $rows['p_opt']; // 카트에 담긴 옵션명
 
-        // 주문제품의 옵션을 가져옴
-        $products_opt       = explode(",", $rows['opt']); // 제품의 옵션을 배열로 저장
-        $products_opt_count = explode(",", $rows['opt_count']); // 제품의 옵션수량을 배열로 저장
-        $new_opt_count      = $products_opt_count; //  배열 초기화
-
         // 옵션별 재고 업데이트
         for ($j = 0; $j < sizeof($products_opt); $j++) {
-            if ($products_opt[$j] == $rows['p_opt']) {
-                $new_opt_count[$j] = $products_opt_count[$j] - $rows['volume']; // 전체재고에서 주문수량 차감
+            if ($products_opt[$j] == $products_kind[$i]) {
+                $new_opt_count[$j] = $products_opt_count[$j] - $products_count[$i]; // 전체재고에서 주문수량 차감
             }
         }
+
+        // for ($j = 0; $j < sizeof($products_opt); $j++) {
+        //     if (trim($products_opt[$j]) == trim($products_kind[$i])) {
+        //         $products_opt_count[$j] = $products_opt_count[$j] - $products_count[$i]; // 전체재고에서 주문수량 차감
+        //     }
+        // }
 
         //DB에 재고 업데이트
         $final_opt_count = implode(",", $new_opt_count);

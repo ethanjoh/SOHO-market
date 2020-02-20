@@ -14,6 +14,7 @@ $del_chk = set_var($_POST['del_chk']);
 //$opt = set_var($_POST['opt']);
 //$opt_stock = set_var($_POST['opt_stock']);
 $optname      = set_var($_POST['optname']);
+$optcount     = set_var($_POST['optcount']); //옵션 재고
 $optstock     = set_var($_POST['optstock']);
 $barcode      = set_var($_POST['barcode']);
 $stock        = set_var($_POST['stock']);
@@ -31,7 +32,8 @@ for ($i = 0; $i < sizeof($optstock); $i++) {
 
 // 상품 업데이트
 if ($optname) {
-    $opt = implode(",", $optname);
+    $opt       = implode(",", $optname);
+    $opt_count = implode(",", $optcount);
     //$opt_stock = implode(",", $temp_stock);
     $opt_stock = $temp_stock;
     $barcode   = implode(",", $barcode);
@@ -47,14 +49,15 @@ if ($no_restock == "Y") {
 }
 
 $dbup1 = "UPDATE products SET tag='$tag',
-						         opt='$opt',
-								 opt_stock = '$opt_stock',
-								 barcode = '$barcode',
-								 stock='$stock',
-								 del_chk='$del_chk',
-								 modified = now(),
-								 restock_date = '$restock_date'
-			  WHERE num='$p_num' ";
+                                 opt='$opt',
+                                 opt_count='$opt_count',
+                                 opt_stock = '$opt_stock',
+                                 barcode = '$barcode',
+                                 stock='$stock',
+                                 del_chk='$del_chk',
+                                 modified = now(),
+                                 restock_date = '$restock_date'
+              WHERE num='$p_num' ";
 $result1 = mysqli_query($connect, $dbup1);
 
 //장바구니 옵션도 변경

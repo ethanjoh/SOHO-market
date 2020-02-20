@@ -2,7 +2,7 @@
 
 
         <!-- start shopping-cart-area
-		============================================ -->
+        ============================================ -->
         <div class="shopping-cart-area">
             <div class="container">
                 <div class="row">
@@ -75,11 +75,19 @@ HEREDOC;
             </div>
         </div>
         <!-- end shopping-cart-area
-		============================================ -->
+        ============================================ -->
 
 <?php include_once '../include/brands.php';?>
 
 <?php include_once '../include/footer.php';?>
+
+      <script>
+          $(document).ready(function() {
+
+              setTimeout("location.reload();",60000);
+
+          });
+      </script>
 
     </body>
 </html>

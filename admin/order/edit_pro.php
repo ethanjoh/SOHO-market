@@ -54,7 +54,7 @@ $row    = mysqli_fetch_array($result);
                     <td colspan="2" class="text-center"><img src="<?php echo $row['b_image1_name']; ?>" onerror="this.src='../images/no_image100.gif'" /></td>
                   </tr>
                   <tr >
-                    <th>상품명</th>
+                    <th width="20%">상품명</th>
                     <td><?php echo $row['name']; ?></td>
                   </tr>
                   <tr>
@@ -79,10 +79,11 @@ if (isset($row['opt'])) {
 <?php
 
     $optname  = explode(",", $row['opt']);
+    $optcount = explode(",", $row['opt_count']);
     $optstock = explode(",", $row['opt_stock']);
 
-    for ($i = 0; $i < count($optname); $i++) {
-        echo '<input class="form-control" name="optname[]" type="text" value="' . $optname[$i] . '" size="40" > ' . "\r\n";
+    for ($i = 0; $i < sizeof($optname); $i++) {
+        echo '<input class="form-control" name="optname[]" type="text" value="' . $optname[$i] . '" size="30" > ' . "\r\n";
 
         if ($optstock[$i] == 1) {
             $a = "checked";
@@ -102,9 +103,10 @@ if (isset($row['opt'])) {
             $c = "";
         }
 
-        echo '<input name="' . $optstock[$i] . '" type="radio" value="1" ' . $a . ' />재고 있음 ' . "\r\n";
-        echo '<input name="' . $optstock[$i] . '" type="radio" value="0" ' . $b . ' />품절 ' . "\r\n";
-        echo '<input name="' . $optstock[$i] . '" type="radio" value="-1" ' . $c . ' />단종' . "\r\n";
+        echo '<input class="form-control" name="optcount[]" type="text" value="' . $optcount[$i] . '" size="5" > ' . "\r\n";
+        echo '<input name="optstock[' . $i . '] " type="radio" value="1" ' . $a . ' />재고 있음 ' . "\r\n";
+        echo '<input name="optstock[' . $i . '] " type="radio" value="0" ' . $b . ' />품절 ' . "\r\n";
+        echo '<input name="optstock[' . $i . '] " type="radio" value="-1" ' . $c . ' />단종' . "\r\n";
     }
 
     ?>
@@ -125,8 +127,8 @@ if (isset($row['opt'])) {
                 </table>
 
 
-                  <div class="col-sm-12 text-center">
-                    <input type="hidden" name="oid" value="<?php echo $oid; ?>" />
+                  <div class="col - sm - 12text - center">
+                    <input type="hidden" name="oid" value=" <  ? phpecho $oid;?>" />
                     <input type="hidden" name="id" value="<?php echo $id; ?>" />
                     <input type="hidden" name="from" value="<?php echo $from; ?>" />
                     <input type="hidden" name="p_num" value="<?php echo $p_num; ?>" />

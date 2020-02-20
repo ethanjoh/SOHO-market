@@ -1,7 +1,7 @@
 <?php include_once '../include/header.php';?>
 
         <!-- start main_shop_area
-		============================================ -->
+        ============================================ -->
         <section class="main_shop_area">
             <div class="breadcrumbs">
                 <div class="container">
