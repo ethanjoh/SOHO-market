@@ -1,5 +1,7 @@
 <?php
 
+// OLD VERSION
+
 $lgd_oid = $LGD_OID;
 
 /**
@@ -54,9 +56,7 @@ if ($sessionFlag == "c") {
 }
 
 // 중복되지 않는 주문번호 만듬
-{
-    $trade_code = $lgd_oid;
-}
+$trade_code = $lgd_oid;
 
 $delivery_type = 'L';
 $payment_type  = '';
@@ -83,15 +83,13 @@ $memo_to_delivery = addslashes($memo_to_delivery);
 $memo_to_admin    = addslashes($memo_to_admin);
 $status           = '3'; //입금 확인 전
 
-$products_num       = array();
-$products_name      = array();
-$products_price     = array();
-$products_count     = array();
-$products_kind      = array();
-$products_stock     = array();
-$products_opt       = array();
-$products_opt_count = array();
-$trans_cost         = null;
+$products_num   = array();
+$products_name  = array();
+$products_price = array();
+$products_count = array();
+$products_kind  = array();
+$products_stock = array();
+$trans_cost     = null;
 
 // JOIN문을 사용해 장바구니와 제품정보에서 데이터를 가져옴
 // 카테고리와 등록 순서로 정렬
@@ -103,16 +101,7 @@ $calcPrice   = 0;
 
 if ($result) {
 
-    $tot_money     = 0;
-    $new_opt_count = array();
-
-    $row = mysqli_fetch_array($result);
-    //  배열 초기화
-    $products_opt_count = explode(",", $row['opt_count']); // 제품의 옵션수량을 배열로 저장
-    // 주문제품의 옵션을 가져옴
-    $products_opt = explode(",", $row['opt']); // 제품의 옵션을 배열로 저장
-
-    $new_opt_count = $products_opt_count;
+    $tot_money = 0;
 
     for ($i = 0; $rows = mysqli_fetch_array($result); $i++) {
 
@@ -122,33 +111,22 @@ if ($result) {
             $calcPrice = $rows['shop_price'];
         }
 
-        $s_tot     = (int) $rows['volume'] * (int) $rows['amount']; // 소계 = volume(주문수량) X amount(단가)
-        $tot_money = $tot_money + $s_tot; //총합
-        //$products_stock = $rows['stock'] - $rows['volume']; // 제품 전체재고에서 카트 재고 뺌
+        $s_tot          = (int) $rows['volume'] * (int) $rows['amount']; // 소계
+        $tot_money      = $tot_money + $s_tot; //총합
+        $products_stock = $rows['stock'] - $rows['volume']; // 제품재고에서 카트 재고 뺌
 
         $products_num[$i]   = $rows['num'];
         $products_name[$i]  = stripslashes($rows['name']);
-        $products_price[$i] = calc_offer_price($rows['retail_price'], $p_id); // 업체별 공급가 확인
+        $products_price[$i] = calc_offer_price($calcPrice, $p_id); // 업체별 공급가 확인
         $products_count[$i] = $rows['volume'];
-        $products_kind[$i]  = $rows['p_opt']; // 카트에 담긴 옵션명
+        $products_kind[$i]  = $rows['p_opt'];
 
-        // 옵션별 재고 업데이트
-        for ($j = 0; $j < sizeof($products_opt); $j++) {
-            if ($products_opt[$j] == $products_kind[$i]) {
-                $new_opt_count[$j] = $products_opt_count[$j] - $products_count[$i]; // 전체재고에서 주문수량 차감
-            }
-        }
-
-        // for ($j = 0; $j < sizeof($products_opt); $j++) {
-        //     if (trim($products_opt[$j]) == trim($products_kind[$i])) {
-        //         $products_opt_count[$j] = $products_opt_count[$j] - $products_count[$i]; // 전체재고에서 주문수량 차감
-        //     }
-        // }
-
-        //DB에 재고 업데이트
-        $final_opt_count = implode(",", $new_opt_count);
-        $qry2            = "UPDATE products SET opt_count='$final_opt_count' WHERE num='$products_num[$i]' ";
-        mysqli_query($connect, $qry2);
+        // debug
+        $n    = $products_num[$i];
+        $txt  = print_r($n, true);
+        $file = fopen("products_num.txt", "ab+");
+        fwrite($file, $txt);
+        fclose($file);
     }
 
     $trans_cost = calc_delivery_fee($tot_money); //택배비 계산
@@ -170,14 +148,21 @@ for ($i = 0; $i < sizeof($products_kind); $i++) {
 
 for ($i = 0; $i < sizeof($products_num); $i++) {
     //구매수량에 따른 재고 업데이트
-    $qry = "UPDATE products SET stock='$products_stock[$i]' WHERE num='$products_num[$i]' ";
-    mysqli_query($connect, $qry);
+    // $qry = "UPDATE products SET stock='$products_stock[$i]' WHERE num='$products_num[$i]' ";
+    // mysqli_query($connect, $qry);
 
     if ($i != 0) {
         $temp_code .= ",";
     }
     $temp_code .= $products_num[$i];
 }
+
+// debug
+$re   = '상품코드: ' . $temp_code . "\n";
+$txt  = print_r($re, true);
+$file = fopen("temp_code.txt", "w");
+fwrite($file, $txt);
+fclose($file);
 
 for ($i = 0; $i < sizeof($products_price); $i++) {
     if ($i != 0) {

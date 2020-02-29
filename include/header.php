@@ -79,7 +79,7 @@ $uri = set_var($_SERVER['HTTP_REFERER']);
         <![endif]-->
         <!-- Add your site or application content here -->
         <!-- start header_area
-		============================================ -->
+        ============================================ -->
         <header class="header_area">
             <div class="top-link">
                 <div class="container">
@@ -140,4 +140,4 @@ $uri = set_var($_SERVER['HTTP_REFERER']);
             <!-- mobile-menu-area end -->
         </header>
         <!-- end header_area
-		============================================ -->
+        ============================================ -->

@@ -127,8 +127,8 @@ if (isset($row['opt'])) {
                 </table>
 
 
-                  <div class="col - sm - 12text - center">
-                    <input type="hidden" name="oid" value=" <  ? phpecho $oid;?>" />
+                  <div class="col-sm-12 text-center">
+                    <input type="hidden" name="oid" value=" <?php echo $oid; ?>" />
                     <input type="hidden" name="id" value="<?php echo $id; ?>" />
                     <input type="hidden" name="from" value="<?php echo $from; ?>" />
                     <input type="hidden" name="p_num" value="<?php echo $p_num; ?>" />

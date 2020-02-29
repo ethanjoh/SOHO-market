@@ -36,7 +36,7 @@ function show_payment($type, $company_name, $bank)
         $deposit_date = date("Y-m-d");
         echo "<p>입금 은행 : \n";
         echo "<select class=\"form-control\" name=\"bank_name\">\n";
-        echo "	<option>" . $bank . "</option>\n";
+        echo "  <option>" . $bank . "</option>\n";
         echo "</select>\n";
         echo "<br />\n";
         echo "입금예정일 :\n";
@@ -749,7 +749,7 @@ HEREDOC;
             }
 
             $subTotal      = (int) $rows['volume'] * (int) $rows['amount']; // 소계
-            $commaSubTotal = number_format($subTotal);                      //소계 천단위표시
+            $commaSubTotal = number_format($subTotal); //소계 천단위표시
             $tot_money     = $tot_money + $subTotal;
             $commaTotal    = number_format($tot_money);
 
@@ -779,8 +779,8 @@ HEREDOC;
             //상품옵션 품절표시
             //상품 옵션이 있는지 확인 후 진행
             if ($rows['opt'] != "") {
-                                                                 //장바구니의 옵션과 제품정보를 비교하여 품절옵션이 있는지 확인
-                $t_opt       = explode(",", $rows['opt']);       //장바구니 제품의 옵션명을 배열로 만들어준다
+                //장바구니의 옵션과 제품정보를 비교하여 품절옵션이 있는지 확인
+                $t_opt       = explode(",", $rows['opt']); //장바구니 제품의 옵션명을 배열로 만들어준다
                 $t_opt_stock = explode(",", $rows['opt_stock']); //제품의 옵션재고를 배열로 만들어준다
 
                 //옵션의 문자열 비교
@@ -875,6 +875,7 @@ function go_purchase($total)
         return $ret = "alert('카트에 상품이 없습니다.')";
     } else {
         return $ret = "location.href='checkout.php?where=cart&amp;delivery=L'";
+        // return $ret = "checkout.php?where=cart&amp;delivery=L";
     }
 }
 
@@ -936,7 +937,7 @@ HEREDOC;
             }
 
             $subTotal      = (int) $rows['volume'] * (int) $rows['amount']; // 소계
-            $commaSubTotal = number_format($subTotal);                      //소계 천단위표시
+            $commaSubTotal = number_format($subTotal); //소계 천단위표시
             $tot_money     = $tot_money + $subTotal;
             // $show_stotal   = number_format($subTotal);
             $commaTotal = number_format($tot_money);
@@ -967,8 +968,8 @@ HEREDOC;
             //상품옵션 품절표시
             //상품 옵션이 있는지 확인 후 진행
             if ($rows['opt'] != "") {
-                                                                 //장바구니의 옵션과 제품정보를 비교하여 품절옵션이 있는지 확인
-                $t_opt       = explode(",", $rows['opt']);       //장바구니 제품의 옵션명을 배열로 만들어준다
+                //장바구니의 옵션과 제품정보를 비교하여 품절옵션이 있는지 확인
+                $t_opt       = explode(",", $rows['opt']); //장바구니 제품의 옵션명을 배열로 만들어준다
                 $t_opt_stock = explode(",", $rows['opt_stock']); //제품의 옵션재고를 배열로 만들어준다
 
                 //옵션의 문자열 비교
@@ -1197,7 +1198,7 @@ function show_login_form()
 
     echo <<<HEREDOC
         <!-- start login_form_area
-		============================================ -->
+        ============================================ -->
         <section class="main_shop_area">
             <div class="container">
                 <div class="row">
@@ -1803,10 +1804,10 @@ function show_order_list($numOfRows, $result, $cpage)
                 $todayOrderSum -= $row['last_amount'];
 
                 echo <<<HEREDOC
-	                    <tr>
-	                      <td>
-	                        <a href="order-detail.php?oid={$row['num']}&amp;page={$cpage}">{$order_date}</a></td>
-	                      <td>{$goods_name}&nbsp;
+                        <tr>
+                          <td>
+                            <a href="order-detail.php?oid={$row['num']}&amp;page={$cpage}">{$order_date}</a></td>
+                          <td>{$goods_name}&nbsp;
 HEREDOC;
 
                 echo $show_admin_memo;
@@ -1814,13 +1815,13 @@ HEREDOC;
 
                 echo <<<HEREDOC
 
-	                      </td>
-	                      <td>{$row['recipient_name']}</td>
-	                      <td class="num-right"> - <br /></td>
+                          </td>
+                          <td>{$row['recipient_name']}</td>
+                          <td class="num-right"> - <br /></td>
                           <td>{$payStatus}</td>
                           <td>{$orderStatus}</td>
                           <td>&nbsp;</td>
-	                      <td><a href="#" onclick="alert('이미 취소된 주문입니다.')"><i class="fa fa-ban"></i></a></td>
+                          <td><a href="#" onclick="alert('이미 취소된 주문입니다.')"><i class="fa fa-ban"></i></a></td>
 HEREDOC;
 
             } else {
@@ -1860,7 +1861,7 @@ HEREDOC;
                         //신용카드 결제일 때
                         $print_receipt = '<a href="javascript:showReceiptByTID(\'' . $pg_row['LGD_MID'] . '\', \'' . $pg_row['LGD_TID'] . '\', \'' . $authdata . '\')"><i class="fa fa-print"></i></a>';
                     } elseif ("SC0030" == $pg_row['LGD_PAYTYPE']) {
-                                                //계좌이체일 때
+                        //계좌이체일 때
                         $seqno         = "t/t"; //계좌이체는 임의의 정보 입력
                         $print_receipt = '<a href="javascript:showCashReceipts(\'' . $pg_row['LGD_MID'] . '\',\'' . $pg_row['LGD_OID'] . '\',\'' . $seqno . '\',\'BANK\',\'' . $CST_PLATFORM . '\')"><i class="fa fa-print"></i></a>';
                     } elseif ("SC0040" == $pg_row['LGD_PAYTYPE']) {
@@ -1969,8 +1970,8 @@ function show_order_item($oid)
         //상품옵션 품절표시
         //상품 옵션이 있는지 확인 후 진행
         if ($option[$i] != "" || $option2[$i] != "") {
-                                                                //장바구니의 옵션과 제품정보를 비교하여 품절옵션이 있는지 확인
-            $t_opt       = explode(",", $pro_row['opt']);       //제품의 옵션명을 배열로 만들어준다
+            //장바구니의 옵션과 제품정보를 비교하여 품절옵션이 있는지 확인
+            $t_opt       = explode(",", $pro_row['opt']); //제품의 옵션명을 배열로 만들어준다
             $t_opt_stock = explode(",", $pro_row['opt_stock']); //제품의 옵션재고를 배열로 만들어준다
 
             //옵션의 문자열 비교
@@ -2095,8 +2096,8 @@ function show_order_item_on_mail($oid)
         //상품옵션 품절표시
         //상품 옵션이 있는지 확인 후 진행
         if ($option[$i] != "" || $option2[$i] != "") {
-                                                                //장바구니의 옵션과 제품정보를 비교하여 품절옵션이 있는지 확인
-            $t_opt       = explode(",", $pro_row['opt']);       //제품의 옵션명을 배열로 만들어준다
+            //장바구니의 옵션과 제품정보를 비교하여 품절옵션이 있는지 확인
+            $t_opt       = explode(",", $pro_row['opt']); //제품의 옵션명을 배열로 만들어준다
             $t_opt_stock = explode(",", $pro_row['opt_stock']); //제품의 옵션재고를 배열로 만들어준다
 
             //옵션의 문자열 비교
@@ -2232,7 +2233,7 @@ function show_buyer_detail($oid)
 
     echo <<<HEREDOC
 
-	                    <div class="row">
+                        <div class="row">
                         <div class="col-sm-3 buyer-info-padding">주문번호</div>
                         <div class="col-sm-9 buyer-info-padding">{$row['orderid']} (주문일 : {$row['createdate']} )</div>
                     </div>

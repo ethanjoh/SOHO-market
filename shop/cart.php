@@ -59,14 +59,28 @@ HEREDOC;
                             </button>
 HEREDOC;
 } else {
+
+    // 2020.2.26 추가
+    // https 프로토콜 추가
+    $protocol = check_protocol($sslPort);
+
     $go_order = go_purchase($reVal['tot_money']);
+//     echo <<<HEREDOC
+
+//                             <button class="button2 get" type="button" onclick="location.href='{$protocol}//{$_SERVER['SERVER_NAME']}:{$sslPort}/shop/{$go_order}'">
+    //                                     <span><i class="fa fa-check-circle"></i> 주문서 작성하기</span>
+    //                                 </button>
+    // HEREDOC;
+
     echo <<<HEREDOC
 
                             <button class="button2 get" type="button" onclick="{$go_order}">
-                                <span><i class="fa fa-check-circle"></i> 주문서 작성하기</span>
-                            </button>
+                                    <span><i class="fa fa-check-circle"></i> 주문서 작성하기</span>
+                                </button>
 HEREDOC;
+
 }
+
 ?>
 
                         </div>
