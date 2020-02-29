@@ -93,8 +93,8 @@ $products_opt       = array(); // 추가
 $products_opt_count = array(); // 추가
 $trans_cost         = null;
 
-// $final_opt_count 배열 초기화
-$qry1 = "SELECT * FROM products p, products_cart c WHERE c.user_id='test' AND p.num=c.product_code";
+// 옵션재고 업데이트를 위해 $final_opt_count 배열 초기화
+$qry1 = "SELECT * FROM products p, products_cart c WHERE c.user_id='$p_id' AND p.num=c.product_code";
 $res  = mysqli_query($connect, $qry1);
 
 for ($k = 0; $row = mysqli_fetch_array($res); $k++) {
@@ -112,15 +112,6 @@ $calcPrice   = 0;
 if ($result) {
 
     $tot_money = 0;
-    // $new_opt_count = array();
-
-    // $rows = mysqli_fetch_array($result);
-    //  배열 초기화
-    // $products_opt_count = explode(",", $rows['opt_count']); // 제품의 옵션수량을 배열로 저장
-    // // 주문제품의 옵션을 가져옴
-    // $products_opt = explode(",", $rows['opt']); // 제품의 옵션을 배열로 저장
-
-    // $new_opt_count = $products_opt_count;
 
     for ($i = 0; $rows = mysqli_fetch_array($result); $i++) {
 
