@@ -51,7 +51,7 @@ $LGD_CUSTOM_PROCESSTYPE = "TWOTR"; //수정불가
 
 // 2020.2.26 추가
 // https 프로토콜 추가
-$protocol = check_protocol($sslPort);
+// $protocol = check_protocol($sslPort);
 
 /*
  * 가상계좌(무통장) 결제 연동을 하시는 경우 아래 LGD_CASNOTEURL 을 설정하여 주시기 바랍니다.
