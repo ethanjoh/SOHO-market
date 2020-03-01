@@ -1,6 +1,6 @@
 <?php
 
-// NEW VERSION 2020.02.26
+// NEW VERSION 2020.03.01
 
 $lgd_oid = $LGD_OID;
 
@@ -99,6 +99,7 @@ $res  = mysqli_query($connect, $qry1);
 
 for ($k = 0; $row = mysqli_fetch_array($res); $k++) {
     $final_opt_count = explode(",", $row['opt_count']); //초기화
+    $final_opt_stock = explode(",", $row['opt_stock']); //초기화
 }
 
 // JOIN문을 사용해 장바구니와 제품정보에서 데이터를 가져옴
@@ -130,6 +131,7 @@ if ($result) {
         $products_price[$i] = calc_offer_price($rows['retail_price'], $p_id); // 업체별 공급가 확인
         $products_opt       = explode(",", $rows['opt']); // 제품의 옵션을 배열로 저장
         $products_opt_count = explode(",", $rows['opt_count']); // 제품의 옵션수량을 배열로 저장
+        $products_opt_stock = explode(",", $rows['opt_stock']); // 제품의 품절표시 배열로 저장
         $order_opt[$i]      = $rows['p_opt']; // 카트에 담긴 옵션명
         $order_count[$i]    = $rows['volume']; // 카트에 담긴 옵션 수량
 
@@ -140,6 +142,21 @@ if ($result) {
                 $products_opt_count[$j] -= $order_count[$i]; // 전체재고에서 주문수량 차감
                 $final_opt_count[$j] = $products_opt_count[$j];
 
+                if ($products_opt_count[$j] <= 0) {
+                    $final_opt_stock[$j] = 0;
+                    $isOptSoldout        = $final_opt_stock;
+
+                    // 단일 옵션일 경우 상품 자체에 품절표시
+                    if (sizeof($products_opt) == 1) {
+                        $isOutofStock = "Y";
+                    } else {
+                        $isOutofStock = "";
+                    }
+
+                } else {
+                    $isOptSoldout = "";
+                }
+
                 // debug
                 // $txt  = print_r($products_opt_count, true);
                 // $file = fopen("final_opt_count.txt", "ab+");
@@ -148,9 +165,19 @@ if ($result) {
             }
         }
 
-        //DB에 재고 업데이트
+        //DB에 재고, 품절상황 업데이트
         $final_count = implode(",", $final_opt_count);
-        $qry2        = "UPDATE products SET opt_count='$final_count' WHERE num='$products_num[$i]'";
+
+        if ($isOptSoldout && $isOutofStock) {
+            // 단일옵션인 경우 상품 자체에 품절표시
+            $qry2 = "UPDATE products SET opt_count='$final_count', del_chk='O' WHERE num='$products_num[$i]'";
+        } elseif ($isOptSoldout) {
+            $final_stock = implode(",", $final_opt_stock);
+            $qry2        = "UPDATE products SET opt_count='$final_count', opt_stock='$final_stock' WHERE num='$products_num[$i]'";
+        } else {
+            $qry2 = "UPDATE products SET opt_count='$final_count' WHERE num='$products_num[$i]'";
+        }
+
         mysqli_query($connect, $qry2);
 
     }

@@ -9,5 +9,5 @@
 //      }
 // }
 
-header("location:http://$_SERVER[SERVER_NAME]/web/");
+header("location:http://$_SERVER[SERVER_NAME]/shop/");
 exit;
