@@ -493,7 +493,7 @@ function show_logistics()
     $log_result = mysqli_query($connect, $log_sql);
     $log_row    = mysqli_fetch_array($log_result);
 
-    $logistics = $log_row['logistics'];
+    $logistics = $log_row['logistics'] . " ";
 
     return $logistics;
 }
@@ -537,26 +537,26 @@ function show_banner($connect)
 
     if ($rows['m_banner1'] == 'Y') {
         echo "<div id='slide-1' class='slide'>\n
-					<h1>$rows[title1]</h1>\n
-					<p>" . nl2br(stripslashes($rows['info1'])) . "</p>\n
-					<a href=\"$rows[m_link1]\"><img src=\"$rows[m_banner1_image]\" alt=\"banner1\" /></a>\n
-					</div>\n";
+                    <h1>$rows[title1]</h1>\n
+                    <p>" . nl2br(stripslashes($rows['info1'])) . "</p>\n
+                    <a href=\"$rows[m_link1]\"><img src=\"$rows[m_banner1_image]\" alt=\"banner1\" /></a>\n
+                    </div>\n";
     }
 
     if ($rows['m_banner2'] == 'Y') {
         echo "<div class='slide'>\n
-					<h1>$rows[title2]</h1>\n
-					<p>" . nl2br(stripslashes($rows['info2'])) . "</p>\n
-					<a href=\"$rows[m_link2]\"><img src=\"$rows[m_banner2_image]\" alt=\"banner2\" /></a>\n
-					</div>\n";
+                    <h1>$rows[title2]</h1>\n
+                    <p>" . nl2br(stripslashes($rows['info2'])) . "</p>\n
+                    <a href=\"$rows[m_link2]\"><img src=\"$rows[m_banner2_image]\" alt=\"banner2\" /></a>\n
+                    </div>\n";
     }
 
     if ($rows['m_banner3'] == 'Y') {
         echo "<div class='slide'>\n
-					<h1>$rows[title3]</h1>\n
-					<p>" . nl2br(stripslashes($rows['info3'])) . "</p>\n
-					<a href=\"$rows[m_link3]\"><img src=\"$rows[m_banner3_image]\" alt=\"banner3\" /></a>\n
-					</div>\n";
+                    <h1>$rows[title3]</h1>\n
+                    <p>" . nl2br(stripslashes($rows['info3'])) . "</p>\n
+                    <a href=\"$rows[m_link3]\"><img src=\"$rows[m_banner3_image]\" alt=\"banner3\" /></a>\n
+                    </div>\n";
     }
 }
 
@@ -638,7 +638,7 @@ function show_option($pnum)
             $opt[$i] .= "(단종)";
             $dis[$i] .= "disabled";
         } else {
-            $chk[$i] .= ' [재고: '. $opt_count[$i] .' 개]';
+            $chk[$i] .= ' [재고: ' . $opt_count[$i] . ' 개]';
         }
     }
 
@@ -795,8 +795,8 @@ function set_var(&$ary)
 function show_msg($msg, $url)
 {
     echo "<meta HTTP-EQUIV='CONTENT-TYPE' content='text/html;charset=UTF-8'>
-			<script language=\"JavaScript\">
-	          alert(\"$msg\");
+            <script language=\"JavaScript\">
+              alert(\"$msg\");
              document.location.replace(\"$url\");
             </script>";
 }
@@ -805,20 +805,20 @@ function show_msg($msg, $url)
 function show_msg_close($msg)
 {
     echo "<meta HTTP-EQUIV='CONTENT-TYPE' content='text/html;charset=UTF-8'>
-			<script language=\"JavaScript\">
-	          alert(\"$msg\");
-			  opener.document.location.reload();
-			  window.close();
+            <script language=\"JavaScript\">
+              alert(\"$msg\");
+              opener.document.location.reload();
+              window.close();
             </script>";
 }
 
 function show_msg_close2($msg, $url)
 {
     echo "<meta HTTP-EQUIV='CONTENT-TYPE' content='text/html;charset=UTF-8'>
-			<script language=\"JavaScript\">
-	          window.alert(\"$msg\");
-			  opener.document.location.replace(\"$url\");
-			  window.close();
+            <script language=\"JavaScript\">
+              window.alert(\"$msg\");
+              opener.document.location.replace(\"$url\");
+              window.close();
             </script>";
 }
 
@@ -826,11 +826,11 @@ function err_msg($msg, $bool = "1")
 {
     if ($bool) {
         echo "  <meta http-equiv='content-type' content='text/html; charset=UTF-8' />
-				<script>
-				window.alert('$msg');
-				history.go(-1);
-				</script>
-				";
+                <script>
+                window.alert('$msg');
+                history.go(-1);
+                </script>
+                ";
         exit;
     }
 }
@@ -851,11 +851,11 @@ function msg($msg)
 function err_close($msg)
 {
     echo "<meta http-equiv='content-type' content='text/html; charset=UTF-8' />
-		<script>
-		window.alert('$msg');
-		self.close();
-		</script>
-		";
+        <script>
+        window.alert('$msg');
+        self.close();
+        </script>
+        ";
     exit;
 }
 
@@ -863,11 +863,11 @@ function err_msg2($msg, $to, $bool = "1")
 {
     if ($bool) {
         echo "<meta http-equiv='content-type' content='text/html; charset=UTF-8' />
-			<script>
-			window.alert('$msg');
-			window.open('$to','_self');
-			</script>
-		";
+            <script>
+            window.alert('$msg');
+            window.open('$to','_self');
+            </script>
+        ";
         exit;
     }
 }
@@ -998,7 +998,7 @@ function page_nav($totalpage, $cpage, $url)
     if ($cpage > $pagenumber) {
 
         $curpage = intval($startpage - 1);
-        echo '			<li><a href="' . $url . '&page=' . $curpage . '"> <i class="fa fa-chevron-left"></i> </a></li>' . "\r\n";
+        echo '          <li><a href="' . $url . '&page=' . $curpage . '"> <i class="fa fa-chevron-left"></i> </a></li>' . "\r\n";
     } else {
         // echo '                <li><a href="#"><i class="fa fa-chevron-left"></i></a></li>' . "\r\n";
     }
@@ -1008,9 +1008,9 @@ function page_nav($totalpage, $cpage, $url)
     while ($curpage <= $endpage) {
 
         if ($curpage == $cpage) {
-            echo '			<li class="active"><a href="#">' . $cpage . '</a></li>' . "\r\n";
+            echo '          <li class="active"><a href="#">' . $cpage . '</a></li>' . "\r\n";
         } else {
-            echo '			<li><a href="' . $url . '&page=' . $curpage . '">' . $curpage . '</a></li>' . "\r\n";
+            echo '          <li><a href="' . $url . '&page=' . $curpage . '">' . $curpage . '</a></li>' . "\r\n";
         }
         $curpage++;
 
@@ -1018,12 +1018,12 @@ function page_nav($totalpage, $cpage, $url)
 
     if ($totalpage > $endpage) {
         $curpage = intval($endpage + 1);
-        echo '			<li><a href="' . $url . '&page=' . $curpage . '"> &middot;&middot;&middot; <i class="fa fa-chevron-right"></i> </a></li>' . "\r\n";
+        echo '          <li><a href="' . $url . '&page=' . $curpage . '"> &middot;&middot;&middot; <i class="fa fa-chevron-right"></i> </a></li>' . "\r\n";
     } else {
         // echo '            <li><a href="#"><i class="fa fa-chevron-right"></i></a></li>';
     }
 
-    echo '		</ul>' . "\r\n";
+    echo '      </ul>' . "\r\n";
 }
 
 // ��ۺ� ���
@@ -1697,8 +1697,8 @@ function get_pg_info2($orderid)
                         $pay_status .= '          <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>';
                         $pay_status .= '        </div>';
                         $pay_status .= '      </div>'; //<!-- /.modal-content -->
-                        $pay_status .= '    </div>';   //<!-- /.modal-dialog -->
-                        $pay_status .= '  </div>';     //<!-- /.modal -->
+                        $pay_status .= '    </div>'; //<!-- /.modal-dialog -->
+                        $pay_status .= '  </div>'; //<!-- /.modal -->
 
                     } elseif ($pg_row['LGD_CASFLAG'] == "I") {
                         $pay_status = '<i class="fa fa-check-circle pay-color"></i> 입금완료';
@@ -1723,8 +1723,8 @@ function get_pg_info2($orderid)
                     $pay_status .= '          <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>';
                     $pay_status .= '        </div>';
                     $pay_status .= '      </div>'; //<!-- /.modal-content -->
-                    $pay_status .= '    </div>';   //<!-- /.modal-dialog -->
-                    $pay_status .= '  </div>';     //<!-- /.modal -->
+                    $pay_status .= '    </div>'; //<!-- /.modal-dialog -->
+                    $pay_status .= '  </div>'; //<!-- /.modal -->
 
                 }
 
@@ -1772,9 +1772,9 @@ function get_pg_info2($orderid)
                     $pay_status .= '          <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>';
                     $pay_status .= '        </div>';
                     $pay_status .= '      </div>'; //<!-- /.modal-content -->
-                    $pay_status .= '    </div>';   //<!-- /.modal-dialog -->
-                    $pay_status .= '  </div>';     //<!-- /.modal -->
-                                                   // $pay_status = '<i class="fa fa-exclamation-triangle fail-color"></i> 이체실패(' . $pg_row['LGD_RESPCODE'] . ')';
+                    $pay_status .= '    </div>'; //<!-- /.modal-dialog -->
+                    $pay_status .= '  </div>'; //<!-- /.modal -->
+                    // $pay_status = '<i class="fa fa-exclamation-triangle fail-color"></i> 이체실패(' . $pg_row['LGD_RESPCODE'] . ')';
                 }
 
                 break;
@@ -1838,8 +1838,8 @@ function get_pg_info2($orderid)
                     $pay_status .= '          <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>';
                     $pay_status .= '        </div>';
                     $pay_status .= '      </div>'; //<!-- /.modal-content -->
-                    $pay_status .= '    </div>';   //<!-- /.modal-dialog -->
-                    $pay_status .= '  </div>';     //<!-- /.modal -->
+                    $pay_status .= '    </div>'; //<!-- /.modal-dialog -->
+                    $pay_status .= '  </div>'; //<!-- /.modal -->
 
                     // $pay_status = '<i class="fa fa-exclamation-triangle fail-color"></i> 결제실패(' . $pg_row['LGD_RESPCODE'] . ')';
                 }
@@ -2203,7 +2203,6 @@ HEREDOC;
         echo "<br>";
     }
 }
-
 
 /**
  * 어드민 카테고리 분류

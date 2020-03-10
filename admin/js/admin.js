@@ -505,7 +505,7 @@ function save_offer(){
 function TrackInfo(x) {
     var no = x;
 	// var url = 'http://www.hydex.net/ehydex/jsp/home/distribution/tracking/trackingViewCus.jsp?InvNo='+no;
-	var url = 'https://www.ilogen.com/iLOGEN.Web.New/TRACE/TraceView.aspx?slipno='+no+'&gubun=slipno';
+	var url = 'http://www.ilogen.com/m/personal/trace.pop/' + no;
 	var name = 'popup';
 	var option = 'width=700, height=600, scrollbars=yes';
 

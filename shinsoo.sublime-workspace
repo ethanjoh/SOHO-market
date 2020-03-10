@@ -4,6 +4,38 @@
 		"selected_items":
 		[
 			[
+				"produc",
+				"products_opt"
+			],
+			[
+				"fina",
+				"final_opt_stock"
+			],
+			[
+				"array",
+				"array"
+			],
+			[
+				"pro",
+				"products_opt"
+			],
+			[
+				"opt",
+				"optstock"
+			],
+			[
+				"prod",
+				"products_opt_count"
+			],
+			[
+				"q",
+				"qry_char"
+			],
+			[
+				"prud",
+				"products_num"
+			],
+			[
 				"font-",
 				"font-weight\tproperty"
 			],
@@ -122,10 +154,6 @@
 			[
 				"exp",
 				"explode"
-			],
-			[
-				"pro",
-				"pro_code"
 			],
 			[
 				"arr",
@@ -316,32 +344,12 @@
 	"buffers":
 	[
 		{
-			"file": "admin/products/pro_register.php",
+			"file": "shop/detail.php",
 			"settings":
 			{
-				"buffer_size": 26886,
+				"buffer_size": 6026,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
-			}
-		},
-		{
-			"contents": "Package Control Messages\n========================\n\nphpfmt\n------\n\n  # [phpfmt](https://github.com/phpfmt/fmt) support for Sublime Text 3\n  \n  \n  Thanks for installing phpfmt for Sublime Text.\n  \n  Please, before posting an issue that this plugin is not formatting your code, answer the following questions:\n  \n  - Have you installed PHP in the computer which is running Sublime Text?\n  \n  - Is PHP configured in the default $PATH/%PATH% variable?\n  \n  - If PHP is not configured in $PATH/%PATH%, have you added the option \"php_bin\" in the configuration file with full path of PHP binary?\n  \n  - Are you running at least PHP 5.6?\n  \n  If you have answered more than one \"no\", then double check your environment.\n  \n  XDebug makes this plugin to work much slower than normal. Consider disabling it before actually using phpfmt.\n",
-			"settings":
-			{
-				"buffer_size": 826,
-				"line_ending": "Windows",
-				"name": "Package Control Messages",
-				"read_only": true,
-				"scratch": true
-			}
-		},
-		{
-			"file": "/C/Users/ethan/AppData/Roaming/Sublime Text 3/Packages/phpfmt/phpfmt.sublime-settings",
-			"settings":
-			{
-				"buffer_size": 96,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
 			}
 		}
 	],
@@ -357,16 +365,16 @@
 		"selected_items":
 		[
 			[
-				"php",
-				"phpfmt: format now"
-			],
-			[
 				"in",
 				"Package Control: Install Package"
 			],
 			[
 				"Package Control: ",
 				"Package Control: Remove Package"
+			],
+			[
+				"php",
+				"phpfmt: format now"
 			],
 			[
 				"ins",
@@ -444,41 +452,88 @@
 	[
 		"/C/www/shinsoo",
 		"/C/www/shinsoo/admin",
-		"/C/www/shinsoo/admin/products",
-		"/C/www/shinsoo/include",
-		"/C/www/shinsoo/shop",
-		"/C/www/shinsoo/web",
-		"/C/www/shinsoo/web/css"
+		"/C/www/shinsoo/shop"
 	],
 	"file_history":
 	[
+		"/C/Users/ethan/Desktop/variables_from_payreq.php",
+		"/C/www/shinsoo/db.php",
+		"/C/www/shinsoo/web/index.html",
+		"/C/www/shinsoo/shop/checkout.php",
+		"/C/www/shinsoo/pay/payreq_crossplatform.php",
+		"/C/www/shinsoo/util/util.php",
+		"/C/www/shinsoo/pay/payres.php",
+		"/C/www/shinsoo/member/login-ok.php",
+		"/C/www/shinsoo/include/header.php",
+		"/C/www/shinsoo/shop/cart.php",
+		"/C/www/shinsoo/util/shop-functions.php",
+		"/C/www/shinsoo/pay/variables_from_payreq.php",
+		"/C/www/shinsoo/shop/detail.php",
+		"/C/www/shinsoo/index.php",
+		"/C/Users/ethan/Downloads/config.ini",
+		"/C/Users/ethan/Downloads/variables_from_payreq.php",
+		"/C/www/shinsoo/update.php",
+		"/C/www/shinsoo/pay/cas_noteurl.php",
+		"/C/www/shinsoo/pay/returnurl.php",
+		"/C/www/shinsoo/member/login.php",
+		"/C/www/shinsoo/admin/member/mem_view_member.php",
+		"/C/www/shinsoo/pay/save_wireinfo_to_db.php",
+		"/C/www/shinsoo/shop/index.php",
+		"/C/www/shinsoo/smartpay/payreq_crossplatform.php",
+		"/C/www/shinsoo/admin/order/edit_pro.php",
+		"/C/www/shinsoo/shop/catalog-list.php",
+		"/C/www/shinsoo/shop/order-list.php",
+		"/C/www/shinsoo/admin/js/admin.js",
+		"/C/www/shinsoo/admin/products/pro_register.php",
+		"/C/www/shinsoo/admin/order/edit_pro_ok.php",
+		"/C/www/shinsoo/admin/products/update_stock.php",
+		"/C/www/shinsoo/admin/products/down_pro_csv.php",
+		"/C/www/shinsoo/admin/products/uploads/products_list.csv",
+		"/C/www/shinsoo/admin/order/upload_waybill_process.php",
+		"/C/www/shinsoo/get-product.php",
+		"/C/Users/ethan/Downloads/products_list.csv",
+		"/C/www/shinsoo/dir.php",
+		"/C/www/shinsoo/admin/products/top_pro_list.php",
+		"/C/www/shinsoo/admin/products/export-excel.php",
+		"/C/www/shinsoo/util/config.ini",
+		"/C/www/gideonsonic/admin/export-excel.php",
+		"/C/www/gideonsonic/main/include/functions.php",
+		"/C/www/gideonsonic/main/include/config.php",
+		"/C/www/shinsoo/admin/export-excel.php",
+		"/C/www/shinsoo/admin/Classes/PHPExcel.php",
+		"/C/www/shinsoo/admin/order/or_delete.php",
+		"/C/www/shinsoo/admin/include/admin_sidebar.php",
+		"/C/www/shinsoo/admin/include/admin_auth.php",
+		"/C/www/shinsoo/util/admin_auth.php",
+		"/C/www/mnt/admin/export-excel.php",
+		"/C/www/shinsoo/admin/include/header.php",
+		"/C/www/shinsoo/admin/order/upload_waybill.php",
+		"/C/www/shinsoo/admin/products/down_pro_excel.php",
+		"/C/www/shinsoo/admin/products/down_pro_exel.php",
+		"/C/www/shinsoo/admin/order/tracktoexcel_a.php",
+		"/C/www/shinsoo/shop/order-delete.php",
+		"/C/www/shinsoo/shop/array2.php",
+		"/C/www/shinsoo/shop/array.php",
+		"/C/www/shinsoo/admin/order/top_order_list.php",
+		"/C/www/shinsoo/css/style.css",
+		"/C/www/shinsoo/shop/(not use)checkout-ok.php",
+		"/C/Users/ethan/Downloads/admin_products_pro_register.php",
+		"/C/www/shinsoo/admin/products/pro_register_ok.php",
+		"/C/Users/ethan/AppData/Roaming/Sublime Text 3/Packages/CodeFormatter/CodeFormatter.sublime-settings",
+		"/C/www/shinsoo/shinsoo.sql",
+		"/C/Users/ethan/AppData/Roaming/Sublime Text 3/Packages/phpfmt/phpfmt.sublime-settings",
 		"/C/Users/ethan/AppData/Roaming/Sublime Text 3/Packages/phpfmt/message",
 		"/C/Users/ethan/AppData/Roaming/Sublime Text 3/Packages/User/SFTP.sublime-settings",
-		"/C/www/shinsoo/index.php",
-		"/C/www/shinsoo/web/index.html",
 		"/C/www/shinsoo/web/css/be_style.css",
 		"/C/www/shinsoo/shop/checkout-ok.php",
-		"/C/www/shinsoo/util/util.php",
-		"/C/www/shinsoo/get-product.php",
-		"/C/www/shinsoo/dir.php",
 		"/C/www/shinsoo/admin/products/pro_insert.php",
-		"/C/www/shinsoo/include/header.php",
-		"/C/www/shinsoo/admin/order/top_order_list.php",
-		"/C/www/shinsoo/shop/order-list.php",
-		"/C/www/shinsoo/member/login-ok.php",
-		"/C/www/shinsoo/pay/payreq_crossplatform.php",
-		"/C/www/shinsoo/pay/payres.php",
-		"/C/www/shinsoo/util/shop-functions.php",
 		"/C/Users/ethan/Downloads/cyworld_backup_0.2/info.conf",
 		"/C/Users/ethan/Downloads/cyworld_backup/info.conf",
 		"/C/www/shinsoo/phpinfo.php",
-		"/C/www/shinsoo/smartpay/payreq_crossplatform.php",
 		"/C/www/shinsoo/admin/member/mem_ins_member.php",
-		"/C/www/shinsoo/shop/checkout.php",
 		"/C/www/shinsoo/include/footer.php",
 		"/C/www/shinsoo/js/shopping.js",
 		"/C/www/shinsoo/js/addcart.js",
-		"/C/www/shinsoo/shop/catalog-list.php",
 		"/C/www/shinsoo/member/register-ok.php",
 		"/C/wamp64/www/shinsoo/bbs/read.php",
 		"/C/wamp64/www/shinsoo/bbs/post_ok.php",
@@ -528,68 +583,18 @@
 		"/C/Users/Seonghyeon/OneDrive/git_project/gwangjinbc/js-plugin/neko-contact-ajax-plugin/php/form-handler-quotation.php",
 		"/C/Users/Seonghyeon/OneDrive/git_project/gwangjinbc/js-plugin/neko-contact-ajax-plugin/php/form-handler.php",
 		"/C/Users/Seonghyeon/OneDrive/git_project/gwangjinbc/bbs/login.php",
-		"/C/Users/Seonghyeon/OneDrive/git_project/smedics/css/style.css",
-		"/C/Users/Seonghyeon/OneDrive/git_project/smedics/include/footer.php",
-		"/C/Users/Seonghyeon/OneDrive/git_project/smedics/include/header.php",
-		"/C/Users/Seonghyeon/OneDrive/git_project/smedics/main/index.php",
-		"/C/Users/Seonghyeon/OneDrive/git_project/smedics/admin/include/admin_head.php",
-		"/C/Users/Seonghyeon/OneDrive/git_project/smedics/admin/main.php",
-		"/C/Users/Seonghyeon/OneDrive/git_project/smedics/admin/index.php",
-		"/C/Users/Seonghyeon/OneDrive/git_project/smedics/admin/css/style.css",
-		"/C/Users/Seonghyeon/OneDrive/git_project/smedics/admin/include/admin_footer.php",
-		"/C/Users/Seonghyeon/OneDrive/git_project/smedics/admin/assets/morris.js-0.4.3/morris.js",
-		"/C/Users/Seonghyeon/OneDrive/git_project/smedics/js/showChart.js",
-		"/C/Users/Seonghyeon/OneDrive/git_project/smedics/js/custom.js",
-		"/C/Users/Seonghyeon/OneDrive/git_project/smedics/sftp-config.json",
-		"/C/Users/Seonghyeon/OneDrive/git_project/smedics/index.php",
-		"/C/Users/Seonghyeon/OneDrive/git_project/smedics/shop/checkout.php",
-		"/C/Users/Seonghyeon/OneDrive/git_project/smedics/util/config.php",
-		"/Users/ethanjoh/Desktop/git_project/smedics/admin/products/top_pro_list.php",
-		"/Users/ethanjoh/Desktop/git_project/smedics/shop/catalog-list.php",
-		"/Users/ethanjoh/Desktop/git_project/smedics/admin/member/product_list.php",
-		"/Users/ethanjoh/Desktop/git_project/smedics/admin/products/pro_register_ok.php",
-		"/Users/ethanjoh/Desktop/git_project/smedics/util/util.php",
-		"/Users/ethanjoh/Desktop/git_project/smedics/admin/order/sale_test.php",
-		"/Users/ethanjoh/Desktop/git_project/smedics/admin/js/showMainChart.js",
-		"/Users/ethanjoh/Desktop/git_project/smedics/admin/order/sale_list.php",
-		"/Users/ethanjoh/Desktop/git_project/smedics/admin/mainChartProcess.php",
-		"/Users/ethanjoh/Desktop/git_project/smedics/admin/main.php",
-		"/Users/ethanjoh/Desktop/git_project/smedics/admin/js/admin.js",
-		"/Users/ethanjoh/Desktop/git_project/smedics/admin/order/or_view.php",
-		"/Users/ethanjoh/Desktop/git_project/smedics/shop/order-detail.php",
-		"/Users/ethanjoh/Desktop/git_project/smedics/admin/products/pro_register.php",
-		"/Users/ethanjoh/Desktop/git_project/smedics/admin/order/or_changed.php",
-		"/Users/ethanjoh/Desktop/git_project/smedics/admin/order/track_a_list.php",
-		"/Users/ethanjoh/Desktop/git_project/smedics/shop/checkout.php",
-		"/Users/ethanjoh/Desktop/git_project/smedics/shop/cart.php",
-		"/Users/ethanjoh/Desktop/git_project/smedics/admin/include/admin_head.php",
-		"/Users/ethanjoh/Desktop/git_project/smedics/admin/member/mem_sendmail_form.php",
-		"/Users/ethanjoh/Desktop/git_project/smedics/admin/member/mem_sendmail_list.php",
-		"/Users/ethanjoh/Desktop/git_project/smedics/admin/member/mem_sendmail_ok.php",
-		"/Users/ethanjoh/Desktop/git_project/smedics/admin/include/admin_sidebar.php",
-		"/Users/ethanjoh/Desktop/git_project/smedics/include/footer.php",
-		"/Users/ethanjoh/Desktop/git_project/smedics/include/header.php",
-		"/Users/ethanjoh/Desktop/git_project/smedics/css/style.css",
-		"/Users/ethanjoh/Desktop/git_project/smedics/admin/member/product_list_ok.php",
-		"/Users/ethanjoh/Desktop/git_project/smedics/admin/order/top_order_list.php",
-		"/Users/ethanjoh/Desktop/git_project/smedics/about/location.php",
-		"/Users/ethanjoh/Desktop/git_project/smedics/member/register_form.php",
-		"/Users/ethanjoh/Desktop/git_project/smedics/bbs/delete.php",
-		"/Users/ethanjoh/Desktop/git_project/smedics/bbs/list.php",
-		"/Users/ethanjoh/Desktop/git_project/smedics/bbs/read.php",
-		"/Users/ethanjoh/Desktop/git_project/smedics/bbs/post.php",
-		"/Users/ethanjoh/Desktop/git_project/smedics/admin/order/add_memo.php",
-		"/Users/ethanjoh/Desktop/git_project/smedics/admin/supplier/sendmail_form.php"
+		"/C/Users/Seonghyeon/OneDrive/git_project/smedics/css/style.css"
 	],
 	"find":
 	{
-		"height": 27.0
+		"height": 40.0
 	},
 	"find_in_files":
 	{
 		"height": 203.0,
 		"where_history":
 		[
+			"C:\\www\\shinsoo"
 		]
 	},
 	"find_state":
@@ -597,6 +602,84 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"isStock",
+			"$order_opt[$i]",
+			"fwrite",
+			"order_kind",
+			"products_kind",
+			"products_count",
+			"temp_code",
+			"products_num",
+			"fwrite",
+			".log",
+			"log",
+			"var_dump",
+			"temp_code",
+			"trade_code",
+			"temp_code",
+			"trade_code",
+			"header",
+			"temp_code",
+			"trade_code",
+			"lgd_oid",
+			"LGD_OID",
+			"lgd_oid",
+			"LGD_PRODUCTINFO",
+			"payReqMap",
+			"protocol",
+			"check_protocol",
+			"protocol",
+			"products_num",
+			"rows",
+			"M004-12 : 6번 (37.0)",
+			"M004-11 : 5번 (37.5)",
+			"products_kind",
+			"products_count",
+			"$optstock[$i]",
+			"temp_kind",
+			"products_kind",
+			"$optstock[",
+			"products_num",
+			"$sql",
+			"sql",
+			"products_opt_count",
+			"\n$",
+			"sql",
+			"res",
+			"qry2",
+			"memo_to_admin",
+			"optname",
+			"implo",
+			"explode",
+			"optcount",
+			"optname",
+			"opt",
+			"$optname",
+			"$opt_name_ins",
+			"stock",
+			"$opt_stock",
+			"$opt_name_ins",
+			"$opt",
+			"opt_name_ins",
+			"optname_ins",
+			"$optstock",
+			"$optname",
+			"optname",
+			"opt_name",
+			"optstock",
+			"opt_stock",
+			"opt_stock_ins",
+			"$opt",
+			"optname_ins",
+			"optname",
+			"opt",
+			"optname_ins",
+			"optname",
+			"opt_name",
+			"optname",
+			"opt_stock",
+			"optname",
+			"opt_stock_ins",
 			"opt_stock",
 			"products_stock",
 			"protocol",
@@ -625,257 +708,35 @@
 			[
 				{
 					"buffer": 0,
-					"file": "admin/products/pro_register.php",
-					"semi_transient": false,
+					"file": "shop/detail.php",
+					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 26886,
+						"buffer_size": 6026,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								19885,
-								19885
+								1072,
+								1072
 							]
 						],
 						"settings":
 						{
-							"SL.13.region_keys":
-							[
-							],
-							"SL.26.region_keys":
-							[
-							],
-							"SL.29.region_keys":
-							[
-							],
-							"SL.39.region_keys":
-							[
-							],
-							"bracket_highlighter.busy": false,
-							"bracket_highlighter.clone": -1,
-							"bracket_highlighter.clone_locations":
-							{
-								"close":
-								{
-								},
-								"icon":
-								{
-								},
-								"open":
-								{
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.clone_regions":
-							[
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content"
-							],
-							"bracket_highlighter.locations":
-							{
-								"close":
-								{
-								},
-								"icon":
-								{
-								},
-								"open":
-								{
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.regions":
-							[
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content"
-							],
 							"incomplete_sync": null,
 							"remote_loading": false,
 							"synced": true,
 							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"translate_tabs_to_spaces": false
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 7166.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 826,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								826,
-								826
-							]
-						],
-						"settings":
-						{
-							"auto_indent": false,
-							"default_dir": "C:\\www\\shinsoo\\admin\\products",
-							"incomplete_sync": null,
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"tab_width": 2,
-							"word_wrap": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "/C/Users/ethan/AppData/Roaming/Sublime Text 3/Packages/phpfmt/phpfmt.sublime-settings",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 96,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								47,
-								47
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JSON.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -883,7 +744,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 27.0
+		"height": 28.0
 	},
 	"input":
 	{
@@ -932,7 +793,7 @@
 	"project": "shinsoo.sublime-project",
 	"replace":
 	{
-		"height": 50.0
+		"height": 52.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -942,12 +803,188 @@
 		"selected_items":
 		[
 			[
-				"payreq",
-				"smartpay\\payreq_crossplatform.php"
+				"inde",
+				"index.php"
+			],
+			[
+				"detail",
+				"shop\\detail.php"
+			],
+			[
+				"index",
+				"web\\index.html"
+			],
+			[
+				"util",
+				"util\\util.php"
+			],
+			[
+				"upda",
+				"update.php"
+			],
+			[
+				"va",
+				"pay\\variables_from_payreq.php"
+			],
+			[
+				"up",
+				"update.php"
+			],
+			[
+				"pay",
+				"pay\\payres.php"
 			],
 			[
 				"hea",
 				"include\\header.php"
+			],
+			[
+				"login",
+				"member\\login-ok.php"
+			],
+			[
+				"cart",
+				"shop\\cart.php"
+			],
+			[
+				"che",
+				"shop\\checkout.php"
+			],
+			[
+				"uti",
+				"util\\util.php"
+			],
+			[
+				"payre",
+				"pay\\payres.php"
+			],
+			[
+				"ind",
+				"index.php"
+			],
+			[
+				"head",
+				"include\\header.php"
+			],
+			[
+				"retur",
+				"pay\\returnurl.php"
+			],
+			[
+				"log",
+				"member\\login.php"
+			],
+			[
+				"var",
+				"pay\\variables_from_payreq.php"
+			],
+			[
+				"vari",
+				"pay\\variables_from_payreq.php"
+			],
+			[
+				"cas",
+				"pay\\cas_noteurl.php"
+			],
+			[
+				"edit",
+				"admin\\order\\edit_pro.php"
+			],
+			[
+				"cata",
+				"shop\\catalog-list.php"
+			],
+			[
+				"pro_re",
+				"admin\\products\\pro_register.php"
+			],
+			[
+				"catalo",
+				"shop\\catalog-list.php"
+			],
+			[
+				"or",
+				"shop\\order-list.php"
+			],
+			[
+				"ge",
+				"get-product.php"
+			],
+			[
+				"way",
+				"admin\\order\\upload_waybill_process.php"
+			],
+			[
+				"down",
+				"admin\\products\\down_pro_excel.php"
+			],
+			[
+				"con",
+				"util\\config.ini"
+			],
+			[
+				"expo",
+				"admin\\products\\export-excel.php"
+			],
+			[
+				"admin",
+				"util\\admin_auth.php"
+			],
+			[
+				"exp",
+				"admin\\products\\export-excel.php"
+			],
+			[
+				"tra",
+				"admin\\order\\tracktoexcel_a.php"
+			],
+			[
+				"top",
+				"admin\\products\\top_pro_list.php"
+			],
+			[
+				"upload",
+				"admin\\order\\upload_waybill_process.php"
+			],
+			[
+				"upload_",
+				"admin\\order\\upload_waybill.php"
+			],
+			[
+				"arra",
+				"shop\\array.php"
+			],
+			[
+				"arr",
+				"shop\\array.php"
+			],
+			[
+				"styl",
+				"css\\style.css"
+			],
+			[
+				"order",
+				"shop\\order-delete.php"
+			],
+			[
+				"checkou",
+				"shop\\(not use)checkout-ok.php"
+			],
+			[
+				"or_de",
+				"admin\\order\\or_delete.php"
+			],
+			[
+				"top_or",
+				"admin\\order\\top_order_list.php"
+			],
+			[
+				"top_pro",
+				"admin\\products\\top_pro_list.php"
+			],
+			[
+				"payreq",
+				"smartpay\\payreq_crossplatform.php"
 			],
 			[
 				"shop",
@@ -966,16 +1003,8 @@
 				"include\\footer.php"
 			],
 			[
-				"head",
-				"include\\header.php"
-			],
-			[
 				"mem_ins",
 				"admin\\member\\mem_ins_member.php"
-			],
-			[
-				"catalo",
-				"shop\\catalog-list.php"
 			],
 			[
 				"regis",
@@ -996,14 +1025,6 @@
 			[
 				"add_mem",
 				"admin\\order\\add_memo.php"
-			],
-			[
-				"order",
-				"shop\\order-stat-list.php"
-			],
-			[
-				"util",
-				"util\\util.php"
 			],
 			[
 				"deliv",
@@ -1042,24 +1063,12 @@
 				"header.php"
 			],
 			[
-				"ind",
-				"index.php"
-			],
-			[
 				"cus",
 				"js\\custom.js"
 			],
 			[
-				"index",
-				"index.php"
-			],
-			[
 				"ly",
 				"css\\layout.css"
-			],
-			[
-				"login",
-				"bbs\\login.php"
 			],
 			[
 				"style",
@@ -1070,10 +1079,6 @@
 				"include\\header.php"
 			],
 			[
-				"admin",
-				"admin\\include\\admin_head.php"
-			],
-			[
 				"main",
 				"admin\\main.php"
 			],
@@ -1082,16 +1087,8 @@
 				"css\\style.css"
 			],
 			[
-				"pro_re",
-				"admin/products/pro_register_ok.php"
-			],
-			[
 				"produc",
 				"admin/member/product_list.php"
-			],
-			[
-				"top",
-				"admin/products/top_pro_list.php"
 			],
 			[
 				"sale",
@@ -1108,14 +1105,6 @@
 			[
 				"pro_reg",
 				"admin/products/pro_register_ok.php"
-			],
-			[
-				"or",
-				"admin/order/or_view.php"
-			],
-			[
-				"cart",
-				"shop/cart.php"
 			],
 			[
 				"admin_he",
@@ -1194,16 +1183,8 @@
 				"admin/order/or_view.php"
 			],
 			[
-				"che",
-				"shop/checkout-ok.php"
-			],
-			[
 				"offer",
 				"admin/supplier/offer_list.php"
-			],
-			[
-				"top_or",
-				"admin/order/top_order_list.php"
 			],
 			[
 				"check",
@@ -1218,10 +1199,6 @@
 				"admin/js/admin.js"
 			],
 			[
-				"inde",
-				"admin/index.php"
-			],
-			[
 				"admin.",
 				"admin/js/admin.js"
 			],
@@ -1230,16 +1207,8 @@
 				"admin/order/or_view.php"
 			],
 			[
-				"tra",
-				"admin/order/track_a_list.php"
-			],
-			[
 				"track_a",
 				"admin/order/track_a.php"
-			],
-			[
-				"top_pro",
-				"admin/products/top_pro_list.php"
 			],
 			[
 				"quot",
@@ -1260,10 +1229,6 @@
 			[
 				"top_member",
 				"admin/member/top_member_list.php"
-			],
-			[
-				"cata",
-				"shop/catalog-list.php"
 			],
 			[
 				"sty",
@@ -1342,116 +1307,12 @@
 				"about/history.php"
 			],
 			[
-				"uti",
-				"util/util.php"
-			],
-			[
 				"home",
 				"admin/stats/hometax_excel.php"
 			],
 			[
 				"tax",
 				"admin/stats/tax_list.php"
-			],
-			[
-				"foote",
-				"include/footer.php"
-			],
-			[
-				"hed",
-				"include/header.php"
-			],
-			[
-				"admin.js",
-				"admin/js/admin.js"
-			],
-			[
-				"heade",
-				"include/header.php"
-			],
-			[
-				"his",
-				"about/history.php"
-			],
-			[
-				"ab",
-				"about/about-us.php"
-			],
-			[
-				"admin_de",
-				"bbs/admin_delete.php"
-			],
-			[
-				"gloa",
-				"js/global.js"
-			],
-			[
-				"del",
-				"bbs/delete.php"
-			],
-			[
-				"edit_pro",
-				"admin/order/edit_pro.php"
-			],
-			[
-				"product",
-				"admin/member/product_list_ok.php"
-			],
-			[
-				"top_mem",
-				"admin/member/top_member_list.php"
-			],
-			[
-				"pro",
-				"admin/member/product_list.php"
-			],
-			[
-				"ut",
-				"util/util.php"
-			],
-			[
-				"view",
-				"admin/supplier/view_offer.php"
-			],
-			[
-				"reg",
-				"member/register_ok.php"
-			],
-			[
-				"edit",
-				"admin/member/mem_edit_member.php"
-			],
-			[
-				"admin_au",
-				"util/admin_auth.php"
-			],
-			[
-				"admin_se",
-				"admin/setting/admin_setup_ok.php"
-			],
-			[
-				"scm",
-				"scm/include/scm_sidebar.php"
-			],
-			[
-				"jq",
-				"admin/js/jq_datepicker.js"
-			],
-			[
-				"supplier",
-				"admin/supplier/view_supplier.php"
-			],
-			[
-				"suplier",
-				"admin/supplier/edit_supplier.php"
-			],
-			[
-				"edit_mem",
-				"admin/member/mem_edit_member.php"
-			],
-			[
-				"scm_o",
-				"scm/offer/scm_offer_list.php"
 			]
 		],
 		"width": 0.0
