@@ -2323,3 +2323,34 @@ function format_email($info, $file)
     return $template;
 
 }
+
+/*
+옵션재고 수량보다 많이 주문하는지 체크
+@param $product_num [주문제품번호]
+@param $selected_opt [주문옵션]
+@param $order_count [주문옵션 수량]
+2020.03.11
+ */
+function check_over_order($product_num, $selected_opt, $order_count)
+{
+
+    global $connect;
+
+    // 상품옵션 재고 확인
+    $qry = "SELECT * FROM products WHERE num='$product_num' ";
+    $res = mysqli_query($connect, $qry);
+    $row = mysqli_fetch_array($res);
+
+    $products_opt       = explode(",", $row['opt']); // 제품의 옵션을 배열로 저장
+    $products_opt_count = explode(",", $row['opt_count']); // 제품의 옵션수량을 배열로 저장
+
+    // 주문옵션 재고 확인
+    for ($i = 0; $i < sizeof($products_opt); $i++) {
+        if ($products_opt[$i] == $selected_opt) {
+            if ($products_opt_count[$i] < $order_count) {
+                return "over";
+            }
+        }
+    }
+
+}

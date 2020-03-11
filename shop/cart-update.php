@@ -56,79 +56,115 @@ if ("cart" == $from || "cart" == $where) {
  */
 } else if ("detail" == $from) {
 
-    //카트에 있는 상품확인
-    $qry = "SELECT * FROM products_cart WHERE user_id='$id_fk' AND product_code='$pnum' AND p_opt='$selected_opt'  ";
-    $res = mysqli_query($connect, $qry);
-    $row = mysqli_fetch_array($res);
+    // 재고수량보다 많은지 체크
+    $ret = check_over_order($pnum, $selected_opt, $products_count);
 
-    if (count($row) > 0) {
-        $products_count += $row['volume'];
-
-        $query = "UPDATE products_cart SET volume = '$products_count' WHERE cart_id='$row[cart_id]' AND user_id='$id_fk' ";
-        mysqli_query($connect, $query);
-    } else {
-        $query = "INSERT INTO products_cart VALUES ('', '$id_fk', '$_COOKIE[p_sid]', '$pnum', '$products_count', '$amount', '$selected_opt', now() )";
-        mysqli_query($connect, $query);
-    }
-
-    if ($chk == "2") {
-        redirect('checkout.php?from=detail');
-        // echo "<meta http-equiv='Refresh' content='0; URL=checkout.php?from=detail'>";
-    } else {
-
+    if ($ret == "over") {
         $msg = "<meta http-equiv='content-type' content='text/html; charset=UTF-8' />\n";
         $msg .= "<script>\n";
-        $msg .= "window.alert('카트에 담았습니다.')\n";
+        $msg .= "window.alert('재고수량보다 많습니다')\n";
         $msg .= "</script>\n";
 
         // get quantity from cart
         $t_qry5  = "SELECT sum(volume) AS cnt_2 FROM products_cart WHERE user_id = '$id_fk'";
         $t_res5  = mysqli_query($connect, $t_qry5);
         $t_rows5 = mysqli_fetch_array($t_res5);
-        mysqli_free_result($t_res5);
 
         echo json_encode(array("msg" => $msg, "qty" => $t_rows5['cnt_2']));
+    } else {
+        //카트에 있는 상품확인
+        $qry = "SELECT * FROM products_cart WHERE user_id='$id_fk' AND product_code='$pnum' AND p_opt='$selected_opt'  ";
+        $res = mysqli_query($connect, $qry);
+        $row = mysqli_fetch_array($res);
 
+        if (count($row) > 0) {
+            $products_count += $row['volume'];
+
+            $query = "UPDATE products_cart SET volume = '$products_count' WHERE cart_id='$row[cart_id]' AND user_id='$id_fk' ";
+            mysqli_query($connect, $query);
+        } else {
+            $query = "INSERT INTO products_cart VALUES ('', '$id_fk', '$_COOKIE[p_sid]', '$pnum', '$products_count', '$amount', '$selected_opt', now() )";
+            mysqli_query($connect, $query);
+        }
+
+        if ($chk == "2") {
+            redirect('checkout.php?from=detail');
+            // echo "<meta http-equiv='Refresh' content='0; URL=checkout.php?from=detail'>";
+        } else {
+
+            $msg = "<meta http-equiv='content-type' content='text/html; charset=UTF-8' />\n";
+            $msg .= "<script>\n";
+            $msg .= "window.alert('카트에 담았습니다.')\n";
+            $msg .= "</script>\n";
+
+            // get quantity from cart
+            $t_qry5  = "SELECT sum(volume) AS cnt_2 FROM products_cart WHERE user_id = '$id_fk'";
+            $t_res5  = mysqli_query($connect, $t_qry5);
+            $t_rows5 = mysqli_fetch_array($t_res5);
+            mysqli_free_result($t_res5);
+
+            echo json_encode(array("msg" => $msg, "qty" => $t_rows5['cnt_2']));
+
+        }
     }
 
 /**
  * 상품 목록에서 주문하기
  */
 } else if ("list" == $from) {
+
     if (!$products_count) {
         $products_count = 1;
     }
 
-    //카트에 있는 상품확인
-    $qry = "SELECT * FROM products_cart WHERE user_id='$id_fk' AND product_code='$pnum' AND p_opt='$selected_opt'  ";
-    $res = mysqli_query($connect, $qry);
-    $row = mysqli_fetch_array($res);
+    // 재고수량보다 많은지 체크
+    $ret = check_over_order($pnum, $selected_opt, $products_count);
 
-    if (count($row) > 0) {
-        $products_count += $row['volume'];
-
-        $query  = "UPDATE products_cart SET volume = '$products_count' WHERE cart_id='$row[cart_id]' AND user_id='$id_fk' ";
-        $result = mysqli_query($connect, $query);
-    } else {
-        $query  = "INSERT INTO products_cart VALUES ('', '$id_fk', '$_COOKIE[p_sid]', '$pnum', '$products_count', '$amount', '$selected_opt', now() )";
-        $result = mysqli_query($connect, $query);
-    }
-
-    if ($chk == "2") {
-        redirect('checkout.php?from=detail');
-    } else {
+    if ($ret == "over") {
         $msg = "<meta http-equiv='content-type' content='text/html; charset=UTF-8' />\n";
         $msg .= "<script>\n";
-        $msg .= "window.alert('카트에 담았습니다.')\n";
+        $msg .= "window.alert('재고수량보다 많습니다')\n";
         $msg .= "</script>\n";
 
         // get quantity from cart
         $t_qry5  = "SELECT sum(volume) AS cnt_2 FROM products_cart WHERE user_id = '$id_fk'";
         $t_res5  = mysqli_query($connect, $t_qry5);
         $t_rows5 = mysqli_fetch_array($t_res5);
-        // mysqli_free_result($t_res5);
 
         echo json_encode(array("msg" => $msg, "qty" => $t_rows5['cnt_2']));
+    } else {
+
+        // 카트에 있는 상품확인
+        $qry = "SELECT * FROM products_cart WHERE user_id='$id_fk' AND product_code='$pnum' AND p_opt='$selected_opt'  ";
+        $res = mysqli_query($connect, $qry);
+        $row = mysqli_fetch_array($res);
+
+        if (count($row) > 0) {
+            $products_count += $row['volume'];
+
+            $query  = "UPDATE products_cart SET volume = '$products_count' WHERE cart_id='$row[cart_id]' AND user_id='$id_fk' ";
+            $result = mysqli_query($connect, $query);
+        } else {
+            $query  = "INSERT INTO products_cart VALUES ('', '$id_fk', '$_COOKIE[p_sid]', '$pnum', '$products_count', '$amount', '$selected_opt', now() )";
+            $result = mysqli_query($connect, $query);
+        }
+
+        if ($chk == "2") {
+            redirect('checkout.php?from=detail');
+        } else {
+            $msg = "<meta http-equiv='content-type' content='text/html; charset=UTF-8' />\n";
+            $msg .= "<script>\n";
+            $msg .= "window.alert('카트에 담았습니다.')\n";
+            $msg .= "</script>\n";
+
+            // get quantity from cart
+            $t_qry5  = "SELECT sum(volume) AS cnt_2 FROM products_cart WHERE user_id = '$id_fk'";
+            $t_res5  = mysqli_query($connect, $t_qry5);
+            $t_rows5 = mysqli_fetch_array($t_res5);
+            // mysqli_free_result($t_res5);
+
+            echo json_encode(array("msg" => $msg, "qty" => $t_rows5['cnt_2']));
+        }
     }
 
 } else if ("new" == $from) {
@@ -147,7 +183,7 @@ if ("cart" == $from || "cart" == $where) {
         $query = "UPDATE products_cart SET volume = '$products_count' WHERE cart_id='$row[cart_id]' AND user_id='$id_fk' ";
         mysqli_query($connect, $query);
     } else {
-        $query = "INSERT INTO products_cart VALUES ('',	'$id_fk','$_COOKIE[p_sid]', '$pnum', '$products_count',	'$amount', '$selected_opt', now() )";
+        $query = "INSERT INTO products_cart VALUES ('', '$id_fk','$_COOKIE[p_sid]', '$pnum', '$products_count', '$amount', '$selected_opt', now() )";
         mysqli_query($connect, $query);
     }
 
