@@ -94,12 +94,12 @@ $products_opt_count = array(); // 추가
 $trans_cost         = null;
 
 // 옵션재고 업데이트를 위해 $final_opt_count 배열 초기화
-$qry1 = "SELECT * FROM products p, products_cart c WHERE c.user_id='$p_id' AND p.num=c.product_code";
-$res  = mysqli_query($connect, $qry1);
+$qry1 = "SELECT * FROM products p, products_cart c WHERE c.user_id='test' AND p.num=c.product_code";
+$res1 = mysqli_query($connect, $qry1);
 
-for ($k = 0; $row = mysqli_fetch_array($res); $k++) {
-    $final_opt_count = explode(",", $row['opt_count']); //초기화
-    $final_opt_stock = explode(",", $row['opt_stock']); //초기화
+for ($k = 0; $row = mysqli_fetch_array($res1); $k++) {
+    $final_opt_count[$k] = explode(",", $row['opt_count']); //초기화
+    $final_opt_stock[$k] = explode(",", $row['opt_stock']); //초기화
 }
 
 // JOIN문을 사용해 장바구니와 제품정보에서 데이터를 가져옴
@@ -137,13 +137,15 @@ if ($result) {
 
         // 옵션별 재고 업데이트
         for ($j = 0; $j < sizeof($products_opt); $j++) {
-            if ($products_opt[$j] == $order_opt[$i]) {
-                $products_opt_count[$j] -= $order_count[$i]; // 전체재고에서 주문수량 차감
-                $final_opt_count[$j] = $products_opt_count[$j];
 
+            if ($products_opt[$j] == $order_opt[$i]) {
+                $products_opt_count[$j]  = $products_opt_count[$j] - $order_count[$i]; // 전체재고에서 주문수량 차감
+                $final_opt_count[$i][$j] = $products_opt_count[$j];
+
+                // 주문 옵션재고수량이 0이하일 경우 해당 옵션 품절표시
                 if ($products_opt_count[$j] <= 0) {
-                    $final_opt_stock[$j] = 0;
-                    $isOptSoldout        = $final_opt_stock;
+                    $final_opt_stock[$i][$j] = 0;
+                    $isOptSoldout            = $final_opt_stock;
 
                     // 단일 옵션일 경우 상품 자체에 품절표시
                     if (sizeof($products_opt) == 1) {
@@ -156,22 +158,23 @@ if ($result) {
                     $isOptSoldout = "";
                 }
 
-                // debug
-                // $txt  = print_r($products_opt_count, true);
-                // $file = fopen("final_opt_count.txt", "ab+");
-                // fwrite($file, $txt);
-                // fclose($file);
-            }
-        }
+            } // end if
+        } // end for $j
 
         //DB에 재고, 품절상황 업데이트
-        $final_count = implode(",", $final_opt_count);
+        $final_count = implode(",", $final_opt_count[$i]);
+
+        // debug
+        $txt  = print_r($final_opt_count[$i], true);
+        $file = fopen("final_opt_count.txt", "ab+");
+        fwrite($file, $txt);
+        fclose($file);
 
         if ($isOptSoldout && $isOutofStock) {
             // 단일옵션인 경우 상품 자체에 품절표시
             $qry2 = "UPDATE products SET opt_count='$final_count', del_chk='O' WHERE num='$products_num[$i]'";
         } elseif ($isOptSoldout) {
-            $final_stock = implode(",", $final_opt_stock);
+            $final_stock = implode(",", $final_opt_stock[$i]);
             $qry2        = "UPDATE products SET opt_count='$final_count', opt_stock='$final_stock' WHERE num='$products_num[$i]'";
         } else {
             $qry2 = "UPDATE products SET opt_count='$final_count' WHERE num='$products_num[$i]'";
@@ -179,7 +182,7 @@ if ($result) {
 
         mysqli_query($connect, $qry2);
 
-    }
+    } // end for $i
 
     $trans_cost = calc_delivery_fee($tot_money); //택배비 계산
 }
@@ -210,11 +213,11 @@ for ($i = 0; $i < sizeof($products_num); $i++) {
 }
 
 // debug
-$re   = '상품코드: ' . $temp_code . "\n";
-$txt  = print_r($re, true);
-$file = fopen("temp_code.txt", "w");
-fwrite($file, $txt);
-fclose($file);
+// $re   = '상품코드: ' . $temp_code . "\n";
+// $txt  = print_r($re, true);
+// $file = fopen("temp_code.txt", "w");
+// fwrite($file, $txt);
+// fclose($file);
 
 for ($i = 0; $i < sizeof($products_price); $i++) {
     if ($i != 0) {
