@@ -139,8 +139,7 @@ if ($result) {
         for ($j = 0; $j < sizeof($products_opt); $j++) {
 
             if ($products_opt[$j] == $order_opt[$i]) {
-                $products_opt_count[$j]  = $products_opt_count[$j] - $order_count[$i]; // 전체재고에서 주문수량 차감
-                $final_opt_count[$i][$j] = $products_opt_count[$j];
+                $final_opt_count[$i][$j] = $products_opt_count[$j] - $order_count[$i]; // 전체재고에서 주문수량 차감
 
                 // 주문 옵션재고수량이 0이하일 경우 해당 옵션 품절표시
                 if ($products_opt_count[$j] <= 0) {
