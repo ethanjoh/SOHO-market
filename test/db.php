@@ -37,6 +37,9 @@ if ($result) {
         $order_opt[$i]      = $rows['p_opt'];                   // 카트에 담긴 옵션명
         $order_count[$i]    = $rows['volume'];                  // 카트에 담긴 옵션 수량
 
+        echo "<pre>";
+        print_r($products_opt_count);
+        echo "</pre>";
         // 옵션별 재고 업데이트
         for ($j = 0; $j < sizeof($products_opt); $j++) {
 
@@ -66,10 +69,6 @@ if ($result) {
         //DB에 재고, 품절상황 업데이트
         $final_count = implode(",", $final_opt_count[$i]);
 
-        echo "<pre>";
-        print_r($final_opt_count);
-        echo "</pre>";
-
         if ($isOptSoldout && $isOutofStock) {
             // 단일옵션인 경우 상품 자체에 품절표시
             $qry2 = "UPDATE products SET opt_count='$final_count', del_chk='O' WHERE num='$products_num[$i]'";
@@ -78,6 +77,7 @@ if ($result) {
             $qry2        = "UPDATE products SET opt_count='$final_count', opt_stock='$final_stock' WHERE num='$products_num[$i]'";
         } else {
             $qry2 = "UPDATE products SET opt_count='$final_count' WHERE num='$products_num[$i]'";
+
         }
 
         // mysqli_query($connect, $qry2);

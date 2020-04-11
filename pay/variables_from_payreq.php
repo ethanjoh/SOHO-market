@@ -128,12 +128,12 @@ if ($result) {
 
         $products_num[$i]   = $rows['num'];
         $products_name[$i]  = stripslashes($rows['name']);
-        $products_price[$i] = calc_offer_price($rows['retail_price'], $p_id); // 업체별 공급가 확인
-        $products_opt       = explode(",", $rows['opt']);                     // 제품의 옵션을 배열로 저장
-        $products_opt_count = explode(",", $rows['opt_count']);               // 제품의 옵션수량을 배열로 저장
-        $products_opt_stock = explode(",", $rows['opt_stock']);               // 제품의 품절표시 배열로 저장
-        $order_opt[$i]      = $rows['p_opt'];                                 // 카트에 담긴 옵션명
-        $order_count[$i]    = $rows['volume'];                                // 카트에 담긴 옵션 수량
+        $products_price[$i] = calc_offer_price($calcPrice, $p_id); // 업체별 공급가 확인 (개인구매 시 소비자가 적용)
+        $products_opt       = explode(",", $rows['opt']);          // 제품의 옵션을 배열로 저장
+        $products_opt_count = explode(",", $rows['opt_count']);    // 제품의 옵션수량을 배열로 저장
+        $products_opt_stock = explode(",", $rows['opt_stock']);    // 제품의 품절표시 배열로 저장
+        $order_opt[$i]      = $rows['p_opt'];                      // 카트에 담긴 옵션명
+        $order_count[$i]    = $rows['volume'];                     // 카트에 담긴 옵션 수량
 
         // 옵션별 재고 업데이트
         for ($j = 0; $j < sizeof($products_opt); $j++) {
@@ -164,10 +164,10 @@ if ($result) {
         $final_count = implode(",", $final_opt_count[$i]);
 
         // debug
-        $txt  = print_r($final_opt_count[$i], true);
-        $file = fopen("final_opt_count.txt", "ab+");
-        fwrite($file, $txt);
-        fclose($file);
+        // $txt  = print_r($final_opt_count[$i], true);
+        // $file = fopen("final_opt_count.txt", "ab+");
+        // fwrite($file, $txt);
+        // fclose($file);
 
         if ($isOptSoldout && $isOutofStock) {
             // 단일옵션인 경우 상품 자체에 품절표시
