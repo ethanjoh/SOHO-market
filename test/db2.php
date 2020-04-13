@@ -10,7 +10,7 @@
 
 <?php
 
-$qry1 = "SELECT * FROM products p, products_cart c WHERE c.user_id='mc4520' AND p.num=c.product_code";
+$qry1 = "SELECT * FROM products p, products_cart c WHERE c.user_id='test' AND p.num=c.product_code";
 $res1 = mysqli_query($connect, $qry1);
 
 for ($k = 0; $row = mysqli_fetch_array($res1); $k++) {
@@ -23,7 +23,7 @@ for ($k = 0; $row = mysqli_fetch_array($res1); $k++) {
 // print_r($final_opt_stock);
 // echo "</pre>";
 
-$query  = "SELECT * FROM products p, products_cart c WHERE c.user_id='mc4520' AND p.num=c.product_code";
+$query  = "SELECT * FROM products p, products_cart c WHERE c.user_id='test' AND p.num=c.product_code";
 $result = mysqli_query($connect, $query);
 
 if ($result) {
@@ -43,9 +43,9 @@ if ($result) {
             if ($products_opt[$j] == $order_opt[$i]) {
                 $final_opt_count[$i][$j] = $products_opt_count[$j] - $order_count[$i]; // 전체재고에서 주문수량 차감
 
-                echo "<pre>";
-                print_r($final_opt_count);
-                echo "</pre>";
+                // echo "<pre>";
+                // print_r($final_opt_count);
+                // echo "</pre>";
 
                 // 주문 옵션재고수량이 0이하일 경우 해당 옵션 품절표시
                 if ($products_opt_count[$j] <= 0) {

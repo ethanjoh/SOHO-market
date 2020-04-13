@@ -21,7 +21,16 @@
                             <img class="primary-img" src="/images/brand/tigerchoi_logo2.png" alt="tiger choi" width="234" />
                         </div>
                         <div class="col-md-12">
-                            <img class="primary-img" src="/images/brand/no1_logo2.png" alt="no1" width="234 " />
+                            <img class="primary-img" src="/images/brand/CTRL.jpg" alt="no1" width="234 " />
+                        </div>
+                        <div class="col-md-12">
+                            <img class="primary-img" src="/images/brand/GolfMechanix.jpg" alt="no1" width="234 " />
+                        </div>
+                        <div class="col-md-12">
+                            <img class="primary-img" src="/images/brand/GolfWorks.jpg" alt="no1" width="234 " />
+                        </div>
+                        <div class="col-md-12">
+                            <img class="primary-img" src="/images/brand/Mitchell.jpg" alt="no1" width="234 " />
                         </div>
                         <div class="col-md-12">
                             <img class="primary-img" src="/images/brand/winn_logo2.png" alt="winn" width="234" />
