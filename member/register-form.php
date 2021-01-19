@@ -246,7 +246,8 @@ if ("edit" == $mode) {
 													</div>
 
 													<!-- postcode searching function -->
-													<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+													<!-- <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script> -->
+													<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 													<script>
 															function openDaumPostcode() {
 																	new daum.Postcode({
@@ -408,7 +409,8 @@ if ("edit" == $mode) {
 													</div>
 
 													<!-- postcode searching function -->
-													<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+													<!-- <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script> -->
+													<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 													<script>
 															function openDaumPostcode2() {
 																	new daum.Postcode({

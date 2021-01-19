@@ -77,7 +77,8 @@ if ($rows['optin'] == "Y") {
                             <td>
                               <input type="text" class="form-control" name="o_zipcode1" id="o_zipcode1" size="5"  value="<?php echo $rows['o_zipcode']; ?>" readonly />
                               <input type="button" class="form-control" onclick="openDaumPostcode()" value="우편번호 찾기"><br />
-                          <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+                          <!-- <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script> -->
+                          <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
                           <script>
                               function openDaumPostcode() {
                                   new daum.Postcode({
@@ -192,7 +193,8 @@ if ($rows['sms'] == "Y") {
                             <td>
                               <input type="text" class="form-control" name="d_zipcode1" id="d_zipcode1" size="5" value="<?php echo $rows['d_zipcode']; ?>" readonly />
                               <input type="button" class="form-control" onclick="openDaumPostcode1()" value="우편번호 찾기"><br />
-                          <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+                          <!-- <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script> -->
+                          <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
                           <script>
                               function openDaumPostcode1() {
                                   new daum.Postcode({
