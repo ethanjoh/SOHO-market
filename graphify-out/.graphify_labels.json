@@ -1293,5 +1293,7 @@
   "1291": "auth.php",
   "1292": "scm_auth.php",
   "1293": "change_passwd_ok.php",
-  "1294": "change-passwd-ok.php"
+  "1294": "change-passwd-ok.php",
+  "1295": "webhook_toss.php",
+  "1296": "checkout.php"
 }
