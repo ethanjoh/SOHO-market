@@ -83,7 +83,7 @@ if (!isset($sid)) {
         echo '이메일 보내기 실패';
     } else {
         $msg = "비밀번호를 정상적으로 수정했습니다. 다시 로그인해주세요.";
-        $url = "http://" . $_SERVER['SERVER_NAME'] . '/member/logout.php';
+        $url = "https://" . $_SERVER['SERVER_NAME'] . '/member/logout.php';
 
         show_msg($msg, $url);
     }

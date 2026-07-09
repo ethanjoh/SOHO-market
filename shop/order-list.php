@@ -181,6 +181,6 @@ page_nav($totalpage, $cpage, $url);
 
           });
       </script>
-      <script language="JavaScript" src="http://pgweb.uplus.co.kr/WEB_SERVER/js/receipt_link.js"></script>
+      <script language="JavaScript" src="https://pgweb.tosspayments.com/WEB_SERVER/js/receipt_link.js"></script>
     </body>
 </html>

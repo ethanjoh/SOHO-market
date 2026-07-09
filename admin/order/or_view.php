@@ -582,7 +582,7 @@ if ($row['status'] == "8" || $row['status'] == "-1" && $row['delivery_type'] == 
   		 	 });
   		 });
   	</script>
-    <script language="JavaScript" src="http://pgweb.uplus.co.kr/WEB_SERVER/js/receipt_link.js"></script>
+    <script language="JavaScript" src="https://pgweb.tosspayments.com/WEB_SERVER/js/receipt_link.js"></script>
   </body>
 </html>
 

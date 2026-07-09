@@ -429,6 +429,23 @@ function show_delivery_fee($total)
 }
 
 /**
+ * [show_min_delivery_fee 최소 택배비 보여주기]
+ * @return [type] [문구]
+ */
+function show_min_delivery_fee()
+{
+    global $connect;
+    $sessionFlag = set_var($_SESSION['p_flag']);
+
+    $query  = "SELECT * FROM misc_setup ";
+    $result = mysqli_query($connect, $query);
+    $row    = mysqli_fetch_array($result);
+
+    return number_format($row['min_sum']);
+
+}
+
+/**
  * [주문 후 DB에 저장할 때 택배비 계산]
  * @param  [type] $orderSum       [주문액]
  * @return [type] [description]
@@ -1697,8 +1714,8 @@ function get_pg_info2($orderid)
                         $pay_status .= '          <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>';
                         $pay_status .= '        </div>';
                         $pay_status .= '      </div>'; //<!-- /.modal-content -->
-                        $pay_status .= '    </div>'; //<!-- /.modal-dialog -->
-                        $pay_status .= '  </div>'; //<!-- /.modal -->
+                        $pay_status .= '    </div>';   //<!-- /.modal-dialog -->
+                        $pay_status .= '  </div>';     //<!-- /.modal -->
 
                     } elseif ($pg_row['LGD_CASFLAG'] == "I") {
                         $pay_status = '<i class="fa fa-check-circle pay-color"></i> 입금완료';
@@ -1723,8 +1740,8 @@ function get_pg_info2($orderid)
                     $pay_status .= '          <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>';
                     $pay_status .= '        </div>';
                     $pay_status .= '      </div>'; //<!-- /.modal-content -->
-                    $pay_status .= '    </div>'; //<!-- /.modal-dialog -->
-                    $pay_status .= '  </div>'; //<!-- /.modal -->
+                    $pay_status .= '    </div>';   //<!-- /.modal-dialog -->
+                    $pay_status .= '  </div>';     //<!-- /.modal -->
 
                 }
 
@@ -1772,9 +1789,9 @@ function get_pg_info2($orderid)
                     $pay_status .= '          <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>';
                     $pay_status .= '        </div>';
                     $pay_status .= '      </div>'; //<!-- /.modal-content -->
-                    $pay_status .= '    </div>'; //<!-- /.modal-dialog -->
-                    $pay_status .= '  </div>'; //<!-- /.modal -->
-                    // $pay_status = '<i class="fa fa-exclamation-triangle fail-color"></i> 이체실패(' . $pg_row['LGD_RESPCODE'] . ')';
+                    $pay_status .= '    </div>';   //<!-- /.modal-dialog -->
+                    $pay_status .= '  </div>';     //<!-- /.modal -->
+                                                   // $pay_status = '<i class="fa fa-exclamation-triangle fail-color"></i> 이체실패(' . $pg_row['LGD_RESPCODE'] . ')';
                 }
 
                 break;
@@ -1838,8 +1855,8 @@ function get_pg_info2($orderid)
                     $pay_status .= '          <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>';
                     $pay_status .= '        </div>';
                     $pay_status .= '      </div>'; //<!-- /.modal-content -->
-                    $pay_status .= '    </div>'; //<!-- /.modal-dialog -->
-                    $pay_status .= '  </div>'; //<!-- /.modal -->
+                    $pay_status .= '    </div>';   //<!-- /.modal-dialog -->
+                    $pay_status .= '  </div>';     //<!-- /.modal -->
 
                     // $pay_status = '<i class="fa fa-exclamation-triangle fail-color"></i> 결제실패(' . $pg_row['LGD_RESPCODE'] . ')';
                 }
@@ -2341,7 +2358,7 @@ function check_over_order($product_num, $selected_opt, $order_count)
     $res = mysqli_query($connect, $qry);
     $row = mysqli_fetch_array($res);
 
-    $products_opt       = explode(",", $row['opt']); // 제품의 옵션을 배열로 저장
+    $products_opt       = explode(",", $row['opt']);       // 제품의 옵션을 배열로 저장
     $products_opt_count = explode(",", $row['opt_count']); // 제품의 옵션수량을 배열로 저장
 
     // 주문옵션 재고 확인

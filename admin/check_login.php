@@ -12,7 +12,7 @@ $date_expiry = time() + 60 * 60 * 24 * 30; //30일동안 아이디저장
 
 $query  = "SELECT * FROM admin_setup WHERE 1 ";
 $result = mysqli_query($connect, $query);
-$rows   = mysqli_fetch_array($result) or die(mysql_error());
+$rows   = mysqli_fetch_array($result) or die("Error");
 
 if ($rows['id'] == $admin_id && $rows['passwd'] == sha1($admin_pass)) {
 
@@ -38,7 +38,7 @@ if ($rows['id'] == $admin_id && $rows['passwd'] == sha1($admin_pass)) {
     $_SESSION["p_id"]   = 'admin';
     $_SESSION['p_name'] = '관리자';
 
-    echo "<meta http-equiv='Refresh' content='0; URL=http://$_SERVER[SERVER_NAME]/admin/main/main.php'>";
+    echo "<meta http-equiv='Refresh' content='0; URL=//$_SERVER[SERVER_NAME]/admin/main/main.php'>";
 } elseif ($rows['id'] != $admin_id || $rows['passwd'] != sha1($admin_pass)) {
     $msg = "아이디 또는 비밀번호가 틀립니다. \\n 다시 시도해 주세요.";
     err_msg($msg);

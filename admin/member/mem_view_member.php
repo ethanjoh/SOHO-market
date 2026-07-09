@@ -39,7 +39,7 @@ $protocol = check_protocol($sslPort);
                       업체 정보수정/관리
                   </header>
                   <div class="panel-body">
-                  <form name="form1" role="form" class="form-inline" method="post" action="<?php echo $protocol; ?>//<?php echo $_SERVER['SERVER_NAME']; ?>:<?php echo $sslPort; ?>/admin/member/mem_edit_member.php">
+                  <form name="form1" role="form" class="form-inline" method="post" action="//<?php echo $_SERVER['SERVER_NAME']; ?>/admin/member/mem_edit_member.php">
                     <input type="hidden" name="num" value="<?php echo $num; ?>">
                     <input type="hidden" name="sms" value="<?php echo $rows['sms']; ?>">
                     <input type="hidden" name="page" value="<?php echo $page; ?>">

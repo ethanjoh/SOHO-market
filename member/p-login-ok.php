@@ -58,12 +58,12 @@ if ($_POST['uri']) {
 
     if ($uri_d[1] == "bbs") {
         // echo "<meta http-equiv='Refresh' content='0; URL=http://" . $_SERVER[SERVER_NAME] . $uri . "'>";
-        header('Location: http://' . $_SERVER['SERVER_NAME'] . $uri . '');
+        header('Location: https://' . $_SERVER['SERVER_NAME'] . $uri . '');
     } else {
         // echo "<meta http-equiv='Refresh' content='0; URL=http://" . $_SERVER[SERVER_NAME] . "'>";
-        header('Location: http://' . $_SERVER['SERVER_NAME'] . '');
+        header('Location: https://' . $_SERVER['SERVER_NAME'] . '');
     }
 
 } else {
-    header('Location: http://' . $_SERVER['SERVER_NAME'] . '');
+    header('Location: https://' . $_SERVER['SERVER_NAME'] . '');
 }

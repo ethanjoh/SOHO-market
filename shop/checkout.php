@@ -242,7 +242,7 @@ if (preg_match('/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|
                                                         <option value="SC0040">무통장입금(가상계좌 발급)</option>
                                                     </select>
 
-                                                    <input type="hidden" name="CST_MID" id="CST_MID" value="shinsoo">
+                                                    <input type="hidden" name="CST_MID" id="CST_MID" value="<?php echo $CST_MID; ?>">
                                                     <input type="hidden" name="CST_PLATFORM" id="CST_PLATFORM" value="<?php echo $CST_PLATFORM; ?>">
                                                     <input type="hidden" name="LGD_WINDOW_TYPE" id="LGD_WINDOW_TYPE" value="iframe">
                                                     <input type="hidden" name="LGD_CUSTOM_SWITCHINGTYPE" id="LGD_CUSTOM_SWITCHINGTYPE" value="IFRAME">

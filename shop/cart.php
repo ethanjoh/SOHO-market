@@ -28,7 +28,7 @@
                 </div>
                 <div class="cart-collaterals row">
                     <div class="col-md-8 col-sm-12">
-                        <i class="fa fa-check-circle"></i> 택배비 안내: 5만원 이상 무료배송입니다.<br>
+                        <i class="fa fa-check-circle"></i> 택배비 안내: <?php echo show_min_delivery_fee(); ?>원 이상 무료배송입니다.<br>
                         <i class="fa fa-check-circle"></i> 수량 변경 후 변경 버튼을 눌러주세요.
 
                     </div>
@@ -65,19 +65,27 @@ HEREDOC;
     $protocol = check_protocol($sslPort);
 
     $go_order = go_purchase($reVal['tot_money']);
+    
+    echo <<<HEREDOC
+
+    <button class="button2 get" type="button" onclick="location.href='/shop/{$go_order}'">
+                <span><i class="fa fa-check-circle"></i> 주문서 작성하기</span>
+            </button>
+HEREDOC;
+
+//    echo <<<HEREDOC
+
+//                            <button class="button2 get" type="button" onclick="location.href='{$protocol}//{$_SERVER['SERVER_NAME']}:{$sslPort}/shop/{$go_order}'">
+//                                        <span><i class="fa fa-check-circle"></i> 주문서 작성하기</span>
+//                                    </button>
+// HEREDOC;
+
 //     echo <<<HEREDOC
 
-//                             <button class="button2 get" type="button" onclick="location.href='{$protocol}//{$_SERVER['SERVER_NAME']}:{$sslPort}/shop/{$go_order}'">
+//                             <button class="button2 get" type="button" onclick="{$go_order}">
     //                                     <span><i class="fa fa-check-circle"></i> 주문서 작성하기</span>
     //                                 </button>
     // HEREDOC;
-
-    echo <<<HEREDOC
-
-                            <button class="button2 get" type="button" onclick="{$go_order}">
-                                    <span><i class="fa fa-check-circle"></i> 주문서 작성하기</span>
-                                </button>
-HEREDOC;
 
 }
 

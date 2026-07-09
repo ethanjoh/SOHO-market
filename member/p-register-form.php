@@ -77,7 +77,8 @@ if ($mode == "edit") {
 										<div class="panel panel-danger">
 										<div class="panel-heading"><h4>비밀번호 변경</h4></div>
 											<div class="panel-body">
-												<form name="pw_form" id="pw_form" role="form" class="form-group" method="post" action="<?php echo $protocol; ?>//<?php echo $_SERVER['SERVER_NAME']; ?>:<?php echo $sslPort; ?>/member/p-change-passwd-ok.php">
+												<!-- <form name="pw_form" id="pw_form" role="form" class="form-group" method="post" action="<?php echo $protocol; ?>//<?php echo $_SERVER['SERVER_NAME']; ?>:<?php echo $sslPort; ?>/member/p-change-passwd-ok.php"> -->
+												<form name="pw_form" id="pw_form" role="form" class="form-group" method="post" action="//<?php echo $_SERVER['SERVER_NAME']; ?>/member/p-change-passwd-ok.php">
 												<input type="hidden" name="session_id" value="<?php echo $p_id; ?>">
 												<input type="hidden" name="session_name" value="<?php echo $p_name; ?>">
 
@@ -193,7 +194,7 @@ if ($mode == "edit") {
 													</div>
 
 													<!-- postcode searching function -->
-													<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+													<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 													<script>
 															function openDaumPostcode() {
 																	new daum.Postcode({
@@ -309,7 +310,7 @@ if ($mode == "edit") {
 													</div>
 
 													<!-- postcode searching function -->
-													<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+													<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 													<script>
 															function openDaumPostcode2() {
 																	new daum.Postcode({
@@ -488,7 +489,7 @@ Start Register Form ============================================================
 														</div>
 													</div>
 													<!-- postcode searching function -->
-													<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+													<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 													<script>
 															function openDaumPostcode() {
 																	new daum.Postcode({
@@ -592,7 +593,7 @@ Start Register Form ============================================================
 														</div>
 													</div>
 													<!-- postcode searching function -->
-													<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+													<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 													<script>
 															function openDaumPostcode2() {
 																	new daum.Postcode({

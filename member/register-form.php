@@ -112,7 +112,8 @@ if ("edit" == $mode) {
 										</div>
 												</form>
 
-									<form name="form1" id="form1" role="form" class="form-group" method="post" action="<?php echo $protocol; ?>//<?php echo $_SERVER['SERVER_NAME']; ?>:<?php echo $sslPort; ?>/member/register-ok.php">
+									<!-- <form name="form1" id="form1" role="form" class="form-group" method="post" action="<?php echo $protocol; ?>//<?php echo $_SERVER['SERVER_NAME']; ?>:<?php echo $sslPort; ?>/member/register-ok.php"> -->
+									<form name="form1" id="form1" role="form" class="form-group" method="post" action="//<?php echo $_SERVER['SERVER_NAME']; ?>/member/register-ok.php">
 									<input type="hidden" name="mode" value="edit">
 									<input type="hidden" name="session_id" value="<?php echo $p_id; ?>">
 									<input type="hidden" name="session_name" value="<?php echo $p_name; ?>">
@@ -241,7 +242,7 @@ if ("edit" == $mode) {
 															<input class="form-control" type="text" name="o_zipcode1" id="o_zipcode1" value="<?php echo $rows['o_zipcode']; ?>" readonly />
 														</div>
 														<div class="col-xs-6 col-md-2">
-                                <button class="btn btn-primary" type="button" onclick="openDaumPostcode()">우편번호 검색</button>
+                                                         <button class="btn btn-primary" type="button" onclick="openDaumPostcode()">우편번호 검색</button>
 														</div>
 													</div>
 
@@ -516,7 +517,8 @@ if ("edit" == $mode) {
 Start Register Form =============================================================
  -->
 
-							<form name="form1" id="form1" role="form" class="form-group" method="post" action="<?php echo $protocol; ?>//<?php echo $_SERVER['SERVER_NAME']; ?>:<?php echo $sslPort; ?>/member/register-ok.php">
+							<!-- <form name="form1" id="form1" role="form" class="form-group" method="post" action="<?php echo $protocol; ?>//<?php echo $_SERVER['SERVER_NAME']; ?>:<?php echo $sslPort; ?>/member/register-ok.php"> -->
+							<form name="form1" id="form1" role="form" class="form-group" method="post" action="//<?php echo $_SERVER['SERVER_NAME']; ?>/member/register-ok.php">
 									<div class="panel panel-info margin-top-10">
 										<div class="panel-heading"><h4>기본정보</h4></div>
 											<div class="panel-body">
@@ -638,7 +640,7 @@ Start Register Form ============================================================
 														</div>
 													</div>
 													<!-- postcode searching function -->
-													<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+													<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 													<script>
 															function openDaumPostcode() {
 																	new daum.Postcode({
@@ -774,7 +776,7 @@ Start Register Form ============================================================
 														</div>
 													</div>
 													<!-- postcode searching function -->
-													<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+													<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 													<script>
 															function openDaumPostcode2() {
 																	new daum.Postcode({

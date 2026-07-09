@@ -9,5 +9,35 @@
 //      }
 // }
 
-header("location:http://$_SERVER[SERVER_NAME]/shop/");
-exit;
+//header("location:https://".$_SERVER['SERVER_NAME']."/shop/");
+//exit;
+
+
+    if (strpos($_SERVER['HTTP_HOST'], 'www.') === false) {
+        // if(!isset($_SERVER["HTTPS"])) {
+            $url = "https://www." . $_SERVER['HTTP_HOST'] . "/shop/";
+            header("Location: $url");
+            exit();
+        // }
+    }else if(!isset($_SERVER["HTTPS"]) && strpos($_SERVER['HTTP_HOST'], 'www.') === false) {
+        echo $_SERVER['HTTP_HOST'];
+            $url = "https://www." . $_SERVER['HTTP_HOST'] . "/shop/";
+            header("Location: $url");
+            exit();     
+        // }
+   
+    }else if(!isset($_SERVER["HTTPS"]) === false) {
+        echo $_SERVER['HTTP_HOST'];
+            $url = "https://" . $_SERVER['HTTP_HOST'] . "/shop/";
+            header("Location: $url");
+            exit();     
+        // }
+   
+    }else{
+        $url = "https://" . $_SERVER['HTTP_HOST'] . "/shop/";
+        header("Location: $url");
+        exit();  
+    }
+    
+
+

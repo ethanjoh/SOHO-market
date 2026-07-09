@@ -749,7 +749,7 @@ HEREDOC;
             }
 
             $subTotal      = (int) $rows['volume'] * (int) $rows['amount']; // 소계
-            $commaSubTotal = number_format($subTotal); //소계 천단위표시
+            $commaSubTotal = number_format($subTotal);                      //소계 천단위표시
             $tot_money     = $tot_money + $subTotal;
             $commaTotal    = number_format($tot_money);
 
@@ -779,8 +779,8 @@ HEREDOC;
             //상품옵션 품절표시
             //상품 옵션이 있는지 확인 후 진행
             if ($rows['opt'] != "") {
-                //장바구니의 옵션과 제품정보를 비교하여 품절옵션이 있는지 확인
-                $t_opt       = explode(",", $rows['opt']); //장바구니 제품의 옵션명을 배열로 만들어준다
+                                                                 //장바구니의 옵션과 제품정보를 비교하여 품절옵션이 있는지 확인
+                $t_opt       = explode(",", $rows['opt']);       //장바구니 제품의 옵션명을 배열로 만들어준다
                 $t_opt_stock = explode(",", $rows['opt_stock']); //제품의 옵션재고를 배열로 만들어준다
 
                 //옵션의 문자열 비교
@@ -874,8 +874,8 @@ function go_purchase($total)
     if ($total == 0) {
         return $ret = "alert('카트에 상품이 없습니다.')";
     } else {
-        return $ret = "location.href='checkout.php?where=cart&amp;delivery=L'";
-        // return $ret = "checkout.php?where=cart&amp;delivery=L";
+        //return $ret = "location.href='checkout.php?where=cart&amp;delivery=L'";
+        return $ret = "checkout.php?where=cart&amp;delivery=L";
     }
 }
 
@@ -937,7 +937,7 @@ HEREDOC;
             }
 
             $subTotal      = (int) $rows['volume'] * (int) $rows['amount']; // 소계
-            $commaSubTotal = number_format($subTotal); //소계 천단위표시
+            $commaSubTotal = number_format($subTotal);                      //소계 천단위표시
             $tot_money     = $tot_money + $subTotal;
             // $show_stotal   = number_format($subTotal);
             $commaTotal = number_format($tot_money);
@@ -968,8 +968,8 @@ HEREDOC;
             //상품옵션 품절표시
             //상품 옵션이 있는지 확인 후 진행
             if ($rows['opt'] != "") {
-                //장바구니의 옵션과 제품정보를 비교하여 품절옵션이 있는지 확인
-                $t_opt       = explode(",", $rows['opt']); //장바구니 제품의 옵션명을 배열로 만들어준다
+                                                                 //장바구니의 옵션과 제품정보를 비교하여 품절옵션이 있는지 확인
+                $t_opt       = explode(",", $rows['opt']);       //장바구니 제품의 옵션명을 배열로 만들어준다
                 $t_opt_stock = explode(",", $rows['opt_stock']); //제품의 옵션재고를 배열로 만들어준다
 
                 //옵션의 문자열 비교
@@ -1205,7 +1205,7 @@ function show_login_form()
                     <div class="col-md-6 client-say">
                         <div class="login-form-head">
                             <h2>기업회원 로그인</h2>
-                            <form method="post" name="login" action="{$protocol}//{$_SERVER['SERVER_NAME']}:{$sslPort}/member/login-ok.php" onsubmit="return(login_check());">
+                            <form method="post" name="login" action="//{$_SERVER['SERVER_NAME']}/member/login-ok.php" onsubmit="return(login_check());">
                             <input type="hidden" name="uri" value="{$uri}">
 
                             <div class="login-form">
@@ -1235,7 +1235,7 @@ function show_login_form()
                     <div class="col-md-6 client-say">
                         <div class="login-form-head">
                             <h2>개인회원 로그인</h2>
-                            <form method="post" name="p_login" action="{$protocol}//{$_SERVER['SERVER_NAME']}:{$sslPort}/member/p-login-ok.php" onsubmit="return(p_login_check());">
+                            <form method="post" name="p_login" action="//{$_SERVER['SERVER_NAME']}/member/p-login-ok.php" onsubmit="return(p_login_check());">
                             <input type="hidden" name="uri" value="{$uri}">
 
                             <div class="login-form">
@@ -1861,7 +1861,7 @@ HEREDOC;
                         //신용카드 결제일 때
                         $print_receipt = '<a href="javascript:showReceiptByTID(\'' . $pg_row['LGD_MID'] . '\', \'' . $pg_row['LGD_TID'] . '\', \'' . $authdata . '\')"><i class="fa fa-print"></i></a>';
                     } elseif ("SC0030" == $pg_row['LGD_PAYTYPE']) {
-                        //계좌이체일 때
+                                                //계좌이체일 때
                         $seqno         = "t/t"; //계좌이체는 임의의 정보 입력
                         $print_receipt = '<a href="javascript:showCashReceipts(\'' . $pg_row['LGD_MID'] . '\',\'' . $pg_row['LGD_OID'] . '\',\'' . $seqno . '\',\'BANK\',\'' . $CST_PLATFORM . '\')"><i class="fa fa-print"></i></a>';
                     } elseif ("SC0040" == $pg_row['LGD_PAYTYPE']) {
@@ -1970,8 +1970,8 @@ function show_order_item($oid)
         //상품옵션 품절표시
         //상품 옵션이 있는지 확인 후 진행
         if ($option[$i] != "" || $option2[$i] != "") {
-            //장바구니의 옵션과 제품정보를 비교하여 품절옵션이 있는지 확인
-            $t_opt       = explode(",", $pro_row['opt']); //제품의 옵션명을 배열로 만들어준다
+                                                                //장바구니의 옵션과 제품정보를 비교하여 품절옵션이 있는지 확인
+            $t_opt       = explode(",", $pro_row['opt']);       //제품의 옵션명을 배열로 만들어준다
             $t_opt_stock = explode(",", $pro_row['opt_stock']); //제품의 옵션재고를 배열로 만들어준다
 
             //옵션의 문자열 비교
@@ -2096,8 +2096,8 @@ function show_order_item_on_mail($oid)
         //상품옵션 품절표시
         //상품 옵션이 있는지 확인 후 진행
         if ($option[$i] != "" || $option2[$i] != "") {
-            //장바구니의 옵션과 제품정보를 비교하여 품절옵션이 있는지 확인
-            $t_opt       = explode(",", $pro_row['opt']); //제품의 옵션명을 배열로 만들어준다
+                                                                //장바구니의 옵션과 제품정보를 비교하여 품절옵션이 있는지 확인
+            $t_opt       = explode(",", $pro_row['opt']);       //제품의 옵션명을 배열로 만들어준다
             $t_opt_stock = explode(",", $pro_row['opt_stock']); //제품의 옵션재고를 배열로 만들어준다
 
             //옵션의 문자열 비교

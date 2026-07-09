@@ -52,7 +52,7 @@ if ($sessionId) {
 <!--                                             <div class="footer-escrow">
                                                 <div class="escrowWrap">
                                                     <div class="escrow">
-                                                        <script language="javascript" src="https://pgweb.dacom.net/WEB_SERVER/js/escrowValid.js"></script>
+                                                        <script language="javascript" src="https://pgweb.tosspayments.com/WEB_SERVER/js/escrowValid.js"></script>
                                                         <span class=""><img src="/images/footer/pg-logo.png" alt=""/></span>
                                                         <span class="escrow-check"><a onclick="goValidEscrow('shinsoo');"><img src="/images/footer/pg-check.gif" alt="" style="cursor:hand"/></a></span>
                                                     </div>

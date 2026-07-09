@@ -302,7 +302,7 @@ if ("edit" == $mode) {
         $msg = "회원가입이 완료되었습니다. 등록하신 이메일로 메일이 발송되었습니다.";
         msg($msg);
 
-        $re_url = "http://" . $_SERVER['SERVER_NAME'];
+        $re_url = "https://" . $_SERVER['SERVER_NAME'];
         redirect($re_url);
     }
 

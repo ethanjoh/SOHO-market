@@ -32,7 +32,7 @@ $protocol = check_protocol($sslPort);
                       개인회원 정보수정/관리
                   </header>
                   <div class="panel-body">
-                  <form name="form1" role="form" class="form-inline" method="post" action="<?php echo $protocol; ?>//<?php echo $_SERVER['SERVER_NAME']; ?>:<?php echo $sslPort; ?>/admin/member/p_mem_edit_member.php">
+                  <form name="form1" role="form" class="form-inline" method="post" action="//<?php echo $_SERVER['SERVER_NAME']; ?>/admin/member/p_mem_edit_member.php">
                     <input type="hidden" name="num" value="<?php echo $num; ?>">
                     <input type="hidden" name="sms" value="<?php echo $rows['sms']; ?>">
                     <input type="hidden" name="page" value="<?php echo $page; ?>">

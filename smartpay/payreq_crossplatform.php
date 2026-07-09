@@ -156,7 +156,7 @@ $sessionFlag = $_SESSION['p_flag']; //사용자 구분 플래그, 'c':기업회�
 
 ?>
 
-        <script language="javascript" src="https://xpay.uplus.co.kr/xpay/js/xpay_crossplatform.js" type="text/javascript"></script>
+        <script language="javascript" src="https://xpay.tosspayments.com/xpay/js/xpay_crossplatform.js" type="text/javascript"></script>
         <script type="text/javascript">
 
         /*

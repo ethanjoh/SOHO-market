@@ -309,7 +309,7 @@ HEREDOC;
                                             <tbody>
                                                 <tr>
                                                     <td>
-                                                        <p style="margin:0;"><img src="http://{$_SERVER['SERVER_NAME']}/mail/images/order-top.png" alt="신수마켓 주문이 정상적으로 완료 되었습니다." width="750" height="30"></p>
+                                                        <p style="margin:0;"><img src="https://{$_SERVER['SERVER_NAME']}/mail/images/order-top.png" alt="신수마켓 주문이 정상적으로 완료 되었습니다." width="750" height="30"></p>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -443,7 +443,7 @@ HEREDOC;
                                 </tr>
                                 <tr>
                                     <td style="text-align:center;">
-                                        <a href="http://{$_SERVER['SERVER_NAME']}/shop/order-list.php" target="_blank" title="새창"><img src="http://{$_SERVER['SERVER_NAME']}/mail/images/order-list-button.png" alt="주문내역 바로가기" width="250" height="50" border="0"></a>
+                                        <a href="https://{$_SERVER['SERVER_NAME']}/shop/order-list.php" target="_blank" title="새창"><img src="https://{$_SERVER['SERVER_NAME']}/mail/images/order-list-button.png" alt="주문내역 바로가기" width="250" height="50" border="0"></a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -461,13 +461,13 @@ HEREDOC;
                                 <tr>
                                     <td style="padding:70px 0 0;margin:0;">
                                         <p>
-                                            <a href="http://{$_SERVER['SERVER_NAME']}/bbs/list.php?code=qna" target="_blank" title="새창"><img src="http://{$_SERVER['SERVER_NAME']}/mail/images/cs-center.png" alt="회신이 되지않는 발신전용메일입니다. 신수마켓 이용 관련문의는 1:1 게시판을 이용해 주세요." width="750" height="30" border="0"></a>
+                                            <a href="https://{$_SERVER['SERVER_NAME']}/bbs/list.php?code=qna" target="_blank" title="새창"><img src="https://{$_SERVER['SERVER_NAME']}/mail/images/cs-center.png" alt="회신이 되지않는 발신전용메일입니다. 신수마켓 이용 관련문의는 1:1 게시판을 이용해 주세요." width="750" height="30" border="0"></a>
                                         </p>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td style="padding:13px 0 0;margin:0;">
-                                        <a href="mailto:{$com_info['email']}" target="_blank" alt="e-mail : {$com_info['email']}"><img src="http://{$_SERVER['SERVER_NAME']}/mail/images/email-footer.png" alt="사업자등록번호: 212-02-66119 | 대표: 최홍규 | 통신판매업신고: 강동-0181호 (05395)서울 강동구 성내로17길 66 (성내동)1F 신수상사 TEL: 02-479-2142 FAX: 02-479-2141" width="750" height="150" border="0"></a>
+                                        <a href="mailto:{$com_info['email']}" target="_blank" alt="e-mail : {$com_info['email']}"><img src="https://{$_SERVER['SERVER_NAME']}/mail/images/email-footer.png" alt="사업자등록번호: 290-88-02477 | 대표: 최홍규 | 통신판매업신고: 강동-0150호 (05395)서울 강동구 성내로17길 66 (성내동)1F (주)신수트레이딩 TEL: 02-479-2142 FAX: 02-479-2141" width="750" height="150" border="0"></a>
                                     </td>
                                 </tr>
                             </tbody>

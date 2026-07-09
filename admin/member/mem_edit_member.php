@@ -143,7 +143,7 @@ if ($sms_row['sms'] == "Y") {
 if (!$result1) {
     err_msg('DB 오류가 발생했습니다.');
 } else {
-    $url = "http://" . $_SERVER['SERVER_NAME'] . "/admin/member/mem_view_member.php?num=" . $num . "&amp;page=" . $page;
+    $url = "https://" . $_SERVER['SERVER_NAME'] . "/admin/member/mem_view_member.php?num=" . $num . "&amp;page=" . $page;
     $msg = "정상적으로 수정했습니다.";
 
     show_msg($msg, $url);

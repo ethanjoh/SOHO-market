@@ -22,7 +22,7 @@
   $date2 = set_var($_GET['date2']);
   $page = set_var($_GET['page']);
 
-        if('search' = $mode){
+        if($mode == 'search'){
             $search_query = " AND createdate BETWEEN  '$date1' AND '$date2' ";
         }
 
@@ -163,7 +163,7 @@
                             <td>
 <?php
 
-                                  $url = $_SETVER['PHP_SELF']."?id=".$id."&mode=".$mode".&license_no=".$license_no."&company_name=".$company_name;
+                                  $url = $_SETVER['PHP_SELF']."?id=".$id."&mode=".$mode."&license_no=".$license_no."&company_name=".$company_name;
                                   page_nav($totalpage,$cpage,$url);
                                ?>
                             </td>

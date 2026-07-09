@@ -91,7 +91,7 @@
                                 </h1>
                                 <p><i class="fa fa-check-square-o" aria-hidden="true"></i> 평일 16:00시 이전에 결제가 확인된 주문에 대해서는 당일 출고합니다. (토요일 휴무)<br>
                                 <i class="fa fa-check-square-o" aria-hidden="true"></i> 영업시간 외 입금이 확인된 주문건은 익일 출고가 됩니다.<br>
-                                <i class="fa fa-check-square-o" aria-hidden="true"></i> 택배비는 100,000원 이상 주문 시 무료배송입니다.</p>
+                                <i class="fa fa-check-square-o" aria-hidden="true"></i> 택배비는 <?php echo show_min_delivery_fee(); ?>원 이상 주문 시 무료배송입니다.</p>
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-12">

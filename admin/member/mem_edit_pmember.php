@@ -81,5 +81,5 @@ if (!$result1) {
      	   <script>
         	window.alert('정상적으로 수정했습니다.')
 	       </script> ";
-    echo "<meta http-equiv='Refresh' content='0;  URL=mem_view_pmember.php?num=$num&amp;page=$page'>";
+    echo "<meta http-equiv='Refresh' content='0;  URL=mem_view_pmember.php?num=".$num."&amp;page=".$page."'>";
 }
