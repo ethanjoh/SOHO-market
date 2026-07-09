@@ -6,7 +6,16 @@
 
 ---
 
-## [v1.4.0] - 2016-09-22 ~ 2026-07-09 (결제 안정성 및 재고 정합성 강화, 보안 리팩토링)
+## [v1.4.0] - 2016-09-22 ~ 2026-07-09 (결제 안정성 및 재고 정합성 강화, 보안 리팩토링, 토스페이먼츠 마이그레이션)
+
+### 결제 게이트웨이(PG) 마이그레이션 (Toss Payments Migration)
+- **토스페이먼츠(Toss Payments API v1) 도입**
+  - 기존의 구형 LG U+ XPay 소켓 모듈(`XPayClient.php`)을 완전히 제거하고, 별도 바이너리나 서버 환경 의존성이 없는 표준 HTTP(cURL) REST API 기반의 토스페이먼츠 승인 연동 구조로 마이그레이션 완료
+  - PC와 모바일의 개별 결제 진입점을 `/pay/payreq_toss.php` 경로로 단일화 및 최신 JavaScript SDK를 통한 크로스 플랫폼 결제창 호출 구현
+  - 결제 진행 중 리다이렉션으로 유실되기 쉬운 주문서 정보(배송 메모, 수령인 주소 및 수동 입력 정보 등)를 결제 전 PHP 세션(`$_SESSION['toss_temp_order']`)에 임시 보존한 후, 승인 시점에서 복원(Post Mocking)하여 처리하는 데이터 이월 안전 구조 설계
+  - 서버 간 안전한 결제 승인을 담당하는 `/pay/success_toss.php` 개발 및 U+ 변수 규격으로 역매핑하여 기존 주문 완료/SMS/이메일 후처리 로직의 안정적인 재사용 구현
+  - 결제 실패 및 고객의 결제 취소 사유를 처리하고 장바구니로 안전하게 되돌려주는 `/pay/fail_toss.php` 개발
+  - 가상계좌(무통장입금)의 비동기 입금 알림(`DEPOSIT_RECEIVED`) 및 가상계좌 발급 대기(`WAITING_FOR_DEPOSIT`) 이벤트를 수신하여 입금 상태 및 DB 주문 status를 실시간 갱신하는 웹훅 스크립트 `/pay/webhook_toss.php` 개발
 
 ### 버그 수정 (Bug Fixes)
 - **결제 및 PG 연동**
@@ -25,8 +34,11 @@
   - 배송조회 외부 링크 URL 수정
 
 ### 환경 설정 및 보안 (Security & Config)
-- FTP 설정 파일(`sftp-config.json`), DB 접속 정보 및 PG사 API Key(`util/config.ini`), 백업 덤프 파일(`db_backup/`), 결제 로그 및 일반 로그(`pay/log/`, `pay/r_log.txt`)를 Git 추적에서 해제 및 `.gitignore` 설정 보완
-- 프로젝트 핵심 특징 및 웹호스팅 외부 DB 설정 가이드를 담은 [README.md](README.md) 작성
+- **환경 설정 파일 경로 보안화**
+  - `util/util.php` 내 설정 파일 경로 파싱 방식을 절대 경로 하드코딩에서 `/[root]/config/config.ini` 형태의 일반화된 경로로 전환하여 실 운영 서버 환경 보안성 강화
+- **파일 제외 및 문서화**
+  - FTP 설정 파일(`sftp-config.json`), DB 접속 정보 및 PG사 API Key(`util/config.ini`), 백업 덤프 파일(`db_backup/`), 결제 로그 및 일반 로그(`pay/log/`, `pay/r_log.txt`)를 Git 추적에서 해제 및 `.gitignore` 설정 보완
+  - 프로젝트 핵심 특징 및 웹호스팅 외부 DB 설정 가이드를 담은 [README.md](README.md) 작성
 
 ---
 
