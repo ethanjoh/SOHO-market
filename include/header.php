@@ -90,7 +90,7 @@ $uri = set_var($_SERVER['HTTP_REFERER']);
                     <div class="row">
                         <div class="col-md-12 col-sm-12">
                             <div class="top-logo">
-                                <a href="/"><img src="/images/shinsoo-logo.png" alt="신수상사 로고"></a>
+                                <a href="/"><img src="/images/shinsoo-logo.png" alt="마켓 로고"></a>
                             </div>
                         </div>
                    </div>

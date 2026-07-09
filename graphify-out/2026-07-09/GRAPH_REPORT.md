@@ -1,16 +1,16 @@
 # Graph Report - SOHO-market  (2026-07-09)
 
 ## Corpus Check
-- 1243 files · ~4,240,753 words
+- 1248 files · ~4,242,783 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 8107 nodes · 13759 edges · 1295 communities (1059 shown, 236 thin omitted)
+- 8150 nodes · 13798 edges · 1297 communities (1066 shown, 231 thin omitted)
 - Extraction: 86% EXTRACTED · 14% INFERRED · 0% AMBIGUOUS · INFERRED: 1987 edges (avg confidence: 0.7)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `a0c03e7f`
+- Built from commit: `1bf7b776`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -36,6 +36,7 @@
 - CKEditor Rich Text Editors
 - Admin Portal Functions
 - PHPExcel Excel2007 Writers
+- PHPMailer Email Utility
 - PHPMailer Email Utility
 - Product Category Admin
 - CKEditor Rich Text Editors
@@ -388,6 +389,7 @@
 - Admin Portal Functions
 - Admin Portal Functions
 - Admin Portal Functions
+- Payment Gateway APIs
 
 ## God Nodes (most connected - your core abstractions)
 1. `PHPExcel_Calculation_Functions` - 284 edges
@@ -416,11 +418,15 @@
 ## Import Cycles
 - None detected.
 
-## Communities (1295 total, 236 thin omitted)
+## Communities (1297 total, 231 thin omitted)
 
 ### Community 1 - "jQuery Plugin Collection"
 Cohesion: 0.05
-Nodes (82): $(), bt_mousesheelNumber(), bt_pauseOnHoverConfig(), ca(), cf_c(), cf_e(), cf_getAdjust(), cf_getAlignPadding() (+74 more)
+Nodes (81): $(), bt_mousesheelNumber(), bt_pauseOnHoverConfig(), ca(), cf_c(), cf_e(), cf_getAdjust(), cf_getAlignPadding() (+73 more)
+
+### Community 2 - "PHPExcel Formula Functions"
+Cohesion: 0.03
+Nodes (3): PHPExcel_Calculation_Functions, PHPExcel_Calculation_Statistical, trendClass
 
 ### Community 3 - "PHPExcel Formula Functions"
 Cohesion: 0.04
@@ -429,10 +435,6 @@ Nodes (3): PHPExcel_Calculation_DateTime, PHPExcel_Calculation_Financial, PHPExc
 ### Community 5 - "CodeMirror Code Editors"
 Cohesion: 0.07
 Nodes (67): A(), ae(), $b(), Ba(), Bb(), be(), ce(), cg() (+59 more)
-
-### Community 6 - "PHPExcel Worksheet Management"
-Cohesion: 0.04
-Nodes (3): PHPExcel_Calculation_MathTrig, PHPExcel_Shared_OLE_PPS, PHPExcel_Shared_OLE_PPS_Root
 
 ### Community 8 - "PHPExcel Excel5 Writers"
 Cohesion: 0.05
@@ -444,7 +446,7 @@ Nodes (59): ChangeLog, Version 0.90 (Tue, April 17 2001), Version 0.92 (Tue, May
 
 ### Community 11 - "CodeMirror Code Editors"
 Cohesion: 0.06
-Nodes (49): Ac(), Ad(), af(), Bb(), Bc(), Bd(), Bf(), Ca() (+41 more)
+Nodes (48): Ac(), Ad(), af(), Bb(), Bc(), Bd(), Bf(), Ca() (+40 more)
 
 ### Community 13 - "CKEditor Rich Text Editors"
 Cohesion: 0.07
@@ -459,16 +461,24 @@ Cohesion: 0.07
 Nodes (38): $a(), b(), c(), Ca(), D(), Da(), ec(), f() (+30 more)
 
 ### Community 16 - "jQuery Plugin Collection"
-Cohesion: 0.10
-Nodes (31): k(), A(), aa(), B(), c(), d(), da(), ea() (+23 more)
+Cohesion: 0.19
+Nodes (30): j(), k(), A(), aa(), B(), c(), d(), da() (+22 more)
 
 ### Community 19 - "Admin Portal Functions"
 Cohesion: 0.09
 Nodes (44): cdata(), clean(), colorLines(), coverage(), create(), Doc(), error(), errorDiff() (+36 more)
 
+### Community 20 - "PHPExcel Excel2007 Writers"
+Cohesion: 0.04
+Nodes (3): check_img_extension(), err_msg(), get_bbs_title()
+
 ### Community 21 - "PHPMailer Email Utility"
 Cohesion: 0.05
 Nodes (4): PHPExcel_Calculation_Logical, PHPExcel_Calculation, PHPExcel_Calculation_TextData, PHPExcel_Calculation_Token_Stack
+
+### Community 22 - "PHPMailer Email Utility"
+Cohesion: 0.09
+Nodes (21): CHANGELOG, [v1.0.0] - 2016-01-19 ~ 2016-02-18 (초기 빌드 및 기본 커머스 아키텍처 수립), [v1.1.0] - 2016-02-18 ~ 2016-03-05 (PG 결제 연동 및 데이터 관리 시스템 구축), [v1.2.0] - 2016-03-05 ~ 2016-04-30 (개인 회원 체계 및 메일링 시스템 도입), [v1.3.0] - 2016-05-02 ~ 2016-07-22 (모바일 결제 확장 및 배송 시스템 세분화), [v1.4.0] - 2016-09-22 ~ 2026-07-09 (결제 안정성 및 재고 정합성 강화, 보안 리팩토링, 토스페이먼츠 마이그레이션), 결제 게이트웨이(PG) 마이그레이션 (Toss Payments Migration), 기능 추가 (Core Setup) (+13 more)
 
 ### Community 24 - "CKEditor Rich Text Editors"
 Cohesion: 0.21
@@ -482,13 +492,17 @@ Nodes (45): a(), b(), ba(), c(), ca(), d(), e(), ea() (+37 more)
 Cohesion: 0.19
 Nodes (47): B(), aa(), N(), re(), A(), Aa(), b(), Ba() (+39 more)
 
+### Community 29 - "PHPExcel Worksheet Management"
+Cohesion: 0.05
+Nodes (3): getTokenCount(), PHPExcel_Calculation_LookupRef, PHPExcel_Reader_Excel5_MD5
+
 ### Community 30 - "CodeMirror Code Editors"
 Cohesion: 0.19
-Nodes (48): aa(), $d(), Ja(), M(), N(), A(), Aa(), b() (+40 more)
+Nodes (47): aa(), $d(), M(), N(), A(), Aa(), b(), Ba() (+39 more)
 
 ### Community 31 - "CodeMirror Code Editors"
-Cohesion: 0.08
-Nodes (47): A(), ae(), $b(), Ba(), be(), Cd(), ce(), Cf() (+39 more)
+Cohesion: 0.10
+Nodes (41): A(), ae(), $b(), be(), ce(), Cf(), df(), Ef() (+33 more)
 
 ### Community 32 - "PHPExcel DateTime Calculations"
 Cohesion: 0.12
@@ -520,7 +534,7 @@ Nodes (39): CKEditor 4.0, CKEditor 4.0.1, CKEditor 4.0.1.1, CKEditor 4.0.2, CKEd
 
 ### Community 41 - "Admin Portal Functions"
 Cohesion: 0.06
-Nodes (20): bb(), Eb(), fb(), fc(), hc(), I(), ic(), J() (+12 more)
+Nodes (17): bb(), Eb(), fb(), fc(), hc(), I(), ic(), J() (+9 more)
 
 ### Community 43 - "Payment Gateway APIs"
 Cohesion: 0.05
@@ -539,28 +553,28 @@ Cohesion: 0.06
 Nodes (10): PHPExcel_Worksheet_Row, PHPExcel_Writer_OpenDocument_Cell_Comment, PHPExcel_Writer_OpenDocument_Content, PHPExcel_Writer_OpenDocument_Meta, PHPExcel_Writer_OpenDocument_MetaInf, PHPExcel_Writer_OpenDocument_Mimetype, PHPExcel_Writer_OpenDocument_Settings, PHPExcel_Writer_OpenDocument_Styles (+2 more)
 
 ### Community 51 - "개인 백업"
-Cohesion: 0.06
-Nodes (56): _(), j(), bt(), Fn(), gt(), ht(), k(), mt() (+48 more)
+Cohesion: 0.10
+Nodes (23): _(), aa(), ca(), fa(), ha(), i(), J(), na() (+15 more)
 
 ### Community 52 - "jQuery Plugin Collection"
 Cohesion: 0.18
 Nodes (30): _(), G(), sa(), wa(), x(), ya(), a(), b() (+22 more)
 
 ### Community 54 - "개인 백업"
-Cohesion: 0.07
-Nodes (23): $(), w(), an(), dt(), er(), F(), ft(), Hn() (+15 more)
+Cohesion: 0.08
+Nodes (19): $(), an(), dt(), er(), ft(), Kn(), ln(), nn() (+11 more)
 
 ### Community 56 - "PHPExcel Worksheet Management"
-Cohesion: 0.09
-Nodes (3): PHPExcel_Autoloader, PHPExcel_Reader_Gnumeric, PHPExcel_Reader_OOCalc
+Cohesion: 0.06
+Nodes (4): PHPExcel_Autoloader, PHPExcel_Reader_Gnumeric, PHPExcel_Reader_OOCalc, PHPExcel_Settings
 
 ### Community 57 - "PHPExcel Excel5 Writers"
-Cohesion: 0.12
-Nodes (22): getCalculatedValue(), getColumn(), getCoordinate(), getDataValidation(), getFormattedValue(), getHyperlink(), getMergeRange(), getParent() (+14 more)
+Cohesion: 0.06
+Nodes (24): attach(), getCalculatedValue(), getColumn(), getCoordinate(), getDataValidation(), getFormattedValue(), getHyperlink(), getMergeRange() (+16 more)
 
 ### Community 59 - "PHPExcel Core Libraries"
-Cohesion: 0.10
-Nodes (19): calculateFormula(), _calculateFormulaValue(), convertMatrixReferences(), executeBinaryComparisonOperation(), executeNumericBinaryOperation(), extractCellRange(), extractNamedRange(), getValueFromCache() (+11 more)
+Cohesion: 0.11
+Nodes (18): calculateFormula(), _calculateFormulaValue(), convertMatrixReferences(), executeBinaryComparisonOperation(), executeNumericBinaryOperation(), extractCellRange(), getValueFromCache(), processTokenStack() (+10 more)
 
 ### Community 62 - "jQuery Plugin Collection"
 Cohesion: 0.08
@@ -579,8 +593,8 @@ Cohesion: 0.08
 Nodes (10): cart_edit(), closeWin(), goCart(), gomOrder(), goOrder(), goQuotation(), IsNumber(), IsNumber1() (+2 more)
 
 ### Community 70 - "PHPExcel File Readers"
-Cohesion: 0.19
-Nodes (5): load(), loadIntoExisting(), PHPExcel_Reader_SYLK, lastColumnIndex, PHPExcel_Reader_IReader
+Cohesion: 0.16
+Nodes (19): Fn(), k(), _n(), H(), vb(), d(), e(), b() (+11 more)
 
 ### Community 71 - "PHPExcel Core Libraries"
 Cohesion: 0.07
@@ -622,10 +636,6 @@ Nodes (3): encodeUTF16(), PHPExcel_Shared_String, PHPExcel_Writer_Excel2007_Stri
 Cohesion: 0.12
 Nodes (19): bj(), a(), bA(), bB(), bC(), bD(), bE(), bF() (+11 more)
 
-### Community 83 - "PHPExcel File Readers"
-Cohesion: 0.07
-Nodes (3): PHPExcel_Shared_Excel5, PHPExcel_Shared_Font, PHPExcel_Writer_Excel5_Font
-
 ### Community 89 - "PHPExcel Worksheet Management"
 Cohesion: 0.08
 Nodes (25): 0.2.10 - 26th June 2012, 0.2.1 - 28th Feb 2012, 0.2.2 - 29th Feb 2012, 0.2.3 - 6th Mar 2012, 0.2.4 - 8th March 2012, 0.2.5 - 15th March 2012, 0.2.6 - 18th March 2012, 0.2.7 - 2nd April 2012 (+17 more)
@@ -633,6 +643,10 @@ Nodes (25): 0.2.10 - 26th June 2012, 0.2.1 - 28th Feb 2012, 0.2.2 - 29th Feb 201
 ### Community 90 - "Admin Portal Functions"
 Cohesion: 0.14
 Nodes (3): $Form(), $H(), v()
+
+### Community 93 - "Admin Portal Functions"
+Cohesion: 0.11
+Nodes (3): $Json(), $S(), $Template()
 
 ### Community 94 - "CodeMirror Code Editors"
 Cohesion: 0.16
@@ -642,6 +656,10 @@ Nodes (24): $c(), Cc(), da(), Ec(), fa(), Gd(), jb(), Jd() (+16 more)
 Cohesion: 0.12
 Nodes (22): Ac(), Bf(), Cf(), dd(), $e(), eb(), Ed(), fb() (+14 more)
 
+### Community 96 - "PHPExcel Worksheet Management"
+Cohesion: 0.09
+Nodes (4): PHPExcel_Reader_Excel2007, PHPExcel_Shared_File, PHPExcel_Shared_XMLWriter, XMLWriter
+
 ### Community 99 - "개인 백업"
 Cohesion: 0.17
 Nodes (20): a(), b(), c(), f(), g(), h(), i(), k() (+12 more)
@@ -650,13 +668,9 @@ Nodes (20): a(), b(), c(), f(), g(), h(), i(), k() (+12 more)
 Cohesion: 0.19
 Nodes (21): Ca(), Cc(), da(), Dc(), Ec(), Hc(), jb(), Jd() (+13 more)
 
-### Community 109 - "Admin Portal Functions"
-Cohesion: 0.08
-Nodes (4): $A(), $Event(), f(), $Fn()
-
 ### Community 110 - "jQuery Plugin Collection"
-Cohesion: 0.16
-Nodes (3): ha(), HideShowPassword(), r()
+Cohesion: 0.12
+Nodes (4): gn_getItemIndex(), ha(), HideShowPassword(), r()
 
 ### Community 118 - "Admin Portal Functions"
 Cohesion: 0.10
@@ -671,12 +685,12 @@ Cohesion: 0.13
 Nodes (8): $A(), createWrapper(), destroyWrapper(), findWrapper(), getCacheForID(), getEventID(), getWrappersForEventName(), $()
 
 ### Community 124 - "CodeMirror Code Editors"
-Cohesion: 0.15
-Nodes (18): c(), Aa(), de(), ee(), ff(), ge(), ia(), If() (+10 more)
+Cohesion: 0.11
+Nodes (23): c(), Aa(), Cd(), de(), ea(), ee(), $f(), ff() (+15 more)
 
 ### Community 125 - "CodeMirror Code Editors"
-Cohesion: 0.18
-Nodes (20): G(), hd(), hg(), Jf(), L(), Mf(), oa(), Ob() (+12 more)
+Cohesion: 0.15
+Nodes (24): Ba(), G(), Hc(), hd(), hg(), Jc(), Jf(), L() (+16 more)
 
 ### Community 128 - "Admin Portal Functions"
 Cohesion: 0.27
@@ -685,6 +699,10 @@ Nodes (3): Context(), Suite(), visit()
 ### Community 129 - "PHPExcel File Readers"
 Cohesion: 0.11
 Nodes (7): PHPExcel_Calculation_Exception, PHPExcel_Chart_Exception, PHPExcel_Exception, PHPExcel_Reader_Exception, PHPExcel_Writer_Exception, phpmailerException, Exception
+
+### Community 138 - "Admin Portal Functions"
+Cohesion: 0.10
+Nodes (4): $Ajax(), $Json(), $S(), at()
 
 ### Community 139 - "CodeMirror Code Editors"
 Cohesion: 0.17
@@ -699,8 +717,8 @@ Cohesion: 0.17
 Nodes (9): c(), cp(), cq(), cr(), d(), e(), i(), bY() (+1 more)
 
 ### Community 144 - "PHPExcel File Readers"
-Cohesion: 0.12
-Nodes (5): PHPExcel_Writer_Excel2007_DocProps, PHPExcel_Writer_Excel2007_RelsRibbon, PHPExcel_Writer_Excel2007_RelsVBA, PHPExcel_Writer_Excel2007_Theme, PHPExcel_Writer_Excel2007_WriterPart
+Cohesion: 0.08
+Nodes (7): PHPExcel_Writer_Excel2007_ContentTypes, PHPExcel_Writer_Excel2007_DocProps, PHPExcel_Writer_Excel2007_Rels, PHPExcel_Writer_Excel2007_RelsRibbon, PHPExcel_Writer_Excel2007_RelsVBA, PHPExcel_Writer_Excel2007_Theme, PHPExcel_Writer_Excel2007_WriterPart
 
 ### Community 151 - "Admin Portal Functions"
 Cohesion: 0.13
@@ -711,8 +729,8 @@ Cohesion: 0.08
 Nodes (4): PHPExcel_RichText, PHPExcel_RichText_Run, PHPExcel_RichText_TextElement, PHPExcel_RichText_ITextElement
 
 ### Community 156 - "Admin Portal Functions"
-Cohesion: 0.67
-Nodes (5): i(), m(), p(), q(), t()
+Cohesion: 0.19
+Nodes (11): i(), m(), p(), q(), t(), qb(), sb(), wb() (+3 more)
 
 ### Community 158 - "Admin Portal Functions"
 Cohesion: 0.23
@@ -730,25 +748,25 @@ Nodes (15): A Simple Example, Changelog, Class Features, Contributing, Documenta
 Cohesion: 0.15
 Nodes (5): PHPExcel_Cell_AdvancedValueBinder, PHPExcel_Cell_DataType, PHPExcel_Cell_DefaultValueBinder, setValueExplicit(), PHPExcel_Cell_IValueBinder
 
-### Community 170 - "Admin Portal Functions"
+### Community 172 - "Admin Portal Functions"
+Cohesion: 0.30
+Nodes (12): a(), bindHover(), d(), Datepicker(), f(), i(), n(), o() (+4 more)
+
+### Community 173 - "Admin Portal Functions"
 Cohesion: 0.16
 Nodes (3): $Cookie(), $ElementList(), $Event()
 
-### Community 171 - "Admin Portal Functions"
-Cohesion: 0.16
-Nodes (3): $Json(), $Template(), $()
-
-### Community 172 - "Admin Portal Functions"
-Cohesion: 0.16
-Nodes (17): sb(), e(), q(), a(), b(), bindHover(), d(), Datepicker() (+9 more)
-
-### Community 173 - "Admin Portal Functions"
+### Community 174 - "Admin Portal Functions"
 Cohesion: 0.16
 Nodes (3): $Cookie(), $ElementList(), $Event()
 
 ### Community 177 - "CodeMirror Code Editors"
 Cohesion: 0.20
 Nodes (14): af(), Bc(), df(), dg(), Ef(), eg(), lf(), ma() (+6 more)
+
+### Community 178 - "PHPExcel Core Libraries"
+Cohesion: 0.27
+Nodes (13): bt(), gt(), ht(), mt(), ot(), pt(), vt(), yt() (+5 more)
 
 ### Community 180 - "PHPExcel Core Libraries"
 Cohesion: 0.13
@@ -783,8 +801,8 @@ Cohesion: 0.21
 Nodes (5): addEndCol(), initTableWidget(), sortNumeric(), sortString(), sortTable()
 
 ### Community 206 - "Admin Portal Functions"
-Cohesion: 0.26
-Nodes (12): check_approved_id(), show_cart_item(), show_checkout_item(), show_item_info(), show_items_on_catalog(), show_items_on_main(), show_me_wholesale_price(), show_order_item() (+4 more)
+Cohesion: 0.22
+Nodes (14): check_approved_id(), show_cart_item(), show_checkout_item(), show_item_info(), show_items_on_catalog(), show_items_on_main(), show_me_wholesale_price(), show_order_item() (+6 more)
 
 ### Community 208 - "CodeMirror Code Editors"
 Cohesion: 0.35
@@ -799,8 +817,8 @@ Cohesion: 0.18
 Nodes (7): EventEmitter(), dependencies, jquery, raphael, main, name, version
 
 ### Community 218 - "Highcharts Data Visualizations"
-Cohesion: 0.33
-Nodes (9): j(), hb(), nb(), P(), r(), ub(), vb(), xb() (+1 more)
+Cohesion: 0.25
+Nodes (11): j(), hb(), nb(), P(), r(), tb(), ub(), vb() (+3 more)
 
 ### Community 219 - "Admin Portal Functions"
 Cohesion: 0.27
@@ -834,6 +852,10 @@ Nodes (3): HTMLFilter(), tln_sanitize(), tln_tagprint()
 Cohesion: 0.20
 Nodes (7): PHPExcel_Reader_Excel5_ErrorCode, getNextToken(), parseRichText(), readBIFF8CellAddress(), readBIFF8CellAddressB(), readBIFF8Constant(), readSheetRangeByRefIndex()
 
+### Community 233 - "Admin Portal Functions"
+Cohesion: 0.14
+Nodes (3): $Document(), $Event(), $Window()
+
 ### Community 247 - "PHPExcel Core Libraries"
 Cohesion: 0.25
 Nodes (9): createFormulaFromTokens(), getFormulaFromData(), getFormulaFromStructure(), readBIFF5CellRangeAddressFixed(), readBIFF5CellRangeAddressList(), readBIFF8CellRangeAddressList(), readDataValidation(), readFormula() (+1 more)
@@ -862,9 +884,13 @@ Nodes (6): a(), i(), n(), r(), s(), t()
 Cohesion: 0.38
 Nodes (6): he(), zf(), n(), p(), v(), w()
 
+### Community 276 - "PHPExcel File Readers"
+Cohesion: 0.17
+Nodes (11): Manual Verification, [MODIFY] [shop/checkout.php](file:///e:/개인_백업/www/SOHO-market/shop/checkout.php), [NEW] [pay/fail_toss.php](file:///e:/개인_백업/www/SOHO-market/pay/fail_toss.php), [NEW] [pay/payreq_toss.php](file:///e:/개인_백업/www/SOHO-market/pay/payreq_toss.php), [NEW] [pay/success_toss.php](file:///e:/개인_백업/www/SOHO-market/pay/success_toss.php), [NEW] [pay/webhook_toss.php](file:///e:/개인_백업/www/SOHO-market/pay/webhook_toss.php), [Payment Gateway Migration], Proposed Changes (+3 more)
+
 ### Community 284 - "CodeMirror Code Editors"
-Cohesion: 0.38
-Nodes (6): he(), zf(), n(), p(), v(), w()
+Cohesion: 0.47
+Nodes (5): uf(), n(), p(), v(), w()
 
 ### Community 285 - "PHPMailer Email Utility"
 Cohesion: 0.52
@@ -873,10 +899,6 @@ Nodes (4): PclZipUtilCopyBlock(), PclZipUtilPathInclusion(), PclZipUtilPathReduc
 ### Community 286 - "Admin Portal Functions"
 Cohesion: 0.67
 Nodes (5): C(), D(), E(), M(), a()
-
-### Community 293 - "Admin Portal Functions"
-Cohesion: 0.14
-Nodes (4): $Ajax(), $Json(), $(), at()
 
 ### Community 294 - "Js Owl Carousel Min Components"
 Cohesion: 0.67
@@ -918,9 +940,13 @@ Nodes (4): callCallback(), getCallback(), getCallbackError(), getChangingValue()
 Cohesion: 0.67
 Nodes (4): callNext(), cb(), makeDone(), next()
 
-### Community 321 - "PHPExcel File Readers"
+### Community 317 - "CKEditor Rich Text Editors"
 Cohesion: 0.11
-Nodes (3): PHPExcel_Reader_Abstract, PHPExcel_Reader_DefaultReadFilter, PHPExcel_Reader_IReadFilter
+Nodes (3): PHPExcel_Shared_OLE_PPS_File, PHPExcel_Shared_OLE_PPS, PHPExcel_Shared_OLE_PPS_Root
+
+### Community 321 - "PHPExcel File Readers"
+Cohesion: 0.07
+Nodes (8): PHPExcel_Reader_Abstract, PHPExcel_Reader_DefaultReadFilter, load(), loadIntoExisting(), PHPExcel_Reader_SYLK, lastColumnIndex, PHPExcel_Reader_IReader, PHPExcel_Reader_IReadFilter
 
 ### Community 327 - "CKEditor Rich Text Editors"
 Cohesion: 0.33
@@ -931,8 +957,8 @@ Cohesion: 0.40
 Nodes (5): show_buyer_detail(), show_order_status(), get_pg_info(), show_logistics(), show_track_no()
 
 ### Community 330 - "PHPMailer Email Utility"
-Cohesion: 0.40
-Nodes (5): show_relative_items(), check_img_extension(), err_msg(), get_bbs_title(), get_short()
+Cohesion: 0.29
+Nodes (6): 1. `.gitignore` 업데이트 & 캐시 제거, 2. 프로젝트 전체 히스토리 & 수정 날짜 문서화 완료, 3. 토스페이먼츠(Toss Payments) 최신 API 결제 모듈 마이그레이션, Git/GitHub 보안 조치, 전체 히스토리 문서화 및 토스페이먼츠 마이그레이션 동기화 완료 보고서, 🔍 검증 및 동기화 결과, 🛠️ 조치 및 신규 개발 내역
 
 ### Community 331 - "Member Php Php Mailer Test Fakepopser..."
 Cohesion: 0.50
@@ -966,19 +992,23 @@ Nodes (3): PATH, fakepopserver.sh script, write_log()
 Cohesion: 0.67
 Nodes (3): show_order_list(), cut_string_utf8(), get_pg_info2()
 
+### Community 1251 - "Payment Gateway APIs"
+Cohesion: 0.40
+Nodes (4): w(), F(), Hn(), ra()
+
 ## Knowledge Gaps
-- **220 isolated node(s):** `name`, `version`, `main`, `jquery`, `name` (+215 more)
+- **243 isolated node(s):** `name`, `version`, `main`, `jquery`, `name` (+238 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **236 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **231 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `PHPExcel_Calculation_Functions` connect `PHPExcel Formula Functions` to `PHPExcel Core Libraries`, `PHPExcel Formula Functions`, `PHPExcel Core Libraries`, `PHPMailer Email Utility`, `PHPExcel Worksheet Management`, `PHPExcel Worksheet Management`, `PHPExcel Core Libraries`, `PHPExcel Core Libraries`, `PHPExcel Core Libraries`, `PHPExcel Excel2007 Writers`, `PHPMailer Email Utility`, `PHPExcel Worksheet Management`, `PHPExcel Core Libraries`, `PHPExcel Formula Functions`, `PHPExcel Worksheet Management`?**
-  _High betweenness centrality (0.034) - this node is a cross-community bridge._
+- **Why does `PHPExcel_Calculation_Functions` connect `PHPExcel Formula Functions` to `PHPExcel Core Libraries`, `PHPExcel Formula Functions`, `PHPExcel Core Libraries`, `PHPExcel Excel5 Writers`, `PHPExcel Worksheet Management`, `PHPExcel Worksheet Management`, `Admin Portal Functions`, `PHPExcel Core Libraries`, `PHPExcel Excel2007 Writers`, `PHPMailer Email Utility`, `PHPExcel Worksheet Management`, `PHPExcel Core Libraries`, `PHPExcel Formula Functions`, `PHPExcel Worksheet Management`?**
+  _High betweenness centrality (0.033) - this node is a cross-community bridge._
 - **Why does `PHPExcel_Worksheet` connect `PHPExcel Worksheet Management` to `PHPExcel Worksheet Management`, `PHPExcel Worksheet Management`, `PHPExcel Core Libraries`, `PHPExcel Core Libraries`, `PHPExcel Core Libraries`, `PHPExcel Excel5 Writers`, `CKEditor Rich Text Editors`, `PHPExcel Core Libraries`, `PHPExcel Core Libraries`, `PHPExcel Core Libraries`, `PHPExcel Excel2007 Writers`, `PHPExcel Worksheet Management`, `Admin Portal Functions`, `Member Php Php Mailer Extras Htmlfilt...`?**
   _High betweenness centrality (0.032) - this node is a cross-community bridge._
-- **Why does `PHPExcel_Shared_String` connect `PHPExcel Core Libraries` to `PHPExcel Core Libraries`, `PHPExcel DateTime Calculations`, `PHPExcel Core Libraries`, `PHPMailer Email Utility`, `PHPExcel Core Libraries`, `PHPExcel DateTime Calculations`, `PHPExcel Worksheet Management`, `PHPExcel Core Libraries`, `Payment Gateway APIs`, `PHPExcel Core Libraries`, `PHPExcel File Readers`, `PHPExcel Core Libraries`, `PHPExcel Core Libraries`, `PHPExcel Core Libraries`, `PHPExcel File Readers`, `PHPExcel Excel2007 Writers`, `PHPExcel File Readers`, `PHPExcel Worksheet Management`, `PHPExcel Core Libraries`?**
+- **Why does `PHPExcel_Shared_String` connect `PHPExcel Core Libraries` to `PHPExcel Formula Functions`, `PHPExcel DateTime Calculations`, `PHPExcel Core Libraries`, `PHPMailer Email Utility`, `PHPExcel Core Libraries`, `PHPExcel DateTime Calculations`, `PHPExcel Worksheet Management`, `PHPExcel Core Libraries`, `Payment Gateway APIs`, `PHPExcel Core Libraries`, `PHPExcel File Readers`, `PHPExcel Core Libraries`, `PHPExcel Excel5 Writers`, `PHPExcel Core Libraries`, `PHPExcel File Readers`, `PHPExcel Core Libraries`, `PHPExcel File Readers`, `PHPExcel Excel2007 Writers`, `PHPExcel File Readers`, `PHPExcel Worksheet Management`, `PHPExcel Core Libraries`?**
   _High betweenness centrality (0.029) - this node is a cross-community bridge._
 - **Are the 267 inferred relationships involving `PHPExcel_Calculation_Functions` (e.g. with `.DGET()` and `.fieldExtract()`) actually correct?**
   _`PHPExcel_Calculation_Functions` has 267 INFERRED edges - model-reasoned connections that need verification._

@@ -39,14 +39,14 @@ if (!isset($sid)) {
     $_SESSION['p_id']   = $id;
     $_SESSION['p_name'] = $company_name;
 
-    $sender       = "=?EUC-KR?B?" . base64_encode(iconv("UTF-8", "EUC-KR", "신수상사")) . "?=\r\n";
+    $sender       = "=?EUC-KR?B?" . base64_encode(iconv("UTF-8", "EUC-KR", "마켓")) . "?=\r\n";
     $sender_email = "griptech@hanmail.net";
 
-    $subject   = $company_name . "님, 신수상사 사이트 비밀번호 변경안내";
+    $subject   = $company_name . "님, 마켓 사이트 비밀번호 변경안내";
     $subject_c = "=?EUC-KR?B?" . base64_encode(iconv("UTF-8", "EUC-KR", $subject)) . "?=\r\n";
     $subject_c = addslashes($subject_c);
 
-    $contents = "<p>골프그립 전문기업 신수상사를 이용해 주셔서 고맙습니다.<br />";
+    $contents = "<p>골프그립 전문기업 마켓를 이용해 주셔서 고맙습니다.<br />";
     $contents .= "당사 사이트에서 비밀번호 변경이 되어 안내드립니다.</p>";
     $contents .= "<p>비밀번호 변경을 하지 않으셨다면 보안을 위해 당사로 연락부탁드립니다.<br/>";
     $contents .= "이용해 주셔서 고맙습니다.</p>";

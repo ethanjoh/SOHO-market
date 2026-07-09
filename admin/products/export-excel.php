@@ -11,11 +11,11 @@ $result = mysqli_query($connect, $sql);
 $objPHPExcel = new PHPExcel();
 
 // Set properties
-$objPHPExcel->getProperties()->setCreator("신수상사")
-    ->setLastModifiedBy("신수상사")
-    ->setTitle("신수마켓 제품목록")
-    ->setSubject("신수마켓 제품목록")
-    ->setDescription("신수마켓 제품목록")
+$objPHPExcel->getProperties()->setCreator("마켓")
+    ->setLastModifiedBy("마켓")
+    ->setTitle("소호마켓 제품목록")
+    ->setSubject("소호마켓 제품목록")
+    ->setDescription("소호마켓 제품목록")
     ->setKeywords("제품목록")
     ->setCategory("제품");
 
@@ -76,13 +76,13 @@ if (mysqli_num_rows($result)) {
 }
 
 // Rename sheet
-$objPHPExcel->getActiveSheet()->setTitle("신수마켓 제품목록");
+$objPHPExcel->getActiveSheet()->setTitle("소호마켓 제품목록");
 
 // Set active sheet index to the first sheet, so Excel opens this as the first sheet
 $objPHPExcel->setActiveSheetIndex(0);
 
 // 파일의 저장형식이 utf-8일 경우 한글파일 이름은 깨지므로 euc-kr로 변환해준다.
-$filename = iconv("UTF-8", "EUC-KR", "신수마켓 제품목록") . "-" . date("Y-m-d");
+$filename = iconv("UTF-8", "EUC-KR", "소호마켓 제품목록") . "-" . date("Y-m-d");
 
 // Redirect output to a client’s web browser (Excel2007)
 // header('Content-Type: application/vnd.ms-excel');
