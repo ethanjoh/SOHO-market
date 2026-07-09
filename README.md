@@ -62,16 +62,19 @@ SOHO-market/
 ## 🔒 보안 및 초기 설정 가이드 (Security & Setup)
 
 ### 1. 데이터베이스 설정 (`config.ini`)
+
 데이터베이스 설정 파일은 프로젝트 소스코드 내부가 아닌, **웹 루트 서버 디렉토리 외부**에 보관하여 정보가 웹상에 직간접적으로 노출되지 않도록 하는 아키텍처를 권장합니다.
 
 실제 소스코드(`util/util.php`)는 아래와 같이 호스팅 디렉토리 외부 경로의 설정을 파싱하도록 설계되어 있습니다.
+
 ```php
-$config = parse_ini_file('/home/hosting_users/ssss01047271791/config/config.ini');
+$config = parse_ini_file('[웹호스팅 루트폴더]/config/config.ini');
 ```
 
 만약 로컬/개발 환경에서 설정이 필요하다면 아래 내용을 참고하여 `util/config.ini`를 생성하되, 해당 설정 파일은 절대로 Git 저장소에 포함시키지 말아야 합니다. (이미 `.gitignore`에 제외 규칙이 등록되어 있습니다.)
 
-#### `config.ini` 설정 예시:
+#### `config.ini` 설정 예시
+
 ```ini
 ;db 셋팅
 [db]
@@ -89,7 +92,9 @@ cst_platform = "service"
 ```
 
 ### 2. Git 동기화 제외 정책
+
 민감한 패스워드와 기밀 정보의 유출을 막기 위해 아래의 항목들은 `.gitignore` 설정을 통해 원격 Git 저장소(GitHub 등) 동기화 대상에서 차단되어 있습니다.
+
 - FTP 설정 파일 (`sftp-config.json`)
 - 로컬 DB 및 PG 키 설정 파일 (`util/config.ini`, `lgpay/conf/*.conf` 등)
 - DB 백업 폴더 (`db_backup/` 아래의 모든 `.sql` 파일)
