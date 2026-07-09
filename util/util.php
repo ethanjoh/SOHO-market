@@ -1,6 +1,6 @@
 <?php
 
-$config = parse_ini_file('/home/hosting_users/ssss01047271791/config/config.ini');
+$config = parse_ini_file('/[root]/config/config.ini');
 // $config = parse_ini_file('config.ini');
 
 $host         = $config['host'];
@@ -63,7 +63,6 @@ function show_notice()
         </script>
 
 HEREDOC;
-
     } else {
         echo <<<HEREDOC
 
@@ -75,7 +74,6 @@ HEREDOC;
 
 HEREDOC;
     }
-
 }
 
 //메인 화면에 게시판 보여주기
@@ -108,7 +106,6 @@ function show_bbs($bbs_name, $connect)
             }
         }
     }
-
 }
 
 //썸네일 이미지 자동생성
@@ -159,7 +156,6 @@ function make_thumbnail($source_file, $_width, $_height, $object_file)
         $img_last = imagecreatetruecolor($_width, $_height);
         imagecopy($img_last, $img_dest, 0, 0, $x_last, $y_last, $width, $height);
         imagedestroy($img_dest);
-
     }
     if ($object_file) {
         if ($type == 1) {
@@ -175,7 +171,6 @@ function make_thumbnail($source_file, $_width, $_height, $object_file)
         } else if ($type == 15) {
             imagebmp($img_last, $object_file, 100);
         }
-
     } else {
         if ($type == 1) {
             imagegif($img_last);
@@ -188,7 +183,6 @@ function make_thumbnail($source_file, $_width, $_height, $object_file)
         } else if ($type == 15) {
             imagebmp($img_last);
         }
-
     }
     imagedestroy($img_last);
     return true;
@@ -231,7 +225,6 @@ function show_icon($pnum)
         } else {
             return $str = '<span class="label label-info">당사직송</span>';
         }
-
     } else if ($rows['option1_chk'] == "Y") //신상품 Y
     {
         return $str = '<span class="label label-success">NEW</span>';
@@ -244,7 +237,6 @@ function show_icon($pnum)
     } else if ($rows['option4_chk'] == "Y") {
         return $str = '<span class="label label-warning">SALE</span>';
     }
-
 }
 
 function admin_show_icon(&$rows)
@@ -276,7 +268,6 @@ function admin_show_icon(&$rows)
         } else {
             return $str = "<img src=\"../images/delivery_icon.gif\" alt=\"당사직송\" /> ";
         }
-
     } else if ($rows['option1_chk'] == "Y") //신상품 Y
     {
         return $str = "<img src=\"../images/new-text.png\" alt=\"신상품\" /> ";
@@ -289,7 +280,6 @@ function admin_show_icon(&$rows)
     } else if ($rows['option4_chk'] == "Y") {
         return $str = "<img src=\"../images/sale_icon.gif\" alt=\"할인상품\" /> ";
     }
-
 }
 
 // require "xmlrpc.inc.php";
@@ -336,7 +326,6 @@ function check_remain_sms($connect)
     } else {
         echo "[에러] " . $sms->errMsg;
     }
-
 }
 
 function send_sms($to, $msg_type, $name, $sdate, $connect)
@@ -394,7 +383,6 @@ function send_sms($to, $msg_type, $name, $sdate, $connect)
     if (!$ret) {
         echo $sms->errMsg;
     }
-
 }
 
 /**
@@ -422,7 +410,6 @@ function show_delivery_fee($total)
 
         $reMsg = '<i class="fa fa-krw"></i> ' . number_format($row['d_charge']) . ' <i class="fa fa-plus-circle"></i>' . "\r\n";
         return array('msg' => $reMsg, 'trans_cost' => $row['d_charge']);
-
     } elseif ($total == 0) {
         $reMsg = "-";
         return array('msg' => $reMsg, 'trans_cost' => 0);
@@ -446,7 +433,6 @@ function show_min_delivery_fee()
     $row    = mysqli_fetch_array($result);
 
     return number_format($row['min_sum']);
-
 }
 
 /**
@@ -471,7 +457,6 @@ function calc_delivery_fee($orderSum)
     }
 
     return $reDeliveryFee;
-
 }
 
 function define_delivery_fee($transCost, $zipCode)
@@ -729,7 +714,6 @@ function show_restock(&$rows)
     } else {
         echo "(" . $rows['restock_date'] . " 재입고 예정)";
     }
-
 }
 
 //공급가 계산
@@ -804,7 +788,6 @@ function set_var(&$ary)
     } else {
         return null;
     }
-
 }
 
 /**
@@ -1034,7 +1017,6 @@ function page_nav($totalpage, $cpage, $url)
             echo '          <li><a href="' . $url . '&page=' . $curpage . '">' . $curpage . '</a></li>' . "\r\n";
         }
         $curpage++;
-
     }
 
     if ($totalpage > $endpage) {
@@ -1139,14 +1121,20 @@ function cut_string_utf8($str, $max_len, $suffix)
             $tn = 6;
             $n += 6;
             $noc += 2;
-        } else { $n++;}
-        if ($noc >= $max_len) {break;}
+        } else {
+            $n++;
+        }
+        if ($noc >= $max_len) {
+            break;
+        }
     }
     if ($noc <= $max_len) {
         return $str;
     }
 
-    if ($noc > $max_len) {$n -= $tn;}
+    if ($noc > $max_len) {
+        $n -= $tn;
+    }
     return substr($str, 0, $n) . $suffix;
 }
 
@@ -1183,7 +1171,6 @@ function check_zipno($zipcode, &$row)
     }
 
     return $bg = array($bg1, $bg2);
-
 }
 
 function getBbsMenu($connect)
@@ -1198,7 +1185,6 @@ function getBbsMenu($connect)
     } else {
         echo "<li>게시판 없음</li>\n";
     }
-
 }
 
 function getLoginWindow($i, $sslPort)
@@ -1231,7 +1217,6 @@ function getLoginWindow($i, $sslPort)
         echo "  </div>\n";
         echo "</div>\n";
     }
-
 }
 
 function show_offerPrice($rows)
@@ -1255,7 +1240,6 @@ function show_offerPrice($rows)
 
         echo "</ul>\n";
     }
-
 }
 
 function show_category($connect, $flag)
@@ -1285,10 +1269,8 @@ function show_category($connect, $flag)
             //     echo "<li><a href=\"../shop/catalog-list.php?lcode=".$l_rows['code']."\">".$cat_name." (".$total_bnum.")</a></li>\n";
             // else
             echo "<li><a href=\"../shop/catalog-list.php?lcode=" . $l_rows['code'] . "\">" . $cat_name . "</a></li>\n";
-
         }
     }
-
 }
 
 function show_bbs_list($connect)
@@ -1302,7 +1284,6 @@ function show_bbs_list($connect)
             echo "<li><a href=\"../bbs/list.php?code=" . $brow['code'] . "\">" . $brow['bbs_name'] . "</a></li>\n";
         }
     }
-
 }
 
 function check_avail($connect, $com_id, $pro_id)
@@ -1320,11 +1301,9 @@ function check_avail($connect, $com_id, $pro_id)
                 return $available[$i];
             }
         }
-
     } else {
         return "N";
     }
-
 }
 
 // 각 업체별 공급가를 보여준다.
@@ -1344,7 +1323,6 @@ function show_sup_price($connect, $com_id, $pro_id)
                 return $price[$i];
             }
         }
-
     } else {
         return "0";
     }
@@ -1438,7 +1416,6 @@ function get_company_info()
     $com_info['bank']           = $info['bank'];
 
     return $com_info;
-
 }
 
 /**
@@ -1516,7 +1493,7 @@ function get_bbs_title($code, $limit)
                                                     <tbody>
 HEREDOC;
 
-// 만약 검색 결과가 없다면,
+    // 만약 검색 결과가 없다면,
     if ($total == 0) {
         echo <<<HEREDOC
 
@@ -1531,7 +1508,6 @@ HEREDOC;
                                             </div>
 
 HEREDOC;
-
     } else {
         $sql    = "SELECT * FROM $board WHERE id='admin' ORDER BY create_date DESC LIMIT $cline,$scale1";
         $result = mysqli_query($connect, $sql);
@@ -1548,7 +1524,7 @@ HEREDOC;
                                                             </td>
 HEREDOC;
 
-//날짜 형식을 바꾼다.
+            //날짜 형식을 바꾼다.
             $post_date = substr($row['create_date'], 0, 11);
             echo <<<HEREDOC
 
@@ -1596,7 +1572,6 @@ function get_pg_info($orderid)
                     $pay_status .= '<p>1) 가상계좌는 일회성 계좌이므로 재사용시(다시 그 계좌로 입금하시는 경우) 타인의 계좌로 입금될 가능성이 있습니다.<br />';
                     $pay_status .= '이 경우는 고객의 책임이므로 사용에 주의하시기 바랍니다. <br />';
                     $pay_status .= '2) 가상계좌의 경우 CD기에서 현금입금 하실 수 없습니다.  CD기에서 이체는 가능합니다.</p>';
-
                 } elseif ($pg_row['LGD_CASFLAG'] == "I") {
                     $pay_status    = '              <i class="fa fa-check-circle pay-color"></i> 입금완료' . "\r\n";
                     $apply_receipt = $pg_row['LGD_CASHRECEIPTKIND'];
@@ -1696,7 +1671,6 @@ function get_pg_info2($orderid)
                                 if ($pg_row['LGD_FINANCECODE'] == $key) {
                                     $finance_name = $value;
                                 }
-
                             }
                         }
 
@@ -1771,7 +1745,6 @@ function get_pg_info2($orderid)
                         if ($pg_row['LGD_FINANCECODE'] == $key) {
                             $finance_name = $value;
                         }
-
                     }
                 }
 
@@ -1795,7 +1768,7 @@ function get_pg_info2($orderid)
                     $pay_status .= '      </div>'; //<!-- /.modal-content -->
                     $pay_status .= '    </div>';   //<!-- /.modal-dialog -->
                     $pay_status .= '  </div>';     //<!-- /.modal -->
-                                                   // $pay_status = '<i class="fa fa-exclamation-triangle fail-color"></i> 이체실패(' . $pg_row['LGD_RESPCODE'] . ')';
+                    // $pay_status = '<i class="fa fa-exclamation-triangle fail-color"></i> 이체실패(' . $pg_row['LGD_RESPCODE'] . ')';
                 }
 
                 break;
@@ -1933,7 +1906,6 @@ function show_pay_data($orderid)
                             }
                         }
                     }
-
                 }
             }
 
@@ -2075,7 +2047,6 @@ function check_img_extension($uploadFile)
     if ($file_ext != 'jpg' && $file_ext != 'gif' && $file_ext != 'jpeg' && $file_ext != 'png') {
         err_msg("" . $uploadFile . " - " . $file_ext . " :: 이미지 파일만 올릴 수 있습니다.");
     }
-
 }
 
 /**
@@ -2262,7 +2233,6 @@ HEREDOC;
                                                                     {$ca1_row['name']}
                                                                 </option>
 HEREDOC;
-
         } else {
             echo <<<HEREDOC
 
@@ -2270,7 +2240,6 @@ HEREDOC;
                                                                     {$ca1_row['name']}
                                                                 </option>
 HEREDOC;
-
         }
     }
 
@@ -2291,14 +2260,12 @@ HEREDOC;
                                                                     {$ca2_row['name']}
                                                                 </option>
 HEREDOC;
-
         } else {
             echo <<<HEREDOC
                                                                 <option value="{$ca2_row['code']}">
                                                                     {$ca2_row['name']}
                                                                 </option>
 HEREDOC;
-
         }
     }
 
@@ -2316,7 +2283,6 @@ function check_protocol($port)
 
     if ($isSecured) {
         return $protocol = "https:";
-
     } else {
         return $protocol = "http:";
     }
@@ -2342,7 +2308,6 @@ function format_email($info, $file)
 
     //return the html of the template
     return $template;
-
 }
 
 /*
@@ -2373,5 +2338,4 @@ function check_over_order($product_num, $selected_opt, $order_count)
             }
         }
     }
-
 }
