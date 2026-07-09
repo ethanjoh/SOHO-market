@@ -1,2 +1,21 @@
-shinsoo.sublime-project
-shinsoo.sublime-workspace
+.vscode
+sftp-config.json
+
+# DB & PG Config
+util/config.ini
+util/config.old.ini
+lgpay/conf/lgdacom_*.conf
+lgpay/conf/mall.conf
+lgpay/conf/mall.conf.org
+
+# Backup Files
+db_backup/
+*.sql
+
+# Log Files
+pay/log/
+pay/r_log.txt
+*.log
+
+# Uploads
+upload/
