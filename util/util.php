@@ -12,6 +12,10 @@ $MERTKEY      = $config['mertkey'];
 $CST_MID      = $config['cst_mid'];
 $CST_PLATFORM = $config['cst_platform'];
 
+// 토스페이먼츠 API 키 설정 (config.ini에 정의된 키가 없으면 기본 테스트 키 사용)
+$tossClientKey = isset($config['toss_client_key']) ? $config['toss_client_key'] : 'test_ck_OALnQBNxMGdkbyA1ywB38XzDOKWO';
+$tossSecretKey = isset($config['toss_secret_key']) ? $config['toss_secret_key'] : 'test_sk_Z5osxOZdxPz1e5P2kG18V15e';
+
 $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
 
 /**
