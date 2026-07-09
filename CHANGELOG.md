@@ -9,7 +9,7 @@
 ### 보안 및 히스토리 관리 (Security & Git History)
 
 - **구글 API 키 히스토리 노출 제거**
-  - 과거 커밋 히스토리에 노출되어 있던 구글 API 키(`AIzaSyDv0RLj_LBhRntn4AOCr4zHSYv0-F8gVeA`)를 `git-filter-repo` 도구를 사용하여 안전하게 제거(마스킹)하였습니다.
+  - 과거 커밋 히스토리에 노출되어 있던 구글 API 키를 `git-filter-repo` 도구를 사용하여 안전하게 제거(마스킹)하였습니다.
   - 해당 키는 모든 과거 커밋에서 `GOOGLE_API_KEY_REMOVED` 문자열로 영구 치환되었습니다.
 
 ---
