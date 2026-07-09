@@ -9,7 +9,7 @@ SOHO-market은 PHP 및 MySQL 환경 기반의 반응형 쇼핑몰(Commerce) 웹 
 
 현재는 개인 취미 차원에서 PHP 버전 업그레이드 작업을 할 예정입니다
 
-![메인화면](image.png)
+![메인화면](soho-market.png)
 
 ---
 
