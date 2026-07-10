@@ -1,4 +1,4 @@
-<?
+<?php
     include "db_connect.php";
 
 	//filename을 받아 자료실 목록에서 검색하여 다운로드 시킴
@@ -7,13 +7,13 @@
 	$result = mysqli_query($connect, $query);
 	
 	//실제 저장되어 있는 파일의 추출
-	$row = mysql_fetch_row($result);
+	$row = mysqli_fetch_row($result);
 	$real_file_name = $row[0];
 
 	$query = "select file_id, save_dir,file_name from file_down where board_name = '$board_name' and n_id = $n_id";
 	$result = mysqli_query($connect, $query);
 
-	$row = mysql_fetch_row($result);
+	$row = mysqli_fetch_row($result);
 	$save_dir = $row[1]; // 저장 되어있는 경로명(상대경로)
 	$file_name = $row[2]; //실제 저장되어 있는 파일명
 
@@ -29,7 +29,7 @@
 	$bin_txt = ($bin_txt) ? "r" : "rb";
 
 	// attachment 면 바로 다운 inline 브라우져가 인식하면 화면에 출력
-	if(eregi("(MSIE 5.5|MSIE 6.0)", $HTTP_USER_AGENT))
+	if(preg_match("/MSIE 5\.5|MSIE 6\.0/i", $_SERVER['HTTP_USER_AGENT']))
 	{
 		Header("Content-type: application/octet-stream");
 		Header("Content-Length: ".filesize("$file")); // 이부분을 넣어 주어야지 다운로드 진행 상태가 표시 됩니다.

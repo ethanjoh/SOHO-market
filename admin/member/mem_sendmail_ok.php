@@ -57,7 +57,7 @@
         $message .= "--$boundary\r\n";
         $message .= "Content-Type: $upfile_type; name=\"$filename\"\r\n";
         $message .= "Content-Transfer-Encoding: base64\r\n\r\n";
-        $message .= ereg_replace("(.{80})", "\\1\r\n", base64_encode($file));
+        $message .= chunk_split(base64_encode($file), 80, "\r\n");
         $message .= "\r\n--$boundary--";
 
     } else {

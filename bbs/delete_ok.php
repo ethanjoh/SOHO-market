@@ -40,14 +40,14 @@ if ($pw_row['passwd'] != sha1($passwd) || $pw_row['id'] != $id) {
     if ($mode == 'parent') {
         $board = 'bbs_' . $code;
         $sql   = "DELETE FROM $board WHERE main_no=$main_no ";
-        mysqli_query($connect, $sql) or dbError(mysql_error());
+        mysqli_query($connect, $sql) or dbError(mysqli_error($connect));
 
         //답글이 있다면 함께 삭제
         if ($pw_row['depth'] > 0) {
             //답글 테이블 호출
             $board = 'bbs_re_' . $code;
             $sql2  = "DELETE FROM $board WHERE main_no=$main_no ";
-            mysqli_query($connect, $sql2) or dbError(mysql_error());
+            mysqli_query($connect, $sql2) or dbError(mysqli_error($connect));
         }
 
         $url = "list.php?code=$code";
@@ -56,12 +56,12 @@ if ($pw_row['passwd'] != sha1($passwd) || $pw_row['id'] != $id) {
     } else if ($mode == 'child') {
         $board = 'bbs_re_' . $code;
         $sql   = "DELETE FROM $board WHERE reply_no=$reply_no ";
-        mysqli_query($connect, $sql) or dbError(mysql_error());
+        mysqli_query($connect, $sql) or dbError(mysqli_error($connect));
 
         //부모글의 depth를 하나 줄인다.
         $board = 'bbs_' . $code;
         $sql2  = "UPDATE $board SET depth=depth-1 WHERE main_no=$main_no ";
-        mysqli_query($connect, $sql2) or dbError(mysql_error());
+        mysqli_query($connect, $sql2) or dbError(mysqli_error($connect));
 
         $url = "read.php?code=$code&main_no=$main_no";
         show_msg("답글을 삭제했습니다.", $url);

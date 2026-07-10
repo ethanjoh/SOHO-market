@@ -99,7 +99,7 @@
 	//에러 메시지 처리	
 	if($errmsg == "") 
 	{   
-   	mysqli_query($connect, $sql) or dbError(mysql_error());	
+   	mysqli_query($connect, $sql) or dbError(mysqli_error($connect));	
    	
    	echo "<script language=\"JavaScript\">
 	          alert(\"글을 작성했습니다.\"); 

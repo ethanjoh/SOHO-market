@@ -33,21 +33,21 @@ passwd varchar(20),
 PRIMARY KEY (code)
 )";
 
-$result1 = mysqli_query($connect, $sql1,$con); 
-$result2 = mysqli_query($connect, $sql2,$con); 
+$result1 = mysqli_query($connect, $sql1); 
+$result2 = mysqli_query($connect, $sql2); 
 
 if ($result1 == true) {
 	echo "board 테이블을 생성했습니다.<br>";
 } else {
-	echo "board 테이블을 생성 중 에러가 발생했습니다: " . mysql_error();
+	echo "board 테이블을 생성 중 에러가 발생했습니다: " . mysqli_error($connect);
 }
 
 if ($result2 == true) {
 	echo "code 테이블을 생성했습니다.<br>";
 } else {
-	echo "code 테이블을 생성 중 에러가 발생했습니다: " . mysql_error();
+	echo "code 테이블을 생성 중 에러가 발생했습니다: " . mysqli_error($connect);
 }
 
-mysql_close($con);
+mysqli_close($connect);
 
 ?>

@@ -52,7 +52,7 @@ $result1 = mysqli_query($connect, $sql1);
 if ($result1 == true) {
     echo "테이블을 생성했습니다.<br>";
 } else {
-    echo "테이블을 생성 중 에러가 발생했습니다: " . mysql_error();
+    echo "테이블을 생성 중 에러가 발생했습니다: " . mysqli_error($connect);
 }
 
-mysql_close($connect);
+mysqli_close($connect);

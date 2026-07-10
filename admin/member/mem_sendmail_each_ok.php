@@ -44,7 +44,7 @@ if ($_FILES['upfile']['name'] && $_FILES['upfile']['size']) {
    $bodytext .= "--$boundary\r\n";
    $bodytext .= "Content-Type: $upfile_type; name=\"$filename\"\r\n";
    $bodytext .= "Content-Transfer-Encoding: base64\r\n\r\n";
-   $bodytext .= ereg_replace("(.{80})","\\1\r\n",base64_encode($file));
+   $bodytext .= chunk_split(base64_encode($file), 80, "\r\n");
    $bodytext .= "\r\n--$boundary--";
 
  }

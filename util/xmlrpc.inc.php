@@ -117,12 +117,12 @@ $xmlrpc_backslash=chr(92).chr(92);
 $_xh=array();
 
 function xmlrpc_entity_decode($string) {
-  $top=split("&", $string);
+  $top=explode("&", $string);
   $op="";
   $i=0; 
   while($i<sizeof($top)) {
-	if (ereg("^([#a-zA-Z0-9]+);", $top[$i], $regs)) {
-	  $op.=ereg_replace("^[#a-zA-Z0-9]+;",
+	if (preg_match("/^([#a-zA-Z0-9]+);/", $top[$i], $regs)) {
+	  $op.=preg_replace("/^[#a-zA-Z0-9]+;/",
 						xmlrpc_lookup_entity($regs[1]),
 											$top[$i]);
 	} else {
@@ -141,7 +141,7 @@ function xmlrpc_lookup_entity($ent) {
   
   if (isset($xmlEntities[strtolower($ent)]))
 	return $xmlEntities[strtolower($ent)];
-  if (ereg("^#([0-9]+)$", $ent, $regs))
+  if (preg_match("/^#([0-9]+)$/", $ent, $regs))
 	return chr($regs[1]);
   return "?";
 }
@@ -252,7 +252,7 @@ function xmlrpc_ee($parser, $name) {
 		} else {
 			// we have an I4, INT or a DOUBLE
 			// we must check that only 0123456789-.<space> are characters here
-			if (!ereg("^\-?[0123456789 \t\.]+$", $_xh[$parser]['ac'])) {
+			if (!preg_match("/^\-?[0123456789 \t\.]+$/", $_xh[$parser]['ac'])) {
 				// TODO: find a better way of throwing an error
 				// than this!
 				error_log("XML-RPC: non numeric value received in INT or DOUBLE");
@@ -289,7 +289,7 @@ function xmlrpc_ee($parser, $name) {
 	  $_xh[$parser]['params'][]=$_xh[$parser]['st'];
 	  break;
 	case "METHODNAME":
-	  $_xh[$parser]['method']=ereg_replace("^[\n\r\t ]+", "", 
+	  $_xh[$parser]['method']=preg_replace("/^[\n\r\t ]+/", "", 
 																				 $_xh[$parser]['ac']);
 		break;
 	case "BOOLEAN":
@@ -655,8 +655,8 @@ class xmlrpcmsg {
 	}
 	// see if we got an HTTP 200 OK, else bomb
 	// but only do this if we're using the HTTP protocol.
-	if (ereg("^HTTP",$data) && 
-			!ereg("^HTTP/[0-9\.]+ 200 ", $data)) {
+	if (preg_match("/^HTTP/",$data) && 
+			!preg_match("/^HTTP\/[0-9\.]+ 200 /", $data)) {
 		$errstr= substr($data, 0, strpos($data, "\n")-1);
 		error_log("HTTP error, got response: " .$errstr);
 		$r=new xmlrpcresp(0, $xmlrpcerr["http_error"],
@@ -667,7 +667,7 @@ class xmlrpcmsg {
 
 	// if using HTTP, then gotta get rid of HTTP headers here
 	// and we store them in the 'ha' bit of our data array
-	if (ereg("^HTTP", $data)) {
+	if (preg_match("/^HTTP/", $data)) {
 		$ar=explode("\r\n", $data);
 		$newdata="";
 		$hdrfnd=0;
@@ -722,7 +722,7 @@ class xmlrpcmsg {
 		$r=new xmlrpcresp($v);
 	  }
 	}
-	$r->hdrs=split("\r?\n", $_xh[$parser]['ha']);
+	$r->hdrs=preg_split("/\r?\n/", $_xh[$parser]['ha']);
 	return $r;
   }
 
@@ -997,7 +997,7 @@ function iso8601_encode($timet, $utc=0) {
 function iso8601_decode($idate, $utc=0) {
 	// return a timet in the localtime, or UTC
 	$t=0;
-	if (ereg("([0-9]{4})([0-9]{2})([0-9]{2})T([0-9]{2}):([0-9]{2}):([0-9]{2})",
+	if (preg_match("/([0-9]{4})([0-9]{2})([0-9]{2})T([0-9]{2}):([0-9]{2}):([0-9]{2})/",
 					 $idate, $regs)) {
 		if ($utc) {
 			$t=gmmktime($regs[4], $regs[5], $regs[6], $regs[2], $regs[3], $regs[1]);

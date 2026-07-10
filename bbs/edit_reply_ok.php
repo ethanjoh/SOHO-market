@@ -17,7 +17,7 @@ $sql = "UPDATE $board SET title='$title',
 										date=now()
 			WHERE main_no=$main_no AND reply_no=$reply_no";
 
-mysqli_query($connect, $sql) or dbError(mysql_error());
+mysqli_query($connect, $sql) or dbError(mysqli_error($connect));
 
 echo "<meta HTTP-EQUIV='CONTENT-TYPE' content='text/html;charset=UTF-8'>
 			<script type=\"text/javascript\" language=\"JavaScript\">

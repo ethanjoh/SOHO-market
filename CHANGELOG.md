@@ -4,13 +4,23 @@
 
 이 문서는 SOHO-market 프로젝트의 최초 시작부터 현재까지의 전체 개발 변경 이력을 기록합니다. 주요 개발 마일스톤과 커밋 히스토리를 바탕으로 구조화되었습니다.
 
-## [v1.4.1] - 2026-07-10 (보안 리팩토링 및 깃 히스토리 정화)
+## [v1.4.1] - 2026-07-10 (보안 리팩토링 및 PHP 호환성 확보)
 
 ### 보안 및 히스토리 관리 (Security & Git History)
 
 - **구글 API 키 히스토리 노출 제거**
   - 과거 커밋 히스토리에 노출되어 있던 구글 API 키를 `git-filter-repo` 도구를 사용하여 안전하게 제거(마스킹)하였습니다.
   - 해당 키는 모든 과거 커밋에서 `GOOGLE_API_KEY_REMOVED` 문자열로 영구 치환되었습니다.
+
+### 최신 PHP 버전 호환성 리팩토링 (PHP 7.x/8.x Compatibility)
+
+- **구형 DB 함수 제거 및 에러 처리 표준화**
+  - `bbs/db_connect.php`, `create_db.php` 등에서 호환성을 무너뜨리던 `mysql_error()`, `mysql_close()` 함수를 `mysqli_connect_error()`, `mysqli_error()` 등으로 표준화하였습니다.
+  - BBS 처리 관련 6개 파일의 에러 수집 함수를 `mysqli_error($connect)`로 변경하였습니다.
+- **삭제된 정규식 및 문자열 관련 함수 현대화**
+  - `download.php`, `util.php`의 `ereg`/`eregi` 정규식 함수를 `preg_match` 및 `str_ireplace`로 변경하여 PHP 7.x 이상 환경에서의 Fatal Error를 방지하였습니다.
+  - 메일 발송 유틸리티 파일 5개에서 매 80자마다 줄바꿈을 추가하던 구형 `ereg_replace` 코드를 표준 함수인 `chunk_split`으로 전면 교체하였습니다.
+  - `util/xmlrpc.inc.php` 모듈 내에 잔존하던 구형 `ereg`, `split` 구문을 `preg_match`, `preg_replace`, `explode`, `preg_split`으로 치환하여 라이브러리 정상 동작을 유지시켰습니다.
 
 ---
 

@@ -903,25 +903,25 @@ function del_html($str)
 // ���� HTML �±׸� �̿��� �׷�����
 function avoid_crack($str)
 {
-    $str = eregi_replace("<", "&lt;", $str);
-    $str = eregi_replace("&lt;div", "<div", $str);
-    $str = eregi_replace("&lt;p ", "<p ", $str);
-    $str = eregi_replace("&lt;font", "<font", $str);
-    $str = eregi_replace("&lt;b", "<b", $str);
-    $str = eregi_replace("&lt;marquee", "<marquee", $str);
-    $str = eregi_replace("&lt;img", "<img", $str);
-    $str = eregi_replace("&lt;a ", "<a ", $str);
-    $str = eregi_replace("&lt;embed", "<embed", $str);
+    $str = str_ireplace("<", "&lt;", $str);
+    $str = str_ireplace("&lt;div", "<div", $str);
+    $str = str_ireplace("&lt;p ", "<p ", $str);
+    $str = str_ireplace("&lt;font", "<font", $str);
+    $str = str_ireplace("&lt;b", "<b", $str);
+    $str = str_ireplace("&lt;marquee", "<marquee", $str);
+    $str = str_ireplace("&lt;img", "<img", $str);
+    $str = str_ireplace("&lt;a ", "<a ", $str);
+    $str = str_ireplace("&lt;embed", "<embed", $str);
 
-    $str = eregi_replace("&lt;/div", "</div", $str);
-    $str = eregi_replace("&lt;/p ", "</p ", $str);
-    $str = eregi_replace("&lt;/font", "</font", $str);
-    $str = eregi_replace("&lt;/b", "</b", $str);
-    $str = eregi_replace("&lt;/marquee", "</marquee", $str);
-    $str = eregi_replace("&lt;/img", "</img", $str);
-    $str = eregi_replace("&lt;/a>", "</a>", $str);
-    $str = eregi_replace("&lt;/embed", "</embed", $str);
-    $str = eregi_replace("&gt;", ">", $str);
+    $str = str_ireplace("&lt;/div", "</div", $str);
+    $str = str_ireplace("&lt;/p ", "</p ", $str);
+    $str = str_ireplace("&lt;/font", "</font", $str);
+    $str = str_ireplace("&lt;/b", "</b", $str);
+    $str = str_ireplace("&lt;/marquee", "</marquee", $str);
+    $str = str_ireplace("&lt;/img", "</img", $str);
+    $str = str_ireplace("&lt;/a>", "</a>", $str);
+    $str = str_ireplace("&lt;/embed", "</embed", $str);
+    $str = str_ireplace("&gt;", ">", $str);
     return $str;
 }
 

@@ -134,7 +134,7 @@ if ($mode == 'edit') {
     $sql   = "INSERT INTO $board ( reply_no, main_no, id, name, contents, passwd, create_date, email)
 	           VALUES ( '', $main_no, '$id', '$name', '$contents', '$passwd', now(), '$email' )";
 
-    mysqli_query($connect, $sql) or dbError(mysql_error());
+    mysqli_query($connect, $sql) or dbError(mysqli_error($connect));
 
     //부모글의 depth를 업데이트해 list.php에서 답변글 갯수를 보여줄 수 있도록 한다.
     $board = 'bbs_' . $code;

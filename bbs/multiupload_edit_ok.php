@@ -38,21 +38,21 @@
 				{ 	
 						$sql = "UPDATE board SET filename0='' 
 										WHERE main_no=$main_no";
-						mysqli_query($connect, $sql) or dbError(mysql_error());
+						mysqli_query($connect, $sql) or dbError(mysqli_error($connect));
 						unlink($_POST['chk_delete'][$i]);
 				}
 				elseif($row[filename1] == $_POST['chk_delete'][$i])
 				{
 						$sql = "UPDATE board SET filename1='' 
 										WHERE main_no=$main_no";
-						mysqli_query($connect, $sql) or dbError(mysql_error());
+						mysqli_query($connect, $sql) or dbError(mysqli_error($connect));
 						unlink($_POST['chk_delete'][$i]);
 				}
 				elseif($row[filename2] == $_POST['chk_delete'][$i])
 				{
 						$sql = "UPDATE board SET filename2	='' 
 										WHERE main_no=$main_no";
-						mysqli_query($connect, $sql) or dbError(mysql_error());
+						mysqli_query($connect, $sql) or dbError(mysqli_error($connect));
 						unlink($_POST['chk_delete'][$i]);
 				}
    		}
@@ -130,7 +130,7 @@
 															filename2='$file2'															
 	            								WHERE main_no=$main_no";
 
-       mysqli_query($connect, $sql) or dbError(mysql_error());
+       mysqli_query($connect, $sql) or dbError(mysqli_error($connect));
    	
        echo "<script language=\"JavaScript\">
 	              alert(\"글을 수정했습니다.\"); 
