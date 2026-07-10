@@ -4,9 +4,6 @@ sftp-config.json
 # DB & PG Config
 util/config.ini
 util/config.old.ini
-lgpay/conf/lgdacom_*.conf
-lgpay/conf/mall.conf
-lgpay/conf/mall.conf.org
 
 # Backup Files
 db_backup/

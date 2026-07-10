@@ -15,7 +15,7 @@ SOHO-market은 PHP 및 MySQL 환경 기반의 반응형 쇼핑몰(Commerce) 웹 
 
 ## 🛠️ 기술 스택 (Tech Stack)
 
-- **Backend**: PHP 7.x+ (mysqli 확장을 활용한 데이터베이스 핸들링)
+- **Backend**: PHP 8.x+ (mysqli 확장을 활용한 데이터베이스 핸들링)
 - **Database**: MySQL / MariaDB
 - **Frontend**: HTML5, CSS3, JavaScript (jQuery 기반 동적 UI 제어)
 - **Libraries & Modules**:
@@ -54,7 +54,6 @@ SOHO-market/
 ├── images/ / img/  # 공통 레이아웃용 정적 이미지 리소스
 ├── include/        # 헤더, 푸터 등 반복 레이아웃 조각 템플릿
 ├── js/             # 공통 스크립트 및 UI 제어 라이브러리
-├── lgpay/          # TossPayments XPay PHP 연동 SDK 및 설정 폴더
 ├── lib/            # 부가적인 프론트엔드/백엔드 공통 라이브러리
 ├── member/         # 회원가입, 로그인, 아이디/비밀번호 찾기 기능
 ├── pay/            # 일반 PC 결제 요청 및 응답(결제완료/취소) 처리 페이지

@@ -1,8 +1,14 @@
 <?php
 include_once 'util.php';
 
-//구매 페이지에서 결제정보 보이기
-//function show_payment(거래형태, 업체명, 입금계좌)
+/**
+ * 구매 페이지에서 결제정보를 출력합니다.
+ *
+ * @param string $type 거래형태 (1: 무통장입금, 그 외: 기타 결제일 조건)
+ * @param string $company_name 업체명 (입금자명 기본값)
+ * @param string $bank 입금계좌정보
+ * @return void
+ */
 function show_payment($type, $company_name, $bank)
 {
     if ($type != 1) {
@@ -28,7 +34,7 @@ function show_payment($type, $company_name, $bank)
             case "8":
                 echo "결제일 : 익월 말";
                 break;
-            case "6":
+            case "9":
                 echo "결제일 : 기타";
                 break;
         }
@@ -48,8 +54,9 @@ function show_payment($type, $company_name, $bank)
 }
 
 /**
- * [show_login_menu description]
- * @return [type] [description]
+ * 로그인 상태 및 회원 등급(기업/개인)에 따른 상단 네비게이션 메뉴를 출력합니다.
+ *
+ * @return void
  */
 function show_login_menu()
 {
@@ -72,7 +79,7 @@ function show_login_menu()
 
 HEREDOC;
 
-// 미로그인
+    // 미로그인
     if (!$sessionId || !$sessionName || !$sessionFlag) {
         echo <<<HEREDOC
                                 <div class="top-cart-wrapper">
@@ -108,7 +115,7 @@ HEREDOC;
 
 HEREDOC;
 
-// 기업회원 로그인
+        // 기업회원 로그인
     } elseif ($sessionFlag == "c") {
         $numberOfItems = count_items_in_cart();
 
@@ -150,7 +157,7 @@ HEREDOC;
 
 
 HEREDOC;
-//개인회원 로그인
+        //개인회원 로그인
     } elseif ($sessionFlag == "p") {
         $numberOfItems = count_items_in_cart();
 
@@ -196,8 +203,9 @@ HEREDOC;
 }
 
 /**
- * [count_items_in_cart 카트에 담긴 상품수량 보여주기]
- * @return [type] [description]
+ * 현재 로그인한 사용자의 장바구니에 담긴 총 상품 수량을 조회합니다.
+ *
+ * @return int 장바구니 상품 수량 합계
  */
 function count_items_in_cart()
 {
@@ -216,13 +224,13 @@ function count_items_in_cart()
     }
 
     return $numberOfItems;
-
 }
 /**
- * [show_items_on_main[ 메인페이지에 표시]
- * @param  [type] $newOrBest      [best, new 구분]
- * @param  [type] $howManyItems   [표시할 개수]
- * @return [type] [description]
+ * 메인 페이지에 신상품(new) 또는 추천상품(best) 목록을 출력합니다.
+ *
+ * @param string $newOrBest 'best' 또는 'new' 구분
+ * @param int $howManyItems 표시할 상품 개수
+ * @return void
  */
 function show_items_on_main($newOrBest, $howManyItems)
 {
@@ -317,22 +325,19 @@ HEREDOC;
                                 <!-- single-product end -->
 
 HEREDOC;
-
         }
         //end for
         mysqli_free_result($result);
-
     } else {
         echo "<p>등록된 상품이 없습니다.</p><p>관리자 페이지 > 상품관리에서 상품을 등록해 주세요.</p>\n";
     }
-
 }
 
 /**
- * [show_me_wholesale_price 웹페이지에 공급가 보여주기]
- * @param  [type] $session_id     [세션 아이디]
- * @param  [type] $pnum           [제품번호]
- * @return [type] [description]
+ * 로그인한 회원의 등급(기업/개인)에 따른 상품의 적용 단가(공급가 또는 판매가)를 조회합니다.
+ *
+ * @param int $pnum 상품 번호
+ * @return int 적용 가격
  */
 function show_me_wholesale_price($pnum)
 {
@@ -361,9 +366,10 @@ function show_me_wholesale_price($pnum)
 }
 
 /**
- * [show_brand_name 브랜드 목록 보이기]
- * @param  [type] $lcode          [대 카테고리번호]
- * @return [type] [description]
+ * 카테고리 코드에 해당하는 대분류 명(브랜드명) 링크를 출력하거나 검색 결과 텍스트를 출력합니다.
+ *
+ * @param string $lcode 대분류 카테고리 코드
+ * @return void
  */
 function show_brand_name($lcode)
 {
@@ -383,15 +389,14 @@ function show_brand_name($lcode)
             echo '<a href="catalog-list.php?lcode=' . $lcode . '">' . stripslashes($rows['name']) . '</a>';
 
             mysqli_free_result($result);
-
         }
     }
-
 }
 
 /**
- * [show_brands 대카테고리를 보여줌]
- * @return [type] [description]
+ * 노출 가능한 모든 대분류 카테고리(브랜드) 목록을 세로형 리스트로 출력합니다.
+ *
+ * @return void
  */
 function show_brands()
 {
@@ -433,17 +438,19 @@ function show_brands()
                                             </li>
 
 HEREDOC;
-
         }
-
     } else {
         echo '<li>브랜드를 등록해주세요</li>';
     }
 
     echo "                                 </ul>\n";
-
 }
 
+/**
+ * 노출 가능한 모든 대분류 카테고리(브랜드) 목록을 가로형 그리드(4열) 형태로 출력합니다.
+ *
+ * @return void
+ */
 function show_horizon_brands()
 {
 
@@ -507,22 +514,20 @@ HEREDOC;
 
 HEREDOC;
             }
-
         }
-
     } else {
         echo '<li>브랜드를 등록해주세요</li>';
     }
 
     echo '                                        </ul>' . "\r\n";
     echo '                                    </div>' . "\r\n";
-
 }
 
 /**
- * [show_sub_category 카달로그 리스트에서 좌측에 서브 카테고리 보여주기]
- * @param  [type] $lcode          [description]
- * @return [type] [description]
+ * 특정 대분류 코드에 속하는 서브 카테고리(중분류) 목록을 좌측 메뉴용 리스트로 출력합니다.
+ *
+ * @param string $lcode 대분류 카테고리 코드
+ * @return void
  */
 function show_sub_category($lcode)
 {
@@ -551,7 +556,6 @@ function show_sub_category($lcode)
                                             </li>
 
 HEREDOC;
-
         }
     } elseif ($mode = "search") {
         echo '<li></li>';
@@ -560,14 +564,14 @@ HEREDOC;
     }
 
     echo '</ul>';
-
 }
 
 /**
- * [show_sub_category_name 상단 breadcomb에서 이름 보여주기]
- * @param  [type] $lcode          [top category code]
- * @param  [type] $mcode          [middle category code]
- * @return [type] [description]
+ * 상단 브레드크럼(Breadcrumbs) 영역에 중분류 카테고리명 링크를 출력합니다.
+ *
+ * @param string $lcode 대분류 카테고리 코드
+ * @param string $mcode 중분류 카테고리 코드
+ * @return void
  */
 function show_sub_category_name($lcode, $mcode)
 {
@@ -583,17 +587,16 @@ function show_sub_category_name($lcode, $mcode)
         echo '<a href="catalog-list.php?lcode=' . $lcode . '&amp;mcode=' . $mcode . '">' . stripslashes($rows['name']) . '</a>';
 
         mysqli_free_result($m_res);
-
     }
-
 }
 
 /**
- * [get_item_image 제품사진 보여주기]
- * @param  [type] $size           ['빅사이즈, 스몰사이즈' 'b' or 's']
- * @param  [type] $imageOrderNo   [이미지 순서번호]
- * @param  [type] $pnum           [제품번호]
- * @return [type] [description]
+ * 상품의 크기별(대/소) 및 순서별 이미지 파일 경로를 조회합니다.
+ *
+ * @param string $size 이미지 크기 ('b': 대형, 's': 소형)
+ * @param int|string $imageOrderNo 이미지 순서 번호 (1~4)
+ * @param int $pnum 상품 번호
+ * @return string|null 이미지 파일 경로 (해당 이미지가 있을 경우)
  */
 function get_item_image($size, $imageOrderNo, $pnum)
 {
@@ -632,7 +635,6 @@ function get_item_image($size, $imageOrderNo, $pnum)
                 }
                 break;
         }
-
     } elseif ($size == 's') {
         switch ($imageOrderNo) {
             case '2':
@@ -661,13 +663,13 @@ function get_item_image($size, $imageOrderNo, $pnum)
                 break;
         }
     }
-
 }
 
 /**
- * [show_policy 배송정책 외 ]
- * @param  [type] $policy         [배송 또는 반품정책 구분]
- * @return [type] [description]
+ * 쇼핑몰의 배송 정책 또는 반품/교환 정책을 출력합니다.
+ *
+ * @param string $policy 정책 구분 ('d': 배송 정책, 'r': 반품 정책)
+ * @return void
  */
 function show_policy($policy)
 {
@@ -691,16 +693,120 @@ HEREDOC;
 }
 
 /**
- * [show_cart_item 카트 내 아이템 출력]
- * @return [type] [총합]
+ * 현재 로그인한 사용자의 장바구니 아이템 상세 정보 및 가공 데이터(품절 상태, 가격 등)를 조회합니다.
+ *
+ * @global mysqli $connect 데이터베이스 연결 객체
+ * @return array 장바구니 가공 데이터 정보 (items: 아이템 목록 배열, tot_money: 총합 금액, pflag: 상품품절여부(Y/N), oflag: 옵션품절여부(Y/N))
  */
-function show_cart_item()
+function get_cart_items_data()
 {
     global $connect;
 
     $sessionId   = set_var($_SESSION['p_id']);
     $sessionFlag = set_var($_SESSION['p_flag']);
-    $calcPrice   = 0;
+
+    $items     = [];
+    $tot_money = 0;
+    $pflag     = 'N';
+    $oflag     = 'N';
+
+    $query     = "SELECT * FROM products p, products_cart c WHERE c.user_id='$sessionId' AND p.num=c.product_code ORDER BY p.category_l ASC, num DESC ";
+    $result    = mysqli_query($connect, $query);
+    $numOfRows = mysqli_num_rows($result);
+
+    if ($numOfRows > 0) {
+        while ($rows = mysqli_fetch_array($result)) {
+            $pnum          = $rows['num'];
+            $qty           = $rows['volume'];
+            $cart_id       = $rows['cart_id'];
+            $category_l    = $rows['category_l'];
+            $category_m    = $rows['category_m'];
+            $category_s    = $rows['category_s'];
+            $s_image1_name = $rows['s_image1_name'];
+            $itemName      = stripslashes($rows['name']);
+            $amount        = (int)$rows['amount'];
+            
+            $subTotal      = $qty * $amount;
+            $tot_money    += $subTotal;
+
+            $item_pflag = 'N';
+            $item_oflag = 'N';
+
+            // 상품품절 확인
+            if ($rows['del_chk'] != "N") {
+                $pflag      = "Y";
+                $item_pflag = "Y";
+            }
+
+            $p_opt = $rows['p_opt'];
+
+            // 상품옵션 품절표시
+            if ($rows['opt'] != "") {
+                $t_opt       = explode(",", $rows['opt']);
+                $t_opt_stock = explode(",", $rows['opt_stock']);
+
+                for ($j = 0; $j < count($t_opt); $j++) {
+                    $str = strcmp($t_opt[$j], $rows['p_opt']);
+                    if (!$str) {
+                        if ($t_opt_stock[$j] == "0") {
+                            $p_opt      .= ' <span class="soldout">(품절)</span>';
+                            $oflag       = "Y";
+                            $item_oflag  = "Y";
+                        } elseif ($t_opt_stock[$j] == "-1") {
+                            $p_opt      .= ' <span class="cutout">(단종)</span>';
+                            $oflag       = "Y";
+                            $item_oflag  = "Y";
+                        }
+                    }
+                }
+            }
+
+            $calcWholesalePrice = show_me_wholesale_price($pnum);
+
+            if ($sessionId && $sessionFlag == "c") {
+                $price = $calcWholesalePrice;
+            } elseif ($sessionId && $sessionFlag == "p") {
+                $price = $calcWholesalePrice;
+            } else {
+                $price = (int)$rows['shop_price'];
+            }
+
+            $items[] = [
+                'num'           => $pnum,
+                'cart_id'       => $cart_id,
+                'category_l'    => $category_l,
+                'category_m'    => $category_m,
+                'category_s'    => $category_s,
+                's_image1_name' => $s_image1_name,
+                'name'          => $itemName,
+                'qty'           => $qty,
+                'p_opt'         => $p_opt,
+                'price'         => $price,
+                'sub_total'     => $subTotal,
+                'pflag'         => $item_pflag,
+                'oflag'         => $item_oflag,
+                'del_chk'       => $rows['del_chk']
+            ];
+        }
+        mysqli_free_result($result);
+    }
+
+    return [
+        'items'     => $items,
+        'tot_money' => $tot_money,
+        'pflag'     => $pflag,
+        'oflag'     => $oflag
+    ];
+}
+
+/**
+ * 장바구니에 담긴 상품 목록 테이블을 출력하고 상품의 합계 정보를 반환합니다.
+ *
+ * @return int|array 장바구니가 빈 경우 0, 상품이 있는 경우 총합 금액(tot_money)과 품절여부 등의 정보 배열
+ */
+function show_cart_item()
+{
+    $cartData = get_cart_items_data();
 
     echo <<<HEREDOC
                                 <table id="shopping-cart-table" class="data-table cart-table">
@@ -715,13 +821,7 @@ function show_cart_item()
 
 HEREDOC;
 
-    //JOIN문을 사용해 장바구니와 제품정보에서 데이터를 가져옴
-    // 카테고리와 등록 순서로 정렬
-    $query     = "SELECT * FROM products p, products_cart c WHERE c.user_id='$sessionId' AND p.num=c.product_code ORDER BY p.category_l ASC, num DESC ";
-    $result    = mysqli_query($connect, $query);
-    $numOfRows = mysqli_num_rows($result);
-
-    if (!$numOfRows) {
+    if (empty($cartData['items'])) {
         $total = 0;
 
         echo <<<HEREDOC
@@ -735,121 +835,42 @@ HEREDOC;
                                 </table>
 HEREDOC;
         return $total;
-
     } else {
-
-        $tot_money = 0;
-        $tot_mny1  = 0;
-
-        for ($i = 1; $rows = mysqli_fetch_array($result); $i++) {
-            if ($sessionFlag == "c") {
-                $calcPrice = $rows['retail_price'];
-            } elseif ($sessionFlag == "p") {
-                $calcPrice = $rows['shop_price'];
-            }
-
-            $subTotal      = (int) $rows['volume'] * (int) $rows['amount']; // 소계
-            $commaSubTotal = number_format($subTotal);                      //소계 천단위표시
-            $tot_money     = $tot_money + $subTotal;
-            $commaTotal    = number_format($tot_money);
-
-            $pnum          = $rows['num'];
-            $category_l    = $rows['category_l'];
-            $category_m    = $rows['category_m'];
-            $category_s    = $rows['category_s'];
-            $s_image1_name = $rows['s_image1_name'];
-            $itemName      = stripslashes($rows['name']);
-
-            // $calcWholesalePrice  = calc_offer_price($calcPrice, $sessionId); // 업체별 공급가 확인
-            // $commaWholesalePrice = number_format($calcWholesalePrice);       // 천단위 구분
-            // $price               = show_me_wholesale_price($sessionId, $pnum);
-            $qty     = $rows['volume'];
-            $cart_id = $rows['cart_id'];
-
-            $pflag = '';
-            $oflag = '';
-
-            // $option = show_option($pnum);
-
-            //상품품절 확인
-            if ($rows['del_chk'] != "N") {
-                $pflag = "Y";
-            }
-
-            //상품옵션 품절표시
-            //상품 옵션이 있는지 확인 후 진행
-            if ($rows['opt'] != "") {
-                                                                 //장바구니의 옵션과 제품정보를 비교하여 품절옵션이 있는지 확인
-                $t_opt       = explode(",", $rows['opt']);       //장바구니 제품의 옵션명을 배열로 만들어준다
-                $t_opt_stock = explode(",", $rows['opt_stock']); //제품의 옵션재고를 배열로 만들어준다
-
-                //옵션의 문자열 비교
-                for ($j = 0; $j < count($t_opt); $j++) {
-                    $str = strcmp($t_opt[$j], $rows['p_opt']);
-
-                    if (!$str) {
-                        //문자열이 같다면 문자열 대체
-                        if ($t_opt_stock[$j] == "0") {
-                            $rows['p_opt'] .= ' <span class="soldout">(품절)</span>';
-                            $oflag = "Y";
-                        } elseif ($t_opt_stock[$j] == "-1") {
-                            $rows['p_opt'] .= ' <span class="cutout">(단종)</span>';
-                            $oflag = "Y";
-                        } else {
-                            $rows['p_opt'] = $t_opt[$j];
-                        }
-                    }
-                } // ./for ($j = 0; $j < count($t_opt); $j++)
-
-            } // ./ if($rows['opt'] != "")
-
-            $p_opt = $rows['p_opt'];
-
-            $calcWholesalePrice = show_me_wholesale_price($pnum);
-
-            if ($sessionId && $sessionFlag == "c") {
-                $commaWholesalePrice = number_format($calcWholesalePrice);
-                $price               = $commaWholesalePrice;
-                $passingPrice        = $calcWholesalePrice;
-            } elseif ($sessionId && $sessionFlag == "p") {
-                $commaCustomerPrice = number_format($calcWholesalePrice);
-                $price              = $commaCustomerPrice;
-                $passingPrice       = $calcWholesalePrice;
-            } else {
-                $commaCustomerPrice = number_format($rows['shop_price']);
-                $price              = $commaCustomerPrice;
-            }
-
-            $icon = show_icon($rows['num']);
+        $i = 1;
+        foreach ($cartData['items'] as $item) {
+            $price_formatted    = number_format($item['price']);
+            $subtotal_formatted = number_format($item['sub_total']);
+            $icon = show_icon($item['num']);
 
             echo <<<HEREDOC
                                     <tr>
                                         <td class="sop-icon">
-                                            <a href="cart-update.php?mode=del&amp;cart_no={$cart_id}&amp;where=cart" onclick="return confirm('해당 상품을 삭제하시겠습니까?')"><i class="fa fa-times"></i></a>
+                                            <a href="cart-update.php?mode=del&amp;cart_no={$item['cart_id']}&amp;where=cart" onclick="return confirm('해당 상품을 삭제하시겠습니까?')"><i class="fa fa-times"></i></a>
                                         </td>
                                         <td class="sop-cart">
-                                            <a href="detail.php?pnum={$pnum}&amp;lcode={$category_l}&amp;mcode={$category_m}"><img class="primary-image" alt="" src="{$s_image1_name}"></a>
+                                            <a href="detail.php?pnum={$item['num']}&amp;lcode={$item['category_l']}&amp;mcode={$item['category_m']}"><img class="primary-image" alt="" src="{$item['s_image1_name']}"></a>
                                         </td>
-                                        <td class="sop-cart"><a href="detail.php?pnum={$pnum}&amp;lcode={$category_l}&amp;mcode={$category_m}">{$icon} {$itemName}</a><br>[{$p_opt}]</td>
-                                        <td class="sop-cart cost"> {$price}</td>
+                                        <td class="sop-cart"><a href="detail.php?pnum={$item['num']}&amp;lcode={$item['category_l']}&amp;mcode={$item['category_m']}">{$icon} {$item['name']}</a><br>[{$item['p_opt']}]</td>
+                                        <td class="sop-cart cost"> {$price_formatted}</td>
                                         <td>
                                             <form name="basket{$i}" method="post" action="cart-update.php">
                                             <input type="hidden" name="md" value="edit" />
                                             <input type="hidden" name="from" value="cart" />
-                                            <input type="hidden" name="pflag" value="{$pflag}" />
-                                            <input type="hidden" name="oflag" value="{$oflag}" />
-                                            <input type="hidden" name="cart_id" value="{$cart_id}"/>
-                                            <input class="input-text qty" type="text" name="products_count" maxlength="12" value="{$qty}" title="Qty">
+                                            <input type="hidden" name="pflag" value="{$item['pflag']}" />
+                                            <input type="hidden" name="oflag" value="{$item['oflag']}" />
+                                            <input type="hidden" name="cart_id" value="{$item['cart_id']}"/>
+                                            <input class="input-text qty" type="text" name="products_count" maxlength="12" value="{$item['qty']}" title="Qty">
                                             <button type="submit" class="btn btn-default btn-warning" />변경</button>
                                             </form>
                                         </td>
-                                        <td class="sop-cart cost">{$commaSubTotal}</td>
+                                        <td class="sop-cart cost">{$subtotal_formatted}</td>
                                     </tr>
 
 HEREDOC;
+            $i++;
+        }
 
-        } // ./ for ($i = 1; $rows = mysqli_fetch_array($result); $i++)
-
+        $commaTotal = number_format($cartData['tot_money']);
         echo <<<HEREDOC
                                     <tr class="totals">
                                         <td colspan="5" class="total-text">합계</td>
@@ -858,37 +879,18 @@ HEREDOC;
                                 </table>
 HEREDOC;
 
-        return array('tot_money' => $tot_money, 'pflag' => $pflag, 'oflag' => $oflag);
-
-    } // ./else
-
-}
-
-/**
- * [go_purchase 주문하기 버튼처리]
- * @param  [type] $total     [총합]
- * @return [type] [링크]
- */
-function go_purchase($total)
-{
-    if ($total == 0) {
-        return $ret = "alert('카트에 상품이 없습니다.')";
-    } else {
-        //return $ret = "location.href='checkout.php?where=cart&amp;delivery=L'";
-        return $ret = "checkout.php?where=cart&amp;delivery=L";
+        return array('tot_money' => $cartData['tot_money'], 'pflag' => $cartData['pflag'], 'oflag' => $cartData['oflag']);
     }
 }
 
 /**
- * [show_checkout_item 결제페이지에서 주문상품 보여주기]
- * @return [type] [description]
+ * 주문 결제(Checkout) 페이지에서 구매 예정인 상품 목록과 소계, 배송비 및 총 합계를 출력합니다.
+ *
+ * @return void
  */
 function show_checkout_item()
 {
-    global $connect;
-
-    $sessionId   = set_var($_SESSION['p_id']);
-    $sessionFlag = set_var($_SESSION['p_flag']);
+    $cartData = get_cart_items_data();
 
     echo <<<HEREDOC
                                                     <table class="table">
@@ -904,13 +906,7 @@ function show_checkout_item()
 
 HEREDOC;
 
-    //JOIN문을 사용해 장바구니와 제품정보에서 데이터를 가져옴
-    // 카테고리와 등록 순서로 정렬
-    $query     = "SELECT * FROM products p, products_cart c WHERE c.user_id='$sessionId' AND p.num=c.product_code ORDER BY p.category_l ASC, num DESC ";
-    $result    = mysqli_query($connect, $query);
-    $numOfRows = mysqli_num_rows($result);
-
-    if (!$numOfRows) {
+    if (empty($cartData['items'])) {
         $show_total = 0;
 
         echo <<<HEREDOC
@@ -923,125 +919,43 @@ HEREDOC;
                                     </tr>
                                 </table>
 HEREDOC;
-
     } else {
-
-        $tot_money = 0;
-        $tot_mny1  = 0;
-
-        for ($i = 1; $rows = mysqli_fetch_array($result); $i++) {
-            if ($sessionFlag == "c") {
-                $calcPrice = $rows['retail_price'];
-            } elseif ($sessionFlag == "p") {
-                $calcPrice = $rows['shop_price'];
-            }
-
-            $subTotal      = (int) $rows['volume'] * (int) $rows['amount']; // 소계
-            $commaSubTotal = number_format($subTotal);                      //소계 천단위표시
-            $tot_money     = $tot_money + $subTotal;
-            // $show_stotal   = number_format($subTotal);
-            $commaTotal = number_format($tot_money);
-
-            $pnum          = $rows['num'];
-            $category_l    = $rows['category_l'];
-            $category_m    = $rows['category_m'];
-            $category_s    = $rows['category_s'];
-            $s_image1_name = $rows['s_image1_name'];
-            $itemName      = stripslashes($rows['name']);
-
-            // $calcWholesalePrice  = calc_offer_price($rows['retail_price'], $sessionId); // 업체별 공급가 확인
-            // $commaWholesalePrice = number_format($calcWholesalePrice);                  // 천단위 구분
-            // $price               = show_me_wholesale_price($sessionId, $pnum);
-            $qty     = $rows['volume'];
-            $cart_id = $rows['cart_id'];
-
-            $pflag = '';
-            $oflag = '';
-
-            // $option = show_option($pnum);
-
-            //상품품절 확인
-            if ($rows['del_chk'] != "N") {
-                $pflag = "Y";
-            }
-
-            //상품옵션 품절표시
-            //상품 옵션이 있는지 확인 후 진행
-            if ($rows['opt'] != "") {
-                                                                 //장바구니의 옵션과 제품정보를 비교하여 품절옵션이 있는지 확인
-                $t_opt       = explode(",", $rows['opt']);       //장바구니 제품의 옵션명을 배열로 만들어준다
-                $t_opt_stock = explode(",", $rows['opt_stock']); //제품의 옵션재고를 배열로 만들어준다
-
-                //옵션의 문자열 비교
-                for ($j = 0; $j < count($t_opt); $j++) {
-                    $str = strcmp($t_opt[$j], $rows['p_opt']);
-
-                    if (!$str) {
-                        //문자열이 같다면 문자열 대체
-                        if ($t_opt_stock[$j] == "0") {
-                            $rows['p_opt'] .= ' <span class="soldout">(품절)</span>';
-                            $oflag = "Y";
-                        } elseif ($t_opt_stock[$j] == "-1") {
-                            $rows['p_opt'] .= ' <span class="cutout">(단종)</span>';
-                            $oflag = "Y";
-                        } else {
-                            $rows['p_opt'] = $t_opt[$j];
-                        }
-                    }
-                } // ./for ($j = 0; $j < count($t_opt); $j++)
-
-            } // ./ if($rows['opt'] != "")
-
-            $p_opt = $rows['p_opt'];
-
-            $calcWholesalePrice = show_me_wholesale_price($pnum);
-
-            if ($sessionId && $sessionFlag == "c") {
-                $commaWholesalePrice = number_format($calcWholesalePrice);
-                $price               = $commaWholesalePrice;
-                $passingPrice        = $calcWholesalePrice;
-            } elseif ($sessionId && $sessionFlag == "p") {
-                $commaCustomerPrice = number_format($calcWholesalePrice);
-                $price              = $commaCustomerPrice;
-                $passingPrice       = $calcWholesalePrice;
-            } else {
-                $commaCustomerPrice = number_format($rows['shop_price']);
-                $price              = $commaCustomerPrice;
-            }
+        foreach ($cartData['items'] as $item) {
+            $price_formatted    = number_format($item['price']);
+            $subtotal_formatted = number_format($item['sub_total']);
 
             echo <<<HEREDOC
 
                                                             <tr>
                                                                 <td>
                                                                     <div class="o-pro-dec">
-                                                                        <p>{$itemName} [{$p_opt}]</p>
-                                                                        <input type="hidden" name="LGD_PRODUCTINFO[]"   value="{$itemName}">
+                                                                        <p>{$item['name']} [{$item['p_opt']}]</p>
+                                                                        <input type="hidden" name="LGD_PRODUCTINFO[]"   value="{$item['name']}">
                                                                     </div>
                                                                 </td>
                                                                 <td>
                                                                     <div class="o-pro-price">
-                                                                        <p>{$price}</p>
+                                                                        <p>{$price_formatted}</p>
                                                                     </div>
                                                                 </td>
                                                                 <td>
                                                                     <div class="o-pro-qty">
-                                                                        <p>{$qty}</p>
+                                                                        <p>{$item['qty']}</p>
                                                                     </div>
                                                                 </td>
                                                                 <td>
                                                                     <div class="o-pro-subtotal">
-                                                                        <p>{$commaSubTotal}</p>
+                                                                        <p>{$subtotal_formatted}</p>
                                                                     </div>
                                                                 </td>
                                                             </tr>
 HEREDOC;
+        } // ./ foreach
 
-        } // ./ for ($i = 1; $rows = mysqli_fetch_array($result); $i++)
-
-        $reAddedFee = show_delivery_fee($tot_money);
+        $reAddedFee = show_delivery_fee($cartData['tot_money']);
         $trans_cost = number_format($reAddedFee['trans_cost']);
-        $commaTotal = number_format($tot_money + $reAddedFee['trans_cost']);
-        $finalSum   = $tot_money + $reAddedFee['trans_cost'];
+        $commaTotal = number_format($cartData['tot_money'] + $reAddedFee['trans_cost']);
+        $finalSum   = $cartData['tot_money'] + $reAddedFee['trans_cost'];
 
         echo <<<HEREDOC
                                                         </tbody>
@@ -1059,26 +973,28 @@ HEREDOC;
                                                     <input type="hidden" name="LGD_AMOUNT"   value="{$finalSum}">
 
 HEREDOC;
-
     } // ./else
-
 }
 
 /**
- * [show_buyer_info 결제페이지에서 주문자 정보보여주기]
- * @return [type] [description]
+ * 결제 페이지에서 현재 로그인한 회원의 정보(배송지 정보)와 주문번호를 출력합니다.
+ *
+ * @param string $r_oid 주문번호 (전달되지 않으면 내부에서 자동 생성)
+ * @return void
  */
-function show_buyer_info()
+function show_buyer_info($r_oid = '')
 {
     global $connect;
 
     $sessionId   = set_var($_SESSION['p_id']);
     $sessionFlag = set_var($_SESSION['p_flag']);
 
-    // 중복되지 않는 주문번호 생성
-    $timestamp = date('YmdHms');
-    $rd        = "ABCDE";
-    $r_oid     = $sessionId . "-" . $timestamp . "-" . str_shuffle($rd);
+    if (empty($r_oid)) {
+        // 중복되지 않는 주문번호 생성 (하위 호환성용)
+        $timestamp = date('YmdHms');
+        $rd        = "ABCDE";
+        $r_oid     = $sessionId . "-" . $timestamp . "-" . str_shuffle($rd);
+    }
 
     if ($sessionId) {
         if ($sessionFlag == "c") {
@@ -1095,7 +1011,6 @@ function show_buyer_info()
             $d_addr1   = $row['d_addr1'];
             $d_addr2   = $row['d_addr2'];
             $zipcode   = explode('-', $d_zipcode);
-
         } elseif ($sessionFlag == "p") {
             $m_qry = "SELECT * FROM p_member WHERE id='$sessionId' ";
             $m_res = mysqli_query($connect, $m_qry);
@@ -1124,12 +1039,12 @@ function show_buyer_info()
 
 HEREDOC;
     }
-
 }
 
 /**
- * [check_unChk_order 미확인주문건수]
- * @return [type] [주문건수]
+ * 현재 로그인한 회원의 취소되지 않은 '대기(미확인)' 상태의 주문 건수를 조회합니다.
+ *
+ * @return int 미확인 주문 건수
  */
 function check_unChk_order()
 {
@@ -1138,18 +1053,18 @@ function check_unChk_order()
     $sessionId = set_var($_SESSION['p_id']);
     $sessionId = mysqli_escape_string($connect, $sessionId);
 
-//미확인건
+    //미확인건
     $unchk_sql = "SELECT * FROM mall_order WHERE cancel='N' AND status='3' AND user_id = '$sessionId' ";
     $unchk_res = mysqli_query($connect, $unchk_sql);
     $numOfRows = mysqli_num_rows($unchk_res);
 
     return $numOfRows;
-
 }
 
 /**
- * [check_today_order 금일 주문건수]
- * @return [type] [주문건수]
+ * 현재 로그인한 회원의 오늘 날짜에 발생한 취소되지 않은 주문 건수를 조회합니다.
+ *
+ * @return int 금일 주문 건수
  */
 function check_today_order()
 {
@@ -1158,18 +1073,18 @@ function check_today_order()
     $sessionId = set_var($_SESSION['p_id']);
     $today     = date("Y-m-d");
 
-//금일주문건
+    //금일주문건
     $today_sql = "SELECT * FROM mall_order WHERE cancel='N' AND createdate='$today' AND user_id = '$sessionId' ";
     $today_res = mysqli_query($connect, $today_sql);
     $numOfRows = mysqli_num_rows($today_res);
 
     return $numOfRows;
-
 }
 
 /**
- * [check_readyToSend_order 발송준비 주문건수]
- * @return [type] [주문건수]
+ * 현재 로그인한 회원의 취소되지 않은 '발송대기' 상태의 주문 건수를 조회합니다.
+ *
+ * @return int 발송대기 주문 건수
  */
 function check_readyToSend_order()
 {
@@ -1177,18 +1092,18 @@ function check_readyToSend_order()
 
     $sessionId = set_var($_SESSION['p_id']);
 
-//발송대기건
+    //발송대기건
     $paid_sql  = "SELECT * FROM mall_order WHERE cancel='N' AND status='7' AND user_id = '$sessionId' ";
     $paid_res  = mysqli_query($connect, $paid_sql);
     $numOfRows = mysqli_num_rows($paid_res);
 
     return $numOfRows;
-
 }
 
 /**
- * [show_login_form 로그인폼 보여주기]
- * @return [type] [description]
+ * 기업회원 및 개인회원 로그인을 할 수 있는 폼을 출력합니다.
+ *
+ * @return void
  */
 function show_login_form()
 {
@@ -1281,18 +1196,16 @@ HEREDOC;
 }
 
 /**
- * [get_page_num 페이지 수를 구하기 위한 함수]
- * @param  [type] $mode          [검색모드]
- * @param  [type] $key           [검색 키]
- * @param  [type] $keyword       [검색 키워드]
- * @param  [type] $start_date    [검색 시작날짜]
- * @param  [type] $end_date      [검색 종료날짜]
- * @param  [type] $page          [전달받은 페이지 번호]
- * @param  [type] $scale         [한 페이지에 보여질 페이지수]
- * @return [type] $cline [현재 라인수]
- * @return [type] $numOfLastPage [마지막 페이지수]
- * @return [type] $cpage [현재 페이지]
- * @return [type] $totalPage [전체 페이지수]
+ * 주문 내역 페이징 처리를 위한 계산(시작 오프셋, 현재 페이지, 전체 페이지 수 등)을 수행합니다.
+ *
+ * @param string $mode 검색/정렬 모드 ('search', 'date', 'today', 'unchk', 'chk', 'paid', 'finish', 'cancel' 등)
+ * @param string $key 검색 대상 컬럼 필드명
+ * @param string $keyword 검색 키워드
+ * @param string $start_date 검색 기간 시작일
+ * @param string $end_date 검색 기간 종료일
+ * @param int|string $page 현재 페이지 번호
+ * @param int $scale 한 페이지에 출력할 주문 건수
+ * @return array array(시작 오프셋, 마지막 페이지 내 데이터 수, 현재 페이지, 전체 페이지 수)
  */
 function get_page_num($mode, $key, $keyword, $start_date, $end_date, $page, $scale)
 {
@@ -1330,7 +1243,7 @@ function get_page_num($mode, $key, $keyword, $start_date, $end_date, $page, $sca
             $qry = "SELECT num FROM mall_order WHERE user_id = '$sessionId' ";
     }
 
-// 자료 총수 구하기
+    // 자료 총수 구하기
     $res   = mysqli_query($connect, $qry);
     $total = mysqli_num_rows($res);
 
@@ -1363,20 +1276,19 @@ function get_page_num($mode, $key, $keyword, $start_date, $end_date, $page, $sca
     $numOfLastPage = $limit - $cline;
 
     return array($cline, $numOfLastPage, $cpage, $totalPage);
-
 }
 
 /**
- * [get_page_result 검색결과]
- * @param  [type] $mode          [검색모드]
- * @param  [type] $key           [검색 키]
- * @param  [type] $keyword       [검색 키워드]
- * @param  [type] $start_date    [검색 시작날짜]
- * @param  [type] $end_date      [검색 종료날짜]
- * @param  [type] $cline         [현재 라인수]
- * @param  [type] $numOfLastPage [마지막 페이지수]
- * @return [type] $numOfRows [쿼리 결과 갯수]
- * @return [type] $res [쿼리 결과]
+ * 설정된 페이징 오프셋과 조건에 해당하는 주문 내역 목록 데이터를 DB에서 조회합니다.
+ *
+ * @param string $mode 검색/정렬 모드
+ * @param string $key 검색 대상 컬럼 필드명
+ * @param string $keyword 검색 키워드
+ * @param string $start_date 검색 기간 시작일
+ * @param string $end_date 검색 기간 종료일
+ * @param int $cline 쿼리 시작 오프셋 (LIMIT $cline)
+ * @param int $numOfLastPage 조회할 레코드 수 (LIMIT ..., $numOfLastPage)
+ * @return array array(조회된 행 수, mysqli_result 결과 객체)
  */
 function get_page_result($mode, $key, $keyword, $start_date, $end_date, $cline, $numOfLastPage)
 {
@@ -1447,19 +1359,19 @@ function get_page_result($mode, $key, $keyword, $start_date, $end_date, $cline, 
     $numOfRows = mysqli_num_rows($res);
 
     return array($numOfRows, $res);
-
 }
 
 /**
- * [get_list_page_num 상품목록에서 페이지 번호 구하기]
- * @param  [type] $mode           [모드]
- * @param  [type] $lcode          [대카테고리]
- * @param  [type] $mcode          [중카테고리]
- * @param  [type] $key            [검색 키]
- * @param  [type] $keyword        [검색 키워드]
- * @param  [type] $page           [페이지값]
- * @param  [type] $scale          [한 페이지에 보여지는 상품 수]
- * @return [type] [description]
+ * 상품 카탈로그 목록의 페이징 처리를 위해 필요한 데이터 범위(오프셋, 페이지 수 등)를 계산합니다.
+ *
+ * @param string $mode 모드 ('search' 등)
+ * @param string $lcode 대분류 카테고리 코드
+ * @param string $mcode 중분류 카테고리 코드
+ * @param string $key 검색 대상 필드
+ * @param string $keyword 검색 키워드
+ * @param int|string $page 현재 페이지 번호
+ * @param int $scale 한 페이지당 출력할 상품 수
+ * @return array array(시작 오프셋, 현재 페이지 출력 건수, 현재 페이지 번호, 전체 페이지 수)
  */
 function get_list_page_num($mode, $lcode, $mcode, $key, $keyword, $page, $scale)
 {
@@ -1476,7 +1388,6 @@ function get_list_page_num($mode, $lcode, $mcode, $key, $keyword, $page, $scale)
     if ($mode == "search") {
         $search_qry .= " AND (name LIKE '%$keyword%' OR opt LIKE '%$keyword%' OR company LIKE '%$keyword%') ";
         $qry = "SELECT * FROM products WHERE approved='Y' AND del_chk != 'Y' $search_qry ";
-
     } else {
         $qry = "SELECT * FROM products WHERE category_l='$lcode' AND del_chk != 'Y' AND approved='Y' $added_qry";
     }
@@ -1520,15 +1431,16 @@ function get_list_page_num($mode, $lcode, $mcode, $key, $keyword, $page, $scale)
 }
 
 /**
- * [get_list_page_result 페이징 쿼리 결과]
- * @param  [type] $mode           [description]
- * @param  [type] $lcode          [description]
- * @param  [type] $mcode          [description]
- * @param  [type] $key            [description]
- * @param  [type] $keyword        [description]
- * @param  [type] $cline          [description]
- * @param  [type] $noumfLastPage  [description]
- * @return [type] [description]
+ * 상품 카탈로그 목록 조회를 위한 페이징 쿼리를 수행하고 결과를 반환합니다.
+ *
+ * @param string $mode 모드
+ * @param string $lcode 대분류 카테고리 코드
+ * @param string $mcode 중분류 카테고리 코드
+ * @param string $key 검색 필드 (사용되지 않음)
+ * @param string $keyword 검색 키워드
+ * @param int $scaleTimesPageNum 쿼리 시작 오프셋
+ * @param int $numOfLastPage 한 페이지에 표시할 개수
+ * @return mysqli_result|false 쿼리 결과 객체
  */
 function get_list_page_result($mode, $lcode, $mcode, $key, $keyword, $scaleTimesPageNum, $numOfLastPage)
 {
@@ -1553,14 +1465,14 @@ function get_list_page_result($mode, $lcode, $mcode, $key, $keyword, $scaleTimes
 
     // return array($numOfRows, $res);
     return $res;
-
 }
 
 /**
- * [show_items_on_catalog 카탈로그 리스트에서 상품표시]
- * @param  [type] $result         [페이징 결과]
- * @param  [type] $tabid          [표시방법 탭]
- * @return [type] [description]
+ * 상품 목록 조회 결과를 바탕으로 카탈로그 페이지에 탭 스타일(격자형/리스트형)에 맞춰 상품 목록을 출력합니다.
+ *
+ * @param mysqli_result $result 상품 목록 쿼리 결과 객체
+ * @param string $tabid 표시 방식 탭 ('home': 격자형 4열, 'profile': 가로 상세 리스트형)
+ * @return void
  */
 function show_items_on_catalog($result, $tabid)
 {
@@ -1661,7 +1573,6 @@ HEREDOC;
                                                 <input type="hidden" name="amount" id="amount_{$pnum}" value="{$passingPrice}">
                                                 <input type="hidden" name="from" id="from" value="list">
 HEREDOC;
-
                 } elseif ($rows['del_chk'] == "C") {
                     echo '<a href="#" onclick="alert(\'단종입니다.\')"><i class="fa fa-shopping-cart"></i></a>' . "\r\n";
                 } elseif ($rows['del_chk'] == "O") {
@@ -1736,23 +1647,21 @@ HEREDOC;
 
 HEREDOC;
             }
-
         }
         //end for
         mysqli_free_result($result);
-
     } else {
         echo '<p class="text-center">검색 상품이 없습니다.<br>띄워쓰기 없이 검색하시거나 다른 검색어를 입력해 보세요</p>' . "\r\n";
     }
-
 }
 
 /**
- * [show_order_list 주문목록 보여주기]
- * @param  [type] $numOfRows      [쿼리결과 갯수]
- * @param  [type] $result         [쿼리결과]
- * @param  [type] $cpage          [현재 페이지]
- * @return [type] [description]
+ * 사용자의 주문 목록 내역을 테이블 행으로 출력하고 총 합계를 하단에 표시합니다.
+ *
+ * @param int $numOfRows 조회된 주문 목록 개수
+ * @param mysqli_result $result 주문 내역 쿼리 결과 객체
+ * @param int $cpage 현재 페이지 번호 (주문 취소 및 링크용)
+ * @return void
  */
 function show_order_list($numOfRows, $result, $cpage)
 {
@@ -1823,7 +1732,6 @@ HEREDOC;
                           <td>&nbsp;</td>
                           <td><a href="#" onclick="alert('이미 취소된 주문입니다.')"><i class="fa fa-ban"></i></a></td>
 HEREDOC;
-
             } else {
                 //end cancel
 
@@ -1861,7 +1769,7 @@ HEREDOC;
                         //신용카드 결제일 때
                         $print_receipt = '<a href="javascript:showReceiptByTID(\'' . $pg_row['LGD_MID'] . '\', \'' . $pg_row['LGD_TID'] . '\', \'' . $authdata . '\')"><i class="fa fa-print"></i></a>';
                     } elseif ("SC0030" == $pg_row['LGD_PAYTYPE']) {
-                                                //계좌이체일 때
+                        //계좌이체일 때
                         $seqno         = "t/t"; //계좌이체는 임의의 정보 입력
                         $print_receipt = '<a href="javascript:showCashReceipts(\'' . $pg_row['LGD_MID'] . '\',\'' . $pg_row['LGD_OID'] . '\',\'' . $seqno . '\',\'BANK\',\'' . $CST_PLATFORM . '\')"><i class="fa fa-print"></i></a>';
                     } elseif ("SC0040" == $pg_row['LGD_PAYTYPE']) {
@@ -1915,7 +1823,6 @@ HEREDOC;
                       <td>&nbsp;</td>
                     </tr>
 HEREDOC;
-
     } else {
 
         echo <<<HEREDOC
@@ -1923,15 +1830,14 @@ HEREDOC;
                       <td class="text-center" colspan="8"><div class="alert alert-danger"><h3>해당 주문내역이 없습니다.</h3></div></td>
                     </tr>
 HEREDOC;
-
     }
-
 }
 
 /**
- * [show_order_item 주문내역에서 주문상품 보여주기]
- * @param  [type] $oid            [description]
- * @return [type] [description]
+ * 특정 주문번호(OID)에 해당하는 상세 주문 상품 목록 테이블 및 배송비, 총액을 출력합니다.
+ *
+ * @param int $oid 주문 고유 일련번호 (mall_order.num)
+ * @return void
  */
 function show_order_item($oid)
 {
@@ -1970,7 +1876,7 @@ function show_order_item($oid)
         //상품옵션 품절표시
         //상품 옵션이 있는지 확인 후 진행
         if ($option[$i] != "" || $option2[$i] != "") {
-                                                                //장바구니의 옵션과 제품정보를 비교하여 품절옵션이 있는지 확인
+            //장바구니의 옵션과 제품정보를 비교하여 품절옵션이 있는지 확인
             $t_opt       = explode(",", $pro_row['opt']);       //제품의 옵션명을 배열로 만들어준다
             $t_opt_stock = explode(",", $pro_row['opt_stock']); //제품의 옵션재고를 배열로 만들어준다
 
@@ -1987,7 +1893,6 @@ function show_order_item($oid)
                     } else {
                         $option[$i] = $t_opt[$j];
                     }
-
                 }
             } // ./for ($j = 0; $j < count($t_opt); $j++)
 
@@ -2062,9 +1967,10 @@ HEREDOC;
 }
 
 /**
- * 메일에서 주문내역 보여주기
- * @param  [type] $oid [description]
- * @return [type]      [description]
+ * 발송용 메일 본문에 삽입할 상세 주문 상품 목록 HTML 코드를 생성하여 반환합니다.
+ *
+ * @param string $oid 주문 고유 문자열 코드 (mall_order.orderid)
+ * @return string 메일 본문용 상세 주문 목록 HTML 문자열
  */
 function show_order_item_on_mail($oid)
 {
@@ -2096,7 +2002,7 @@ function show_order_item_on_mail($oid)
         //상품옵션 품절표시
         //상품 옵션이 있는지 확인 후 진행
         if ($option[$i] != "" || $option2[$i] != "") {
-                                                                //장바구니의 옵션과 제품정보를 비교하여 품절옵션이 있는지 확인
+            //장바구니의 옵션과 제품정보를 비교하여 품절옵션이 있는지 확인
             $t_opt       = explode(",", $pro_row['opt']);       //제품의 옵션명을 배열로 만들어준다
             $t_opt_stock = explode(",", $pro_row['opt_stock']); //제품의 옵션재고를 배열로 만들어준다
 
@@ -2113,7 +2019,6 @@ function show_order_item_on_mail($oid)
                     } else {
                         $option[$i] = $t_opt[$j];
                     }
-
                 }
             } // ./for ($j = 0; $j < count($t_opt); $j++)
 
@@ -2149,7 +2054,6 @@ HEREDOC;
 HEREDOC;
 
         $final_order_sum = $final_order_sum + ((int) $unit_price[$i] * (int) $ordered_item_num[$i]);
-
     } // ./ for ($i = 0; $i < sizeof($a_goods_fk); $i++)
 
     // $last_cost  = $final_order_sum;
@@ -2167,10 +2071,11 @@ HEREDOC;
 }
 
 /**
- * [show_order_status 주문진행상황]
- * @param  [type] $oid            [description]
- * @param  [type] $order_status   [description]
- * @return [type] [description]
+ * 주문 상태 코드에 매칭되는 한글 안내 메시지(아이콘 포함)를 반환합니다.
+ *
+ * @param int $oid 주문 고유 일련번호
+ * @param string $order_status 주문 상태 코드 ('3': 준비중, '5': 포장중, '7': 발송준비, '8': 발송완료, '0': 발송지연 등)
+ * @return string 주문 상태를 나타내는 HTML 문자열
  */
 function show_order_status($oid, $order_status)
 {
@@ -2212,13 +2117,13 @@ function show_order_status($oid, $order_status)
             return $return_status = '<i class="fa fa-pause"></i> 상품을 준비 중입니다.';
             break;
     }
-
 }
 
 /**
- * [show_buyer_detail 주문상세내역에서 주문자 정보보여주기]
- * @param  [type] $oid            [description]
- * @return [type] [description]
+ * 주문 상세 페이지에서 주문자 및 수령자 정보, 결제수단, 배송 요청사항, 관리자 메모 등을 양식에 맞추어 출력합니다.
+ *
+ * @param int $oid 주문 고유 일련번호
+ * @return void
  */
 function show_buyer_detail($oid)
 {
@@ -2262,8 +2167,8 @@ function show_buyer_detail($oid)
                             {$payStatus}
 
 HEREDOC;
-//무통장 입금시만 출력
-    if ($row['payment_type'] == '3') {
+    //무통장 입금시만 출력
+    if ($row['payment_type'] == '1') {
         echo <<<HEREDOC
                                   <p>
                                   {$row['bank']}<br />
@@ -2307,9 +2212,10 @@ HEREDOC;
 }
 
 /**
- * [show_item_images 상세페이지 상품이미지 보여주기]
- * @param  [type] $pnum           [상품번호]
- * @return [type] [description]
+ * 상품 상세 페이지에서 탭 형식의 상품 대형 이미지와 하단 썸네일 이미지 목록을 렌더링합니다.
+ *
+ * @param int $pnum 상품 번호
+ * @return void
  */
 function show_item_images($pnum)
 {
@@ -2407,9 +2313,10 @@ HEREDOC;
 }
 
 /**
- * [show_item_info 상세페이지 상품 정보보여주기]
- * @param  [type] $pnum           [상품번호]
- * @return [type] [description]
+ * 상품 상세 페이지에서 상품 정보(이름, 규격, 재고 여부, 옵션, 가격) 및 장바구니 담기 영역을 렌더링합니다.
+ *
+ * @param int $pnum 상품 번호
+ * @return void
  */
 function show_item_info($pnum)
 {
@@ -2570,14 +2477,14 @@ HEREDOC;
                             </div>
                             </form>
 HEREDOC;
-
 }
 
 /**
- * [show_relative_item 연관상품 보여주기]
- * @param  [type] $lcode          [대카테고리]
- * @param  [type] $mcode          [중카테고리]
- * @return [type] [description]
+ * 현재 상품과 카테고리가 같은 다른 연관 상품 목록을 최대 4개 무작위로 추출하여 우측 영역 등에 출력합니다.
+ *
+ * @param string $lcode 대분류 카테고리 코드
+ * @param string $mcode 중분류 카테고리 코드
+ * @return void
  */
 function show_relative_items($lcode, $mcode)
 {
@@ -2646,9 +2553,10 @@ HEREDOC;
 }
 
 /**
- * [get_contents 상세설명 가져오기]
- * @param  [type] $pnum           [상품번호]
- * @return [type] [description]
+ * 특정 상품의 상세 설명(HTML 컨텐츠) 본문을 데이터베이스에서 조회하여 반환합니다.
+ *
+ * @param int $pnum 상품 번호
+ * @return string 상품 상세 컨텐츠 본문
  */
 function get_item_contents($pnum)
 {
@@ -2662,8 +2570,9 @@ function get_item_contents($pnum)
 }
 
 /**
- * [show_main_banner 메인 배너 보여주기]
- * @return [type] [description]
+ * 메인 페이지용 슬라이더 배너(최대 6개 이미지 순회) 마크업을 데이터베이스에서 조회하여 출력합니다.
+ *
+ * @return void
  */
 function show_main_banner()
 {
@@ -2754,8 +2663,9 @@ HEREDOC;
 }
 
 /**
- * [show_top_banner 상단배너 보여주기]
- * @return [type] [description]
+ * 쇼핑몰 페이지 상단에 위치하는 격자형 띠 배너(최대 6개 이미지) 마크업을 데이터베이스에서 조회하여 출력합니다.
+ *
+ * @return void
  */
 function show_top_banner()
 {
@@ -2802,7 +2712,6 @@ HEREDOC;
                 </div>
                 <div class="row margin-top-10">
 HEREDOC;
-
             }
         }
     } else {
@@ -2818,8 +2727,9 @@ HEREDOC;
 }
 
 /**
- * [show_middle_banner 중간배너 보여주기]
- * @return [type] [description]
+ * 쇼핑몰 중간 영역에 위치하는 2열 구성 배너 마크업을 데이터베이스에서 조회하여 출력합니다.
+ *
+ * @return void
  */
 function show_middle_banner()
 {
@@ -2880,8 +2790,9 @@ HEREDOC;
 }
 
 /**
- * [show_bottom_banner 하단배너 보여주기]
- * @return [type] [description]
+ * 쇼핑몰 하단 영역에 위치하는 와이드 띠 배너 마크업을 데이터베이스에서 조회하여 출력합니다.
+ *
+ * @return void
  */
 function show_bottom_banner()
 {
@@ -2920,7 +2831,6 @@ HEREDOC;
 
 HEREDOC;
         }
-
     } else {
         echo <<<HEREDOC
 
@@ -2931,6 +2841,11 @@ HEREDOC;
     }
 }
 
+/**
+ * 현재 로그인한 회원이 관리자로부터 가입 승인('Y')을 받았는지 여부를 확인합니다.
+ *
+ * @return bool 승인 완료 여부
+ */
 function check_approved_id()
 {
     global $connect;
@@ -2947,5 +2862,4 @@ function check_approved_id()
     } else {
         return false;
     }
-
 }

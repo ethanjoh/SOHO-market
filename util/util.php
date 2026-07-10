@@ -1,7 +1,7 @@
 <?php
+include_once 'bank-codes.php';
 
-$config = parse_ini_file('/[root]/config/config.ini');
-// $config = parse_ini_file('config.ini');
+$config = parse_ini_file('/[hosting_root]/config/config.ini');
 
 $host         = $config['host'];
 $dbid         = $config['dbid'];
@@ -19,8 +19,14 @@ $tossSecretKey = isset($config['toss_secret_key']) ? $config['toss_secret_key'] 
 $connect = mysqli_connect($host, $dbid, $dbpass, $dbname);
 
 /**
- * [show_notice 팝업창 띄우기]
- * @return [type] [description]
+ * 메인 화면 등에 공지사항 팝업창(모달)을 띄우는 함수
+ * 
+ * 데이터베이스(popup 테이블)를 조회하여 팝업 활성화 여부(chk)가 'Y'인 경우
+ * 공지사항 내용을 담은 Bootstrap 모달 창을 화면에 렌더링합니다.
+ * '오늘 이 창을 다시 열지 않음' 쿠키가 설정되어 있으면 표시하지 않습니다.
+ * 
+ * @global mysqli $connect 데이터베이스 연결 객체
+ * @return void
  */
 function show_notice()
 {
@@ -76,7 +82,13 @@ HEREDOC;
     }
 }
 
-//메인 화면에 게시판 보여주기
+/**
+ * 메인 화면에 특정 게시판의 최근 게시물 5개를 리스트 형태로 출력하는 함수
+ * 
+ * @param string $bbs_name 게시판 코드명 (예: 'notice', 'qna' 등)
+ * @param mysqli $connect 데이터베이스 연결 객체
+ * @return void
+ */
 function show_bbs($bbs_name, $connect)
 {
     $query  = "SELECT * FROM code WHERE code='$bbs_name' ORDER BY num";
@@ -108,7 +120,18 @@ function show_bbs($bbs_name, $connect)
     }
 }
 
-//썸네일 이미지 자동생성
+/**
+ * 원본 이미지로부터 지정된 크기의 썸네일 이미지를 자동 생성하여 저장하거나 출력하는 함수
+ * 
+ * GIF, JPEG, PNG, WBMP 형식을 지원하며, 이미지 비율을 유지하면서 썸네일을 생성합니다.
+ * PNG 파일의 경우 투명 백그라운드를 유지하도록 처리합니다.
+ * 
+ * @param string $source_file 원본 파일 경로
+ * @param int $_width 썸네일 가로 크기
+ * @param int $_height 썸네일 세로 크기
+ * @param string|null $object_file 저장할 썸네일 파일 경로 (null인 경우 브라우저로 직접 출력)
+ * @return bool 썸네일 생성 성공 여부 (지원하지 않는 포맷일 경우 false 반환)
+ */
 function make_thumbnail($source_file, $_width, $_height, $object_file)
 {
     list($img_width, $img_height, $type) = getimagesize($source_file);
@@ -146,7 +169,6 @@ function make_thumbnail($source_file, $_width, $_height, $object_file)
         $y_last   = round(($_height - $img_height) / 2);
 
         imagecopy($img_last, $img_sour, $x_last, $y_last, 0, 0, $width, $height);
-        imagedestroy($img_sour);
         $white = imagecolorallocate($img_last, 255, 255, 255);
         imagefill($img_last, 0, 0, $white);
     } else {
@@ -157,6 +179,11 @@ function make_thumbnail($source_file, $_width, $_height, $object_file)
         imagecopy($img_last, $img_dest, 0, 0, $x_last, $y_last, $width, $height);
         imagedestroy($img_dest);
     }
+
+    if ($img_sour) {
+        imagedestroy($img_sour);
+    }
+
     if ($object_file) {
         if ($type == 1) {
             imagegif($img_last, $object_file, 100);
@@ -169,7 +196,7 @@ function make_thumbnail($source_file, $_width, $_height, $object_file)
 
             imagepng($img_last, $object_file, 0);
         } else if ($type == 15) {
-            imagebmp($img_last, $object_file, 100);
+            imagewbmp($img_last, $object_file);
         }
     } else {
         if ($type == 1) {
@@ -181,15 +208,20 @@ function make_thumbnail($source_file, $_width, $_height, $object_file)
             imagesavealpha($img_last, true);
             imagepng($img_last);
         } else if ($type == 15) {
-            imagebmp($img_last);
+            imagewbmp($img_last);
         }
     }
     imagedestroy($img_last);
     return true;
 }
 
-//상품명 앞에 아이콘 보이기
-//function show_icon(상품정보 쿼리결과값)
+/**
+ * 상품 고유 번호를 기반으로 상품의 상태(품절, 판매중지, 단종, 신상품 등)를 나타내는 HTML 뱃지 아이콘을 반환하는 함수
+ * 
+ * @global mysqli $connect 데이터베이스 연결 객체
+ * @param int $pnum 상품 고유 번호 (products 테이블의 num)
+ * @return string 상태 아이콘 HTML 문자열
+ */
 function show_icon($pnum)
 {
 
@@ -239,6 +271,12 @@ function show_icon($pnum)
     }
 }
 
+/**
+ * 관리자 페이지에서 상품 목록 표시 시 각 상품 상태(품절, 판매중지, 신상품, 기획상품 등)에 따른 이미지 아이콘을 반환하는 함수
+ * 
+ * @param array $rows 상품 정보 레코드 배열 (참조 전달)
+ * @return string 상태 아이콘 이미지 HTML 문자열
+ */
 function admin_show_icon(&$rows)
 {
 
@@ -285,7 +323,12 @@ function admin_show_icon(&$rows)
 // require "xmlrpc.inc.php";
 // require "class.EmmaSMS.php";
 
-//$connect :  db 연결
+/**
+ * EmmaSMS 서비스를 이용하여 현재 연/월의 SMS 발송 통계 및 잔여 포인트를 출력하는 함수
+ * 
+ * @param mysqli $connect 데이터베이스 연결 객체
+ * @return void
+ */
 function sms_stats($connect)
 {
     //sms 관리 테이블
@@ -310,6 +353,12 @@ function sms_stats($connect)
     }
 }
 
+/**
+ * EmmaSMS 서비스를 이용하여 잔여 SMS 발송 가능 건수(포인트)를 조회하여 출력하는 함수
+ * 
+ * @param mysqli $connect 데이터베이스 연결 객체
+ * @return void
+ */
 function check_remain_sms($connect)
 {
     //sms 관리 테이블
@@ -328,6 +377,16 @@ function check_remain_sms($connect)
     }
 }
 
+/**
+ * 설정된 템플릿 메시지를 기반으로 회원 또는 관리자에게 SMS를 발송하는 함수
+ * 
+ * @param string $to 수신자 번호 ('self' 입력 시 관리자 수신 번호로 설정)
+ * @param string $msg_type 메시지 유형 (1: 회원승인, 2: 주문접수, 3: 주문완료, 4: 상품발송, 5: 세금계산서발송, 6: 발주서발송)
+ * @param string $name 수신자 이름 (메시지에 포함될 이름)
+ * @param string|null $sdate 예약 발송 일시 (형식: YYYYMMDDHHMMSS, null인 경우 즉시 발송)
+ * @param mysqli $connect 데이터베이스 연결 객체
+ * @return void
+ */
 function send_sms($to, $msg_type, $name, $sdate, $connect)
 {
 
@@ -386,9 +445,14 @@ function send_sms($to, $msg_type, $name, $sdate, $connect)
 }
 
 /**
- * [show_delivery_fee 택배비 보여주기]
- * @param  [type] $total     [총합]
- * @return [type] [문구]
+ * 주문 총액을 기준으로 배송비 부과 안내 문구와 배송비 금액을 반환하는 함수
+ * 
+ * 데이터베이스(misc_setup 테이블)의 설정값과 비교하여 최소 배송 무료 기준(min_sum) 미만일 경우 배송비(d_charge)를 부과하고,
+ * 그 이상일 경우 '무료배송'으로 처리합니다.
+ * 
+ * @global mysqli $connect 데이터베이스 연결 객체
+ * @param int $total 주문 총액
+ * @return array 배송 안내 문구('msg') 및 부과되는 배송비('trans_cost')를 포함한 연관 배열
  */
 function show_delivery_fee($total)
 {
@@ -420,8 +484,10 @@ function show_delivery_fee($total)
 }
 
 /**
- * [show_min_delivery_fee 최소 택배비 보여주기]
- * @return [type] [문구]
+ * 무료 배송이 적용되는 최소 주문 금액 기준을 반환하는 함수
+ * 
+ * @global mysqli $connect 데이터베이스 연결 객체
+ * @return string 포맷팅된 최소 주문 금액 문자열 (예: 50,000)
  */
 function show_min_delivery_fee()
 {
@@ -436,9 +502,11 @@ function show_min_delivery_fee()
 }
 
 /**
- * [주문 후 DB에 저장할 때 택배비 계산]
- * @param  [type] $orderSum       [주문액]
- * @return [type] [description]
+ * 주문 후 데이터베이스에 주문 정보를 저장할 때 실제 부과할 배송비를 계산하는 함수
+ * 
+ * @global mysqli $connect 데이터베이스 연결 객체
+ * @param int $orderSum 주문 총액
+ * @return int 부과될 배송비 금액
  */
 function calc_delivery_fee($orderSum)
 {
@@ -459,6 +527,14 @@ function calc_delivery_fee($orderSum)
     return $reDeliveryFee;
 }
 
+/**
+ * 배송비 정보 및 우편번호를 기준으로 결제 구분(신용/착불)과 제주도 지역 여부를 판별하는 함수
+ * 
+ * @global mysqli $connect 데이터베이스 연결 객체
+ * @param int|string $transCost 배송비 금액 (0인 경우 신용(선불) 배송, 그 외에는 착불로 구분)
+ * @param string $zipCode 배송지 우편번호 (앞 2자리가 63인 경우 제주도 지역으로 판별)
+ * @return array 결제 구분 코드('credit'), 기본 배송비('t_cost'), 제주도 여부 문구('jeju')를 포함한 연관 배열
+ */
 function define_delivery_fee($transCost, $zipCode)
 {
 
@@ -488,8 +564,10 @@ function define_delivery_fee($transCost, $zipCode)
 }
 
 /**
- * [show_logistics 택배사 보여주기]
- * @return [type] [description]
+ * 기본 설정된 택배사 이름을 반환하는 함수
+ * 
+ * @global mysqli $connect 데이터베이스 연결 객체
+ * @return string 택배사 이름
  */
 function show_logistics()
 {
@@ -505,9 +583,11 @@ function show_logistics()
 }
 
 /**
- * [show_track_no 운송장번호 보여주기]
- * @param  [type] $oid                [주문번호]
- * @return [type] [운송장번호]
+ * 주문 번호를 기반으로 저장된 운송장 번호를 조회하고, 클릭 시 배송 추적 팝업을 띄울 수 있는 HTML 링크를 반환하는 함수
+ * 
+ * @global mysqli $connect 데이터베이스 연결 객체
+ * @param int|string $oid 주문 고유 번호 (mall_order 테이블의 num)
+ * @return string 운송장 번호와 클릭 이벤트를 포함한 HTML 링크 문자열
  */
 function show_track_no($oid)
 {
@@ -528,8 +608,12 @@ function show_track_no($oid)
     return $track_no;
 }
 
-//메인 배너 보이기
-//function show_banner(db 연결)
+/**
+ * 슬라이더 형태의 메인 배너 영역을 데이터베이스 정보에 기반하여 화면에 출력하는 함수 (최대 3개 배너)
+ * 
+ * @param mysqli $connect 데이터베이스 연결 객체
+ * @return void
+ */
 function show_banner($connect)
 {
     $qry = "SELECT MAX(num) FROM banner";
@@ -566,8 +650,12 @@ function show_banner($connect)
     }
 }
 
-//메인 배너 보이기
-//function show_banner2(db 연결)
+/**
+ * 리스트 형태의 메인 배너(슬라이더 리스트 태그)를 데이터베이스 정보에 기반하여 화면에 출력하는 함수 (최대 5개 배너)
+ * 
+ * @param mysqli $connect 데이터베이스 연결 객체
+ * @return void
+ */
 function show_banner2($connect)
 {
     $qry = "SELECT MAX(num) FROM banner";
@@ -610,9 +698,13 @@ function show_banner2($connect)
 }
 
 /**
- * [show_option 옵션 보여주기]
- * @param  [type] $pnum           [상품코드]
- * @return [type] [description]
+ * 상품 고유 번호를 받아 해당 상품의 옵션들을 드롭다운 선택 메뉴(HTML select) 형태로 생성하여 반환하는 함수
+ * 
+ * 품절 및 단종 상태에 따른 disabled 처리와 재고 수량을 옵션 텍스트 뒤에 표시합니다.
+ * 
+ * @global mysqli $connect 데이터베이스 연결 객체
+ * @param int $pnum 상품 고유 번호
+ * @return string HTML select 엘리먼트 문자열
  */
 function show_option($pnum)
 {
@@ -666,8 +758,14 @@ function show_option($pnum)
     return $ret;
 }
 
-//옵션 보이기
-//function show_option(쿼리 결과값)
+/**
+ * 상품 정보 레코드(옵션2 관련)를 참조하여 옵션2 드롭다운 선택 메뉴(HTML select)를 화면에 바로 출력하는 함수
+ * 
+ * 품절 사유(재입고 미정, 재입고 예정일 등) 및 단종 상태에 따른 disabled 처리를 수행합니다.
+ * 
+ * @param array $rows 상품 정보 레코드 배열 (참조 전달)
+ * @return void
+ */
 function show_option2(&$rows)
 {
     $opt2       = explode(',', $rows['opt2']);
@@ -704,7 +802,12 @@ function show_option2(&$rows)
     echo "</select>\n";
 }
 
-//재입고 일정보이기
+/**
+ * 상품의 재입고 일정 정보(restock_date)를 기반으로 안내 메시지를 화면에 출력하는 함수
+ * 
+ * @param array $rows 상품 정보 레코드 배열 (참조 전달)
+ * @return void
+ */
 function show_restock(&$rows)
 {
     if ($rows['restock_date'] == "1111-00-00") {
@@ -724,10 +827,12 @@ function show_restock(&$rows)
 // }
 
 /**
- * [calc_offer_price 공급가 계산]
- * @param  [type] $retail_price   [description]
- * @param  [type] $id             [description]
- * @return [type] [description]
+ * 소비자가(소매가)와 회원 ID를 받아, 해당 회원의 할인율(dc_rate)을 적용한 공급가를 계산하여 반환하는 함수
+ * 
+ * @global mysqli $connect 데이터베이스 연결 객체
+ * @param int|float $retail_price 소비자가(소매가)
+ * @param string $id 회원 ID
+ * @return int|float 할인율이 적용된 공급가
  */
 function calc_offer_price($retail_price, $id)
 {
@@ -740,9 +845,15 @@ function calc_offer_price($retail_price, $id)
     return $retail_price * (1 - ($row['dc_rate'] / 100));
 }
 
-/*할인에 따른 공급가 계산
-/*인수로 상품쿼리와 멤버쿼리를 받는다.
-/* function check_price(Array 쿼리결과값, Array 멤버쿼리결과값) */
+/**
+ * 상품 세부 정보와 회원 등급/설정 정보를 전달받아, 부가세 처리 및 할인가 적용 여부에 따른 최종 공급가를 계산하여 반환하는 함수
+ * 
+ * 회원 등급 설정의 과세 구분(tax: 'E'는 부가세 별도 10% 추가, 'I'는 부가세 포함)에 따라 가격을 최종 조정합니다.
+ * 
+ * @param array $rows 상품 정보 레코드 배열 (참조 전달)
+ * @param array $mrow 회원 정보 레코드 배열 (참조 전달)
+ * @return int|float 세금 및 할인이 반영된 최종 공급가
+ */
 function check_price(&$rows, &$mrow)
 {
     //할인가가 있는 경우 부가세에 따른 공급가 처리
@@ -778,8 +889,10 @@ function check_price(&$rows, &$mrow)
 }
 
 /**
- * [set_var GET, POST, SESSION 등 어레이값이 있는지 확인]
- * @param [type] &$ary [description]
+ * 전달받은 변수(주로 $_GET, $_POST, $_SESSION 등)가 정의되어 있는지 확인하고 값을 안전하게 반환하는 헬퍼 함수
+ * 
+ * @param mixed $ary 검사할 변수 (참조 전달)
+ * @return mixed 변수가 존재하면 해당 값, 존재하지 않으면 null 반환
  */
 function set_var(&$ary)
 {
@@ -791,10 +904,11 @@ function set_var(&$ary)
 }
 
 /**
- * [show_msg alert창 보여주고 url로 이동하기]
- * @param  [type] $msg            [description]
- * @param  [type] $url            [description]
- * @return [type] [description]
+ * 브라우저 경고창(Alert)을 띄우고 지정된 URL 페이지로 강제 리다이렉트하는 함수
+ * 
+ * @param string $msg 경고창에 표시할 메시지
+ * @param string $url 이동할 대상 URL
+ * @return void
  */
 function show_msg($msg, $url)
 {
@@ -805,7 +919,12 @@ function show_msg($msg, $url)
             </script>";
 }
 
-//function show_msg(string, string)
+/**
+ * 브라우저 경고창(Alert)을 띄운 후, 부모 창(Opener)을 새로고침하고 현재 팝업 창을 닫는 함수
+ * 
+ * @param string $msg 경고창에 표시할 메시지
+ * @return void
+ */
 function show_msg_close($msg)
 {
     echo "<meta HTTP-EQUIV='CONTENT-TYPE' content='text/html;charset=UTF-8'>
@@ -816,6 +935,13 @@ function show_msg_close($msg)
             </script>";
 }
 
+/**
+ * 브라우저 경고창(Alert)을 띄운 후, 부모 창(Opener)을 지정된 URL로 이동시키고 현재 팝업 창을 닫는 함수
+ * 
+ * @param string $msg 경고창에 표시할 메시지
+ * @param string $url 부모 창이 이동할 대상 URL
+ * @return void
+ */
 function show_msg_close2($msg, $url)
 {
     echo "<meta HTTP-EQUIV='CONTENT-TYPE' content='text/html;charset=UTF-8'>
@@ -826,6 +952,13 @@ function show_msg_close2($msg, $url)
             </script>";
 }
 
+/**
+ * 에러 경고창(Alert)을 출력하고 이전 페이지(history -1)로 돌려보낸 뒤 스크립트 실행을 종료(exit)하는 함수
+ * 
+ * @param string $msg 에러 메시지
+ * @param string|int|bool $bool 에러 처리 실행 여부 플래그
+ * @return void
+ */
 function err_msg($msg, $bool = "1")
 {
     if ($bool) {
@@ -840,9 +973,10 @@ function err_msg($msg, $bool = "1")
 }
 
 /**
- * [msg 메시지 창 띄우기]
- * @param  [type] $msg            [description]
- * @return [type] [description]
+ * 브라우저 경고창(Alert)을 화면에 띄우는 함수 (종료나 페이지 이동 없음)
+ * 
+ * @param string $msg 경고 메시지
+ * @return void
  */
 function msg($msg)
 {
@@ -852,6 +986,12 @@ function msg($msg)
     </script>';
 }
 
+/**
+ * 에러 경고창(Alert)을 띄우고 현재 창(주로 팝업)을 닫은 뒤 스크립트 실행을 종료(exit)하는 함수
+ * 
+ * @param string $msg 에러 메시지
+ * @return void
+ */
 function err_close($msg)
 {
     echo "<meta http-equiv='content-type' content='text/html; charset=UTF-8' />
@@ -863,6 +1003,14 @@ function err_close($msg)
     exit;
 }
 
+/**
+ * 에러 경고창(Alert)을 출력하고 지정한 대상 창/경로로 리다이렉트한 후 스크립트 실행을 종료(exit)하는 함수
+ * 
+ * @param string $msg 에러 메시지
+ * @param string $to 이동할 대상 타겟 및 URL (예: '_self' 타겟과 URL 조합)
+ * @param string|int|bool $bool 에러 처리 실행 여부 플래그
+ * @return void
+ */
 function err_msg2($msg, $to, $bool = "1")
 {
     if ($bool) {
@@ -876,14 +1024,27 @@ function err_msg2($msg, $to, $bool = "1")
     }
 }
 
-// ��û�ϴ� �������� �̵�
+/**
+ * HTML 메타 태그를 이용하여 지정된 URL로 즉시 리다이렉트하고 스크립트 실행을 종료(exit)하는 함수
+ * 
+ * @param string $re_url 리다이렉트할 대상 URL
+ * @return void
+ */
 function redirect($re_url)
 {
     echo "<meta http-equiv='Refresh' content='0; URL=$re_url'>";
     exit;
 }
 
-// MYSQL ����
+/**
+ * MySQL 데이터베이스 서버에 연결하고 데이터베이스를 선택하는 레거시 연결 함수
+ * 
+ * @param string $host 데이터베이스 호스트 주소
+ * @param string $id 사용자 ID
+ * @param string $pass 사용자 비밀번호
+ * @param string $db 선택할 데이터베이스 이름
+ * @return mysqli_link 데이터베이스 연결 리소스 객체
+ */
 function my_connect($host, $id, $pass, $db)
 {
     $connect = mysqli_connect($host, $id, $pass);
@@ -891,16 +1052,25 @@ function my_connect($host, $id, $pass, $db)
     return $connect;
 }
 
-// HTML Tag�� �����ϴ� �Լ�
+/**
+ * HTML 특수문자(<, >, ")를 HTML 엔티티(&lt;, &gt;, &quot;)로 변환하여 브라우저에 그대로 노출하도록 처리하는 함수 (XSS 방지용)
+ * 
+ * @param string $str 변환할 원본 문자열
+ * @return string 변환 완료된 문자열
+ */
 function del_html($str)
 {
-    $str = str_replace(">", "&gt;", $str);
-    $str = str_replace("<", "&lt;", $str);
-    $str = str_replace("\"", "&quot;", $str);
-    return $str;
+    return htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
 }
 
-// ���� HTML �±׸� �̿��� �׷�����
+/**
+ * 웹 취약성(스크립트 주입 등 크래킹 공격) 방지를 위해 기본적인 HTML 태그 외의 코드는 무력화(HTML 엔티티화)하는 함수
+ * 
+ * 허용된 안전한 태그(div, p, font, b, marquee, img, a, embed)는 복구하고 그 외의 태그(<, >)는 비활성화합니다.
+ * 
+ * @param string $str 입력받은 원본 문자열
+ * @return string 필터링 처리가 적용된 문자열
+ */
 function avoid_crack($str)
 {
     $str = str_ireplace("<", "&lt;", $str);
@@ -925,6 +1095,14 @@ function avoid_crack($str)
     return $str;
 }
 
+/**
+ * 기본 텍스트 링크 형태의 간단한 페이지 네비게이션을 화면에 출력하는 레거시 함수
+ * 
+ * @param int $totalpage 전체 페이지 수
+ * @param int $cpage 현재 페이지 번호
+ * @param string $url 링크로 사용할 대상 URL 경로 (파라미터 전 단계)
+ * @return void
+ */
 function page_avg($totalpage, $cpage, $url)
 {
     $pagenumber = 1;
@@ -976,11 +1154,12 @@ function page_avg($totalpage, $cpage, $url)
 }
 
 /**
- * [page_nav 페이지 표시]
- * @param  [type] $totalpage      [description]
- * @param  [type] $cpage          [description]
- * @param  [type] $url            [description]
- * @return [type] [description]
+ * Bootstrap 기반의 스타일이 적용된 페이지 네비게이션(pagination HTML)을 화면에 출력하는 함수
+ * 
+ * @param int $totalpage 전체 페이지 수
+ * @param int $cpage 현재 페이지 번호
+ * @param string $url 페이지 링크용 기본 URL
+ * @return void
  */
 function page_nav($totalpage, $cpage, $url)
 {
@@ -1029,7 +1208,14 @@ function page_nav($totalpage, $cpage, $url)
     echo '      </ul>' . "\r\n";
 }
 
-// ��ۺ� ���
+/**
+ * 구매 금액을 기준으로 배송비를 계산하여 반환하는 함수
+ * 
+ * 구매 금액이 100,000원 미만인 경우 2,500원 배송비를 부과하고, 100,000원 이상은 무료(0원) 배송입니다.
+ * 
+ * @param int|float $money 구매 금액
+ * @return int 배송비 금액
+ */
 function trans_cal($money)
 {
     if ((int) $money < 100000) {
@@ -1041,14 +1227,25 @@ function trans_cal($money)
     return $a_money;
 }
 
-/* ��¥������ ���� ��ȯ : 20020512 --> 2002-05-12 */
+/**
+ * 8자리 숫자 형식의 날짜 문자열(예: YYYYMMDD)을 하이픈(-)이 포함된 형식(YYYY-MM-DD)으로 변환하여 반환하는 함수
+ * 
+ * @param string $strvalue 8자리 날짜 문자열
+ * @return string 하이픈(-)이 적용된 날짜 문자열
+ */
 function shortdate($strvalue)
 {
     $date_str = substr($strvalue, 0, 4) . "-" . substr($strvalue, 4, 2) . "-" . substr($strvalue, 6, 2);
     return $date_str;
 }
 
-/* �ѱ� ���ڿ� �ڸ��� �Լ� */
+/**
+ * 한글이 포함된 문자열을 지정된 바이트(Byte) 길이로 자르고 말줄임표(...)를 붙여 반환하는 함수 (EUC-KR 대응용 레거시)
+ * 
+ * @param string $str 원본 문자열
+ * @param int $maxlen 제한할 최대 바이트 수
+ * @return string 지정 크기로 잘린 문자열
+ */
 function shortenStr($str, $maxlen)
 {
 
@@ -1087,9 +1284,14 @@ function shortenStr($str, $maxlen)
     return $retStr .= "...";
 }
 
-// function cut_string_utf8($str, $max_len, $suffix)
-// 유니코드용 문자열 자르기 함수.
-//
+/**
+ * UTF-8 인코딩 문자열을 글자 단위가 아닌 바이트와 멀티바이트 특성을 고려하여 안전하게 자르고 접미사(suffix)를 붙여 반환하는 함수
+ * 
+ * @param string $str 원본 UTF-8 문자열
+ * @param int $max_len 제한할 길이
+ * @param string $suffix 자르고 나서 붙일 접미사 (예: '...')
+ * @return string 잘린 결과 문자열
+ */
 function cut_string_utf8($str, $max_len, $suffix)
 {
     $n   = 0;
@@ -1139,10 +1341,11 @@ function cut_string_utf8($str, $max_len, $suffix)
 }
 
 /**
- * 타이틀 텍스트 줄이기
- * @param  string  $tite
- * @param  integer $end
- * @return string  $str
+ * 타이틀 텍스트를 지정한 너비(단위: 글자 수 기준 너비)에 맞추어 줄이고 말줄임표를 붙여 반환하는 함수 (UTF-8)
+ * 
+ * @param string $title 원본 타이틀 문자열
+ * @param int $end 제한할 너비 값
+ * @return string 역슬래시가 제거되고 축소된 문자열
  */
 function get_short($title, $end)
 {
@@ -1150,7 +1353,13 @@ function get_short($title, $end)
     return stripslashes($str);
 }
 
-//도서산간지역 우편번호 체크
+/**
+ * 주문자의 우편번호와 수령인의 우편번호를 확인하여 도서산간(예외) 지역에 해당할 경우 배경색 스타일 속성(HTML)을 반환하는 함수
+ * 
+ * @param string $zipcode 우편번호 (현재 사용되지 않음)
+ * @param array $row 주문 정보 레코드 배열 (참조 전달)
+ * @return array 주문자 영역 배경색('bg1') 및 수령자 영역 배경색('bg2') HTML 코드 문자열을 담은 배열
+ */
 function check_zipno($zipcode, &$row)
 {
     //예외 우편번호 배열
@@ -1173,6 +1382,12 @@ function check_zipno($zipcode, &$row)
     return $bg = array($bg1, $bg2);
 }
 
+/**
+ * 생성된 전체 게시판 목록을 데이터베이스에서 조회하여 헤더/사이드 메뉴의 HTML li 태그 리스트로 출력하는 함수
+ * 
+ * @param mysqli $connect 데이터베이스 연결 객체
+ * @return void
+ */
 function getBbsMenu($connect)
 {
     $bqry = "SELECT * FROM code WHERE 1 ORDER BY num";
@@ -1187,6 +1402,13 @@ function getBbsMenu($connect)
     }
 }
 
+/**
+ * 로그인하지 않은 비회원 사용자에게 보여줄 로그인 팝업 모달 창(HTML)을 출력하는 함수
+ * 
+ * @param int|string $i 모달 엘리먼트 고유 식별을 위한 인덱스 접미사
+ * @param int|string $sslPort 보안 접속을 위한 SSL 포트 번호
+ * @return void
+ */
 function getLoginWindow($i, $sslPort)
 {
 
@@ -1219,6 +1441,12 @@ function getLoginWindow($i, $sslPort)
     }
 }
 
+/**
+ * 상품에 대량 구매(수량별 차등 단가) 조건이 설정된 경우, 구간별 공급가를 리스트(HTML ul) 형태로 화면에 출력하는 함수
+ * 
+ * @param array $rows 상품 정보 레코드 배열
+ * @return void
+ */
 function show_offerPrice($rows)
 {
 
@@ -1242,6 +1470,13 @@ function show_offerPrice($rows)
     }
 }
 
+/**
+ * 활성화된 대분류 상품 카테고리 목록을 조회하여 네비게이션용 HTML 링크(li) 리스트로 출력하는 함수
+ * 
+ * @param mysqli $connect 데이터베이스 연결 객체
+ * @param int|string $flag 추가 로직 분기용 플래그
+ * @return void
+ */
 function show_category($connect, $flag)
 {
 
@@ -1273,6 +1508,12 @@ function show_category($connect, $flag)
     }
 }
 
+/**
+ * 전체 게시판 목록을 조회하여 HTML li 형태의 게시판 이동 링크로 화면에 바로 출력하는 함수 (getBbsMenu와 유사하나 경로가 다름)
+ * 
+ * @param mysqli $connect 데이터베이스 연결 객체
+ * @return void
+ */
 function show_bbs_list($connect)
 {
 
@@ -1286,6 +1527,14 @@ function show_bbs_list($connect)
     }
 }
 
+/**
+ * 특정 업체(com_id)에 특정 상품(pro_id)을 거래(공급)할 수 있는 권한 여부를 확인하는 함수
+ * 
+ * @param mysqli $connect 데이터베이스 연결 객체
+ * @param string $com_id 업체(회사) ID
+ * @param string $pro_id 상품 고유 코드
+ * @return string 거래 가능 여부 ('Y' 또는 'N')
+ */
 function check_avail($connect, $com_id, $pro_id)
 {
     $sql    = "SELECT * FROM buy_product WHERE com_id = '$com_id'";
@@ -1306,7 +1555,14 @@ function check_avail($connect, $com_id, $pro_id)
     }
 }
 
-// 각 업체별 공급가를 보여준다.
+/**
+ * 특정 업체(com_id)에 설정된 특정 상품(pro_id)의 개별 공급가 단가를 데이터베이스에서 조회하여 반환하는 함수
+ * 
+ * @param mysqli $connect 데이터베이스 연결 객체
+ * @param string $com_id 업체(회사) ID
+ * @param string $pro_id 상품 고유 코드
+ * @return string 공급가 금액 문자열 (해당 데이터가 없는 경우 "0" 반환)
+ */
 function show_sup_price($connect, $com_id, $pro_id)
 {
     $sql    = "SELECT * FROM buy_product WHERE com_id = '$com_id'";
@@ -1328,8 +1584,15 @@ function show_sup_price($connect, $com_id, $pro_id)
     }
 }
 
-/* $day는 new가 표시되는 기간
- * 게시판 목록에서 사용하는 함수 */
+/**
+ * 게시판 목록 표시 시 해당 게시글이 지정된 기간($day 일) 이내에 작성된 신규 글인지 확인하여 NEW 라벨(HTML)을 출력하는 함수
+ * 
+ * @global mysqli $connect 데이터베이스 연결 객체
+ * @param string $code 게시판 코드명 (예: 'notice')
+ * @param int $main_no 게시물 고유 번호
+ * @param int $day 신규 게시글로 판단할 일수 기준 (예: 3일 이내 작성 시 NEW)
+ * @return void
+ */
 function check_new_post($code, $main_no, $day)
 {
     global $connect;
@@ -1355,7 +1618,16 @@ function check_new_post($code, $main_no, $day)
     }
 }
 
-/* 메뉴에서 사용하는 함수 */
+/**
+ * 메뉴 등에서 게시판 이름 옆에 최신 글이 존재하는지 판별하여 NEW 라벨(HTML)을 반환하는 함수
+ * 
+ * 게시판의 가장 최신 글이 작성된 지 지정일($day 일) 이하인 경우에 NEW 라벨을 설정합니다.
+ * 
+ * @param mysqli $connect 데이터베이스 연결 객체
+ * @param string $code 게시판 코드명
+ * @param int $day 신규 기준으로 적용할 일수
+ * @return string NEW 라벨 HTML 또는 빈 문자열
+ */
 function check_new_last_post($connect, $code, $day)
 {
     $newIcon  = '';
@@ -1383,8 +1655,10 @@ function check_new_last_post($connect, $code, $day)
 }
 
 /**
- * [get_company_info 회사정보 가져오기]
- * @return [array] [배열로 반환]
+ * 데이터베이스(admin_setup 테이블)에서 사이트 기본 설정 및 회사 정보들을 조회하여 연관 배열로 반환하는 함수
+ * 
+ * @global mysqli $connect 데이터베이스 연결 객체
+ * @return array 회사명, 연락처, 주소, 무통장 계좌 등 회사 설정 정보가 포함된 연관 배열
  */
 function get_company_info()
 {
@@ -1419,10 +1693,12 @@ function get_company_info()
 }
 
 /**
- * 게시판 가져오기
- * @param  [type] $code  [description]
- * @param  [type] $limit [description]
- * @return [type]        [description]
+ * 지정된 게시판($code)에서 관리자('admin')가 작성한 게시글 목록을 가져와 푸터 등 임베드 영역용 HTML 테이블로 렌더링하여 바로 출력하는 함수
+ * 
+ * @global mysqli $connect 데이터베이스 연결 객체
+ * @param string $code 게시판 코드명 (예: 'notice')
+ * @param int $limit 최대로 가져올 게시물 수
+ * @return void
  */
 function get_bbs_title($code, $limit)
 {
@@ -1547,9 +1823,11 @@ HEREDOC;
 }
 
 /**
- * [get_pg_info 결제상태 보여주기]
- * @param  [type] $orderid        [주문번호]
- * @return [type] [description]
+ * 주문 번호를 기반으로 PG(LGD_PAYTYPE) 결제 상세 정보를 조회하여, 결제 상태에 따른 아이콘/상세 메시지 및 결제 타입을 배열로 반환하는 함수
+ * 
+ * @global mysqli $connect 데이터베이스 연결 객체
+ * @param string $orderid 주문 번호 (pg_info 테이블의 LGD_OID)
+ * @return array 결제상태 HTML('pay_status'), 영수증 신청종류('apply_receipt'), 결제타입('pay_type')을 담은 연관 배열
  */
 function get_pg_info($orderid)
 {
@@ -1612,14 +1890,18 @@ function get_pg_info($orderid)
 }
 
 /**
- * [get_pg_info2 주문목록에서 결제상태 보여주기]
- * @param  [type] $orderid        [주문번호]
- * @return [type] [description]
+ * 주문 목록 화면에서 각 주문 번호별 결제수단(가상계좌, 실시간계좌이체, 신용카드)의 상태를 조회하여 라벨과 버튼 모달 팝업 형태로 변환해 반환하는 함수
+ * 
+ * 가상계좌의 경우 은행명과 계좌번호를 모달 팝업으로 확인할 수 있는 인터페이스를 포함합니다.
+ * 
+ * @global mysqli $connect 데이터베이스 연결 객체
+ * @param string $orderid 주문 번호
+ * @return string 결제수단 및 처리 상태에 대한 HTML 문자열
  */
 function get_pg_info2($orderid)
 {
 
-    global $connect;
+    global $connect, $BANK_CODES, $CARD_CODES;
 
     if (isset($orderid)) {
 
@@ -1637,41 +1919,8 @@ function get_pg_info2($orderid)
                     // 계좌할당: R
                     if ("R" == $pg_row['LGD_CASFLAG']) {
 
-                        $bank_finance = array(
-                            '003' => '기업은행',
-                            '005' => '외환은행',
-                            '004' => '국민은행',
-                            '011' => '농협은행',
-                            '020' => '우리은행',
-                            '088' => '신한은행',
-                            '023' => '제일은행',
-                            '027' => '씨티은행',
-                            '031' => '대구은행',
-                            '032' => '부산은행',
-                            '034' => '광주은행',
-                            '037' => '전북은행',
-                            '039' => '경남은행',
-                            '071' => '우체국',
-                            '081' => '하나은행',
-                            '048' => '신협',
-                            '045' => '새마을금고',
-                            '035' => '제주은행',
-                            '007' => '수협',
-                            '002' => '산업은행',
-                            '209' => '동양증권',
-                            '230' => '미래에셋',
-                            '278' => '신한금융투자',
-                            '240' => '삼성증권',
-                            '243' => '한국투자증권',
-                            '269' => '한화증권',
-                        );
-
-                        if ($pg_row['LGD_PAYTYPE'] == "SC0040") {
-                            foreach ($bank_finance as $key => $value) {
-                                if ($pg_row['LGD_FINANCECODE'] == $key) {
-                                    $finance_name = $value;
-                                }
-                            }
+                        if (isset($BANK_CODES[$pg_row['LGD_FINANCECODE']])) {
+                            $finance_name = $BANK_CODES[$pg_row['LGD_FINANCECODE']];
                         }
 
                         $pay_status = '<i class="fa fa-university"></i> <button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#myModal_' . $orderid . '">입금계좌확인</button>';
@@ -1725,27 +1974,8 @@ function get_pg_info2($orderid)
 
                 break;
             case 'SC0030':
-                $wire_finance = array(
-                    '003' => '기업은행',
-                    '005' => '외환은행',
-                    '004' => '국민은행',
-                    '011' => '농협은행',
-                    '081' => '하나은행',
-                    '007' => '수협',
-                    '020' => '우리',
-                    '088' => '신한',
-                    '039' => '경남',
-                    '071' => '우체국',
-                    '032' => '부산',
-                    '031' => '대구',
-                );
-
-                if ($pg_row['LGD_PAYTYPE'] == "SC0010") {
-                    foreach ($wire_finance as $key => $value) {
-                        if ($pg_row['LGD_FINANCECODE'] == $key) {
-                            $finance_name = $value;
-                        }
-                    }
+                if (isset($BANK_CODES[$pg_row['LGD_FINANCECODE']])) {
+                    $finance_name = $BANK_CODES[$pg_row['LGD_FINANCECODE']];
                 }
 
                 if ($pg_row['LGD_RESPCODE'] == "0000") {
@@ -1774,41 +2004,8 @@ function get_pg_info2($orderid)
                 break;
 
             case 'SC0010': //SC0010 credit card
-                $card_finance = array(
-                    '11' => '국민',
-                    '21' => '외환',
-                    '30' => 'KDB산업체크',
-                    '31' => '비씨',
-                    '32' => '하나',
-                    '33' => '우리(구.평화VISA)',
-                    '34' => '수협',
-                    '35' => '전북',
-                    '36' => '씨티',
-                    '37' => '우체국체크',
-                    '38' => 'MG새마을금고체크',
-                    '39' => '저축은행체크',
-                    '41' => '신한(구.LG카드 포함)',
-                    '42' => '제주',
-                    '46' => '광주',
-                    '51' => '삼성',
-                    '61' => '현대',
-                    '62' => '신협체크',
-                    '71' => '롯데',
-                    '91' => 'NH',
-                    '3C' => '중국은련',
-                    '4J' => '해외JCB',
-                    '4V' => '해외VISA',
-                    '4M' => '해외MASTER',
-                    '6D' => '해외DINERS',
-                    '6I' => '해외DISCOVER',
-                );
-
-                if ($pg_row['LGD_PAYTYPE'] == "SC0010") {
-                    foreach ($card_finance as $key => $value) {
-                        if ($pg_row['LGD_FINANCECODE'] == $key) {
-                            $finance_name = $value;
-                        }
-                    }
+                if (isset($CARD_CODES[$pg_row['LGD_FINANCECODE']])) {
+                    $finance_name = $CARD_CODES[$pg_row['LGD_FINANCECODE']];
                 }
 
                 //카드결제가 취소성공해도 0000이 넘어오므로 다른 값으로 체크
@@ -1848,14 +2045,16 @@ function get_pg_info2($orderid)
 }
 
 /**
- * [show_pay_data 결제수단 데이터 보여주기]
- * @param  [type] $orderid        [주문번호]
- * @return [type] [description]
+ * 주문의 PG 결제 성공/실패 응답 데이터(결제기관 코드, 승인번호, 카드번호 등)를 리스트(HTML ul) 형태로 화면에 출력하는 함수
+ * 
+ * @global mysqli $connect 데이터베이스 연결 객체
+ * @param string $orderid 주문 번호
+ * @return void
  */
 function show_pay_data($orderid)
 {
 
-    global $connect;
+    global $connect, $BANK_CODES, $CARD_CODES_DETAIL;
 
     // retrieve PG data
     $pg_sql    = "SELECT * FROM pg_info WHERE LGD_OID='$orderid' ";
@@ -1870,126 +2069,23 @@ function show_pay_data($orderid)
                 // 입금완료: I
                 if ($pg_row['LGD_CASFLAG'] == "I") {
 
-                    $bank_finance = array(
-                        '003' => '기업은행',
-                        '005' => '외환은행',
-                        '004' => '국민은행',
-                        '011' => '농협은행',
-                        '020' => '우리은행',
-                        '088' => '신한은행',
-                        '023' => '제일은행',
-                        '027' => '씨티은행',
-                        '031' => '대구은행',
-                        '032' => '부산은행',
-                        '034' => '광주은행',
-                        '037' => '전북은행',
-                        '039' => '경남은행',
-                        '071' => '우체국',
-                        '081' => '하나은행',
-                        '048' => '신협',
-                        '045' => '새마을금고',
-                        '035' => '제주은행',
-                        '007' => '수협',
-                        '002' => '산업은행',
-                        '209' => '동양증권',
-                        '230' => '미래에셋',
-                        '278' => '신한금융투자',
-                        '240' => '삼성증권',
-                        '243' => '한국투자증권',
-                        '269' => '한화증권',
-                    );
-
-                    if ($pg_row['LGD_PAYTYPE'] == "SC0040") {
-                        foreach ($bank_finance as $key => $value) {
-                            if ($pg_row['LGD_FINANCECODE'] == $key) {
-                                $finance_name = $value;
-                            }
-                        }
+                    if (isset($BANK_CODES[$pg_row['LGD_FINANCECODE']])) {
+                        $finance_name = $BANK_CODES[$pg_row['LGD_FINANCECODE']];
                     }
                 }
             }
 
             break;
         case 'SC0030':
-            $wire_finance = array(
-                '003' => '기업은행',
-                '005' => '외환은행',
-                '004' => '국민은행',
-                '011' => '농협은행',
-                '081' => '하나은행',
-                '007' => '수협',
-                '020' => '우리',
-                '088' => '신한',
-                '039' => '경남',
-                '071' => '우체국',
-                '032' => '부산',
-                '031' => '대구',
-            );
-
-            if ($pg_row['LGD_PAYTYPE'] == "SC0030") {
-                foreach ($wire_finance as $key => $value) {
-                    if ($pg_row['LGD_FINANCECODE'] == $key) {
-                        $finance_name = $value;
-                    }
-                }
+            if (isset($BANK_CODES[$pg_row['LGD_FINANCECODE']])) {
+                $finance_name = $BANK_CODES[$pg_row['LGD_FINANCECODE']];
             }
 
             break;
 
         case 'SC0010': //SC0010 credit card
-            $card_finance = array(
-                '11000' => '국민',
-                '11100' => '국민VISA',
-                '11200' => '국민MASTER',
-                '11400' => '국민AMEX',
-                '21'    => '외환',
-                '30'    => 'KDB산업체크',
-                '31000' => '비씨',
-                '31100' => '비씨VISA',
-                '31200' => '비씨MASTER',
-                '31400' => '비씨AMEX',
-                '32000' => '하나',
-                '32100' => '하나VISA',
-                '32200' => '하나MASTER',
-                '32400' => '하나AMEX',
-                '33'    => '우리(구.평화VISA)',
-                '34'    => '수협',
-                '35'    => '전북',
-                '36'    => '씨티',
-                '37'    => '우체국체크',
-                '38'    => 'MG새마을금고체크',
-                '39'    => '저축은행체크',
-                '41000' => '신한(구.LG카드 포함)',
-                '41100' => '신한VISA',
-                '41200' => '신한MASTER',
-                '41400' => '신한AMEX',
-                '42'    => '제주',
-                '46'    => '광주',
-                '51000' => '삼성',
-                '51100' => '삼성VISA',
-                '51200' => '삼성MASTER',
-                '51400' => '삼성AMEX',
-                '61000' => '현대',
-                '61100' => '현대VISA',
-                '61200' => '현대MASTER',
-                '61400' => '현대AMEX',
-                '62'    => '신협체크',
-                '71'    => '롯데',
-                '91'    => 'NH',
-                '3C'    => '중국은련',
-                '4J'    => '해외JCB',
-                '4V'    => '해외VISA',
-                '4M'    => '해외MASTER',
-                '6D'    => '해외DINERS',
-                '6I'    => '해외DISCOVER',
-            );
-
-            if ($pg_row['LGD_PAYTYPE'] == "SC0010") {
-                foreach ($card_finance as $key => $value) {
-                    if ($pg_row['LGD_FINANCECODE'] == $key) {
-                        $finance_name = $value;
-                    }
-                }
+            if (isset($CARD_CODES_DETAIL[$pg_row['LGD_FINANCECODE']])) {
+                $finance_name = $CARD_CODES_DETAIL[$pg_row['LGD_FINANCECODE']];
             }
 
             break;
@@ -2008,6 +2104,12 @@ function show_pay_data($orderid)
 HEREDOC;
 }
 
+/**
+ * 현재 페이지의 URL 경로와 비교하여 해당 메뉴 아이템 활성화(class="active") 여부를 결정하는 함수
+ * 
+ * @param string $page_name 비교할 페이지 파일 이름 (예: 'index.php')
+ * @return string|null 현재 활성화된 페이지인 경우 'class="active"', 그렇지 않으면 null 반환
+ */
 function check_active_class($page_name)
 {
     $path = explode("/", $_SERVER['PHP_SELF']);
@@ -2019,8 +2121,12 @@ function check_active_class($page_name)
 }
 
 /**
- * [GenerateString 사용자 비밀번호 랜덤생성]
- * @param [type] $length [description]
+ * 지정된 길이의 무작위 영숫자 조합 문자열(난수 비밀번호 등)을 생성하여 반환하는 함수
+ * 
+ * 가독성을 위해 헷갈리기 쉬운 글자(i, l, I)를 제외한 문자 풀에서 난수를 생성합니다.
+ * 
+ * @param int $length 생성할 문자열의 길이
+ * @return string 생성된 임의의 문자열
  */
 function GenerateString($length)
 {
@@ -2038,6 +2144,12 @@ function GenerateString($length)
     return $string_generated;
 }
 
+/**
+ * 업로드된 파일명 또는 경로를 검사하여 허용된 이미지 확장자(jpg, jpeg, gif, png)인지 확인하고, 아닐 경우 에러 페이지로 돌려보내는 함수
+ * 
+ * @param string $uploadFile 검사할 파일 이름 또는 파일 경로
+ * @return void
+ */
 function check_img_extension($uploadFile)
 {
 
@@ -2050,12 +2162,14 @@ function check_img_extension($uploadFile)
 }
 
 /**
- * 디렉토리 반환
- * ex) $haystack = "../../upload/p_image/B068-02/b/4848_3.jpg"
+ * 파일 경로 등에서 마지막에 매칭되는 구분자(needle)를 기준으로 이전 경로(부모 디렉토리)까지 잘라 반환하는 함수
+ * 
+ * 예: haystack = "../../upload/p_image/B068-02/b/4848_3.jpg", needle = "/"
  * return "../../upload/p_image/B068-02"
- * @param  [type] $haystack       [description]
- * @param  [type] $needle         [description]
- * @return [type] [description]
+ * 
+ * @param string $haystack 전체 원본 문자열 (경로 등)
+ * @param string $needle 자르기 기준이 될 마지막 찾을 구분 문자
+ * @return string 기준 문자 이전까지의 문자열 경로
  */
 function reverse_strrchr($haystack, $needle)
 {
@@ -2067,9 +2181,10 @@ function reverse_strrchr($haystack, $needle)
 }
 
 /**
- * 서브디렉토리까지 삭제
- * @param  [type] $dir            [description]
- * @return [type] [description]
+ * 대상 디렉토리와 하위의 모든 파일 및 서브 디렉토리를 재귀적으로 삭제하는 함수
+ * 
+ * @param string $dir 삭제할 대상 디렉토리 경로
+ * @return bool 삭제 성공 여부
  */
 function recurse_rmdir($dir)
 {
@@ -2085,7 +2200,13 @@ function recurse_rmdir($dir)
     }
 }
 
-function check_uploaded_file($i) // 업로드 파일을 확인하는 함수
+/**
+ * HTTP POST 파일 업로드($_FILES) 건에 대해 오류 여부, 허용 확장자, 최대 크기 초과 여부를 검증하는 함수
+ * 
+ * @param int $i 다중 업로드 파일 배열($_FILES) 내의 인덱스 번호
+ * @return array 검증 결과 성공 여부(bool), 추출된 확장자(string), 에러 메시지 목록(array)을 포함한 연관 배열
+ */
+function check_uploaded_file($i)
 
 {
     $error_msg = array();
@@ -2133,8 +2254,12 @@ function check_uploaded_file($i) // 업로드 파일을 확인하는 함수
 }
 
 /**
- * DB에 들어가는 상품코드 생성
- * @return [type] [description]
+ * 새로운 상품 등록 시 유일한 식별 코드를 생성하기 위해 임시 insert 작업을 실행하고 자동 증가 아이디와 오늘 날짜를 조합해 고유 코드를 반환하는 함수
+ * 
+ * 생성되는 코드 형식 예: "p0710-123"
+ * 
+ * @global mysqli $connect 데이터베이스 연결 객체
+ * @return string|null 생성된 고유 상품 코드 문자열
  */
 function generate_item_code()
 {
@@ -2152,9 +2277,10 @@ function generate_item_code()
 }
 
 /**
- * 상품 등록 시 옵션 보여주기
- * @param  [type] $row            [description]
- * @return [type] [description]
+ * 상품 수정 폼에서 기존 상품 레코드 정보에 기반해 기존 등록된 옵션 목록(옵션명, 수량, 품절/단종 라디오 버튼)을 화면에 복원하여 출력하는 함수
+ * 
+ * @param array $row 상품 정보 레코드 배열
+ * @return void
  */
 function restore_option($row)
 {
@@ -2197,11 +2323,13 @@ HEREDOC;
 }
 
 /**
- * 어드민 카테고리 분류
- * @param  [type] $mode           [모드]
- * @param  [type] $lcode          [대카테고리]
- * @param  [type] $mcode          [중카테고리]
- * @return [type] [description]
+ * 상품 등록 또는 수정 시 대/중 카테고리 분류 선택 상자(HTML select)를 화면에 렌더링하고, 기존 선택되었던 카테고리를 복원 표시하는 함수
+ * 
+ * @global mysqli $connect 데이터베이스 연결 객체
+ * @param string $mode 동작 모드 ('insert' 또는 'update')
+ * @param string $lcode 대카테고리 코드
+ * @param string $mcode 중카테고리 코드
+ * @return void
  */
 function restore_category($mode, $lcode, $mcode)
 {
@@ -2273,9 +2401,10 @@ HEREDOC;
 }
 
 /**
- * 시큐어 프로토콜이 적용되는지 확인
- * @param  [type] $port           [description]
- * @return [type] [description]
+ * 포트 번호 존재 여부에 기반하여 보안 프로토콜(https) 적용 여부를 확인하고 해당 프로토콜 문자열을 반환하는 함수
+ * 
+ * @param int|string|null $port SSL 포트 번호 정보
+ * @return string 프로토콜 접두어 ("https:" 또는 "http:")
  */
 function check_protocol($port)
 {
@@ -2289,9 +2418,11 @@ function check_protocol($port)
 }
 
 /**
- * 이메일 포맷
- * @param  [type] $info [description]
- * @return [type]       [description]
+ * 템플릿 메일 파일에서 자리 표시자(Placeholder)들을 회원 및 사이트 설정 정보로 치환하여 발송 가능한 HTML 이메일 본문을 완성해 반환하는 함수
+ * 
+ * @param array $info 회원 설정 및 사이트 정보 연관 배열
+ * @param string $file mail 디렉토리 내 치환에 사용할 템플릿 파일 이름
+ * @return string 치환이 완료된 HTML 메일 본문 문자열
  */
 function format_email($info, $file)
 {
@@ -2310,12 +2441,14 @@ function format_email($info, $file)
     return $template;
 }
 
-/*
-옵션재고 수량보다 많이 주문하는지 체크
-@param $product_num [주문제품번호]
-@param $selected_opt [주문옵션]
-@param $order_count [주문옵션 수량]
-2020.03.11
+/**
+ * 주문 시 선택한 옵션의 남은 재고 수량과 주문 요청 수량을 비교하여 초과 주문 여부를 검사하는 함수
+ * 
+ * @global mysqli $connect 데이터베이스 연결 객체
+ * @param int|string $product_num 주문하려는 상품 고유 번호
+ * @param string $selected_opt 선택된 상품 옵션 문자열
+ * @param int $order_count 주문하려는 수량
+ * @return string|null 재고 수량이 부족하여 초과 주문일 경우 "over" 반환, 정상인 경우 null 반환
  */
 function check_over_order($product_num, $selected_opt, $order_count)
 {
