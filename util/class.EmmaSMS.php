@@ -1,93 +1,99 @@
 <?php
+// ìƒìœ„ í´ëž˜ìŠ¤ ë¡œë“œ ë³´ìž¥
+include_once "class.http.php";
 
-class EmmaSMS {
+class EmmaSMS extends http {
+    
+    var $Args;
 
-	var $Args;
-	var $Host;
-	var $Port;
-	var $Path;
-	var $errMsg;
+    // í‘œì¤€ ìƒì„±ìžë¡œ ì´ˆê¸°í™” ë‹¨ì¼í™”
+    function __construct() {
+        parent::__construct();
+        $this->Args = array();
+        $this->Args['Lang'] = "PHP";
+        $this->Args['Char'] = "UTF-8";
 
-	function EmmaSMS() {
-		$this->Args = array();
-		$this->Host = "www.whoisweb.net";
-		$this->Port = 80;
-	}
+        $this->host = "smsapi.whoisweb.net";
+        $this->path = "/emma/EmmaSend.php";
+    }
 
-	function login($id, $pass) {
-		$this->Args['Id'] = $id;
-		$this->Args['Pass'] = $pass;
-	}
+    function login($id, $pass) {
+        $this->Args['Id'] = $id;
+        $this->Args['Pass'] = $pass;
+    }
 
-	function send($To, $From, $Message, $Date='') {
-		if(is_array($To)) $this->Args['To'] = implode(",",$To);
-		else $this->Args['To'] = $To;
-		$this->Args['From'] = $From;
-		$this->Args['Message'] = $Message;
-		$this->Args['Date'] = $Date;
+    function send($To, $From, $Message, $Date='', $SmsType='') {
+        if(is_array($To)) $this->Args['To'] = implode(",",$To);
+        else $this->Args['To'] = $To;
+        $this->Args['From'] = $From;
+        $this->Args['Message'] = $Message;
+        $this->Args['Date'] = $Date;
+        $this->Args['SmsType'] = $SmsType;
 
-		$this->setURL("http://www.whoisweb.net/emma/API/EmmaSend_All.php");
-		foreach($this->Args as $key => $value) $args[$key] = base64_encode($value);
-		$res = $this->xmlrpc_send('EmmaSend', $args);
+        foreach($this->Args as $key => $value) $args[$key] = base64_encode($value);
 
-		if($res['Code'] != '00') return $this->setError($res['CodeMsg']);
-		else return $res;
-	}
+        $this->variable["methodName"] = "EmmaSend";
+        $this->variable["params"] = json_encode($args);
 
-	function setURL($url) {
-		if(!$m = parse_url($url)) return $this->setError("ÆÄ½ÌÀÌ ºÒ°¡´ÉÇÑ URLÀÔ´Ï´Ù.");
+        $res = trim($this->getBody("post"));
 
-		$this->Host = $m['host'];
-		$this->Port = ($m['port']) ? $m['port'] : 80;
-		$this->Path = ($m['path']) ? $m['path'] : "/";
-		return true;
-	}
+        if(!$res) {
+            return $this->errMsg;
+        } else {
+            return json_decode($res,true);
+        }
+    }
 
-	function point() {
-		$this->setURL("http://www.whoisweb.net/emma/API/EmmaSend_All.php");
-		foreach($this->Args as $key => $value) $args[$key] = base64_encode($value);
-		$res = $this->xmlrpc_send('EmmaPoint', $args);
+    function point() {
+        foreach($this->Args as $key => $value) $args[$key] = base64_encode($value);
 
-		if($res['Code'] != '00') return $this->setError($res['CodeMsg']);
-		else return $res['Point'];
-	}
+        $this->variable["methodName"] = "EmmaPoint";
+        $this->variable["params"] = json_encode($args);
 
-	function statistics ($year, $month) {
-		if (!checkdate ($month, 1, $year)) return $this->setError("³¯Â¥°¡ Àß¸øµÇ¾ú½À´Ï´Ù.");
+        $res = trim($this->getBody("post"));
 
-		$this->Args['date'] = $year."-".$month;
+        if(!$res) {
+            return $this->errMsg;
+        } else {
+            $res = json_decode($res,true);
 
-		$this->setURL("http://www.whoisweb.net/emma/API/EmmaSend_All.php");
-		foreach($this->Args as $key => $value) $args[$key] = base64_encode($value);
-		$res = $this->xmlrpc_send('EmmaStatistic', $args);
+            if($res['Code'] != '00') {
+                return $res['CodeMsg'];
+            } else {
+                return $res['Point'];
+            }
+        }
+    }
 
-		if($res['Code'] != '00') return $this->setError($res['CodeMsg']);
-		else {
-			$this->Point = $res['Point'];
-			return $res['Statistics'];
-		}
-	}
+    function statistics ($year, $month) {
+        if (!checkdate ($month, 1, $year)) return $this->setError(" ë‚ ì§œê°€ ìž˜ëª»ë˜ì—ˆìŠµë‹ˆë‹¤. ");
 
-	function xmlrpc_send($func, $args) {
+        $this->Args['date'] = $year."-".$month;
 
-		$server = new xmlrpc_client($this->Path, $this->Host, $this->Port);
-		//$server->setDebug(1);
+        foreach($this->Args as $key => $value) $args[$key] = base64_encode($value);
 
-		$message = new xmlrpcmsg($func, array(xmlrpc_encode2($args)));
-		$result = $server->send($message);
+        $this->variable["methodName"] = "EmmaStatistic";
+        $this->variable["params"] = json_encode($args);
 
-		if($result) {
-			if($ret = $result->value()) {
-				return xmlrpc_decode2($ret);
-			} else return $this->setError($result->faultCode().":".$result->faultString());
-		} else return $this->setError("¼­¹ö·ÎÀÇ Á¢¼Ó¿¡ Àå¾Ö°¡ »ý°å½À´Ï´Ù.");
-	}
+        $res = trim($this->getBody("post"));
 
-	function setError($msg) {
-		$this->errMsg = $msg;
-		return false;
-	}
+        $res = json_decode($res,true);
 
+        if(!$res) {
+            return $this->errMsg;
+        } else {
+            if($res['Code'] != '00') {
+                return $this->setError($res['CodeMsg']);
+            } else {
+                $this->Point = $res['Point'];
+                return $res['Statistics'];
+            }
+        }
+    }
+
+    function setError($msg) {
+        $this->errMsg = $msg;
+        return false;
+    }
 }
-
 ?>

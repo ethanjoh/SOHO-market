@@ -1273,12 +1273,14 @@
   "1271": "checkout_old.php",
   "1272": "checkout.php",
   "1273": "confirmation.php",
+  "1274": "multiupload_edit_ok.php",
   "1275": "detail.php",
   "1276": "index.php",
   "1277": "(not use)checkout-ok.php",
   "1278": "order-delete.php",
   "1279": "order-detail.php",
   "1280": "order-list.php",
+  "1281": "multiupload_post_ok.php",
   "1282": "Cancel.php",
   "1283": "cancel_url.php",
   "1284": "CashReceipt.php",
@@ -1290,6 +1292,7 @@
   "1290": "admin_auth.php",
   "1291": "auth.php",
   "1292": "scm_auth.php",
+  "1293": "post_ok.php",
   "1295": "webhook_toss.php",
   "1296": "checkout.php"
 }

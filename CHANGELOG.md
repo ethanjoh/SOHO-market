@@ -4,13 +4,21 @@
 
 이 문서는 SOHO-market 프로젝트의 최초 시작부터 현재까지의 전체 개발 변경 이력을 기록합니다. 주요 개발 마일스톤과 커밋 히스토리를 바탕으로 구조화되었습니다.
 
-## [v1.4.1] - 2026-07-10 (보안 리팩토링 및 PHP 호환성 확보)
+## [v1.4.1] - 2026-07-10 (보안 리팩토링, PHP 호환성 확보 및 후이즈 SMS API 모듈 업데이트)
 
 ### 보안 및 히스토리 관리 (Security & Git History)
 
 - **구글 API 키 히스토리 노출 제거**
   - 과거 커밋 히스토리에 노출되어 있던 구글 API 키를 `git-filter-repo` 도구를 사용하여 안전하게 제거(마스킹)하였습니다.
   - 해당 키는 모든 과거 커밋에서 `GOOGLE_API_KEY_REMOVED` 문자열로 영구 치환되었습니다.
+
+### 후이즈 SMS API 모듈 업데이트 (Whois SMS API Integration)
+
+- **후이즈 SMS 연동 방식 현대화 및 디버깅**
+  - 기존 xmlrpc 연동 방식에서 JSON 및 HTTP POST 기반의 최신 후이즈 SMS API 규격으로 `class.EmmaSMS.php` 모듈을 전면 갱신하였습니다.
+  - 최신 PHP 8.0 이상에서 객체 초기화가 누락되던 생성자 구조(`__construct`) 문제를 표준 생성자 방식으로 이전하여 호환성 오류를 방지하였습니다.
+  - base64 인코딩을 거친 데이터를 전송하지 않고 원본 매개변수를 전송하여 문자 전송 실패를 유발하던 치명적인 변수 누락 버그(`json_encode($this->Args)` ➡️ `json_encode($args)`)를 수정하였습니다.
+  - 모듈 상속 의존성 보장을 위해 `class.EmmaSMS.php` 내에 `class.http.php` 자동 포함 코드를 삽입하였습니다.
 
 ### 최신 PHP 버전 호환성 리팩토링 (PHP 7.x/8.x Compatibility)
 

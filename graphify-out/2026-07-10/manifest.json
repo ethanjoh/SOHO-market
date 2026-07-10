@@ -5039,16 +5039,6 @@
     "ast_hash": "061e9da896f95da6535f41e7effb2d80",
     "semantic_hash": "061e9da896f95da6535f41e7effb2d80"
   },
-  "include/footer_old.php": {
-    "mtime": 1481176425.0,
-    "ast_hash": "af6b1ebc41627aa03427b2f444e598df",
-    "semantic_hash": "af6b1ebc41627aa03427b2f444e598df"
-  },
-  "include/footer_\uc11c\ud53c\uc2a4_4-29-224817-2025_Conflict.php": {
-    "mtime": 1529930695.0,
-    "ast_hash": "91a611f9ef16916a63bbe64b2d204d56",
-    "semantic_hash": "91a611f9ef16916a63bbe64b2d204d56"
-  },
   "include/header.php": {
     "mtime": 1783605817.3023174,
     "ast_hash": "3551e8217f8babddabc5904f56d155a8",
@@ -5869,11 +5859,6 @@
     "ast_hash": "bd01b065e3f59ec4719fa93990f66a6c",
     "semantic_hash": "bd01b065e3f59ec4719fa93990f66a6c"
   },
-  "shop/cart_old.php": {
-    "mtime": 1481176425.0,
-    "ast_hash": "70b7ddc915e5823e3439f11728b14d8a",
-    "semantic_hash": "70b7ddc915e5823e3439f11728b14d8a"
-  },
   "shop/catalog-list.php": {
     "mtime": 1581758559.0,
     "ast_hash": "285c6e55a83a5ee94b91af23dbe6527f",
@@ -5889,11 +5874,6 @@
     "ast_hash": "77aacaf9fed52075ec5a983ae1960ee7",
     "semantic_hash": ""
   },
-  "shop/checkout_old.php": {
-    "mtime": 1481176425.0,
-    "ast_hash": "f8dd430fa19191caaeddebe59f2b37f0",
-    "semantic_hash": "f8dd430fa19191caaeddebe59f2b37f0"
-  },
   "shop/confirmation.php": {
     "mtime": 1481176425.0,
     "ast_hash": "0ccfc6f182699326183b6d51afee8d69",
@@ -5903,11 +5883,6 @@
     "mtime": 1481176425.0,
     "ast_hash": "0581847a09ece5b021fa7f2cf5f916ea",
     "semantic_hash": "0581847a09ece5b021fa7f2cf5f916ea"
-  },
-  "shop/detail_old.php": {
-    "mtime": 1481176425.0,
-    "ast_hash": "d4772810fa91b4acda196579928a3b3c",
-    "semantic_hash": "d4772810fa91b4acda196579928a3b3c"
   },
   "shop/index.php": {
     "mtime": 1481176425.0,
@@ -5928,11 +5903,6 @@
     "mtime": 1733973974.0,
     "ast_hash": "1c53d1c28c68f683cbd630a10764eaf3",
     "semantic_hash": "1c53d1c28c68f683cbd630a10764eaf3"
-  },
-  "shop/order-list_\uc11c\ud53c\uc2a4_4-29-224830-2025_Conflict.php": {
-    "mtime": 1581750430.0,
-    "ast_hash": "5fe5a80ea40c83272f9874878b692240",
-    "semantic_hash": "5fe5a80ea40c83272f9874878b692240"
   },
   "shop/order-stat-list.php": {
     "mtime": 1535544258.0,
@@ -6085,8 +6055,8 @@
     "semantic_hash": "637776aa6f7496d069afe7520c845c8a"
   },
   "README.md": {
-    "mtime": 1783603724.190419,
-    "ast_hash": "8639217d0e9fcf0987ccd3215f3050bf",
+    "mtime": 1783606739.735979,
+    "ast_hash": "4b9c5018122a30b3d8aea8d13338bd80",
     "semantic_hash": ""
   },
   "admin/Classes/PHPExcel/Calculation/functionlist.txt": {
@@ -9830,8 +9800,8 @@
     "semantic_hash": ""
   },
   "CHANGELOG.md": {
-    "mtime": 1783605092.2443247,
-    "ast_hash": "3b6d52b11452f80ebff1ba0216e151c5",
+    "mtime": 1783639305.9251869,
+    "ast_hash": "cd185717c84c3db6e3ae00690c00a3b7",
     "semantic_hash": ""
   },
   "migration_implementation_plan.md": {
@@ -9842,6 +9812,11 @@
   "migration_walkthrough.md": {
     "mtime": 1783604757.0716505,
     "ast_hash": "7f7a6d74a78707f08c7b62a859ebd8c1",
+    "semantic_hash": ""
+  },
+  "soho-market.png": {
+    "mtime": 1783606671.6747394,
+    "ast_hash": "73368b0b0ce7dd2e68db1e15bd135795",
     "semantic_hash": ""
   }
 }
