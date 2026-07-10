@@ -7,12 +7,12 @@ include_once "../../../util/util.php";
 $connect = my_connect($host, $dbid, $dbpass, $dbname);
 ?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
+<html lang="ko">
 <head>
 <title>회원 메일 발송</title>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta charset="UTF-8" />
 <link rel="stylesheet" href="../../css/admin_layout.css" />
-<script language="JavaScript" src="../../../js/global.js" ></script>
+<script src="../../../js/global.js" ></script>
 <script language="JavaScript">
 <!--
 function send_check() {

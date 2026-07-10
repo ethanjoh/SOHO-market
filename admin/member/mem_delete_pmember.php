@@ -21,7 +21,7 @@ $rows1   = mysqli_fetch_array($result1);
 $query2 = "DELETE FROM pmember WHERE seq_num='$m_num' ";
 mysqli_query($connect, $query2);
 
-echo ("<meta http-equiv='content-type' content='text/html; charset=UTF-8' />
+echo ("<meta charset="UTF-8" />
     <script>
       window.alert('회원정보를 삭제했습니다.')
     </script>

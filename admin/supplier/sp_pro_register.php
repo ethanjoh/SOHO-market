@@ -7,29 +7,21 @@ include_once "../../util/util.php";
 $connect = my_connect($host, $dbid, $dbpass, $dbname);
 ?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
+<html lang="ko">
 <head>
 <title>B2B SCM</title>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta charset="UTF-8" />
 <link rel="stylesheet" href="../css/admin_layout.css" />
-<link rel="stylesheet" type="text/css" href="../chrometheme/chromestyle.css" />
-<script language="JavaScript" src="../../js/global.js" ></script>
-<script language="JavaScript" src="../js/admin.js" ></script>
-<script language="JavaScript" src="../js/chrome.js" >
-/***********************************************
-* Chrome CSS Drop Down Menu- (c) Dynamic Drive DHTML code library (www.dynamicdrive.com)
-* This notice MUST stay intact for legal use
-* Visit Dynamic Drive at http://www.dynamicdrive.com/ for full source code
-***********************************************/
-</script>
+<script src="../../js/global.js" ></script>
+<script src="../js/admin.js" ></script>
 <!-- popup calendar -->
 <script type="text/javascript" src="../js/datepicker.js"></script>
 <link href="../css/datepicker.css" rel="stylesheet" type="text/css" />
 <!-- popup calendar end -->
-<!-- smarteditor -->
+<!-- ckeditor -->
 <link href="css/default.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="js/HuskyEZCreator.js" charset="utf-8"></script>
-<!-- smarteditor end -->
+<script src="/bbs/ckeditor/ckeditor.js" charset="utf-8"></script>
+<!-- ckeditor end -->
 </head>
 <body>
 <!-- wrapper -->
@@ -403,15 +395,11 @@ include "../include/admin_bottom.php";
 <!-- wrapper end -->
 </body>
 <script>
-var oEditors = [];
-// 마지막 옵션은 체감 속도 증진을 위해서 페이지 로딩 완료시 까지 화면 표시를 하지 않는 옵션 입니다.
-// 개발 작업시에는 이 값을 false로 설정 하세요.
-//nhn.husky.EZCreator.createInIFrame(oEditors, "contents", "SEditorSkin.html", "createSEditorInIFrame", null,false);
-nhn.husky.EZCreator.createInIFrame({
-	oAppRef: oEditors,
-	elPlaceHolder: "contents",
-	sSkinURI: "SEditorSkin.html",
-	fCreator: "createSEditorInIFrame"
-});
+if (typeof CKEDITOR !== 'undefined') {
+    CKEDITOR.replace('contents', {
+        width: '100%',
+        height: '350px'
+    });
+}
 </script>
 </html>

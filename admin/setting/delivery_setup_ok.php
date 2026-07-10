@@ -40,7 +40,7 @@ if ($mode == 'insert') {
         $re_url = "delivery_setup.php";
         redirect($re_url);
 
-        // echo("<meta http-equiv='content-type' content='text/html; charset=UTF-8' />
+        // echo("<meta charset="UTF-8" />
         //     <script>
         //    window.alert('정상적으로 설정하였습니다.');
         //    </script>");
@@ -69,7 +69,7 @@ if ($mode == 'insert') {
         $re_url = "delivery_setup.php";
         redirect($re_url);
 
-        // echo("<meta http-equiv='content-type' content='text/html; charset=UTF-8' />
+        // echo("<meta charset="UTF-8" />
         //       <script>
         //    window.alert('정상적으로 수정하였습니다.');
         //    </script>");

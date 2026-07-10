@@ -13,10 +13,10 @@ $row     = mysqli_fetch_array($result);
 $address = $row['addr1'] . " " . $row['addr2'];
 ?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
+<html lang="ko">
   <head>
     <title>B2B SCM</title>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta charset="UTF-8" />
     <link rel="stylesheet" type="text/css" media="print" href="../css/print.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="../css/screen.css" />
   </head>

@@ -33,10 +33,10 @@ $address2 = $sp_row['o_addr1'] . " " . $sp_row['o_addr2'];
 ?>
 
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
+<html lang="ko">
 	<head>
 		<title><?=$sp_row['company_name'];?> 발주서</title>
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta charset="UTF-8" />
 		<link rel="stylesheet" type="text/css" media="print" href="../css/supplier_print.css">
 		<link rel="stylesheet" type="text/css" media="screen" href="../css/supplier.css">
 		<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>

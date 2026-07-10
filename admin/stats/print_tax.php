@@ -11,7 +11,7 @@ include_once "../include/class.trade_note.php";
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta charset="UTF-8" />
 <title>세금계산서 출력</title>
 </head>
 

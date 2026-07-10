@@ -35,10 +35,10 @@ $address2 = $sp_row['o_addr1'] . " " . $sp_row['o_addr2'];
 
 ?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
+<html lang="ko">
 	<head>
 		<title><?=$sp_row['company_name'];?> 발주서</title>
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta charset="UTF-8" />
 		<style type="text/css">
 		body {
 			font-family: "돋움", "새굴림", verdana, helvetica;

@@ -3,7 +3,7 @@
 <html>
 <head>
 <title>거래명세서</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta charset="UTF-8" />
 <style type="text/css">
 .border_out {font-family: 굴림;border: 3px double black;}
 body, table, tr, td {font-family:굴림, verdana, arial; font-size: 10px;color: #000000; border:0px;}

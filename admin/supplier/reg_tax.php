@@ -22,13 +22,13 @@ $sql = "INSERT INTO sp_tax_list (id, title, goods_name, sum, reg_date, paid)
 $result = mysqli_query($connect, $sql);
 
 if ($result) {
-    echo "<meta http-equiv='content-type' content='text/html; charset=UTF-8' />
+    echo "<meta charset="UTF-8" />
 	<script>
 		alert('정산을 등록했습니다.')
 	</script>
 	<meta http-equiv='refresh' content='0; URL=reg_stat_list.php'>";
 } else {
-    echo "<<meta http-equiv='content-type' content='text/html; charset=UTF-8' />
+    echo "<<meta charset="UTF-8" />
 	<script>
 		alert('DB 에러가 발생했습니다.')
 	</script>

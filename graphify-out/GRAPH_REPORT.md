@@ -1,16 +1,16 @@
 # Graph Report - SOHO-market  (2026-07-10)
 
 ## Corpus Check
-- 1012 files · ~1,558,224 words
+- 753 files · ~1,314,151 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 4761 nodes · 8463 edges · 1085 communities (1010 shown, 75 thin omitted)
-- Extraction: 86% EXTRACTED · 14% INFERRED · 0% AMBIGUOUS · INFERRED: 1221 edges (avg confidence: 0.63)
+- 3561 nodes · 6173 edges · 786 communities (734 shown, 52 thin omitted)
+- Extraction: 86% EXTRACTED · 14% INFERRED · 0% AMBIGUOUS · INFERRED: 889 edges (avg confidence: 0.64)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `4f1a3b4c`
+- Built from commit: `2f58b89d`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -35,29 +35,24 @@
 - CKEditor Rich Text Editors
 - Admin Portal Functions
 - PHPExcel Excel2007 Writers
+- .buildStacks
 - PHPMailer Email Utility
+- Wa
 - CKEditor Rich Text Editors
-- CKEditor Rich Text Editors
-- CodeMirror Code Editors
 - CodeMirror Code Editors
 - CodeMirror Code Editors
 - Admin Portal Functions
 - Highcharts Data Visualizations
 - CKEditor Rich Text Editors
-- CKEditor Rich Text Editors
 - Highcharts Data Visualizations
-- PHPExcel File Readers
 - Admin Portal Functions
 - Payment Gateway APIs
 - jQuery Plugin Collection
 - Admin Portal Functions
 - 개인 백업
 - jQuery Plugin Collection
-- Admin Portal Functions
 - 개인 백업
 - CKEditor Rich Text Editors
-- Admin Portal Functions
-- Admin Portal Functions
 - jQuery Plugin Collection
 - Product Category Admin
 - Admin Portal Functions
@@ -70,27 +65,21 @@
 - Admin Portal Functions
 - PHPExcel Worksheet Management
 - Admin Portal Functions
-- Admin Portal Functions
-- Admin Portal Functions
-- CodeMirror Code Editors
 - CodeMirror Code Editors
 - 개인 백업
-- CodeMirror Code Editors
-- Admin Portal Functions
-- Admin Portal Functions
+- $S
+- $c
 - jQuery Plugin Collection
 - Admin Portal Functions
+- ea
+- k
 - Admin Portal Functions
 - Admin Portal Functions
 - Admin Portal Functions
 - Admin Portal Functions
-- CodeMirror Code Editors
-- CodeMirror Code Editors
 - Admin Portal Functions
 - PHPExcel File Readers
 - Admin Portal Functions
-- Admin Portal Functions
-- CodeMirror Code Editors
 - CKEditor Rich Text Editors
 - Admin Portal Functions
 - Admin Portal Functions
@@ -99,25 +88,15 @@
 - Admin Portal Functions
 - Admin Portal Functions
 - Admin Portal Functions
-- Admin Portal Functions
-- Admin Portal Functions
-- CKEditor Rich Text Editors
 - PHPExcel Core Libraries
 - Admin Portal Functions
 - Admin Portal Functions
-- Admin Portal Functions
-- Admin Portal Functions
-- Admin Portal Functions
 - CKEditor Rich Text Editors
-- CodeMirror Code Editors
 - PHPExcel Core Libraries
 - Util Components
 - Admin Portal Functions
 - Admin Portal Functions
 - Js Global Components
-- Admin Portal Functions
-- CodeMirror Code Editors
-- Admin Portal Functions
 - Admin Portal Functions
 - Admin Portal Functions
 - Admin Portal Functions
@@ -125,15 +104,9 @@
 - CodeMirror Code Editors
 - Member Php Php Mailer Examples Script...
 - PHPExcel Core Libraries
-- Highcharts Data Visualizations
-- Admin Portal Functions
-- Admin Portal Functions
-- Admin Portal Functions
-- Admin Portal Functions
 - jQuery Plugin Collection
 - Web JS Ui Jquery Ui 22 Custom Components
 - PHPExcel Core Libraries
-- Admin Portal Functions
 - Admin Portal Functions
 - Admin Portal Functions
 - Admin Portal Functions
@@ -145,54 +118,33 @@
 - Admin Portal Functions
 - Admin Portal Functions
 - Admin Portal Functions
-- Admin Portal Functions
-- Admin Portal Functions
 - jQuery Ui Min Components
 - Admin Portal Functions
 - Admin Portal Functions
 - Admin Portal Functions
-- CKEditor Rich Text Editors
-- CodeMirror Code Editors
 - PHPExcel File Readers
 - CKEditor Rich Text Editors
 - CodeMirror Code Editors
-- Admin Portal Functions
 - PHPExcel Worksheet Management
-- Admin Portal Functions
-- Admin Portal Functions
-- Js Owl Carousel Min Components
 - Web JS Animations Animations Components
 - Web JS Ui Jquery Ui Tabs Components
-- Admin Portal Functions
 - Js Bootstrap Min Components
 - jQuery Price Slider Components
 - Member Php Php Mailer Examples Script...
 - PHPMailer Email Utility
 - Web JS Ui Jquery Ui Core Components
 - Admin Portal Functions
-- Admin Portal Functions
-- Admin Portal Functions
-- Admin Portal Functions
-- CKEditor Rich Text Editors
-- Admin Portal Functions
 - CKEditor Rich Text Editors
 - CKEditor Rich Text Editors
 - Payment Gateway APIs
 - PHPMailer Email Utility
-- Member Php Php Mailer Test Fakepopser...
-- Admin Portal Functions
-- Admin Portal Functions
-- CKEditor Rich Text Editors
-- PHPExcel Core Libraries
 - CKEditor Rich Text Editors
 - BBS Boards & Forums
 - jQuery Validation Min Components
 - PHPMailer Email Utility
 - Member Php Php Mailer Test Test Callb...
 - CKEditor Rich Text Editors
-- CKEditor Rich Text Editors
 - PHPExcel Core Libraries
-- Admin Portal Functions
 - Admin Portal Functions
 - Admin Portal Functions
 - Admin Portal Functions
@@ -212,72 +164,80 @@
 3. `PHPMailerTest` - 60 edges
 4. `ChangeLog` - 60 edges
 5. `n()` - 51 edges
-6. `b()` - 50 edges
-7. `b()` - 49 edges
-8. `$Element()` - 48 edges
-9. `$Element()` - 48 edges
-10. `$Element()` - 48 edges
+6. `b()` - 49 edges
+7. `$Element()` - 48 edges
+8. `r()` - 36 edges
+9. `SMTP` - 36 edges
+10. `d()` - 35 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `bD()` --indirect_call--> `c()`  [INFERRED]
-  admin/assets/morris.js-0.4.3/spec/vendor/jquery-1.8.2.min.js → admin/assets/morris.js-0.4.3/spec/vendor/raphael-2.1.0.min.js
-- `P()` --indirect_call--> `c()`  [INFERRED]
-  admin/ckeditor/samples/old/htmlwriter/assets/outputforflash/swfobject.js → admin/ckeditor/samples/js/sf.js
-- `Ya()` --indirect_call--> `$b()`  [INFERRED]
-  admin/ckeditor/skins/bootstrapck/sample/js/jquery-1.11.0.min.js → admin/ckeditor/samples/toolbarconfigurator/lib/codemirror/codemirror.js
-- `oa()` --indirect_call--> `Oa()`  [INFERRED]
-  admin/ckeditor/samples/toolbarconfigurator/lib/codemirror/codemirror.js → admin/js/highcharts.js
-- `ga()` --indirect_call--> `Ha()`  [INFERRED]
-  admin/ckeditor/samples/toolbarconfigurator/lib/codemirror/javascript.js → admin/ckeditor/skins/bootstrapck/sample/js/jquery-1.11.0.min.js
+- `Pa()` --indirect_call--> `Ja()`  [INFERRED]
+  admin/js/highcharts.js → bbs/ckeditor/samples/toolbarconfigurator/lib/codemirror/codemirror.js
+- `ga()` --indirect_call--> `ba()`  [INFERRED]
+  web/js/jquery-2.1.4.min.js → bbs/ckeditor/ckeditor.js
+- `Pa()` --indirect_call--> `Ja()`  [INFERRED]
+  js/highcharts.js → bbs/ckeditor/samples/toolbarconfigurator/lib/codemirror/codemirror.js
+- `xa()` --indirect_call--> `Ua()`  [INFERRED]
+  web/js/jquery-2.1.4.min.js → bbs/ckeditor/samples/toolbarconfigurator/lib/codemirror/codemirror.js
+- `cq()` --indirect_call--> `bc()`  [INFERRED]
+  admin/assets/morris.js-0.4.3/raphael-min.js → bbs/ckeditor/skins/bootstrapck/sample/js/jquery-1.11.0.min.js
 
 ## Import Cycles
 - None detected.
 
-## Communities (1085 total, 75 thin omitted)
+## Communities (786 total, 52 thin omitted)
 
 ### Community 0 - "PHPExcel Worksheet Management"
-Cohesion: 0.17
-Nodes (18): Fn(), k(), _n(), H(), vb(), d(), e(), b() (+10 more)
+Cohesion: 0.22
+Nodes (18): gt(), ht(), zn(), H(), vb(), b(), D(), F() (+10 more)
 
 ### Community 1 - "jQuery Plugin Collection"
 Cohesion: 0.05
-Nodes (82): $(), bt_mousesheelNumber(), bt_pauseOnHoverConfig(), ca(), cf_c(), cf_e(), cf_getAdjust(), cf_getAlignPadding() (+74 more)
+Nodes (37): $(), ca(), cf_c(), cf_e(), cf_getItemAdjustMinMax(), cf_getKeyCode(), cf_setCookie(), getTime() (+29 more)
 
 ### Community 2 - "PHPExcel Formula Functions"
-Cohesion: 0.27
-Nodes (13): bt(), gt(), ht(), mt(), ot(), pt(), vt(), yt() (+5 more)
+Cohesion: 0.29
+Nodes (8): bt(), mt(), ot(), pt(), yt(), s(), d(), e()
+
+### Community 3 - "PHPExcel Formula Functions"
+Cohesion: 0.12
+Nodes (10): k(), i(), o(), s(), t(), u(), a(), b() (+2 more)
 
 ### Community 4 - "PHPExcel DateTime Calculations"
 Cohesion: 0.40
 Nodes (4): w(), F(), Hn(), ra()
 
 ### Community 5 - "CodeMirror Code Editors"
-Cohesion: 0.06
-Nodes (70): A(), ae(), $b(), Ba(), Bb(), Bd(), be(), ce() (+62 more)
+Cohesion: 0.15
+Nodes (3): $Document(), $Event(), $Window()
 
 ### Community 9 - "EmmaSMS Gateway Integration"
 Cohesion: 0.03
 Nodes (59): ChangeLog, Version 0.90 (Tue, April 17 2001), Version 0.92 (Tue, May 15 2001), Version 0.98 (Tue, May 22 2001), Version 1.02 (Wed, May 23 2001), Version 1.03 (Thu, May 24 2001), Version 1.05 (Tue, May 29 2001), Version 1.06 (Fri, Jun 01 2001) (+51 more)
 
 ### Community 11 - "CodeMirror Code Editors"
-Cohesion: 0.06
-Nodes (49): Ac(), Ad(), af(), Bb(), Bc(), Bd(), Bf(), Ca() (+41 more)
+Cohesion: 0.09
+Nodes (46): bt_mousesheelNumber(), bt_pauseOnHoverConfig(), cf_getAdjust(), cf_getAlignPadding(), cf_getItemsAdjust(), cf_getPadding(), cf_getSynchArr(), cf_mapWrapperSizes() (+38 more)
 
 ### Community 13 - "CKEditor Rich Text Editors"
 Cohesion: 0.07
-Nodes (38): $a(), b(), c(), Ca(), D(), Da(), ec(), f() (+30 more)
+Nodes (39): $a(), b(), c(), Ca(), D(), Da(), ec(), f() (+31 more)
 
 ### Community 14 - "jQuery Plugin Collection"
 Cohesion: 0.05
 Nodes (35): cf_c(), cf_e(), cf_getAdjust(), cf_getAlignPadding(), cf_getItemAdjustMinMax(), cf_getItemsAdjust(), cf_mapWrapperSizes(), cf_setCookie() (+27 more)
 
 ### Community 15 - "CKEditor Rich Text Editors"
-Cohesion: 0.07
-Nodes (38): $a(), b(), c(), Ca(), D(), Da(), ec(), f() (+30 more)
+Cohesion: 0.24
+Nodes (18): G(), ga(), hd(), Hf(), Jf(), Mf(), Nf(), oa() (+10 more)
 
 ### Community 16 - "jQuery Plugin Collection"
-Cohesion: 0.10
-Nodes (33): j(), k(), A(), aa(), B(), c(), d(), da() (+25 more)
+Cohesion: 0.22
+Nodes (26): A(), aa(), B(), c(), d(), da(), ea(), f() (+18 more)
+
+### Community 17 - "CKEditor Rich Text Editors"
+Cohesion: 0.22
+Nodes (16): $b(), Ba(), Cf(), df(), Ef(), fd(), Hc(), mc() (+8 more)
 
 ### Community 19 - "Admin Portal Functions"
 Cohesion: 0.09
@@ -287,29 +247,29 @@ Nodes (44): cdata(), clean(), colorLines(), coverage(), create(), Doc(), error()
 Cohesion: 0.04
 Nodes (3): check_img_extension(), err_msg(), get_bbs_title()
 
-### Community 22 - "PHPMailer Email Utility"
-Cohesion: 0.05
-Nodes (35): CHANGELOG, [v1.0.0] - 2016-01-19 ~ 2016-02-18 (초기 빌드 및 기본 커머스 아키텍처 수립), [v1.1.0] - 2016-02-18 ~ 2016-03-05 (PG 결제 연동 및 데이터 관리 시스템 구축), [v1.2.0] - 2016-03-05 ~ 2016-04-30 (개인 회원 체계 및 메일링 시스템 도입), [v1.3.0] - 2016-05-02 ~ 2016-07-22 (모바일 결제 확장 및 배송 시스템 세분화), [v1.4.0] - 2016-09-22 ~ 2026-07-09 (결제 안정성 및 재고 정합성 강화, 보안 리팩토링, 토스페이먼츠 마이그레이션), [v1.4.1] - 2026-07-10 (보안 리팩토링, PHP 호환성 확보 및 후이즈 SMS API 모듈 업데이트), [v1.4.2] - 2026-07-10 (유틸리티 함수 주석 문서화 및 가독성 개선) (+27 more)
+### Community 21 - ".buildStacks"
+Cohesion: 0.18
+Nodes (17): hg(), Jc(), L(), Ob(), Od(), Of(), Pd(), Qc() (+9 more)
 
-### Community 24 - "CKEditor Rich Text Editors"
-Cohesion: 0.21
-Nodes (45): a(), b(), ba(), c(), ca(), d(), e(), ea() (+37 more)
+### Community 22 - "PHPMailer Email Utility"
+Cohesion: 0.04
+Nodes (45): CHANGELOG, [v1.0.0] - 2016-01-19 ~ 2016-02-18 (초기 빌드 및 기본 커머스 아키텍처 수립), [v1.1.0] - 2016-02-18 ~ 2016-03-05 (PG 결제 연동 및 데이터 관리 시스템 구축), [v1.2.0] - 2016-03-05 ~ 2016-04-30 (개인 회원 체계 및 메일링 시스템 도입), [v1.3.0] - 2016-05-02 ~ 2016-07-22 (모바일 결제 확장 및 배송 시스템 세분화), [v1.4.0] - 2016-09-22 ~ 2026-07-09 (결제 안정성 및 재고 정합성 강화, 보안 리팩토링, 토스페이먼츠 마이그레이션), [v1.4.1] - 2026-07-10 (보안 리팩토링, PHP 호환성 확보 및 후이즈 SMS API 모듈 업데이트), [v1.4.2] - 2026-07-10 (유틸리티 함수 주석 문서화 및 가독성 개선) (+37 more)
+
+### Community 25 - "Wa"
+Cohesion: 0.25
+Nodes (12): c(), Aa(), db(), ia(), If(), Kb(), ke(), Kf() (+4 more)
 
 ### Community 26 - "CKEditor Rich Text Editors"
 Cohesion: 0.21
 Nodes (45): a(), b(), ba(), c(), ca(), d(), e(), ea() (+37 more)
 
-### Community 27 - "CodeMirror Code Editors"
-Cohesion: 0.19
-Nodes (47): B(), aa(), N(), re(), A(), Aa(), b(), Ba() (+39 more)
-
 ### Community 30 - "CodeMirror Code Editors"
-Cohesion: 0.19
-Nodes (48): aa(), $d(), Ja(), M(), N(), A(), Aa(), b() (+40 more)
+Cohesion: 0.17
+Nodes (49): aa(), M(), N(), A(), Aa(), b(), Ba(), ca() (+41 more)
 
 ### Community 31 - "CodeMirror Code Editors"
-Cohesion: 0.08
-Nodes (47): A(), ae(), $b(), Ba(), be(), Cd(), ce(), Cf() (+39 more)
+Cohesion: 0.07
+Nodes (32): Ac(), Bb(), Bd(), cg(), dd(), eb(), Ed(), ff() (+24 more)
 
 ### Community 33 - "Admin Portal Functions"
 Cohesion: 0.04
@@ -319,25 +279,17 @@ Nodes (4): IsNumber(), mail_send2(), MM_openBrWindow(), send_post()
 Cohesion: 0.08
 Nodes (24): $(), A(), Ab(), da(), ea(), F(), Fa(), Fb() (+16 more)
 
-### Community 35 - "CKEditor Rich Text Editors"
-Cohesion: 0.08
-Nodes (26): C(), D(), u(), y(), z(), q(), t(), q() (+18 more)
-
 ### Community 37 - "CKEditor Rich Text Editors"
 Cohesion: 0.08
 Nodes (26): C(), D(), u(), y(), z(), q(), t(), q() (+18 more)
 
 ### Community 38 - "Highcharts Data Visualizations"
 Cohesion: 0.08
-Nodes (27): A(), Ab(), da(), ea(), F(), Fa(), Fb(), Ga() (+19 more)
-
-### Community 40 - "PHPExcel File Readers"
-Cohesion: 0.05
-Nodes (39): CKEditor 4.0, CKEditor 4.0.1, CKEditor 4.0.1.1, CKEditor 4.0.2, CKEditor 4.0.3, CKEditor 4.1, CKEditor 4.1.1, CKEditor 4.1.2 (+31 more)
+Nodes (26): A(), Ab(), da(), ea(), F(), Fa(), Fb(), Ga() (+18 more)
 
 ### Community 41 - "Admin Portal Functions"
 Cohesion: 0.06
-Nodes (17): bb(), Eb(), fb(), fc(), hc(), I(), ic(), J() (+9 more)
+Nodes (29): J(), bb(), Eb(), fb(), fc(), hb(), hc(), I() (+21 more)
 
 ### Community 43 - "Payment Gateway APIs"
 Cohesion: 0.05
@@ -348,7 +300,7 @@ Cohesion: 0.12
 Nodes (40): bt_mousesheelNumber(), bt_pauseOnHoverConfig(), cf_getKeyCode(), cf_getPadding(), cf_getSynchArr(), cf_sortParams(), debug(), deprecated() (+32 more)
 
 ### Community 47 - "Admin Portal Functions"
-Cohesion: 0.10
+Cohesion: 0.09
 Nodes (29): an(), assertAbove(), assertBelow(), assertEqual(), assertInstanceOf(), Assertion(), AssertionError(), assertKeys() (+21 more)
 
 ### Community 51 - "개인 백업"
@@ -361,7 +313,7 @@ Nodes (30): _(), G(), sa(), wa(), x(), ya(), a(), b() (+22 more)
 
 ### Community 54 - "개인 백업"
 Cohesion: 0.08
-Nodes (19): $(), an(), dt(), er(), ft(), Kn(), ln(), nn() (+11 more)
+Nodes (20): $(), an(), dt(), er(), ft(), Kn(), ln(), nn() (+12 more)
 
 ### Community 62 - "jQuery Plugin Collection"
 Cohesion: 0.08
@@ -381,7 +333,7 @@ Nodes (4): iframeHeight(), iframesHeight(), mfnSliderOfferThumb(), mfnSliderOffe
 
 ### Community 73 - "Admin Portal Functions"
 Cohesion: 0.09
-Nodes (15): a(), b$(), bD(), bF(), bi(), bm(), bZ(), ca() (+7 more)
+Nodes (22): L(), a(), b$(), bC(), bF(), bh(), bi(), bj() (+14 more)
 
 ### Community 78 - "Admin Portal Functions"
 Cohesion: 0.14
@@ -391,41 +343,41 @@ Nodes (28): addEvent(), addImage(), callAjaxForHTML5(), callFileUploader(), chec
 Cohesion: 0.10
 Nodes (11): checkEdit(), checkEdit2(), checkRegister(), checkRegisterP(), find_id(), find_p_id(), find_p_pw(), find_pw() (+3 more)
 
+### Community 80 - "Admin Portal Functions"
+Cohesion: 0.06
+Nodes (21): ascii(), callNext(), cb(), compact(), create(), each(), failAssertion(), getFakes() (+13 more)
+
 ### Community 82 - "Admin Portal Functions"
 Cohesion: 0.12
-Nodes (19): bj(), a(), bA(), bB(), bC(), bD(), bE(), bF() (+11 more)
+Nodes (18): a(), bA(), bB(), bC(), bD(), bE(), bF(), bG() (+10 more)
 
 ### Community 89 - "PHPExcel Worksheet Management"
 Cohesion: 0.08
 Nodes (25): 0.2.10 - 26th June 2012, 0.2.1 - 28th Feb 2012, 0.2.2 - 29th Feb 2012, 0.2.3 - 6th Mar 2012, 0.2.4 - 8th March 2012, 0.2.5 - 15th March 2012, 0.2.6 - 18th March 2012, 0.2.7 - 2nd April 2012 (+17 more)
 
 ### Community 90 - "Admin Portal Functions"
-Cohesion: 0.14
-Nodes (3): $Form(), $H(), v()
-
-### Community 93 - "Admin Portal Functions"
-Cohesion: 0.11
-Nodes (3): $Json(), $S(), $Template()
+Cohesion: 0.13
+Nodes (4): $Form(), $H(), v(), registerConfirm()
 
 ### Community 94 - "CodeMirror Code Editors"
-Cohesion: 0.16
-Nodes (24): $c(), Cc(), da(), Ec(), fa(), Gd(), jb(), Jd() (+16 more)
-
-### Community 95 - "CodeMirror Code Editors"
-Cohesion: 0.12
-Nodes (22): Ac(), Bf(), Cf(), dd(), $e(), eb(), Ed(), fb() (+14 more)
+Cohesion: 0.18
+Nodes (24): Ad(), Ca(), Cc(), da(), Dc(), Ec(), fa(), fb() (+16 more)
 
 ### Community 99 - "개인 백업"
 Cohesion: 0.17
 Nodes (20): a(), b(), c(), f(), g(), h(), i(), k() (+12 more)
 
-### Community 104 - "CodeMirror Code Editors"
-Cohesion: 0.14
-Nodes (29): Ca(), Cc(), da(), Dc(), Ec(), Gd(), Hc(), jb() (+21 more)
+### Community 109 - "$c"
+Cohesion: 0.17
+Nodes (14): Bc(), $c(), $d(), gb(), ib(), le(), lf(), ma() (+6 more)
 
-### Community 110 - "jQuery Plugin Collection"
-Cohesion: 0.16
-Nodes (3): ha(), HideShowPassword(), r()
+### Community 112 - "ea"
+Cohesion: 0.36
+Nodes (6): Cd(), ea(), $f(), Ja(), Sc(), T()
+
+### Community 113 - "k"
+Cohesion: 0.40
+Nodes (5): j(), Fn(), k(), _n(), K()
 
 ### Community 118 - "Admin Portal Functions"
 Cohesion: 0.10
@@ -439,37 +391,21 @@ Nodes (6): coverageClass(), escapeRegexp(), HTMLCov(), image(), Mocha(), require
 Cohesion: 0.13
 Nodes (8): $A(), createWrapper(), destroyWrapper(), findWrapper(), getCacheForID(), getEventID(), getWrappersForEventName(), $()
 
-### Community 124 - "CodeMirror Code Editors"
-Cohesion: 0.15
-Nodes (18): c(), Aa(), de(), ee(), ff(), ge(), ia(), If() (+10 more)
-
-### Community 125 - "CodeMirror Code Editors"
-Cohesion: 0.18
-Nodes (20): G(), hd(), hg(), Jf(), L(), Mf(), oa(), Ob() (+12 more)
-
 ### Community 128 - "Admin Portal Functions"
 Cohesion: 0.27
 Nodes (3): Context(), Suite(), visit()
 
-### Community 140 - "CodeMirror Code Editors"
-Cohesion: 0.12
-Nodes (22): c(), Aa(), Ad(), Cd(), ea(), $f(), ia(), ib() (+14 more)
-
 ### Community 142 - "CKEditor Rich Text Editors"
-Cohesion: 0.17
-Nodes (9): c(), cp(), cq(), cr(), d(), e(), i(), bY() (+1 more)
-
-### Community 151 - "Admin Portal Functions"
-Cohesion: 0.13
-Nodes (5): f(), b(), c(), fontProperty(), h()
+Cohesion: 0.12
+Nodes (17): C(), E(), a(), c(), cp(), cq(), cr(), d() (+9 more)
 
 ### Community 156 - "Admin Portal Functions"
-Cohesion: 0.19
-Nodes (11): i(), m(), p(), q(), t(), qb(), sb(), wb() (+3 more)
+Cohesion: 0.24
+Nodes (7): i(), m(), p(), q(), t(), e(), q()
 
 ### Community 158 - "Admin Portal Functions"
 Cohesion: 0.23
-Nodes (14): k(), u(), x(), e(), i(), n(), r(), t() (+6 more)
+Nodes (13): D(), k(), M(), u(), x(), e(), i(), n() (+5 more)
 
 ### Community 162 - "Admin Portal Functions"
 Cohesion: 0.28
@@ -484,20 +420,8 @@ Cohesion: 0.15
 Nodes (3): $Json(), $(), at()
 
 ### Community 172 - "Admin Portal Functions"
-Cohesion: 0.30
-Nodes (12): a(), bindHover(), d(), Datepicker(), f(), i(), n(), o() (+4 more)
-
-### Community 173 - "Admin Portal Functions"
-Cohesion: 0.18
-Nodes (3): $Cookie(), $ElementList(), $Event()
-
-### Community 174 - "Admin Portal Functions"
-Cohesion: 0.18
-Nodes (3): $Cookie(), $ElementList(), $Event()
-
-### Community 177 - "CodeMirror Code Editors"
-Cohesion: 0.20
-Nodes (14): af(), Bc(), df(), dg(), Ef(), eg(), lf(), ma() (+6 more)
+Cohesion: 0.25
+Nodes (14): j(), a(), bindHover(), d(), Datepicker(), f(), i(), n() (+6 more)
 
 ### Community 180 - "PHPExcel Core Libraries"
 Cohesion: 0.13
@@ -515,10 +439,6 @@ Nodes (5): closeWin(), MM_findObj(), MM_showHideLayers(), MM_swapImage(), setCoo
 Cohesion: 0.18
 Nodes (12): assertType(), createPropertyMatcher(), createTest(), exposedName(), isMatcher(), match(), matchObject(), matchOne() (+4 more)
 
-### Community 199 - "CodeMirror Code Editors"
-Cohesion: 0.27
-Nodes (13): a(), b(), d(), f(), k(), n(), p(), $c() (+5 more)
-
 ### Community 204 - "Admin Portal Functions"
 Cohesion: 0.21
 Nodes (5): addEndCol(), initTableWidget(), sortNumeric(), sortString(), sortTable()
@@ -528,36 +448,16 @@ Cohesion: 0.20
 Nodes (15): check_approved_id(), get_cart_items_data(), show_cart_item(), show_checkout_item(), show_item_info(), show_items_on_catalog(), show_items_on_main(), show_me_wholesale_price() (+7 more)
 
 ### Community 208 - "CodeMirror Code Editors"
-Cohesion: 0.35
-Nodes (10): a(), b(), d(), f(), k(), n(), p(), Ra() (+2 more)
+Cohesion: 0.18
+Nodes (17): a(), b(), d(), f(), k(), n(), p(), af() (+9 more)
 
 ### Community 209 - "Member Php Php Mailer Examples Script..."
 Cohesion: 0.30
 Nodes (4): clone(), getNativeFlags(), indexOf(), runTokens()
 
 ### Community 210 - "PHPExcel Core Libraries"
-Cohesion: 0.18
+Cohesion: 0.17
 Nodes (7): EventEmitter(), dependencies, jquery, raphael, main, name, version
-
-### Community 218 - "Highcharts Data Visualizations"
-Cohesion: 0.25
-Nodes (11): j(), hb(), nb(), P(), r(), tb(), ub(), vb() (+3 more)
-
-### Community 219 - "Admin Portal Functions"
-Cohesion: 0.27
-Nodes (4): getBackEnd(), getFrontEnd(), getLineEnd(), getLineStart()
-
-### Community 220 - "Admin Portal Functions"
-Cohesion: 0.11
-Nodes (3): $Json(), $S(), $Template()
-
-### Community 221 - "Admin Portal Functions"
-Cohesion: 0.27
-Nodes (4): getBackEnd(), getFrontEnd(), getLineEnd(), getLineStart()
-
-### Community 222 - "Admin Portal Functions"
-Cohesion: 0.27
-Nodes (4): getBackEnd(), getFrontEnd(), getLineEnd(), getLineStart()
 
 ### Community 224 - "jQuery Plugin Collection"
 Cohesion: 0.56
@@ -570,10 +470,6 @@ Nodes (5): focusable(), TODO: namespace this event, TODO: determine which cases 
 ### Community 226 - "PHPExcel Core Libraries"
 Cohesion: 0.22
 Nodes (3): HTMLFilter(), tln_sanitize(), tln_tagprint()
-
-### Community 233 - "Admin Portal Functions"
-Cohesion: 0.14
-Nodes (4): $Cookie(), $Document(), $ElementList(), $Window()
 
 ### Community 249 - "Admin Portal Functions"
 Cohesion: 0.31
@@ -595,33 +491,17 @@ Nodes (6): animate(), close(), css(), initialise(), open(), toggle()
 Cohesion: 0.39
 Nodes (6): a(), i(), n(), r(), s(), t()
 
-### Community 274 - "CodeMirror Code Editors"
-Cohesion: 0.38
-Nodes (6): he(), zf(), n(), p(), v(), w()
-
 ### Community 276 - "PHPExcel File Readers"
 Cohesion: 0.17
 Nodes (11): Manual Verification, [MODIFY] [shop/checkout.php](file:///e:/개인_백업/www/SOHO-market/shop/checkout.php), [NEW] [pay/fail_toss.php](file:///e:/개인_백업/www/SOHO-market/pay/fail_toss.php), [NEW] [pay/payreq_toss.php](file:///e:/개인_백업/www/SOHO-market/pay/payreq_toss.php), [NEW] [pay/success_toss.php](file:///e:/개인_백업/www/SOHO-market/pay/success_toss.php), [NEW] [pay/webhook_toss.php](file:///e:/개인_백업/www/SOHO-market/pay/webhook_toss.php), [Payment Gateway Migration], Proposed Changes (+3 more)
 
 ### Community 284 - "CodeMirror Code Editors"
-Cohesion: 0.38
-Nodes (6): he(), zf(), n(), p(), v(), w()
-
-### Community 286 - "Admin Portal Functions"
-Cohesion: 0.67
-Nodes (5): C(), D(), E(), M(), a()
-
-### Community 294 - "Js Owl Carousel Min Components"
-Cohesion: 0.67
-Nodes (4): a(), b(), c(), e()
+Cohesion: 0.17
+Nodes (17): A(), ae(), be(), ce(), de(), ee(), Fe(), ge() (+9 more)
 
 ### Community 297 - "Web JS Animations Animations Components"
 Cohesion: 0.47
 Nodes (4): animateElement(), animateInfinite(), animateOnce(), randomClass()
-
-### Community 299 - "Admin Portal Functions"
-Cohesion: 0.40
-Nodes (5): create(), mock(), prepareSandboxFromConfig(), spy(), stub()
 
 ### Community 305 - "Js Bootstrap Min Components"
 Cohesion: 0.90
@@ -635,21 +515,9 @@ Nodes (3): i(), s(), t()
 Cohesion: 0.50
 Nodes (3): focusable(), TODO: determine which cases actually cause this to happen, visible()
 
-### Community 312 - "Admin Portal Functions"
-Cohesion: 0.67
-Nodes (4): L(), bC(), bh(), bp()
-
-### Community 313 - "Admin Portal Functions"
-Cohesion: 0.50
-Nodes (4): ascii(), isCircular(), isDOMNode(), isElement()
-
 ### Community 314 - "Admin Portal Functions"
 Cohesion: 0.67
 Nodes (4): callCallback(), getCallback(), getCallbackError(), getChangingValue()
-
-### Community 315 - "Admin Portal Functions"
-Cohesion: 0.67
-Nodes (4): callNext(), cb(), makeDone(), next()
 
 ### Community 327 - "CKEditor Rich Text Editors"
 Cohesion: 0.33
@@ -662,22 +530,6 @@ Nodes (5): show_buyer_detail(), show_order_status(), get_pg_info(), show_logisti
 ### Community 330 - "PHPMailer Email Utility"
 Cohesion: 0.29
 Nodes (6): 1. `.gitignore` 업데이트 & 캐시 제거, 2. 프로젝트 전체 히스토리 & 수정 날짜 문서화 완료, 3. 토스페이먼츠(Toss Payments) 최신 API 결제 모듈 마이그레이션, Git/GitHub 보안 조치, 전체 히스토리 문서화 및 토스페이먼츠 마이그레이션 동기화 완료 보고서, 🔍 검증 및 동기화 결과, 🛠️ 조치 및 신규 개발 내역
-
-### Community 331 - "Member Php Php Mailer Test Fakepopser..."
-Cohesion: 0.50
-Nodes (3): Checking Your Installation, Documentation, Installation
-
-### Community 332 - "Admin Portal Functions"
-Cohesion: 0.67
-Nodes (3): compact(), each(), getFakes()
-
-### Community 333 - "Admin Portal Functions"
-Cohesion: 0.67
-Nodes (3): failAssertion(), mirrorPropAsAssertion(), verifyIsStub()
-
-### Community 340 - "PHPExcel Core Libraries"
-Cohesion: 0.50
-Nodes (3): Demo, Installation, Previous version
 
 ### Community 353 - "PHPMailer Email Utility"
 Cohesion: 0.50
@@ -696,19 +548,19 @@ Cohesion: 0.67
 Nodes (3): show_order_list(), cut_string_utf8(), get_pg_info2()
 
 ## Knowledge Gaps
-- **251 isolated node(s):** `name`, `version`, `main`, `jquery`, `name` (+246 more)
+- **210 isolated node(s):** `name`, `version`, `main`, `name`, `version` (+205 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **75 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **52 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `tag()` connect `Admin Portal Functions` to `Admin Portal Functions`, `Admin Portal Functions`, `Admin Portal Functions`?**
-  _High betweenness centrality (0.067) - this node is a cross-community bridge._
-- **Why does `Progress()` connect `Admin Portal Functions` to `Admin Portal Functions`, `Admin Portal Functions`, `Admin Portal Functions`, `Admin Portal Functions`?**
-  _High betweenness centrality (0.044) - this node is a cross-community bridge._
-- **Why does `B()` connect `CodeMirror Code Editors` to `Admin Portal Functions`?**
-  _High betweenness centrality (0.036) - this node is a cross-community bridge._
+- **Why does `Ja()` connect `ea` to `Highcharts Data Visualizations`, `Highcharts Data Visualizations`, `CKEditor Rich Text Editors`, `Wa`, `CodeMirror Code Editors`, `CodeMirror Code Editors`?**
+  _High betweenness centrality (0.083) - this node is a cross-community bridge._
+- **Why does `Pa()` connect `Highcharts Data Visualizations` to `ea`?**
+  _High betweenness centrality (0.060) - this node is a cross-community bridge._
+- **Why does `i()` connect `Admin Portal Functions` to `Admin Portal Functions`, `CKEditor Rich Text Editors`, `Admin Portal Functions`, `Admin Portal Functions`, `Admin Portal Functions`?**
+  _High betweenness centrality (0.040) - this node is a cross-community bridge._
 - **Are the 6 inferred relationships involving `PHPMailer` (e.g. with `.testLineBreaks()` and `.testLineLength()`) actually correct?**
   _`PHPMailer` has 6 INFERRED edges - model-reasoned connections that need verification._
 - **Are the 12 inferred relationships involving `e()` (e.g. with `A()` and `j()`) actually correct?**
@@ -716,4 +568,4 @@ _Questions this graph is uniquely positioned to answer:_
 - **Are the 6 inferred relationships involving `n()` (e.g. with `c()` and `e()`) actually correct?**
   _`n()` has 6 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `name`, `version`, `main` to the rest of the system?**
-  _261 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _219 weakly-connected nodes found - possible documentation gaps or missing edges._

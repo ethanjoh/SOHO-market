@@ -285,7 +285,7 @@ $simg_chk = "N";
     $result1 = mysqli_query($connect, $dbinsert1);
 
     if ($result1) {
-        echo ("<meta http-equiv='content-type' content='text/html; charset=UTF-8' />
+        echo ("<meta charset="UTF-8" />
        <script>
 	    window.alert('상품을 등록했습니다.')
 	   </script>
@@ -405,7 +405,7 @@ $temp1_char = ", s_image='Y' , s_image_name='$temp1' ";
 
     if ($result1) {
         echo ("
-	   <meta http-equiv='content-type' content='text/html; charset=UTF-8' />
+	   <meta charset="UTF-8" />
        <script>
 	    window.alert('상품 등록정보를 수정했습니다.')
 	   </script>
@@ -441,7 +441,7 @@ $temp1_char = ", s_image='Y' , s_image_name='$temp1' ";
     $result2 = mysqli_query($connect, $sql);
 
     if ($result2) {
-        echo "<meta http-equiv='content-type' content='text/html; charset=UTF-8' />
+        echo "<meta charset="UTF-8" />
        			<script type='text/javascript'>
 	    		window.alert('상품을 복사했습니다.')
 	   			</script>";

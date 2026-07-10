@@ -19,7 +19,6 @@ SOHO-market은 PHP 및 MySQL 환경 기반의 반응형 쇼핑몰(Commerce) 웹 
 - **Database**: MySQL / MariaDB
 - **Frontend**: HTML5, CSS3, JavaScript (jQuery 기반 동적 UI 제어)
 - **Libraries & Modules**:
-  - [PHPExcel](admin/Classes/PHPExcel): 관리자 기능 내 엑셀 다운로드 및 업로드/데이터 반출입 처리
   - [CKEditor](bbs/ckeditor): 게시판 및 관리자용 Rich Text 에디터 탑재
   - [TossPayments (구 LG U+ XPay)](lgpay): 신용카드, 에스크로, 현금영수증 API 연동 모듈 직접 탑재
 

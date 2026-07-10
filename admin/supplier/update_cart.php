@@ -68,7 +68,7 @@ if ($from == 'basket' && $mode == 'del') {
         $result1 = mysqli_query($connect, $query1);
         $row1    = mysqli_fetch_array($result1);
 
-        $msg = "<meta http-equiv='content-type' content='text/html; charset=UTF-8' />\n";
+        $msg = "<meta charset="UTF-8" />\n";
         $msg .= "<script>\n";
         $msg .= "window.alert('장바구니에 담았습니다.')\n";
         $msg .= "</script>\n";
@@ -76,7 +76,7 @@ if ($from == 'basket' && $mode == 'del') {
         echo json_encode(array("msg" => $msg, "qty" => $row1['cnt']));
 
     } else {
-        $msg = "<meta http-equiv='content-type' content='text/html; charset=UTF-8' />\n";
+        $msg = "<meta charset="UTF-8" />\n";
         $msg .= "<script>\n";
         $msg .= "window.alert('장바구니에 담지 못했습니다.')\n";
         $msg .= "</script>\n";

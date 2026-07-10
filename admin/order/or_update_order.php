@@ -47,13 +47,13 @@ if ($mode == "up_tcost") {
 if (!$result) {
     err_msg('수정 중 DB 오류가 발생했습니다.');
 } else if ($from != "quot") {
-    echo "<meta http-equiv='content-type' content='text/html; charset=UTF-8' />
+    echo "<meta charset="UTF-8" />
    			<script>
    				alert('변경완료')
 			</script>
    			<meta http-equiv='Refresh' content='0; URL=or_view.php?mode=$mode&oid=$oid&key=$key&key_value=$key_value&page=$page'>";
 } else {
-    echo "<meta http-equiv='content-type' content='text/html; charset=UTF-8' />
+    echo "<meta charset="UTF-8" />
    			<script>
    				alert('변경완료')
 			</script>

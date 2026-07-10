@@ -4,7 +4,7 @@ $url = "http://".$_SERVER["HTTP_HOST"];
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta charset="UTF-8" />
 <title>이미지 삽입</title>
 <script type="text/javascript">
 function putImg(id, file) {

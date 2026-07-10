@@ -13,10 +13,9 @@ $connect=my_connect($host,$dbid,$dbpass,$dbname);
 <html lang="ko">
   <head>
     <title>B2B SCM</title>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta charset="UTF-8" />
     <link rel="stylesheet" href="../css/jquery-ui.min.css">
     <link rel="stylesheet" href="../css/admin_layout.css" />
-    <link rel="stylesheet" href="../chrometheme/chromestyle.css" />
     <!-- <link href="../css/datepicker.css" rel="stylesheet" type="text/css" /> -->
     <!-- popup calendar end -->
     <script src="../js/jquery-1.11.1.min.js"></script>
@@ -26,13 +25,6 @@ $connect=my_connect($host,$dbid,$dbpass,$dbname);
     <script src="../js/jq_datepicker.js"></script>
     <script src="../../js/global.js" ></script>
     <script src="../js/admin.js" ></script>
-    <script src="../js/chrome.js" >
-    /***********************************************
-    * Chrome CSS Drop Down Menu- (c) Dynamic Drive DHTML code library (www.dynamicdrive.com)
-    * This notice MUST stay intact for legal use
-    * Visit Dynamic Drive at http://www.dynamicdrive.com/ for full source code
-    ***********************************************/
-    </script>
     <!-- popup calendar -->
     <script src="../js/showChart.js"></script>
   </head>

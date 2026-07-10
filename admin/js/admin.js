@@ -287,6 +287,9 @@ function send_post(id)
 {
  var form = document.form1;
 
+  if (typeof CKEDITOR !== 'undefined' && CKEDITOR.instances.contents) {
+      CKEDITOR.instances.contents.updateElement();
+  }
 
   if(!form.name.value) {
      alert("상품명을 입력하세요!");

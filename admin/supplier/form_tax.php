@@ -2,7 +2,7 @@
 <html>
 <head>
 <title>역발행 세금계산서</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta charset="UTF-8" />
 <style type="text/css">
 
 .bout {

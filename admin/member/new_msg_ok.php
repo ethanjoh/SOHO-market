@@ -38,7 +38,7 @@ else{
      err_msg('데이터베이스 오류가 발생하였습니다.');
   }
   else {
-     echo("<meta http-equiv='content-type' content='text/html; charset=UTF-8' />
+     echo("<meta charset="UTF-8" />
 	       <script>
 	      window.alert('쪽지를 보냈습니다.');
 	      </script>");

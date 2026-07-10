@@ -4,6 +4,95 @@
 
 이 문서는 SOHO-market 프로젝트의 최초 시작부터 현재까지의 전체 개발 변경 이력을 기록합니다. 주요 개발 마일스톤과 커밋 히스토리를 바탕으로 구조화되었습니다.
 
+## [v1.5.4] - 2026-07-10 (admin/css 미사용 파일 8개 삭제)
+
+### 아키텍처 개선 및 리팩토링 (Architecture & Refactoring)
+
+- **`admin/css` 디렉토리 내 미사용 파일 정리**
+  - PHP/HTML/JS 전체를 분석하여 단 한 곳에서도 참조되지 않는 파일 8개를 삭제하였습니다.
+  - 삭제된 파일: `.DS_Store`, `autocomplete.css`, `bg_button_a.gif`, `bg_button_span.gif`, `shade.gif`, `shadeactive.gif`, `tabcontent.css`, `table.css`
+  - 잔존 파일: 10개 (모두 실제 사용 중)
+
+## [v1.5.3] - 2026-07-10 (admin/js 미사용 파일 13개 삭제)
+
+### 아키텍처 개선 및 리팩토링 (Architecture & Refactoring)
+
+- **`admin/js` 디렉토리 내 미사용 파일 정리**
+  - PHP/HTML/CSS 전체를 분석하여 단 한 곳에서도 참조되지 않는 파일 13개를 삭제하였습니다.
+  - 삭제된 파일: `autocomplete.js`, `custom.js`, `down.gif`, `external-dragging-calendar.js`, `floating-1.12.js`, `jquery-1.2.6.pack.js`, `jquery-ui-1.9.2.custom.min.js`, `jquery-ui.js`, `jquery.ui.autocomplete.html.js`, `morris-script.js`, `prototype-1.6.0.3.js`, `tabcontent.js`, `table.js`
+  - 잔존 파일: 22개 (모두 실제 사용 중)
+
+## [v1.5.2] - 2026-07-10 (미사용 tabcontent.js/css Dead Code 제거)
+
+### 아키텍처 개선 및 리팩토링 (Architecture & Refactoring)
+
+- **`tabcontent.js` 및 `tabcontent.css` 미사용 로드 구문 제거**
+  - 세 파일에서 로드는 하고 있으나 실제 탭 메뉴 구조(`ddtabcontent()` 호출, 탭 HTML 구조)가 전혀 존재하지 않아 아무 기능도 하지 않는 Dead Code로 판명된 로드 구문을 제거하였습니다.
+  - **대상 파일:** [pmem_sendmail_list.php](/admin/member/pmem_sendmail_list.php), [pmember_list.php](/admin/member/pmember_list.php), [main_setup.php](/admin/setting/main_setup.php)
+
+## [v1.5.1] - 2026-07-10 (관리자단 구형 HTML 마크업 표준화 일괄 정리)
+
+### 아키텍처 개선 및 리팩토링 (Architecture & Refactoring)
+
+- **구형 HTML 마크업 패턴 3종 일괄 Cleanup**
+  - 관리자단(`admin`) 전체 PHP/HTML 파일에 잔존하던 하위 호환 목적의 구형 마크업 패턴들을 HTML5 웹 표준에 맞게 일괄 정리하였습니다.
+  - **① charset meta 태그 현대화:**
+    - 변경 전: `<meta http-equiv="content-type" content="text/html; charset=UTF-8" />`
+    - 변경 후: `<meta charset="UTF-8" />`
+  - **② `<script>` 태그의 `language` 속성 제거:**
+    - 변경 전: `<script language="JavaScript" src="...">`
+    - 변경 후: `<script src="...">`
+    - HTML5에서 JavaScript는 기본 스크립트 언어이므로 명시 불필요.
+  - **③ 외부 스크립트 태그 내부 라이선스 주석 제거 (비표준 구조 정정):**
+    - 변경 전: `<script src="...">/\* 라이선스 주석 \*/</script>`
+    - 변경 후: `<script src="..."></script>`
+    - 소스 `src` 속성이 있는 스크립트 태그 내부에 인라인 콘텐츠를 포함하는 것은 HTML 표준 위반이므로 제거.
+  - **영향을 받은 파일:** 관리자단 내 PHP/HTML 파일 총 93개.
+
+## [v1.5.0] - 2026-07-10 (관리자단 HTML 마크업 HTML5 표준화 일괄 적용)
+
+### 아키텍처 개선 및 리팩토링 (Architecture & Refactoring)
+
+- **XHTML 혼용 선언 → HTML5 표준 마크업 일괄 정규화**
+  - 관리자단(`admin`) 전체 PHP/HTML 파일에서 구형 XHTML 혼용 방식으로 선언되어 있던 HTML 시작 태그를 HTML5 웹 표준에 맞게 일괄 정리하였습니다.
+  - **변경 전:** `<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">`
+  - **변경 후:** `<html lang="ko">`
+  - XHTML의 XML 네임스페이스(`xmlns`) 속성 및 XML 다국어(`xml:lang`) 속성은 HTML5 문서에서는 불필요하므로 제거하여, 브라우저가 올바른 HTML5 렌더링 모드로 동작하고 마크업 유효성 검사 오류가 발생하지 않도록 정비하였습니다.
+  - **영향을 받은 파일:** 관리자단 내 PHP/HTML 파일 총 50개.
+
+## [v1.4.9] - 2026-07-10 (유실된 chromestyle.css 및 chrome.js 참조 구문 일괄 제거)
+
+### 아키텍처 개선 및 리팩토링 (Architecture & Refactoring)
+
+- **유실된 외부 라이브러리 참조 구문 일괄 Cleanup**
+  - 실제 워크스페이스 내에서 파일이 유실되어 브라우저 콘솔에서 `404 Not Found` 및 자바스크립트 미동작 오류를 발생시키던 구형 드롭다운 메뉴용 `chromestyle.css` 및 `chrome.js` 로딩 구문을 일괄 삭제하였습니다.
+  - **작업 방법:** 정규식(Regex) 기반의 일괄 소스코드 치환 스크립트([cleanup_chrome_menu.py](/scratch/cleanup_chrome_menu.py))를 작성하여 인코딩 깨짐 없이 안전하게 처리하였습니다.
+  - **영향을 받은 파일:** 관리자단(`admin`) 내 공급업체 관리, 회원 관리, 주문 관리, 카테고리 관리 등 관련 PHP/HTML 파일 총 36개.
+
+## [v1.4.8] - 2026-07-10 (스마트에디터를 공통 CKEditor로 전면 교체 및 구형 자산 제거)
+
+### 아키텍처 개선 및 리팩토링 (Architecture & Refactoring)
+
+- **네이버 스마트에디터(SmartEditor) ➡️ CKEditor 교체 마이그레이션**
+  - 관리자단 내 스마트에디터를 사용 중이던 모든 폼을 이전에 구축한 단일 공통 [CKEditor](/bbs/ckeditor/ckeditor.js) 경로로 전면 이관하였습니다.
+  - **대상 파일:**
+    - 공급업체 관리: [sendmail_form.php](/admin/supplier/sendmail_form.php), [sp_pro_register.php](/admin/supplier/sp_pro_register.php)
+    - 회원 관리: [pmem_sendmail_list.php](/admin/member/pmem_sendmail_list.php), [sendmail_each.php](/admin/member/inc/sendmail_each.php)
+- **자바스크립트 전송 검증 함수 보강**
+  - [admin/js/admin.js](/admin/js/admin.js)의 상품 등록용 `send_post()` 및 각 메일 전송 검증 함수 내부에서 폼 제출(Submit) 직전에 CKEditor 인스턴스의 변경 상태를 강제 바인딩하도록 `CKEDITOR.instances.contents.updateElement()` 구문을 추가하여 입력 데이터 유실 오류를 원천 차단했습니다.
+- **네이버 스마트에디터 잔여 자산 완전 삭제 (Cleanup)**
+  - 마이그레이션 완료 후 더 이상 참조되지 않는 스마트에디터 스킨 및 라이브러리 디렉토리 전체(`admin/supplier/SEditorSkin.html`, `admin/supplier/js/`, `admin/member/js/`, `admin/setting/js/` 등)를 완전히 제거하여 저장소 용량을 최적화하고 코드 파편화를 해결했습니다.
+
+## [v1.4.7] - 2026-07-10 (CKEditor 공통 라이브러리 디렉토리 통합)
+
+### 아키텍처 개선 및 리팩토링 (Architecture & Refactoring)
+
+- **CKEditor 중복 자산 통합 및 정리**
+  - 관리자단([admin/ckeditor](/admin/ckeditor))과 사용자 게시판단([bbs/ckeditor](/bbs/ckeditor))으로 중복 적재되어 대용량 리소스(약 15MB, 수천 개 파일)를 양분하고 있던 CKEditor 라이브러리를 `bbs/ckeditor` 경로 하나로 통합하였습니다.
+  - 이를 통해 중복된 타사(Third-party) 정적 자산을 제거하여 소스 저장소 크기를 절감하고 개발 형상 관리를 최적화하였습니다.
+- **관리자 공통 헤더 로드 경로 재매핑**
+  - 관리자단 공통 헤더 파일([admin/include/header.php](/admin/include/header.php))에서 CKEditor 스크립트를 호출하던 경로를 새로운 통합 공통 경로인 `/bbs/ckeditor/ckeditor.js`로 변경하여, 관리자 내 모든 CKEditor 호출 프로세스가 공통 라이브러리를 안전하게 공유하도록 리팩토링하였습니다.
+
 ## [v1.4.6] - 2026-07-10 (장바구니 연산 중복 제거 및 결제 정보 구조 리팩토링)
 
 ### 아키텍처 개선 및 리팩토링 (Architecture & Refactoring)

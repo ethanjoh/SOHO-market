@@ -10,10 +10,10 @@ include_once "../../util/util.php";
 
 ?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
+<html lang="ko">
 <head>
 <title>홈택스 업로드용 엑셀양식</title>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta charset="UTF-8" />
 <style>
 br {
   mso-data-placement:same-cell;

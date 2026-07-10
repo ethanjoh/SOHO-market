@@ -9,13 +9,13 @@ if ($mode == "cancel") {
     $result = mysqli_query($connect, $update);
 
     if ($result) {
-        echo "<meta http-equiv='content-type' content='text/html; charset=UTF-8' />
+        echo "<meta charset="UTF-8" />
 					<script>
 						alert('취소처리했습니다.')
 					</script>
 					<meta http-equiv='Refresh' content='0; URL=monthly_stat_list.php'>";
     } else {
-        echo "<meta http-equiv='content-type' content='text/html; charset=UTF-8' />
+        echo "<meta charset="UTF-8" />
 					<script>
 						alert('취소처리에 실패했습니다.')
 					</script>
@@ -27,13 +27,13 @@ if ($mode == "cancel") {
     $result = mysqli_query($connect, $update);
 
     if ($result) {
-        echo "<meta http-equiv='content-type' content='text/html; charset=UTF-8' />
+        echo "<meta charset="UTF-8" />
 					<script>
 						alert('삭제하였습니다.')
 					</script>
 					<meta http-equiv='Refresh' content='0; URL=monthly_stat_list.php'>";
     } else {
-        echo "<meta http-equiv='content-type' content='text/html; charset=UTF-8' />
+        echo "<meta charset="UTF-8" />
 					<script>
 						alert('삭제처리에 실패했습니다.')
 					</script>

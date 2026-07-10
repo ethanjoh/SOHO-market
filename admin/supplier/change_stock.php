@@ -27,7 +27,7 @@ if(!$result){
    err_msg('수정 중 DB 오류가 발생했습니다.');
 }
 else {
-   echo "<meta http-equiv='content-type' content='text/html; charset=UTF-8' />
+   echo "<meta charset="UTF-8" />
    			<script language='javascript' type='text/javascript'>
    				alert('재고를 수정했습니다.')
 			</script>

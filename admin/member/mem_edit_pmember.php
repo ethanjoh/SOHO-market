@@ -77,7 +77,7 @@ if ($sms_row['sms'] == "Y") {
 if (!$result1) {
     err_msg('DB 오류가 발생했습니다.');
 } else {
-    echo "<meta http-equiv='content-type' content='text/html; charset=UTF-8' />
+    echo "<meta charset="UTF-8" />
      	   <script>
         	window.alert('정상적으로 수정했습니다.')
 	       </script> ";

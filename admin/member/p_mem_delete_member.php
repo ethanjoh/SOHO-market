@@ -23,7 +23,7 @@ mysqli_query($connect, $query2);
 msg('회원정보를 삭제했습니다.');
 
 if ($from == "mail") {
-    echo "<meta http-equiv='content-type' content='text/html; charset=UTF-8' />
+    echo "<meta charset="UTF-8" />
     <script>
       window.close();
     </script>";

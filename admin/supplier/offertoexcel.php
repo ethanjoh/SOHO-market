@@ -23,10 +23,10 @@ $address = $row['addr1'] . " " . $row['addr2'];
 
 ?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
+<html lang="ko">
 <head>
 <title>발주서 </title>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta charset="UTF-8" />
 </head>
 <body>
 <table width="600" border="0" align="center" cellpadding="0" cellspacing="0">

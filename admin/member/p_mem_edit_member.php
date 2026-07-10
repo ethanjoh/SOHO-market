@@ -114,7 +114,7 @@ if (!$result1) {
 
     show_msg($msg, $url);
 
-    // echo "<meta http-equiv='content-type' content='text/html; charset=UTF-8' />
+    // echo "<meta charset="UTF-8" />
     //         <script>
     //         window.alert('정상적으로 수정했습니다.')
     //     </script> ";

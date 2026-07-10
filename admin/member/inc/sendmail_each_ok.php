@@ -55,7 +55,7 @@ if ($_FILES['upfile']['name'] && $_FILES['upfile']['size']) {
      
 mail($receiver_email,$subject,$bodytext,$mailheaders);
        
-echo " <meta http-equiv='content-type' content='text/html; charset=UTF-8' />
+echo " <meta charset="UTF-8" />
    <script language=\"JavaScript\">
     alert(\"메일을 보냈습니다.\");
    </script>

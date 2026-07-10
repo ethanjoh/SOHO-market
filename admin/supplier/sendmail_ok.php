@@ -61,7 +61,7 @@ for ($i = 0; $i < sizeof($num); $i++) {
     mail($to, $subject, $message, $headers);
 }
 
-echo "<meta http-equiv='content-type' content='text/html; charset=UTF-8' />
+echo "<meta charset="UTF-8" />
 	   <script>
 		 window.alert('메일을 발송했습니다.')
 		 self.close()

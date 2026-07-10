@@ -7,12 +7,12 @@ include_once "../../util/util.php";
 $connect = my_connect($host, $dbid, $dbpass, $dbname);
 ?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
+<html lang="ko">
 <head>
 <title>회원 메일 발송</title>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta charset="UTF-8" />
 <link rel="stylesheet" href="../css/admin_layout.css" />
-<script language="JavaScript" src="../../js/global.js" ></script>
+<script src="../../js/global.js" ></script>
 <script language="JavaScript">
 <!--
 function send_check() {
@@ -40,13 +40,15 @@ function send_check() {
 		form.contents.focus();
 		return;
 	}
-	oEditors.getById["contents"].exec("UPDATE_IR_FIELD", []);
+	if (typeof CKEDITOR !== 'undefined' && CKEDITOR.instances.contents) {
+		CKEDITOR.instances.contents.updateElement();
+	}
 	form.submit();
 }
 //-->
 </script>
 <link href="css/default.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="js/HuskyEZCreator.js" charset="utf-8"></script>
+<script src="/bbs/ckeditor/ckeditor.js" charset="utf-8"></script>
 </head>
 <body topmargin="0" style="background-color:#ffffff">
   <form method="post" name="mail" action="sendmail_ok.php" enctype="multipart/form-data">
@@ -105,15 +107,11 @@ for ($i = 0; $i < sizeof($num); $i++) {
   </form>
 </body>
 <script>
-var oEditors = [];
-// 마지막 옵션은 체감 속도 증진을 위해서 페이지 로딩 완료시 까지 화면 표시를 하지 않는 옵션 입니다.
-// 개발 작업시에는 이 값을 false로 설정 하세요.
-//nhn.husky.EZCreator.createInIFrame(oEditors, "contents", "SEditorSkin.html", "createSEditorInIFrame", null, false);
-nhn.husky.EZCreator.createInIFrame({
-	oAppRef: oEditors,
-	elPlaceHolder: "contents",
-	sSkinURI: "SEditorSkin.html",
-	fCreator: "createSEditorInIFrame"
-});
+if (typeof CKEDITOR !== 'undefined') {
+    CKEDITOR.replace('contents', {
+        width: '100%',
+        height: '350px'
+    });
+}
 </script>
 </html>

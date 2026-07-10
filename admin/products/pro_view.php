@@ -7,21 +7,13 @@ include_once "../../util/util.php";
 $connect = my_connect($host, $dbid, $dbpass, $dbname);
 ?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
+<html lang="ko">
 <head>
 <title>B2B SCM</title>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta charset="UTF-8" />
 <link rel="stylesheet" href="../css/admin_layout.css" />
-<link rel="stylesheet" type="text/css" href="../chrometheme/chromestyle.css" />
-<script language="JavaScript" src="../../js/global.js" ></script>
-<script language="JavaScript" src="../js/admin.js" ></script>
-<script language="JavaScript" src="../js/chrome.js" >
-/***********************************************
-* Chrome CSS Drop Down Menu- (c) Dynamic Drive DHTML code library (www.dynamicdrive.com)
-* This notice MUST stay intact for legal use
-* Visit Dynamic Drive at http://www.dynamicdrive.com/ for full source code
-***********************************************/
-</script>
+<script src="../../js/global.js" ></script>
+<script src="../js/admin.js" ></script>
 <!-- smarteditor css -->
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 </head>
