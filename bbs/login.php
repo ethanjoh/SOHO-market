@@ -12,22 +12,7 @@ $connect=my_connect($host,$dbid,$dbpass,$dbname);
 <link rel="stylesheet" type="text/css" href="../css/shop_layout.css" />
 <link rel="stylesheet" type="text/css" href="css/bbs.css" />
 <script language="JavaScript" src="../js/global.js"></script>
-<!-- category -->
-<link rel="stylesheet" type="text/css" href="../css/ddsmoothmenu.css" />
-<!--[if lte IE 7]>
-<style type="text/css">
-html .ddsmoothmenu{height: 1%;} /*Holly Hack for IE7 and below*/
-</style>
-<![endif]-->
-<script type="text/javascript" src="../js/jquery-1.2.6.pack.js"></script>
-<script type="text/javascript" src="../js/ddsmoothmenu.js">
-/***********************************************
-* Smooth Navigational Menu- (c) Dynamic Drive DHTML code library (www.dynamicdrive.com)
-* This notice MUST stay intact for legal use
-* Visit Dynamic Drive at http://www.dynamicdrive.com/ for full source code
-***********************************************/
-</script>
-<!-- category end -->
+
 <script language="JavaScript">
 <!--
 function send() {

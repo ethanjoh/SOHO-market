@@ -4959,8 +4959,8 @@
       "source_file": "admin/include/admin_auth.php",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "e_\uac1c\uc778_\ubc31\uc5c5_www_soho_shoppingmall_admin_include_admin_auth_php",
-      "community": 705,
+      "id": "admin_include_admin_auth",
+      "community": 114,
       "norm_label": "admin_auth.php"
     },
     {
@@ -6170,7 +6170,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "admin_js_jindo_min",
-      "community": 233,
+      "community": 5,
       "norm_label": "jindo.min.js"
     },
     {
@@ -6180,7 +6180,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "admin_js_jindo_min_jindo",
-      "community": 233,
+      "community": 5,
       "norm_label": "$jindo()"
     },
     {
@@ -6200,7 +6200,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "admin_js_jindo_min_class",
-      "community": 233,
+      "community": 5,
       "norm_label": "$class()"
     },
     {
@@ -6480,7 +6480,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "admin_js_jindo_min_ajax",
-      "community": 233,
+      "community": 108,
       "norm_label": "$ajax()"
     },
     {
@@ -6490,7 +6490,7 @@
       "source_location": "L39",
       "_origin": "ast",
       "id": "admin_js_jindo_min_ajax_onload",
-      "community": 233,
+      "community": 108,
       "norm_label": "._onload()"
     },
     {
@@ -6500,7 +6500,7 @@
       "source_location": "L39",
       "_origin": "ast",
       "id": "admin_js_jindo_min_ajax_request",
-      "community": 233,
+      "community": 108,
       "norm_label": ".request()"
     },
     {
@@ -6510,7 +6510,7 @@
       "source_location": "L44",
       "_origin": "ast",
       "id": "admin_js_jindo_min_ajax_abort",
-      "community": 233,
+      "community": 108,
       "norm_label": ".abort()"
     },
     {
@@ -6520,7 +6520,7 @@
       "source_location": "L44",
       "_origin": "ast",
       "id": "admin_js_jindo_min_ajax_option",
-      "community": 233,
+      "community": 108,
       "norm_label": ".option()"
     },
     {
@@ -6530,7 +6530,7 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "admin_js_jindo_min_ajax_header",
-      "community": 233,
+      "community": 108,
       "norm_label": ".header()"
     },
     {
@@ -6740,7 +6740,7 @@
       "source_location": "L71",
       "_origin": "ast",
       "id": "admin_js_jindo_min_json_tostring",
-      "community": 170,
+      "community": 108,
       "norm_label": ".tostring()"
     },
     {
@@ -6800,7 +6800,7 @@
       "source_location": "L78",
       "_origin": "ast",
       "id": "admin_js_jindo_min_cookie_set",
-      "community": 170,
+      "community": 233,
       "norm_label": ".set()"
     },
     {
@@ -7070,7 +7070,7 @@
       "source_location": "L113",
       "_origin": "ast",
       "id": "admin_js_jindo_min_element_replace",
-      "community": 170,
+      "community": 87,
       "norm_label": ".replace()"
     },
     {
@@ -7340,7 +7340,7 @@
       "source_location": "L136",
       "_origin": "ast",
       "id": "admin_js_jindo_min_event",
-      "community": 87,
+      "community": 5,
       "norm_label": "$event()"
     },
     {
@@ -7350,7 +7350,7 @@
       "source_location": "L138",
       "_origin": "ast",
       "id": "admin_js_jindo_min_event_mouse",
-      "community": 87,
+      "community": 5,
       "norm_label": ".mouse()"
     },
     {
@@ -7370,7 +7370,7 @@
       "source_location": "L139",
       "_origin": "ast",
       "id": "admin_js_jindo_min_event_pos",
-      "community": 87,
+      "community": 5,
       "norm_label": ".pos()"
     },
     {
@@ -7380,7 +7380,7 @@
       "source_location": "L140",
       "_origin": "ast",
       "id": "admin_js_jindo_min_event_stop",
-      "community": 87,
+      "community": 5,
       "norm_label": ".stop()"
     },
     {
@@ -7430,7 +7430,7 @@
       "source_location": "L142",
       "_origin": "ast",
       "id": "admin_js_jindo_min_s",
-      "community": 170,
+      "community": 108,
       "norm_label": "$s()"
     },
     {
@@ -7440,7 +7440,7 @@
       "source_location": "L143",
       "_origin": "ast",
       "id": "admin_js_jindo_min_s_value",
-      "community": 170,
+      "community": 108,
       "norm_label": ".$value()"
     },
     {
@@ -7450,7 +7450,7 @@
       "source_location": "L143",
       "_origin": "ast",
       "id": "admin_js_jindo_min_s_trim",
-      "community": 170,
+      "community": 108,
       "norm_label": ".trim()"
     },
     {
@@ -7460,7 +7460,7 @@
       "source_location": "L143",
       "_origin": "ast",
       "id": "admin_js_jindo_min_s_escapehtml",
-      "community": 170,
+      "community": 108,
       "norm_label": ".escapehtml()"
     },
     {
@@ -7470,7 +7470,7 @@
       "source_location": "L143",
       "_origin": "ast",
       "id": "admin_js_jindo_min_s_striptags",
-      "community": 170,
+      "community": 108,
       "norm_label": ".striptags()"
     },
     {
@@ -7480,7 +7480,7 @@
       "source_location": "L143",
       "_origin": "ast",
       "id": "admin_js_jindo_min_s_times",
-      "community": 170,
+      "community": 108,
       "norm_label": ".times()"
     },
     {
@@ -7490,7 +7490,7 @@
       "source_location": "L144",
       "_origin": "ast",
       "id": "admin_js_jindo_min_s_unescapehtml",
-      "community": 170,
+      "community": 108,
       "norm_label": ".unescapehtml()"
     },
     {
@@ -7500,7 +7500,7 @@
       "source_location": "L144",
       "_origin": "ast",
       "id": "admin_js_jindo_min_s_escape",
-      "community": 170,
+      "community": 233,
       "norm_label": ".escape()"
     },
     {
@@ -7510,7 +7510,7 @@
       "source_location": "L144",
       "_origin": "ast",
       "id": "admin_js_jindo_min_s_bytes",
-      "community": 170,
+      "community": 108,
       "norm_label": ".bytes()"
     },
     {
@@ -7530,7 +7530,7 @@
       "source_location": "L146",
       "_origin": "ast",
       "id": "admin_js_jindo_min_s_escaperegex",
-      "community": 170,
+      "community": 108,
       "norm_label": ".escaperegex()"
     },
     {
@@ -7540,7 +7540,7 @@
       "source_location": "L146",
       "_origin": "ast",
       "id": "admin_js_jindo_min_s_format",
-      "community": 170,
+      "community": 108,
       "norm_label": ".format()"
     },
     {
@@ -7670,7 +7670,7 @@
       "source_location": "L159",
       "_origin": "ast",
       "id": "admin_js_jindo_min_template",
-      "community": 170,
+      "community": 87,
       "norm_label": "$template()"
     },
     {
@@ -7680,7 +7680,7 @@
       "source_location": "L161",
       "_origin": "ast",
       "id": "admin_js_jindo_min_template_process",
-      "community": 170,
+      "community": 87,
       "norm_label": ".process()"
     },
     {
@@ -9909,8 +9909,8 @@
       "source_file": "admin/member/find_zipcode.php",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "e_\uac1c\uc778_\ubc31\uc5c5_www_soho_shoppingmall_admin_member_find_zipcode_php",
-      "community": 716,
+      "id": "admin_member_find_zipcode",
+      "community": 115,
       "norm_label": "find_zipcode.php"
     },
     {
@@ -10009,8 +10009,8 @@
       "source_file": "admin/member/mem_delete_member.php",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "e_\uac1c\uc778_\ubc31\uc5c5_www_soho_shoppingmall_admin_member_mem_delete_member_php",
-      "community": 726,
+      "id": "admin_member_mem_delete_member",
+      "community": 116,
       "norm_label": "mem_delete_member.php"
     },
     {
@@ -10019,8 +10019,8 @@
       "source_file": "admin/member/mem_delete_pmember.php",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "e_\uac1c\uc778_\ubc31\uc5c5_www_soho_shoppingmall_admin_member_mem_delete_pmember_php",
-      "community": 727,
+      "id": "admin_member_mem_delete_pmember",
+      "community": 120,
       "norm_label": "mem_delete_pmember.php"
     },
     {
@@ -10029,8 +10029,8 @@
       "source_file": "admin/member/mem_edit_member.php",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "e_\uac1c\uc778_\ubc31\uc5c5_www_soho_shoppingmall_admin_member_mem_edit_member_php",
-      "community": 728,
+      "id": "admin_member_mem_edit_member",
+      "community": 121,
       "norm_label": "mem_edit_member.php"
     },
     {
@@ -10039,8 +10039,8 @@
       "source_file": "admin/member/mem_edit_pmember.php",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "e_\uac1c\uc778_\ubc31\uc5c5_www_soho_shoppingmall_admin_member_mem_edit_pmember_php",
-      "community": 729,
+      "id": "admin_member_mem_edit_pmember",
+      "community": 122,
       "norm_label": "mem_edit_pmember.php"
     },
     {
@@ -10179,8 +10179,8 @@
       "source_file": "admin/member/new_msg_ok.php",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "e_\uac1c\uc778_\ubc31\uc5c5_www_soho_shoppingmall_admin_member_new_msg_ok_php",
-      "community": 742,
+      "id": "admin_member_new_msg_ok",
+      "community": 124,
       "norm_label": "new_msg_ok.php"
     },
     {
@@ -10189,8 +10189,8 @@
       "source_file": "admin/member/p_mem_delete_member.php",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "e_\uac1c\uc778_\ubc31\uc5c5_www_soho_shoppingmall_admin_member_p_mem_delete_member_php",
-      "community": 744,
+      "id": "admin_member_p_mem_delete_member",
+      "community": 125,
       "norm_label": "p_mem_delete_member.php"
     },
     {
@@ -10199,8 +10199,8 @@
       "source_file": "admin/member/p_mem_edit_member.php",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "e_\uac1c\uc778_\ubc31\uc5c5_www_soho_shoppingmall_admin_member_p_mem_edit_member_php",
-      "community": 745,
+      "id": "admin_member_p_mem_edit_member",
+      "community": 126,
       "norm_label": "p_mem_edit_member.php"
     },
     {
@@ -10369,8 +10369,8 @@
       "source_file": "admin/order/form_note.php",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "e_\uac1c\uc778_\ubc31\uc5c5_www_soho_shoppingmall_admin_order_form_note_php",
-      "community": 762,
+      "id": "admin_order_form_note",
+      "community": 127,
       "norm_label": "form_note.php"
     },
     {
@@ -10379,8 +10379,8 @@
       "source_file": "admin/order/form_quot.php",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "e_\uac1c\uc778_\ubc31\uc5c5_www_soho_shoppingmall_admin_order_form_quot_php",
-      "community": 763,
+      "id": "admin_order_form_quot",
+      "community": 130,
       "norm_label": "form_quot.php"
     },
     {
@@ -10449,8 +10449,8 @@
       "source_file": "admin/order/or_update_order.php",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "e_\uac1c\uc778_\ubc31\uc5c5_www_soho_shoppingmall_admin_order_or_update_order_php",
-      "community": 767,
+      "id": "admin_order_or_update_order",
+      "community": 131,
       "norm_label": "or_update_order.php"
     },
     {
@@ -10459,8 +10459,8 @@
       "source_file": "admin/order/or_view.php",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "e_\uac1c\uc778_\ubc31\uc5c5_www_soho_shoppingmall_admin_order_or_view_php",
-      "community": 768,
+      "id": "admin_order_or_view",
+      "community": 132,
       "norm_label": "or_view.php"
     },
     {
@@ -10509,8 +10509,8 @@
       "source_file": "admin/order/print_note.php",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "e_\uac1c\uc778_\ubc31\uc5c5_www_soho_shoppingmall_admin_order_print_note_php",
-      "community": 771,
+      "id": "admin_order_print_note",
+      "community": 133,
       "norm_label": "print_note.php"
     },
     {
@@ -10539,8 +10539,8 @@
       "source_file": "admin/order/quottoexcel.php",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "e_\uac1c\uc778_\ubc31\uc5c5_www_soho_shoppingmall_admin_order_quottoexcel_php",
-      "community": 774,
+      "id": "admin_order_quottoexcel",
+      "community": 134,
       "norm_label": "quottoexcel.php"
     },
     {
@@ -10689,8 +10689,8 @@
       "source_file": "admin/products/change_stock.php",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "e_\uac1c\uc778_\ubc31\uc5c5_www_soho_shoppingmall_admin_products_change_stock_php",
-      "community": 800,
+      "id": "admin_products_change_stock",
+      "community": 135,
       "norm_label": "change_stock.php"
     },
     {
@@ -10809,8 +10809,8 @@
       "source_file": "admin/products/uploader.php",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "e_\uac1c\uc778_\ubc31\uc5c5_www_soho_shoppingmall_admin_products_uploader_php",
-      "community": 816,
+      "id": "admin_products_uploader",
+      "community": 136,
       "norm_label": "uploader.php"
     },
     {
@@ -10909,8 +10909,8 @@
       "source_file": "admin/setting/delivery_setup_ok.php",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "e_\uac1c\uc778_\ubc31\uc5c5_www_soho_shoppingmall_admin_setting_delivery_setup_ok_php",
-      "community": 822,
+      "id": "admin_setting_delivery_setup_ok",
+      "community": 138,
       "norm_label": "delivery_setup_ok.php"
     },
     {
@@ -10929,8 +10929,8 @@
       "source_file": "admin/setting/main_setup_ok.php",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "e_\uac1c\uc778_\ubc31\uc5c5_www_soho_shoppingmall_admin_setting_main_setup_ok_php",
-      "community": 824,
+      "id": "admin_setting_main_setup_ok",
+      "community": 139,
       "norm_label": "main_setup_ok.php"
     },
     {
@@ -11399,8 +11399,8 @@
       "source_file": "admin/setting/sms_ok.php",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "e_\uac1c\uc778_\ubc31\uc5c5_www_soho_shoppingmall_admin_setting_sms_ok_php",
-      "community": 837,
+      "id": "admin_setting_sms_ok",
+      "community": 140,
       "norm_label": "sms_ok.php"
     },
     {
@@ -11409,8 +11409,8 @@
       "source_file": "admin/setting/uploader.php",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "e_\uac1c\uc778_\ubc31\uc5c5_www_soho_shoppingmall_admin_setting_uploader_php",
-      "community": 840,
+      "id": "admin_setting_uploader",
+      "community": 141,
       "norm_label": "uploader.php"
     },
     {
@@ -11439,8 +11439,8 @@
       "source_file": "admin/stats/delete_tax.php",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "e_\uac1c\uc778_\ubc31\uc5c5_www_soho_shoppingmall_admin_stats_delete_tax_php",
-      "community": 842,
+      "id": "admin_stats_delete_tax",
+      "community": 143,
       "norm_label": "delete_tax.php"
     },
     {
@@ -11449,8 +11449,8 @@
       "source_file": "admin/stats/form_tax.php",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "e_\uac1c\uc778_\ubc31\uc5c5_www_soho_shoppingmall_admin_stats_form_tax_php",
-      "community": 843,
+      "id": "admin_stats_form_tax",
+      "community": 144,
       "norm_label": "form_tax.php"
     },
     {
@@ -11489,8 +11489,8 @@
       "source_file": "admin/stats/print_tax.php",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "e_\uac1c\uc778_\ubc31\uc5c5_www_soho_shoppingmall_admin_stats_print_tax_php",
-      "community": 847,
+      "id": "admin_stats_print_tax",
+      "community": 145,
       "norm_label": "print_tax.php"
     },
     {
@@ -11559,8 +11559,8 @@
       "source_file": "admin/supplier/change_stock.php",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "e_\uac1c\uc778_\ubc31\uc5c5_www_soho_shoppingmall_admin_supplier_change_stock_php",
-      "community": 854,
+      "id": "admin_supplier_change_stock",
+      "community": 146,
       "norm_label": "change_stock.php"
     },
     {
@@ -11619,8 +11619,8 @@
       "source_file": "admin/supplier/edit_supplier.php",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "e_\uac1c\uc778_\ubc31\uc5c5_www_soho_shoppingmall_admin_supplier_edit_supplier_php",
-      "community": 860,
+      "id": "admin_supplier_edit_supplier",
+      "community": 147,
       "norm_label": "edit_supplier.php"
     },
     {
@@ -11629,8 +11629,8 @@
       "source_file": "admin/supplier/form_tax.php",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "e_\uac1c\uc778_\ubc31\uc5c5_www_soho_shoppingmall_admin_supplier_form_tax_php",
-      "community": 861,
+      "id": "admin_supplier_form_tax",
+      "community": 148,
       "norm_label": "form_tax.php"
     },
     {
@@ -11739,8 +11739,8 @@
       "source_file": "admin/supplier/new_msg_ok.php",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "e_\uac1c\uc778_\ubc31\uc5c5_www_soho_shoppingmall_admin_supplier_new_msg_ok_php",
-      "community": 1009,
+      "id": "admin_supplier_new_msg_ok",
+      "community": 149,
       "norm_label": "new_msg_ok.php"
     },
     {
@@ -11789,8 +11789,8 @@
       "source_file": "admin/supplier/print_tax.php",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "e_\uac1c\uc778_\ubc31\uc5c5_www_soho_shoppingmall_admin_supplier_print_tax_php",
-      "community": 1076,
+      "id": "admin_supplier_print_tax",
+      "community": 150,
       "norm_label": "print_tax.php"
     },
     {
@@ -11829,8 +11829,8 @@
       "source_file": "admin/supplier/reg_tax.php",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "e_\uac1c\uc778_\ubc31\uc5c5_www_soho_shoppingmall_admin_supplier_reg_tax_php",
-      "community": 1081,
+      "id": "admin_supplier_reg_tax",
+      "community": 151,
       "norm_label": "reg_tax.php"
     },
     {
@@ -11939,8 +11939,8 @@
       "source_file": "admin/supplier/sp_pro_register_ok.php",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "e_\uac1c\uc778_\ubc31\uc5c5_www_soho_shoppingmall_admin_supplier_sp_pro_register_ok_php",
-      "community": 1091,
+      "id": "admin_supplier_sp_pro_register_ok",
+      "community": 152,
       "norm_label": "sp_pro_register_ok.php"
     },
     {
@@ -12009,8 +12009,8 @@
       "source_file": "admin/supplier/update_cart.php",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "e_\uac1c\uc778_\ubc31\uc5c5_www_soho_shoppingmall_admin_supplier_update_cart_php",
-      "community": 1099,
+      "id": "admin_supplier_update_cart",
+      "community": 154,
       "norm_label": "update_cart.php"
     },
     {
@@ -12019,8 +12019,8 @@
       "source_file": "admin/supplier/update_offer.php",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "e_\uac1c\uc778_\ubc31\uc5c5_www_soho_shoppingmall_admin_supplier_update_offer_php",
-      "community": 1100,
+      "id": "admin_supplier_update_offer",
+      "community": 155,
       "norm_label": "update_offer.php"
     },
     {
@@ -15270,7 +15270,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_old_htmlwriter_assets_outputforflash_swfobject",
-      "community": 30,
+      "community": 26,
       "norm_label": "swfobject.js"
     },
     {
@@ -15280,7 +15280,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_old_htmlwriter_assets_outputforflash_swfobject_w",
-      "community": 30,
+      "community": 26,
       "norm_label": "w()"
     },
     {
@@ -15290,7 +15290,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_old_htmlwriter_assets_outputforflash_swfobject_m",
-      "community": 30,
+      "community": 26,
       "norm_label": "m()"
     },
     {
@@ -15300,7 +15300,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_old_htmlwriter_assets_outputforflash_swfobject_n",
-      "community": 30,
+      "community": 26,
       "norm_label": "n()"
     },
     {
@@ -15310,7 +15310,7 @@
       "source_location": "L2",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_old_htmlwriter_assets_outputforflash_swfobject_v",
-      "community": 30,
+      "community": 26,
       "norm_label": "v()"
     },
     {
@@ -15320,7 +15320,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_old_htmlwriter_assets_outputforflash_swfobject_e",
-      "community": 30,
+      "community": 26,
       "norm_label": "e()"
     },
     {
@@ -15330,7 +15330,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_old_htmlwriter_assets_outputforflash_swfobject_h",
-      "community": 30,
+      "community": 26,
       "norm_label": "h()"
     },
     {
@@ -15340,7 +15340,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_old_htmlwriter_assets_outputforflash_swfobject_f",
-      "community": 30,
+      "community": 26,
       "norm_label": "f()"
     },
     {
@@ -15350,7 +15350,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_old_htmlwriter_assets_outputforflash_swfobject_g",
-      "community": 30,
+      "community": 26,
       "norm_label": "g()"
     },
     {
@@ -15360,7 +15360,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_old_htmlwriter_assets_outputforflash_swfobject_j",
-      "community": 30,
+      "community": 26,
       "norm_label": "j()"
     },
     {
@@ -15370,7 +15370,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_old_htmlwriter_assets_outputforflash_swfobject_k",
-      "community": 30,
+      "community": 26,
       "norm_label": "k()"
     },
     {
@@ -15380,7 +15380,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_old_htmlwriter_assets_outputforflash_swfobject_p",
-      "community": 30,
+      "community": 26,
       "norm_label": "p()"
     },
     {
@@ -15390,7 +15390,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_old_htmlwriter_assets_outputforflash_swfobject_u",
-      "community": 30,
+      "community": 26,
       "norm_label": "u()"
     },
     {
@@ -15400,7 +15400,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_old_htmlwriter_assets_outputforflash_swfobject_a",
-      "community": 30,
+      "community": 26,
       "norm_label": "a()"
     },
     {
@@ -15420,7 +15420,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_old_htmlwriter_assets_outputforflash_swfobject_s",
-      "community": 30,
+      "community": 26,
       "norm_label": "s()"
     },
     {
@@ -16270,7 +16270,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_toolbarconfigurator_lib_codemirror_codemirror_id",
-      "community": 25,
+      "community": 31,
       "norm_label": "id()"
     },
     {
@@ -16300,7 +16300,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_toolbarconfigurator_lib_codemirror_codemirror_ib",
-      "community": 31,
+      "community": 109,
       "norm_label": "ib()"
     },
     {
@@ -16310,7 +16310,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_toolbarconfigurator_lib_codemirror_codemirror_ad",
-      "community": 31,
+      "community": 94,
       "norm_label": "ad()"
     },
     {
@@ -16340,7 +16340,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_toolbarconfigurator_lib_codemirror_codemirror_dc",
-      "community": 31,
+      "community": 94,
       "norm_label": "dc()"
     },
     {
@@ -16390,7 +16390,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_toolbarconfigurator_lib_codemirror_codemirror_cd",
-      "community": 17,
+      "community": 112,
       "norm_label": "cd()"
     },
     {
@@ -16410,7 +16410,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_toolbarconfigurator_lib_codemirror_codemirror_jd",
-      "community": 94,
+      "community": 31,
       "norm_label": "jd()"
     },
     {
@@ -16430,7 +16430,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_toolbarconfigurator_lib_codemirror_codemirror_bc",
-      "community": 31,
+      "community": 109,
       "norm_label": "bc()"
     },
     {
@@ -16460,7 +16460,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_toolbarconfigurator_lib_codemirror_codemirror_ic",
-      "community": 31,
+      "community": 284,
       "norm_label": "ic()"
     },
     {
@@ -16530,7 +16530,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_toolbarconfigurator_lib_codemirror_codemirror_nd",
-      "community": 94,
+      "community": 31,
       "norm_label": "nd()"
     },
     {
@@ -16670,7 +16670,7 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_toolbarconfigurator_lib_codemirror_codemirror_ud",
-      "community": 94,
+      "community": 15,
       "norm_label": "ud()"
     },
     {
@@ -16690,7 +16690,7 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_toolbarconfigurator_lib_codemirror_codemirror_sc",
-      "community": 17,
+      "community": 112,
       "norm_label": "sc()"
     },
     {
@@ -16750,7 +16750,7 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_toolbarconfigurator_lib_codemirror_codemirror_yd",
-      "community": 31,
+      "community": 109,
       "norm_label": "yd()"
     },
     {
@@ -16760,7 +16760,7 @@
       "source_location": "L38",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_toolbarconfigurator_lib_codemirror_codemirror_ra",
-      "community": 208,
+      "community": 31,
       "norm_label": "ra()"
     },
     {
@@ -16770,7 +16770,7 @@
       "source_location": "L38",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_toolbarconfigurator_lib_codemirror_codemirror_tb",
-      "community": 208,
+      "community": 31,
       "norm_label": "tb()"
     },
     {
@@ -16780,7 +16780,7 @@
       "source_location": "L38",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_toolbarconfigurator_lib_codemirror_codemirror_wf",
-      "community": 208,
+      "community": 31,
       "norm_label": "wf()"
     },
     {
@@ -16790,7 +16790,7 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_toolbarconfigurator_lib_codemirror_codemirror_xf",
-      "community": 11,
+      "community": 31,
       "norm_label": "xf()"
     },
     {
@@ -16960,7 +16960,7 @@
       "source_location": "L48",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_toolbarconfigurator_lib_codemirror_codemirror_he",
-      "community": 284,
+      "community": 208,
       "norm_label": "he()"
     },
     {
@@ -16970,7 +16970,7 @@
       "source_location": "L50",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_toolbarconfigurator_lib_codemirror_codemirror_zf",
-      "community": 284,
+      "community": 208,
       "norm_label": "zf()"
     },
     {
@@ -17000,7 +17000,7 @@
       "source_location": "L53",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_toolbarconfigurator_lib_codemirror_codemirror_bf",
-      "community": 17,
+      "community": 208,
       "norm_label": "bf()"
     },
     {
@@ -17080,7 +17080,7 @@
       "source_location": "L57",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_toolbarconfigurator_lib_codemirror_codemirror_zd",
-      "community": 31,
+      "community": 109,
       "norm_label": "zd()"
     },
     {
@@ -17090,7 +17090,7 @@
       "source_location": "L57",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_toolbarconfigurator_lib_codemirror_codemirror_vc",
-      "community": 31,
+      "community": 109,
       "norm_label": "vc()"
     },
     {
@@ -17100,7 +17100,7 @@
       "source_location": "L58",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_toolbarconfigurator_lib_codemirror_codemirror_zb",
-      "community": 31,
+      "community": 109,
       "norm_label": "zb()"
     },
     {
@@ -17110,7 +17110,7 @@
       "source_location": "L58",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_toolbarconfigurator_lib_codemirror_codemirror_c",
-      "community": 94,
+      "community": 109,
       "norm_label": "$c()"
     },
     {
@@ -17120,7 +17120,7 @@
       "source_location": "L63",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_toolbarconfigurator_lib_codemirror_codemirror_d",
-      "community": 31,
+      "community": 109,
       "norm_label": "$d()"
     },
     {
@@ -17130,7 +17130,7 @@
       "source_location": "L64",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_toolbarconfigurator_lib_codemirror_codemirror_le",
-      "community": 31,
+      "community": 109,
       "norm_label": "le()"
     },
     {
@@ -17170,7 +17170,7 @@
       "source_location": "L66",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_toolbarconfigurator_lib_codemirror_codemirror_yb",
-      "community": 284,
+      "community": 109,
       "norm_label": "yb()"
     },
     {
@@ -17180,7 +17180,7 @@
       "source_location": "L67",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_toolbarconfigurator_lib_codemirror_codemirror_ma",
-      "community": 31,
+      "community": 109,
       "norm_label": "ma()"
     },
     {
@@ -17230,7 +17230,7 @@
       "source_location": "L70",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_toolbarconfigurator_lib_codemirror_codemirror_xa",
-      "community": 25,
+      "community": 94,
       "norm_label": "xa()"
     },
     {
@@ -17240,7 +17240,7 @@
       "source_location": "L70",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_toolbarconfigurator_lib_codemirror_codemirror_gb",
-      "community": 25,
+      "community": 109,
       "norm_label": "gb()"
     },
     {
@@ -17250,7 +17250,7 @@
       "source_location": "L71",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_toolbarconfigurator_lib_codemirror_codemirror_ja",
-      "community": 17,
+      "community": 112,
       "norm_label": "ja()"
     },
     {
@@ -17260,7 +17260,7 @@
       "source_location": "L80",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_toolbarconfigurator_lib_codemirror_codemirror_t",
-      "community": 17,
+      "community": 112,
       "norm_label": "t()"
     },
     {
@@ -17440,7 +17440,7 @@
       "source_location": "L101",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_toolbarconfigurator_lib_codemirror_codemirror_re",
-      "community": 94,
+      "community": 15,
       "norm_label": "re()"
     },
     {
@@ -17480,7 +17480,7 @@
       "source_location": "L107",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_toolbarconfigurator_lib_codemirror_codemirror_ue",
-      "community": 11,
+      "community": 31,
       "norm_label": "ue()"
     },
     {
@@ -17500,7 +17500,7 @@
       "source_location": "L107",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_toolbarconfigurator_lib_codemirror_codemirror_kf",
-      "community": 31,
+      "community": 25,
       "norm_label": "kf()"
     },
     {
@@ -17510,7 +17510,7 @@
       "source_location": "L108",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_toolbarconfigurator_lib_codemirror_codemirror_db",
-      "community": 31,
+      "community": 25,
       "norm_label": "db()"
     },
     {
@@ -17580,7 +17580,7 @@
       "source_location": "L125",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_toolbarconfigurator_lib_codemirror_codemirror_wa",
-      "community": 11,
+      "community": 31,
       "norm_label": "wa()"
     },
     {
@@ -17650,7 +17650,7 @@
       "source_location": "L138",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_toolbarconfigurator_lib_codemirror_codemirror_f",
-      "community": 17,
+      "community": 112,
       "norm_label": "$f()"
     },
     {
@@ -17690,7 +17690,7 @@
       "source_location": "L141",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_toolbarconfigurator_lib_codemirror_codemirror_je",
-      "community": 31,
+      "community": 208,
       "norm_label": "je()"
     },
     {
@@ -17700,7 +17700,7 @@
       "source_location": "L142",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_toolbarconfigurator_lib_codemirror_codemirror_e",
-      "community": 31,
+      "community": 208,
       "norm_label": "$e()"
     },
     {
@@ -17710,7 +17710,7 @@
       "source_location": "L143",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_toolbarconfigurator_lib_codemirror_codemirror_af",
-      "community": 31,
+      "community": 208,
       "norm_label": "af()"
     },
     {
@@ -17720,7 +17720,7 @@
       "source_location": "L143",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_toolbarconfigurator_lib_codemirror_codemirror_sd",
-      "community": 31,
+      "community": 208,
       "norm_label": "sd()"
     },
     {
@@ -17750,7 +17750,7 @@
       "source_location": "L150",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_toolbarconfigurator_lib_codemirror_codemirror_dg",
-      "community": 31,
+      "community": 208,
       "norm_label": "dg()"
     },
     {
@@ -17810,7 +17810,7 @@
       "source_location": "L157",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_toolbarconfigurator_lib_codemirror_codemirror_ea",
-      "community": 17,
+      "community": 112,
       "norm_label": "ea()"
     },
     {
@@ -17820,7 +17820,7 @@
       "source_location": "L157",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_toolbarconfigurator_lib_codemirror_codemirror_y",
-      "community": 31,
+      "community": 109,
       "norm_label": "y()"
     },
     {
@@ -17890,7 +17890,7 @@
       "source_location": "L165",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_toolbarconfigurator_lib_codemirror_codemirror_ff",
-      "community": 11,
+      "community": 31,
       "norm_label": "ff()"
     },
     {
@@ -17900,7 +17900,7 @@
       "source_location": "L166",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_toolbarconfigurator_lib_codemirror_codemirror_v",
-      "community": 11,
+      "community": 31,
       "norm_label": "v()"
     },
     {
@@ -17910,7 +17910,7 @@
       "source_location": "L167",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_toolbarconfigurator_lib_codemirror_codemirror_za",
-      "community": 31,
+      "community": 94,
       "norm_label": "za()"
     },
     {
@@ -17920,7 +17920,7 @@
       "source_location": "L167",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_toolbarconfigurator_lib_codemirror_codemirror_fa",
-      "community": 25,
+      "community": 94,
       "norm_label": "fa()"
     },
     {
@@ -17930,7 +17930,7 @@
       "source_location": "L168",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_toolbarconfigurator_lib_codemirror_codemirror_eg",
-      "community": 31,
+      "community": 208,
       "norm_label": "eg()"
     },
     {
@@ -17950,7 +17950,7 @@
       "source_location": "L170",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_toolbarconfigurator_lib_codemirror_codemirror_lf",
-      "community": 31,
+      "community": 109,
       "norm_label": "lf()"
     },
     {
@@ -18000,7 +18000,7 @@
       "source_location": "L252",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_toolbarconfigurator_lib_codemirror_codemirror_ha_changed",
-      "community": 31,
+      "community": 109,
       "norm_label": ".changed()"
     },
     {
@@ -18010,7 +18010,7 @@
       "source_location": "L253",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_toolbarconfigurator_lib_codemirror_codemirror_ha_attachline",
-      "community": 11,
+      "community": 31,
       "norm_label": ".attachline()"
     },
     {
@@ -18050,7 +18050,7 @@
       "source_location": "L255",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_toolbarconfigurator_lib_codemirror_codemirror_sc_clear",
-      "community": 17,
+      "community": 112,
       "norm_label": ".clear()"
     },
     {
@@ -18060,7 +18060,7 @@
       "source_location": "L255",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_toolbarconfigurator_lib_codemirror_codemirror_sc_changed",
-      "community": 17,
+      "community": 112,
       "norm_label": ".changed()"
     },
     {
@@ -18540,7 +18540,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "bbs_ckeditor_samples_toolbarconfigurator_lib_codemirror_show_hint_p",
-      "community": 284,
+      "community": 208,
       "norm_label": "p()"
     },
     {
@@ -20010,7 +20010,7 @@
       "source_location": "L68",
       "_origin": "ast",
       "id": "js_highcharts_j",
-      "community": 51,
+      "community": 113,
       "norm_label": "j()"
     },
     {
@@ -20370,7 +20370,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "js_jquery_plugins_r_keydown",
-      "community": 3,
+      "community": 7,
       "norm_label": ".keydown()"
     },
     {
@@ -20450,7 +20450,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "js_jquery_plugins_sc_stopscroll",
-      "community": 1,
+      "community": 11,
       "norm_label": "sc_stopscroll()"
     },
     {
@@ -20560,7 +20560,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "js_jquery_plugins_go_getobject",
-      "community": 1,
+      "community": 11,
       "norm_label": "go_getobject()"
     },
     {
@@ -20570,7 +20570,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "js_jquery_plugins_go_getitemsobject",
-      "community": 1,
+      "community": 11,
       "norm_label": "go_getitemsobject()"
     },
     {
@@ -20580,7 +20580,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "js_jquery_plugins_go_getscrollobject",
-      "community": 1,
+      "community": 11,
       "norm_label": "go_getscrollobject()"
     },
     {
@@ -20590,7 +20590,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "js_jquery_plugins_go_getnaviobject",
-      "community": 1,
+      "community": 11,
       "norm_label": "go_getnaviobject()"
     },
     {
@@ -20600,7 +20600,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "js_jquery_plugins_go_getautoobject",
-      "community": 1,
+      "community": 11,
       "norm_label": "go_getautoobject()"
     },
     {
@@ -20610,7 +20610,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "js_jquery_plugins_go_complementautoobject",
-      "community": 1,
+      "community": 11,
       "norm_label": "go_complementautoobject()"
     },
     {
@@ -20620,7 +20620,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "js_jquery_plugins_go_getprevnextobject",
-      "community": 1,
+      "community": 11,
       "norm_label": "go_getprevnextobject()"
     },
     {
@@ -20640,7 +20640,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "js_jquery_plugins_go_getpaginationobject",
-      "community": 1,
+      "community": 11,
       "norm_label": "go_getpaginationobject()"
     },
     {
@@ -20650,7 +20650,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "js_jquery_plugins_go_complementpaginationobject",
-      "community": 1,
+      "community": 11,
       "norm_label": "go_complementpaginationobject()"
     },
     {
@@ -20660,7 +20660,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "js_jquery_plugins_go_getswipeobject",
-      "community": 1,
+      "community": 11,
       "norm_label": "go_getswipeobject()"
     },
     {
@@ -20670,7 +20670,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "js_jquery_plugins_go_complementswipeobject",
-      "community": 1,
+      "community": 11,
       "norm_label": "go_complementswipeobject()"
     },
     {
@@ -20680,7 +20680,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "js_jquery_plugins_go_getmousewheelobject",
-      "community": 1,
+      "community": 11,
       "norm_label": "go_getmousewheelobject()"
     },
     {
@@ -20700,7 +20700,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "js_jquery_plugins_gn_getitemindex",
-      "community": 1,
+      "community": 11,
       "norm_label": "gn_getitemindex()"
     },
     {
@@ -20810,7 +20810,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "js_jquery_plugins_gi_getcurrentitems",
-      "community": 1,
+      "community": 11,
       "norm_label": "gi_getcurrentitems()"
     },
     {
@@ -20910,7 +20910,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "js_jquery_plugins_sz_setsizes",
-      "community": 1,
+      "community": 11,
       "norm_label": "sz_setsizes()"
     },
     {
@@ -20920,7 +20920,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "js_jquery_plugins_ms_getsizes",
-      "community": 1,
+      "community": 11,
       "norm_label": "ms_getsizes()"
     },
     {
@@ -20930,7 +20930,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "js_jquery_plugins_ms_getlargestsize",
-      "community": 1,
+      "community": 11,
       "norm_label": "ms_getlargestsize()"
     },
     {
@@ -20950,7 +20950,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "js_jquery_plugins_ms_gettotalsize",
-      "community": 1,
+      "community": 11,
       "norm_label": "ms_gettotalsize()"
     },
     {
@@ -20970,7 +20970,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "js_jquery_plugins_ms_getmaxdimension",
-      "community": 1,
+      "community": 11,
       "norm_label": "ms_getmaxdimension()"
     },
     {
@@ -20980,7 +20980,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "js_jquery_plugins_ms_hasvariablesizes",
-      "community": 1,
+      "community": 11,
       "norm_label": "ms_hasvariablesizes()"
     },
     {
@@ -21030,7 +21030,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "js_jquery_plugins_cf_mapwrappersizes",
-      "community": 1,
+      "community": 11,
       "norm_label": "cf_mapwrappersizes()"
     },
     {
@@ -21040,7 +21040,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "js_jquery_plugins_cf_sortparams",
-      "community": 1,
+      "community": 11,
       "norm_label": "cf_sortparams()"
     },
     {
@@ -21050,7 +21050,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "js_jquery_plugins_cf_getpadding",
-      "community": 1,
+      "community": 11,
       "norm_label": "cf_getpadding()"
     },
     {
@@ -21060,7 +21060,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "js_jquery_plugins_cf_getalignpadding",
-      "community": 1,
+      "community": 11,
       "norm_label": "cf_getalignpadding()"
     },
     {
@@ -21080,7 +21080,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "js_jquery_plugins_cf_getadjust",
-      "community": 1,
+      "community": 11,
       "norm_label": "cf_getadjust()"
     },
     {
@@ -21090,7 +21090,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "js_jquery_plugins_cf_getitemsadjust",
-      "community": 1,
+      "community": 11,
       "norm_label": "cf_getitemsadjust()"
     },
     {
@@ -21110,7 +21110,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "js_jquery_plugins_cf_getsyncharr",
-      "community": 1,
+      "community": 11,
       "norm_label": "cf_getsyncharr()"
     },
     {
@@ -21160,7 +21160,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "js_jquery_plugins_in_complementitems",
-      "community": 1,
+      "community": 11,
       "norm_label": "in_complementitems()"
     },
     {
@@ -21170,7 +21170,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "js_jquery_plugins_in_complementvisibleitems",
-      "community": 1,
+      "community": 11,
       "norm_label": "in_complementvisibleitems()"
     },
     {
@@ -21200,7 +21200,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "js_jquery_plugins_in_getalignpadding",
-      "community": 1,
+      "community": 11,
       "norm_label": "in_getalignpadding()"
     },
     {
@@ -21220,7 +21220,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "js_jquery_plugins_bt_pauseonhoverconfig",
-      "community": 1,
+      "community": 11,
       "norm_label": "bt_pauseonhoverconfig()"
     },
     {
@@ -21230,7 +21230,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "js_jquery_plugins_bt_mousesheelnumber",
-      "community": 1,
+      "community": 11,
       "norm_label": "bt_mousesheelnumber()"
     },
     {
@@ -21240,7 +21240,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "js_jquery_plugins_is_null",
-      "community": 1,
+      "community": 11,
       "norm_label": "is_null()"
     },
     {
@@ -21250,7 +21250,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "js_jquery_plugins_is_undefined",
-      "community": 1,
+      "community": 11,
       "norm_label": "is_undefined()"
     },
     {
@@ -21260,7 +21260,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "js_jquery_plugins_is_array",
-      "community": 1,
+      "community": 11,
       "norm_label": "is_array()"
     },
     {
@@ -21270,7 +21270,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "js_jquery_plugins_is_jquery",
-      "community": 1,
+      "community": 11,
       "norm_label": "is_jquery()"
     },
     {
@@ -21280,7 +21280,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "js_jquery_plugins_is_object",
-      "community": 1,
+      "community": 11,
       "norm_label": "is_object()"
     },
     {
@@ -21290,7 +21290,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "js_jquery_plugins_is_number",
-      "community": 1,
+      "community": 11,
       "norm_label": "is_number()"
     },
     {
@@ -21300,7 +21300,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "js_jquery_plugins_is_string",
-      "community": 1,
+      "community": 11,
       "norm_label": "is_string()"
     },
     {
@@ -21310,7 +21310,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "js_jquery_plugins_is_function",
-      "community": 1,
+      "community": 11,
       "norm_label": "is_function()"
     },
     {
@@ -21320,7 +21320,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "js_jquery_plugins_is_boolean",
-      "community": 1,
+      "community": 11,
       "norm_label": "is_boolean()"
     },
     {
@@ -21330,7 +21330,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "js_jquery_plugins_is_true",
-      "community": 1,
+      "community": 11,
       "norm_label": "is_true()"
     },
     {
@@ -21340,7 +21340,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "js_jquery_plugins_is_false",
-      "community": 1,
+      "community": 11,
       "norm_label": "is_false()"
     },
     {
@@ -21370,7 +21370,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "js_jquery_plugins_deprecated",
-      "community": 1,
+      "community": 11,
       "norm_label": "deprecated()"
     },
     {
@@ -21380,7 +21380,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "js_jquery_plugins_debug",
-      "community": 1,
+      "community": 11,
       "norm_label": "debug()"
     },
     {
@@ -21570,7 +21570,7 @@
       "source_location": "L103",
       "_origin": "ast",
       "id": "js_jquery_plugins_e_set_default_values",
-      "community": 3,
+      "community": 7,
       "norm_label": ".set_default_values()"
     },
     {
@@ -22340,7 +22340,7 @@
       "source_location": "L127",
       "_origin": "ast",
       "id": "js_jquery_plugins_r_setpointersindex",
-      "community": 110,
+      "community": 11,
       "norm_label": ".setpointersindex()"
     },
     {
@@ -22350,7 +22350,7 @@
       "source_location": "L127",
       "_origin": "ast",
       "id": "js_jquery_plugins_r_getpointers",
-      "community": 110,
+      "community": 11,
       "norm_label": ".getpointers()"
     },
     {
@@ -22560,7 +22560,7 @@
       "source_location": "L127",
       "_origin": "ast",
       "id": "js_jquery_plugins_i_index",
-      "community": 3,
+      "community": 11,
       "norm_label": ".index()"
     },
     {
@@ -22680,7 +22680,7 @@
       "source_location": "L169",
       "_origin": "ast",
       "id": "js_jquery_plugins_ca",
-      "community": 16,
+      "community": 1,
       "norm_label": "ca()"
     },
     {
@@ -22710,7 +22710,7 @@
       "source_location": "L173",
       "_origin": "ast",
       "id": "js_jquery_plugins_oa",
-      "community": 16,
+      "community": 1,
       "norm_label": "oa()"
     },
     {
@@ -23170,7 +23170,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "js_owl_carousel_min",
-      "community": 294,
+      "community": 3,
       "norm_label": "owl.carousel.min.js"
     },
     {
@@ -23180,7 +23180,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "js_owl_carousel_min_g",
-      "community": 294,
+      "community": 3,
       "norm_label": "g()"
     },
     {
@@ -23190,7 +23190,7 @@
       "source_location": "L2",
       "_origin": "ast",
       "id": "js_owl_carousel_min_a",
-      "community": 294,
+      "community": 3,
       "norm_label": "a()"
     },
     {
@@ -23200,7 +23200,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "js_owl_carousel_min_b",
-      "community": 294,
+      "community": 3,
       "norm_label": "b()"
     },
     {
@@ -23210,7 +23210,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "js_owl_carousel_min_e",
-      "community": 294,
+      "community": 3,
       "norm_label": "e()"
     },
     {
@@ -23220,7 +23220,7 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "js_owl_carousel_min_c",
-      "community": 294,
+      "community": 3,
       "norm_label": "c()"
     },
     {
@@ -23980,7 +23980,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "js_vendor_jquery_1_9_1_min_k",
-      "community": 51,
+      "community": 113,
       "norm_label": "k()"
     },
     {
@@ -23990,7 +23990,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "js_vendor_jquery_1_9_1_min_n",
-      "community": 51,
+      "community": 113,
       "norm_label": "_n()"
     },
     {
@@ -24000,7 +24000,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "js_vendor_jquery_1_9_1_min_fn",
-      "community": 51,
+      "community": 113,
       "norm_label": "fn()"
     },
     {
@@ -24250,7 +24250,7 @@
       "source_location": "L2",
       "_origin": "ast",
       "id": "js_vendor_jquery_2_2_0_min_sa",
-      "community": 4,
+      "community": 51,
       "norm_label": "sa()"
     },
     {
@@ -24290,7 +24290,7 @@
       "source_location": "L2",
       "_origin": "ast",
       "id": "js_vendor_jquery_2_2_0_min_wa",
-      "community": 4,
+      "community": 51,
       "norm_label": "wa()"
     },
     {
@@ -24340,7 +24340,7 @@
       "source_location": "L2",
       "_origin": "ast",
       "id": "js_vendor_jquery_2_2_0_min_j",
-      "community": 4,
+      "community": 51,
       "norm_label": "j()"
     },
     {
@@ -24520,7 +24520,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "js_vendor_jquery_migrate_1_4_1_min",
-      "community": 4,
+      "community": 2,
       "norm_label": "jquery-migrate-1.4.1.min.js"
     },
     {
@@ -24530,7 +24530,7 @@
       "source_location": "L2",
       "_origin": "ast",
       "id": "js_vendor_jquery_migrate_1_4_1_min_d",
-      "community": 4,
+      "community": 2,
       "norm_label": "d()"
     },
     {
@@ -24540,7 +24540,7 @@
       "source_location": "L2",
       "_origin": "ast",
       "id": "js_vendor_jquery_migrate_1_4_1_min_e",
-      "community": 4,
+      "community": 2,
       "norm_label": "e()"
     },
     {
@@ -24550,7 +24550,7 @@
       "source_location": "L2",
       "_origin": "ast",
       "id": "js_vendor_jquery_migrate_1_4_1_min_b",
-      "community": 4,
+      "community": 2,
       "norm_label": "b()"
     },
     {
@@ -24640,7 +24640,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "js_vendor_modernizr_2_8_3_min_k",
-      "community": 51,
+      "community": 113,
       "norm_label": "k()"
     },
     {
@@ -31930,7 +31930,7 @@
       "source_location": "L74",
       "_origin": "ast",
       "id": "web_js_jquery_plugins_gi_getcurrentitems",
-      "community": 46,
+      "community": 14,
       "norm_label": "gi_getcurrentitems()"
     },
     {
@@ -32030,7 +32030,7 @@
       "source_location": "L74",
       "_origin": "ast",
       "id": "web_js_jquery_plugins_sz_setsizes",
-      "community": 46,
+      "community": 14,
       "norm_label": "sz_setsizes()"
     },
     {
@@ -32040,7 +32040,7 @@
       "source_location": "L74",
       "_origin": "ast",
       "id": "web_js_jquery_plugins_ms_getsizes",
-      "community": 46,
+      "community": 14,
       "norm_label": "ms_getsizes()"
     },
     {
@@ -32050,7 +32050,7 @@
       "source_location": "L74",
       "_origin": "ast",
       "id": "web_js_jquery_plugins_ms_getlargestsize",
-      "community": 46,
+      "community": 14,
       "norm_label": "ms_getlargestsize()"
     },
     {
@@ -32070,7 +32070,7 @@
       "source_location": "L74",
       "_origin": "ast",
       "id": "web_js_jquery_plugins_ms_gettotalsize",
-      "community": 46,
+      "community": 14,
       "norm_label": "ms_gettotalsize()"
     },
     {
@@ -32150,7 +32150,7 @@
       "source_location": "L74",
       "_origin": "ast",
       "id": "web_js_jquery_plugins_cf_mapwrappersizes",
-      "community": 46,
+      "community": 14,
       "norm_label": "cf_mapwrappersizes()"
     },
     {
@@ -32180,7 +32180,7 @@
       "source_location": "L74",
       "_origin": "ast",
       "id": "web_js_jquery_plugins_cf_getalignpadding",
-      "community": 46,
+      "community": 14,
       "norm_label": "cf_getalignpadding()"
     },
     {
@@ -32320,7 +32320,7 @@
       "source_location": "L74",
       "_origin": "ast",
       "id": "web_js_jquery_plugins_in_getalignpadding",
-      "community": 46,
+      "community": 14,
       "norm_label": "in_getalignpadding()"
     },
     {
@@ -32510,7 +32510,7 @@
       "source_location": "L113",
       "_origin": "ast",
       "id": "web_js_jquery_plugins_w_enable",
-      "community": 52,
+      "community": 224,
       "norm_label": ".enable()"
     },
     {
@@ -33364,14 +33364,14 @@
       "norm_label": "changelog"
     },
     {
-      "label": "[v1.5.0] - 2026-07-10 (\uad00\ub9ac\uc790\ub2e8 HTML \ub9c8\ud06c\uc5c5 HTML5 \ud45c\uc900\ud654 \uc77c\uad04 \uc801\uc6a9)",
+      "label": "[v1.5.1] - 2026-07-10 (\uad00\ub9ac\uc790\ub2e8 \uad6c\ud615 HTML \ub9c8\ud06c\uc5c5 \ud45c\uc900\ud654 \uc77c\uad04 \uc815\ub9ac)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
       "source_location": "L7",
       "_origin": "ast",
-      "id": "changelog_v1_5_0_2026_07_10_\uad00\ub9ac\uc790\ub2e8_html_\ub9c8\ud06c\uc5c5_html5_\ud45c\uc900\ud654_\uc77c\uad04_\uc801\uc6a9",
+      "id": "changelog_v1_5_1_2026_07_10_\uad00\ub9ac\uc790\ub2e8_\uad6c\ud615_html_\ub9c8\ud06c\uc5c5_\ud45c\uc900\ud654_\uc77c\uad04_\uc815\ub9ac",
       "community": 22,
-      "norm_label": "[v1.5.0] - 2026-07-10 (\u1100\u116a\u11ab\u1105\u1175\u110c\u1161\u1103\u1161\u11ab html \u1106\u1161\u110f\u1173\u110b\u1165\u11b8 html5 \u1111\u116d\u110c\u116e\u11ab\u1112\u116a \u110b\u1175\u11af\u1100\u116a\u11af \u110c\u1165\u11a8\u110b\u116d\u11bc)"
+      "norm_label": "[v1.5.1] - 2026-07-10 (\u1100\u116a\u11ab\u1105\u1175\u110c\u1161\u1103\u1161\u11ab \u1100\u116e\u1112\u1167\u11bc html \u1106\u1161\u110f\u1173\u110b\u1165\u11b8 \u1111\u116d\u110c\u116e\u11ab\u1112\u116a \u110b\u1175\u11af\u1100\u116a\u11af \u110c\u1165\u11bc\u1105\u1175)"
     },
     {
       "label": "\uc544\ud0a4\ud14d\ucc98 \uac1c\uc120 \ubc0f \ub9ac\ud329\ud1a0\ub9c1 (Architecture & Refactoring)",
@@ -33384,10 +33384,30 @@
       "norm_label": "\u110b\u1161\u110f\u1175\u1110\u1166\u11a8\u110e\u1165 \u1100\u1162\u1109\u1165\u11ab \u1106\u1175\u11be \u1105\u1175\u1111\u1162\u11a8\u1110\u1169\u1105\u1175\u11bc (architecture & refactoring)"
     },
     {
+      "label": "[v1.5.0] - 2026-07-10 (\uad00\ub9ac\uc790\ub2e8 HTML \ub9c8\ud06c\uc5c5 HTML5 \ud45c\uc900\ud654 \uc77c\uad04 \uc801\uc6a9)",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L26",
+      "_origin": "ast",
+      "id": "changelog_v1_5_0_2026_07_10_\uad00\ub9ac\uc790\ub2e8_html_\ub9c8\ud06c\uc5c5_html5_\ud45c\uc900\ud654_\uc77c\uad04_\uc801\uc6a9",
+      "community": 22,
+      "norm_label": "[v1.5.0] - 2026-07-10 (\u1100\u116a\u11ab\u1105\u1175\u110c\u1161\u1103\u1161\u11ab html \u1106\u1161\u110f\u1173\u110b\u1165\u11b8 html5 \u1111\u116d\u110c\u116e\u11ab\u1112\u116a \u110b\u1175\u11af\u1100\u116a\u11af \u110c\u1165\u11a8\u110b\u116d\u11bc)"
+    },
+    {
+      "label": "\uc544\ud0a4\ud14d\ucc98 \uac1c\uc120 \ubc0f \ub9ac\ud329\ud1a0\ub9c1 (Architecture & Refactoring)",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L28",
+      "_origin": "ast",
+      "id": "changelog_\uc544\ud0a4\ud14d\ucc98_\uac1c\uc120_\ubc0f_\ub9ac\ud329\ud1a0\ub9c1_architecture_refactoring_28",
+      "community": 22,
+      "norm_label": "\u110b\u1161\u110f\u1175\u1110\u1166\u11a8\u110e\u1165 \u1100\u1162\u1109\u1165\u11ab \u1106\u1175\u11be \u1105\u1175\u1111\u1162\u11a8\u1110\u1169\u1105\u1175\u11bc (architecture & refactoring)"
+    },
+    {
       "label": "[v1.4.9] - 2026-07-10 (\uc720\uc2e4\ub41c chromestyle.css \ubc0f chrome.js \ucc38\uc870 \uad6c\ubb38 \uc77c\uad04 \uc81c\uac70)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L18",
+      "source_location": "L37",
       "_origin": "ast",
       "id": "changelog_v1_4_9_2026_07_10_\uc720\uc2e4\ub41c_chromestyle_css_\ubc0f_chrome_js_\ucc38\uc870_\uad6c\ubb38_\uc77c\uad04_\uc81c\uac70",
       "community": 22,
@@ -33397,9 +33417,9 @@
       "label": "\uc544\ud0a4\ud14d\ucc98 \uac1c\uc120 \ubc0f \ub9ac\ud329\ud1a0\ub9c1 (Architecture & Refactoring)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L20",
+      "source_location": "L39",
       "_origin": "ast",
-      "id": "changelog_\uc544\ud0a4\ud14d\ucc98_\uac1c\uc120_\ubc0f_\ub9ac\ud329\ud1a0\ub9c1_architecture_refactoring_20",
+      "id": "changelog_\uc544\ud0a4\ud14d\ucc98_\uac1c\uc120_\ubc0f_\ub9ac\ud329\ud1a0\ub9c1_architecture_refactoring_39",
       "community": 22,
       "norm_label": "\u110b\u1161\u110f\u1175\u1110\u1166\u11a8\u110e\u1165 \u1100\u1162\u1109\u1165\u11ab \u1106\u1175\u11be \u1105\u1175\u1111\u1162\u11a8\u1110\u1169\u1105\u1175\u11bc (architecture & refactoring)"
     },
@@ -33407,7 +33427,7 @@
       "label": "[v1.4.8] - 2026-07-10 (\uc2a4\ub9c8\ud2b8\uc5d0\ub514\ud130\ub97c \uacf5\ud1b5 CKEditor\ub85c \uc804\uba74 \uad50\uccb4 \ubc0f \uad6c\ud615 \uc790\uc0b0 \uc81c\uac70)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L27",
+      "source_location": "L46",
       "_origin": "ast",
       "id": "changelog_v1_4_8_2026_07_10_\uc2a4\ub9c8\ud2b8\uc5d0\ub514\ud130\ub97c_\uacf5\ud1b5_ckeditor\ub85c_\uc804\uba74_\uad50\uccb4_\ubc0f_\uad6c\ud615_\uc790\uc0b0_\uc81c\uac70",
       "community": 22,
@@ -33417,9 +33437,9 @@
       "label": "\uc544\ud0a4\ud14d\ucc98 \uac1c\uc120 \ubc0f \ub9ac\ud329\ud1a0\ub9c1 (Architecture & Refactoring)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L29",
+      "source_location": "L48",
       "_origin": "ast",
-      "id": "changelog_\uc544\ud0a4\ud14d\ucc98_\uac1c\uc120_\ubc0f_\ub9ac\ud329\ud1a0\ub9c1_architecture_refactoring_29",
+      "id": "changelog_\uc544\ud0a4\ud14d\ucc98_\uac1c\uc120_\ubc0f_\ub9ac\ud329\ud1a0\ub9c1_architecture_refactoring_48",
       "community": 22,
       "norm_label": "\u110b\u1161\u110f\u1175\u1110\u1166\u11a8\u110e\u1165 \u1100\u1162\u1109\u1165\u11ab \u1106\u1175\u11be \u1105\u1175\u1111\u1162\u11a8\u1110\u1169\u1105\u1175\u11bc (architecture & refactoring)"
     },
@@ -33427,7 +33447,7 @@
       "label": "[v1.4.7] - 2026-07-10 (CKEditor \uacf5\ud1b5 \ub77c\uc774\ube0c\ub7ec\ub9ac \ub514\ub809\ud1a0\ub9ac \ud1b5\ud569)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L41",
+      "source_location": "L60",
       "_origin": "ast",
       "id": "changelog_v1_4_7_2026_07_10_ckeditor_\uacf5\ud1b5_\ub77c\uc774\ube0c\ub7ec\ub9ac_\ub514\ub809\ud1a0\ub9ac_\ud1b5\ud569",
       "community": 22,
@@ -33437,9 +33457,9 @@
       "label": "\uc544\ud0a4\ud14d\ucc98 \uac1c\uc120 \ubc0f \ub9ac\ud329\ud1a0\ub9c1 (Architecture & Refactoring)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L43",
+      "source_location": "L62",
       "_origin": "ast",
-      "id": "changelog_\uc544\ud0a4\ud14d\ucc98_\uac1c\uc120_\ubc0f_\ub9ac\ud329\ud1a0\ub9c1_architecture_refactoring_43",
+      "id": "changelog_\uc544\ud0a4\ud14d\ucc98_\uac1c\uc120_\ubc0f_\ub9ac\ud329\ud1a0\ub9c1_architecture_refactoring_62",
       "community": 22,
       "norm_label": "\u110b\u1161\u110f\u1175\u1110\u1166\u11a8\u110e\u1165 \u1100\u1162\u1109\u1165\u11ab \u1106\u1175\u11be \u1105\u1175\u1111\u1162\u11a8\u1110\u1169\u1105\u1175\u11bc (architecture & refactoring)"
     },
@@ -33447,7 +33467,7 @@
       "label": "[v1.4.6] - 2026-07-10 (\uc7a5\ubc14\uad6c\ub2c8 \uc5f0\uc0b0 \uc911\ubcf5 \uc81c\uac70 \ubc0f \uacb0\uc81c \uc815\ubcf4 \uad6c\uc870 \ub9ac\ud329\ud1a0\ub9c1)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L51",
+      "source_location": "L70",
       "_origin": "ast",
       "id": "changelog_v1_4_6_2026_07_10_\uc7a5\ubc14\uad6c\ub2c8_\uc5f0\uc0b0_\uc911\ubcf5_\uc81c\uac70_\ubc0f_\uacb0\uc81c_\uc815\ubcf4_\uad6c\uc870_\ub9ac\ud329\ud1a0\ub9c1",
       "community": 22,
@@ -33457,9 +33477,9 @@
       "label": "\uc544\ud0a4\ud14d\ucc98 \uac1c\uc120 \ubc0f \ub9ac\ud329\ud1a0\ub9c1 (Architecture & Refactoring)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L53",
+      "source_location": "L72",
       "_origin": "ast",
-      "id": "changelog_\uc544\ud0a4\ud14d\ucc98_\uac1c\uc120_\ubc0f_\ub9ac\ud329\ud1a0\ub9c1_architecture_refactoring_53",
+      "id": "changelog_\uc544\ud0a4\ud14d\ucc98_\uac1c\uc120_\ubc0f_\ub9ac\ud329\ud1a0\ub9c1_architecture_refactoring_72",
       "community": 22,
       "norm_label": "\u110b\u1161\u110f\u1175\u1110\u1166\u11a8\u110e\u1165 \u1100\u1162\u1109\u1165\u11ab \u1106\u1175\u11be \u1105\u1175\u1111\u1162\u11a8\u1110\u1169\u1105\u1175\u11bc (architecture & refactoring)"
     },
@@ -33467,7 +33487,7 @@
       "label": "[v1.4.5] - 2026-07-10 (\uae08\uc735\uae30\uad00 \ucf54\ub4dc \uacf5\ud1b5 \uc124\uc815\ud654 \ubc0f \ub9ac\ud329\ud1a0\ub9c1)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L64",
+      "source_location": "L83",
       "_origin": "ast",
       "id": "changelog_v1_4_5_2026_07_10_\uae08\uc735\uae30\uad00_\ucf54\ub4dc_\uacf5\ud1b5_\uc124\uc815\ud654_\ubc0f_\ub9ac\ud329\ud1a0\ub9c1",
       "community": 22,
@@ -33477,9 +33497,9 @@
       "label": "\uc544\ud0a4\ud14d\ucc98 \uac1c\uc120 \ubc0f \ub9ac\ud329\ud1a0\ub9c1 (Architecture & Refactoring)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L66",
+      "source_location": "L85",
       "_origin": "ast",
-      "id": "changelog_\uc544\ud0a4\ud14d\ucc98_\uac1c\uc120_\ubc0f_\ub9ac\ud329\ud1a0\ub9c1_architecture_refactoring_66",
+      "id": "changelog_\uc544\ud0a4\ud14d\ucc98_\uac1c\uc120_\ubc0f_\ub9ac\ud329\ud1a0\ub9c1_architecture_refactoring_85",
       "community": 22,
       "norm_label": "\u110b\u1161\u110f\u1175\u1110\u1166\u11a8\u110e\u1165 \u1100\u1162\u1109\u1165\u11ab \u1106\u1175\u11be \u1105\u1175\u1111\u1162\u11a8\u1110\u1169\u1105\u1175\u11bc (architecture & refactoring)"
     },
@@ -33487,7 +33507,7 @@
       "label": "[v1.4.4] - 2026-07-10 (\uacf5\ud1b5 \uc720\ud2f8\ub9ac\ud2f0 \ud30c\uc77c \ubc84\uadf8 \uc218\uc815 \ubc0f \ub9ac\ud329\ud1a0\ub9c1)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L75",
+      "source_location": "L94",
       "_origin": "ast",
       "id": "changelog_v1_4_4_2026_07_10_\uacf5\ud1b5_\uc720\ud2f8\ub9ac\ud2f0_\ud30c\uc77c_\ubc84\uadf8_\uc218\uc815_\ubc0f_\ub9ac\ud329\ud1a0\ub9c1",
       "community": 22,
@@ -33497,7 +33517,7 @@
       "label": "\ubc84\uadf8 \uc218\uc815 \ubc0f \ub9ac\ud329\ud1a0\ub9c1 (Bug Fixes & Refactoring)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L77",
+      "source_location": "L96",
       "_origin": "ast",
       "id": "changelog_\ubc84\uadf8_\uc218\uc815_\ubc0f_\ub9ac\ud329\ud1a0\ub9c1_bug_fixes_refactoring",
       "community": 22,
@@ -33507,7 +33527,7 @@
       "label": "[v1.4.3] - 2026-07-10 (\uc1fc\ud551 \uc720\ud2f8\ub9ac\ud2f0 \ud568\uc218 \uc8fc\uc11d \ubb38\uc11c\ud654 \ubc0f \uac80\uc99d)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L87",
+      "source_location": "L106",
       "_origin": "ast",
       "id": "changelog_v1_4_3_2026_07_10_\uc1fc\ud551_\uc720\ud2f8\ub9ac\ud2f0_\ud568\uc218_\uc8fc\uc11d_\ubb38\uc11c\ud654_\ubc0f_\uac80\uc99d",
       "community": 22,
@@ -33517,7 +33537,7 @@
       "label": "\ubb38\uc11c\ud654 \ubc0f \uac00\ub3c5\uc131 \uac1c\uc120 (Documentation & Readability)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L89",
+      "source_location": "L108",
       "_origin": "ast",
       "id": "changelog_\ubb38\uc11c\ud654_\ubc0f_\uac00\ub3c5\uc131_\uac1c\uc120_documentation_readability",
       "community": 22,
@@ -33527,7 +33547,7 @@
       "label": "[v1.4.2] - 2026-07-10 (\uc720\ud2f8\ub9ac\ud2f0 \ud568\uc218 \uc8fc\uc11d \ubb38\uc11c\ud654 \ubc0f \uac00\ub3c5\uc131 \uac1c\uc120)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L97",
+      "source_location": "L116",
       "_origin": "ast",
       "id": "changelog_v1_4_2_2026_07_10_\uc720\ud2f8\ub9ac\ud2f0_\ud568\uc218_\uc8fc\uc11d_\ubb38\uc11c\ud654_\ubc0f_\uac00\ub3c5\uc131_\uac1c\uc120",
       "community": 22,
@@ -33537,9 +33557,9 @@
       "label": "\ubb38\uc11c\ud654 \ubc0f \uac00\ub3c5\uc131 \uac1c\uc120 (Documentation & Readability)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L99",
+      "source_location": "L118",
       "_origin": "ast",
-      "id": "changelog_\ubb38\uc11c\ud654_\ubc0f_\uac00\ub3c5\uc131_\uac1c\uc120_documentation_readability_99",
+      "id": "changelog_\ubb38\uc11c\ud654_\ubc0f_\uac00\ub3c5\uc131_\uac1c\uc120_documentation_readability_118",
       "community": 22,
       "norm_label": "\u1106\u116e\u11ab\u1109\u1165\u1112\u116a \u1106\u1175\u11be \u1100\u1161\u1103\u1169\u11a8\u1109\u1165\u11bc \u1100\u1162\u1109\u1165\u11ab (documentation & readability)"
     },
@@ -33547,7 +33567,7 @@
       "label": "[v1.4.1] - 2026-07-10 (\ubcf4\uc548 \ub9ac\ud329\ud1a0\ub9c1, PHP \ud638\ud658\uc131 \ud655\ubcf4 \ubc0f \ud6c4\uc774\uc988 SMS API \ubaa8\ub4c8 \uc5c5\ub370\uc774\ud2b8)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L106",
+      "source_location": "L125",
       "_origin": "ast",
       "id": "changelog_v1_4_1_2026_07_10_\ubcf4\uc548_\ub9ac\ud329\ud1a0\ub9c1_php_\ud638\ud658\uc131_\ud655\ubcf4_\ubc0f_\ud6c4\uc774\uc988_sms_api_\ubaa8\ub4c8_\uc5c5\ub370\uc774\ud2b8",
       "community": 22,
@@ -33557,7 +33577,7 @@
       "label": "\ubcf4\uc548 \ubc0f \ud788\uc2a4\ud1a0\ub9ac \uad00\ub9ac (Security & Git History)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L108",
+      "source_location": "L127",
       "_origin": "ast",
       "id": "changelog_\ubcf4\uc548_\ubc0f_\ud788\uc2a4\ud1a0\ub9ac_\uad00\ub9ac_security_git_history",
       "community": 22,
@@ -33567,7 +33587,7 @@
       "label": "\ud6c4\uc774\uc988 SMS API \ubaa8\ub4c8 \uc5c5\ub370\uc774\ud2b8 (Whois SMS API Integration)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L114",
+      "source_location": "L133",
       "_origin": "ast",
       "id": "changelog_\ud6c4\uc774\uc988_sms_api_\ubaa8\ub4c8_\uc5c5\ub370\uc774\ud2b8_whois_sms_api_integration",
       "community": 22,
@@ -33577,7 +33597,7 @@
       "label": "\ucd5c\uc2e0 PHP \ubc84\uc804 \ud638\ud658\uc131 \ub9ac\ud329\ud1a0\ub9c1 (PHP 7.x/8.x Compatibility)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L122",
+      "source_location": "L141",
       "_origin": "ast",
       "id": "changelog_\ucd5c\uc2e0_php_\ubc84\uc804_\ud638\ud658\uc131_\ub9ac\ud329\ud1a0\ub9c1_php_7_x_8_x_compatibility",
       "community": 22,
@@ -33587,7 +33607,7 @@
       "label": "[v1.4.0] - 2016-09-22 ~ 2026-07-09 (\uacb0\uc81c \uc548\uc815\uc131 \ubc0f \uc7ac\uace0 \uc815\ud569\uc131 \uac15\ud654, \ubcf4\uc548 \ub9ac\ud329\ud1a0\ub9c1, \ud1a0\uc2a4\ud398\uc774\uba3c\uce20 \ub9c8\uc774\uadf8\ub808\uc774\uc158)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L134",
+      "source_location": "L153",
       "_origin": "ast",
       "id": "changelog_v1_4_0_2016_09_22_2026_07_09_\uacb0\uc81c_\uc548\uc815\uc131_\ubc0f_\uc7ac\uace0_\uc815\ud569\uc131_\uac15\ud654_\ubcf4\uc548_\ub9ac\ud329\ud1a0\ub9c1_\ud1a0\uc2a4\ud398\uc774\uba3c\uce20_\ub9c8\uc774\uadf8\ub808\uc774\uc158",
       "community": 22,
@@ -33597,7 +33617,7 @@
       "label": "\uacb0\uc81c \uac8c\uc774\ud2b8\uc6e8\uc774(PG) \ub9c8\uc774\uadf8\ub808\uc774\uc158 (Toss Payments Migration)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L136",
+      "source_location": "L155",
       "_origin": "ast",
       "id": "changelog_\uacb0\uc81c_\uac8c\uc774\ud2b8\uc6e8\uc774_pg_\ub9c8\uc774\uadf8\ub808\uc774\uc158_toss_payments_migration",
       "community": 22,
@@ -33607,7 +33627,7 @@
       "label": "\ubc84\uadf8 \uc218\uc815 (Bug Fixes)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L146",
+      "source_location": "L165",
       "_origin": "ast",
       "id": "changelog_\ubc84\uadf8_\uc218\uc815_bug_fixes",
       "community": 22,
@@ -33617,7 +33637,7 @@
       "label": "\ud658\uacbd \uc124\uc815 \ubc0f \ubcf4\uc548 (Security & Config)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L163",
+      "source_location": "L182",
       "_origin": "ast",
       "id": "changelog_\ud658\uacbd_\uc124\uc815_\ubc0f_\ubcf4\uc548_security_config",
       "community": 22,
@@ -33627,7 +33647,7 @@
       "label": "[v1.3.0] - 2016-05-02 ~ 2016-07-22 (\ubaa8\ubc14\uc77c \uacb0\uc81c \ud655\uc7a5 \ubc0f \ubc30\uc1a1 \uc2dc\uc2a4\ud15c \uc138\ubd84\ud654)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L173",
+      "source_location": "L192",
       "_origin": "ast",
       "id": "changelog_v1_3_0_2016_05_02_2016_07_22_\ubaa8\ubc14\uc77c_\uacb0\uc81c_\ud655\uc7a5_\ubc0f_\ubc30\uc1a1_\uc2dc\uc2a4\ud15c_\uc138\ubd84\ud654",
       "community": 22,
@@ -33637,7 +33657,7 @@
       "label": "\uae30\ub2a5 \ucd94\uac00 \ubc0f \uac1c\uc120 (Features & Improvements)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L175",
+      "source_location": "L194",
       "_origin": "ast",
       "id": "changelog_\uae30\ub2a5_\ucd94\uac00_\ubc0f_\uac1c\uc120_features_improvements",
       "community": 22,
@@ -33647,31 +33667,11 @@
       "label": "[v1.2.0] - 2016-03-05 ~ 2016-04-30 (\uac1c\uc778 \ud68c\uc6d0 \uccb4\uacc4 \ubc0f \uba54\uc77c\ub9c1 \uc2dc\uc2a4\ud15c \ub3c4\uc785)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L187",
+      "source_location": "L206",
       "_origin": "ast",
       "id": "changelog_v1_2_0_2016_03_05_2016_04_30_\uac1c\uc778_\ud68c\uc6d0_\uccb4\uacc4_\ubc0f_\uba54\uc77c\ub9c1_\uc2dc\uc2a4\ud15c_\ub3c4\uc785",
       "community": 22,
       "norm_label": "[v1.2.0] - 2016-03-05 ~ 2016-04-30 (\u1100\u1162\u110b\u1175\u11ab \u1112\u116c\u110b\u116f\u11ab \u110e\u1166\u1100\u1168 \u1106\u1175\u11be \u1106\u1166\u110b\u1175\u11af\u1105\u1175\u11bc \u1109\u1175\u1109\u1173\u1110\u1166\u11b7 \u1103\u1169\u110b\u1175\u11b8)"
-    },
-    {
-      "label": "\uae30\ub2a5 \ucd94\uac00 \ubc0f \uac1c\uc120 (Features & Improvements)",
-      "file_type": "document",
-      "source_file": "CHANGELOG.md",
-      "source_location": "L189",
-      "_origin": "ast",
-      "id": "changelog_\uae30\ub2a5_\ucd94\uac00_\ubc0f_\uac1c\uc120_features_improvements_189",
-      "community": 22,
-      "norm_label": "\u1100\u1175\u1102\u1173\u11bc \u110e\u116e\u1100\u1161 \u1106\u1175\u11be \u1100\u1162\u1109\u1165\u11ab (features & improvements)"
-    },
-    {
-      "label": "[v1.1.0] - 2016-02-18 ~ 2016-03-05 (PG \uacb0\uc81c \uc5f0\ub3d9 \ubc0f \ub370\uc774\ud130 \uad00\ub9ac \uc2dc\uc2a4\ud15c \uad6c\ucd95)",
-      "file_type": "document",
-      "source_file": "CHANGELOG.md",
-      "source_location": "L206",
-      "_origin": "ast",
-      "id": "changelog_v1_1_0_2016_02_18_2016_03_05_pg_\uacb0\uc81c_\uc5f0\ub3d9_\ubc0f_\ub370\uc774\ud130_\uad00\ub9ac_\uc2dc\uc2a4\ud15c_\uad6c\ucd95",
-      "community": 22,
-      "norm_label": "[v1.1.0] - 2016-02-18 ~ 2016-03-05 (pg \u1100\u1167\u11af\u110c\u1166 \u110b\u1167\u11ab\u1103\u1169\u11bc \u1106\u1175\u11be \u1103\u1166\u110b\u1175\u1110\u1165 \u1100\u116a\u11ab\u1105\u1175 \u1109\u1175\u1109\u1173\u1110\u1166\u11b7 \u1100\u116e\u110e\u116e\u11a8)"
     },
     {
       "label": "\uae30\ub2a5 \ucd94\uac00 \ubc0f \uac1c\uc120 (Features & Improvements)",
@@ -33684,10 +33684,30 @@
       "norm_label": "\u1100\u1175\u1102\u1173\u11bc \u110e\u116e\u1100\u1161 \u1106\u1175\u11be \u1100\u1162\u1109\u1165\u11ab (features & improvements)"
     },
     {
+      "label": "[v1.1.0] - 2016-02-18 ~ 2016-03-05 (PG \uacb0\uc81c \uc5f0\ub3d9 \ubc0f \ub370\uc774\ud130 \uad00\ub9ac \uc2dc\uc2a4\ud15c \uad6c\ucd95)",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L225",
+      "_origin": "ast",
+      "id": "changelog_v1_1_0_2016_02_18_2016_03_05_pg_\uacb0\uc81c_\uc5f0\ub3d9_\ubc0f_\ub370\uc774\ud130_\uad00\ub9ac_\uc2dc\uc2a4\ud15c_\uad6c\ucd95",
+      "community": 22,
+      "norm_label": "[v1.1.0] - 2016-02-18 ~ 2016-03-05 (pg \u1100\u1167\u11af\u110c\u1166 \u110b\u1167\u11ab\u1103\u1169\u11bc \u1106\u1175\u11be \u1103\u1166\u110b\u1175\u1110\u1165 \u1100\u116a\u11ab\u1105\u1175 \u1109\u1175\u1109\u1173\u1110\u1166\u11b7 \u1100\u116e\u110e\u116e\u11a8)"
+    },
+    {
+      "label": "\uae30\ub2a5 \ucd94\uac00 \ubc0f \uac1c\uc120 (Features & Improvements)",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L227",
+      "_origin": "ast",
+      "id": "changelog_\uae30\ub2a5_\ucd94\uac00_\ubc0f_\uac1c\uc120_features_improvements_227",
+      "community": 22,
+      "norm_label": "\u1100\u1175\u1102\u1173\u11bc \u110e\u116e\u1100\u1161 \u1106\u1175\u11be \u1100\u1162\u1109\u1165\u11ab (features & improvements)"
+    },
+    {
       "label": "[v1.0.0] - 2016-01-19 ~ 2016-02-18 (\ucd08\uae30 \ube4c\ub4dc \ubc0f \uae30\ubcf8 \ucee4\uba38\uc2a4 \uc544\ud0a4\ud14d\ucc98 \uc218\ub9bd)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L224",
+      "source_location": "L243",
       "_origin": "ast",
       "id": "changelog_v1_0_0_2016_01_19_2016_02_18_\ucd08\uae30_\ube4c\ub4dc_\ubc0f_\uae30\ubcf8_\ucee4\uba38\uc2a4_\uc544\ud0a4\ud14d\ucc98_\uc218\ub9bd",
       "community": 22,
@@ -33697,7 +33717,7 @@
       "label": "\uae30\ub2a5 \ucd94\uac00 (Core Setup)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L226",
+      "source_location": "L245",
       "_origin": "ast",
       "id": "changelog_\uae30\ub2a5_\ucd94\uac00_core_setup",
       "community": 22,
@@ -98674,7 +98694,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L169",
+      "source_location": "L188",
       "weight": 1.0,
       "source": "changelog",
       "target": "readme",
@@ -98684,7 +98704,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L224",
+      "source_location": "L243",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_v1_0_0_2016_01_19_2016_02_18_\ucd08\uae30_\ube4c\ub4dc_\ubc0f_\uae30\ubcf8_\ucee4\uba38\uc2a4_\uc544\ud0a4\ud14d\ucc98_\uc218\ub9bd",
@@ -98694,7 +98714,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L206",
+      "source_location": "L225",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_v1_1_0_2016_02_18_2016_03_05_pg_\uacb0\uc81c_\uc5f0\ub3d9_\ubc0f_\ub370\uc774\ud130_\uad00\ub9ac_\uc2dc\uc2a4\ud15c_\uad6c\ucd95",
@@ -98704,7 +98724,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L187",
+      "source_location": "L206",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_v1_2_0_2016_03_05_2016_04_30_\uac1c\uc778_\ud68c\uc6d0_\uccb4\uacc4_\ubc0f_\uba54\uc77c\ub9c1_\uc2dc\uc2a4\ud15c_\ub3c4\uc785",
@@ -98714,7 +98734,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L173",
+      "source_location": "L192",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_v1_3_0_2016_05_02_2016_07_22_\ubaa8\ubc14\uc77c_\uacb0\uc81c_\ud655\uc7a5_\ubc0f_\ubc30\uc1a1_\uc2dc\uc2a4\ud15c_\uc138\ubd84\ud654",
@@ -98724,7 +98744,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L134",
+      "source_location": "L153",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_v1_4_0_2016_09_22_2026_07_09_\uacb0\uc81c_\uc548\uc815\uc131_\ubc0f_\uc7ac\uace0_\uc815\ud569\uc131_\uac15\ud654_\ubcf4\uc548_\ub9ac\ud329\ud1a0\ub9c1_\ud1a0\uc2a4\ud398\uc774\uba3c\uce20_\ub9c8\uc774\uadf8\ub808\uc774\uc158",
@@ -98734,7 +98754,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L106",
+      "source_location": "L125",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_v1_4_1_2026_07_10_\ubcf4\uc548_\ub9ac\ud329\ud1a0\ub9c1_php_\ud638\ud658\uc131_\ud655\ubcf4_\ubc0f_\ud6c4\uc774\uc988_sms_api_\ubaa8\ub4c8_\uc5c5\ub370\uc774\ud2b8",
@@ -98744,7 +98764,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L97",
+      "source_location": "L116",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_v1_4_2_2026_07_10_\uc720\ud2f8\ub9ac\ud2f0_\ud568\uc218_\uc8fc\uc11d_\ubb38\uc11c\ud654_\ubc0f_\uac00\ub3c5\uc131_\uac1c\uc120",
@@ -98754,7 +98774,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L87",
+      "source_location": "L106",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_v1_4_3_2026_07_10_\uc1fc\ud551_\uc720\ud2f8\ub9ac\ud2f0_\ud568\uc218_\uc8fc\uc11d_\ubb38\uc11c\ud654_\ubc0f_\uac80\uc99d",
@@ -98764,7 +98784,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L75",
+      "source_location": "L94",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_v1_4_4_2026_07_10_\uacf5\ud1b5_\uc720\ud2f8\ub9ac\ud2f0_\ud30c\uc77c_\ubc84\uadf8_\uc218\uc815_\ubc0f_\ub9ac\ud329\ud1a0\ub9c1",
@@ -98774,7 +98794,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L64",
+      "source_location": "L83",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_v1_4_5_2026_07_10_\uae08\uc735\uae30\uad00_\ucf54\ub4dc_\uacf5\ud1b5_\uc124\uc815\ud654_\ubc0f_\ub9ac\ud329\ud1a0\ub9c1",
@@ -98784,7 +98804,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L51",
+      "source_location": "L70",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_v1_4_6_2026_07_10_\uc7a5\ubc14\uad6c\ub2c8_\uc5f0\uc0b0_\uc911\ubcf5_\uc81c\uac70_\ubc0f_\uacb0\uc81c_\uc815\ubcf4_\uad6c\uc870_\ub9ac\ud329\ud1a0\ub9c1",
@@ -98794,7 +98814,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L41",
+      "source_location": "L60",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_v1_4_7_2026_07_10_ckeditor_\uacf5\ud1b5_\ub77c\uc774\ube0c\ub7ec\ub9ac_\ub514\ub809\ud1a0\ub9ac_\ud1b5\ud569",
@@ -98804,7 +98824,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L27",
+      "source_location": "L46",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_v1_4_8_2026_07_10_\uc2a4\ub9c8\ud2b8\uc5d0\ub514\ud130\ub97c_\uacf5\ud1b5_ckeditor\ub85c_\uc804\uba74_\uad50\uccb4_\ubc0f_\uad6c\ud615_\uc790\uc0b0_\uc81c\uac70",
@@ -98814,7 +98834,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L18",
+      "source_location": "L37",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_v1_4_9_2026_07_10_\uc720\uc2e4\ub41c_chromestyle_css_\ubc0f_chrome_js_\ucc38\uc870_\uad6c\ubb38_\uc77c\uad04_\uc81c\uac70",
@@ -98824,7 +98844,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L7",
+      "source_location": "L26",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_v1_5_0_2026_07_10_\uad00\ub9ac\uc790\ub2e8_html_\ub9c8\ud06c\uc5c5_html5_\ud45c\uc900\ud654_\uc77c\uad04_\uc801\uc6a9",
@@ -98834,9 +98854,19 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "changelog_changelog",
+      "target": "changelog_v1_5_1_2026_07_10_\uad00\ub9ac\uc790\ub2e8_\uad6c\ud615_html_\ub9c8\ud06c\uc5c5_\ud45c\uc900\ud654_\uc77c\uad04_\uc815\ub9ac",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHANGELOG.md",
       "source_location": "L9",
       "weight": 1.0,
-      "source": "changelog_v1_5_0_2026_07_10_\uad00\ub9ac\uc790\ub2e8_html_\ub9c8\ud06c\uc5c5_html5_\ud45c\uc900\ud654_\uc77c\uad04_\uc801\uc6a9",
+      "source": "changelog_v1_5_1_2026_07_10_\uad00\ub9ac\uc790\ub2e8_\uad6c\ud615_html_\ub9c8\ud06c\uc5c5_\ud45c\uc900\ud654_\uc77c\uad04_\uc815\ub9ac",
       "target": "changelog_\uc544\ud0a4\ud14d\ucc98_\uac1c\uc120_\ubc0f_\ub9ac\ud329\ud1a0\ub9c1_architecture_refactoring",
       "confidence_score": 1.0
     },
@@ -98844,57 +98874,67 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L20",
+      "source_location": "L28",
+      "weight": 1.0,
+      "source": "changelog_v1_5_0_2026_07_10_\uad00\ub9ac\uc790\ub2e8_html_\ub9c8\ud06c\uc5c5_html5_\ud45c\uc900\ud654_\uc77c\uad04_\uc801\uc6a9",
+      "target": "changelog_\uc544\ud0a4\ud14d\ucc98_\uac1c\uc120_\ubc0f_\ub9ac\ud329\ud1a0\ub9c1_architecture_refactoring_28",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L39",
       "weight": 1.0,
       "source": "changelog_v1_4_9_2026_07_10_\uc720\uc2e4\ub41c_chromestyle_css_\ubc0f_chrome_js_\ucc38\uc870_\uad6c\ubb38_\uc77c\uad04_\uc81c\uac70",
-      "target": "changelog_\uc544\ud0a4\ud14d\ucc98_\uac1c\uc120_\ubc0f_\ub9ac\ud329\ud1a0\ub9c1_architecture_refactoring_20",
+      "target": "changelog_\uc544\ud0a4\ud14d\ucc98_\uac1c\uc120_\ubc0f_\ub9ac\ud329\ud1a0\ub9c1_architecture_refactoring_39",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L29",
+      "source_location": "L48",
       "weight": 1.0,
       "source": "changelog_v1_4_8_2026_07_10_\uc2a4\ub9c8\ud2b8\uc5d0\ub514\ud130\ub97c_\uacf5\ud1b5_ckeditor\ub85c_\uc804\uba74_\uad50\uccb4_\ubc0f_\uad6c\ud615_\uc790\uc0b0_\uc81c\uac70",
-      "target": "changelog_\uc544\ud0a4\ud14d\ucc98_\uac1c\uc120_\ubc0f_\ub9ac\ud329\ud1a0\ub9c1_architecture_refactoring_29",
+      "target": "changelog_\uc544\ud0a4\ud14d\ucc98_\uac1c\uc120_\ubc0f_\ub9ac\ud329\ud1a0\ub9c1_architecture_refactoring_48",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L43",
+      "source_location": "L62",
       "weight": 1.0,
       "source": "changelog_v1_4_7_2026_07_10_ckeditor_\uacf5\ud1b5_\ub77c\uc774\ube0c\ub7ec\ub9ac_\ub514\ub809\ud1a0\ub9ac_\ud1b5\ud569",
-      "target": "changelog_\uc544\ud0a4\ud14d\ucc98_\uac1c\uc120_\ubc0f_\ub9ac\ud329\ud1a0\ub9c1_architecture_refactoring_43",
+      "target": "changelog_\uc544\ud0a4\ud14d\ucc98_\uac1c\uc120_\ubc0f_\ub9ac\ud329\ud1a0\ub9c1_architecture_refactoring_62",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L53",
+      "source_location": "L72",
       "weight": 1.0,
       "source": "changelog_v1_4_6_2026_07_10_\uc7a5\ubc14\uad6c\ub2c8_\uc5f0\uc0b0_\uc911\ubcf5_\uc81c\uac70_\ubc0f_\uacb0\uc81c_\uc815\ubcf4_\uad6c\uc870_\ub9ac\ud329\ud1a0\ub9c1",
-      "target": "changelog_\uc544\ud0a4\ud14d\ucc98_\uac1c\uc120_\ubc0f_\ub9ac\ud329\ud1a0\ub9c1_architecture_refactoring_53",
+      "target": "changelog_\uc544\ud0a4\ud14d\ucc98_\uac1c\uc120_\ubc0f_\ub9ac\ud329\ud1a0\ub9c1_architecture_refactoring_72",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L66",
+      "source_location": "L85",
       "weight": 1.0,
       "source": "changelog_v1_4_5_2026_07_10_\uae08\uc735\uae30\uad00_\ucf54\ub4dc_\uacf5\ud1b5_\uc124\uc815\ud654_\ubc0f_\ub9ac\ud329\ud1a0\ub9c1",
-      "target": "changelog_\uc544\ud0a4\ud14d\ucc98_\uac1c\uc120_\ubc0f_\ub9ac\ud329\ud1a0\ub9c1_architecture_refactoring_66",
+      "target": "changelog_\uc544\ud0a4\ud14d\ucc98_\uac1c\uc120_\ubc0f_\ub9ac\ud329\ud1a0\ub9c1_architecture_refactoring_85",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L77",
+      "source_location": "L96",
       "weight": 1.0,
       "source": "changelog_v1_4_4_2026_07_10_\uacf5\ud1b5_\uc720\ud2f8\ub9ac\ud2f0_\ud30c\uc77c_\ubc84\uadf8_\uc218\uc815_\ubc0f_\ub9ac\ud329\ud1a0\ub9c1",
       "target": "changelog_\ubc84\uadf8_\uc218\uc815_\ubc0f_\ub9ac\ud329\ud1a0\ub9c1_bug_fixes_refactoring",
@@ -98904,7 +98944,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L89",
+      "source_location": "L108",
       "weight": 1.0,
       "source": "changelog_v1_4_3_2026_07_10_\uc1fc\ud551_\uc720\ud2f8\ub9ac\ud2f0_\ud568\uc218_\uc8fc\uc11d_\ubb38\uc11c\ud654_\ubc0f_\uac80\uc99d",
       "target": "changelog_\ubb38\uc11c\ud654_\ubc0f_\uac00\ub3c5\uc131_\uac1c\uc120_documentation_readability",
@@ -98914,17 +98954,17 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L99",
+      "source_location": "L118",
       "weight": 1.0,
       "source": "changelog_v1_4_2_2026_07_10_\uc720\ud2f8\ub9ac\ud2f0_\ud568\uc218_\uc8fc\uc11d_\ubb38\uc11c\ud654_\ubc0f_\uac00\ub3c5\uc131_\uac1c\uc120",
-      "target": "changelog_\ubb38\uc11c\ud654_\ubc0f_\uac00\ub3c5\uc131_\uac1c\uc120_documentation_readability_99",
+      "target": "changelog_\ubb38\uc11c\ud654_\ubc0f_\uac00\ub3c5\uc131_\uac1c\uc120_documentation_readability_118",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L108",
+      "source_location": "L127",
       "weight": 1.0,
       "source": "changelog_v1_4_1_2026_07_10_\ubcf4\uc548_\ub9ac\ud329\ud1a0\ub9c1_php_\ud638\ud658\uc131_\ud655\ubcf4_\ubc0f_\ud6c4\uc774\uc988_sms_api_\ubaa8\ub4c8_\uc5c5\ub370\uc774\ud2b8",
       "target": "changelog_\ubcf4\uc548_\ubc0f_\ud788\uc2a4\ud1a0\ub9ac_\uad00\ub9ac_security_git_history",
@@ -98934,7 +98974,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L122",
+      "source_location": "L141",
       "weight": 1.0,
       "source": "changelog_v1_4_1_2026_07_10_\ubcf4\uc548_\ub9ac\ud329\ud1a0\ub9c1_php_\ud638\ud658\uc131_\ud655\ubcf4_\ubc0f_\ud6c4\uc774\uc988_sms_api_\ubaa8\ub4c8_\uc5c5\ub370\uc774\ud2b8",
       "target": "changelog_\ucd5c\uc2e0_php_\ubc84\uc804_\ud638\ud658\uc131_\ub9ac\ud329\ud1a0\ub9c1_php_7_x_8_x_compatibility",
@@ -98944,7 +98984,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L114",
+      "source_location": "L133",
       "weight": 1.0,
       "source": "changelog_v1_4_1_2026_07_10_\ubcf4\uc548_\ub9ac\ud329\ud1a0\ub9c1_php_\ud638\ud658\uc131_\ud655\ubcf4_\ubc0f_\ud6c4\uc774\uc988_sms_api_\ubaa8\ub4c8_\uc5c5\ub370\uc774\ud2b8",
       "target": "changelog_\ud6c4\uc774\uc988_sms_api_\ubaa8\ub4c8_\uc5c5\ub370\uc774\ud2b8_whois_sms_api_integration",
@@ -98954,7 +98994,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L136",
+      "source_location": "L155",
       "weight": 1.0,
       "source": "changelog_v1_4_0_2016_09_22_2026_07_09_\uacb0\uc81c_\uc548\uc815\uc131_\ubc0f_\uc7ac\uace0_\uc815\ud569\uc131_\uac15\ud654_\ubcf4\uc548_\ub9ac\ud329\ud1a0\ub9c1_\ud1a0\uc2a4\ud398\uc774\uba3c\uce20_\ub9c8\uc774\uadf8\ub808\uc774\uc158",
       "target": "changelog_\uacb0\uc81c_\uac8c\uc774\ud2b8\uc6e8\uc774_pg_\ub9c8\uc774\uadf8\ub808\uc774\uc158_toss_payments_migration",
@@ -98964,7 +99004,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L146",
+      "source_location": "L165",
       "weight": 1.0,
       "source": "changelog_v1_4_0_2016_09_22_2026_07_09_\uacb0\uc81c_\uc548\uc815\uc131_\ubc0f_\uc7ac\uace0_\uc815\ud569\uc131_\uac15\ud654_\ubcf4\uc548_\ub9ac\ud329\ud1a0\ub9c1_\ud1a0\uc2a4\ud398\uc774\uba3c\uce20_\ub9c8\uc774\uadf8\ub808\uc774\uc158",
       "target": "changelog_\ubc84\uadf8_\uc218\uc815_bug_fixes",
@@ -98974,7 +99014,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L163",
+      "source_location": "L182",
       "weight": 1.0,
       "source": "changelog_v1_4_0_2016_09_22_2026_07_09_\uacb0\uc81c_\uc548\uc815\uc131_\ubc0f_\uc7ac\uace0_\uc815\ud569\uc131_\uac15\ud654_\ubcf4\uc548_\ub9ac\ud329\ud1a0\ub9c1_\ud1a0\uc2a4\ud398\uc774\uba3c\uce20_\ub9c8\uc774\uadf8\ub808\uc774\uc158",
       "target": "changelog_\ud658\uacbd_\uc124\uc815_\ubc0f_\ubcf4\uc548_security_config",
@@ -98984,7 +99024,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L175",
+      "source_location": "L194",
       "weight": 1.0,
       "source": "changelog_v1_3_0_2016_05_02_2016_07_22_\ubaa8\ubc14\uc77c_\uacb0\uc81c_\ud655\uc7a5_\ubc0f_\ubc30\uc1a1_\uc2dc\uc2a4\ud15c_\uc138\ubd84\ud654",
       "target": "changelog_\uae30\ub2a5_\ucd94\uac00_\ubc0f_\uac1c\uc120_features_improvements",
@@ -98994,19 +99034,9 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L189",
-      "weight": 1.0,
-      "source": "changelog_v1_2_0_2016_03_05_2016_04_30_\uac1c\uc778_\ud68c\uc6d0_\uccb4\uacc4_\ubc0f_\uba54\uc77c\ub9c1_\uc2dc\uc2a4\ud15c_\ub3c4\uc785",
-      "target": "changelog_\uae30\ub2a5_\ucd94\uac00_\ubc0f_\uac1c\uc120_features_improvements_189",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "CHANGELOG.md",
       "source_location": "L208",
       "weight": 1.0,
-      "source": "changelog_v1_1_0_2016_02_18_2016_03_05_pg_\uacb0\uc81c_\uc5f0\ub3d9_\ubc0f_\ub370\uc774\ud130_\uad00\ub9ac_\uc2dc\uc2a4\ud15c_\uad6c\ucd95",
+      "source": "changelog_v1_2_0_2016_03_05_2016_04_30_\uac1c\uc778_\ud68c\uc6d0_\uccb4\uacc4_\ubc0f_\uba54\uc77c\ub9c1_\uc2dc\uc2a4\ud15c_\ub3c4\uc785",
       "target": "changelog_\uae30\ub2a5_\ucd94\uac00_\ubc0f_\uac1c\uc120_features_improvements_208",
       "confidence_score": 1.0
     },
@@ -99014,7 +99044,17 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L226",
+      "source_location": "L227",
+      "weight": 1.0,
+      "source": "changelog_v1_1_0_2016_02_18_2016_03_05_pg_\uacb0\uc81c_\uc5f0\ub3d9_\ubc0f_\ub370\uc774\ud130_\uad00\ub9ac_\uc2dc\uc2a4\ud15c_\uad6c\ucd95",
+      "target": "changelog_\uae30\ub2a5_\ucd94\uac00_\ubc0f_\uac1c\uc120_features_improvements_227",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L245",
       "weight": 1.0,
       "source": "changelog_v1_0_0_2016_01_19_2016_02_18_\ucd08\uae30_\ube4c\ub4dc_\ubc0f_\uae30\ubcf8_\ucee4\uba38\uc2a4_\uc544\ud0a4\ud14d\ucc98_\uc218\ub9bd",
       "target": "changelog_\uae30\ub2a5_\ucd94\uac00_core_setup",

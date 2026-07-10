@@ -4,6 +4,19 @@
 
 이 문서는 SOHO-market 프로젝트의 최초 시작부터 현재까지의 전체 개발 변경 이력을 기록합니다. 주요 개발 마일스톤과 커밋 히스토리를 바탕으로 구조화되었습니다.
 
+## [v1.5.6] - 2026-07-10 (삭제된 파일의 잔존 참조 정리 및 깨진 버튼 배경 이미지 복구)
+
+### 아키텍처 개선 및 리팩토링 (Architecture & Refactoring)
+
+- **삭제 파일 참조 정리 및 미사용 리소스 정리**
+  - **구형 jQuery 및 ddsmoothmenu 제거:** 사용되지 않는 `ddsmoothmenu` 카테고리 메뉴 스크립트 및 누락되어 있던 `jquery-1.2.6.pack.js` 호출 구문을 관련 회원/게시판 파일들에서 일괄 제거하였습니다.
+    - 대상 파일: [login.php](/bbs/login.php), [check_msg.php](/member/check_msg.php), [new_msg.php](/member/new_msg.php), [read_msg.php](/member/read_msg.php), [sent_msg.php](/member/sent_msg.php)
+  - **불필요한 PHP Include 제거:** 존재하지 않는 `../include/inc_script.html` 인클루드 구문을 제거하여 PHP Warning 및 성능 저하를 방지하였습니다.
+
+- **UI 버그 수정 (UI Bug Fix)**
+  - **깨진 버튼 배경 이미지 복구 및 경로 정비:** `admin/css` 정리 시 삭제되었으나 실제 CSS(`admin_layout.css`)에서 사용 중인 버튼 배경 이미지(`bg_button_a.gif`, `bg_button_span.gif`)를 Git 히스토리로부터 복구하였습니다.
+  - 관리자 표준 이미지 경로인 `admin/images/`로 해당 이미지들을 이동하고, `admin_layout.css` 내 참조 경로를 `../images/`로 업데이트하였습니다.
+
 ## [v1.5.5] - 2026-07-10 (프로젝트 전체 명확한 불필요 파일 일괄 삭제)
 
 ### 아키텍처 개선 및 리팩토링 (Architecture & Refactoring)
