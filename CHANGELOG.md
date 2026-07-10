@@ -4,6 +4,24 @@
 
 이 문서는 SOHO-market 프로젝트의 최초 시작부터 현재까지의 전체 개발 변경 이력을 기록합니다. 주요 개발 마일스톤과 커밋 히스토리를 바탕으로 구조화되었습니다.
 
+## [v1.5.5] - 2026-07-10 (프로젝트 전체 명확한 불필요 파일 일괄 삭제)
+
+### 아키텍처 개선 및 리팩토링 (Architecture & Refactoring)
+
+- **프로젝트 전체 Dead Code & 불필요 파일 종합 정리 (1차)**
+  - 스크립트로 전체 파일을 분석하여 내·외부 어디서도 참조되지 않는 파일 및 명백히 불필요한 파일을 그룹별로 일괄 삭제하였습니다.
+  - **삭제 파일 수:** 총 101개 파일, 11개 디렉토리
+  - **삭제 그룹:**
+    - **macOS 메타데이터:** `.DS_Store` 파일 전체
+    - **PHPMailer 불필요 파일:** `examples/`, `test/`, `docs/`, `extras/htmlfilter.php`, 한국어(`ko`) 외 50여 개 언어 파일
+    - **admin/js/lang 로케일:** 한국어 외 14개 언어 JS 파일
+    - **admin 템플릿 샘플 이미지:** `gallery/`, `mega-menu/`, `photos/`, `product-list/`, `slider/` (관리자 UI 템플릿 더미 이미지)
+    - **SmartEditor 잔재:** `SEditorSkin.html`, `smart_editor2_inputarea*.html`, `admin/setting/css/`, `admin/setting/img/`, `admin/setting/popup/`
+    - **bbs 미사용 파일:** `multiupload_*`, `download.php`, `upload.php`, `create_db.php` 등 11개
+    - **shop 폐기 파일:** `_old`, `(not use)` prefix 파일
+    - **구형 include 파일:** `header_old.php`
+    - **SmartEditor 버튼 이미지 잔재:** `admin/include/down.gif`, `admin/member/img/`, `admin/supplier/img/`
+
 ## [v1.5.4] - 2026-07-10 (admin/css 미사용 파일 8개 삭제)
 
 ### 아키텍처 개선 및 리팩토링 (Architecture & Refactoring)
